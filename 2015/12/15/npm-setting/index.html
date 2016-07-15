@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>NPM安装及优化步骤--详细版 | 白云雅阁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="npm的常用命令npm install xxx 安装模块  
+npm install xxx@1.1.1   安装1.1.1版本的xxx  
+npm install xxx -g 将模块安装到全局环境中。  
+npm ls 查看安装的模块及依赖  
+npm ls -g 查看全局安装的模块及依赖  
+npm uninstall xxx  (-g) 卸载模块  
+npm cache clean 清理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NPM安装及优化步骤--详细版">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/2015/12/15/npm-setting/index.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="npm的常用命令npm install xxx 安装模块  
+npm install xxx@1.1.1   安装1.1.1版本的xxx  
+npm install xxx -g 将模块安装到全局环境中。  
+npm ls 查看安装的模块及依赖  
+npm ls -g 查看全局安装的模块及依赖  
+npm uninstall xxx  (-g) 卸载模块  
+npm cache clean 清理">
+<meta property="og:updated_time" content="2016-03-21T10:06:49.313Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NPM安装及优化步骤--详细版">
+<meta name="twitter:description" content="npm的常用命令npm install xxx 安装模块  
+npm install xxx@1.1.1   安装1.1.1版本的xxx  
+npm install xxx -g 将模块安装到全局环境中。  
+npm ls 查看安装的模块及依赖  
+npm ls -g 查看全局安装的模块及依赖  
+npm uninstall xxx  (-g) 卸载模块  
+npm cache clean 清理">
+  
+    <link rel="alternative" href="/atom.xml" title="白云雅阁" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">caoqiang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">读懂别人的故事，写好自己的人生</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">caoqiang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">caoqiang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">读懂别人的故事，写好自己的人生</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="page-npm-setting" class="article article-type-page" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/15/npm-setting/" class="article-date">
+  	<time datetime="2015-12-15T11:12:59.000Z" itemprop="datePublished">2015-12-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      NPM安装及优化步骤--详细版
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tool-npm-安装-优化/">tool,npm,安装,优化</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">文章目录</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#npm的常用命令"><span class="toc-number">1.</span> <span class="toc-text">npm的常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#npm获取配置有6种方式，优先级由高到低"><span class="toc-number">2.</span> <span class="toc-text">npm获取配置有6种方式，优先级由高到低</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#针对npm配置的命令行操作"><span class="toc-number">3.</span> <span class="toc-text">针对npm配置的命令行操作</span></a></li></ol>
+            </div>
+        
+        <hr>
+<h2 id="npm的常用命令"><a href="#npm的常用命令" class="headerlink" title="npm的常用命令"></a>npm的常用命令</h2><pre><code>npm install xxx 安装模块  
+npm install xxx@1.1.1   安装1.1.1版本的xxx  
+npm install xxx -g 将模块安装到全局环境中。  
+npm ls 查看安装的模块及依赖  
+npm ls -g 查看全局安装的模块及依赖  
+npm uninstall xxx  (-g) 卸载模块  
+npm cache clean 清理缓存  
+npm help xxx  查看帮助  
+npm view moudleName dependencies  查看包的依赖关系  
+npm view moduleNames  查看node模块的package.json文件夹  
+npm view moduleName labelName  查看package.json文件夹下某个标签的内容  
+npm view moduleName repository.url  查看包的源文件地址  
+npm view moduleName engines   查看包所依赖的Node的版本  
+npm help folders   查看npm使用的所有文件夹  
+npm rebuild moduleName    用于更改包内容后进行重建  
+npm outdated   检查包是否已经过时，此命令会列出所有已经过时的包，可以及时进行包的更新  
+npm update moduleName   更新node模块  
+</code></pre><h2 id="npm获取配置有6种方式，优先级由高到低"><a href="#npm获取配置有6种方式，优先级由高到低" class="headerlink" title="npm获取配置有6种方式，优先级由高到低"></a>npm获取配置有6种方式，优先级由高到低</h2><pre><code>1、命令行参数。 --proxy http://server:port即将proxy的值设为http://server:port。
+2、环境变量。 以npm_config_为前缀的环境变量将会被认为是npm的配置属性。如设置proxy可以加入这样的环境变量npm_config_proxy=http://server:port。
+3、用户配置文件。可以通过npm config get userconfig查看文件路径。如果是mac系统的话默认路径就是$HOME/.npmrc。
+4、全局配置文件。可以通过npm config get globalconfig查看文件路径。mac系统的默认路径是/usr/local/etc/npmrc。
+5、内置配置文件。安装npm的目录下的npmrc文件。
+6、默认配置。 npm本身有默认配置参数，如果以上5条都没设置，则npm会使用默认配置参数。
+</code></pre><h2 id="针对npm配置的命令行操作"><a href="#针对npm配置的命令行操作" class="headerlink" title="针对npm配置的命令行操作"></a>针对npm配置的命令行操作</h2><pre><code>npm config set &lt;key&gt; &lt;value&gt; [--global]
+npm config get &lt;key&gt;
+npm config delete &lt;key&gt;
+npm config list
+npm config edit
+npm get &lt;key&gt;
+npm set &lt;key&gt; &lt;value&gt; [--global]
+在设置配置属性时属性值默认是被存储于用户配置文件中，如果加上--global，则被存储在全局配置文件中。
+如果要查看npm的所有配置属性（包括默认配置），可以使用npm config ls -l。
+如果要查看npm的各种配置的含义，可以使用npm help config。
+</code></pre><p>由于国内网络的种种限制问题，直接运行npm install xxx安装模块支持的时候，有时会出现网络卡断，下载失败的情况，解决办法有2种：</p>
+<p>1、为npm设置代理</p>
+<pre><code>npm config set proxy http://server:port
+npm config set https-proxy http://server:port
+</code></pre><p>如果代理需要认证的话可以这样来设置。</p>
+<pre><code>npm config set proxy http://username:password@server:port
+npm config set https-proxy http://username:pawword@server:port
+</code></pre><p>2、国内镜像</p>
+<pre><code>清华大学Node Packaged Modules镜像：
+http://npm.tuna.tsinghua.edu.cn
+淘宝：
+http://registry.npm.taobao.org
+cnpmjs:
+http://r.cnpmjs.org
+未知：
+http://registry.cnpmjs.org
+</code></pre><p>方法一：通过config命令指定</p>
+<pre><code>npm config set registry http://registry.cnpmjs.org 
+npm info underscore （如果上面配置正确这个命令会有字符串response）
+</code></pre><p>方法二：在命令行中指定</p>
+<pre><code>npm --registry http://registry.cnpmjs.org info underscore
+</code></pre><p>方法三：在配置文件中指定，编辑安装npm的目录下的npmrc文件加入下面内容</p>
+<pre><code>registry = http://registry.cnpmjs.org
+</code></pre><p>方法四：利用定制的cnpm代替npm</p>
+<pre><code>#安装该模块，然后通过该命令来安装所需模块
+npm install -g cnpm --registry=http://registry.npm.taobao.org
+# 利用cnpm来安装模块
+cnpm install [name]# 利用cnpm来同步模块
+cnpm sync connect
+</code></pre><p>方法五：利用alias添加一个基于npm的新命令</p>
+<pre><code>alias cnpm=&quot;npm --registry=http://registry.npm.taobao.org \--cache=$HOME/.npm/.cache/cnpm \--disturl=http://npm.taobao.org/dist \--userconfig=$HOME/.cnpmrc&quot;#Or alias it in .bashrc or .zshrc$ echo &apos;\n#alias for cnpm\nalias cnpm=&quot;npm --registry=registry.npm.taobao.org \  --cache=$HOME/.npm/.cache/cnpm \  --disturl=http://npm.taobao.org/dist \  --userconfig=$HOME/.cnpmrc&quot;&apos; &gt;&gt; ~/.zshrc &amp;&amp; source ~/.zshrc
+</code></pre>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/21/grunt-install/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Grunt：任务自动管理工具
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/12/08/nodejs-install/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">快速搭建 Node.js 开发环境</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="npm-setting" data-title="NPM安装及优化步骤--详细版" data-url="http://ronghuaxueleng.github.io/2015/12/15/npm-setting/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ronghuaxueleng"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 caoqiang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

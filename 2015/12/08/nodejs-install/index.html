@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>快速搭建 Node.js 开发环境 | 白云雅阁</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="如果你想长期做 node 开发, 或者想快速更新 node 版本, 或者想快速切换 node 版本,那么在非 Windows(如 osx, linux) 环境下, 请使用 nvm 来安装你的 node 开发环境, 保持系统的干净.如果你使用 Windows 做开发, 那么你可以使用 nvmw 来替代 nvm
+
+osx, linux 环境如果你是 windows 环境开发, 请跳过这里, 直接查看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="快速搭建 Node.js 开发环境">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/2015/12/08/nodejs-install/index.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="如果你想长期做 node 开发, 或者想快速更新 node 版本, 或者想快速切换 node 版本,那么在非 Windows(如 osx, linux) 环境下, 请使用 nvm 来安装你的 node 开发环境, 保持系统的干净.如果你使用 Windows 做开发, 那么你可以使用 nvmw 来替代 nvm
+
+osx, linux 环境如果你是 windows 环境开发, 请跳过这里, 直接查看">
+<meta property="og:updated_time" content="2016-03-21T10:01:22.489Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="快速搭建 Node.js 开发环境">
+<meta name="twitter:description" content="如果你想长期做 node 开发, 或者想快速更新 node 版本, 或者想快速切换 node 版本,那么在非 Windows(如 osx, linux) 环境下, 请使用 nvm 来安装你的 node 开发环境, 保持系统的干净.如果你使用 Windows 做开发, 那么你可以使用 nvmw 来替代 nvm
+
+osx, linux 环境如果你是 windows 环境开发, 请跳过这里, 直接查看">
+  
+    <link rel="alternative" href="/atom.xml" title="白云雅阁" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">caoqiang</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">读懂别人的故事，写好自己的人生</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">caoqiang</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">caoqiang</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">读懂别人的故事，写好自己的人生</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="page-nodejs-install" class="article article-type-page" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/08/nodejs-install/" class="article-date">
+  	<time datetime="2015-12-08T11:12:59.000Z" itemprop="datePublished">2015-12-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      快速搭建 Node.js 开发环境
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/tool-nodejs-javascript-环境-搭建/">tool,nodejs,javascript,环境,搭建</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+            <div id="toc" class="toc-article">
+              <strong class="toc-title">文章目录</strong>
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#osx-linux-环境"><span class="toc-number">1.</span> <span class="toc-text">osx, linux 环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-clone-nvm"><span class="toc-number">1.1.</span> <span class="toc-text">git clone nvm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过-nvm-安装任意版本的-node"><span class="toc-number">1.2.</span> <span class="toc-text">通过 nvm 安装任意版本的 node</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#windows-环境"><span class="toc-number">2.</span> <span class="toc-text">windows 环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-clone-nvmw"><span class="toc-number">2.1.</span> <span class="toc-text">git clone nvmw</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过-nvmw-安装任意版本的-node"><span class="toc-number">2.2.</span> <span class="toc-text">通过 nvmw 安装任意版本的 node</span></a></li></ol></li></ol>
+            </div>
+        
+        <hr>
+<p>如果你想长期做 node 开发, 或者想快速更新 node 版本, 或者想快速切换 node 版本,<br>那么在非 Windows(如 osx, linux) 环境下, 请使用 nvm 来安装你的 node 开发环境, 保持系统的干净.<br>如果你使用 Windows 做开发, 那么你可以使用 nvmw 来替代 nvm</p>
+<hr>
+<h1 id="osx-linux-环境"><a href="#osx-linux-环境" class="headerlink" title="osx, linux 环境"></a>osx, linux 环境</h1><p>如果你是 windows 环境开发, 请跳过这里, 直接查看下一章.</p>
+<h2 id="git-clone-nvm"><a href="#git-clone-nvm" class="headerlink" title="git clone nvm"></a>git clone nvm</h2><p>直接从 github clone nvm 到本地, 这里假设大家都使用 ~/git 目录存放 git 项目:</p>
+<pre><code>cd ~/git
+git clone https://github.com/creationix/nvm.git
+</code></pre><p>配置终端启动时自动执行 source ~/git/nvm/nvm.sh,<br>在 ~/.bashrc, ~/.bash_profile, ~/.profile, 或者 ~/.zshrc 文件添加以下命令:</p>
+<pre><code>source ~/git/nvm/nvm.sh
+</code></pre><p>重新打开你的终端, 输入 nvm</p>
+<pre><code>$ nvm
+
+Node Version Manager
+
+Usage:
+    nvm help                    Show this message
+    nvm --version               Print out the latest released version of nvm
+    nvm install [-s] &lt;version&gt;  Download and install a &lt;version&gt;, [-s] from source
+    nvm uninstall &lt;version&gt;     Uninstall a version
+    nvm use &lt;version&gt;           Modify PATH to use &lt;version&gt;
+    nvm run &lt;version&gt; [&lt;args&gt;]  Run &lt;version&gt; with &lt;args&gt; as arguments
+    nvm current                 Display currently activated version
+    nvm ls                      List installed versions
+    nvm ls &lt;version&gt;            List versions matching a given description
+    nvm ls-remote               List remote versions available for install
+    nvm deactivate              Undo effects of NVM on current shell
+    nvm alias [&lt;pattern&gt;]       Show all aliases beginning with &lt;pattern&gt;
+    nvm alias &lt;name&gt; &lt;version&gt;  Set an alias named &lt;name&gt; pointing to &lt;version&gt;
+    nvm unalias &lt;name&gt;          Deletes the alias named &lt;name&gt;
+    nvm copy-packages &lt;version&gt; Install global NPM packages contained in &lt;version&gt; to current version
+Example:
+    nvm install v0.10.24        Install a specific version number
+    nvm use 0.10                Use the latest available 0.10.x release
+    nvm run 0.10.24 myApp.js    Run myApp.js using node v0.10.24
+    nvm alias default 0.10.24   Set default node version on a shell
+Note:
+    to remove, delete or uninstall nvm - just remove ~/.nvm, ~/.npm and ~/.bower folders
+</code></pre><h2 id="通过-nvm-安装任意版本的-node"><a href="#通过-nvm-安装任意版本的-node" class="headerlink" title="通过 nvm 安装任意版本的 node"></a>通过 nvm 安装任意版本的 node</h2><p>nvm 默认是从 <a href="http://nodejs.org/dist/" target="_blank" rel="external">http://nodejs.org/dist/</a> 下载的, 国外服务器, 必然很慢,<br>好在 nvm 以及支持从镜像服务器下载包, 于是我们可以方便地从七牛的 node dist 镜像下载:</p>
+<pre><code>NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist nvm install 0.11.11
+</code></pre><p>于是你就会看到一段非常快速进度条:</p>
+<pre><code>######################################################################## 100.0%
+Now using node v0.11.11
+</code></pre><p>如果你不想每次都输入环境变量 NVM_NODEJS_ORG_MIRROR, 那么我建议你加入到 .bashrc 文件中:</p>
+<pre><code># nvm
+export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
+source ~/git/nvm/nvm.sh
+</code></pre><p>然后你可以继续非常方便地安装各个版本的 node 了, 你可以查看一下你当前已经安装的版本:</p>
+<pre><code>$ nvm ls
+     nvm
+ v0.8.26
+v0.10.26
+v0.11.11
+-&gt;  v0.11.12
+</code></pre><h1 id="windows-环境"><a href="#windows-环境" class="headerlink" title="windows 环境"></a>windows 环境</h1><hr>
+<h2 id="git-clone-nvmw"><a href="#git-clone-nvmw" class="headerlink" title="git clone nvmw"></a>git clone nvmw</h2><p>直接从 github clone nvmw 到本地, 这里假设大家都使用 d:\git 目录存放 git 项目:</p>
+<pre><code>$ d:
+$ cd git
+$ git clone https://github.com/hakobera/nvmw.git
+</code></pre><p>设置 d:\git\nvmw 目录到你的 PATH 环境变量中:</p>
+<pre><code>set &quot;PATH=d:\git\nvmw;%PATH%&quot;
+</code></pre><p>重新打开你的终端, 输入 nvmw</p>
+<pre><code>$ nvmw
+Usage:
+  nvmw help                    Show this message
+  nvmw install [version]       Download and install a [version]
+  nvmw uninstall [version]     Uninstall a [version]
+  nvmw use [version]           Modify PATH to use [version]
+  nvmw ls                      List installed versions
+Example:
+  nvmw install v0.6.0          Install a specific version number
+  nvmw use v0.6.0              Use the specific version
+</code></pre><h2 id="通过-nvmw-安装任意版本的-node"><a href="#通过-nvmw-安装任意版本的-node" class="headerlink" title="通过 nvmw 安装任意版本的 node"></a>通过 nvmw 安装任意版本的 node</h2><p>nvmw 默认是从 <a href="http://nodejs.org/dist/" target="_blank" rel="external">http://nodejs.org/dist/</a> 下载的, 国外服务器, 必然很慢,<br>好在 nvmw 以及支持从镜像服务器下载包, 于是我们可以方便地从七牛的 node dist 镜像下载:</p>
+<pre><code>$ set &quot;NVMW_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist&quot;
+$ nvmw install 0.11.11
+</code></pre><p>于是你就会看到一段非常快速进度条:</p>
+<pre><code>######################################################################## 100.0%
+Now using node v0.11.11
+</code></pre><p>如果你不想每次都输入环境变量 NVMW_NODEJS_ORG_MIRROR, 那么我建议你在全局环境变量中增加它.</p>
+<p>然后你可以继续非常方便地安装各个版本的 node 了, 你可以查看一下你当前已经安装的版本:</p>
+<pre><code>$ nvmw ls
+v0.10.26
+v0.11.12
+Current: v0.11.12
+</code></pre><p>到此, 无论是 windows 环境, 还是 osx, linux 环境, 都能快速安装多个版本的 node 了.</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/12/15/npm-setting/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          NPM安装及优化步骤--详细版
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/11/25/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用hexo搭建属于自己的博客</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="nodejs-install" data-title="快速搭建 Node.js 开发环境" data-url="http://ronghuaxueleng.github.io/2015/12/08/nodejs-install/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ronghuaxueleng"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 caoqiang
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
