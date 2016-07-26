@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://ronghuaxueleng.github.io/2015/11/25/build-first-blog/</loc>
+    
+    <lastmod>2016-07-26T08:53:02.748Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://ronghuaxueleng.github.io/404.html</loc>
     
     <lastmod>2016-07-26T08:03:13.444Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>http://ronghuaxueleng.github.io/tags/index.html</loc>
     
     <lastmod>2016-07-26T07:38:44.104Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ronghuaxueleng.github.io/2015/11/25/hello-world/</loc>
-    
-    <lastmod>2016-07-15T08:42:03.085Z</lastmod>
     
   </url>
   

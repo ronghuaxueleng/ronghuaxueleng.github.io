@@ -397,10 +397,10 @@ Current: v0.11.12
   
   <entry>
     <title>使用hexo搭建属于自己的博客</title>
-    <link href="http://ronghuaxueleng.github.io/2015/11/25/hello-world/"/>
-    <id>http://ronghuaxueleng.github.io/2015/11/25/hello-world/</id>
+    <link href="http://ronghuaxueleng.github.io/2015/11/25/build-first-blog/"/>
+    <id>http://ronghuaxueleng.github.io/2015/11/25/build-first-blog/</id>
     <published>2015-11-24T16:00:00.000Z</published>
-    <updated>2016-07-15T08:42:03.085Z</updated>
+    <updated>2016-07-26T08:53:02.748Z</updated>
     
     <content type="html">&lt;hr&gt;
 &lt;p&gt;在搭建这个博客期间参考了很多资料，因为不是所有的资料都能完整并且顺利搭建出来，经过我本人实践，整理出来这篇文章，希望可以帮助大家减少不必要的麻烦，不用再到处找搭建方法，本文的共分为一下几章：&lt;/p&gt;
