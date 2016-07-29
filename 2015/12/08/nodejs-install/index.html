@@ -92,7 +92,7 @@
 <meta property="og:url" content="http://ronghuaxueleng.github.io/2015/12/08/nodejs-install/index.html">
 <meta property="og:site_name" content="白云雅阁">
 <meta property="og:description" content="&amp;#x5982;&amp;#x679C;&amp;#x4F60;&amp;#x60F3;&amp;#x957F;&amp;#x671F;&amp;#x505A; node &amp;#x5F00;&amp;#x53D1;, &amp;#x6216;&amp;#x8005;&amp;#x60F3;&amp;#x5FEB;&amp;#x901F;&amp;#x66F4;&amp;#x65B0; node &amp;#x7248;&amp;#x672C;, &amp;#x6216;&amp;#x8005;&amp;#x60F3;&amp;#x5FEB;&amp;#x901F">
-<meta property="og:updated_time" content="2016-07-26T08:58:56.455Z">
+<meta property="og:updated_time" content="2016-07-29T06:51:07.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速搭建 Node.js 开发环境">
 <meta name="twitter:description" content="&amp;#x5982;&amp;#x679C;&amp;#x4F60;&amp;#x60F3;&amp;#x957F;&amp;#x671F;&amp;#x505A; node &amp;#x5F00;&amp;#x53D1;, &amp;#x6216;&amp;#x8005;&amp;#x60F3;&amp;#x5FEB;&amp;#x901F;&amp;#x66F4;&amp;#x65B0; node &amp;#x7248;&amp;#x672C;, &amp;#x6216;&amp;#x8005;&amp;#x60F3;&amp;#x5FEB;&amp;#x901F">
@@ -118,13 +118,7 @@
 
   <link rel="canonical" href="http://ronghuaxueleng.github.io/2015/12/08/nodejs-install/"/>
 
-  <title>
-  
-
-  
-    快速搭建 Node.js 开发环境 | 白云雅阁
-  
-</title>
+  <title> 快速搭建 Node.js 开发环境 | 白云雅阁 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -145,7 +139,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -235,8 +229,85 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
-      <hr>
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                快速搭建 Node.js 开发环境
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-12-08T19:12:59+08:00" content="2015-12-08">
+              2015-12-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/tool-nodejs-javascript-环境-搭建/" itemprop="url" rel="index">
+                    <span itemprop="name">tool,nodejs,javascript,环境,搭建</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
 <p>&#x5982;&#x679C;&#x4F60;&#x60F3;&#x957F;&#x671F;&#x505A; node &#x5F00;&#x53D1;, &#x6216;&#x8005;&#x60F3;&#x5FEB;&#x901F;&#x66F4;&#x65B0; node &#x7248;&#x672C;, &#x6216;&#x8005;&#x60F3;&#x5FEB;&#x901F;&#x5207;&#x6362; node &#x7248;&#x672C;,<br>&#x90A3;&#x4E48;&#x5728;&#x975E; Windows(&#x5982; osx, linux) &#x73AF;&#x5883;&#x4E0B;, &#x8BF7;&#x4F7F;&#x7528; nvm &#x6765;&#x5B89;&#x88C5;&#x4F60;&#x7684; node &#x5F00;&#x53D1;&#x73AF;&#x5883;, &#x4FDD;&#x6301;&#x7CFB;&#x7EDF;&#x7684;&#x5E72;&#x51C0;.<br>&#x5982;&#x679C;&#x4F60;&#x4F7F;&#x7528; Windows &#x505A;&#x5F00;&#x53D1;, &#x90A3;&#x4E48;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; nvmw &#x6765;&#x66FF;&#x4EE3; nvm</p>
 <hr>
 <h1 id="osx-linux-&#x73AF;&#x5883;"><a href="#osx-linux-&#x73AF;&#x5883;" class="headerlink" title="osx, linux &#x73AF;&#x5883;"></a>osx, linux &#x73AF;&#x5883;</h1><p>&#x5982;&#x679C;&#x4F60;&#x662F; windows &#x73AF;&#x5883;&#x5F00;&#x53D1;, &#x8BF7;&#x8DF3;&#x8FC7;&#x8FD9;&#x91CC;, &#x76F4;&#x63A5;&#x67E5;&#x770B;&#x4E0B;&#x4E00;&#x7AE0;.</p>
@@ -321,7 +392,62 @@ v0.11.12
 Current: v0.11.12
 </code></pre><p>&#x5230;&#x6B64;, &#x65E0;&#x8BBA;&#x662F; windows &#x73AF;&#x5883;, &#x8FD8;&#x662F; osx, linux &#x73AF;&#x5883;, &#x90FD;&#x80FD;&#x5FEB;&#x901F;&#x5B89;&#x88C5;&#x591A;&#x4E2A;&#x7248;&#x672C;&#x7684; node &#x4E86;.</p>
 
-    
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tool-nodejs-javascript-环境-搭建/" rel="tag">#tool,nodejs,javascript,环境,搭建</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/25/build-first-blog/" rel="next" title="使用hexo搭建属于自己的博客">
+                <i class="fa fa-chevron-left"></i> 使用hexo搭建属于自己的博客
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/15/npm-setting/" rel="prev" title="NPM安装及优化步骤--详细版">
+                NPM安装及优化步骤--详细版 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -353,8 +479,17 @@ Current: v0.11.12
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/img/avatar.jpg"
@@ -422,6 +557,17 @@ Current: v0.11.12
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#osx-linux-环境"><span class="nav-number">1.</span> <span class="nav-text">osx, linux 环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-clone-nvm"><span class="nav-number">1.1.</span> <span class="nav-text">git clone nvm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过-nvm-安装任意版本的-node"><span class="nav-number">1.2.</span> <span class="nav-text">通过 nvm 安装任意版本的 node</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#windows-环境"><span class="nav-number">2.</span> <span class="nav-text">windows 环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-clone-nvmw"><span class="nav-number">2.1.</span> <span class="nav-text">git clone nvmw</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过-nvmw-安装任意版本的-node"><span class="nav-number">2.2.</span> <span class="nav-text">通过 nvmw 安装任意版本的 node</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -525,6 +671,10 @@ Current: v0.11.12
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
