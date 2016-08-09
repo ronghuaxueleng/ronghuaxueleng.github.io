@@ -1,9 +1,9 @@
 ---
 title: 《JavaScript高级程序设计》阅读笔记（三）：ECMAScript中的引用类型
-category: 面向对象,继承
+category: 《JavaScript高级程序设计》阅读笔记
 tags: javascript
-date: 2016-07-31
-modifiedOn: 2016-07-31
+date: 2016-08-03
+modifiedOn: 2016-08-03
 toc: true
 ---
 
