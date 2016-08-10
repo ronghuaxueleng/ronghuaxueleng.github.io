@@ -1,6 +1,6 @@
 ---
 title: javascript高级程序设计：面向对象之继承
-category: 面向对象,继承
+category: 《JavaScript高级程序设计》阅读笔记
 tags: javascript
 date: 2016-07-31
 modifiedOn: 2016-07-31
@@ -41,7 +41,7 @@ alert(instance.getSuperValue());//true
 
 代码示例中，完整原型链如下
 
-![](http://images.cnitblog.com/blog/549190/201410/171316418419525.png)
+![](/img/面向对象之继承.png)
 
 
 
