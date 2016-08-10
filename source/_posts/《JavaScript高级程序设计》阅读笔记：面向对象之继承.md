@@ -1,5 +1,5 @@
 ---
-title: javascript高级程序设计：面向对象之继承
+title: 《JavaScript高级程序设计》阅读笔记：面向对象之继承
 category: 《JavaScript高级程序设计》阅读笔记
 tags: javascript
 date: 2016-07-31

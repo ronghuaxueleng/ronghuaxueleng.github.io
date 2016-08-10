@@ -1,6 +1,6 @@
 ---
 title: 快速搭建 Node.js 开发环境
-category: tool,nodejs,javascript,环境,搭建
+category: 环境,nodejs
 tags: tool,nodejs,javascript,环境,搭建
 date: 2015-12-08 19:12:59
 modifiedOn: 2015-12-08 19:12:59

@@ -1,5 +1,5 @@
 title: 常用gulp插件介绍(一)
-category: gulp,前端开发
+category: 自动管理,gulp
 tags: javascript
 date: 2016-08-09
 modifiedOn: 2016-08-09

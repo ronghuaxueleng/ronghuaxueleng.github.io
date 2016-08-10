@@ -1,6 +1,6 @@
 ---
 title: Grunt：任务自动管理工具
-category: tool,grunt,javascript,自动管理
+category: 自动管理,grunt
 tags: tool,grunt,javascript,自动管理
 date: 2016-03-21
 modifiedOn: 2016-03-21
