@@ -1,3 +1,4 @@
+---
 title: 常用gulp插件介绍
 category: 自动管理,gulp
 tags: javascript
@@ -5,6 +6,9 @@ date: 2016-08-09
 modifiedOn: 2016-08-09
 toc: true
 ---
+
+这里介绍一些gulp比较常用的插件
+<!-- more -->
 
 ### util工具类
 

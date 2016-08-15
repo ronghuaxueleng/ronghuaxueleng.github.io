@@ -212,7 +212,7 @@ scroll_to_more: true
 # Please use <!-- more --> in the post to control excerpt accurately.
 auto_excerpt:
   enable: true
-  length: 150
+  length: 1000
 
 
 # Wechat Subscriber

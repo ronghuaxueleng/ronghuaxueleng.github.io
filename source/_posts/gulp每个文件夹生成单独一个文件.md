@@ -9,6 +9,8 @@ modifiedOn: 2016-08-11
 ----------
 如果你有一整套的文件目录，并且希望执行相应的一套任务，比如...
 
+<!-- more -->
+
 ```javascript
 /scripts
 /scripts/jquery/*.js

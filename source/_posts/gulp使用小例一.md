@@ -7,7 +7,9 @@ modifiedOn: 2016-08-10
 ---
 
 ----------
-gulp的一个案例
+gulp的一个案例，读取指定目录中的所有文件通过gulp-filter插件进行筛选，对css、js、图片进行不同的操作
+
+<!-- more -->
 
 ```javascript
 'use strict';
