@@ -24,6 +24,48 @@ toc: true
 
 要使用这些参数只要在require的时候传入即可，如`require('gulp-load-plugins')({lazy: true})`。
 
+#### [gulp-task-loader](https://www.npmjs.com/package/gulp-task-loader)
+
+这个插件的作用很简单，就是可以将gulpfile.js拆分成多个文件，放到目录下，是任务更清晰，结构更分明，使用方法如下：
+clear.js
+```javascript
+'use strict';
+var del = require('del');
+
+module.exports = function() {
+    return del.sync(this.opts.destDir);
+};
+```
+copy.js
+```javascript
+'use strict';
+
+module.exports = function() {
+    return this.gulp.src(this.opts.publicDir)
+     .pipe(this.gulp.dest(this.opts.destDir));
+};
+module.exports.dependencies = ['clean'];
+```
+
+gulpfile.js
+```javascript
+'use strict';
+var gulp = require('gulp');
+var config = {
+    pkg: require('./package.json'),
+    publicDir: ['./{public,public/**}'],
+    destDir: 'dest',
+    version: "0.01"
+};
+
+require('gulp-task-loader')(config);
+gulp.task('build', ['clean', 'copy');
+
+```
+
+可以看到copy.js中最后有这样一行代码`module.exports.dependencies = ['clean'];`,这个是用做任务依赖的，只有前一个任务执行完毕后才能执行当前任务，使用起来还是很简单的
+
+
 #### [gulp-task-listing](https://www.npmjs.com/package/gulp-task-listing)
 
 这个插件的作用也很容易猜，它可以打印出`gulpfile.js`中定义的所有task，这个插件我们在[重构你的gulpfile](/2015/03/24/refactor-your-gulpfile/)这篇文章的最后介绍过，值得一提的是它还可以根据task的名字确定它是不是一个子task，比如带有`:`、`-`、`_`的task就被认为是子task。我一般把这个插件作为默认的task来调用，如
