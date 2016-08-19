@@ -3,11 +3,11 @@ title: 常用gulp插件介绍
 category: 自动管理,gulp
 tags: javascript
 date: 2016-08-09
-modifiedOn: 2016-08-09
+modifiedOn: 2016-08-19
 toc: true
 ---
 
-这里介绍一些gulp比较常用的插件
+这里介绍一些gulp比较常用的插件，包括util工具类、stream相关、inject相关、Angular相关、压缩工具类、server相关、特定语言相关等。
 <!-- more -->
 
 ### util工具类
@@ -316,7 +316,7 @@ return gulp
     .pipe(gulp.dest('dist'));
 ```
 
-首先一上来，先调用`$.useref.assets()`函数，这个函数返回一个stream，包含已经合并后的文件。可以尝试在第9行后面加上前面介绍过的gulp-print插件`.pipe($.print())`，打印出stream里的文件，发现就是前面HTML中4个build注释块后面的4个文件。注意这里调用的时候跟了一个`searchPath`的参数，它的用处就是指定从哪个路径开始寻找build区块底下的文件。比如build区块底下有这么一行`<script src="static/js/a.js"></script>`，那最终gulp-useref将从这个路径`app/src/static/js/a.js`找到这个文件。第3到5行定义了3个filter，这主要是为了后面压缩准备的。下面正式看stream的pipe流程。先选出要处理的HTML文件，然后调用刚才得到的`assets`得到合并后的4个文件，第10到12行筛选出合并后的CSS文件进行压缩（压缩类插件下篇文章再讲），第13到16行筛选出app.js进行压缩，第17到19行筛选出lib.js进行压缩。之所以要区别对待app.js和lib.js，是因为app.js是我们自己写的代码，压缩后要加上header（第15行，使用前面介绍过的gulp-header插件），而lib.js是第三方的各种库，直接压缩即可。后面调用gulp-rev给压缩后的4个文件加hash，然后调用`assets.restore()`将src源换回HTML文件，这是为了后面调用`$.useref()`，因为`$.useref()`做替换的src源是HTML文件，同样后面调用gulp-rev-replace将带hash的文件替换回HTML，它要求的src源也必须是HTML文件。这里的顺序很重要，因为这几个插件接受的源不一样，gulp-rev接受的是JS、CSS文件，而gulp-useref和gulp-rev-replace接受的是HTML。还有一个问题：gulp-rev-replace是怎么知道gulp-rev进行hash前后的文件名对应关系呢？其实gulp-rev会生成一个manifest的文件，内容是类似下面的JSON：
+首先一上来，先调用`$.useref.assets()`函数，这个函数返回一个stream，包含已经合并后的文件。可以尝试在第9行后面加上前面介绍过的gulp-print插件`.pipe($.print())`，打印出stream里的文件，发现就是前面HTML中4个build注释块后面的4个文件。注意这里调用的时候跟了一个`searchPath`的参数，它的用处就是指定从哪个路径开始寻找build区块底下的文件。比如build区块底下有这么一行``，那最终gulp-useref将从这个路径`app/src/static/js/a.js`找到这个文件。第3到5行定义了3个filter，这主要是为了后面压缩准备的。下面正式看stream的pipe流程。先选出要处理的HTML文件，然后调用刚才得到的`assets`得到合并后的4个文件，第10到12行筛选出合并后的CSS文件进行压缩（压缩类插件下篇文章再讲），第13到16行筛选出app.js进行压缩，第17到19行筛选出lib.js进行压缩。之所以要区别对待app.js和lib.js，是因为app.js是我们自己写的代码，压缩后要加上header（第15行，使用前面介绍过的gulp-header插件），而lib.js是第三方的各种库，直接压缩即可。后面调用gulp-rev给压缩后的4个文件加hash，然后调用`assets.restore()`将src源换回HTML文件，这是为了后面调用`$.useref()`，因为`$.useref()`做替换的src源是HTML文件，同样后面调用gulp-rev-replace将带hash的文件替换回HTML，它要求的src源也必须是HTML文件。这里的顺序很重要，因为这几个插件接受的源不一样，gulp-rev接受的是JS、CSS文件，而gulp-useref和gulp-rev-replace接受的是HTML。还有一个问题：gulp-rev-replace是怎么知道gulp-rev进行hash前后的文件名对应关系呢？其实gulp-rev会生成一个manifest的文件，内容是类似下面的JSON：
 
 ``` javascript
 {
@@ -326,6 +326,98 @@ return gulp
 ```
 
 当然这个文件默认是不会生成在文件系统里的，可以通过`.pipe($.rev.manifest())`将这个文件保存到本地。有了这个文件，gulp-rev-replace甚至可以脱离gulp-rev独立工作哦！
+
+#### [gulp-html-replace](https://www.npmjs.com/package/gulp-html-replace)
+
+gulp-html-replace同样是识别以build开头的注释,与[gulp-useref](https://www.npmjs.com/package/gulp-useref)不同的是不会对build区块中的所有文件进行合并，而是根据配置直接替换掉build区块中的内容下面以一个例子做说明：
+
+
+html片段
+```html
+<html>
+    <head>
+        <!-- build:css -->
+        <link href="css/one.css" rel="stylesheet">
+        <link href="css/two.css" rel="stylesheet">
+        <!-- endbuild -->
+    </head>
+    <body>
+        <!-- build:vendorJs -->
+        <script type="text/javascript" src="js/one.js"></script> 
+        <script type="text/javascript" src="js/two.js"></script>
+        <!-- endbuild -->
+    </body>
+</html>
+```
+
+相关任务：
+```javascript
+    gulp.src('index.html')
+        .pipe(htmlreplace({
+            'css': 'styles.min.css',
+            'vendorJs': '/js/vendor.js'
+        }))
+        .pipe(gulp.dest('dest/'));
+```
+执行任务后的html片段：
+```html
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.min.css">
+    </head>
+    <body>
+        <script src="/js/vendor.js"></script>
+    </body>
+</html>
+```
+
+很简单，不用再做过多的说明
+
+#### [gulp-file-concat](https://www.npmjs.com/package/gulp-file-concat)
+
+顾名思义，文件合并，这个插件可以合并通过document.write引入的js和通过@import引入的css，下面看一个例子：
+index.js:
+```javascript
+(function() {
+    document.write('<script src="a.js"><\/script>');
+    document.write('<script src="b.js"><\/script>');
+}());
+```
+index.css:
+```css
+@import url("a.css");
+@import url("b.css");
+```
+gulpfile.js:
+```javascript
+var gulp = require('gulp');
+var fileconcat = require('gulp-file-concat');
+var uglify = require('gulp-uglify');
+var ngAnnotate = require('gulp-ng-annotate');
+var rename = require('gulp-rename');
+
+gulp.task('default', function() {
+  gulp.src('index.js')
+    .pipe(fileconcat({
+        relativeUrls: './'
+    }))
+    .pipe(ngAnnotate())
+    .pipe(uglify())
+    .pipe(rename(function(path){
+        path.basename = 'app';
+        path.extname = '.js'
+    }))
+    .pipe(gulp.dest('build/'));
+
+  gulp.src('index.css')
+      .pipe(fileconcat())
+      .pipe(gulp.dest('build/'));
+});
+```
+
+
+这个一个文件合并的插件，为什么要把这个插件放在这里来介绍，其实我觉得这个可以和[gulp-html-replace](https://www.npmjs.com/package/gulp-html-replace)联合使用，至于怎么用，请细细品味吧
+
 
 ### Angular相关
 
