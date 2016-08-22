@@ -1,6 +1,6 @@
 ---
 title: AngularJS中controller和service的继承与扩展
-categories:angularjs
+categories: angularjs
 tags: AngularJS, controller, service, 继承, 扩展, decorator, $provide, $delegate
 date: 2016-08-23
 modifiedOn: 2016-08-23
