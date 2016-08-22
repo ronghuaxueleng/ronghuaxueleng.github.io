@@ -16,7 +16,7 @@ toc: true
 
 ### controller的继承
 
-说到controller，我们在[前面的文章](/2015/02/09/controller-as-vs-scope/)中介绍过有两种写法：使用`$scope`或使用`controller as`。针对这两种方式的区别，我们也可以使用两种不同的继承方式：
+说到controller，我们在[前面的文章](/2016/08/22/angularJs/用$scope还是用controller as/)中介绍过有两种写法：使用`$scope`或使用`controller as`。针对这两种方式的区别，我们也可以使用两种不同的继承方式：
 * 使用`controller as`的情况下，特点是controller不再依赖`$scope`，就跟普通的函数差不多，这个时候可以使用Javascript原生的继承方式。
 * 使用`$scope`时，可以使用AngularJS内置的`$controller`service，通过依赖注入的方式实现继承。
 
@@ -24,8 +24,8 @@ toc: true
 
 __*使用原生的继承*__
 
+<p data-height="305" data-theme-id="0" data-slug-hash="zBQAbw" data-default-tab="js,result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/zBQAbw/">zBQAbw</a> by 曹强 (<a href="http://codepen.io/ronghuaxueleng">@ronghuaxueleng</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
-<p data-height="268" data-theme-id="12085" data-slug-hash="zxpRbK" data-default-tab="result" data-user="pinkyjie" class='codepen'>See the Pen <a href='http://codepen.io/pinkyjie/pen/zxpRbK/'>zxpRbK</a> by Pinky Jie (<a href='http://codepen.io/pinkyjie'>@pinkyjie</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
 这个例子有左右两块区域，左边的是parent，右边的是child，它们分别有5行数据需要显示：
 * 第1行性别，对应属性`sex`。用于展示继承时不更改的属性。
@@ -35,7 +35,7 @@ __*使用原生的继承*__
 * 第5行也是个按钮，对应方法`test()`，用于展示继承时覆盖的方法。（不要在意这个随意的名字，因为我已经场景匮乏了。。。）
 
 通过这5行，这个例子就基本涵盖了继承时发生的大部分情况。那么切换到JS里看看实现吧。JS里的代码结构大致分为5部分，用注释`/* Section 1 */`来区分（由于CodePen这工具不支持显示行号，所以只能用代码里的注释来分块讲解了）。
-* 第1部分是一个典型的Javascript实现的继承函数`extend`，里面的原理不再详述，有兴趣可以看以前写的[《理解Backbone中extend的实现》](/2013/11/30/understand-backbone-extend/)。
+* 第1部分是一个典型的Javascript实现的继承函数`extend`，里面的原理不再详述，有兴趣可以看以前写的[《《JavaScript高级程序设计》阅读笔记：面向对象之继》](/2016/07/31/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记：面向对象之继承/)。
 > 这段代码怎么生成？访问[CoffeeScript官网](http://coffeescript.org/)，点击“TRY COFFEESCRIPT”，会打开一个编辑器窗口，左边写CoffeeScript，右边就会生成相应的Javascript。在左边键入`class A extends B`，右面就会有extend函数啦。机！智！
 * 第2部分是一个名叫`FamilyService`的AngularJS的service。两个controller都需要依赖它。它的功能很简单，parent和child需要的孩子数量和兄弟数量都由这个service来提供，分别是方法`getChildrenCount()`和`getSiblingCount()`。除此之外，每次生孩子的时候它会trigger一个`new-child`事件，并将孩子数量通过参数传播出去。
 * 第3部分就是定义`ParentCtrl`这个父controller了，由于采用`controller as`写法，这里的定义跟普通的对象没区别，在构造函数里定义属性，方法则定义在`prototype`上。这里值得注意的有两点：
@@ -50,7 +50,8 @@ __*使用原生的继承*__
 
 __*使用`$controller`service*__
 
-<p data-height="268" data-theme-id="12085" data-slug-hash="zxaZPw" data-default-tab="result" data-user="pinkyjie" class='codepen'>See the Pen <a href='http://codepen.io/pinkyjie/pen/zxaZPw/'>zxaZPw</a> by Pinky Jie (<a href='http://codepen.io/pinkyjie'>@pinkyjie</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="RRmAmq" data-default-tab="js,result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/RRmAmq/">RRmAmq</a> by 曹强 (<a href="http://codepen.io/ronghuaxueleng">@ronghuaxueleng</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 例子的实际效果与上面的一致，我们直接看JS部分的实现吧。这个代码分为4个部分：
 * 第1部分与前面service的定义相同。
@@ -66,7 +67,8 @@ __*比较*__
 
 service的继承就比较简单了，AngularJS中的service可以认为是new了service构造函数的实例。看下面这个例子，与上面的例子类似，同样是展示了继承过程中不改变或覆盖父service的属性和方法。
 
-<p data-height="268" data-theme-id="12085" data-slug-hash="WbyYdK" data-default-tab="result" data-user="pinkyjie" class='codepen'>See the Pen <a href='http://codepen.io/pinkyjie/pen/WbyYdK/'>WbyYdK</a> by Pinky Jie (<a href='http://codepen.io/pinkyjie'>@pinkyjie</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="YWbwoO" data-default-tab="js,result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/YWbwoO/">YWbwoO</a> by 曹强 (<a href="http://codepen.io/ronghuaxueleng">@ronghuaxueleng</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 熟悉的左右布局，三个属性两个方法。直接看JS中的实现，4个部分：
 * 第1部分定义了一个controller，这个controller的所有功能基本都来自于service。页面中左右两个部分用的是同样的controller，只是名字不同，而且依赖的service不同。这一点从第4部分可以直观的看出来。
@@ -85,7 +87,8 @@ for (var key in parent) {
 
 其实扩展说白了，就是可以把一个已经定义好的service进行修改，为了保证这个修改的优先级，可以在module的config阶段来实现。废话不说，直接上例子吧。
 
-<p data-height="268" data-theme-id="12085" data-slug-hash="LErmxz" data-default-tab="result" data-user="pinkyjie" class='codepen'>See the Pen <a href='http://codepen.io/pinkyjie/pen/LErmxz/'>LErmxz</a> by Pinky Jie (<a href='http://codepen.io/pinkyjie'>@pinkyjie</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="qNGbZx" data-default-tab="result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/qNGbZx/">qNGbZx</a> by 曹强 (<a href="http://codepen.io/ronghuaxueleng">@ronghuaxueleng</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 这个例子与前面的类似，只是页面只有一个部分，实现的结果跟上面的右半部分一致。直接看JS中的实现，除了第3部分其他都是一样的。第3部分中定义了一个`extendServcie`函数，这个函数是在app的config阶段调用的（见第4部分）。这个函数中依赖了一个特殊的service`$provide`，扩展功能就由它的`decorator`方法来实现，方法的第一个参数就是要扩展的service的名称，第二个参数就是实际的扩展。在第二个参数中依赖一个`$delegate`service，这个service代表的其实就是`TestService`本身，可以看到在函数中我们直接使用`$delegate`去引用原有servcie，并进行随意更改，最终将这个`$delegate`返回即可。
 

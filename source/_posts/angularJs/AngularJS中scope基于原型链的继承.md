@@ -15,8 +15,8 @@ toc: true
 
 AngularJS的官方文档里有这么一句话来描述scope：`A "child scope" (prototypically) inherits properties from its parent scope.` 子scope从其父scope那里继承属性，而括号里的词是重点，这种继承是基于原型链的。直接来看一个最简单的例子。
 
+<p data-height="265" data-theme-id="0" data-slug-hash="AXkKWr" data-default-tab="html,result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/AXkKWr/">AXkKWr</a> by 曹强 (<a href="http://codepen.io/ronghuaxueleng">@ronghuaxueleng</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
-<p data-height="268" data-theme-id="12085" data-slug-hash="xbPPPJ" data-default-tab="result" data-user="pinkyjie" class='codepen'>See the Pen <a href='http://codepen.io/pinkyjie/pen/xbPPPJ/'>xbPPPJ</a> by Pinky Jie (<a href='http://codepen.io/pinkyjie'>@pinkyjie</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
 这段简单的代码里，`ChildCtrl`并没有定义`MyName`，但由于在DOM结构上它和`ParentCtrl`是父子关系，所以它继承了其父scope上定义的属性。这个其实不难理解，我们知道，在Javascript的世界里，继承都是通过原型链来实现的。最常见的例子就是`toString()`方法，试试运行`var a = {"test1": 1, "test2": 2}; a.toString()`。你自定义一个对象时，都可以调用到这个方法，因为这个方法是定义在object对象上的，自定义的对象都继承它。
 
@@ -37,7 +37,8 @@ AngularJS的官方文档里有这么一句话来描述scope：`A "child scope" (
 * 写子类的属性时，如果子类有这个属性（`hasOwnProperty`）则写子类的，子类没有的话就会在子类上新建一个同名的新属性，而父类继承过来的属性被隐藏。
 
 那怎么解决这个问题呢？我们按照最佳实践，将model绑定在scope的data属性上试试。看下面这个例子。
-<p data-height="268" data-theme-id="12085" data-slug-hash="WbXXyo" data-default-tab="result" data-user="pinkyjie" class='codepen'>See the Pen <a href='http://codepen.io/pinkyjie/pen/WbXXyo/'>WbXXyo</a> by Pinky Jie (<a href='http://codepen.io/pinkyjie'>@pinkyjie</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="QERNyy" data-default-tab="html,result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/QERNyy/">QERNyy</a> by 曹强 (<a href="http://codepen.io/ronghuaxueleng">@ronghuaxueleng</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 我们同样做上面3个实验，发现这次不管怎么修改，父scope和子scope上的model都是可以同步的。这又是为什么呢？难道写属性的时候没有在子scope上创建新属性吗？确实如此！可以发现，这里继承的属性是`data`，它是一个对象，而前面的例子中继承的是`myName`，是一个字符串。在这两种情况下，当我们尝试修改Child Namd的input为“abc”时，让我们看看分别有什么不同：
 * 例子1中，由于双向绑定，其实是执行`子scope.myName = "abc"`，先检查子scope上有没有`myName`属性**可供写**，发现没有，则新建属性，导致父scope的属性被隐藏。
@@ -59,7 +60,8 @@ AngularJS的官方文档里有这么一句话来描述scope：`A "child scope" (
 子scope[循环变量] = 此轮循环的值;
 ```
 这个特性在很多场景下很有用。比如说，同一个页面上有2个`ng-include`标签，使用同样的模板，模板里有一个变量`name`，针对两个不同的`ng-include`我想让`name`变量有不同的值，但是我又不想重新写两个controller，这个时候可以使用`ng-repeat`。
-<p data-height="268" data-theme-id="12085" data-slug-hash="VYrxEK" data-default-tab="result" data-user="pinkyjie" class='codepen'>See the Pen <a href='http://codepen.io/pinkyjie/pen/VYrxEK/'>VYrxEK</a> by Pinky Jie (<a href='http://codepen.io/pinkyjie'>@pinkyjie</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="qNGkbY" data-default-tab="html,result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/qNGkbY/">qNGkbY</a> by 曹强 (<a href="http://codepen.io/ronghuaxueleng">@ronghuaxueleng</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 这里使用`ng-repeat`可以轻松的将不同的变量传入同一个模板中。
 

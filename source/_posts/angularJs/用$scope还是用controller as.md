@@ -19,12 +19,13 @@ AngularJS中在处理controller时提供了两种语法。
 
 $scope方式就不详细说了，大家应该最常用这种吧，看下面这段简单的代码。
 
+<p data-height="265" data-theme-id="0" data-slug-hash="NAVxLk" data-default-tab="result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/NAVxLk/">NAVxLk</a> by 曹强 (<a href="http://codepen.io/ronghuaxueleng">@ronghuaxueleng</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
-<p data-height="268" data-theme-id="12085" data-slug-hash="QwOYVe" data-default-tab="html" data-user="pinkyjie" class='codepen'>See the Pen <a href='http://codepen.io/pinkyjie/pen/QwOYVe/'>QwOYVe</a> by Pinky Jie (<a href='http://codepen.io/pinkyjie'>@pinkyjie</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 
 对应版本的controller as方式如下：
 
-<p data-height="268" data-theme-id="12085" data-slug-hash="YPYWGO" data-default-tab="html" data-user="pinkyjie" class='codepen'>See the Pen <a href='http://codepen.io/pinkyjie/pen/YPYWGO/'>YPYWGO</a> by Pinky Jie (<a href='http://codepen.io/pinkyjie'>@pinkyjie</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="vKwLQa" data-default-tab="result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/vKwLQa/">vKwLQa</a> by 曹强 (<a href="http://codepen.io/ronghuaxueleng">@ronghuaxueleng</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 在controller as方式中，可以给controller起别名，上面的例子中别名是`ctrl`。对比这两个例子，可以明显的看到controller as有两个不同的地方：
 * 在HTML中，所有的绑定都需要写别名，即需要使用点运算符`ctrl.`
@@ -43,7 +44,8 @@ $scope方式就不详细说了，大家应该最常用这种吧，看下面这�
 
 另外，使用别名还有一个显而易见的好处：指代清晰。在嵌套scope时，子scope如果想使用父scope的属性，只需简单的使用父scope的别名引用父scope即可。比如下面这个例子，我们将[上篇文章](/2016/08/21/angularJs/AngularJS中scope基于原型链的继承/)的例子用controller as重写。
 
-<p data-height="268" data-theme-id="12085" data-slug-hash="OPzRVN" data-default-tab="result" data-user="pinkyjie" class='codepen'>See the Pen <a href='http://codepen.io/pinkyjie/pen/OPzRVN/'>OPzRVN</a> by Pinky Jie (<a href='http://codepen.io/pinkyjie'>@pinkyjie</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="BzZjvE" data-default-tab="html,result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/BzZjvE/">BzZjvE</a> by 曹强 (<a href="http://codepen.io/ronghuaxueleng">@ronghuaxueleng</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 这里我想让子scope里直接指向父scope的属性，只需在DOM绑定model时写上`parent.myName`即可，简单明了，看代码的一下就懂了，也不用费劲去推到底这里指向的是哪个属性了。如果你的嵌套多达四五层，那这种写法的优势就一下子体现出来了。
 
