@@ -1,6 +1,6 @@
 ---
 title: Angular-UI-Router 学习笔记 
-category: angularjs,ui,router
+category: angularjs
 tags: angularjs
 date: 2016-08-03
 modifiedOn: 2016-08-03
