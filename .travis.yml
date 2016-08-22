@@ -1,0 +1,37 @@
+language: node_js
+node_js: stable
+
+# Travis-CI Caching
+cache:
+  directories:
+    - node_modules
+
+
+# S: Build Lifecycle
+install:
+  - npm install
+
+before_script:
+  - npm install -g gulp
+
+script:
+  - gulp dist
+
+after_script:
+  - cd dist
+  - git init
+  - git config user.name "ronghuaxueleng"
+  - git config user.email "caoqianghappy@126.com"
+  - git add .
+  - git commit -m "Update docs"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages
+# E: Build LifeCycle
+
+branches:
+  only:
+    - master
+env:
+ global:
+   - GIT_PAGE_REF: github.com/ronghuaxueleng/ronghuaxueleng.github.io.git
+   - secure: "x3QwdeQO/TN9bQPDNGjzPBgPwwLnQPwKBeWvxjdyOa8tHXGddym/syMg4z/1sGzKo/f58NtUQHxSGna+ewp0ieinEJEPNRvkXMEo8VD/vtdfWswgbCu1h8jlspwpbdr2wgWHJE82/9GwaDdcnmvQiphypZ94tu5Z26D8Z/3qu6LTSvVXGZYr25arUQLFu854PEcz8O/dQN+qlfhNtLo5BaCgyk57yJ+utFHNq/Li6A0gWk9d8qtjtHz3LAhHmOP0ZrUlFz6XXdXk29DHILUMJYriiShpRz/SFtsPNX7qwxNLbXwwzu7jID6VCVG94YALD5BI0ffKHMDrs9TVGU2MXSe1RHqclggYg+sTW5evgd3mpHZW0EPUhAS6d42UkZxZ49TG+WWHvBwq+yZwprjw9nOgHNTDPYIt869A+O7pP0WYXA3BeqT5DbXjGS1pXBYUwKKB+xwJObmgQRtmiXFTFqll2hsCbAczwYDO9fctTRMK3WRPd2tWN60FI4lNvf1OnU1w1pXZrWnzxY58yEFW+w4MZg9uPMDLgM/J9vxsqPoSt/P+W+SLPSzdO6fVFsR/ZmQVKX3qEGMk5eUVT1aOr8ML3XwFzcYAh6k6w7Dg0GwaAyU7qJVlprSaP+fHhyGxtxNklBFAx3Qxhbl+gs0IrLZD8dslw714OPkp59Jxioo="
+
