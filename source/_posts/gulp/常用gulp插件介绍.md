@@ -415,6 +415,45 @@ html片段
 
 很简单，不用再做过多的说明
 
+#### [gulp-rev-hash2](https://www.npmjs.com/package/gulp-rev-hash2)
+
+这个插件是在引用的静态文件后面添加版本号的，这个版本号是被引用的文件的md5值，所以说这个插件和实用，不多说，直接上代码
+
+gulpfile.js
+```javascript
+var gulp = require('gulp');
+var rev = require('gulp-rev-hash2');
+ 
+gulp.task('rev', function () {
+    gulp.src('template.html')
+        .pipe(rev({
+          'cwd': 'public/assets',
+          'suffix': 'rev',
+          'fileTypes': ['css']
+        }))
+        .pipe(gulp.dest('.'));
+});
+```
+
+输入:
+```html
+<link rel="stylesheet" href="main.min.css"/>
+ 
+<script src="abc.js"></script>
+<script src="def.js"></script>
+```
+
+输出:
+```html
+<link rel="stylesheet" href="main.min.css?rev=9d58b7441d92130f545778e418d1317d">
+ 
+<script src="abc.js"></script>
+<script src="def.js"></script>
+```
+
+用法也是很简单的，具体的可以看api
+
+
 #### [gulp-file-concat](https://www.npmjs.com/package/gulp-file-concat)
 
 顾名思义，文件合并，这个插件可以合并通过document.write引入的js和通过@import引入的css，下面看一个例子：
