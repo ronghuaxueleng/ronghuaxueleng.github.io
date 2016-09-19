@@ -23,7 +23,7 @@ toc: true
 使用命令：
 
  ```bash
- sendEmail -f yourselfemail@163.com -t targetemail@qq.com -s smtp.163.com -u "我是邮件主题" -o message-content-type=html -o message-charset=utf8 -xu 登陆用户名@163.com -xp 123456用户密码  -m "我是邮件内容 -a "附件路径"
+ sendEmail -f yourselfemail@163.com -t targetemail@qq.com -s smtp.163.com -u "我是邮件主题" -o message-content-type=html -o message-charset=utf8 -xu 登陆用户名@163.com -xp 123456用户密码  -m "我是邮件内容 -a "附件路径" -o message-charset=GB2312 -o message-header=GB2312
  ```
  -f yourselfemail@163.com  发件人邮箱
 -s smtp.163.com       发件人邮箱的smtp服务器
