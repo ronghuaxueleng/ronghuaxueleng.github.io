@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>d3简单介绍</title>
+    <script src="d3.min.js" charset="utf-8"></script>
+  </head>
+  <body></body>
+  <script>
+    /**
+    1、通过 d3.select('body’) 将页面上的body标签选中；  
+    2、selectAll('p’) 返回了一个p标签的空选集(selection)；  
+    3、空选集通过 data()方法将数据和p标签绑定，并产生三个虚拟的子集: enter, update,exit。
+    
+
+    D3的这种数据绑定方式的设计，
+    使enter()里只是专心处理新增的元素，
+    而update 和exit分别专注于处理更新和待删除部分，
+    这意味着你不用把所有DOM元素删了重绘，因此得以轻松应对实时变化的数据，
+    甚至支持一些交互(如拖动)与渐变的效果！
+    **/
+    function render(data){
+        var demo = d3.select('body')
+            .selectAll('p')
+            .data(data, function (d) {
+              return d;
+            });
+        
+        // enter()包含了待绑定数据及相应的标签的占位符
+        //以下代码为 enter() 中的占位符创建p标签，绑定相应的数据，并初始化样式
+        demo.enter()
+            .append('p')
+            .style('width', 0+'px')
+            .style('background', '#eee');
+        
+         // 为 update() 中的p标签写入数字文本,并绑定transition动画,使它以动画形式展现;
+         // update()会被隐式调用,索引看不到
+        demo.text(function (d) {
+              return d;
+            })
+            .transition()
+            .duration(1000)
+            .style('width', function (d) {
+              return d+'px';
+            });
+        // exit()包含了待移除数据p标签
+        // 为 exit() 中的p标签绑定transition动画，使它以动画形式移除
+        demo.exit()
+            .transition()
+            .duration(1000)
+            .style('width', 0+'px')
+            .remove();
+    }
+
+    render([100,300,500]);
+
+    setTimeout(function(){
+        render([300,500,1000]);
+    },1000)
+    </script>
+</html>
