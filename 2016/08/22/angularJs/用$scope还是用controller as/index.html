@@ -1,0 +1,940 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="angularJS, scope, controller," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="AngularJS中在处理controller时提供了两种语法。
+
+第一种是，在DOM中使用ng-controller=&amp;quot;TestController&amp;quot;，这样在定义controller时需要将model绑定到$scope上。
+另一种是，在DOM中使用ng-controller=&amp;quot;TestController as test&amp;quot;，这样其实是将model直接绑定到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用$scope还是用controller as">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/2016/08/22/angularJs/用$scope还是用controller as/index.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="AngularJS中在处理controller时提供了两种语法。
+
+第一种是，在DOM中使用ng-controller=&amp;quot;TestController&amp;quot;，这样在定义controller时需要将model绑定到$scope上。
+另一种是，在DOM中使用ng-controller=&amp;quot;TestController as test&amp;quot;，这样其实是将model直接绑定到">
+<meta property="og:image" content="http://7jptbo.com1.z0.glb.clouddn.com/images/controller-as-vs-scope-1.png">
+<meta property="og:updated_time" content="2016-10-12T10:25:08.089Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用$scope还是用controller as">
+<meta name="twitter:description" content="AngularJS中在处理controller时提供了两种语法。
+
+第一种是，在DOM中使用ng-controller=&amp;quot;TestController&amp;quot;，这样在定义controller时需要将model绑定到$scope上。
+另一种是，在DOM中使用ng-controller=&amp;quot;TestController as test&amp;quot;，这样其实是将model直接绑定到">
+<meta name="twitter:image" content="http://7jptbo.com1.z0.glb.clouddn.com/images/controller-as-vs-scope-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/2016/08/22/angularJs/用$scope还是用controller as/"/>
+
+  <title> 用$scope还是用controller as | 白云雅阁 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="https://github.com/ronghuaxueleng">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+    </a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">白云雅阁</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">读懂别人的故事，写好自己的人生</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                用$scope还是用controller as
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-22T00:00:00+08:00" content="2016-08-22">
+              2016-08-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/angularjs/" itemprop="url" rel="index">
+                    <span itemprop="name">angularjs</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/22/angularJs/用$scope还是用controller as/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/22/angularJs/用$scope还是用controller as/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/22/angularJs/用$scope还是用controller as/" class="leancloud_visitors" data-flag-title="用$scope还是用controller as">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+
+          
+            &nbsp; | &nbsp;
+          <span id="/2016/08/22/angularJs/用$scope还是用controller as/"class="leancloud_visitors" data-flag-title="用$scope还是用controller as">
+            &nbsp;阅读次数
+          </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>AngularJS&#x4E2D;&#x5728;&#x5904;&#x7406;controller&#x65F6;&#x63D0;&#x4F9B;&#x4E86;&#x4E24;&#x79CD;&#x8BED;&#x6CD5;&#x3002;</p>
+<ul>
+<li>&#x7B2C;&#x4E00;&#x79CD;&#x662F;&#xFF0C;&#x5728;DOM&#x4E2D;&#x4F7F;&#x7528;<code>ng-controller=&quot;TestController&quot;</code>&#xFF0C;&#x8FD9;&#x6837;&#x5728;&#x5B9A;&#x4E49;controller&#x65F6;&#x9700;&#x8981;&#x5C06;model&#x7ED1;&#x5B9A;&#x5230;$scope&#x4E0A;&#x3002;</li>
+<li>&#x53E6;&#x4E00;&#x79CD;&#x662F;&#xFF0C;&#x5728;DOM&#x4E2D;&#x4F7F;&#x7528;<code>ng-controller=&quot;TestController as test&quot;</code>&#xFF0C;&#x8FD9;&#x6837;&#x5176;&#x5B9E;&#x662F;&#x5C06;model&#x76F4;&#x63A5;&#x7ED1;&#x5B9A;&#x5230;controller&#x7684;&#x5B9E;&#x4F8B;&#x4E0A;&#x3002;</li>
+</ul>
+<p>&#x5728;AngularJS&#x7684;&#x5B98;&#x65B9;Get Started&#x4EE5;&#x53CA;&#x5404;&#x79CD;&#x6587;&#x6863;&#x4E2D;&#xFF0C;&#x591A;&#x63A8;&#x8350;&#x7B2C;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#xFF0C;&#x5BFC;&#x81F4;&#x5F88;&#x591A;&#x4EBA;&#x53EF;&#x80FD;&#x90FD;&#x4E0D;&#x77E5;&#x9053;&#x539F;&#x6765;&#x8FD8;&#x6709;&#x7B2C;&#x4E8C;&#x79CD;&#x65B9;&#x5F0F;&#xFF0C;&#x6211;&#x4E5F;&#x662F;&#x6700;&#x8FD1;&#x770B;&#x4E00;&#x7BC7;&#x6587;&#x7AE0;&#x65F6;&#x624D;&#x6CE8;&#x610F;&#x5230;&#x8FD9;&#x4E2A;&#x3002;&#x90A3;&#x4E48;&#x8FD9;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x5404;&#x6709;&#x4EC0;&#x4E48;&#x4F18;&#x52A3;&#x52BF;&#x5462;&#xFF1F;&#x5728;&#x73B0;&#x5B9E;&#x7684;&#x5F00;&#x53D1;&#x4E2D;&#x5230;&#x5E95;&#x66F4;&#x63A8;&#x8350;&#x54EA;&#x79CD;&#x65B9;&#x5F0F;&#x5462;&#xFF1F;&#x4ECA;&#x5929;&#x5C31;&#x6765;&#x63A2;&#x7A76;&#x4E00;&#x4E0B;&#xFF01;</p>
+<a id="more"></a>
+<h3 id="controller-as&#x65B9;&#x5F0F;"><a href="#controller-as&#x65B9;&#x5F0F;" class="headerlink" title="controller as&#x65B9;&#x5F0F;"></a>controller as&#x65B9;&#x5F0F;</h3><p>$scope&#x65B9;&#x5F0F;&#x5C31;&#x4E0D;&#x8BE6;&#x7EC6;&#x8BF4;&#x4E86;&#xFF0C;&#x5927;&#x5BB6;&#x5E94;&#x8BE5;&#x6700;&#x5E38;&#x7528;&#x8FD9;&#x79CD;&#x5427;&#xFF0C;&#x770B;&#x4E0B;&#x9762;&#x8FD9;&#x6BB5;&#x7B80;&#x5355;&#x7684;&#x4EE3;&#x7801;&#x3002;</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="NAVxLk" data-default-tab="result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/NAVxLk/" target="_blank" rel="external">NAVxLk</a> by &#x66F9;&#x5F3A; (<a href="http://codepen.io/ronghuaxueleng" target="_blank" rel="external">@ronghuaxueleng</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>&#x5BF9;&#x5E94;&#x7248;&#x672C;&#x7684;controller as&#x65B9;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="vKwLQa" data-default-tab="result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/vKwLQa/" target="_blank" rel="external">vKwLQa</a> by &#x66F9;&#x5F3A; (<a href="http://codepen.io/ronghuaxueleng" target="_blank" rel="external">@ronghuaxueleng</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>&#x5728;controller as&#x65B9;&#x5F0F;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x7ED9;controller&#x8D77;&#x522B;&#x540D;&#xFF0C;&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x4E2D;&#x522B;&#x540D;&#x662F;<code>ctrl</code>&#x3002;&#x5BF9;&#x6BD4;&#x8FD9;&#x4E24;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;&#x53EF;&#x4EE5;&#x660E;&#x663E;&#x7684;&#x770B;&#x5230;controller as&#x6709;&#x4E24;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x5730;&#x65B9;&#xFF1A;</p>
+<ul>
+<li>&#x5728;HTML&#x4E2D;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x7ED1;&#x5B9A;&#x90FD;&#x9700;&#x8981;&#x5199;&#x522B;&#x540D;&#xFF0C;&#x5373;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x70B9;&#x8FD0;&#x7B97;&#x7B26;<code>ctrl.</code></li>
+<li>&#x5728;JS&#x4E2D;&#xFF0C;controller&#x7684;&#x5B9A;&#x4E49;&#x53EF;&#x4EE5;&#x629B;&#x5F00;<code>$scope</code>&#x4E86;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;controller&#x53EF;&#x4EE5;&#x4E0D;&#x4F9D;&#x8D56;<code>$scope</code>&#x4E86;&#x3002;</li>
+</ul>
+<p>&#x4E0B;&#x9762;&#x5C31;&#x4ECE;&#x8FD9;&#x4E24;&#x4E2A;&#x533A;&#x522B;&#x51FA;&#x53D1;&#x53BB;&#x8C08;&#x8C08;controller as&#x7684;&#x597D;&#x5904;&#x3002;</p>
+<h3 id="&#x6240;&#x6709;model&#x90FD;&#x9700;&#x8981;&#x7ED1;&#x5B9A;&#x5728;ctrl&#x4E0A;"><a href="#&#x6240;&#x6709;model&#x90FD;&#x9700;&#x8981;&#x7ED1;&#x5B9A;&#x5728;ctrl&#x4E0A;" class="headerlink" title="&#x6240;&#x6709;model&#x90FD;&#x9700;&#x8981;&#x7ED1;&#x5B9A;&#x5728;ctrl&#x4E0A;"></a>&#x6240;&#x6709;model&#x90FD;&#x9700;&#x8981;&#x7ED1;&#x5B9A;&#x5728;<code>ctrl</code>&#x4E0A;</h3><p>&#x9996;&#x5148;&#x6709;&#x5FC5;&#x8981;&#x6F84;&#x6E05;&#x4E0B;&#xFF0C;&#x8FD9;&#x4E2A;&#x522B;&#x540D;&#x662F;&#x600E;&#x4E48;&#x5B9E;&#x73B0;&#x7684;&#x5462;&#xFF1F;&#x4F7F;&#x7528;AngularJS&#x5728;Chrome&#x4E0A;&#x7684;&#x8C03;&#x8BD5;&#x63D2;&#x4EF6;<a href="https://chrome.google.com/webstore/detail/angularjs-batarang/ighdmehidhipcmcojjgiloacoafjmpfk" target="_blank" rel="external">AngularJS Batarang</a>&#x53EF;&#x4EE5;&#x5F88;&#x6E05;&#x695A;&#x7684;&#x770B;&#x51FA;&#x6765;&#x3002;&#x5B89;&#x88C5;&#x597D;&#x63D2;&#x4EF6;&#x540E;&#x6253;&#x5F00;<a href="http://s.codepen.io/pinkyjie/debug/YPYWGO" target="_blank" rel="external">&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;</a>&#xFF0C;&#x53F3;&#x51FB;&#x9875;&#x9762;&#x201C;&#x5BA1;&#x67E5;&#x5143;&#x7D20;&#x201D;&#x6253;&#x5F00;Chrome&#x7684;DevTools&#xFF0C;&#x5728;Elements&#x6807;&#x7B7E;&#x91CC;&#x9009;&#x4E2D;<code>&lt;div ng-controller=&quot;scopeController as ctrl&quot; class=&quot;ng-scope&quot;&gt;</code>&#x8FD9;&#x4E00;&#x884C;&#xFF0C;&#x7136;&#x540E;&#x70B9;&#x51FB;&#x53F3;&#x8FB9;&#x7684;$scope&#x6807;&#x7B7E;&#xFF08;&#x5C31;&#x662F;&#x548C;Styles&#xFF0C;Computed&#x5728;&#x4E00;&#x884C;&#x7684;&#xFF0C;&#x770B;&#x4E0D;&#x5230;&#x7684;&#x8BDD;&#x70B9;&#x51FB;&#x53F3;&#x8FB9;&#x7684;&#x5C0F;&#x7BAD;&#x5934;&#xFF09;&#xFF0C;&#x7ED3;&#x679C;&#x5C31;&#x662F;&#x8FD9;&#x4E2A;DOM&#x5143;&#x7D20;&#x6240;&#x5BF9;&#x5E94;&#x7684;<code>$scope</code>&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#xFF1A;</p>
+<img src="http://7jptbo.com1.z0.glb.clouddn.com/images/controller-as-vs-scope-1.png" class="center-img" title="&#x56FE;1">
+<p>&#x539F;&#x6765;&#x522B;&#x540D;<code>ctrl</code>&#x5C31;&#x662F;&#x5B9A;&#x4E49;&#x5728;<code>$scope</code>&#x4E0A;&#x7684;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;controller&#x7684;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#xFF0C;&#x6240;&#x6709;&#x5728;JS&#x4E2D;&#x5B9A;&#x4E49;controller&#x65F6;&#x7ED1;&#x5B9A;&#x5230;<code>this</code>&#x4E0A;&#x7684;model&#x5176;&#x5B9E;&#x90FD;&#x662F;&#x7ED1;&#x5B9A;&#x5230;<code>$scope.ctrl</code>&#x4E0A;&#x7684;&#xFF0C;&#x770B;&#x5230;&#x8FD9;&#x91CC;&#x4F60;&#x60F3;&#x5230;&#x4E86;&#x4EC0;&#x4E48;&#xFF1F;&#x662F;&#x4E0D;&#x662F;&#x548C;&#x4E0A;&#x7BC7;&#x6587;&#x7AE0;<a href="2016/08/21/angularJs/AngularJS&#x4E2D;scope&#x57FA;&#x4E8E;&#x539F;&#x578B;&#x94FE;&#x7684;&#x7EE7;&#x627F;/">AngularJS&#x4E2D;scope&#x57FA;&#x4E8E;&#x539F;&#x578B;&#x94FE;&#x7684;&#x7EE7;&#x627F;</a>&#x91CC;&#x7684;<code>$scope.data</code>&#x6709;&#x5F02;&#x66F2;&#x540C;&#x5DE5;&#x4E4B;&#x5999;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x4F7F;&#x7528;controller as&#x7684;&#x4E00;&#x5927;&#x597D;&#x5904;&#x5C31;&#x662F;&#x539F;&#x578B;&#x94FE;&#x7EE7;&#x627F;&#x7ED9;scope&#x5E26;&#x6765;&#x7684;&#x95EE;&#x9898;&#x90FD;&#x4E0D;&#x590D;&#x5B58;&#x5728;&#x4E86;&#xFF0C;&#x5373;&#x6709;&#x6548;&#x907F;&#x514D;&#x4E86;&#x5728;&#x5D4C;&#x5957;scope&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x5B50;scope&#x7684;&#x5C5E;&#x6027;&#x9690;&#x85CF;&#x6389;&#x7236;scope&#x5C5E;&#x6027;&#x7684;&#x60C5;&#x51B5;&#x3002;</p>
+<blockquote>
+<p>&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#xFF0C;&#x65E0;&#x8BBA;&#x5B9A;&#x4E49;controller&#x65F6;&#x6709;&#x6CA1;&#x6709;&#x76F4;&#x63A5;&#x4F9D;&#x8D56;<code>$scope</code>&#xFF0C;DOM&#x4E2D;&#x7684;scope&#x662F;&#x59CB;&#x7EC8;&#x5B58;&#x5728;&#x7684;&#x3002;&#x5373;&#x4F7F;&#x4F7F;&#x7528;controller as&#xFF0C;&#x53CC;&#x5411;&#x7ED1;&#x5B9A;&#x8FD8;&#x662F;&#x901A;&#x8FC7;<code>$scope</code>&#x7684;watch&#x4EE5;&#x53CA;digest&#x6765;&#x5B9E;&#x73B0;&#x7684;&#x3002;</p>
+</blockquote>
+<p>&#x53E6;&#x5916;&#xFF0C;&#x4F7F;&#x7528;&#x522B;&#x540D;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x663E;&#x800C;&#x6613;&#x89C1;&#x7684;&#x597D;&#x5904;&#xFF1A;&#x6307;&#x4EE3;&#x6E05;&#x6670;&#x3002;&#x5728;&#x5D4C;&#x5957;scope&#x65F6;&#xFF0C;&#x5B50;scope&#x5982;&#x679C;&#x60F3;&#x4F7F;&#x7528;&#x7236;scope&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x53EA;&#x9700;&#x7B80;&#x5355;&#x7684;&#x4F7F;&#x7528;&#x7236;scope&#x7684;&#x522B;&#x540D;&#x5F15;&#x7528;&#x7236;scope&#x5373;&#x53EF;&#x3002;&#x6BD4;&#x5982;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;<a href="/2016/08/21/angularJs/AngularJS&#x4E2D;scope&#x57FA;&#x4E8E;&#x539F;&#x578B;&#x94FE;&#x7684;&#x7EE7;&#x627F;/">&#x4E0A;&#x7BC7;&#x6587;&#x7AE0;</a>&#x7684;&#x4F8B;&#x5B50;&#x7528;controller as&#x91CD;&#x5199;&#x3002;</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="BzZjvE" data-default-tab="html,result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/BzZjvE/" target="_blank" rel="external">BzZjvE</a> by &#x66F9;&#x5F3A; (<a href="http://codepen.io/ronghuaxueleng" target="_blank" rel="external">@ronghuaxueleng</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>&#x8FD9;&#x91CC;&#x6211;&#x60F3;&#x8BA9;&#x5B50;scope&#x91CC;&#x76F4;&#x63A5;&#x6307;&#x5411;&#x7236;scope&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x53EA;&#x9700;&#x5728;DOM&#x7ED1;&#x5B9A;model&#x65F6;&#x5199;&#x4E0A;<code>parent.myName</code>&#x5373;&#x53EF;&#xFF0C;&#x7B80;&#x5355;&#x660E;&#x4E86;&#xFF0C;&#x770B;&#x4EE3;&#x7801;&#x7684;&#x4E00;&#x4E0B;&#x5C31;&#x61C2;&#x4E86;&#xFF0C;&#x4E5F;&#x4E0D;&#x7528;&#x8D39;&#x52B2;&#x53BB;&#x63A8;&#x5230;&#x5E95;&#x8FD9;&#x91CC;&#x6307;&#x5411;&#x7684;&#x662F;&#x54EA;&#x4E2A;&#x5C5E;&#x6027;&#x4E86;&#x3002;&#x5982;&#x679C;&#x4F60;&#x7684;&#x5D4C;&#x5957;&#x591A;&#x8FBE;&#x56DB;&#x4E94;&#x5C42;&#xFF0C;&#x90A3;&#x8FD9;&#x79CD;&#x5199;&#x6CD5;&#x7684;&#x4F18;&#x52BF;&#x5C31;&#x4E00;&#x4E0B;&#x5B50;&#x4F53;&#x73B0;&#x51FA;&#x6765;&#x4E86;&#x3002;</p>
+<h3 id="controller&#x7684;&#x5B9A;&#x4E49;&#x4E0D;&#x4F9D;&#x8D56;scope"><a href="#controller&#x7684;&#x5B9A;&#x4E49;&#x4E0D;&#x4F9D;&#x8D56;-scope" class="headerlink" title="controller&#x7684;&#x5B9A;&#x4E49;&#x4E0D;&#x4F9D;&#x8D56;$scope"></a>controller&#x7684;&#x5B9A;&#x4E49;&#x4E0D;&#x4F9D;&#x8D56;<code>$scope</code></h3><p>&#x5B9A;&#x4E49;controller&#x65F6;&#x4E0D;&#x7528;&#x663E;&#x5F0F;&#x7684;&#x4F9D;&#x8D56;<code>$scope</code>&#xFF0C;&#x8FD9;&#x6709;&#x4EC0;&#x4E48;&#x597D;&#x5904;&#x5462;&#xFF1F;&#x4ED4;&#x7EC6;&#x770B;&#x5B9A;&#x4E49;&#xFF0C;&#x8FD9;&#x4E0D;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x666E;&#x901A;&#x7684;&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#x561B;&#xFF0C;&#x5BF9;&#xFF01;&#x8FD9;&#x5C31;&#x662F;&#x597D;&#x5904;&#xFF01;&#x4F8B;&#x5B50;&#x4E2D;&#x7684;<code>ScopeController</code>&#x5C31;&#x662F;&#x6240;&#x8C13;&#x7684;POJO&#xFF08;Plain Old Javascript Object&#xFF0C;Java&#x91CC;&#x5077;&#x6765;&#x7684;&#x6982;&#x5FF5;&#xFF09;&#xFF0C;&#x8FD9;&#x6837;&#x7684;Object&#x4E0E;&#x6846;&#x67B6;&#x65E0;&#x5173;&#xFF0C;&#x91CC;&#x9762;&#x53EA;&#x6709;&#x903B;&#x8F91;&#x3002;&#x6240;&#x4EE5;&#x5373;&#x4FBF;&#x6709;&#x4E00;&#x5929;&#x4F60;&#x7684;&#x9879;&#x76EE;&#x4E0D;&#x518D;&#x4F7F;&#x7528;AngularJS&#x4E86;&#xFF0C;&#x4F9D;&#x7136;&#x53EF;&#x4EE5;&#x5F88;&#x65B9;&#x4FBF;&#x7684;&#x91CD;&#x7528;&#x548C;&#x79FB;&#x690D;&#x8FD9;&#x4E9B;&#x903B;&#x8F91;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x4ECE;&#x6D4B;&#x8BD5;&#x7684;&#x89D2;&#x5EA6;&#x770B;&#xFF0C;&#x8FD9;&#x6837;&#x7684;Object&#x4E5F;&#x662F;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x53CB;&#x597D;&#x7684;&#x3002;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x5F3A;&#x8C03;&#x7684;&#x5C31;&#x662F;&#x5B64;&#x7ACB;&#x5176;&#x4ED6;&#x4F9D;&#x8D56;&#x5143;&#x7D20;&#xFF0C;&#x800C;POJO&#x6070;&#x6070;&#x6EE1;&#x8DB3;&#x8FD9;&#x4E2A;&#x6761;&#x4EF6;&#xFF0C;&#x53EF;&#x4EE5;&#x5355;&#x7EAF;&#x7684;&#x53BB;&#x6D4B;&#x8BD5;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x7684;&#x8F93;&#x5165;&#x8F93;&#x51FA;&#xFF0C;&#x800C;&#x4E0D;&#x7528;&#x8D39;&#x52B2;&#x7684;&#x53BB;&#x6A21;&#x62DF;&#x4E00;&#x4E2A;&#x5047;&#x7684;<code>$scope</code>&#x3002;</p>
+<p>&#x53E6;&#x5916;&#xFF0C;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x6BD4;&#x8F83;&#x7275;&#x5F3A;&#x7684;&#x597D;&#x5904;&#xFF1A;&#x9632;&#x6B62;&#x6EE5;&#x7528;<code>$scope</code>&#x7684;<code>$watch</code>&#xFF0C;<code>$on</code>&#xFF0C;<code>$broadcast</code>&#x65B9;&#x6CD5;&#x3002;&#x53EF;&#x80FD;&#x521A;&#x521A;&#x5C31;&#x6709;&#x4EBA;&#x60F3;&#x95EE;&#x4E86;&#xFF0C;&#x4E0D;&#x4F9D;&#x8D56;<code>$scope</code>&#x6211;&#x600E;&#x4E48;watch&#x4E00;&#x4E2A;model&#xFF0C;&#x600E;&#x6837;&#x5E7F;&#x64AD;&#x548C;&#x54CD;&#x5E94;&#x4E8B;&#x4EF6;&#x3002;&#x7B54;&#x6848;&#x662F;&#x6CA1;&#x6CD5;&#x5F04;&#xFF0C;&#x8FD9;&#x4E9B;&#x4E8B;&#x8FD8;&#x771F;&#x662F;&#x53EA;&#x6709;<code>$scope</code>&#x80FD;&#x5E72;&#x3002;&#x4F46;&#x5F88;&#x591A;&#x65F6;&#x5019;&#x5728;controller&#x91CC;watch&#x4E00;&#x4E2A;model&#x662F;&#x5F88;&#x591A;&#x4F59;&#x7684;&#xFF0C;&#x8FD9;&#x6837;&#x505A;&#x4F1A;&#x660E;&#x663E;&#x7684;&#x964D;&#x4F4E;&#x6027;&#x80FD;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x5F53;&#x4F60;&#x672C;&#x6765;&#x5C31;&#x4F9D;&#x8D56;<code>$scope</code>&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F60;&#x4F1A;&#x4E60;&#x60EF;&#x6027;&#x7684;&#x8C03;&#x7528;&#x8FD9;&#x4E9B;&#x65B9;&#x6CD5;&#x6765;&#x5B9E;&#x73B0;&#x81EA;&#x5DF1;&#x7684;&#x903B;&#x8F91;&#x3002;&#x4F46;&#x5F53;&#x4F7F;&#x7528;controller as&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x7531;&#x4E8E;&#x6CA1;&#x6709;&#x76F4;&#x63A5;&#x4F9D;&#x8D56;<code>$scope</code>&#xFF0C;&#x4F7F;&#x7528;watch&#x524D;&#x4F60;&#x4F1A;&#x7A0D;&#x52A0;&#x659F;&#x914C;&#xFF0C;&#x6CA1;&#x51C6;&#x5C31;&#x601D;&#x8003;&#x5230;&#x4E86;&#x522B;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x4E86;&#x5462;&#x3002;</p>
+<h3 id="&#x5B9A;&#x4E49;route&#x65F6;&#x4E5F;&#x80FD;&#x7528;controller-as"><a href="#&#x5B9A;&#x4E49;route&#x65F6;&#x4E5F;&#x80FD;&#x7528;controller-as" class="headerlink" title="&#x5B9A;&#x4E49;route&#x65F6;&#x4E5F;&#x80FD;&#x7528;controller as"></a>&#x5B9A;&#x4E49;route&#x65F6;&#x4E5F;&#x80FD;&#x7528;controller as</h3><p>&#x9664;&#x4E86;&#x5728;DOM&#x4E2D;&#x663E;&#x5F0F;&#x7684;&#x6307;&#x660E;<code>ng-controller</code>&#xFF0C;&#x8FD8;&#x6709;&#x4E00;&#x79CD;&#x60C5;&#x51B5;&#x662F;controller&#x7684;&#x7ED1;&#x5B9A;&#x662F;route&#x91CC;&#x5B9A;&#x4E49;&#x597D;&#x7684;&#xFF0C;&#x90A3;&#x8FD9;&#x65F6;&#x80FD;&#x4F7F;&#x7528;controller as&#x5417;&#xFF1F;&#x7B54;&#x6848;&#x662F;&#x80AF;&#x5B9A;&#x7684;&#xFF0C;route&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;<code>controllerAs</code>&#x53C2;&#x6570;&#xFF1A;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$routeProvider</div><div class="line">  .when(<span class="string">&apos;/&apos;</span>, {</div><div class="line">    <span class="attr">templateUrl</span>: <span class="string">&apos;partial/home.html&apos;</span>,</div><div class="line">    <span class="attr">controller</span>: <span class="string">&apos;HomeCtrl&apos;</span>,</div><div class="line">    <span class="attr">controllerAs</span>: <span class="string">&apos;home&apos;</span></div><div class="line">  })</div></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x6837;&#x5728;&#x6A21;&#x677F;&#x91CC;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x522B;&#x540D;<code>home</code>&#x5566;&#x3002;</p>
+<h3 id="&#x7ED3;&#x8BBA;"><a href="#&#x7ED3;&#x8BBA;" class="headerlink" title="&#x7ED3;&#x8BBA;"></a>&#x7ED3;&#x8BBA;</h3><p>&#x603B;&#x7ED3;&#x4E0B;&#x6765;&#xFF0C;&#x4E2A;&#x4EBA;&#x89C9;&#x5F97;&#x8FD8;&#x662F;&#x504F;&#x5411;&#x4E8E;&#x4F7F;&#x7528;controller as&#x7684;&#xFF0C;&#x5F53;&#x7136;&#x6709;&#x4E00;&#x70B9;&#x8981;&#x6F84;&#x6E05;&#xFF0C;&#x4F7F;&#x7528;contoller as&#x5E76;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x6027;&#x80FD;&#x4E0A;&#x7684;&#x63D0;&#x5347;&#xFF0C;&#x4EC5;&#x4EC5;&#x662F;&#x4E00;&#x79CD;&#x597D;&#x7684;&#x4E60;&#x60EF;&#x7F62;&#x4E86;&#x3002;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>我知道是不会有人点的，但万一有人想不开呢？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/img/wechatpay.png" alt="曹强 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/img/alipay.jpg" alt="曹强 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/angularJS-scope-controller/" rel="tag">#angularJS, scope, controller</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/22/javascript/深入理解 JavaScript 中的 delete 操作符/" rel="next" title="深入理解 JavaScript 中的 delete 操作符">
+                <i class="fa fa-chevron-left"></i> 深入理解 JavaScript 中的 delete 操作符
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/23/angularJs/AngularJS中controller和service的继承与扩展/" rel="prev" title="AngularJS中controller和service的继承与扩展">
+                AngularJS中controller和service的继承与扩展 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/22/angularJs/用$scope还是用controller as/"
+           data-title="用$scope还是用controller as" data-url="http://ronghuaxueleng.github.io/2016/08/22/angularJs/用$scope还是用controller as/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/avatar.jpg"
+               alt="曹强" />
+          <p class="site-author-name" itemprop="name">曹强</p>
+          <p class="site-description motion-element" itemprop="description">caoqiang's blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">81</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ronghuaxueleng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#controller-as方式"><span class="nav-number">1.</span> <span class="nav-text">controller as方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#所有model都需要绑定在ctrl上"><span class="nav-number">2.</span> <span class="nav-text">所有model都需要绑定在ctrl上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#controller的定义不依赖scope"><span class="nav-number">3.</span> <span class="nav-text">controller的定义不依赖$scope</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义route时也能用controller-as"><span class="nav-number">4.</span> <span class="nav-text">定义route时也能用controller as</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">5.</span> <span class="nav-text">结论</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ronghuaxueleng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = '0 ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+  
+
+</body>
+</html>

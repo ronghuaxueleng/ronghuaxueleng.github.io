@@ -1,0 +1,918 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="jQuery," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x7981;&amp;#x7528;&amp;#x9875;&amp;#x9762;&amp;#x7684;&amp;#x53F3;&amp;#x51FB;&amp;#x83DC;&amp;#x5355;12345$(function(){    $(document).on(&amp;apos;contextmenu&amp;apos;,function(e){       return false;     });});
+&amp;#x65B0;&amp;#x7A97;&amp;#x53E3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery技巧">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/2015/08/25/jQuery/jQuery技巧/index.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="&amp;#x7981;&amp;#x7528;&amp;#x9875;&amp;#x9762;&amp;#x7684;&amp;#x53F3;&amp;#x51FB;&amp;#x83DC;&amp;#x5355;12345$(function(){    $(document).on(&amp;apos;contextmenu&amp;apos;,function(e){       return false;     });});
+&amp;#x65B0;&amp;#x7A97;&amp;#x53E3">
+<meta property="og:updated_time" content="2016-10-12T10:25:08.095Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery技巧">
+<meta name="twitter:description" content="&amp;#x7981;&amp;#x7528;&amp;#x9875;&amp;#x9762;&amp;#x7684;&amp;#x53F3;&amp;#x51FB;&amp;#x83DC;&amp;#x5355;12345$(function(){    $(document).on(&amp;apos;contextmenu&amp;apos;,function(e){       return false;     });});
+&amp;#x65B0;&amp;#x7A97;&amp;#x53E3">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/2015/08/25/jQuery/jQuery技巧/"/>
+
+  <title> jQuery技巧 | 白云雅阁 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="https://github.com/ronghuaxueleng">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+    </a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">白云雅阁</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">读懂别人的故事，写好自己的人生</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                jQuery技巧
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-08-25T00:00:00+08:00" content="2015-08-25">
+              2015-08-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/08/25/jQuery/jQuery技巧/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/25/jQuery/jQuery技巧/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2015/08/25/jQuery/jQuery技巧/" class="leancloud_visitors" data-flag-title="jQuery技巧">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+
+          
+            &nbsp; | &nbsp;
+          <span id="/2015/08/25/jQuery/jQuery技巧/"class="leancloud_visitors" data-flag-title="jQuery技巧">
+            &nbsp;阅读次数
+          </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h5 id="&#x7981;&#x7528;&#x9875;&#x9762;&#x7684;&#x53F3;&#x51FB;&#x83DC;&#x5355;"><a href="#&#x7981;&#x7528;&#x9875;&#x9762;&#x7684;&#x53F3;&#x51FB;&#x83DC;&#x5355;" class="headerlink" title="&#x7981;&#x7528;&#x9875;&#x9762;&#x7684;&#x53F3;&#x51FB;&#x83DC;&#x5355;"></a>&#x7981;&#x7528;&#x9875;&#x9762;&#x7684;&#x53F3;&#x51FB;&#x83DC;&#x5355;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    $(<span class="built_in">document</span>).on(<span class="string">&apos;contextmenu&apos;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>{</div><div class="line">       <span class="keyword">return</span> <span class="literal">false</span>; </div><div class="line">    });</div><div class="line">});</div></pre></td></tr></table></figure>
+<h5 id="&#x65B0;&#x7A97;&#x53E3;&#x6253;&#x5F00;&#x9875;&#x9762;"><a href="#&#x65B0;&#x7A97;&#x53E3;&#x6253;&#x5F00;&#x9875;&#x9762;" class="headerlink" title="&#x65B0;&#x7A97;&#x53E3;&#x6253;&#x5F00;&#x9875;&#x9762;"></a>&#x65B0;&#x7A97;&#x53E3;&#x6253;&#x5F00;&#x9875;&#x9762;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    <span class="comment">//&#x4F8B;&#x5B50;1:href=&quot;http://&quot;&#x7684;&#x8D85;&#x94FE;&#x63A5;&#x5C06;&#x4F1A;&#x5728;&#x65B0;&#x7A97;&#x53E3;&#x6253;&#x5F00;&#x94FE;&#x63A5;</span></div><div class="line">    $(<span class="string">&apos;a[href^=&quot;http://&quot;]&apos;</span>).attr(<span class="string">&apos;target&apos;</span>,<span class="string">&apos;_blank&apos;</span>);</div><div class="line"></div><div class="line">    <span class="comment">//&#x4F8B;&#x5B50;2:rel=&quot;external&quot;&#x7684;&#x8D85;&#x94FE;&#x63A5;&#x5C06;&#x4F1A;&#x5728;&#x65B0;&#x7A97;&#x53E3;&#x6253;&#x5F00;&#x94FE;&#x63A5;</span></div><div class="line">    $(<span class="string">&apos;#a[rel$=&quot;external&quot;]&apos;</span>).on(<span class="string">&apos;click&apos;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">        <span class="keyword">this</span>.target=<span class="string">&quot;_blank&quot;</span>;</div><div class="line">    });</div><div class="line">});</div></pre></td></tr></table></figure>
+<h5 id="&#x5224;&#x65AD;&#x6D4F;&#x89C8;&#x5668;&#x7C7B;&#x578B;"><a href="#&#x5224;&#x65AD;&#x6D4F;&#x89C8;&#x5668;&#x7C7B;&#x578B;" class="headerlink" title="&#x5224;&#x65AD;&#x6D4F;&#x89C8;&#x5668;&#x7C7B;&#x578B;"></a>&#x5224;&#x65AD;&#x6D4F;&#x89C8;&#x5668;&#x7C7B;&#x578B;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    <span class="comment">//Firefox 2 and above</span></div><div class="line">    <span class="keyword">if</span>($.support.mozilla &amp;&amp; $.support.version&gt;=<span class="string">&apos;1.8&apos;</span>){</div><div class="line">        <span class="comment">//do something</span></div><div class="line">    }</div><div class="line">    <span class="comment">//Safari</span></div><div class="line">    <span class="keyword">if</span>($.support.safari){</div><div class="line">        <span class="comment">//do something</span></div><div class="line">    }</div><div class="line">    <span class="comment">//Chrome</span></div><div class="line">    <span class="keyword">if</span>($.support.chrome){</div><div class="line">        <span class="comment">//do something</span></div><div class="line">    }</div><div class="line">    <span class="comment">//Opera</span></div><div class="line">    <span class="keyword">if</span>($.support.opera){</div><div class="line">        <span class="comment">//do something</span></div><div class="line">    }</div><div class="line">    <span class="comment">//IE6 and below</span></div><div class="line">    <span class="keyword">if</span>($.support.msie &amp;&amp; $.support.version&lt;=<span class="number">6</span>){</div><div class="line">        <span class="comment">//do something</span></div><div class="line">    }</div><div class="line">    <span class="comment">//anything above IE6</span></div><div class="line">    <span class="keyword">if</span>($.support.msie &amp;&amp; $.support.version&gt;<span class="number">6</span>){</div><div class="line">        <span class="comment">//do something</span></div><div class="line">    }</div><div class="line">});</div></pre></td></tr></table></figure>
+<h5 id="&#x8F93;&#x5165;&#x6846;&#x6587;&#x5B57;&#x83B7;&#x53D6;&#x548C;&#x5931;&#x53BB;&#x7126;&#x70B9;"><a href="#&#x8F93;&#x5165;&#x6846;&#x6587;&#x5B57;&#x83B7;&#x53D6;&#x548C;&#x5931;&#x53BB;&#x7126;&#x70B9;" class="headerlink" title="&#x8F93;&#x5165;&#x6846;&#x6587;&#x5B57;&#x83B7;&#x53D6;&#x548C;&#x5931;&#x53BB;&#x7126;&#x70B9;"></a>&#x8F93;&#x5165;&#x6846;&#x6587;&#x5B57;&#x83B7;&#x53D6;&#x548C;&#x5931;&#x53BB;&#x7126;&#x70B9;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    $(<span class="string">&apos;input.text1&apos;</span>).val(<span class="string">&quot;Enter your search text here&quot;</span>);</div><div class="line">    textFill($(<span class="string">&apos;input.text1&apos;</span>));</div><div class="line">});</div><div class="line"><span class="comment">//input focus text function</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">textFill</span>(<span class="params">input</span>)</span>{</div><div class="line">    <span class="keyword">var</span> originalvalue=input.val();</div><div class="line">    input.focus(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">        <span class="keyword">if</span>($.trim(input.val())===originalvalue){</div><div class="line">            input.val();</div><div class="line">        }</div><div class="line">    }).blur(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">        <span class="keyword">if</span>($.trim(input.val()===<span class="string">&apos;&apos;</span>)){</div><div class="line">            input.val(originalvalue);</div><div class="line">        }</div><div class="line">    });</div><div class="line">}</div></pre></td></tr></table></figure>
+<h5 id="&#x8FD4;&#x56DE;&#x5934;&#x90E8;&#x6ED1;&#x52A8;&#x52A8;&#x753B;"><a href="#&#x8FD4;&#x56DE;&#x5934;&#x90E8;&#x6ED1;&#x52A8;&#x52A8;&#x753B;" class="headerlink" title="&#x8FD4;&#x56DE;&#x5934;&#x90E8;&#x6ED1;&#x52A8;&#x52A8;&#x753B;"></a>&#x8FD4;&#x56DE;&#x5934;&#x90E8;&#x6ED1;&#x52A8;&#x52A8;&#x753B;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">jQuery.fn.scrollTo=<span class="function"><span class="keyword">function</span>(<span class="params">speed</span>)</span>{</div><div class="line">    <span class="keyword">var</span> targetOffset=$(<span class="keyword">this</span>).offset().top;</div><div class="line">    $(<span class="string">&apos;html.body&apos;</span>).stop().animate({<span class="attr">scrollTop</span>:targetOffset},speed);</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">}</div><div class="line"><span class="comment">// use</span></div><div class="line">$(<span class="string">&apos;#goheader&apos;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    $(<span class="string">&apos;body&apos;</span>).scrollTo(<span class="number">500</span>);</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">});</div></pre></td></tr></table></figure>
+<h5 id="&#x83B7;&#x53D6;&#x9F20;&#x6807;&#x4F4D;&#x7F6E;"><a href="#&#x83B7;&#x53D6;&#x9F20;&#x6807;&#x4F4D;&#x7F6E;" class="headerlink" title="&#x83B7;&#x53D6;&#x9F20;&#x6807;&#x4F4D;&#x7F6E;"></a>&#x83B7;&#x53D6;&#x9F20;&#x6807;&#x4F4D;&#x7F6E;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    $(<span class="built_in">document</span>).mousemove(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>{</div><div class="line">        $(<span class="string">&apos;#XY&apos;</span>).html(<span class="string">&quot;X:&quot;</span>+e.pageX+<span class="string">&quot; | Y:&quot;</span>+e.pageY);</div><div class="line">    });</div><div class="line">});</div></pre></td></tr></table></figure>
+<h5 id="&#x5224;&#x65AD;&#x5143;&#x7D20;&#x662F;&#x5426;&#x5B58;&#x5728;"><a href="#&#x5224;&#x65AD;&#x5143;&#x7D20;&#x662F;&#x5426;&#x5B58;&#x5728;" class="headerlink" title="&#x5224;&#x65AD;&#x5143;&#x7D20;&#x662F;&#x5426;&#x5B58;&#x5728;"></a>&#x5224;&#x65AD;&#x5143;&#x7D20;&#x662F;&#x5426;&#x5B58;&#x5728;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    <span class="keyword">if</span>($(<span class="string">&apos;#id&apos;</span>).length){</div><div class="line">        <span class="comment">//do something</span></div><div class="line">    }</div><div class="line">});</div></pre></td></tr></table></figure>
+<h5 id="&#x70B9;&#x51FB;div&#x4E5F;&#x53EF;&#x4EE5;&#x8DF3;&#x8F6C;"><a href="#&#x70B9;&#x51FB;div&#x4E5F;&#x53EF;&#x4EE5;&#x8DF3;&#x8F6C;" class="headerlink" title="&#x70B9;&#x51FB;div&#x4E5F;&#x53EF;&#x4EE5;&#x8DF3;&#x8F6C;"></a>&#x70B9;&#x51FB;div&#x4E5F;&#x53EF;&#x4EE5;&#x8DF3;&#x8F6C;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">&apos;div&apos;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    <span class="built_in">window</span>.location=$(<span class="keyword">this</span>).find(<span class="string">&apos;a&apos;</span>).attr(<span class="string">&apos;href&apos;</span>);</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">});</div><div class="line"><span class="comment">// use</span></div><div class="line">&lt;div&gt;<span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<h5 id="&#x8BBE;&#x7F6E;div&#x5728;&#x5C4F;&#x5E55;&#x4E2D;&#x592E;"><a href="#&#x8BBE;&#x7F6E;div&#x5728;&#x5C4F;&#x5E55;&#x4E2D;&#x592E;" class="headerlink" title="&#x8BBE;&#x7F6E;div&#x5728;&#x5C4F;&#x5E55;&#x4E2D;&#x592E;"></a>&#x8BBE;&#x7F6E;div&#x5728;&#x5C4F;&#x5E55;&#x4E2D;&#x592E;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    jQuery.fn.center=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">        <span class="keyword">this</span>.css({</div><div class="line">            <span class="string">&apos;position&apos;</span>:&#x2019;absolute&#x2018;,</div><div class="line">            <span class="string">&apos;top&apos;</span>:($(<span class="built_in">window</span>).height()-<span class="keyword">this</span>.height())/<span class="number">2</span>+$(<span class="built_in">window</span>).scrollTop()+<span class="string">&quot;px&quot;</span>,</div><div class="line">            <span class="string">&apos;left&apos;</span>:($(<span class="built_in">window</span>).width()-<span class="keyword">this</span>.width())/<span class="number">2</span>+$(<span class="built_in">window</span>).scrollLeft()+<span class="string">&quot;px&quot;</span></div><div class="line">        });</div><div class="line">    }</div><div class="line">    <span class="comment">//use</span></div><div class="line">    $(<span class="string">&apos;#XY&apos;</span>).center();</div><div class="line">});</div></pre></td></tr></table></figure>
+<h5 id="&#x6839;&#x636E;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x5927;&#x5C0F;&#x6DFB;&#x52A0;&#x4E0D;&#x540C;&#x7684;&#x6837;&#x5F0F;"><a href="#&#x6839;&#x636E;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x5927;&#x5C0F;&#x6DFB;&#x52A0;&#x4E0D;&#x540C;&#x7684;&#x6837;&#x5F0F;" class="headerlink" title="&#x6839;&#x636E;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x5927;&#x5C0F;&#x6DFB;&#x52A0;&#x4E0D;&#x540C;&#x7684;&#x6837;&#x5F0F;"></a>&#x6839;&#x636E;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x5927;&#x5C0F;&#x6DFB;&#x52A0;&#x4E0D;&#x540C;&#x7684;&#x6837;&#x5F0F;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">checkWindowSize</span>(<span class="params"></span>)</span>{</div><div class="line">        <span class="keyword">if</span>($(<span class="built_in">window</span>).width()&gt;<span class="number">1200</span>){</div><div class="line">            $(<span class="string">&apos;body&apos;</span>).addClass(<span class="string">&apos;large&apos;</span>);</div><div class="line">        }<span class="keyword">else</span>{</div><div class="line">            $(<span class="string">&apos;body&apos;</span>).removeClass(<span class="string">&apos;large&apos;</span>);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    $(<span class="built_in">window</span>).resize(checkWindowSize);</div><div class="line">});</div></pre></td></tr></table></figure>
+<h5 id="&#x521B;&#x5EFA;&#x81EA;&#x5DF1;&#x7684;&#x9009;&#x62E9;&#x5668;"><a href="#&#x521B;&#x5EFA;&#x81EA;&#x5DF1;&#x7684;&#x9009;&#x62E9;&#x5668;" class="headerlink" title="&#x521B;&#x5EFA;&#x81EA;&#x5DF1;&#x7684;&#x9009;&#x62E9;&#x5668;"></a>&#x521B;&#x5EFA;&#x81EA;&#x5DF1;&#x7684;&#x9009;&#x62E9;&#x5668;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    $.extend($.expr[<span class="string">&apos;:&apos;</span>],{</div><div class="line">        <span class="attr">moreThen500px</span>:<span class="function"><span class="keyword">function</span>(<span class="params">a</span>)</span>{</div><div class="line">            <span class="keyword">return</span> $(a).width()&gt;<span class="number">500</span></div><div class="line">        }</div><div class="line">    });</div><div class="line">    $(<span class="string">&apos;.box:moreThen500px&apos;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">        <span class="comment">//...</span></div><div class="line">    });</div><div class="line">});</div></pre></td></tr></table></figure>
+<h5 id="&#x5173;&#x95ED;&#x6240;&#x6709;&#x7684;&#x52A8;&#x753B;&#x6548;&#x679C;"><a href="#&#x5173;&#x95ED;&#x6240;&#x6709;&#x7684;&#x52A8;&#x753B;&#x6548;&#x679C;" class="headerlink" title="&#x5173;&#x95ED;&#x6240;&#x6709;&#x7684;&#x52A8;&#x753B;&#x6548;&#x679C;"></a>&#x5173;&#x95ED;&#x6240;&#x6709;&#x7684;&#x52A8;&#x753B;&#x6548;&#x679C;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    jQuery.fn.off=<span class="literal">true</span>;</div><div class="line">});</div></pre></td></tr></table></figure>
+<h5 id="&#x68C0;&#x6D4B;&#x9F20;&#x6807;&#x7684;&#x53F3;&#x952E;&#x8FD8;&#x662F;&#x5DE6;&#x952E;"><a href="#&#x68C0;&#x6D4B;&#x9F20;&#x6807;&#x7684;&#x53F3;&#x952E;&#x8FD8;&#x662F;&#x5DE6;&#x952E;" class="headerlink" title="&#x68C0;&#x6D4B;&#x9F20;&#x6807;&#x7684;&#x53F3;&#x952E;&#x8FD8;&#x662F;&#x5DE6;&#x952E;"></a>&#x68C0;&#x6D4B;&#x9F20;&#x6807;&#x7684;&#x53F3;&#x952E;&#x8FD8;&#x662F;&#x5DE6;&#x952E;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    $(<span class="string">&apos;#XY&apos;</span>).mousedown(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>{</div><div class="line">        alert(e.which) <span class="comment">//1:&#x5DE6;&#x952E; 2:&#x4E2D;&#x952E; 3:&#x53F3;&#x952E;</span></div><div class="line">    });</div><div class="line">});</div></pre></td></tr></table></figure>
+<h5 id="&#x56DE;&#x8F66;&#x63D0;&#x4EA4;&#x8868;&#x5355;"><a href="#&#x56DE;&#x8F66;&#x63D0;&#x4EA4;&#x8868;&#x5355;" class="headerlink" title="&#x56DE;&#x8F66;&#x63D0;&#x4EA4;&#x8868;&#x5355;"></a>&#x56DE;&#x8F66;&#x63D0;&#x4EA4;&#x8868;&#x5355;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    $(<span class="string">&apos;input&apos;</span>).keyup(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>{</div><div class="line">        <span class="keyword">if</span>(e.which===<span class="string">&apos;13&apos;</span>){</div><div class="line">            alert(<span class="string">&apos;&#x56DE;&#x8F66;&#x63D0;&#x4EA4;&#xFF01;&apos;</span>);</div><div class="line">        }</div><div class="line">    });</div><div class="line">});</div></pre></td></tr></table></figure>
+<h5 id="&#x8BBE;&#x7F6E;&#x5168;&#x5C40;ajax&#x53C2;&#x6570;"><a href="#&#x8BBE;&#x7F6E;&#x5168;&#x5C40;Ajax&#x53C2;&#x6570;" class="headerlink" title="&#x8BBE;&#x7F6E;&#x5168;&#x5C40;Ajax&#x53C2;&#x6570;"></a>&#x8BBE;&#x7F6E;&#x5168;&#x5C40;Ajax&#x53C2;&#x6570;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    $(<span class="string">&apos;#load&apos;</span>).ajaxStart(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">        showLoading();  <span class="comment">//&#x663E;&#x793A;loading</span></div><div class="line">        disableButtons();   <span class="comment">//&#x7981;&#x7528;&#x6309;&#x94AE;</span></div><div class="line">    });</div><div class="line">    $(<span class="string">&apos;#load&apos;</span>).ajaxComplete(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">        hideLoading();  <span class="comment">//&#x9690;&#x85CF; loading</span></div><div class="line">        enableButtons();    <span class="comment">//&#x542F;&#x7528;&#x6309;&#x94AE;</span></div><div class="line">    });</div><div class="line">});</div></pre></td></tr></table></figure>
+<h5 id="&#x83B7;&#x53D6;&#x9009;&#x4E2D;&#x7684;&#x4E0B;&#x62C9;&#x6846;"><a href="#&#x83B7;&#x53D6;&#x9009;&#x4E2D;&#x7684;&#x4E0B;&#x62C9;&#x6846;" class="headerlink" title="&#x83B7;&#x53D6;&#x9009;&#x4E2D;&#x7684;&#x4E0B;&#x62C9;&#x6846;"></a>&#x83B7;&#x53D6;&#x9009;&#x4E2D;&#x7684;&#x4E0B;&#x62C9;&#x6846;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">&apos;#someElement&apos;</span>).find(<span class="string">&apos;option:selected&apos;</span>);</div><div class="line">$(<span class="string">&apos;#someElement option:selected&apos;</span>);</div></pre></td></tr></table></figure>
+<h5 id="&#x5207;&#x6362;&#x590D;&#x9009;&#x6846;"><a href="#&#x5207;&#x6362;&#x590D;&#x9009;&#x6846;" class="headerlink" title="&#x5207;&#x6362;&#x590D;&#x9009;&#x6846;"></a>&#x5207;&#x6362;&#x590D;&#x9009;&#x6846;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> tog=<span class="literal">false</span>;</div><div class="line">$(<span class="string">&apos;button&apos;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    $(<span class="string">&apos;input[type=checkbox]&apos;</span>).attr(<span class="string">&apos;checked&apos;</span>,!tog);</div><div class="line">    tog=!tog;</div><div class="line">});</div></pre></td></tr></table></figure>
+<h5 id="&#x4F7F;&#x7528;siblings&#x6765;&#x9009;&#x62E9;&#x540C;&#x8F88;&#x5143;&#x7D20;"><a href="#&#x4F7F;&#x7528;siblings-&#x6765;&#x9009;&#x62E9;&#x540C;&#x8F88;&#x5143;&#x7D20;" class="headerlink" title="&#x4F7F;&#x7528;siblings()&#x6765;&#x9009;&#x62E9;&#x540C;&#x8F88;&#x5143;&#x7D20;"></a>&#x4F7F;&#x7528;siblings()&#x6765;&#x9009;&#x62E9;&#x540C;&#x8F88;&#x5143;&#x7D20;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//&#x4E0D;&#x8FD9;&#x6837;&#x505A;</span></div><div class="line">$(<span class="string">&apos;#nav li&apos;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    $(<span class="string">&apos;#nav li&apos;</span>).removeClass(<span class="string">&apos;active&apos;</span>);</div><div class="line">    $(<span class="keyword">this</span>).addClass(<span class="string">&apos;active&apos;</span>);</div><div class="line">});</div><div class="line"><span class="comment">//&#x66FF;&#x4EE3;&#x7684;&#x505A;&#x6CD5;</span></div><div class="line">$(<span class="string">&apos;#nav li&apos;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    $(<span class="keyword">this</span>).addClass(<span class="string">&apos;active&apos;</span>).siblings().removeClass(<span class="string">&apos;active&apos;</span>);</div><div class="line">});</div></pre></td></tr></table></figure>
+<h5 id="&#x5728;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x4E4B;&#x540E;&#x81EA;&#x52A8;&#x9690;&#x85CF;&#x6216;&#x8005;&#x5173;&#x95ED;&#x5143;&#x7D20;"><a href="#&#x5728;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x4E4B;&#x540E;&#x81EA;&#x52A8;&#x9690;&#x85CF;&#x6216;&#x8005;&#x5173;&#x95ED;&#x5143;&#x7D20;" class="headerlink" title="&#x5728;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x4E4B;&#x540E;&#x81EA;&#x52A8;&#x9690;&#x85CF;&#x6216;&#x8005;&#x5173;&#x95ED;&#x5143;&#x7D20;"></a>&#x5728;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x4E4B;&#x540E;&#x81EA;&#x52A8;&#x9690;&#x85CF;&#x6216;&#x8005;&#x5173;&#x95ED;&#x5143;&#x7D20;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">&apos;div&apos;</span>).slideUp(<span class="number">300</span>).delay(<span class="number">3000</span>).fadeIn(<span class="number">400</span>);</div></pre></td></tr></table></figure>
+<h5 id="&#x4F7F;&#x7528;firefox&#x548C;firebug&#x6765;&#x8BB0;&#x5F55;&#x4E8B;&#x4EF6;&#x65E5;&#x5FD7;"><a href="#&#x4F7F;&#x7528;Firefox&#x548C;Firebug&#x6765;&#x8BB0;&#x5F55;&#x4E8B;&#x4EF6;&#x65E5;&#x5FD7;" class="headerlink" title="&#x4F7F;&#x7528;Firefox&#x548C;Firebug&#x6765;&#x8BB0;&#x5F55;&#x4E8B;&#x4EF6;&#x65E5;&#x5FD7;"></a>&#x4F7F;&#x7528;Firefox&#x548C;Firebug&#x6765;&#x8BB0;&#x5F55;&#x4E8B;&#x4EF6;&#x65E5;&#x5FD7;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">jQuery.log=jQuery.fn.log=<span class="function"><span class="keyword">function</span>(<span class="params">msg</span>)</span>{</div><div class="line">    <span class="keyword">if</span>(<span class="built_in">console</span>){</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">&apos;%s:%o&apos;</span>,msg,<span class="keyword">this</span>);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+<h5 id="&#x4E3A;&#x4EFB;&#x4F55;&#x4E0E;&#x9009;&#x62E9;&#x5668;&#x76F8;&#x5339;&#x914D;&#x7684;&#x5143;&#x7D20;&#x7ED1;&#x5B9A;&#x4E8B;&#x4EF6;"><a href="#&#x4E3A;&#x4EFB;&#x4F55;&#x4E0E;&#x9009;&#x62E9;&#x5668;&#x76F8;&#x5339;&#x914D;&#x7684;&#x5143;&#x7D20;&#x7ED1;&#x5B9A;&#x4E8B;&#x4EF6;" class="headerlink" title="&#x4E3A;&#x4EFB;&#x4F55;&#x4E0E;&#x9009;&#x62E9;&#x5668;&#x76F8;&#x5339;&#x914D;&#x7684;&#x5143;&#x7D20;&#x7ED1;&#x5B9A;&#x4E8B;&#x4EF6;"></a>&#x4E3A;&#x4EFB;&#x4F55;&#x4E0E;&#x9009;&#x62E9;&#x5668;&#x76F8;&#x5339;&#x914D;&#x7684;&#x5143;&#x7D20;&#x7ED1;&#x5B9A;&#x4E8B;&#x4EF6;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">&apos;table&apos;</span>).on(<span class="string">&apos;click&apos;</span>,<span class="string">&apos;td&apos;</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    $(<span class="keyword">this</span>).toggleClass(<span class="string">&apos;hover&apos;</span>);</div><div class="line">});</div></pre></td></tr></table></figure>
+<h5 id="&#x4F7F;&#x7528;css&#x94A9;&#x5B50;"><a href="#&#x4F7F;&#x7528;CSS&#x94A9;&#x5B50;" class="headerlink" title="&#x4F7F;&#x7528;CSS&#x94A9;&#x5B50;"></a>&#x4F7F;&#x7528;CSS&#x94A9;&#x5B50;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$.cssHooks[<span class="string">&apos;borderRadius&apos;</span>]={</div><div class="line">    <span class="attr">get</span>:<span class="function"><span class="keyword">function</span>(<span class="params">elem,computed,extra</span>)</span>{</div><div class="line">        <span class="comment">//depending on browser,read the value of -moz-,-webkit-,-o-...</span></div><div class="line">    }</div><div class="line">    set:<span class="function"><span class="keyword">function</span>(<span class="params">elem,value</span>)</span>{</div><div class="line">        <span class="comment">//set the appropriate css3 property</span></div><div class="line">    }</div><div class="line">};</div><div class="line"><span class="comment">//use</span></div><div class="line">$(<span class="string">&apos;#reset&apos;</span>).css(<span class="string">&apos;borderRadius&apos;</span>,<span class="number">5</span>);</div></pre></td></tr></table></figure>
+<h5 id="proxy&#x7684;&#x4F7F;&#x7528;"><a href="#proxy-&#x7684;&#x4F7F;&#x7528;" class="headerlink" title="$.proxy()&#x7684;&#x4F7F;&#x7528;"></a>$.proxy()&#x7684;&#x4F7F;&#x7528;</h5><p>&#x4F7F;&#x7528;&#x56DE;&#x8C03;&#x65B9;&#x6CD5;&#x7684;&#x7F3A;&#x70B9;&#x4E4B;&#x4E00;&#x662F;&#x5F53;&#x6267;&#x884C;&#x7C7B;&#x5E93;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x540E;&#xFF0C;&#x4E0A;&#x4E0B;&#x6587;&#x5BF9;&#x8C61;this&#x88AB;&#x8BBE;&#x7F6E;&#x5230;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x800C;&#x4F7F;&#x7528;$.proxy()&#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">&apos;#panel&apos;</span>).fadeIn(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    <span class="comment">//Using $.proxy:</span></div><div class="line">    $(<span class="string">&apos;#panel button&apos;</span>).click($.proxy(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">        <span class="comment">//this &#x6307;&#x5411; #panel</span></div><div class="line">        $(<span class="keyword">this</span>).fadeOut();</div><div class="line">    },<span class="keyword">this</span>));</div><div class="line">});</div></pre></td></tr></table></figure></p>
+<h5 id="&#x9650;&#x5236;text-area&#x57DF;&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x4E2A;&#x6570;"><a href="#&#x9650;&#x5236;Text-Area&#x57DF;&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x4E2A;&#x6570;" class="headerlink" title="&#x9650;&#x5236;Text-Area&#x57DF;&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x4E2A;&#x6570;"></a>&#x9650;&#x5236;Text-Area&#x57DF;&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x4E2A;&#x6570;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">jQuery.fn.maxLength=<span class="function"><span class="keyword">function</span>(<span class="params">max</span>)</span>{</div><div class="line">    <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">        <span class="keyword">var</span> type=<span class="keyword">this</span>.tagName.toLowerCase();</div><div class="line">        <span class="keyword">var</span> inputType=<span class="keyword">this</span>.type?<span class="keyword">this</span>.type.toLowerCase():<span class="literal">null</span>;</div><div class="line">        <span class="keyword">if</span>(type===<span class="string">&quot;input&quot;</span> &amp;&amp; inputType===<span class="string">&quot;text&quot;</span> || inputType===<span class="string">&quot;password&quot;</span>){</div><div class="line">            <span class="comment">//&#x5E94;&#x7528;&#x6807;&#x51C6;&#x7684;maxLength</span></div><div class="line">            <span class="keyword">this</span>.maxLength=max;e</div><div class="line">        }<span class="keyword">else</span> <span class="keyword">if</span>(type===<span class="string">&quot;textarea&quot;</span>){</div><div class="line">            <span class="keyword">this</span>.onkeypress=<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>{</div><div class="line">                <span class="keyword">var</span> ob=e||event;</div><div class="line">                <span class="keyword">var</span> keyCode=ob.keyCode;</div><div class="line">                <span class="keyword">var</span> hasSlection=<span class="built_in">document</span>.selection?<span class="built_in">document</span>.selection.createRange().text.length&gt;<span class="number">0</span>:<span class="keyword">this</span>.selectionStart!==<span class="keyword">this</span>.selectionEnd;</div><div class="line">                <span class="keyword">return</span> !(<span class="keyword">this</span>.value.length&gt;==max &amp;&amp; (keyCode&gt;<span class="number">50</span> || keyCode===<span class="number">32</span> || keyCode===<span class="number">0</span> || keyCode===<span class="number">13</span>) &amp;&amp; !ob.ctrlKey &amp;&amp; !ob.altKey &amp;&amp; !hasSlection);</div><div class="line">            };</div><div class="line">            <span class="keyword">this</span>.onkeyup=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">                <span class="keyword">if</span>(<span class="keyword">this</span>.value.length&gt;max){</div><div class="line">                    <span class="keyword">this</span>.value=<span class="keyword">this</span>.value.substring(<span class="number">0</span>,max);</div><div class="line">                }</div><div class="line">            };</div><div class="line">        }</div><div class="line">    });</div><div class="line">};</div><div class="line"><span class="comment">//use</span></div><div class="line">$(<span class="string">&apos;#mytextarea&apos;</span>).maxLength(<span class="number">10</span>);</div></pre></td></tr></table></figure>
+<h5 id="&#x672C;&#x5730;&#x5B58;&#x50A8;"><a href="#&#x672C;&#x5730;&#x5B58;&#x50A8;" class="headerlink" title="&#x672C;&#x5730;&#x5B58;&#x50A8;"></a>&#x672C;&#x5730;&#x5B58;&#x50A8;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">localStorage.someData=<span class="string">&quot;This is going to be saved&quot;</span>;</div></pre></td></tr></table></figure>
+<h5 id="&#x89E3;&#x6790;json&#x6570;&#x636E;&#x65F6;&#x62A5;parseerror&#x9519;&#x8BEF;"><a href="#&#x89E3;&#x6790;json&#x6570;&#x636E;&#x65F6;&#x62A5;parseError&#x9519;&#x8BEF;" class="headerlink" title="&#x89E3;&#x6790;json&#x6570;&#x636E;&#x65F6;&#x62A5;parseError&#x9519;&#x8BEF;"></a>&#x89E3;&#x6790;json&#x6570;&#x636E;&#x65F6;&#x62A5;parseError&#x9519;&#x8BEF;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1.4&#x4E4B;&#x524D;&#x7248;&#x672C;&#xFF0C;key&#x6CA1;&#x5F15;&#x53F7;&#xFF0C;&#x8FD9;&#x6837;&#x6CA1;&#x95EE;&#x9898;</span></div><div class="line">{</div><div class="line">    <span class="attr">key</span>:<span class="string">&quot;123&quot;</span>,</div><div class="line">    <span class="attr">status</span>:<span class="string">&quot;0&quot;</span></div><div class="line">}</div><div class="line"><span class="comment">//&#x5347;&#x7EA7;&#x6210;jQuery1.4&#x4E4B;&#x540E;&#xFF0C;&#x90FD;&#x5FC5;&#x987B;&#x52A0;&#x4E0A;&#x53CC;&#x5F15;&#x53F7;&#xFF0C;&#x683C;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;</span></div><div class="line">{</div><div class="line">    <span class="string">&quot;key&quot;</span>:<span class="string">&quot;123&quot;</span>,</div><div class="line">    <span class="string">&quot;status&quot;</span>:<span class="string">&quot;0&quot;</span></div><div class="line">}</div></pre></td></tr></table></figure>
+<h5 id="&#x4ECE;&#x5143;&#x7D20;&#x4E2D;&#x9664;&#x53BB;html"><a href="#&#x4ECE;&#x5143;&#x7D20;&#x4E2D;&#x9664;&#x53BB;HTML" class="headerlink" title="&#x4ECE;&#x5143;&#x7D20;&#x4E2D;&#x9664;&#x53BB;HTML"></a>&#x4ECE;&#x5143;&#x7D20;&#x4E2D;&#x9664;&#x53BB;HTML</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>{</div><div class="line">    $.fn.stripHtml=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">        <span class="keyword">var</span> regExp=<span class="regexp">/&lt;(&quot;[^&quot;]*&quot;|&apos;[^&apos;]*&apos;|[^&apos;&quot;&gt;])*&gt;/gi</span>;</div><div class="line">        <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">            $(<span class="keyword">this</span>).html($(<span class="keyword">this</span>).html().replace(regExp,<span class="string">&apos;&apos;</span>));</div><div class="line">        });</div><div class="line">        <span class="keyword">return</span> $(<span class="keyword">this</span>);</div><div class="line">    }</div><div class="line">})(jQuery);</div><div class="line"><span class="comment">//use</span></div><div class="line">$(<span class="string">&apos;div&apos;</span>).stripHtml();</div></pre></td></tr></table></figure>
+<h5 id="&#x62D3;&#x5C55;string&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;"><a href="#&#x62D3;&#x5C55;String&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;" class="headerlink" title="&#x62D3;&#x5C55;String&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;"></a>&#x62D3;&#x5C55;String&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">$.extend(<span class="built_in">String</span>.prototype,{</div><div class="line">    <span class="attr">isPositiveInteger</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/^[1-9]\d/</span>).test(<span class="keyword">this</span>));</div><div class="line">    },</div><div class="line">    <span class="attr">isInteger</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/^\d+$/</span>).test(<span class="keyword">this</span>));</div><div class="line">    },</div><div class="line">    <span class="attr">isNumber</span>:<span class="function"><span class="keyword">function</span>(<span class="params">value,element</span>)</span>{</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/</span>).test(<span class="keyword">this</span>));</div><div class="line">    },</div><div class="line">    <span class="attr">trim</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.replace(<span class="regexp">/(^\s*)|(\s*$)|\r|\n/g</span>,<span class="string">&quot;&quot;</span>);</div><div class="line">    },</div><div class="line">    <span class="attr">trans</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.replace(<span class="regexp">/&amp;lt;/g</span>,<span class="string">&apos;&lt;&apos;</span>).replace(<span class="regexp">/&amp;gt;/g</span>,<span class="string">&apos;&gt;&apos;</span>).replace(<span class="regexp">/&amp;quot;/g</span>,<span class="string">&apos;&quot;&apos;</span>);</div><div class="line">    },</div><div class="line">    <span class="attr">replaceAll</span>:<span class="function"><span class="keyword">function</span>(<span class="params">os,ns</span>)</span>{</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.replace(<span class="keyword">new</span> <span class="built_in">RegExp</span>(os,<span class="string">&quot;gm&quot;</span>),ns);</div><div class="line">    },</div><div class="line">    <span class="attr">skipChar</span>:<span class="function"><span class="keyword">function</span>(<span class="params">ch</span>)</span>{</div><div class="line">        <span class="keyword">if</span>(!<span class="keyword">this</span> || <span class="keyword">this</span>.length===<span class="number">0</span>){<span class="keyword">return</span> <span class="string">&apos;&apos;</span>;}</div><div class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.charAt(<span class="number">0</span>)===ch){<span class="keyword">return</span> <span class="keyword">this</span>.substring(<span class="number">1</span>).skipChar(ch);}</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    },</div><div class="line">    <span class="attr">isValidPwd</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/^([_]|[a-zA-Z0-9]){6,32}$/</span>).test(<span class="keyword">this</span>));</div><div class="line">    },</div><div class="line">    <span class="attr">isValidMail</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/</span>).test(<span class="keyword">this</span>.trim()));</div><div class="line">    },</div><div class="line">    <span class="attr">isSpaces</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,length=<span class="keyword">this</span>.length;i&lt;length;i++){</div><div class="line">            <span class="keyword">var</span> ch=<span class="keyword">this</span>.charAt(i);</div><div class="line">            <span class="keyword">if</span>(ch!=<span class="string">&apos; &apos;</span> &amp;&amp; ch!=<span class="string">&quot;\n&quot;</span> &amp;&amp; ch!=<span class="string">&quot;\t&quot;</span> &amp;&amp; ch!=<span class="string">&quot;\r&quot;</span>){</div><div class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">            }</div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        }</div><div class="line">    },</div><div class="line">    <span class="attr">isPhone</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/(^([0-9]{3,4}[-])?\d{3,8}(-\d{1,6})?$)|(^\([0-9]{3,4}\)\d{3,8}(\(\d{1,6}\))?$)|(^\d{3,8}$)/</span>).test(<span class="keyword">this</span>));</div><div class="line">    },</div><div class="line">    <span class="attr">isUrl</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/^[a-zA-Z]+:\/\/([a-zA-Z0-9\-\.]+)(-\w .\/?%&amp;=:]*)$/</span>).test(<span class="keyword">this</span>));</div><div class="line">    },</div><div class="line">    <span class="attr">isExternalUrl</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.isUrl() &amp;&amp; <span class="keyword">this</span>.indexOf(<span class="string">&quot;://&quot;</span>+<span class="built_in">document</span>.domain)===<span class="number">-1</span>;</div><div class="line">    }</div><div class="line">});</div><div class="line"><span class="comment">//use</span></div><div class="line">$(<span class="string">&apos;input&apos;</span>).val().isInteger();</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>我知道是不会有人点的，但万一有人想不开呢？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/img/wechatpay.png" alt="曹强 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/img/alipay.jpg" alt="曹强 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jQuery/" rel="tag">#jQuery</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/08/26/jQuery/jQuery性能优化常用策略/" rel="prev" title="jQuery性能优化常用策略">
+                jQuery性能优化常用策略 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/08/25/jQuery/jQuery技巧/"
+           data-title="jQuery技巧" data-url="http://ronghuaxueleng.github.io/2015/08/25/jQuery/jQuery技巧/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/avatar.jpg"
+               alt="曹强" />
+          <p class="site-author-name" itemprop="name">曹强</p>
+          <p class="site-description motion-element" itemprop="description">caoqiang's blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">81</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ronghuaxueleng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#禁用页面的右击菜单"><span class="nav-number">1.</span> <span class="nav-text">禁用页面的右击菜单</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#新窗口打开页面"><span class="nav-number">2.</span> <span class="nav-text">新窗口打开页面</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#判断浏览器类型"><span class="nav-number">3.</span> <span class="nav-text">判断浏览器类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输入框文字获取和失去焦点"><span class="nav-number">4.</span> <span class="nav-text">输入框文字获取和失去焦点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回头部滑动动画"><span class="nav-number">5.</span> <span class="nav-text">返回头部滑动动画</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#获取鼠标位置"><span class="nav-number">6.</span> <span class="nav-text">获取鼠标位置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#判断元素是否存在"><span class="nav-number">7.</span> <span class="nav-text">判断元素是否存在</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#点击div也可以跳转"><span class="nav-number">8.</span> <span class="nav-text">点击div也可以跳转</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设置div在屏幕中央"><span class="nav-number">9.</span> <span class="nav-text">设置div在屏幕中央</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#根据浏览器的大小添加不同的样式"><span class="nav-number">10.</span> <span class="nav-text">根据浏览器的大小添加不同的样式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建自己的选择器"><span class="nav-number">11.</span> <span class="nav-text">创建自己的选择器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关闭所有的动画效果"><span class="nav-number">12.</span> <span class="nav-text">关闭所有的动画效果</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#检测鼠标的右键还是左键"><span class="nav-number">13.</span> <span class="nav-text">检测鼠标的右键还是左键</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#回车提交表单"><span class="nav-number">14.</span> <span class="nav-text">回车提交表单</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设置全局ajax参数"><span class="nav-number">15.</span> <span class="nav-text">设置全局Ajax参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#获取选中的下拉框"><span class="nav-number">16.</span> <span class="nav-text">获取选中的下拉框</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#切换复选框"><span class="nav-number">17.</span> <span class="nav-text">切换复选框</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用siblings来选择同辈元素"><span class="nav-number">18.</span> <span class="nav-text">使用siblings()来选择同辈元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在一段时间之后自动隐藏或者关闭元素"><span class="nav-number">19.</span> <span class="nav-text">在一段时间之后自动隐藏或者关闭元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用firefox和firebug来记录事件日志"><span class="nav-number">20.</span> <span class="nav-text">使用Firefox和Firebug来记录事件日志</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为任何与选择器相匹配的元素绑定事件"><span class="nav-number">21.</span> <span class="nav-text">为任何与选择器相匹配的元素绑定事件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用css钩子"><span class="nav-number">22.</span> <span class="nav-text">使用CSS钩子</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#proxy的使用"><span class="nav-number">23.</span> <span class="nav-text">$.proxy()的使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#限制text-area域中的字符个数"><span class="nav-number">24.</span> <span class="nav-text">限制Text-Area域中的字符个数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#本地存储"><span class="nav-number">25.</span> <span class="nav-text">本地存储</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解析json数据时报parseerror错误"><span class="nav-number">26.</span> <span class="nav-text">解析json数据时报parseError错误</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#从元素中除去html"><span class="nav-number">27.</span> <span class="nav-text">从元素中除去HTML</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#拓展string对象的方法"><span class="nav-number">28.</span> <span class="nav-text">拓展String对象的方法</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ronghuaxueleng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = '0 ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+  
+
+</body>
+</html>

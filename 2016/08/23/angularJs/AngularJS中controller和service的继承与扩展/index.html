@@ -1,0 +1,972 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="AngularJS, controller, service, 继承, 扩展, decorator, $provide, $delegate," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="所谓继承，比较熟悉，这里就是指定义一个新的controller/service（不同名），继承原来的controller/service，然后在其基础上重写一些功能。 所谓扩展，这里说的是在不产生新的controller/service的情况下，添加或修改原controller/service的功能。
+目前研究的结果就是service可以轻松的实现继承和扩展，而controller貌似只能继承。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AngularJS中controller和service的继承与扩展">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/2016/08/23/angularJs/AngularJS中controller和service的继承与扩展/index.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="所谓继承，比较熟悉，这里就是指定义一个新的controller/service（不同名），继承原来的controller/service，然后在其基础上重写一些功能。 所谓扩展，这里说的是在不产生新的controller/service的情况下，添加或修改原controller/service的功能。
+目前研究的结果就是service可以轻松的实现继承和扩展，而controller貌似只能继承。">
+<meta property="og:updated_time" content="2016-10-12T10:25:08.085Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AngularJS中controller和service的继承与扩展">
+<meta name="twitter:description" content="所谓继承，比较熟悉，这里就是指定义一个新的controller/service（不同名），继承原来的controller/service，然后在其基础上重写一些功能。 所谓扩展，这里说的是在不产生新的controller/service的情况下，添加或修改原controller/service的功能。
+目前研究的结果就是service可以轻松的实现继承和扩展，而controller貌似只能继承。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/2016/08/23/angularJs/AngularJS中controller和service的继承与扩展/"/>
+
+  <title> AngularJS中controller和service的继承与扩展 | 白云雅阁 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="https://github.com/ronghuaxueleng">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+    </a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">白云雅阁</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">读懂别人的故事，写好自己的人生</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                AngularJS中controller和service的继承与扩展
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-23T00:00:00+08:00" content="2016-08-23">
+              2016-08-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/angularjs/" itemprop="url" rel="index">
+                    <span itemprop="name">angularjs</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/23/angularJs/AngularJS中controller和service的继承与扩展/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/23/angularJs/AngularJS中controller和service的继承与扩展/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/23/angularJs/AngularJS中controller和service的继承与扩展/" class="leancloud_visitors" data-flag-title="AngularJS中controller和service的继承与扩展">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+
+          
+            &nbsp; | &nbsp;
+          <span id="/2016/08/23/angularJs/AngularJS中controller和service的继承与扩展/"class="leancloud_visitors" data-flag-title="AngularJS中controller和service的继承与扩展">
+            &nbsp;阅读次数
+          </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x6240;&#x8C13;&#x7EE7;&#x627F;&#xFF0C;&#x6BD4;&#x8F83;&#x719F;&#x6089;&#xFF0C;&#x8FD9;&#x91CC;&#x5C31;&#x662F;&#x6307;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;<strong>&#x65B0;&#x7684;</strong>controller/service&#xFF08;&#x4E0D;&#x540C;&#x540D;&#xFF09;&#xFF0C;&#x7EE7;&#x627F;&#x539F;&#x6765;&#x7684;controller/service&#xFF0C;&#x7136;&#x540E;&#x5728;&#x5176;&#x57FA;&#x7840;&#x4E0A;&#x91CD;&#x5199;&#x4E00;&#x4E9B;&#x529F;&#x80FD;&#x3002;<br> &#x6240;&#x8C13;&#x6269;&#x5C55;&#xFF0C;&#x8FD9;&#x91CC;&#x8BF4;&#x7684;&#x662F;&#x5728;<strong>&#x4E0D;&#x4EA7;&#x751F;&#x65B0;&#x7684;</strong>controller/service&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6DFB;&#x52A0;&#x6216;&#x4FEE;&#x6539;&#x539F;controller/service&#x7684;&#x529F;&#x80FD;&#x3002;</p>
+<p>&#x76EE;&#x524D;&#x7814;&#x7A76;&#x7684;&#x7ED3;&#x679C;&#x5C31;&#x662F;service&#x53EF;&#x4EE5;&#x8F7B;&#x677E;&#x7684;&#x5B9E;&#x73B0;&#x7EE7;&#x627F;&#x548C;&#x6269;&#x5C55;&#xFF0C;&#x800C;controller&#x8C8C;&#x4F3C;&#x53EA;&#x80FD;&#x7EE7;&#x627F;&#x3002;</p>
+<a id="more"></a>
+<h3 id="controller&#x7684;&#x7EE7;&#x627F;"><a href="#controller&#x7684;&#x7EE7;&#x627F;" class="headerlink" title="controller&#x7684;&#x7EE7;&#x627F;"></a>controller&#x7684;&#x7EE7;&#x627F;</h3><p>&#x8BF4;&#x5230;controller&#xFF0C;&#x6211;&#x4EEC;&#x5728;<a href="/2016/08/22/angularJs/&#x7528;$scope&#x8FD8;&#x662F;&#x7528;controller as/">&#x524D;&#x9762;&#x7684;&#x6587;&#x7AE0;</a>&#x4E2D;&#x4ECB;&#x7ECD;&#x8FC7;&#x6709;&#x4E24;&#x79CD;&#x5199;&#x6CD5;&#xFF1A;&#x4F7F;&#x7528;<code>$scope</code>&#x6216;&#x4F7F;&#x7528;<code>controller as</code>&#x3002;&#x9488;&#x5BF9;&#x8FD9;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x7684;&#x533A;&#x522B;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E24;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x7EE7;&#x627F;&#x65B9;&#x5F0F;&#xFF1A;</p>
+<ul>
+<li>&#x4F7F;&#x7528;<code>controller as</code>&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x7279;&#x70B9;&#x662F;controller&#x4E0D;&#x518D;&#x4F9D;&#x8D56;<code>$scope</code>&#xFF0C;&#x5C31;&#x8DDF;&#x666E;&#x901A;&#x7684;&#x51FD;&#x6570;&#x5DEE;&#x4E0D;&#x591A;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Javascript&#x539F;&#x751F;&#x7684;&#x7EE7;&#x627F;&#x65B9;&#x5F0F;&#x3002;</li>
+<li>&#x4F7F;&#x7528;<code>$scope</code>&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;AngularJS&#x5185;&#x7F6E;&#x7684;<code>$controller</code>service&#xFF0C;&#x901A;&#x8FC7;&#x4F9D;&#x8D56;&#x6CE8;&#x5165;&#x7684;&#x65B9;&#x5F0F;&#x5B9E;&#x73B0;&#x7EE7;&#x627F;&#x3002;</li>
+</ul>
+<p>&#x8FD8;&#x662F;&#x76F4;&#x63A5;&#x4E0A;&#x4F8B;&#x5B50;&#x5427;&#x3002;</p>
+<p><strong><em>&#x4F7F;&#x7528;&#x539F;&#x751F;&#x7684;&#x7EE7;&#x627F;</em></strong></p>
+<p></p><p data-height="305" data-theme-id="0" data-slug-hash="zBQAbw" data-default-tab="js,result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/zBQAbw/" target="_blank" rel="external">zBQAbw</a> by &#x66F9;&#x5F3A; (<a href="http://codepen.io/ronghuaxueleng" target="_blank" rel="external">@ronghuaxueleng</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x6709;&#x5DE6;&#x53F3;&#x4E24;&#x5757;&#x533A;&#x57DF;&#xFF0C;&#x5DE6;&#x8FB9;&#x7684;&#x662F;parent&#xFF0C;&#x53F3;&#x8FB9;&#x7684;&#x662F;child&#xFF0C;&#x5B83;&#x4EEC;&#x5206;&#x522B;&#x6709;5&#x884C;&#x6570;&#x636E;&#x9700;&#x8981;&#x663E;&#x793A;&#xFF1A;</p>
+<ul>
+<li>&#x7B2C;1&#x884C;&#x6027;&#x522B;&#xFF0C;&#x5BF9;&#x5E94;&#x5C5E;&#x6027;<code>sex</code>&#x3002;&#x7528;&#x4E8E;&#x5C55;&#x793A;&#x7EE7;&#x627F;&#x65F6;&#x4E0D;&#x66F4;&#x6539;&#x7684;&#x5C5E;&#x6027;&#x3002;</li>
+<li>&#x7B2C;2&#x884C;&#x89D2;&#x8272;&#xFF0C;&#x5BF9;&#x5E94;&#x5C5E;&#x6027;<code>name</code>&#x3002;&#x7528;&#x4E8E;&#x5C55;&#x793A;&#x7EE7;&#x627F;&#x540E;&#x8986;&#x76D6;&#x7684;&#x5C5E;&#x6027;&#x3002;</li>
+<li>&#x7B2C;3&#x884C;&#x4E2A;&#x6570;&#xFF0C;&#x5BF9;&#x5E94;&#x5C5E;&#x6027;<code>num</code>&#xFF0C;&#x5DE6;&#x8FB9;&#x662F;&#x5B69;&#x5B50;&#x7684;&#x4E2A;&#x6570;&#xFF0C;&#x53F3;&#x8FB9;&#x662F;&#x5144;&#x5F1F;&#x7684;&#x4E2A;&#x6570;&#xFF0C;&#x663E;&#x7136;&#x53F3;&#x8FB9;&#x6BD4;&#x5DE6;&#x8FB9;&#x5C11;1&#x3002;&#x7528;&#x4E8E;&#x663E;&#x793A;&#x540E;&#x9762;<code>add()</code>&#x65B9;&#x6CD5;&#x7684;&#x7ED3;&#x679C;&#x3002;</li>
+<li>&#x7B2C;4&#x884C;&#x662F;&#x4E2A;&#x6309;&#x94AE;&#xFF0C;&#x5BF9;&#x5E94;&#x65B9;&#x6CD5;<code>add()</code>&#xFF0C;&#x5DE6;&#x8FB9;&#x662F;parent&#x60F3;&#x591A;&#x8981;&#x4E00;&#x4E2A;&#x5B69;&#x5B50;&#xFF0C;&#x53F3;&#x8FB9;&#x662F;&#x60F3;child&#x60F3;&#x591A;&#x8981;&#x4E00;&#x4E2A;&#x5144;&#x5F1F;&#xFF0C;&#x7ED3;&#x679C;&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;&#x7528;&#x4E8E;&#x5C55;&#x793A;&#x7EE7;&#x627F;&#x65F6;&#x4E0D;&#x6539;&#x53D8;&#x7684;&#x65B9;&#x6CD5;&#x3002;</li>
+<li>&#x7B2C;5&#x884C;&#x4E5F;&#x662F;&#x4E2A;&#x6309;&#x94AE;&#xFF0C;&#x5BF9;&#x5E94;&#x65B9;&#x6CD5;<code>test()</code>&#xFF0C;&#x7528;&#x4E8E;&#x5C55;&#x793A;&#x7EE7;&#x627F;&#x65F6;&#x8986;&#x76D6;&#x7684;&#x65B9;&#x6CD5;&#x3002;&#xFF08;&#x4E0D;&#x8981;&#x5728;&#x610F;&#x8FD9;&#x4E2A;&#x968F;&#x610F;&#x7684;&#x540D;&#x5B57;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x5DF2;&#x7ECF;&#x573A;&#x666F;&#x532E;&#x4E4F;&#x4E86;&#x3002;&#x3002;&#x3002;&#xFF09;</li>
+</ul>
+<p>&#x901A;&#x8FC7;&#x8FD9;5&#x884C;&#xFF0C;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x5C31;&#x57FA;&#x672C;&#x6DB5;&#x76D6;&#x4E86;&#x7EE7;&#x627F;&#x65F6;&#x53D1;&#x751F;&#x7684;&#x5927;&#x90E8;&#x5206;&#x60C5;&#x51B5;&#x3002;&#x90A3;&#x4E48;&#x5207;&#x6362;&#x5230;JS&#x91CC;&#x770B;&#x770B;&#x5B9E;&#x73B0;&#x5427;&#x3002;JS&#x91CC;&#x7684;&#x4EE3;&#x7801;&#x7ED3;&#x6784;&#x5927;&#x81F4;&#x5206;&#x4E3A;5&#x90E8;&#x5206;&#xFF0C;&#x7528;&#x6CE8;&#x91CA;<code>/* Section 1 */</code>&#x6765;&#x533A;&#x5206;&#xFF08;&#x7531;&#x4E8E;CodePen&#x8FD9;&#x5DE5;&#x5177;&#x4E0D;&#x652F;&#x6301;&#x663E;&#x793A;&#x884C;&#x53F7;&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x80FD;&#x7528;&#x4EE3;&#x7801;&#x91CC;&#x7684;&#x6CE8;&#x91CA;&#x6765;&#x5206;&#x5757;&#x8BB2;&#x89E3;&#x4E86;&#xFF09;&#x3002;</p>
+<ul>
+<li>&#x7B2C;1&#x90E8;&#x5206;&#x662F;&#x4E00;&#x4E2A;&#x5178;&#x578B;&#x7684;Javascript&#x5B9E;&#x73B0;&#x7684;&#x7EE7;&#x627F;&#x51FD;&#x6570;<code>extend</code>&#xFF0C;&#x91CC;&#x9762;&#x7684;&#x539F;&#x7406;&#x4E0D;&#x518D;&#x8BE6;&#x8FF0;&#xFF0C;&#x6709;&#x5174;&#x8DA3;&#x53EF;&#x4EE5;&#x770B;&#x4EE5;&#x524D;&#x5199;&#x7684;<a href="/2016/07/31/JavaScript&#x9AD8;&#x7EA7;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;/&#x300A;JavaScript&#x9AD8;&#x7EA7;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x300B;&#x9605;&#x8BFB;&#x7B14;&#x8BB0;&#xFF1A;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x4E4B;&#x7EE7;&#x627F;/">&#x300A;&#x300A;JavaScript&#x9AD8;&#x7EA7;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x300B;&#x9605;&#x8BFB;&#x7B14;&#x8BB0;&#xFF1A;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x4E4B;&#x7EE7;&#x300B;</a>&#x3002;<blockquote>
+<p>&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x600E;&#x4E48;&#x751F;&#x6210;&#xFF1F;&#x8BBF;&#x95EE;<a href="http://coffeescript.org/" target="_blank" rel="external">CoffeeScript&#x5B98;&#x7F51;</a>&#xFF0C;&#x70B9;&#x51FB;&#x201C;TRY COFFEESCRIPT&#x201D;&#xFF0C;&#x4F1A;&#x6253;&#x5F00;&#x4E00;&#x4E2A;&#x7F16;&#x8F91;&#x5668;&#x7A97;&#x53E3;&#xFF0C;&#x5DE6;&#x8FB9;&#x5199;CoffeeScript&#xFF0C;&#x53F3;&#x8FB9;&#x5C31;&#x4F1A;&#x751F;&#x6210;&#x76F8;&#x5E94;&#x7684;Javascript&#x3002;&#x5728;&#x5DE6;&#x8FB9;&#x952E;&#x5165;<code>class A extends B</code>&#xFF0C;&#x53F3;&#x9762;&#x5C31;&#x4F1A;&#x6709;extend&#x51FD;&#x6570;&#x5566;&#x3002;&#x673A;&#xFF01;&#x667A;&#xFF01;</p>
+</blockquote>
+</li>
+<li>&#x7B2C;2&#x90E8;&#x5206;&#x662F;&#x4E00;&#x4E2A;&#x540D;&#x53EB;<code>FamilyService</code>&#x7684;AngularJS&#x7684;service&#x3002;&#x4E24;&#x4E2A;controller&#x90FD;&#x9700;&#x8981;&#x4F9D;&#x8D56;&#x5B83;&#x3002;&#x5B83;&#x7684;&#x529F;&#x80FD;&#x5F88;&#x7B80;&#x5355;&#xFF0C;parent&#x548C;child&#x9700;&#x8981;&#x7684;&#x5B69;&#x5B50;&#x6570;&#x91CF;&#x548C;&#x5144;&#x5F1F;&#x6570;&#x91CF;&#x90FD;&#x7531;&#x8FD9;&#x4E2A;service&#x6765;&#x63D0;&#x4F9B;&#xFF0C;&#x5206;&#x522B;&#x662F;&#x65B9;&#x6CD5;<code>getChildrenCount()</code>&#x548C;<code>getSiblingCount()</code>&#x3002;&#x9664;&#x6B64;&#x4E4B;&#x5916;&#xFF0C;&#x6BCF;&#x6B21;&#x751F;&#x5B69;&#x5B50;&#x7684;&#x65F6;&#x5019;&#x5B83;&#x4F1A;trigger&#x4E00;&#x4E2A;<code>new-child</code>&#x4E8B;&#x4EF6;&#xFF0C;&#x5E76;&#x5C06;&#x5B69;&#x5B50;&#x6570;&#x91CF;&#x901A;&#x8FC7;&#x53C2;&#x6570;&#x4F20;&#x64AD;&#x51FA;&#x53BB;&#x3002;</li>
+<li>&#x7B2C;3&#x90E8;&#x5206;&#x5C31;&#x662F;&#x5B9A;&#x4E49;<code>ParentCtrl</code>&#x8FD9;&#x4E2A;&#x7236;controller&#x4E86;&#xFF0C;&#x7531;&#x4E8E;&#x91C7;&#x7528;<code>controller as</code>&#x5199;&#x6CD5;&#xFF0C;&#x8FD9;&#x91CC;&#x7684;&#x5B9A;&#x4E49;&#x8DDF;&#x666E;&#x901A;&#x7684;&#x5BF9;&#x8C61;&#x6CA1;&#x533A;&#x522B;&#xFF0C;&#x5728;&#x6784;&#x9020;&#x51FD;&#x6570;&#x91CC;&#x5B9A;&#x4E49;&#x5C5E;&#x6027;&#xFF0C;&#x65B9;&#x6CD5;&#x5219;&#x5B9A;&#x4E49;&#x5728;<code>prototype</code>&#x4E0A;&#x3002;&#x8FD9;&#x91CC;&#x503C;&#x5F97;&#x6CE8;&#x610F;&#x7684;&#x6709;&#x4E24;&#x70B9;&#xFF1A;<ul>
+<li><code>add()</code>&#x51FD;&#x6570;&#x5176;&#x5B9E;&#x4EC5;&#x4EC5;&#x662F;&#x8C03;&#x7528;<code>FamilyService</code>&#x7684;<code>newChild()</code>&#x65B9;&#x6CD5;&#x3002;</li>
+<li><code>num</code>&#x5C5E;&#x6027;&#x7684;&#x6539;&#x53D8;&#x662F;&#x901A;&#x8FC7;&#x54CD;&#x5E94;<code>new-child</code>&#x4E8B;&#x4EF6;&#x6765;&#x5B9E;&#x73B0;&#x7684;&#x3002;</li>
+</ul>
+</li>
+<li>&#x7B2C;4&#x90E8;&#x5206;&#x5C31;&#x662F;&#x5173;&#x952E;&#x7684;<code>ChildCtrl</code>&#x5B9A;&#x4E49;&#x4E86;&#xFF0C;&#x540C;&#x6837;&#xFF0C;&#x5C5E;&#x6027;&#x7684;&#x5B9A;&#x4E49;&#x5728;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x65B9;&#x6CD5;&#x5B9A;&#x4E49;&#x5728;<code>prototype</code>&#x4E0A;&#x3002;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#xFF0C;&#x53D1;&#x751F;&#x7EE7;&#x627F;&#x9700;&#x8981;&#x4EE5;&#x4E0B;&#x51E0;&#x6B65;&#xFF1A;<ol>
+<li>&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x5148;&#x8C03;&#x7528;&#x7236;controller&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x3002;&#x8FD9;&#x91CC;&#x662F;&#x901A;&#x8FC7;<code>__super__</code>&#x6765;&#x5B9E;&#x73B0;&#x5BF9;&#x7236;controller&#x7684;&#x5F15;&#x7528;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x5728;<code>extend</code>&#x51FD;&#x6570;&#x4E2D;&#x6211;&#x4EEC;&#x5DF2;&#x5C06;&#x8BB2;<code>ParentCtrl</code>&#x7684;prototype&#x8D4B;&#x503C;&#x7ED9;<code>__super__</code>&#x53D8;&#x91CF;&#x4E86;&#x3002;&#x8FD9;&#x6B65;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x628A;<code>ParentCtrl</code>&#x91CC;&#x5B9A;&#x4E49;&#x7684;&#x5C5E;&#x6027;&#x4EE5;&#x53CA;&#x4E8B;&#x4EF6;&#x54CD;&#x5E94;&#x7EE7;&#x627F;&#x8FC7;&#x6765;&#x3002;</li>
+<li>&#x8986;&#x76D6;&#x5C5E;&#x6027;&#x548C;&#x4E8B;&#x4EF6;&#x54CD;&#x5E94;&#x3002; &#x8FD9;&#x91CC;&#x8986;&#x76D6;&#x4E86;<code>name</code>&#x548C;<code>num</code>&#x5C5E;&#x6027;&#xFF0C;&#x5E76;&#x4E14;&#x66F4;&#x6539;&#x4E86;&#x4E8B;&#x4EF6;&#x54CD;&#x5E94;&#x51FD;&#x6570;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x56E0;&#x4E3A;<code>new-child</code>&#x4E8B;&#x4EF6;&#x8FD4;&#x56DE;&#x7684;&#x53C2;&#x6570;&#x662F;&#x5B69;&#x5B50;&#x7684;&#x603B;&#x6570;&#xFF0C;&#x8FD9;&#x91CC;&#x8981;&#x51CF;&#x53BB;&#x81EA;&#x5DF1;&#x624D;&#x80FD;&#x5F97;&#x5230;&#x5144;&#x5F1F;&#x7684;&#x4E2A;&#x6570;&#x3002;</li>
+<li>&#x8C03;&#x7528;<code>extend</code>&#x51FD;&#x6570;&#x3002;</li>
+<li>&#x8986;&#x76D6;&#x65B9;&#x6CD5;&#x3002;&#x8FD9;&#x4E00;&#x6B65;&#x5FC5;&#x987B;&#x653E;&#x5728;&#x6700;&#x540E;&#xFF0C;&#x5982;&#x679C;&#x653E;&#x5728;<code>extend</code>&#x51FD;&#x6570;&#x7684;&#x524D;&#x9762;&#xFF0C;&#x5219;<code>extend</code>&#x51FD;&#x6570;&#x4F1A;&#x5C06;<code>ChildCtrl</code>&#x91CD;&#x65B0;&#x5B9A;&#x4E49;&#x7684;<code>add</code>&#x65B9;&#x6CD5;&#x7528;<code>ParentCtrl</code>&#x7684;&#x8986;&#x76D6;&#x3002;</li>
+</ol>
+</li>
+<li>&#x7B2C;5&#x90E8;&#x5206;&#x5C31;&#x662F;&#x5404;&#x79CD;&#x6A21;&#x5757;&#x3001;controller&#x3001;service&#x7684;&#x5B9A;&#x4E49;&#x4E86;&#xFF0C;&#x6CA1;&#x5565;&#x591A;&#x8BF4;&#x7684;&#x3002;</li>
+</ul>
+<p><strong><em>&#x4F7F;&#x7528;<code>$controller</code>service</em></strong></p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="RRmAmq" data-default-tab="js,result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/RRmAmq/" target="_blank" rel="external">RRmAmq</a> by &#x66F9;&#x5F3A; (<a href="http://codepen.io/ronghuaxueleng" target="_blank" rel="external">@ronghuaxueleng</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>&#x4F8B;&#x5B50;&#x7684;&#x5B9E;&#x9645;&#x6548;&#x679C;&#x4E0E;&#x4E0A;&#x9762;&#x7684;&#x4E00;&#x81F4;&#xFF0C;&#x6211;&#x4EEC;&#x76F4;&#x63A5;&#x770B;JS&#x90E8;&#x5206;&#x7684;&#x5B9E;&#x73B0;&#x5427;&#x3002;&#x8FD9;&#x4E2A;&#x4EE3;&#x7801;&#x5206;&#x4E3A;4&#x4E2A;&#x90E8;&#x5206;&#xFF1A;</p>
+<ul>
+<li>&#x7B2C;1&#x90E8;&#x5206;&#x4E0E;&#x524D;&#x9762;service&#x7684;&#x5B9A;&#x4E49;&#x76F8;&#x540C;&#x3002;</li>
+<li>&#x7B2C;2&#x90E8;&#x5206;&#x662F;<code>ParentCtrl</code>&#x7684;&#x5B9A;&#x4E49;&#xFF0C;&#x8FD9;&#x91CC;&#x4E0E;&#x524D;&#x9762;&#x7684;&#x4E0D;&#x540C;&#x4E00;&#x4E2A;&#x662F;&#x5168;&#x90E8;&#x4F7F;&#x7528;<code>$scope</code>&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x6BD4;&#x8F83;&#x7279;&#x6B8A;&#x7684;&#x662F;<code>add</code>&#x65B9;&#x6CD5;&#xFF0C;&#x5B83;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x4E86;&#x4E00;&#x4E2A;&#x7ED1;&#x5B9A;&#x5728;<code>this</code>&#x4E0A;&#x9762;&#x7684;<code>add</code>&#x65B9;&#x6CD5;&#xFF0C;&#x8FD9;&#x6837;&#x505A;&#x6CA1;&#x4EC0;&#x4E48;&#x7279;&#x6B8A;&#x542B;&#x4E49;&#xFF0C;&#x4EC5;&#x4E3A;&#x4E86;&#x6F14;&#x793A;&#x540E;&#x9762;&#x7684;&#x7EE7;&#x627F;&#x3002;</li>
+<li>&#x7B2C;3&#x90E8;&#x5206;&#x662F;<code>ChildCtrl</code>&#x7684;&#x5B9A;&#x4E49;&#xFF0C;&#x8FD9;&#x91CC;&#x7684;&#x7EE7;&#x627F;&#x662F;&#x901A;&#x8FC7;<code>var parentCtrl = $controller(&apos;ParentCtrl&apos;, {$scope: $scope});</code>&#x6765;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x901A;&#x8FC7;&#x4F9D;&#x8D56;&#x6CE8;&#x5165;&#x5F97;&#x5230;&#x7236;controller&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x5E76;&#x5C06;&#x81EA;&#x5DF1;&#x7684;<code>$scope</code>&#x4F20;&#x5165;&#xFF0C;&#x8FD9;&#x6837;&#xFF0C;&#x7236;controller&#x7ED1;&#x5B9A;&#x5728;<code>$scope</code>&#x4E0A;&#x9762;&#x7684;&#x4E1C;&#x897F;&#x5C31;&#x5168;&#x90E8;&#x7EE7;&#x627F;&#x5230;&#x5B50;controller&#x4E0A;&#x9762;&#x4E86;&#x3002;&#x9664;&#x6B64;&#x4E4B;&#x5916;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x53D8;&#x91CF;<code>parentCtrl</code>&#x6765;&#x5F15;&#x7528;&#x7236;controller&#xFF0C;&#x8DDF;&#x524D;&#x9762;&#x7684;<code>__super__</code>&#x4E00;&#x6837;&#x3002;<code>add</code>&#x65B9;&#x6CD5;&#x7684;&#x8986;&#x76D6;&#x7ED9;&#x51FA;&#x4E86;&#x4F7F;&#x7528;<code>parentCtrl</code>&#x7684;&#x4F8B;&#x5B50;&#x3002;</li>
+<li>&#x7B2C;4&#x90E8;&#x5206;&#x4E0E;&#x524D;&#x9762;&#x76F8;&#x540C;&#xFF0C;&#x533A;&#x522B;&#x5C31;&#x662F;<code>ChildCtrl</code>&#x4F9D;&#x8D56;&#x4E86;<code>$controller</code>service&#x3002;</li>
+</ul>
+<p><strong><em>&#x6BD4;&#x8F83;</em></strong></p>
+<p>&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#xFF0C;&#x5176;&#x5B9E;&#x8FD9;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x6700;&#x5927;&#x7684;&#x533A;&#x522B;&#x5C31;&#x662F;&#xFF0C;&#x539F;&#x751F;&#x7EE7;&#x627F;&#x4E2D;&#x9700;&#x8981;&#x8C03;&#x7528;<code>extend</code>&#x51FD;&#x6570;&#x6765;&#x7EE7;&#x627F;&#xFF0C;&#x5E76;&#x4E14;&#x5B50;controller&#x91CC;&#x9700;&#x8981;&#x663E;&#x5F0F;&#x8C03;&#x7528;&#x7236;controller&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x6765;&#x662F;&#x5B9E;&#x73B0;&#x5C5E;&#x6027;&#x7684;&#x7EE7;&#x627F;&#x3002;&#x800C;&#x4F7F;&#x7528;<code>$controller</code>service&#x5219;&#x53EA;&#x9700;&#x8981;&#x4F9D;&#x8D56;&#x6CE8;&#x5165;&#x548C;&#x4F20;&#x5165;<code>$scope</code>&#x5373;&#x53EF;&#x3002;</p>
+<h3 id="service&#x7684;&#x7EE7;&#x627F;"><a href="#service&#x7684;&#x7EE7;&#x627F;" class="headerlink" title="service&#x7684;&#x7EE7;&#x627F;"></a>service&#x7684;&#x7EE7;&#x627F;</h3><p>service&#x7684;&#x7EE7;&#x627F;&#x5C31;&#x6BD4;&#x8F83;&#x7B80;&#x5355;&#x4E86;&#xFF0C;AngularJS&#x4E2D;&#x7684;service&#x53EF;&#x4EE5;&#x8BA4;&#x4E3A;&#x662F;new&#x4E86;service&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x5B9E;&#x4F8B;&#x3002;&#x770B;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;&#x4E0E;&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x7C7B;&#x4F3C;&#xFF0C;&#x540C;&#x6837;&#x662F;&#x5C55;&#x793A;&#x4E86;&#x7EE7;&#x627F;&#x8FC7;&#x7A0B;&#x4E2D;&#x4E0D;&#x6539;&#x53D8;&#x6216;&#x8986;&#x76D6;&#x7236;service&#x7684;&#x5C5E;&#x6027;&#x548C;&#x65B9;&#x6CD5;&#x3002;</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="YWbwoO" data-default-tab="js,result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/YWbwoO/" target="_blank" rel="external">YWbwoO</a> by &#x66F9;&#x5F3A; (<a href="http://codepen.io/ronghuaxueleng" target="_blank" rel="external">@ronghuaxueleng</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>&#x719F;&#x6089;&#x7684;&#x5DE6;&#x53F3;&#x5E03;&#x5C40;&#xFF0C;&#x4E09;&#x4E2A;&#x5C5E;&#x6027;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x3002;&#x76F4;&#x63A5;&#x770B;JS&#x4E2D;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;4&#x4E2A;&#x90E8;&#x5206;&#xFF1A;</p>
+<ul>
+<li>&#x7B2C;1&#x90E8;&#x5206;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;controller&#xFF0C;&#x8FD9;&#x4E2A;controller&#x7684;&#x6240;&#x6709;&#x529F;&#x80FD;&#x57FA;&#x672C;&#x90FD;&#x6765;&#x81EA;&#x4E8E;service&#x3002;&#x9875;&#x9762;&#x4E2D;&#x5DE6;&#x53F3;&#x4E24;&#x4E2A;&#x90E8;&#x5206;&#x7528;&#x7684;&#x662F;&#x540C;&#x6837;&#x7684;controller&#xFF0C;&#x53EA;&#x662F;&#x540D;&#x5B57;&#x4E0D;&#x540C;&#xFF0C;&#x800C;&#x4E14;&#x4F9D;&#x8D56;&#x7684;service&#x4E0D;&#x540C;&#x3002;&#x8FD9;&#x4E00;&#x70B9;&#x4ECE;&#x7B2C;4&#x90E8;&#x5206;&#x53EF;&#x4EE5;&#x76F4;&#x89C2;&#x7684;&#x770B;&#x51FA;&#x6765;&#x3002;</li>
+<li>&#x7B2C;2&#x90E8;&#x5206;&#x5B9A;&#x4E49;&#x7236;service&#xFF0C;&#x6CA1;&#x4EC0;&#x4E48;&#x7279;&#x522B;&#x7684;&#x3002;</li>
+<li><p>&#x7B2C;3&#x90E8;&#x5206;&#x5B9A;&#x4E49;&#x5B50;servcie&#xFF0C;&#x7EE7;&#x627F;&#x5C31;&#x53D1;&#x751F;&#x5728;&#x8FD9;&#x91CC;&#x3002;&#x9996;&#x5148;&#xFF0C;&#x5B50;service&#x9700;&#x8981;&#x4F9D;&#x8D56;&#x7236;service&#xFF0C;&#x7136;&#x540E;&#x76F4;&#x63A5;&#x4F7F;&#x7528;AngularJS&#x5185;&#x7F6E;&#x7684;extend&#x51FD;&#x6570;&#x6765;&#x5B9E;&#x73B0;&#x7EE7;&#x627F;&#xFF0C;&#x5C06;&#x7236;service&#x5B9E;&#x4F8B;&#x4E0A;&#x7684;&#x5C5E;&#x6027;&#x65B9;&#x6CD5;&#x90FD;&#x62F7;&#x8D1D;&#x5230;this&#x4E0A;&#xFF0C;&#x5373;&#x5B8C;&#x6210;&#x4E86;&#x7EE7;&#x627F;&#xFF0C;&#x540E;&#x9762;&#x5C31;&#x662F;&#x4E00;&#x4E9B;&#x5C5E;&#x6027;&#x548C;&#x65B9;&#x6CD5;&#x7684;&#x8986;&#x76D6;&#x4E86;&#x3002;</p>
+<blockquote>
+<p>&#x8FD9;&#x91CC;&#x7684;extend&#x548C;&#x4E0A;&#x9762;&#x81EA;&#x5DF1;&#x5199;&#x7684;extend&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;&#x5462;&#xFF1F;&#x5176;&#x5B9E;<code>angular.extend</code>&#x7684;&#x529F;&#x80FD;&#x662F;&#x4E00;&#x4E2A;Shallow Copy&#xFF0C;&#x7C7B;&#x4F3C;&#x4E0A;&#x9762;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x7684;extend&#x4E2D;&#x7684;&#x8FD9;&#x6BB5;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> parent) {</div><div class="line">  <span class="keyword">if</span> (hasProp.call(parent, key))</div><div class="line">    child[key] = parent[key];</div><div class="line">}</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>&#x7B2C;4&#x90E8;&#x5206;&#x5404;&#x79CD;&#x5B9A;&#x4E49;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;<code>TestCtrl1</code>&#x548C;<code>TestCtrl2</code>&#x7684;&#x5B9A;&#x4E49;&#x90FD;&#x662F;<code>TestCtrl</code>&#xFF0C;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x4F9D;&#x8D56;<code>ParentService</code>&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x4F9D;&#x8D56;<code>ChildService</code>&#x7F62;&#x4E86;&#x3002;</p>
+</li>
+</ul>
+<h3 id="service&#x7684;&#x6269;&#x5C55;"><a href="#service&#x7684;&#x6269;&#x5C55;" class="headerlink" title="service&#x7684;&#x6269;&#x5C55;"></a>service&#x7684;&#x6269;&#x5C55;</h3><p>&#x5176;&#x5B9E;&#x6269;&#x5C55;&#x8BF4;&#x767D;&#x4E86;&#xFF0C;&#x5C31;&#x662F;&#x53EF;&#x4EE5;&#x628A;&#x4E00;&#x4E2A;&#x5DF2;&#x7ECF;&#x5B9A;&#x4E49;&#x597D;&#x7684;service&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#xFF0C;&#x4E3A;&#x4E86;&#x4FDD;&#x8BC1;&#x8FD9;&#x4E2A;&#x4FEE;&#x6539;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;module&#x7684;config&#x9636;&#x6BB5;&#x6765;&#x5B9E;&#x73B0;&#x3002;&#x5E9F;&#x8BDD;&#x4E0D;&#x8BF4;&#xFF0C;&#x76F4;&#x63A5;&#x4E0A;&#x4F8B;&#x5B50;&#x5427;&#x3002;</p>
+<p></p><p data-height="265" data-theme-id="0" data-slug-hash="qNGbZx" data-default-tab="result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/qNGbZx/" target="_blank" rel="external">qNGbZx</a> by &#x66F9;&#x5F3A; (<a href="http://codepen.io/ronghuaxueleng" target="_blank" rel="external">@ronghuaxueleng</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E0E;&#x524D;&#x9762;&#x7684;&#x7C7B;&#x4F3C;&#xFF0C;&#x53EA;&#x662F;&#x9875;&#x9762;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x90E8;&#x5206;&#xFF0C;&#x5B9E;&#x73B0;&#x7684;&#x7ED3;&#x679C;&#x8DDF;&#x4E0A;&#x9762;&#x7684;&#x53F3;&#x534A;&#x90E8;&#x5206;&#x4E00;&#x81F4;&#x3002;&#x76F4;&#x63A5;&#x770B;JS&#x4E2D;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x9664;&#x4E86;&#x7B2C;3&#x90E8;&#x5206;&#x5176;&#x4ED6;&#x90FD;&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;&#x7B2C;3&#x90E8;&#x5206;&#x4E2D;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;<code>extendServcie</code>&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x662F;&#x5728;app&#x7684;config&#x9636;&#x6BB5;&#x8C03;&#x7528;&#x7684;&#xFF08;&#x89C1;&#x7B2C;4&#x90E8;&#x5206;&#xFF09;&#x3002;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x4E2D;&#x4F9D;&#x8D56;&#x4E86;&#x4E00;&#x4E2A;&#x7279;&#x6B8A;&#x7684;service<code>$provide</code>&#xFF0C;&#x6269;&#x5C55;&#x529F;&#x80FD;&#x5C31;&#x7531;&#x5B83;&#x7684;<code>decorator</code>&#x65B9;&#x6CD5;&#x6765;&#x5B9E;&#x73B0;&#xFF0C;&#x65B9;&#x6CD5;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x5C31;&#x662F;&#x8981;&#x6269;&#x5C55;&#x7684;service&#x7684;&#x540D;&#x79F0;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x5C31;&#x662F;&#x5B9E;&#x9645;&#x7684;&#x6269;&#x5C55;&#x3002;&#x5728;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x4E2D;&#x4F9D;&#x8D56;&#x4E00;&#x4E2A;<code>$delegate</code>service&#xFF0C;&#x8FD9;&#x4E2A;service&#x4EE3;&#x8868;&#x7684;&#x5176;&#x5B9E;&#x5C31;&#x662F;<code>TestService</code>&#x672C;&#x8EAB;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5728;&#x51FD;&#x6570;&#x4E2D;&#x6211;&#x4EEC;&#x76F4;&#x63A5;&#x4F7F;&#x7528;<code>$delegate</code>&#x53BB;&#x5F15;&#x7528;&#x539F;&#x6709;servcie&#xFF0C;&#x5E76;&#x8FDB;&#x884C;&#x968F;&#x610F;&#x66F4;&#x6539;&#xFF0C;&#x6700;&#x7EC8;&#x5C06;&#x8FD9;&#x4E2A;<code>$delegate</code>&#x8FD4;&#x56DE;&#x5373;&#x53EF;&#x3002;</p>
+<p>&#x4E5F;&#x8BB8;&#x5F88;&#x591A;&#x4EBA;&#x4F1A;&#x89C9;&#x5F97;&#x8FD9;&#x79CD;&#x573A;&#x666F;&#x5F88;&#x8BE1;&#x5F02;&#xFF0C;&#x5E73;&#x5E38;&#x6839;&#x672C;&#x4E0D;&#x53EF;&#x80FD;&#x7528;&#x5F97;&#x5230;&#x3002;&#x4F46;&#x662F;&#x6211;&#x5728;&#x9879;&#x76EE;&#x4E2D;&#x5C31;&#x66FE;&#x7ECF;&#x9047;&#x5230;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;&#x5728;&#x5355;&#x9875;&#x9762;&#x5E94;&#x7528;&#x4E2D;&#x6211;&#x4EEC;&#x5E76;&#x6CA1;&#x6709;&#x628A;&#x6240;&#x6709;JS&#x6587;&#x4EF6;&#x538B;&#x7F29;&#x5728;&#x4E00;&#x8D77;&#xFF0C;&#x800C;&#x662F;&#x6839;&#x636E;&#x4E0D;&#x540C;&#x7684;&#x9875;&#x9762;&#x53BB;lazy load&#x4E0D;&#x540C;&#x7684;&#x6587;&#x4EF6;&#x3002;&#x5177;&#x4F53;&#x53BB;load&#x54EA;&#x4E9B;&#x6587;&#x4EF6;&#x5B9A;&#x4E49;&#x5728;&#x4E00;&#x4E2A;servcie&#x4E2D;&#xFF0C;&#x4F46;&#x8FD9;&#x4E9B;&#x6587;&#x4EF6;&#x540D;&#x5728;development&#x548C;production&#x9636;&#x6BB5;&#x662F;&#x4E0D;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x9700;&#x8981;&#x4E24;&#x5957;&#x4E0D;&#x540C;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x914D;&#x7F6E;&#x3002;&#x5229;&#x7528;servcie&#x7684;&#x6269;&#x5C55;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;production&#x73AF;&#x5883;&#x65F6;&#x591A;include&#x4E00;&#x4E2A;JS&#x6587;&#x4EF6;&#xFF0C;&#x5728;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x4E2D;&#x5BF9;servcie&#x8FDB;&#x884C;&#x6269;&#x5C55;&#xFF0C;&#x66F4;&#x65B0;&#x90A3;&#x4E9B;&#x76F8;&#x5E94;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x3002;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>我知道是不会有人点的，但万一有人想不开呢？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/img/wechatpay.png" alt="曹强 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/img/alipay.jpg" alt="曹强 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AngularJS-controller-service-继承-扩展-decorator-provide-delegate/" rel="tag">#AngularJS, controller, service, 继承, 扩展, decorator, $provide, $delegate</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/22/angularJs/用$scope还是用controller as/" rel="next" title="用$scope还是用controller as">
+                <i class="fa fa-chevron-left"></i> 用$scope还是用controller as
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/30/javascript/理解Javascript的prototype/" rel="prev" title="理解Javascript的prototype">
+                理解Javascript的prototype <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/23/angularJs/AngularJS中controller和service的继承与扩展/"
+           data-title="AngularJS中controller和service的继承与扩展" data-url="http://ronghuaxueleng.github.io/2016/08/23/angularJs/AngularJS中controller和service的继承与扩展/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/avatar.jpg"
+               alt="曹强" />
+          <p class="site-author-name" itemprop="name">曹强</p>
+          <p class="site-description motion-element" itemprop="description">caoqiang's blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">81</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ronghuaxueleng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#controller的继承"><span class="nav-number">1.</span> <span class="nav-text">controller的继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#service的继承"><span class="nav-number">2.</span> <span class="nav-text">service的继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#service的扩展"><span class="nav-number">3.</span> <span class="nav-text">service的扩展</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ronghuaxueleng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = '0 ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+  
+
+</body>
+</html>

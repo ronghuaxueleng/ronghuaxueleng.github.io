@@ -1,0 +1,915 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="this是Javascript语言的一个关键字。
+它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，123function test()&amp;#123;  this.x = 1;&amp;#125;
+随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript的this用法">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/2016/09/19/javascript/Javascript的this用法/index.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="this是Javascript语言的一个关键字。
+它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，123function test()&amp;#123;  this.x = 1;&amp;#125;
+随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。">
+<meta property="og:updated_time" content="2016-10-12T10:25:08.097Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript的this用法">
+<meta name="twitter:description" content="this是Javascript语言的一个关键字。
+它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，123function test()&amp;#123;  this.x = 1;&amp;#125;
+随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/2016/09/19/javascript/Javascript的this用法/"/>
+
+  <title> Javascript的this用法 | 白云雅阁 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="https://github.com/ronghuaxueleng">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+    </a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">白云雅阁</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">读懂别人的故事，写好自己的人生</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Javascript的this用法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-19T00:00:00+08:00" content="2016-09-19">
+              2016-09-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/19/javascript/Javascript的this用法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/javascript/Javascript的this用法/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/09/19/javascript/Javascript的this用法/" class="leancloud_visitors" data-flag-title="Javascript的this用法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+
+          
+            &nbsp; | &nbsp;
+          <span id="/2016/09/19/javascript/Javascript的this用法/"class="leancloud_visitors" data-flag-title="Javascript的this用法">
+            &nbsp;阅读次数
+          </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>this&#x662F;Javascript&#x8BED;&#x8A00;&#x7684;&#x4E00;&#x4E2A;&#x5173;&#x952E;&#x5B57;&#x3002;</p>
+<p>&#x5B83;&#x4EE3;&#x8868;&#x51FD;&#x6570;&#x8FD0;&#x884C;&#x65F6;&#xFF0C;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x7684;&#x4E00;&#x4E2A;&#x5185;&#x90E8;&#x5BF9;&#x8C61;&#xFF0C;&#x53EA;&#x80FD;&#x5728;&#x51FD;&#x6570;&#x5185;&#x90E8;&#x4F7F;&#x7528;&#x3002;&#x6BD4;&#x5982;&#xFF0C;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>{</div><div class="line">  <span class="keyword">this</span>.x = <span class="number">1</span>;</div><div class="line">}</div></pre></td></tr></table></figure></p>
+<p>&#x968F;&#x7740;&#x51FD;&#x6570;&#x4F7F;&#x7528;&#x573A;&#x5408;&#x7684;&#x4E0D;&#x540C;&#xFF0C;this&#x7684;&#x503C;&#x4F1A;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x3002;&#x4F46;&#x662F;&#x6709;&#x4E00;&#x4E2A;&#x603B;&#x7684;&#x539F;&#x5219;&#xFF0C;&#x90A3;&#x5C31;&#x662F;<strong>this&#x6307;&#x7684;&#x662F;&#xFF0C;&#x8C03;&#x7528;&#x51FD;&#x6570;&#x7684;&#x90A3;&#x4E2A;&#x5BF9;&#x8C61;</strong>&#x3002;</p>
+<a id="more"></a>
+<p>&#x4E0B;&#x9762;&#x5206;&#x56DB;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x8BE6;&#x7EC6;&#x8BA8;&#x8BBA;this&#x7684;&#x7528;&#x6CD5;&#x3002;</p>
+<h3 id="&#x60C5;&#x51B5;&#x4E00;&#x7EAF;&#x7CB9;&#x7684;&#x51FD;&#x6570;&#x8C03;&#x7528;"><a href="#&#x60C5;&#x51B5;&#x4E00;&#xFF1A;&#x7EAF;&#x7CB9;&#x7684;&#x51FD;&#x6570;&#x8C03;&#x7528;" class="headerlink" title="&#x60C5;&#x51B5;&#x4E00;&#xFF1A;&#x7EAF;&#x7CB9;&#x7684;&#x51FD;&#x6570;&#x8C03;&#x7528;"></a><strong>&#x60C5;&#x51B5;&#x4E00;&#xFF1A;&#x7EAF;&#x7CB9;&#x7684;&#x51FD;&#x6570;&#x8C03;&#x7528;</strong></h3><p>&#x8FD9;&#x662F;&#x51FD;&#x6570;&#x7684;&#x6700;&#x901A;&#x5E38;&#x7528;&#x6CD5;&#xFF0C;&#x5C5E;&#x4E8E;&#x5168;&#x5C40;&#x6027;&#x8C03;&#x7528;&#xFF0C;&#x56E0;&#x6B64;this&#x5C31;&#x4EE3;&#x8868;&#x5168;&#x5C40;&#x5BF9;&#x8C61;Global&#x3002;</p>
+<p>&#x8BF7;&#x770B;&#x4E0B;&#x9762;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#xFF0C;&#x5B83;&#x7684;&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x662F;1&#x3002;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>{</div><div class="line">  <span class="keyword">this</span>.x = <span class="number">1</span>;</div><div class="line">  alert(<span class="keyword">this</span>.x);</div><div class="line">}</div><div class="line">test(); <span class="comment">// 1</span></div></pre></td></tr></table></figure></p>
+<p>&#x4E3A;&#x4E86;&#x8BC1;&#x660E;this&#x5C31;&#x662F;&#x5168;&#x5C40;&#x5BF9;&#x8C61;&#xFF0C;&#x6211;&#x5BF9;&#x4EE3;&#x7801;&#x505A;&#x4E00;&#x4E9B;&#x6539;&#x53D8;&#xFF1A;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>{</div><div class="line">  alert(<span class="keyword">this</span>.x);</div><div class="line">}</div><div class="line">test(); <span class="comment">// 1</span></div></pre></td></tr></table></figure></p>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x8FD8;&#x662F;1&#x3002;&#x518D;&#x53D8;&#x4E00;&#x4E0B;&#xFF1A;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>{</div><div class="line"> <span class="keyword">this</span>.x = <span class="number">0</span>;</div><div class="line">}</div><div class="line"></div><div class="line">test();</div><div class="line">alert(x); <span class="comment">//0</span></div></pre></td></tr></table></figure></p>
+<h3 id="&#x60C5;&#x51B5;&#x4E8C;&#x4F5C;&#x4E3A;&#x5BF9;&#x8C61;&#x65B9;&#x6CD5;&#x7684;&#x8C03;&#x7528;"><a href="#&#x60C5;&#x51B5;&#x4E8C;&#xFF1A;&#x4F5C;&#x4E3A;&#x5BF9;&#x8C61;&#x65B9;&#x6CD5;&#x7684;&#x8C03;&#x7528;" class="headerlink" title="&#x60C5;&#x51B5;&#x4E8C;&#xFF1A;&#x4F5C;&#x4E3A;&#x5BF9;&#x8C61;&#x65B9;&#x6CD5;&#x7684;&#x8C03;&#x7528;"></a><strong>&#x60C5;&#x51B5;&#x4E8C;&#xFF1A;&#x4F5C;&#x4E3A;&#x5BF9;&#x8C61;&#x65B9;&#x6CD5;&#x7684;&#x8C03;&#x7528;</strong></h3><p>&#x51FD;&#x6570;&#x8FD8;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x67D0;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#xFF0C;&#x8FD9;&#x65F6;this&#x5C31;&#x6307;&#x8FD9;&#x4E2A;&#x4E0A;&#x7EA7;&#x5BF9;&#x8C61;&#x3002;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>{</div><div class="line">  alert(<span class="keyword">this</span>.x);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">var</span> o = {};</div><div class="line">o.x = <span class="number">1</span>;</div><div class="line">o.m = test;</div><div class="line">o.m(); <span class="comment">// 1</span></div></pre></td></tr></table></figure></p>
+<h3 id="&#x60C5;&#x51B5;&#x4E09;-&#x4F5C;&#x4E3A;&#x6784;&#x9020;&#x51FD;&#x6570;&#x8C03;&#x7528;"><a href="#&#x60C5;&#x51B5;&#x4E09;&#xFF1A;-&#x4F5C;&#x4E3A;&#x6784;&#x9020;&#x51FD;&#x6570;&#x8C03;&#x7528;" class="headerlink" title="&#x60C5;&#x51B5;&#x4E09;&#xFF1A; &#x4F5C;&#x4E3A;&#x6784;&#x9020;&#x51FD;&#x6570;&#x8C03;&#x7528;"></a><strong>&#x60C5;&#x51B5;&#x4E09;&#xFF1A; &#x4F5C;&#x4E3A;&#x6784;&#x9020;&#x51FD;&#x6570;&#x8C03;&#x7528;</strong></h3><p>&#x6240;&#x8C13;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x5C31;&#x662F;&#x901A;&#x8FC7;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x65B0;&#x5BF9;&#x8C61;&#xFF08;object&#xFF09;&#x3002;&#x8FD9;&#x65F6;&#xFF0C;this&#x5C31;&#x6307;&#x8FD9;&#x4E2A;&#x65B0;&#x5BF9;&#x8C61;&#x3002;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>{</div><div class="line">  <span class="keyword">this</span>.x = <span class="number">1</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> test();</div><div class="line">alert(o.x); <span class="comment">// 1</span></div></pre></td></tr></table></figure></p>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x4E3A;1&#x3002;&#x4E3A;&#x4E86;&#x8868;&#x660E;&#x8FD9;&#x65F6;this&#x4E0D;&#x662F;&#x5168;&#x5C40;&#x5BF9;&#x8C61;&#xFF0C;&#x6211;&#x5BF9;&#x4EE3;&#x7801;&#x505A;&#x4E00;&#x4E9B;&#x6539;&#x53D8;&#xFF1A;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">2</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>{</div><div class="line">  <span class="keyword">this</span>.x = <span class="number">1</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> test();</div><div class="line">alert(x); <span class="comment">//2</span></div></pre></td></tr></table></figure></p>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x4E3A;2&#xFF0C;&#x8868;&#x660E;&#x5168;&#x5C40;&#x53D8;&#x91CF;x&#x7684;&#x503C;&#x6839;&#x672C;&#x6CA1;&#x53D8;&#x3002;</p>
+<h3 id="&#x60C5;&#x51B5;&#x56DB;-apply&#x8C03;&#x7528;"><a href="#&#x60C5;&#x51B5;&#x56DB;&#xFF1A;-apply&#x8C03;&#x7528;" class="headerlink" title="&#x60C5;&#x51B5;&#x56DB;&#xFF1A; apply&#x8C03;&#x7528;"></a><strong>&#x60C5;&#x51B5;&#x56DB;&#xFF1A; apply&#x8C03;&#x7528;</strong></h3><p>apply()&#x662F;&#x51FD;&#x6570;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x5B83;&#x7684;&#x4F5C;&#x7528;&#x662F;&#x6539;&#x53D8;&#x51FD;&#x6570;&#x7684;&#x8C03;&#x7528;&#x5BF9;&#x8C61;&#xFF0C;&#x5B83;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x5C31;&#x8868;&#x793A;&#x6539;&#x53D8;&#x540E;&#x7684;&#x8C03;&#x7528;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x56E0;&#x6B64;&#xFF0C;this&#x6307;&#x7684;&#x5C31;&#x662F;&#x8FD9;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x3002;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">0</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>{</div><div class="line">  alert(<span class="keyword">this</span>.x);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">var</span> o={};</div><div class="line">o.x = <span class="number">1</span>;</div><div class="line">o.m = test;</div><div class="line">o.m.apply(); <span class="comment">//0</span></div></pre></td></tr></table></figure></p>
+<p>apply()&#x7684;&#x53C2;&#x6570;&#x4E3A;&#x7A7A;&#x65F6;&#xFF0C;&#x9ED8;&#x8BA4;&#x8C03;&#x7528;&#x5168;&#x5C40;&#x5BF9;&#x8C61;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x8FD9;&#x65F6;&#x7684;&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x4E3A;0&#xFF0C;&#x8BC1;&#x660E;this&#x6307;&#x7684;&#x662F;&#x5168;&#x5C40;&#x5BF9;&#x8C61;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x628A;&#x6700;&#x540E;&#x4E00;&#x884C;&#x4EE3;&#x7801;&#x4FEE;&#x6539;&#x4E3A;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">o.m.apply(o); <span class="comment">//1</span></div></pre></td></tr></table></figure></p>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x5C31;&#x53D8;&#x6210;&#x4E86;1&#xFF0C;&#x8BC1;&#x660E;&#x4E86;&#x8FD9;&#x65F6;this&#x4EE3;&#x8868;&#x7684;&#x662F;&#x5BF9;&#x8C61;o&#x3002;</p>
+<p>&#xFF08;&#x5B8C;&#xFF09;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>我知道是不会有人点的，但万一有人想不开呢？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/img/wechatpay.png" alt="曹强 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/img/alipay.jpg" alt="曹强 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/10/javascript设计模式/JavaScript设计模式——Constructor构造器模式/" rel="next" title="JavaScript Constructor(构造器)模式">
+                <i class="fa fa-chevron-left"></i> JavaScript Constructor(构造器)模式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/19/sendEmail/" rel="prev" title="使用sendMail发送邮件">
+                使用sendMail发送邮件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/19/javascript/Javascript的this用法/"
+           data-title="Javascript的this用法" data-url="http://ronghuaxueleng.github.io/2016/09/19/javascript/Javascript的this用法/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/avatar.jpg"
+               alt="曹强" />
+          <p class="site-author-name" itemprop="name">曹强</p>
+          <p class="site-description motion-element" itemprop="description">caoqiang's blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">81</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ronghuaxueleng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#情况一纯粹的函数调用"><span class="nav-number">1.</span> <span class="nav-text">情况一：纯粹的函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#情况二作为对象方法的调用"><span class="nav-number">2.</span> <span class="nav-text">情况二：作为对象方法的调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#情况三-作为构造函数调用"><span class="nav-number">3.</span> <span class="nav-text">情况三： 作为构造函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#情况四-apply调用"><span class="nav-number">4.</span> <span class="nav-text">情况四： apply调用</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ronghuaxueleng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = '0 ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+  
+
+</body>
+</html>

@@ -1,0 +1,970 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="jQuery的开发速度很快，几乎每半年一个大版本，每两个月一个小版本。
+每个版本都会引入一些新功能。今天我想介绍的，就是从jQuery 1.5.0版本开始引入的一个新功能—-deferred对象。
+这个功能很重要，未来将成为jQuery的核心方法，它彻底改变了如何在jQuery中使用ajax。为了实现它，jQuery的全部ajax代码都被改写了。但是，它比较抽象，初学者很难掌握，网上的教程也不多。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery的deferred对象详解">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/2016/09/19/javascript/jQuery的deferred对象详解/index.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="jQuery的开发速度很快，几乎每半年一个大版本，每两个月一个小版本。
+每个版本都会引入一些新功能。今天我想介绍的，就是从jQuery 1.5.0版本开始引入的一个新功能—-deferred对象。
+这个功能很重要，未来将成为jQuery的核心方法，它彻底改变了如何在jQuery中使用ajax。为了实现它，jQuery的全部ajax代码都被改写了。但是，它比较抽象，初学者很难掌握，网上的教程也不多。">
+<meta property="og:image" content="http://ronghuaxueleng.github.io/img/javascript/bg2011081601.jpg">
+<meta property="og:updated_time" content="2016-10-12T10:25:08.098Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery的deferred对象详解">
+<meta name="twitter:description" content="jQuery的开发速度很快，几乎每半年一个大版本，每两个月一个小版本。
+每个版本都会引入一些新功能。今天我想介绍的，就是从jQuery 1.5.0版本开始引入的一个新功能—-deferred对象。
+这个功能很重要，未来将成为jQuery的核心方法，它彻底改变了如何在jQuery中使用ajax。为了实现它，jQuery的全部ajax代码都被改写了。但是，它比较抽象，初学者很难掌握，网上的教程也不多。">
+<meta name="twitter:image" content="http://ronghuaxueleng.github.io/img/javascript/bg2011081601.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/2016/09/19/javascript/jQuery的deferred对象详解/"/>
+
+  <title> jQuery的deferred对象详解 | 白云雅阁 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="https://github.com/ronghuaxueleng">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+    </a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">白云雅阁</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">读懂别人的故事，写好自己的人生</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                jQuery的deferred对象详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-19T00:00:00+08:00" content="2016-09-19">
+              2016-09-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/19/javascript/jQuery的deferred对象详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/javascript/jQuery的deferred对象详解/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/09/19/javascript/jQuery的deferred对象详解/" class="leancloud_visitors" data-flag-title="jQuery的deferred对象详解">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+
+          
+            &nbsp; | &nbsp;
+          <span id="/2016/09/19/javascript/jQuery的deferred对象详解/"class="leancloud_visitors" data-flag-title="jQuery的deferred对象详解">
+            &nbsp;阅读次数
+          </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://jquery.com/" target="_blank" rel="external">jQuery</a>&#x7684;&#x5F00;&#x53D1;&#x901F;&#x5EA6;&#x5F88;&#x5FEB;&#xFF0C;&#x51E0;&#x4E4E;&#x6BCF;&#x534A;&#x5E74;&#x4E00;&#x4E2A;&#x5927;&#x7248;&#x672C;&#xFF0C;&#x6BCF;&#x4E24;&#x4E2A;&#x6708;&#x4E00;&#x4E2A;&#x5C0F;&#x7248;&#x672C;&#x3002;</p>
+<p>&#x6BCF;&#x4E2A;&#x7248;&#x672C;&#x90FD;&#x4F1A;&#x5F15;&#x5165;&#x4E00;&#x4E9B;&#x65B0;&#x529F;&#x80FD;&#x3002;&#x4ECA;&#x5929;&#x6211;&#x60F3;&#x4ECB;&#x7ECD;&#x7684;&#xFF0C;&#x5C31;&#x662F;&#x4ECE;jQuery 1.5.0&#x7248;&#x672C;&#x5F00;&#x59CB;&#x5F15;&#x5165;&#x7684;&#x4E00;&#x4E2A;&#x65B0;&#x529F;&#x80FD;&#x2014;-<a href="http://api.jquery.com/category/deferred-object/" target="_blank" rel="external">deferred&#x5BF9;&#x8C61;</a>&#x3002;</p>
+<p>&#x8FD9;&#x4E2A;&#x529F;&#x80FD;&#x5F88;&#x91CD;&#x8981;&#xFF0C;&#x672A;&#x6765;&#x5C06;&#x6210;&#x4E3A;jQuery&#x7684;&#x6838;&#x5FC3;&#x65B9;&#x6CD5;&#xFF0C;&#x5B83;&#x5F7B;&#x5E95;&#x6539;&#x53D8;&#x4E86;&#x5982;&#x4F55;&#x5728;jQuery&#x4E2D;&#x4F7F;&#x7528;ajax&#x3002;&#x4E3A;&#x4E86;&#x5B9E;&#x73B0;&#x5B83;&#xFF0C;jQuery&#x7684;&#x5168;&#x90E8;ajax&#x4EE3;&#x7801;&#x90FD;&#x88AB;&#x6539;&#x5199;&#x4E86;&#x3002;&#x4F46;&#x662F;&#xFF0C;<br>&#x5B83;&#x6BD4;&#x8F83;&#x62BD;&#x8C61;&#xFF0C;&#x521D;&#x5B66;&#x8005;&#x5F88;&#x96BE;&#x638C;&#x63E1;&#xFF0C;&#x7F51;&#x4E0A;&#x7684;&#x6559;&#x7A0B;&#x4E5F;&#x4E0D;&#x591A;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x6211;&#x628A;&#x81EA;&#x5DF1;&#x7684;&#x5B66;&#x4E60;&#x7B14;&#x8BB0;&#x6574;&#x7406;&#x51FA;&#x6765;&#x4E86;&#xFF0C;&#x5E0C;&#x671B;&#x5BF9;&#x5927;&#x5BB6;&#x6709;&#x7528;&#x3002;</p>
+<a id="more"></a>
+<p><img src="/img/javascript/bg2011081601.jpg" alt=""></p>
+<h3 id="&#x4EC0;&#x4E48;&#x662F;deferred&#x5BF9;&#x8C61;"><a href="#&#x4EC0;&#x4E48;&#x662F;deferred&#x5BF9;&#x8C61;&#xFF1F;" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;deferred&#x5BF9;&#x8C61;&#xFF1F;"></a><strong>&#x4EC0;&#x4E48;&#x662F;deferred&#x5BF9;&#x8C61;&#xFF1F;</strong></h3><p>&#x5F00;&#x53D1;&#x7F51;&#x7AD9;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x7ECF;&#x5E38;&#x9047;&#x5230;&#x67D0;&#x4E9B;&#x8017;&#x65F6;&#x5F88;&#x957F;&#x7684;javascript&#x64CD;&#x4F5C;&#x3002;&#x5176;&#x4E2D;&#xFF0C;&#x65E2;&#x6709;&#x5F02;&#x6B65;&#x7684;&#x64CD;&#x4F5C;&#xFF08;&#x6BD4;&#x5982;ajax&#x8BFB;&#x53D6;&#x670D;&#x52A1;&#x5668;&#x6570;&#x636E;&#xFF09;&#xFF0C;&#x4E5F;&#x6709;&#x540C;&#x6B65;&#x7684;&#x64CD;&#x4F5C;&#xFF08;&#x6BD4;&#x5982;&#x904D;&#x5386;&#x4E00;&#x4E2A;&#x5927;&#x578B;&#x6570;&#x7EC4;&#xFF09;&#xFF0C;&#x5B83;&#x4EEC;&#x90FD;&#x4E0D;&#x662F;&#x7ACB;&#x5373;&#x80FD;&#x5F97;&#x5230;&#x7ED3;&#x679C;&#x7684;&#x3002;</p>
+<p>&#x901A;&#x5E38;&#x7684;&#x505A;&#x6CD5;&#x662F;&#xFF0C;&#x4E3A;&#x5B83;&#x4EEC;&#x6307;&#x5B9A;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#xFF08;callback&#xFF09;&#x3002;&#x5373;&#x4E8B;&#x5148;&#x89C4;&#x5B9A;&#xFF0C;&#x4E00;&#x65E6;&#x5B83;&#x4EEC;&#x8FD0;&#x884C;&#x7ED3;&#x675F;&#xFF0C;&#x5E94;&#x8BE5;&#x8C03;&#x7528;&#x54EA;&#x4E9B;&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x4F46;&#x662F;&#xFF0C;&#x5728;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x65B9;&#x9762;&#xFF0C;jQuery&#x7684;&#x529F;&#x80FD;&#x975E;&#x5E38;&#x5F31;&#x3002;&#x4E3A;&#x4E86;&#x6539;&#x53D8;&#x8FD9;&#x4E00;&#x70B9;&#xFF0C;jQuery&#x5F00;&#x53D1;&#x56E2;&#x961F;&#x5C31;&#x8BBE;&#x8BA1;&#x4E86;<a href="http://api.jquery.com/category/deferred-object/" target="_blank" rel="external">deferred&#x5BF9;&#x8C61;</a>&#x3002;</p>
+<p><strong>&#x7B80;&#x5355;&#x8BF4;&#xFF0C;deferred&#x5BF9;&#x8C61;&#x5C31;&#x662F;jQuery&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;</strong>&#x5728;&#x82F1;&#x8BED;&#x4E2D;&#xFF0C;defer&#x7684;&#x610F;&#x601D;&#x662F;&#x201D;&#x5EF6;&#x8FDF;&#x201D;&#xFF0C;&#x6240;&#x4EE5;deferred&#x5BF9;&#x8C61;&#x7684;&#x542B;&#x4E49;&#x5C31;&#x662F;&#x201D;&#x5EF6;&#x8FDF;&#x201D;&#x5230;&#x672A;&#x6765;&#x67D0;&#x4E2A;&#x70B9;&#x518D;&#x6267;&#x884C;&#x3002;</p>
+<p>&#x5B83;&#x89E3;&#x51B3;&#x4E86;&#x5982;&#x4F55;&#x5904;&#x7406;&#x8017;&#x65F6;&#x64CD;&#x4F5C;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x5BF9;&#x90A3;&#x4E9B;&#x64CD;&#x4F5C;&#x63D0;&#x4F9B;&#x4E86;&#x66F4;&#x597D;&#x7684;&#x63A7;&#x5236;&#xFF0C;&#x4EE5;&#x53CA;&#x7EDF;&#x4E00;&#x7684;&#x7F16;&#x7A0B;&#x63A5;&#x53E3;&#x3002;&#x5B83;&#x7684;&#x4E3B;&#x8981;&#x529F;&#x80FD;&#xFF0C;&#x53EF;&#x4EE5;&#x5F52;&#x7ED3;&#x4E3A;&#x56DB;&#x70B9;&#x3002;&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#xFF0C;&#x4E00;&#x6B65;&#x6B65;&#x6765;&#x5B66;&#x4E60;&#x3002;</p>
+<h3 id="ajax&#x64CD;&#x4F5C;&#x7684;&#x94FE;&#x5F0F;&#x5199;&#x6CD5;"><a href="#ajax&#x64CD;&#x4F5C;&#x7684;&#x94FE;&#x5F0F;&#x5199;&#x6CD5;" class="headerlink" title="ajax&#x64CD;&#x4F5C;&#x7684;&#x94FE;&#x5F0F;&#x5199;&#x6CD5;"></a><strong>ajax&#x64CD;&#x4F5C;&#x7684;&#x94FE;&#x5F0F;&#x5199;&#x6CD5;</strong></h3><p>&#x9996;&#x5148;&#xFF0C;&#x56DE;&#x987E;&#x4E00;&#x4E0B;jQuery&#x7684;ajax&#x64CD;&#x4F5C;&#x7684;&#x4F20;&#x7EDF;&#x5199;&#x6CD5;&#xFF1A;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$.ajax({</div><div class="line">  <span class="attr">url</span>: <span class="string">&quot;test.html&quot;</span>,</div><div class="line">  <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{  </div><div class="line">    alert(<span class="string">&quot;&#x54C8;&#x54C8;&#xFF0C;&#x6210;&#x529F;&#x4E86;&#xFF01;&quot;</span>);  </div><div class="line">  },</div><div class="line">  <span class="attr">error</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{  </div><div class="line">    alert(<span class="string">&quot;&#x51FA;&#x9519;&#x5566;&#xFF01;&quot;</span>);  </div><div class="line">  }</div><div class="line">});</div></pre></td></tr></table></figure></p>
+<p>&#xFF08;&#x8FD0;&#x884C;<a href="http://jsfiddle.net/ruanyf/pdQYH/" target="_blank" rel="external">&#x4EE3;&#x7801;&#x793A;&#x4F8B;1</a>&#xFF09;<br>&#x5728;&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;$.ajax()&#x63A5;&#x53D7;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x53C2;&#x6570;&#xFF0C;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x5305;&#x542B;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#xFF1A;success&#x65B9;&#x6CD5;&#x6307;&#x5B9A;&#x64CD;&#x4F5C;&#x6210;&#x529F;&#x540E;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#xFF0C;error&#x65B9;&#x6CD5;&#x6307;&#x5B9A;&#x64CD;&#x4F5C;&#x5931;&#x8D25;&#x540E;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x3002;</p>
+<p>$.ajax()&#x64CD;&#x4F5C;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x4F4E;&#x4E8E;1.5.0&#x7248;&#x672C;&#x7684;jQuery&#xFF0C;&#x8FD4;&#x56DE;&#x7684;&#x662F;XHR&#x5BF9;&#x8C61;&#xFF0C;&#x4F60;&#x6CA1;&#x6CD5;&#x8FDB;&#x884C;&#x94FE;&#x5F0F;&#x64CD;&#x4F5C;&#xFF1B;&#x5982;&#x679C;&#x9AD8;&#x4E8E;1.5.0&#x7248;&#x672C;&#xFF0C;&#x8FD4;&#x56DE;&#x7684;&#x662F;deferred&#x5BF9;&#x8C61;&#xFF0C;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x94FE;&#x5F0F;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x73B0;&#x5728;&#xFF0C;&#x65B0;&#x7684;&#x5199;&#x6CD5;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF1A;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.ajax(<span class="string">&quot;test.html&quot;</span>)</div><div class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x54C8;&#x54C8;&#xFF0C;&#x6210;&#x529F;&#x4E86;&#xFF01;&quot;</span>); })</div><div class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x51FA;&#x9519;&#x5566;&#xFF01;&quot;</span>); });</div></pre></td></tr></table></figure></p>
+<p>&#xFF08;&#x8FD0;&#x884C;<a href="http://jsfiddle.net/ruanyf/dYKLJ/" target="_blank" rel="external">&#x4EE3;&#x7801;&#x793A;&#x4F8B;2</a>&#xFF09;</p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;<a href="http://api.jquery.com/deferred.done/" target="_blank" rel="external">done()</a>&#x76F8;&#x5F53;&#x4E8E;success&#x65B9;&#x6CD5;&#xFF0C;<a href="http://api.jquery.com/deferred.fail/" target="_blank" rel="external">fail()</a>&#x76F8;&#x5F53;&#x4E8E;error&#x65B9;&#x6CD5;&#x3002;&#x91C7;&#x7528;&#x94FE;&#x5F0F;&#x5199;&#x6CD5;&#x4EE5;&#x540E;&#xFF0C;&#x4EE3;&#x7801;&#x7684;&#x53EF;&#x8BFB;&#x6027;&#x5927;&#x5927;&#x63D0;&#x9AD8;&#x3002;</p>
+<h3 id="&#x6307;&#x5B9A;&#x540C;&#x4E00;&#x64CD;&#x4F5C;&#x7684;&#x591A;&#x4E2A;&#x56DE;&#x8C03;&#x51FD;&#x6570;"><a href="#&#x6307;&#x5B9A;&#x540C;&#x4E00;&#x64CD;&#x4F5C;&#x7684;&#x591A;&#x4E2A;&#x56DE;&#x8C03;&#x51FD;&#x6570;" class="headerlink" title="&#x6307;&#x5B9A;&#x540C;&#x4E00;&#x64CD;&#x4F5C;&#x7684;&#x591A;&#x4E2A;&#x56DE;&#x8C03;&#x51FD;&#x6570;"></a><strong>&#x6307;&#x5B9A;&#x540C;&#x4E00;&#x64CD;&#x4F5C;&#x7684;&#x591A;&#x4E2A;&#x56DE;&#x8C03;&#x51FD;&#x6570;</strong></h3><p>deferred&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x5927;&#x597D;&#x5904;&#xFF0C;&#x5C31;&#x662F;&#x5B83;&#x5141;&#x8BB8;&#x4F60;&#x81EA;&#x7531;&#x6DFB;&#x52A0;&#x591A;&#x4E2A;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x8FD8;&#x662F;&#x4EE5;&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x4E3A;&#x4F8B;&#xFF0C;&#x5982;&#x679C;ajax&#x64CD;&#x4F5C;&#x6210;&#x529F;&#x540E;&#xFF0C;&#x9664;&#x4E86;&#x539F;&#x6765;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#xFF0C;&#x6211;&#x8FD8;&#x60F3;&#x518D;&#x8FD0;&#x884C;&#x4E00;&#x4E2A;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#xFF0C;&#x600E;&#x4E48;&#x529E;&#xFF1F;</p>
+<p>&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x76F4;&#x63A5;&#x628A;&#x5B83;&#x52A0;&#x5728;&#x540E;&#x9762;&#x5C31;&#x884C;&#x4E86;&#x3002;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$.ajax(<span class="string">&quot;test.html&quot;</span>)</div><div class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x54C8;&#x54C8;&#xFF0C;&#x6210;&#x529F;&#x4E86;&#xFF01;&quot;</span>);} )</div><div class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x51FA;&#x9519;&#x5566;&#xFF01;&quot;</span>); } )</div><div class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x7B2C;&#x4E8C;&#x4E2A;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#xFF01;&quot;</span>);} );</div></pre></td></tr></table></figure></p>
+<p>&#xFF08;&#x8FD0;&#x884C;<a href="http://jsfiddle.net/ruanyf/sQYjs/" target="_blank" rel="external">&#x4EE3;&#x7801;&#x793A;&#x4F8B;3</a>&#xFF09;</p>
+<p>&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#x4EFB;&#x610F;&#x591A;&#x4E2A;&#xFF0C;&#x5B83;&#x4EEC;&#x6309;&#x7167;&#x6DFB;&#x52A0;&#x987A;&#x5E8F;&#x6267;&#x884C;&#x3002;</p>
+<h3 id="&#x4E3A;&#x591A;&#x4E2A;&#x64CD;&#x4F5C;&#x6307;&#x5B9A;&#x56DE;&#x8C03;&#x51FD;&#x6570;"><a href="#&#x4E3A;&#x591A;&#x4E2A;&#x64CD;&#x4F5C;&#x6307;&#x5B9A;&#x56DE;&#x8C03;&#x51FD;&#x6570;" class="headerlink" title="&#x4E3A;&#x591A;&#x4E2A;&#x64CD;&#x4F5C;&#x6307;&#x5B9A;&#x56DE;&#x8C03;&#x51FD;&#x6570;"></a><strong>&#x4E3A;&#x591A;&#x4E2A;&#x64CD;&#x4F5C;&#x6307;&#x5B9A;&#x56DE;&#x8C03;&#x51FD;&#x6570;</strong></h3><p>deferred&#x5BF9;&#x8C61;&#x7684;&#x53E6;&#x4E00;&#x5927;&#x597D;&#x5904;&#xFF0C;&#x5C31;&#x662F;&#x5B83;&#x5141;&#x8BB8;&#x4F60;&#x4E3A;&#x591A;&#x4E2A;&#x4E8B;&#x4EF6;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x662F;&#x4F20;&#x7EDF;&#x5199;&#x6CD5;&#x505A;&#x4E0D;&#x5230;&#x7684;&#x3002;</p>
+<p>&#x8BF7;&#x770B;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x5B83;&#x7528;&#x5230;&#x4E86;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x65B9;&#x6CD5;<a href="http://api.jquery.com/jQuery.when/" target="_blank" rel="external">$.when()</a>&#xFF1A;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.when($.ajax(<span class="string">&quot;test1.html&quot;</span>), $.ajax(<span class="string">&quot;test2.html&quot;</span>))</div><div class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x54C8;&#x54C8;&#xFF0C;&#x6210;&#x529F;&#x4E86;&#xFF01;&quot;</span>); })</div><div class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x51FA;&#x9519;&#x5566;&#xFF01;&quot;</span>); });</div></pre></td></tr></table></figure></p>
+<p>&#xFF08;&#x8FD0;&#x884C;<a href="http://jsfiddle.net/ruanyf/CdKjn/" target="_blank" rel="external">&#x4EE3;&#x7801;&#x793A;&#x4F8B;4</a>&#xFF09;</p>
+<p>&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x7684;&#x610F;&#x601D;&#x662F;&#xFF0C;&#x5148;&#x6267;&#x884C;&#x4E24;&#x4E2A;&#x64CD;&#x4F5C;$.ajax(&#x201C;test1.html&#x201D;)&#x548C;$.ajax(&#x201C;test2.html&#x201D;)&#xFF0C;&#x5982;&#x679C;&#x90FD;&#x6210;&#x529F;&#x4E86;&#xFF0C;&#x5C31;&#x8FD0;&#x884C;done()&#x6307;&#x5B9A;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#xFF1B;&#x5982;&#x679C;&#x6709;&#x4E00;&#x4E2A;&#x5931;&#x8D25;&#x6216;&#x90FD;&#x5931;&#x8D25;&#x4E86;&#xFF0C;&#x5C31;&#x6267;&#x884C;fail()&#x6307;&#x5B9A;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x3002;</p>
+<h3 id="&#x666E;&#x901A;&#x64CD;&#x4F5C;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x63A5;&#x53E3;&#x4E0A;"><a href="#&#x666E;&#x901A;&#x64CD;&#x4F5C;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x63A5;&#x53E3;&#xFF08;&#x4E0A;&#xFF09;" class="headerlink" title="&#x666E;&#x901A;&#x64CD;&#x4F5C;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x63A5;&#x53E3;&#xFF08;&#x4E0A;&#xFF09;"></a><strong>&#x666E;&#x901A;&#x64CD;&#x4F5C;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x63A5;&#x53E3;&#xFF08;&#x4E0A;&#xFF09;</strong></h3><p>deferred&#x5BF9;&#x8C61;&#x7684;&#x6700;&#x5927;&#x4F18;&#x70B9;&#xFF0C;&#x5C31;&#x662F;&#x5B83;&#x628A;&#x8FD9;&#x4E00;&#x5957;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x63A5;&#x53E3;&#xFF0C;&#x4ECE;ajax&#x64CD;&#x4F5C;&#x6269;&#x5C55;&#x5230;&#x4E86;&#x6240;&#x6709;&#x64CD;&#x4F5C;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x4EFB;&#x4F55;&#x4E00;&#x4E2A;&#x64CD;&#x4F5C;&#x2014;-&#x4E0D;&#x7BA1;&#x662F;ajax&#x64CD;&#x4F5C;&#x8FD8;&#x662F;&#x672C;&#x5730;&#x64CD;&#x4F5C;&#xFF0C;&#x4E5F;&#x4E0D;&#x7BA1;&#x662F;&#x5F02;&#x6B65;&#x64CD;&#x4F5C;&#x8FD8;&#x662F;&#x540C;&#x6B65;&#x64CD;&#x4F5C;&#x2014;-&#x90FD;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;deferred&#x5BF9;&#x8C61;&#x7684;&#x5404;&#x79CD;&#x65B9;&#x6CD5;&#xFF0C;&#x6307;&#x5B9A;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x6765;&#x770B;&#x4E00;&#x4E2A;&#x5177;&#x4F53;&#x7684;&#x4F8B;&#x5B50;&#x3002;&#x5047;&#x5B9A;&#x6709;&#x4E00;&#x4E2A;&#x5F88;&#x8017;&#x65F6;&#x7684;&#x64CD;&#x4F5C;wait&#xFF1A;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">  <span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    alert(<span class="string">&quot;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#xFF01;&quot;</span>);</div><div class="line">  };</div><div class="line">  </div><div class="line">  setTimeout(tasks,<span class="number">5000</span>);</div><div class="line">};</div></pre></td></tr></table></figure></p>
+<p>&#x6211;&#x4EEC;&#x4E3A;&#x5B83;&#x6307;&#x5B9A;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#xFF0C;&#x5E94;&#x8BE5;&#x600E;&#x4E48;&#x505A;&#x5462;&#xFF1F;</p>
+<p>&#x5F88;&#x81EA;&#x7136;&#x7684;&#xFF0C;&#x4F60;&#x4F1A;&#x60F3;&#x5230;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;$.when()&#xFF1A;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.when(wait())</div><div class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x54C8;&#x54C8;&#xFF0C;&#x6210;&#x529F;&#x4E86;&#xFF01;&quot;</span>); })</div><div class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x51FA;&#x9519;&#x5566;&#xFF01;&quot;</span>); });</div></pre></td></tr></table></figure></p>
+<p>&#xFF08;&#x8FD0;&#x884C;<a href="http://jsfiddle.net/5wzrt/" target="_blank" rel="external">&#x4EE3;&#x7801;&#x793A;&#x4F8B;5</a>&#xFF09;</p>
+<p>&#x4F46;&#x662F;&#xFF0C;&#x8FD9;&#x6837;&#x5199;&#x7684;&#x8BDD;&#xFF0C;done()&#x65B9;&#x6CD5;&#x4F1A;&#x7ACB;&#x5373;&#x6267;&#x884C;&#xFF0C;&#x8D77;&#x4E0D;&#x5230;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x7684;&#x4F5C;&#x7528;&#x3002;&#x539F;&#x56E0;&#x5728;&#x4E8E;$.when()&#x7684;&#x53C2;&#x6570;&#x53EA;&#x80FD;&#x662F;deferred&#x5BF9;&#x8C61;&#xFF0C;&#x6240;&#x4EE5;&#x5FC5;&#x987B;&#x5BF9;wait()&#x8FDB;&#x884C;&#x6539;&#x5199;<br>&#xFF1A;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dtd = $.Deferred(); <span class="comment">// &#x65B0;&#x5EFA;&#x4E00;&#x4E2A;deferred&#x5BF9;&#x8C61;</span></div><div class="line"><span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params">dtd</span>)</span>{</div><div class="line">  <span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    alert(<span class="string">&quot;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#xFF01;&quot;</span>);</div><div class="line">    dtd.resolve(); <span class="comment">// &#x6539;&#x53D8;deferred&#x5BF9;&#x8C61;&#x7684;&#x6267;&#x884C;&#x72B6;&#x6001;</span></div><div class="line">  };</div><div class="line"></div><div class="line">  setTimeout(tasks,<span class="number">5000</span>);</div><div class="line">  <span class="keyword">return</span> dtd;</div><div class="line">};</div></pre></td></tr></table></figure></p>
+<p>&#x73B0;&#x5728;&#xFF0C;wait()&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x7684;&#x662F;deferred&#x5BF9;&#x8C61;&#xFF0C;&#x8FD9;&#x5C31;&#x53EF;&#x4EE5;&#x52A0;&#x4E0A;&#x94FE;&#x5F0F;&#x64CD;&#x4F5C;&#x4E86;&#x3002;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.when(wait(dtd))</div><div class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x54C8;&#x54C8;&#xFF0C;&#x6210;&#x529F;&#x4E86;&#xFF01;&quot;</span>); })</div><div class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x51FA;&#x9519;&#x5566;&#xFF01;&quot;</span>); });</div></pre></td></tr></table></figure></p>
+<p>&#xFF08;&#x8FD0;&#x884C;<a href="http://jsfiddle.net/gfFPj/" target="_blank" rel="external">&#x4EE3;&#x7801;&#x793A;&#x4F8B;6</a>&#xFF09;</p>
+<p>wait()&#x51FD;&#x6570;&#x8FD0;&#x884C;&#x5B8C;&#xFF0C;&#x5C31;&#x4F1A;&#x81EA;&#x52A8;&#x8FD0;&#x884C;done()&#x65B9;&#x6CD5;&#x6307;&#x5B9A;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x3002;</p>
+<h3 id="deferredresolve&#x65B9;&#x6CD5;&#x548C;deferredreject&#x65B9;&#x6CD5;"><a href="#deferred-resolve-&#x65B9;&#x6CD5;&#x548C;deferred-reject-&#x65B9;&#x6CD5;" class="headerlink" title="deferred.resolve()&#x65B9;&#x6CD5;&#x548C;deferred.reject()&#x65B9;&#x6CD5;"></a><strong>deferred.resolve()&#x65B9;&#x6CD5;&#x548C;deferred.reject()&#x65B9;&#x6CD5;</strong></h3><p>&#x5982;&#x679C;&#x4ED4;&#x7EC6;&#x770B;&#xFF0C;&#x4F60;&#x4F1A;&#x53D1;&#x73B0;&#x5728;&#x4E0A;&#x9762;&#x7684;wait()&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x5730;&#x65B9;&#x6211;&#x6CA1;&#x8BB2;&#x89E3;&#x3002;&#x90A3;&#x5C31;&#x662F;<a href="http://api.jquery.com/deferred.resolve" target="_blank" rel="external">dtd.resolve()</a>&#x7684;&#x4F5C;&#x7528;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;</p>
+<p>&#x8981;&#x8BF4;&#x6E05;&#x695A;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x5C31;&#x8981;&#x5F15;&#x5165;&#x4E00;&#x4E2A;&#x65B0;&#x6982;&#x5FF5;&#x201D;&#x6267;&#x884C;&#x72B6;&#x6001;&#x201D;&#x3002;jQuery&#x89C4;&#x5B9A;&#xFF0C;deferred&#x5BF9;&#x8C61;&#x6709;&#x4E09;&#x79CD;&#x6267;&#x884C;&#x72B6;&#x6001;&#x2014;-&#x672A;&#x5B8C;&#x6210;&#xFF0C;&#x5DF2;&#x5B8C;&#x6210;&#x548C;&#x5DF2;&#x5931;&#x8D25;&#x3002;&#x5982;&#x679C;&#x6267;&#x884C;&#x72B6;&#x6001;&#x662F;&#x201D;&#x5DF2;&#x5B8C;&#x6210;&#x201D;&#xFF08;resolved&#xFF09;,deferred&#x5BF9;&#x8C61;&#x7ACB;&#x523B;&#x8C03;&#x7528;done()&#x65B9;&#x6CD5;&#x6307;&#x5B9A;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#xFF1B;&#x5982;&#x679C;&#x6267;&#x884C;&#x72B6;&#x6001;&#x662F;&#x201D;&#x5DF2;&#x5931;&#x8D25;&#x201D;&#xFF0C;&#x8C03;&#x7528;fail()&#x65B9;&#x6CD5;&#x6307;&#x5B9A;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#xFF1B;&#x5982;&#x679C;&#x6267;&#x884C;&#x72B6;&#x6001;&#x662F;&#x201D;&#x672A;&#x5B8C;&#x6210;&#x201D;&#xFF0C;&#x5219;&#x7EE7;&#x7EED;&#x7B49;&#x5F85;&#xFF0C;&#x6216;&#x8005;&#x8C03;&#x7528;<a href="http://api.jquery.com/deferred.progress/" target="_blank" rel="external">progress()</a>&#x65B9;&#x6CD5;&#x6307;&#x5B9A;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#xFF08;jQuery1.7&#x7248;&#x672C;&#x6DFB;&#x52A0;&#xFF09;&#x3002;</p>
+<p>&#x524D;&#x9762;&#x90E8;&#x5206;&#x7684;ajax&#x64CD;&#x4F5C;&#x65F6;&#xFF0C;deferred&#x5BF9;&#x8C61;&#x4F1A;&#x6839;&#x636E;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#xFF0C;&#x81EA;&#x52A8;&#x6539;&#x53D8;&#x81EA;&#x8EAB;&#x7684;&#x6267;&#x884C;&#x72B6;&#x6001;&#xFF1B;&#x4F46;&#x662F;&#xFF0C;&#x5728;wait()&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x8FD9;&#x4E2A;&#x6267;&#x884C;&#x72B6;&#x6001;&#x5FC5;&#x987B;&#x7531;&#x7A0B;&#x5E8F;&#x5458;&#x624B;&#x52A8;&#x6307;&#x5B9A;&#x3002;dtd.resolve()&#x7684;&#x610F;&#x601D;&#x662F;&#xFF0C;&#x5C06;dtd&#x5BF9;&#x8C61;&#x7684;&#x6267;&#x884C;&#x72B6;&#x6001;&#x4ECE;&#x201D;&#x672A;&#x5B8C;&#x6210;&#x201D;&#x6539;&#x4E3A;&#x201D;&#x5DF2;&#x5B8C;&#x6210;&#x201D;&#xFF0C;&#x4ECE;&#x800C;&#x89E6;&#x53D1;done()&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x7C7B;&#x4F3C;&#x7684;&#xFF0C;&#x8FD8;&#x5B58;&#x5728;&#x4E00;&#x4E2A;<a href="http://api.jquery.com/deferred.reject" target="_blank" rel="external">deferred.reject()</a>&#x65B9;&#x6CD5;&#xFF0C;&#x4F5C;&#x7528;&#x662F;&#x5C06;dtd&#x5BF9;&#x8C61;&#x7684;&#x6267;&#x884C;&#x72B6;&#x6001;&#x4ECE;&#x201D;&#x672A;&#x5B8C;&#x6210;&#x201D;&#x6539;&#x4E3A;&#x201D;&#x5DF2;&#x5931;&#x8D25;&#x201D;&#xFF0C;&#x4ECE;&#x800C;&#x89E6;&#x53D1;fail()&#x65B9;&#x6CD5;&#x3002;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dtd = $.Deferred(); <span class="comment">// &#x65B0;&#x5EFA;&#x4E00;&#x4E2A;Deferred&#x5BF9;&#x8C61;</span></div><div class="line"><span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params">dtd</span>)</span>{</div><div class="line">  <span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    alert(<span class="string">&quot;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#xFF01;&quot;</span>);</div><div class="line">    dtd.reject(); <span class="comment">// &#x6539;&#x53D8;Deferred&#x5BF9;&#x8C61;&#x7684;&#x6267;&#x884C;&#x72B6;&#x6001;</span></div><div class="line">  };</div><div class="line"></div><div class="line">  setTimeout(tasks,<span class="number">5000</span>);</div><div class="line">  <span class="keyword">return</span> dtd;</div><div class="line">};</div><div class="line"></div><div class="line">$.when(wait(dtd))</div><div class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x54C8;&#x54C8;&#xFF0C;&#x6210;&#x529F;&#x4E86;&#xFF01;&quot;</span>); })</div><div class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x51FA;&#x9519;&#x5566;&#xFF01;&quot;</span>); });</div></pre></td></tr></table></figure></p>
+<p>&#xFF08;&#x8FD0;&#x884C;<a href="http://jsfiddle.net/bhDjd/" target="_blank" rel="external">&#x4EE3;&#x7801;&#x793A;&#x4F8B;7</a>&#xFF09;</p>
+<h3 id="deferredpromise&#x65B9;&#x6CD5;"><a href="#deferred-promise-&#x65B9;&#x6CD5;" class="headerlink" title="deferred.promise()&#x65B9;&#x6CD5;"></a><strong>deferred.promise()&#x65B9;&#x6CD5;</strong></h3><p>&#x4E0A;&#x9762;&#x8FD9;&#x79CD;&#x5199;&#x6CD5;&#xFF0C;&#x8FD8;&#x662F;&#x6709;&#x95EE;&#x9898;&#x3002;&#x90A3;&#x5C31;&#x662F;dtd&#x662F;&#x4E00;&#x4E2A;&#x5168;&#x5C40;&#x5BF9;&#x8C61;&#xFF0C;&#x6240;&#x4EE5;&#x5B83;&#x7684;&#x6267;&#x884C;&#x72B6;&#x6001;&#x53EF;&#x4EE5;&#x4ECE;&#x5916;&#x90E8;&#x6539;&#x53D8;&#x3002;</p>
+<p>&#x8BF7;&#x770B;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#xFF1A;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dtd = $.Deferred(); <span class="comment">// &#x65B0;&#x5EFA;&#x4E00;&#x4E2A;Deferred&#x5BF9;&#x8C61;</span></div><div class="line"><span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params">dtd</span>)</span>{</div><div class="line">  <span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    alert(<span class="string">&quot;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#xFF01;&quot;</span>);</div><div class="line">    dtd.resolve(); <span class="comment">// &#x6539;&#x53D8;Deferred&#x5BF9;&#x8C61;&#x7684;&#x6267;&#x884C;&#x72B6;&#x6001;</span></div><div class="line">  };</div><div class="line">  setTimeout(tasks,<span class="number">5000</span>);</div><div class="line">  <span class="keyword">return</span> dtd;</div><div class="line">};</div><div class="line"></div><div class="line">$.when(wait(dtd))</div><div class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x54C8;&#x54C8;&#xFF0C;&#x6210;&#x529F;&#x4E86;&#xFF01;&quot;</span>); })</div><div class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x51FA;&#x9519;&#x5566;&#xFF01;&quot;</span>); });</div><div class="line">dtd.resolve(); *</div></pre></td></tr></table></figure></p>
+<p>&#xFF08;&#x8FD0;&#x884C;<a href="http://jsfiddle.net/nBFse/" target="_blank" rel="external">&#x4EE3;&#x7801;&#x793A;&#x4F8B;8</a>&#xFF09;</p>
+<p>&#x6211;&#x5728;&#x4EE3;&#x7801;&#x7684;&#x5C3E;&#x90E8;&#x52A0;&#x4E86;&#x4E00;&#x884C;dtd.resolve()&#xFF0C;&#x8FD9;&#x5C31;&#x6539;&#x53D8;&#x4E86;dtd&#x5BF9;&#x8C61;&#x7684;&#x6267;&#x884C;&#x72B6;&#x6001;&#xFF0C;&#x56E0;&#x6B64;&#x5BFC;&#x81F4;done()&#x65B9;&#x6CD5;&#x7ACB;&#x523B;&#x6267;&#x884C;&#xFF0C;&#x8DF3;&#x51FA;&#x201D;&#x54C8;&#x54C8;&#xFF0C;&#x6210;&#x529F;&#x4E86;&#xFF01;&#x201D;&#x7684;&#x63D0;&#x793A;&#x6846;&#xFF0C;&#x7B49;5&#x79D2;&#x4E4B;&#x540E;&#x518D;&#x8DF3;&#x51FA;&#x201D;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#xFF01;&#x201D;&#x7684;&#x63D0;&#x793A;&#x6846;&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x907F;&#x514D;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;jQuery&#x63D0;&#x4F9B;&#x4E86;<a href="http://api.jquery.com/deferred.promise/" target="_blank" rel="external">deferred.promise()</a>&#x65B9;&#x6CD5;&#x3002;&#x5B83;&#x7684;&#x4F5C;&#x7528;&#x662F;&#xFF0C;&#x5728;&#x539F;&#x6765;&#x7684;deferred&#x5BF9;&#x8C61;&#x4E0A;&#x8FD4;&#x56DE;&#x53E6;&#x4E00;&#x4E2A;deferred&#x5BF9;&#x8C61;&#xFF0C;&#x540E;&#x8005;&#x53EA;&#x5F00;&#x653E;&#x4E0E;&#x6539;&#x53D8;&#x6267;&#x884C;&#x72B6;&#x6001;&#x65E0;&#x5173;&#x7684;&#x65B9;&#x6CD5;&#xFF08;&#x6BD4;&#x5982;done()&#x65B9;&#x6CD5;&#x548C;fail()&#x65B9;&#x6CD5;&#xFF09;&#xFF0C;&#x5C4F;&#x853D;&#x4E0E;&#x6539;&#x53D8;&#x6267;&#x884C;&#x72B6;&#x6001;&#x6709;&#x5173;&#x7684;&#x65B9;&#x6CD5;&#xFF08;&#x6BD4;&#x5982;resolve()&#x65B9;&#x6CD5;&#x548C;reject()&#x65B9;&#x6CD5;&#xFF09;&#xFF0C;&#x4ECE;&#x800C;&#x4F7F;&#x5F97;&#x6267;&#x884C;&#x72B6;&#x6001;&#x4E0D;&#x80FD;&#x88AB;&#x6539;&#x53D8;&#x3002;</p>
+<p>&#x8BF7;&#x770B;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#xFF1A;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dtd = $.Deferred(); <span class="comment">// &#x65B0;&#x5EFA;&#x4E00;&#x4E2A;Deferred&#x5BF9;&#x8C61;</span></div><div class="line"><span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params">dtd</span>)</span>{</div><div class="line">  <span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    alert(<span class="string">&quot;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#xFF01;&quot;</span>);</div><div class="line">    dtd.resolve(); <span class="comment">// &#x6539;&#x53D8;Deferred&#x5BF9;&#x8C61;&#x7684;&#x6267;&#x884C;&#x72B6;&#x6001;</span></div><div class="line">  };  </div><div class="line">  </div><div class="line">  setTimeout(tasks,<span class="number">5000</span>);</div><div class="line"></div><div class="line">  <span class="keyword">return</span> dtd.promise(); <span class="comment">// &#x8FD4;&#x56DE;promise&#x5BF9;&#x8C61;</span></div><div class="line">};</div><div class="line"></div><div class="line"><span class="keyword">var</span> d = wait(dtd); <span class="comment">//&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;d&#x5BF9;&#x8C61;&#xFF0C;&#x6539;&#x4E3A;&#x5BF9;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;</span></div><div class="line"></div><div class="line">$.when(d)</div><div class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x54C8;&#x54C8;&#xFF0C;&#x6210;&#x529F;&#x4E86;&#xFF01;&quot;</span>); })</div><div class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x51FA;&#x9519;&#x5566;&#xFF01;&quot;</span>); });</div><div class="line">d.resolve(); <span class="comment">// &#x6B64;&#x65F6;&#xFF0C;&#x8FD9;&#x4E2A;&#x8BED;&#x53E5;&#x662F;&#x65E0;&#x6548;&#x7684;</span></div></pre></td></tr></table></figure></p>
+<p>&#xFF08;&#x8FD0;&#x884C;<a href="http://jsfiddle.net/Yur4R/" target="_blank" rel="external">&#x4EE3;&#x7801;&#x793A;&#x4F8B;9</a>&#xFF09;</p>
+<p>&#x5728;&#x4E0A;&#x9762;&#x7684;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;wait()&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x7684;&#x662F;promise&#x5BF9;&#x8C61;&#x3002;&#x7136;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x628A;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x7ED1;&#x5B9A;&#x5728;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x4E0A;&#x9762;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x539F;&#x6765;&#x7684;deferred&#x5BF9;&#x8C61;&#x4E0A;&#x9762;&#x3002;&#x8FD9;&#x6837;&#x7684;&#x597D;&#x5904;&#x662F;&#xFF0C;&#x65E0;&#x6CD5;&#x6539;&#x53D8;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x6267;&#x884C;&#x72B6;&#x6001;&#xFF0C;&#x8981;&#x60F3;&#x6539;&#x53D8;&#x6267;&#x884C;&#x72B6;&#x6001;&#xFF0C;&#x53EA;&#x80FD;&#x64CD;&#x4F5C;&#x539F;&#x6765;&#x7684;deferred&#x5BF9;&#x8C61;&#x3002;</p>
+<p>&#x4E0D;&#x8FC7;&#xFF0C;&#x66F4;&#x597D;&#x7684;&#x5199;&#x6CD5;&#x662F;<a href="http://blog.allenm.me/2012/01/jquery_deferred_promise_method/" target="_blank" rel="external">allenm</a>&#x6240;&#x6307;&#x51FA;&#x7684;&#xFF0C;&#x5C06;dtd&#x5BF9;&#x8C61;&#x53D8;&#x6210;wait(&#xFF09;&#x51FD;&#x6570;&#x7684;&#x5185;&#x90E8;&#x5BF9;&#x8C61;&#x3002;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params">dtd</span>)</span>{</div><div class="line">  <span class="keyword">var</span> dtd = $.Deferred(); <span class="comment">//&#x5728;&#x51FD;&#x6570;&#x5185;&#x90E8;&#xFF0C;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;Deferred&#x5BF9;&#x8C61;</span></div><div class="line">  <span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    alert(<span class="string">&quot;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#xFF01;&quot;</span>);</div><div class="line">    dtd.resolve(); <span class="comment">// &#x6539;&#x53D8;Deferred&#x5BF9;&#x8C61;&#x7684;&#x6267;&#x884C;&#x72B6;&#x6001;</span></div><div class="line">  };  </div><div class="line">  </div><div class="line">  setTimeout(tasks,<span class="number">5000</span>);</div><div class="line">  <span class="keyword">return</span> dtd.promise(); <span class="comment">// &#x8FD4;&#x56DE;promise&#x5BF9;&#x8C61;</span></div><div class="line">};</div><div class="line"></div><div class="line">$.when(wait())</div><div class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x54C8;&#x54C8;&#xFF0C;&#x6210;&#x529F;&#x4E86;&#xFF01;&quot;</span>); })</div><div class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x51FA;&#x9519;&#x5566;&#xFF01;&quot;</span>); });</div></pre></td></tr></table></figure></p>
+<p>&#xFF08;&#x8FD0;&#x884C;<a href="http://jsfiddle.net/q9TvT/" target="_blank" rel="external">&#x4EE3;&#x7801;&#x793A;&#x4F8B;10</a>&#xFF09;</p>
+<h3 id="&#x666E;&#x901A;&#x64CD;&#x4F5C;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x63A5;&#x53E3;&#x4E2D;"><a href="#&#x666E;&#x901A;&#x64CD;&#x4F5C;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x63A5;&#x53E3;&#xFF08;&#x4E2D;&#xFF09;" class="headerlink" title="&#x666E;&#x901A;&#x64CD;&#x4F5C;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x63A5;&#x53E3;&#xFF08;&#x4E2D;&#xFF09;"></a><strong>&#x666E;&#x901A;&#x64CD;&#x4F5C;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x63A5;&#x53E3;&#xFF08;&#x4E2D;&#xFF09;</strong></h3><p>&#x53E6;&#x4E00;&#x79CD;&#x9632;&#x6B62;&#x6267;&#x884C;&#x72B6;&#x6001;&#x88AB;&#x5916;&#x90E8;&#x6539;&#x53D8;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x662F;&#x4F7F;&#x7528;deferred&#x5BF9;&#x8C61;&#x7684;&#x5EFA;&#x6784;&#x51FD;&#x6570;$.Deferred()&#x3002;</p>
+<p>&#x8FD9;&#x65F6;&#xFF0C;wait&#x51FD;&#x6570;&#x8FD8;&#x662F;&#x4FDD;&#x6301;&#x4E0D;&#x53D8;&#xFF0C;&#x6211;&#x4EEC;&#x76F4;&#x63A5;&#x628A;&#x5B83;&#x4F20;&#x5165;$.Deferred()&#xFF1A;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.Deferred(wait)</div><div class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x54C8;&#x54C8;&#xFF0C;&#x6210;&#x529F;&#x4E86;&#xFF01;&quot;</span>); })</div><div class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x51FA;&#x9519;&#x5566;&#xFF01;&quot;</span>); });</div></pre></td></tr></table></figure></p>
+<p>&#xFF08;&#x8FD0;&#x884C;<a href="http://jsfiddle.net/ruanyf/CucGp/" target="_blank" rel="external">&#x4EE3;&#x7801;&#x793A;&#x4F8B;11</a>&#xFF09;</p>
+<p>jQuery&#x89C4;&#x5B9A;&#xFF0C;$.Deferred()&#x53EF;&#x4EE5;&#x63A5;&#x53D7;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x540D;&#xFF08;&#x6CE8;&#x610F;&#xFF0C;&#x662F;&#x51FD;&#x6570;&#x540D;&#xFF09;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#xFF0C;$.Deferred()&#x6240;&#x751F;&#x6210;&#x7684;deferred&#x5BF9;&#x8C61;&#x5C06;&#x4F5C;&#x4E3A;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x7684;&#x9ED8;&#x8BA4;&#x53C2;&#x6570;&#x3002;</p>
+<h3 id="&#x666E;&#x901A;&#x64CD;&#x4F5C;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x63A5;&#x53E3;&#x4E0B;"><a href="#&#x666E;&#x901A;&#x64CD;&#x4F5C;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x63A5;&#x53E3;&#xFF08;&#x4E0B;&#xFF09;" class="headerlink" title="&#x666E;&#x901A;&#x64CD;&#x4F5C;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x63A5;&#x53E3;&#xFF08;&#x4E0B;&#xFF09;"></a><strong>&#x666E;&#x901A;&#x64CD;&#x4F5C;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x63A5;&#x53E3;&#xFF08;&#x4E0B;&#xFF09;</strong></h3><p>&#x9664;&#x4E86;&#x4E0A;&#x9762;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#x4EE5;&#x5916;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5728;wait&#x5BF9;&#x8C61;&#x4E0A;&#x90E8;&#x7F72;deferred&#x63A5;&#x53E3;&#x3002;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dtd = $.Deferred(); <span class="comment">// &#x751F;&#x6210;Deferred&#x5BF9;&#x8C61;</span></div><div class="line"><span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params">dtd</span>)</span>{</div><div class="line">  <span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">    alert(<span class="string">&quot;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#xFF01;&quot;</span>);</div><div class="line">    dtd.resolve(); <span class="comment">// &#x6539;&#x53D8;Deferred&#x5BF9;&#x8C61;&#x7684;&#x6267;&#x884C;&#x72B6;&#x6001;</span></div><div class="line">  };</div><div class="line">  setTimeout(tasks,<span class="number">5000</span>);</div><div class="line">};</div><div class="line"></div><div class="line">dtd.promise(wait);</div><div class="line"></div><div class="line">wait.done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x54C8;&#x54C8;&#xFF0C;&#x6210;&#x529F;&#x4E86;&#xFF01;&quot;</span>); })</div><div class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{ alert(<span class="string">&quot;&#x51FA;&#x9519;&#x5566;&#xFF01;&quot;</span>); });</div><div class="line"></div><div class="line">wait(dtd);</div></pre></td></tr></table></figure></p>
+<p>&#xFF08;&#x8FD0;&#x884C;<a href="http://jsfiddle.net/ruanyf/PF7Xf/" target="_blank" rel="external">&#x4EE3;&#x7801;&#x793A;&#x4F8B;12</a>&#xFF09;</p>
+<p>&#x8FD9;&#x91CC;&#x7684;&#x5173;&#x952E;&#x662F;dtd.promise(wait)&#x8FD9;&#x4E00;&#x884C;&#xFF0C;&#x5B83;&#x7684;&#x4F5C;&#x7528;&#x5C31;&#x662F;&#x5728;wait&#x5BF9;&#x8C61;&#x4E0A;&#x90E8;&#x7F72;Deferred&#x63A5;&#x53E3;&#x3002;&#x6B63;&#x662F;&#x56E0;&#x4E3A;&#x6709;&#x4E86;&#x8FD9;&#x4E00;&#x884C;&#xFF0C;&#x540E;&#x9762;&#x624D;&#x80FD;&#x76F4;&#x63A5;&#x5728;wait&#x4E0A;&#x9762;&#x8C03;&#x7528;done()&#x548C;fail()&#x3002;</p>
+<h3 id="&#x5C0F;&#x7ED3;deferred&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;"><a href="#&#x5C0F;&#x7ED3;&#xFF1A;deferred&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;" class="headerlink" title="&#x5C0F;&#x7ED3;&#xFF1A;deferred&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;"></a><strong>&#x5C0F;&#x7ED3;&#xFF1A;deferred&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;</strong></h3><p>&#x524D;&#x9762;&#x5DF2;&#x7ECF;&#x8BB2;&#x5230;&#x4E86;deferred&#x5BF9;&#x8C61;&#x7684;&#x591A;&#x79CD;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0B;&#x9762;&#x505A;&#x4E00;&#x4E2A;&#x603B;&#x7ED3;&#xFF1A;</p>
+<p>&#x3000;&#x3000;&#xFF08;1&#xFF09; <a href="http://api.jquery.com/category/deferred-object/" target="_blank" rel="external">$.Deferred()</a> &#x751F;&#x6210;&#x4E00;&#x4E2A;deferred&#x5BF9;&#x8C61;&#x3002;</p>
+<p>&#x3000;&#x3000;&#xFF08;2&#xFF09; <a href="http://api.jquery.com/deferred.done/" target="_blank" rel="external">deferred.done()</a> &#x6307;&#x5B9A;&#x64CD;&#x4F5C;&#x6210;&#x529F;&#x65F6;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;</p>
+<p>&#x3000;&#x3000;&#xFF08;3&#xFF09; <a href="http://api.jquery.com/deferred.fail/" target="_blank" rel="external">deferred.fail()</a> &#x6307;&#x5B9A;&#x64CD;&#x4F5C;&#x5931;&#x8D25;&#x65F6;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;</p>
+<p>&#x3000;&#x3000;&#xFF08;4&#xFF09; <a href="http://api.jquery.com/deferred.promise/" target="_blank" rel="external">deferred.promise()</a> &#x6CA1;&#x6709;&#x53C2;&#x6570;&#x65F6;&#xFF0C;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x65B0;&#x7684;deferred&#x5BF9;&#x8C61;&#xFF0C;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x65E0;&#x6CD5;&#x88AB;&#x6539;&#x53D8;&#xFF1B;&#x63A5;&#x53D7;&#x53C2;&#x6570;&#x65F6;&#xFF0C;&#x4F5C;&#x7528;&#x4E3A;&#x5728;&#x53C2;&#x6570;&#x5BF9;&#x8C61;&#x4E0A;&#x90E8;&#x7F72;deferred&#x63A5;&#x53E3;&#x3002;</p>
+<p>&#x3000;&#x3000;&#xFF08;5&#xFF09; <a href="http://api.jquery.com/deferred.resolve/" target="_blank" rel="external">deferred.resolve()</a> &#x624B;&#x52A8;&#x6539;&#x53D8;deferred&#x5BF9;&#x8C61;&#x7684;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x4E3A;&#x201D;&#x5DF2;&#x5B8C;&#x6210;&#x201D;&#xFF0C;&#x4ECE;&#x800C;&#x7ACB;&#x5373;&#x89E6;&#x53D1;done()&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x3000;&#x3000;&#xFF08;6&#xFF09;<a href="http://api.jquery.com/deferred.reject/" target="_blank" rel="external">deferred.reject()</a><br>&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x4E0E;deferred.resolve()&#x6B63;&#x597D;&#x76F8;&#x53CD;&#xFF0C;&#x8C03;&#x7528;&#x540E;&#x5C06;deferred&#x5BF9;&#x8C61;&#x7684;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x53D8;&#x4E3A;&#x201D;&#x5DF2;&#x5931;&#x8D25;&#x201D;&#xFF0C;&#x4ECE;&#x800C;&#x7ACB;&#x5373;&#x89E6;&#x53D1;fail()&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x3000;&#x3000;&#xFF08;7&#xFF09; <a href="http://api.jquery.com/jQuery.when/" target="_blank" rel="external">$.when()</a> &#x4E3A;&#x591A;&#x4E2A;&#x64CD;&#x4F5C;&#x6307;&#x5B9A;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x3002;</p>
+<p>&#x9664;&#x4E86;&#x8FD9;&#x4E9B;&#x65B9;&#x6CD5;&#x4EE5;&#x5916;&#xFF0C;deferred&#x5BF9;&#x8C61;&#x8FD8;&#x6709;&#x4E8C;&#x4E2A;&#x91CD;&#x8981;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0A;&#x9762;&#x7684;&#x6559;&#x7A0B;&#x4E2D;&#x6CA1;&#x6709;&#x6D89;&#x53CA;&#x5230;&#x3002;</p>
+<p>&#x3000;&#x3000;&#xFF08;8&#xFF09;<a href="http://api.jquery.com/deferred.then/" target="_blank" rel="external">deferred.then()</a></p>
+<p>&#x6709;&#x65F6;&#x4E3A;&#x4E86;&#x7701;&#x4E8B;&#xFF0C;&#x53EF;&#x4EE5;&#x628A;done()&#x548C;fail()&#x5408;&#x5728;&#x4E00;&#x8D77;&#x5199;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;then()&#x65B9;&#x6CD5;&#x3002;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$.when($.ajax( <span class="string">&quot;/main.php&quot;</span> ))</div><div class="line">  .then(successFunc, failureFunc );</div></pre></td></tr></table></figure></p>
+<p>&#x5982;&#x679C;then()&#x6709;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x90A3;&#x4E48;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x662F;done()&#x65B9;&#x6CD5;&#x7684;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x662F;fail()&#x65B9;&#x6CD5;&#x7684;&#x56DE;&#x8C03;&#x65B9;&#x6CD5;&#x3002;&#x5982;&#x679C;then()&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x90A3;&#x4E48;&#x7B49;&#x540C;&#x4E8E;done()&#x3002;</p>
+<p>&#x3000;&#x3000;&#xFF08;9&#xFF09;<a href="http://api.jquery.com/deferred.always/" target="_blank" rel="external">deferred.always()</a></p>
+<p>&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x4E5F;&#x662F;&#x7528;&#x6765;&#x6307;&#x5B9A;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x7684;&#xFF0C;&#x5B83;&#x7684;&#x4F5C;&#x7528;&#x662F;&#xFF0C;&#x4E0D;&#x7BA1;&#x8C03;&#x7528;&#x7684;&#x662F;deferred.resolve()&#x8FD8;&#x662F;deferred.reject()&#xFF0C;&#x6700;&#x540E;&#x603B;&#x662F;&#x6267;&#x884C;&#x3002;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$.ajax( <span class="string">&quot;test.html&quot;</span> )</div><div class="line">  .always( <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{ alert(<span class="string">&quot;&#x5DF2;&#x6267;&#x884C;&#xFF01;&quot;</span>);} );</div></pre></td></tr></table></figure></p>
+<p>&#xFF08;&#x5B8C;&#xFF09;  </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>我知道是不会有人点的，但万一有人想不开呢？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/img/wechatpay.png" alt="曹强 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/img/alipay.jpg" alt="曹强 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/19/javascript/如何判断Javascript对象是否存在/" rel="next" title="如何判断Javascript对象是否存在">
+                <i class="fa fa-chevron-left"></i> 如何判断Javascript对象是否存在
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/19/javascript/Javascript异步编程的4种方法/" rel="prev" title="Javascript异步编程的4种方法">
+                Javascript异步编程的4种方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/19/javascript/jQuery的deferred对象详解/"
+           data-title="jQuery的deferred对象详解" data-url="http://ronghuaxueleng.github.io/2016/09/19/javascript/jQuery的deferred对象详解/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/avatar.jpg"
+               alt="曹强" />
+          <p class="site-author-name" itemprop="name">曹强</p>
+          <p class="site-description motion-element" itemprop="description">caoqiang's blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">81</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ronghuaxueleng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是deferred对象"><span class="nav-number">1.</span> <span class="nav-text">什么是deferred对象？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ajax操作的链式写法"><span class="nav-number">2.</span> <span class="nav-text">ajax操作的链式写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定同一操作的多个回调函数"><span class="nav-number">3.</span> <span class="nav-text">指定同一操作的多个回调函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为多个操作指定回调函数"><span class="nav-number">4.</span> <span class="nav-text">为多个操作指定回调函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#普通操作的回调函数接口上"><span class="nav-number">5.</span> <span class="nav-text">普通操作的回调函数接口（上）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deferredresolve方法和deferredreject方法"><span class="nav-number">6.</span> <span class="nav-text">deferred.resolve()方法和deferred.reject()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deferredpromise方法"><span class="nav-number">7.</span> <span class="nav-text">deferred.promise()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#普通操作的回调函数接口中"><span class="nav-number">8.</span> <span class="nav-text">普通操作的回调函数接口（中）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#普通操作的回调函数接口下"><span class="nav-number">9.</span> <span class="nav-text">普通操作的回调函数接口（下）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结deferred对象的方法"><span class="nav-number">10.</span> <span class="nav-text">小结：deferred对象的方法</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ronghuaxueleng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = '0 ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+  
+
+</body>
+</html>

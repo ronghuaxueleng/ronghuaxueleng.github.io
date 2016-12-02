@@ -1,0 +1,954 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="angularjs," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="参考原文：https://github.com/angular-ui/ui-router/wiki/Nested-States-%26-Nested-Views
+状态嵌套的方法状态可以相互嵌套。有三个嵌套的方法：
+
+使用“点标记法”，例如：.state(&amp;#39;contacts.list&amp;#39;, {})
+使用parent属性，指定一个父状态的名称字符串，例如：parent: &amp;#39;con">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习 ui-router - 状态嵌套和视图嵌套">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/2016/08/04/angularJs/ui-router/学习 ui-router - 状态嵌套和视图嵌套/index.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="参考原文：https://github.com/angular-ui/ui-router/wiki/Nested-States-%26-Nested-Views
+状态嵌套的方法状态可以相互嵌套。有三个嵌套的方法：
+
+使用“点标记法”，例如：.state(&amp;#39;contacts.list&amp;#39;, {})
+使用parent属性，指定一个父状态的名称字符串，例如：parent: &amp;#39;con">
+<meta property="og:updated_time" content="2016-10-12T10:25:08.088Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习 ui-router - 状态嵌套和视图嵌套">
+<meta name="twitter:description" content="参考原文：https://github.com/angular-ui/ui-router/wiki/Nested-States-%26-Nested-Views
+状态嵌套的方法状态可以相互嵌套。有三个嵌套的方法：
+
+使用“点标记法”，例如：.state(&amp;#39;contacts.list&amp;#39;, {})
+使用parent属性，指定一个父状态的名称字符串，例如：parent: &amp;#39;con">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/2016/08/04/angularJs/ui-router/学习 ui-router - 状态嵌套和视图嵌套/"/>
+
+  <title> 学习 ui-router - 状态嵌套和视图嵌套 | 白云雅阁 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="https://github.com/ronghuaxueleng">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+    </a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">白云雅阁</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">读懂别人的故事，写好自己的人生</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                学习 ui-router - 状态嵌套和视图嵌套
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-04T00:00:00+08:00" content="2016-08-04">
+              2016-08-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/angularjs/" itemprop="url" rel="index">
+                    <span itemprop="name">angularjs</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/04/angularJs/ui-router/学习 ui-router - 状态嵌套和视图嵌套/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/04/angularJs/ui-router/学习 ui-router - 状态嵌套和视图嵌套/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/04/angularJs/ui-router/学习 ui-router - 状态嵌套和视图嵌套/" class="leancloud_visitors" data-flag-title="学习 ui-router - 状态嵌套和视图嵌套">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+
+          
+            &nbsp; | &nbsp;
+          <span id="/2016/08/04/angularJs/ui-router/学习 ui-router - 状态嵌套和视图嵌套/"class="leancloud_visitors" data-flag-title="学习 ui-router - 状态嵌套和视图嵌套">
+            &nbsp;阅读次数
+          </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x53C2;&#x8003;&#x539F;&#x6587;&#xFF1A;<a href="https://github.com/angular-ui/ui-router/wiki/Nested-States-%26-Nested-Views" target="_blank" rel="external">https://github.com/angular-ui/ui-router/wiki/Nested-States-%26-Nested-Views</a></p>
+<h2 id="&#x72B6;&#x6001;&#x5D4C;&#x5957;&#x7684;&#x65B9;&#x6CD5;"><a href="#&#x72B6;&#x6001;&#x5D4C;&#x5957;&#x7684;&#x65B9;&#x6CD5;" class="headerlink" title="&#x72B6;&#x6001;&#x5D4C;&#x5957;&#x7684;&#x65B9;&#x6CD5;"></a>&#x72B6;&#x6001;&#x5D4C;&#x5957;&#x7684;&#x65B9;&#x6CD5;</h2><p>&#x72B6;&#x6001;&#x53EF;&#x4EE5;&#x76F8;&#x4E92;&#x5D4C;&#x5957;&#x3002;&#x6709;&#x4E09;&#x4E2A;&#x5D4C;&#x5957;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<ol>
+<li>&#x4F7F;&#x7528;&#x201C;&#x70B9;&#x6807;&#x8BB0;&#x6CD5;&#x201D;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;<code>.state(&apos;contacts.list&apos;, {})</code></li>
+<li>&#x4F7F;&#x7528;<code>parent</code>&#x5C5E;&#x6027;&#xFF0C;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x7236;&#x72B6;&#x6001;&#x7684;&#x540D;&#x79F0;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;<code>parent: &apos;contacts&apos;</code></li>
+<li>&#x4F7F;&#x7528;<code>parent</code>&#x5C5E;&#x6027;&#xFF0C;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x7236;&#x72B6;&#x6001;&#x5BF9;&#x8C61;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;<code>parent: contacts</code>&#xFF08;contacts &#x662F;&#x4E00;&#x4E2A;&#x72B6;&#x6001;&#x5BF9;&#x8C61;&#xFF09;</li>
+</ol>
+<a id="more"></a>
+<h3 id="&#x70B9;&#x6807;&#x8BB0;&#x6CD5;"><a href="#&#x70B9;&#x6807;&#x8BB0;&#x6CD5;" class="headerlink" title="&#x70B9;&#x6807;&#x8BB0;&#x6CD5;"></a>&#x70B9;&#x6807;&#x8BB0;&#x6CD5;</h3><p>&#x5728;<code>$stateProvider</code>&#x4E2D;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x70B9;&#x8BED;&#x6CD5;&#x6765;&#x8868;&#x793A;&#x5C42;&#x6B21;&#x7ED3;&#x6784;&#xFF0C;&#x4E0B;&#x9762;&#xFF0C;<code>contacts.list</code>&#x662F;<code>contacts</code>&#x7684;&#x5B50;&#x72B6;&#x6001;&#x3002;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$stateProvider</div><div class="line">  .state(<span class="string">&apos;contacts&apos;</span>, {})</div><div class="line">  .state(<span class="string">&apos;contacts.list&apos;</span>, {});</div></pre></td></tr></table></figure>
+<h3 id="&#x4F7F;&#x7528;parent&#x5C5E;&#x6027;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x7236;&#x72B6;&#x6001;&#x7684;&#x540D;&#x79F0;&#x5B57;&#x7B26;&#x4E32;"><a href="#&#x4F7F;&#x7528;parent&#x5C5E;&#x6027;&#xFF0C;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x7236;&#x72B6;&#x6001;&#x7684;&#x540D;&#x79F0;&#x5B57;&#x7B26;&#x4E32;" class="headerlink" title="&#x4F7F;&#x7528;parent&#x5C5E;&#x6027;&#xFF0C;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x7236;&#x72B6;&#x6001;&#x7684;&#x540D;&#x79F0;&#x5B57;&#x7B26;&#x4E32;"></a>&#x4F7F;&#x7528;<code>parent</code>&#x5C5E;&#x6027;&#xFF0C;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x7236;&#x72B6;&#x6001;&#x7684;&#x540D;&#x79F0;&#x5B57;&#x7B26;&#x4E32;</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$stateProvider</div><div class="line">  .state(<span class="string">&apos;contacts&apos;</span>, {})</div><div class="line">  .state(<span class="string">&apos;list&apos;</span>, {</div><div class="line">    <span class="attr">parent</span>: <span class="string">&apos;contacts&apos;</span></div><div class="line">  });</div></pre></td></tr></table></figure>
+<h3 id="&#x57FA;&#x4E8E;&#x5BF9;&#x8C61;&#x7684;&#x72B6;&#x6001;"><a href="#&#x57FA;&#x4E8E;&#x5BF9;&#x8C61;&#x7684;&#x72B6;&#x6001;" class="headerlink" title="&#x57FA;&#x4E8E;&#x5BF9;&#x8C61;&#x7684;&#x72B6;&#x6001;"></a>&#x57FA;&#x4E8E;&#x5BF9;&#x8C61;&#x7684;&#x72B6;&#x6001;</h3><p>&#x5982;&#x679C;&#x4F60;&#x4E0D;&#x559C;&#x6B22;&#x4F7F;&#x7528;&#x57FA;&#x4E8E;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x60A8;&#x8FD8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x57FA;&#x4E8E;&#x5BF9;&#x8C61;&#x7684;&#x72B6;&#x6001;&#x3002;<code>name</code>&#x5C5E;&#x6027;&#x5C06;&#x5728;&#x72B6;&#x6001;&#x5BF9;&#x8C61;&#x5185;&#x90E8;&#x8BBE;&#x7F6E;&#xFF0C;&#x5728;&#x6240;&#x6709;&#x7684;&#x5B50;&#x72B6;&#x6001;&#x5BF9;&#x8C61;&#x4E2D;&#x8BBE;&#x7F6E;<code>parent</code>&#x5C5E;&#x6027;&#x4E3A;&#x7236;&#x72B6;&#x6001;&#x5BF9;&#x8C61;&#xFF0C;&#x50CF;&#x4E0B;&#x9762;&#x8FD9;&#x6837;&#xFF1A;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> contacts = { </div><div class="line">    <span class="attr">name</span>: <span class="string">&apos;contacts&apos;</span>,  <span class="comment">//mandatory</span></div><div class="line">    templateUrl: <span class="string">&apos;contacts.html&apos;</span></div><div class="line">}</div><div class="line"><span class="keyword">var</span> contactsList = { </div><div class="line">    <span class="attr">name</span>: <span class="string">&apos;list&apos;</span>,      <span class="comment">//mandatory</span></div><div class="line">    parent: contacts,  <span class="comment">//mandatory</span></div><div class="line">    templateUrl: <span class="string">&apos;contacts.list.html&apos;</span></div><div class="line">}</div><div class="line"></div><div class="line">$stateProvider</div><div class="line">  .state(contacts)</div><div class="line">  .state(contactsList)</div></pre></td></tr></table></figure>
+<p>&#x5728;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x548C;&#x5C5E;&#x6027;&#x6BD4;&#x8F83;&#x65F6;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5F15;&#x7528;&#x72B6;&#x6001;&#x5BF9;&#x8C61;&#xFF1A;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$state.transitionTo(states.contacts);</div><div class="line">$state.current === states.contacts;</div><div class="line">$state.includes(states.contacts)</div></pre></td></tr></table></figure>
+<h2 id="&#x6CE8;&#x518C;&#x72B6;&#x6001;&#x7684;&#x987A;&#x5E8F;"><a href="#&#x6CE8;&#x518C;&#x72B6;&#x6001;&#x7684;&#x987A;&#x5E8F;" class="headerlink" title="&#x6CE8;&#x518C;&#x72B6;&#x6001;&#x7684;&#x987A;&#x5E8F;"></a>&#x6CE8;&#x518C;&#x72B6;&#x6001;&#x7684;&#x987A;&#x5E8F;</h2><p>&#x53EF;&#x4EE5;&#x4EE5;<strong>&#x4EFB;&#x4F55;&#x987A;&#x5E8F;</strong>&#x548C;<strong>&#x8DE8;&#x6A21;&#x5757;</strong>&#x6CE8;&#x518C;&#x72B6;&#x6001;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x7236;&#x72B6;&#x6001;&#x5B58;&#x5728;&#x4E4B;&#x524D;&#x6CE8;&#x518C;&#x5B50;&#x72B6;&#x6001;&#x3002;&#x4E00;&#x65E6;&#x7236;&#x72B6;&#x6001;&#x88AB;&#x6CE8;&#x518C;&#xFF0C;&#x5C06;&#x89E6;&#x53D1;&#x81EA;&#x52A8;&#x6392;&#x5E8F;&#xFF0C;&#x7136;&#x540E;&#x6CE8;&#x518C;&#x5B50;&#x72B6;&#x6001;&#x3002;</p>
+<h2 id="&#x72B6;&#x6001;&#x547D;&#x540D;"><a href="#&#x72B6;&#x6001;&#x547D;&#x540D;" class="headerlink" title="&#x72B6;&#x6001;&#x547D;&#x540D;"></a>&#x72B6;&#x6001;&#x547D;&#x540D;</h2><p>&#x72B6;&#x6001;&#x4E0D;&#x5141;&#x8BB8;&#x91CD;&#x540D;&#xFF0C;&#x5F53;&#x4F7F;&#x7528;&#x201C;&#x70B9;&#x6807;&#x8BB0;&#x6CD5;&#x201D;&#xFF0C;<code>parent</code>&#x5C5E;&#x6027;&#x88AB;&#x63A8;&#x6D4B;&#x51FA;&#x6765;&#xFF0C;&#x4F46;&#x8FD9;&#x5E76;&#x4E0D;&#x4F1A;&#x6539;&#x53D8;&#x72B6;&#x6001;&#x7684;&#x540D;&#x5B57;&#xFF1B;&#x5F53;&#x4E0D;&#x4F7F;&#x7528;&#x201C;&#x70B9;&#x6807;&#x8BB0;&#x6CD5;&#x201D;&#x65F6;&#xFF0C;<code>parent</code>&#x5C5E;&#x6027;&#x5FC5;&#x987B;&#x660E;&#x786E;&#x6307;&#x5B9A;&#xFF0C;&#x4F46;&#x4F60;&#x4ECD;&#x7136;&#x4E0D;&#x80FD;&#x8BA9;&#x4EFB;&#x4F55;&#x4E24;&#x4E2A;&#x72B6;&#x6001;&#x6709;&#x76F8;&#x540C;&#x7684;&#x540D;&#x79F0;&#xFF0C;&#x4F8B;&#x5982;&#x4F60;&#x4E0D;&#x80FD;&#x6709;&#x4E24;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x72B6;&#x6001;&#x547D;&#x540D;&#x4E3A;&#x201D;edit&#x201D;&#xFF0C;&#x5373;&#x4F7F;&#x4ED6;&#x4EEC;&#x6709;&#x4E0D;&#x540C;&#x7684;&#x7236;&#x72B6;&#x6001;&#x3002;</p>
+<h2 id="&#x5D4C;&#x5957;&#x72B6;&#x6001;&#x548C;&#x89C6;&#x56FE;"><a href="#&#x5D4C;&#x5957;&#x72B6;&#x6001;&#x548C;&#x89C6;&#x56FE;" class="headerlink" title="&#x5D4C;&#x5957;&#x72B6;&#x6001;&#x548C;&#x89C6;&#x56FE;"></a>&#x5D4C;&#x5957;&#x72B6;&#x6001;&#x548C;&#x89C6;&#x56FE;</h2><p>&#x5F53;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5728;&#x4E00;&#x4E2A;&#x7279;&#x5B9A;&#x7684;&#x72B6;&#x6001; - &#x5F53;&#x4E00;&#x4E2A;&#x72B6;&#x6001;&#x662F;&#x6D3B;&#x52A8;&#x72B6;&#x6001;&#x65F6; - &#x5176;&#x6240;&#x6709;&#x7684;&#x7236;&#x72B6;&#x6001;&#x90FD;&#x5C06;&#x6210;&#x4E3A;&#x6D3B;&#x8DC3;&#x72B6;&#x6001;&#x3002;&#x4E0B;&#x9762;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x5F53;&#x201D;contacts.list&#x201D;&#x662F;&#x6D3B;&#x8DC3;&#x72B6;&#x6001;&#x65F6;&#xFF0C;&#x201D;contacts&#x201D;&#x4E5F;&#x5C06;&#x9690;&#x6027;&#x6210;&#x4E3A;&#x6D3B;&#x8DC3;&#x72B6;&#x6001;&#xFF0C;&#x56E0;&#x4E3A;&#x4ED6;&#x662F;&#x201D;contacts.list&#x201D;&#x7684;&#x7236;&#x72B6;&#x6001;&#x3002;</p>
+<p>&#x5B50;&#x72B6;&#x6001;&#x5C06;&#x628A;&#x5176;&#x5BF9;&#x5E94;&#x7684;&#x6A21;&#x677F;&#x52A0;&#x8F7D;&#x5230;&#x7236;&#x72B6;&#x6001;&#x5BF9;&#x5E94;&#x6A21;&#x677F;&#x7684;<code>ui-view</code>&#x4E2D;&#x3002;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$stateProvider</div><div class="line">  .state(<span class="string">&apos;contacts&apos;</span>, {</div><div class="line">    <span class="attr">templateUrl</span>: <span class="string">&apos;contacts.html&apos;</span>,</div><div class="line">    <span class="attr">controller</span>: <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>)</span>{</div><div class="line">      $scope.contacts = [{ <span class="attr">name</span>: <span class="string">&apos;Alice&apos;</span> }, { <span class="attr">name</span>: <span class="string">&apos;Bob&apos;</span> }];</div><div class="line">    }</div><div class="line">  })</div><div class="line">  .state(<span class="string">&apos;contacts.list&apos;</span>, {</div><div class="line">    <span class="attr">templateUrl</span>: <span class="string">&apos;contacts.list.html&apos;</span></div><div class="line">  });</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MainCtrl</span>(<span class="params">$state</span>)</span>{</div><div class="line">  $state.transitionTo(<span class="string">&apos;contacts.list&apos;</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- index.html --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">ng-controller</span>=<span class="string">&quot;MainCtrl&quot;</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">ui-view</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- contacts.html --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>My Contacts<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ui-view</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- contacts.list.html --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">&quot;contact in contacts&quot;</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span>&gt;</span>{{contact.name}}<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="&#x5B50;&#x72B6;&#x6001;&#x5C06;&#x4ECE;&#x7236;&#x72B6;&#x6001;&#x7EE7;&#x627F;&#x54EA;&#x4E9B;&#x5C5E;&#x6027;"><a href="#&#x5B50;&#x72B6;&#x6001;&#x5C06;&#x4ECE;&#x7236;&#x72B6;&#x6001;&#x7EE7;&#x627F;&#x54EA;&#x4E9B;&#x5C5E;&#x6027;&#xFF1F;" class="headerlink" title="&#x5B50;&#x72B6;&#x6001;&#x5C06;&#x4ECE;&#x7236;&#x72B6;&#x6001;&#x7EE7;&#x627F;&#x54EA;&#x4E9B;&#x5C5E;&#x6027;&#xFF1F;"></a>&#x5B50;&#x72B6;&#x6001;&#x5C06;&#x4ECE;&#x7236;&#x72B6;&#x6001;&#x7EE7;&#x627F;&#x54EA;&#x4E9B;&#x5C5E;&#x6027;&#xFF1F;</h3><p>&#x5B50;&#x72B6;&#x6001;&#x5C06;&#x4ECE;&#x7236;&#x6BCD;&#x7EE7;&#x627F;&#x4EE5;&#x4E0B;&#x5C5E;&#x6027;&#xFF1A;</p>
+<ul>
+<li>&#x901A;&#x8FC7;&#x89E3;&#x51B3;&#x5668;&#x89E3;&#x51B3;&#x7684;&#x4F9D;&#x8D56;&#x6CE8;&#x5165;&#x9879;</li>
+<li>&#x81EA;&#x5B9A;&#x4E49;&#x7684;<code>data</code>&#x5C5E;&#x6027;<br>&#x9664;&#x4E86;&#x8FD9;&#x4E9B;&#xFF0C;&#x6CA1;&#x6709;&#x5176;&#x4ED6;&#x5C5E;&#x6027;&#x7EE7;&#x627F;&#x4E0B;&#x6765;&#xFF08;&#x6BD4;&#x5982;<code>controllers</code>&#x3001;<code>templates</code>&#x548C;<code>url</code>&#x7B49;&#xFF09;</li>
+</ul>
+<h4 id="&#x7EE7;&#x627F;&#x89E3;&#x51B3;&#x7684;&#x4F9D;&#x8D56;&#x9879;"><a href="#&#x7EE7;&#x627F;&#x89E3;&#x51B3;&#x7684;&#x4F9D;&#x8D56;&#x9879;" class="headerlink" title="&#x7EE7;&#x627F;&#x89E3;&#x51B3;&#x7684;&#x4F9D;&#x8D56;&#x9879;"></a>&#x7EE7;&#x627F;&#x89E3;&#x51B3;&#x7684;&#x4F9D;&#x8D56;&#x9879;</h4><p>&#x7248;&#x672C; v0.2.0 &#x7684;&#x65B0;&#x7279;&#x6027;</p>
+<p>&#x5B50;&#x72B6;&#x6001;&#x5C06;&#x4ECE;&#x7236;&#x72B6;&#x6001;&#x7EE7;&#x627F;&#x901A;&#x8FC7;&#x89E3;&#x51B3;&#x5668;&#x89E3;&#x51B3;&#x7684;&#x4F9D;&#x8D56;&#x6CE8;&#x5165;&#x9879;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x91CD;&#x5199;&#xFF08;overwrite&#xFF09;&#x4F9D;&#x8D56;&#x9879;&#xFF0C;&#x53EF;&#x4EE5;&#x5C06;&#x89E3;&#x51B3;&#x4F9D;&#x8D56;&#x9879;&#x6CE8;&#x5165;&#x5B50;&#x72B6;&#x6001;&#x7684;&#x63A7;&#x5236;&#x5668;&#x548C;&#x89E3;&#x51B3;&#x51FD;&#x6570;&#x4E2D;&#x3002;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">$stateProvider.state(<span class="string">&apos;parent&apos;</span>, {</div><div class="line">      <span class="attr">resolve</span>:{</div><div class="line">         <span class="attr">resA</span>:  <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">            <span class="keyword">return</span> {<span class="string">&apos;value&apos;</span>: <span class="string">&apos;A&apos;</span>};</div><div class="line">         }</div><div class="line">      },</div><div class="line">      <span class="attr">controller</span>: <span class="function"><span class="keyword">function</span>(<span class="params">$scope, resA</span>)</span>{</div><div class="line">          $scope.resA = resA.value;</div><div class="line">      }</div><div class="line">   })</div><div class="line">   .state(<span class="string">&apos;parent.child&apos;</span>, {</div><div class="line">      <span class="attr">resolve</span>:{</div><div class="line">         <span class="comment">// &#x5C06;&#x7236;&#x72B6;&#x6001;&#x7684;&#x89E3;&#x51B3;&#x4F9D;&#x8D56;&#x9879;&#x6CE8;&#x5165;&#x5230;&#x5B50;&#x72B6;&#x6001;&#x7684;&#x89E3;&#x51B3;&#x51FD;&#x6570;&#x4E2D;</span></div><div class="line">         resB: <span class="function"><span class="keyword">function</span>(<span class="params">resA</span>)</span>{</div><div class="line">            <span class="keyword">return</span> {<span class="string">&apos;value&apos;</span>: resA.value + <span class="string">&apos;B&apos;</span>};</div><div class="line">         }</div><div class="line">      },</div><div class="line">      <span class="comment">// &#x5C06;&#x7236;&#x72B6;&#x6001;&#x7684;&#x89E3;&#x51B3;&#x4F9D;&#x8D56;&#x9879;&#x6CE8;&#x5165;&#x5230;&#x5B50;&#x72B6;&#x6001;&#x7684;&#x63A7;&#x5236;&#x5668;&#x4E2D;</span></div><div class="line">      controller: <span class="function"><span class="keyword">function</span>(<span class="params">$scope, resA, resB</span>)</span>{</div><div class="line">          $scope.resA2 = resA.value;</div><div class="line">          $scope.resB = resB.value;</div><div class="line">      }</div></pre></td></tr></table></figure></p>
+<h4 id="&#x7EE7;&#x627F;&#x81EA;&#x5B9A;&#x4E49;data&#x5C5E;&#x6027;&#x503C;"><a href="#&#x7EE7;&#x627F;&#x81EA;&#x5B9A;&#x4E49;data&#x5C5E;&#x6027;&#x503C;" class="headerlink" title="&#x7EE7;&#x627F;&#x81EA;&#x5B9A;&#x4E49;data&#x5C5E;&#x6027;&#x503C;"></a>&#x7EE7;&#x627F;&#x81EA;&#x5B9A;&#x4E49;<code>data</code>&#x5C5E;&#x6027;&#x503C;</h4><p>&#x5B50;&#x72B6;&#x6001;&#x5C06;&#x4ECE;&#x7236;&#x72B6;&#x6001;&#x7EE7;&#x627F;&#x81EA;&#x5B9A;&#x4E49;<code>data</code>&#x5C5E;&#x6027;&#x503C;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x91CD;&#x5199;&#xFF08;overwrite&#xFF09;<code>data</code>&#x5C5E;&#x6027;&#x503C;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">$stateProvider.state(<span class="string">&apos;parent&apos;</span>, {</div><div class="line">      <span class="attr">data</span>:{</div><div class="line">         <span class="attr">customData1</span>:  <span class="string">&quot;Hello&quot;</span>,</div><div class="line">         <span class="attr">customData2</span>:  <span class="string">&quot;World!&quot;</span></div><div class="line">      }</div><div class="line">   })</div><div class="line">   .state(<span class="string">&apos;parent.child&apos;</span>, {</div><div class="line">      <span class="attr">data</span>:{</div><div class="line">         <span class="comment">// customData1 inherited from &apos;parent&apos;</span></div><div class="line">         <span class="comment">// &#x8986;&#x76D6;&#x4E86; customData2 &#x7684;&#x503C;</span></div><div class="line">         customData2:  <span class="string">&quot;UI-Router!&quot;</span></div><div class="line">      }</div><div class="line">   });</div><div class="line"></div><div class="line">$rootScope.$on(<span class="string">&apos;$stateChangeStart&apos;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event, toState</span>)</span>{ </div><div class="line">    <span class="keyword">var</span> greeting = toState.data.customData1 + <span class="string">&quot; &quot;</span> + toState.data.customData2;</div><div class="line">    <span class="built_in">console</span>.log(greeting);</div><div class="line"></div><div class="line">    <span class="comment">// &apos;parent&apos;&#x88AB;&#x6FC0;&#x6D3B;&#x65F6;&#xFF0C;&#x8F93;&#x51FA; &quot;Hello World!&quot;</span></div><div class="line">    <span class="comment">// &apos;parent.child&apos;&#x88AB;&#x6FC0;&#x6D3B;&#x65F6;&#xFF0C;&#x8F93;&#x51FA; &quot;Hello UI-Router!&quot;</span></div><div class="line">})</div></pre></td></tr></table></figure></p>
+<h2 id="abstract-states-&#x62BD;&#x8C61;&#x72B6;&#x6001;"><a href="#Abstract-States-&#x62BD;&#x8C61;&#x72B6;&#x6001;" class="headerlink" title="Abstract States &#x62BD;&#x8C61;&#x72B6;&#x6001;"></a>Abstract States &#x62BD;&#x8C61;&#x72B6;&#x6001;</h2><p>&#x4E00;&#x4E2A;&#x62BD;&#x8C61;&#x7684;&#x72B6;&#x6001;&#x53EF;&#x4EE5;&#x6709;&#x5B50;&#x72B6;&#x6001;&#x4F46;&#x4E0D;&#x80FD;&#x663E;&#x5F0F;&#x6FC0;&#x6D3B;&#xFF0C;&#x5B83;&#x5C06;&#x88AB;&#x9690;&#x6027;&#x6FC0;&#x6D3B;&#x5F53;&#x5176;&#x5B50;&#x72B6;&#x6001;&#x88AB;&#x6FC0;&#x6D3B;&#x65F6;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x662F;&#x4E00;&#x4E9B;&#x4F60;&#x5C06;&#x53EF;&#x80FD;&#x4F1A;&#x4F7F;&#x7528;&#x5230;&#x62BD;&#x8C61;&#x72B6;&#x6001;&#x7684;&#x793A;&#x4F8B;&#xFF1A;</p>
+<ul>
+<li>&#x4E3A;&#x6240;&#x6709;&#x5B50;&#x72B6;&#x6001;&#x9884;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;<strong>&#x57FA;url</strong></li>
+<li>&#x5728;&#x7236;&#x72B6;&#x6001;&#x4E2D;&#x8BBE;&#x7F6E;<code>template</code>&#x5C5E;&#x6027;&#xFF0C;&#x5B50;&#x72B6;&#x6001;&#x5BF9;&#x5E94;&#x7684;&#x6A21;&#x677F;&#x5C06;&#x63D2;&#x5165;&#x5230;&#x7236;&#x72B6;&#x6001;&#x6A21;&#x677F;&#x4E2D;&#x7684;<code>ui-view(s)</code>&#x4E2D;</li>
+<li>&#x901A;&#x8FC7;<code>resolve</code>&#x5C5E;&#x6027;&#xFF0C;&#x4E3A;&#x6240;&#x6709;&#x5B50;&#x72B6;&#x6001;&#x63D0;&#x4F9B;&#x89E3;&#x51B3;&#x4F9D;&#x8D56;&#x9879;</li>
+<li>&#x901A;&#x8FC7;<code>data</code>&#x5C5E;&#x6027;&#xFF0C;&#x4E3A;&#x6240;&#x6709;&#x5B50;&#x72B6;&#x6001;&#x6216;&#x8005;&#x4E8B;&#x4EF6;&#x76D1;&#x542C;&#x51FD;&#x6570;&#x63D0;&#x4F9B;&#x81EA;&#x5B9A;&#x4E49;&#x6570;&#x636E;</li>
+<li>&#x8FD0;&#x884C;<code>onEnter</code>&#x6216;<code>onExit</code>&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x4E9B;&#x51FD;&#x6570;&#x53EF;&#x80FD;&#x5728;&#x4EE5;&#x67D0;&#x79CD;&#x65B9;&#x5F0F;&#x4FEE;&#x6539;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x3002;</li>
+<li>&#x4E0A;&#x9762;&#x573A;&#x666F;&#x7684;&#x4EFB;&#x610F;&#x7EC4;&#x5408;</li>
+</ul>
+<p><strong>&#x8BF7;&#x8BB0;&#x4F4F;&#xFF1A;</strong>&#x62BD;&#x8C61;&#x7684;&#x72B6;&#x6001;&#x6A21;&#x677F;&#x4ECD;&#x7136;&#x9700;&#x8981;<code>&lt;ui-view/&gt;</code>&#xFF0C;&#x6765;&#x8BA9;&#x81EA;&#x5DF1;&#x7684;&#x5B50;&#x72B6;&#x6001;&#x6A21;&#x677F;&#x63D2;&#x5165;&#x5176;&#x4E2D;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x5982;&#x679C;&#x60A8;&#x4F7F;&#x7528;&#x62BD;&#x8C61;&#x72B6;&#x6001;&#x53EA;&#x662F;&#x4E3A;&#x4E86;&#x9884;&#x63D0;&#x4F9B;<strong>&#x57FA;url</strong>&#x3001;&#x63D0;&#x4F9B;&#x89E3;&#x51B3;&#x4F9D;&#x8D56;&#x9879;&#x6216;&#x8005;&#x81EA;&#x5B9A;&#x4E49;data&#x3001;&#x8FD0;&#x884C;onEnter/Exit&#x51FD;&#x6570;&#xFF0C;&#x4F60;&#x4EFB;&#x7136;&#x9700;&#x8981;&#x8BBE;&#x7F6E;<code>template: &quot;&lt;ui-view/&gt;&quot;</code>&#x3002;</p>
+<h3 id="&#x62BD;&#x8C61;&#x72B6;&#x6001;&#x4F7F;&#x7528;&#x793A;&#x4F8B;"><a href="#&#x62BD;&#x8C61;&#x72B6;&#x6001;&#x4F7F;&#x7528;&#x793A;&#x4F8B;&#xFF1A;" class="headerlink" title="&#x62BD;&#x8C61;&#x72B6;&#x6001;&#x4F7F;&#x7528;&#x793A;&#x4F8B;&#xFF1A;"></a>&#x62BD;&#x8C61;&#x72B6;&#x6001;&#x4F7F;&#x7528;&#x793A;&#x4F8B;&#xFF1A;</h3><p><strong>&#x4E3A;&#x5B50;&#x72B6;&#x6001;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x57FA;url&#xFF0C;&#x5B50;&#x72B6;&#x6001;&#x7684;url&#x662F;&#x76F8;&#x5BF9;&#x7236;&#x72B6;&#x6001;&#x7684;</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">$stateProvider</div><div class="line">    .state(<span class="string">&apos;contacts&apos;</span>, {</div><div class="line">        <span class="attr">abstract</span>: <span class="literal">true</span>, </div><div class="line">	<span class="attr">url</span>: <span class="string">&apos;/contacts&apos;</span>,</div><div class="line"></div><div class="line">        <span class="comment">// <span class="doctag">Note:</span> abstract still needs a ui-view for its children to populate.</span></div><div class="line">        <span class="comment">// You can simply add it inline here.</span></div><div class="line">        template: <span class="string">&apos;&lt;ui-view/&gt;&apos;</span></div><div class="line">    })</div><div class="line">    .state(<span class="string">&apos;contacts.list&apos;</span>, {</div><div class="line">	<span class="comment">// url will become &apos;/contacts/list&apos;</span></div><div class="line">        url: <span class="string">&apos;/list&apos;</span></div><div class="line">	<span class="comment">//...more</span></div><div class="line">    })</div><div class="line">    .state(<span class="string">&apos;contacts.detail&apos;</span>, {</div><div class="line">	<span class="comment">// url will become &apos;/contacts/detail&apos;</span></div><div class="line">        url: <span class="string">&apos;/detail&apos;</span>,</div><div class="line">	<span class="comment">//...more</span></div><div class="line">    })</div></pre></td></tr></table></figure></p>
+<p><strong>&#x5C06;&#x4E4B;&#x72B6;&#x6001;&#x6A21;&#x677F;&#x63D2;&#x5165;&#x5230;&#x7236;&#x72B6;&#x6001;&#x6307;&#x5B9A;&#x7684;<code>ui-view</code>&#x4E2D;</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$stateProvider</div><div class="line">    .state(<span class="string">&apos;contacts&apos;</span>, {</div><div class="line">        <span class="attr">abstract</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">templateURL</span>: <span class="string">&apos;contacts.html&apos;</span></div><div class="line">    )</div><div class="line">    .state(<span class="string">&apos;contacts.list&apos;</span>, {</div><div class="line">        <span class="comment">// loaded into ui-view of parent&apos;s template</span></div><div class="line">        templateUrl: <span class="string">&apos;contacts.list.html&apos;</span></div><div class="line">    })</div><div class="line">    .state(<span class="string">&apos;contacts.detail&apos;</span>, {</div><div class="line">        <span class="comment">// loaded into ui-view of parent&apos;s template</span></div><div class="line">        templateUrl: <span class="string">&apos;contacts.detail.html&apos;</span></div><div class="line">    })</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- contacts.html --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Contacts Page<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ui-view</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>&#x7EC4;&#x5408;&#x4F7F;&#x7528;&#x793A;&#x4F8B;</strong></p>
+<p>&#x5B8C;&#x6574;&#x793A;&#x4F8B;&#xFF1A;<a href="http://plnkr.co/edit/gmtcE2?p=preview" target="_blank" rel="external">http://plnkr.co/edit/gmtcE2?p=preview</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">$stateProvider</div><div class="line">    .state(<span class="string">&apos;contacts&apos;</span>, {</div><div class="line">        <span class="attr">abstract</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">url</span>: <span class="string">&apos;/contacts&apos;</span>,</div><div class="line">        <span class="attr">templateUrl</span>: <span class="string">&apos;contacts.html&apos;</span>,</div><div class="line">        <span class="attr">controller</span>: <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>)</span>{</div><div class="line">            $scope.contacts = [{ <span class="attr">id</span>:<span class="number">0</span>, <span class="attr">name</span>: <span class="string">&quot;Alice&quot;</span> }, { <span class="attr">id</span>:<span class="number">1</span>, <span class="attr">name</span>: <span class="string">&quot;Bob&quot;</span> }];</div><div class="line">        }    		</div><div class="line">    })</div><div class="line">    .state(<span class="string">&apos;contacts.list&apos;</span>, {</div><div class="line">        <span class="attr">url</span>: <span class="string">&apos;/list&apos;</span>,</div><div class="line">        <span class="attr">templateUrl</span>: <span class="string">&apos;contacts.list.html&apos;</span></div><div class="line">    })</div><div class="line">    .state(<span class="string">&apos;contacts.detail&apos;</span>, {</div><div class="line">        <span class="attr">url</span>: <span class="string">&apos;/:id&apos;</span>,</div><div class="line">        <span class="attr">templateUrl</span>: <span class="string">&apos;contacts.detail.html&apos;</span>,</div><div class="line">        <span class="attr">controller</span>: <span class="function"><span class="keyword">function</span>(<span class="params">$scope, $stateParams</span>)</span>{</div><div class="line">          $scope.person = $scope.contacts[$stateParams.id];</div><div class="line">        }</div><div class="line">    })</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- contacts.html --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Contacts Page<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ui-view</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- contacts.list.html --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">&quot;person in contacts&quot;</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">ng-href</span>=<span class="string">&quot;#/contacts/{{person.id}}&quot;</span>&gt;</span>{{person.name}}<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- contacts.detail.html --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>{{ person.name }}<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>我知道是不会有人点的，但万一有人想不开呢？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/img/wechatpay.png" alt="曹强 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/img/alipay.jpg" alt="曹强 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/angularjs/" rel="tag">#angularjs</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/03/angularJs/ui-router/学习 ui-router - 管理状态/" rel="next" title="学习 ui-router - 管理状态">
+                <i class="fa fa-chevron-left"></i> 学习 ui-router - 管理状态
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/05/angularJs/ui-router/学习 ui-router - 多个命名的视图/" rel="prev" title="学习 ui-router - 多个命名的视图">
+                学习 ui-router - 多个命名的视图 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/04/angularJs/ui-router/学习 ui-router - 状态嵌套和视图嵌套/"
+           data-title="学习 ui-router - 状态嵌套和视图嵌套" data-url="http://ronghuaxueleng.github.io/2016/08/04/angularJs/ui-router/学习 ui-router - 状态嵌套和视图嵌套/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/avatar.jpg"
+               alt="曹强" />
+          <p class="site-author-name" itemprop="name">曹强</p>
+          <p class="site-description motion-element" itemprop="description">caoqiang's blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">81</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ronghuaxueleng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#状态嵌套的方法"><span class="nav-number">1.</span> <span class="nav-text">状态嵌套的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#点标记法"><span class="nav-number">1.1.</span> <span class="nav-text">点标记法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用parent属性指定一个父状态的名称字符串"><span class="nav-number">1.2.</span> <span class="nav-text">使用parent属性，指定一个父状态的名称字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于对象的状态"><span class="nav-number">1.3.</span> <span class="nav-text">基于对象的状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册状态的顺序"><span class="nav-number">2.</span> <span class="nav-text">注册状态的顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态命名"><span class="nav-number">3.</span> <span class="nav-text">状态命名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套状态和视图"><span class="nav-number">4.</span> <span class="nav-text">嵌套状态和视图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#子状态将从父状态继承哪些属性"><span class="nav-number">4.1.</span> <span class="nav-text">子状态将从父状态继承哪些属性？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#继承解决的依赖项"><span class="nav-number">4.1.1.</span> <span class="nav-text">继承解决的依赖项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承自定义data属性值"><span class="nav-number">4.1.2.</span> <span class="nav-text">继承自定义data属性值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#abstract-states-抽象状态"><span class="nav-number">5.</span> <span class="nav-text">Abstract States 抽象状态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象状态使用示例"><span class="nav-number">5.1.</span> <span class="nav-text">抽象状态使用示例：</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ronghuaxueleng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = '0 ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+  
+
+</body>
+</html>

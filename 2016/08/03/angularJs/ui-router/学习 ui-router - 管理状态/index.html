@@ -1,0 +1,989 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="angularjs," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="参考原文：https://github.com/angular-ui/ui-router/wiki
+ui-router 的工作原理非常类似于 Angular 的路由控制器，但它只关注状态。
+
+在应用程序的整个用户界面和导航中，一个状态对应于一个页面位置
+通过定义controller、template和view等属性，来定义指定位置的用户界面和界面行为
+通过嵌套的方式来解决页面中的一些重复出现的部位">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习 ui-router - 管理状态">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/2016/08/03/angularJs/ui-router/学习 ui-router - 管理状态/index.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="参考原文：https://github.com/angular-ui/ui-router/wiki
+ui-router 的工作原理非常类似于 Angular 的路由控制器，但它只关注状态。
+
+在应用程序的整个用户界面和导航中，一个状态对应于一个页面位置
+通过定义controller、template和view等属性，来定义指定位置的用户界面和界面行为
+通过嵌套的方式来解决页面中的一些重复出现的部位">
+<meta property="og:updated_time" content="2016-10-12T10:25:08.088Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习 ui-router - 管理状态">
+<meta name="twitter:description" content="参考原文：https://github.com/angular-ui/ui-router/wiki
+ui-router 的工作原理非常类似于 Angular 的路由控制器，但它只关注状态。
+
+在应用程序的整个用户界面和导航中，一个状态对应于一个页面位置
+通过定义controller、template和view等属性，来定义指定位置的用户界面和界面行为
+通过嵌套的方式来解决页面中的一些重复出现的部位">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/2016/08/03/angularJs/ui-router/学习 ui-router - 管理状态/"/>
+
+  <title> 学习 ui-router - 管理状态 | 白云雅阁 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="https://github.com/ronghuaxueleng">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+    </a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">白云雅阁</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">读懂别人的故事，写好自己的人生</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                学习 ui-router - 管理状态
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-03T17:30:30+08:00" content="2016-08-03">
+              2016-08-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/angularjs/" itemprop="url" rel="index">
+                    <span itemprop="name">angularjs</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/03/angularJs/ui-router/学习 ui-router - 管理状态/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/03/angularJs/ui-router/学习 ui-router - 管理状态/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/03/angularJs/ui-router/学习 ui-router - 管理状态/" class="leancloud_visitors" data-flag-title="学习 ui-router - 管理状态">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+
+          
+            &nbsp; | &nbsp;
+          <span id="/2016/08/03/angularJs/ui-router/学习 ui-router - 管理状态/"class="leancloud_visitors" data-flag-title="学习 ui-router - 管理状态">
+            &nbsp;阅读次数
+          </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x53C2;&#x8003;&#x539F;&#x6587;&#xFF1A;<a href="https://github.com/angular-ui/ui-router/wiki" target="_blank" rel="external">https://github.com/angular-ui/ui-router/wiki</a></p>
+<p>ui-router &#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x975E;&#x5E38;&#x7C7B;&#x4F3C;&#x4E8E; Angular &#x7684;&#x8DEF;&#x7531;&#x63A7;&#x5236;&#x5668;&#xFF0C;&#x4F46;&#x5B83;&#x53EA;&#x5173;&#x6CE8;&#x72B6;&#x6001;&#x3002;</p>
+<ul>
+<li>&#x5728;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x6574;&#x4E2A;&#x7528;&#x6237;&#x754C;&#x9762;&#x548C;&#x5BFC;&#x822A;&#x4E2D;&#xFF0C;&#x4E00;&#x4E2A;&#x72B6;&#x6001;&#x5BF9;&#x5E94;&#x4E8E;&#x4E00;&#x4E2A;&#x9875;&#x9762;&#x4F4D;&#x7F6E;</li>
+<li>&#x901A;&#x8FC7;&#x5B9A;&#x4E49;<code>controller</code>&#x3001;<code>template</code>&#x548C;<code>view</code>&#x7B49;&#x5C5E;&#x6027;&#xFF0C;&#x6765;&#x5B9A;&#x4E49;&#x6307;&#x5B9A;&#x4F4D;&#x7F6E;&#x7684;&#x7528;&#x6237;&#x754C;&#x9762;&#x548C;&#x754C;&#x9762;&#x884C;&#x4E3A;</li>
+<li>&#x901A;&#x8FC7;&#x5D4C;&#x5957;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x89E3;&#x51B3;&#x9875;&#x9762;&#x4E2D;&#x7684;&#x4E00;&#x4E9B;&#x91CD;&#x590D;&#x51FA;&#x73B0;&#x7684;&#x90E8;&#x4F4D;</li>
+</ul>
+<h2 id="&#x6700;&#x7B80;&#x5355;&#x7684;&#x5F62;&#x5F0F;"><a href="#&#x6700;&#x7B80;&#x5355;&#x7684;&#x5F62;&#x5F0F;" class="headerlink" title="&#x6700;&#x7B80;&#x5355;&#x7684;&#x5F62;&#x5F0F;"></a>&#x6700;&#x7B80;&#x5355;&#x7684;&#x5F62;&#x5F0F;</h2><p>&#x6A21;&#x677F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E0B;&#x9762;&#x8FD9;&#x79CD;&#x6700;&#x7B80;&#x5355;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x6307;&#x5B9A;</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- in index.html --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">ng-controller</span>=<span class="string">&quot;MainCtrl&quot;</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">ui-view</span>&gt;</span><span class="tag">&lt;/<span class="name">section</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// in app-states.js (or whatever you want to name it)</span></div><div class="line">$stateProvider.state(<span class="string">&apos;contacts&apos;</span>, {</div><div class="line">  <span class="attr">template</span>: <span class="string">&apos;&lt;h1&gt;My Contacts&lt;/h1&gt;&apos;</span></div><div class="line">})</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="&#x6A21;&#x677F;&#x5C06;&#x88AB;&#x63D2;&#x5165;&#x54EA;&#x91CC;"><a href="#&#x6A21;&#x677F;&#x5C06;&#x88AB;&#x63D2;&#x5165;&#x54EA;&#x91CC;" class="headerlink" title="&#x6A21;&#x677F;&#x5C06;&#x88AB;&#x63D2;&#x5165;&#x54EA;&#x91CC;?"></a>&#x6A21;&#x677F;&#x5C06;&#x88AB;&#x63D2;&#x5165;&#x54EA;&#x91CC;?</h3><p>&#x72B6;&#x6001;&#x88AB;&#x6FC0;&#x6D3B;&#x65F6;&#xFF0C;&#x5B83;&#x7684;&#x6A21;&#x677F;&#x4F1A;&#x81EA;&#x52A8;&#x63D2;&#x5165;&#x5230;&#x7236;&#x72B6;&#x6001;&#x5BF9;&#x5E94;&#x7684;&#x6A21;&#x677F;&#x4E2D;&#x5305;&#x542B;<code>ui-view</code>&#x5C5E;&#x6027;&#x7684;&#x5143;&#x7D20;&#x5185;&#x90E8;&#x3002;&#x5982;&#x679C;&#x662F;&#x9876;&#x5C42;&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x7684;&#x7236;&#x6A21;&#x677F;&#x5C31;&#x662F;<code>index.html</code>&#x3002;</p>
+<h3 id="&#x6FC0;&#x6D3B;&#x72B6;&#x6001;"><a href="#&#x6FC0;&#x6D3B;&#x72B6;&#x6001;" class="headerlink" title="&#x6FC0;&#x6D3B;&#x72B6;&#x6001;"></a>&#x6FC0;&#x6D3B;&#x72B6;&#x6001;</h3><p>&#x6709;&#x4E09;&#x79CD;&#x65B9;&#x6CD5;&#x6765;&#x6FC0;&#x6D3B;&#x72B6;&#x6001;&#xFF1A;</p>
+<ol>
+<li>&#x8C03;&#x7528;<code>$state.go()</code>&#x65B9;&#x6CD5;&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x9AD8;&#x7EA7;&#x7684;&#x4FBF;&#x5229;&#x65B9;&#x6CD5;&#xFF1B;</li>
+<li>&#x70B9;&#x51FB;&#x5305;&#x542B;<code>ui-sref</code>&#x6307;&#x4EE4;&#x7684;&#x94FE;&#x63A5;&#xFF1B;</li>
+<li>&#x5BFC;&#x822A;&#x5230;&#x4E0E;&#x72B6;&#x6001;&#x76F8;&#x5173;&#x8054;&#x7684; url&#x3002;</li>
+</ol>
+<h2 id="templates-&#x6A21;&#x677F;"><a href="#Templates-&#x6A21;&#x677F;" class="headerlink" title="Templates &#x6A21;&#x677F;"></a>Templates &#x6A21;&#x677F;</h2><p>&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E0B;&#x9762;&#x51E0;&#x79CD;&#x65B9;&#x6CD5;&#x6765;&#x914D;&#x7F6E;&#x4E00;&#x4E2A;&#x72B6;&#x6001;&#x7684;&#x6A21;&#x677F;&#x3002;</p>
+<p>&#x65B9;&#x6CD5;&#x4E00;&#xFF1A;&#x914D;&#x7F6E;<code>template</code>&#x5C5E;&#x6027;&#xFF0C;&#x6307;&#x5B9A;&#x4E00;&#x6BB5; HTML &#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x8FD9;&#x4EBA;&#x662F;&#x8BBE;&#x7F6E;&#x6A21;&#x677F;&#x7684;&#x6700;&#x7B80;&#x5355;&#x7684;&#x65B9;&#x5F0F;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$stateProvider.state(<span class="string">&apos;contacts&apos;</span>, {</div><div class="line">  <span class="attr">template</span>: <span class="string">&apos;&lt;h1&gt;My Contacts&lt;/h1&gt;&apos;</span></div><div class="line">})</div></pre></td></tr></table></figure>
+<p>&#x65B9;&#x6CD5;&#x4E8C;&#xFF1A;&#x914D;&#x7F6E;<code>templateUrl</code>&#x5C5E;&#x6027;&#xFF0C;&#x6765;&#x52A0;&#x8F7D;&#x6307;&#x5B9A;&#x4F4D;&#x7F6E;&#x7684;&#x6A21;&#x677F;&#xFF0C;<strong>&#x8FD9;&#x662F;&#x8BBE;&#x7F6E;&#x6A21;&#x677F;&#x7684;&#x5E38;&#x7528;&#x65B9;&#x6CD5;&#x3002;</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$stateProvider.state(<span class="string">&apos;contacts&apos;</span>, {</div><div class="line">  <span class="attr">templateUrl</span>: <span class="string">&apos;contacts.html&apos;</span></div><div class="line">})</div></pre></td></tr></table></figure>
+<p><code>templateUrl</code>&#x7684;&#x503C;&#x4E5F;&#x53EF;&#x4EE5;&#x662F;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x7684;url&#xFF0C;&#x51FD;&#x6570;&#x5E26;&#x4E00;&#x4E2A;&#x9884;&#x8BBE;&#x53C2;&#x6570;<code>stateParams</code>&#x3002;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$stateProvider.state(<span class="string">&apos;contacts&apos;</span>, {</div><div class="line">  <span class="attr">templateUrl</span>: <span class="function"><span class="keyword">function</span> (<span class="params">stateParams</span>)</span>{</div><div class="line">    <span class="keyword">return</span> <span class="string">&apos;/partials/contacts.&apos;</span> + stateParams.filterBy + <span class="string">&apos;.html&apos;</span>;</div><div class="line">  }</div><div class="line">})</div></pre></td></tr></table></figure>
+<p>&#x65B9;&#x6CD5;&#x4E09;&#xFF1A;&#x901A;&#x8FC7;<code>templateProvider</code>&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x6A21;&#x677F;&#x7684; HTML&#x3002;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$stateProvider.state(<span class="string">&apos;contacts&apos;</span>, {</div><div class="line">  <span class="attr">templateProvider</span>: <span class="function"><span class="keyword">function</span> (<span class="params">$timeout, $stateParams</span>) </span>{</div><div class="line">    <span class="keyword">return</span> $timeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{</div><div class="line">      <span class="keyword">return</span> <span class="string">&apos;&lt;h1&gt;&apos;</span> + $stateParams.contactId + <span class="string">&apos;&lt;/h1&gt;&apos;</span></div><div class="line">    }, <span class="number">100</span>);</div><div class="line">  }</div><div class="line">})</div></pre></td></tr></table></figure>
+<p>&#x5982;&#x679C;&#x60F3;&#x5728;&#x72B6;&#x6001;&#x88AB;&#x6FC0;&#x6D3B;&#x524D;&#xFF0C;&#x8BA9;<code>&lt;ui-view&gt;</code>&#x6709;&#x4E00;&#x4E9B;&#x9ED8;&#x8BA4;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x5F53;&#x72B6;&#x6001;&#x88AB;&#x6FC0;&#x6D3B;&#x4E4B;&#x540E;&#x9ED8;&#x8BA4;&#x5185;&#x5BB9;&#x5C06;&#x88AB;&#x72B6;&#x6001;&#x5BF9;&#x5E94;&#x7684;&#x6A21;&#x677F;&#x66FF;&#x6362;&#x3002;</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ui-view</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">i</span>&gt;</span>Some content will load here!<span class="tag">&lt;/<span class="name">i</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ui-view</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="controllers-&#x63A7;&#x5236;&#x5668;"><a href="#Controllers-&#x63A7;&#x5236;&#x5668;" class="headerlink" title="Controllers &#x63A7;&#x5236;&#x5668;"></a>Controllers &#x63A7;&#x5236;&#x5668;</h2><p>&#x53EF;&#x4EE5;&#x4E3A;&#x6A21;&#x677F;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x63A7;&#x5236;&#x5668;&#xFF08;controller&#xFF09;&#x3002;<strong>&#x8B66;&#x544A;</strong>&#xFF1A;&#x63A7;&#x5236;&#x5668;&#x4E0D;&#x4F1A;&#x88AB;&#x5B9E;&#x4F8B;&#x5316;&#x5982;&#x679C;&#x6A21;&#x677F;&#x6CA1;&#x6709;&#x5B9A;&#x4E49;&#x3002;</p>
+<p>&#x8BBE;&#x7F6E;&#x63A7;&#x5236;&#x5668;&#xFF1A;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$stateProvider.state(<span class="string">&apos;contacts&apos;</span>, {</div><div class="line">  <span class="attr">template</span>: <span class="string">&apos;&lt;h1&gt;{{title}}&lt;/h1&gt;&apos;</span>,</div><div class="line">  <span class="attr">controller</span>: <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>)</span>{</div><div class="line">    $scope.title = <span class="string">&apos;My Contacts&apos;</span>;</div><div class="line">  }</div><div class="line">})</div></pre></td></tr></table></figure>
+<p>&#x5982;&#x679C;&#x5728;&#x6A21;&#x5757;&#x4E2D;&#x5DF2;&#x7ECF;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;&#x63A7;&#x5236;&#x5668;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x6307;&#x5B9A;&#x63A7;&#x5236;&#x5668;&#x7684;&#x540D;&#x79F0;&#x5373;&#x53EF;&#xFF1A;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$stateProvider.state(<span class="string">&apos;contacts&apos;</span>, {</div><div class="line">  <span class="attr">template</span>: ...,</div><div class="line">  <span class="attr">controller</span>: <span class="string">&apos;ContactsCtrl&apos;</span></div><div class="line">})</div></pre></td></tr></table></figure>
+<p>&#x4F7F;&#x7528;<code>controllerAs</code>&#x8BED;&#x6CD5;&#xFF1A;</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$stateProvider.state(<span class="string">&apos;contacts&apos;</span>, {</div><div class="line">  <span class="attr">template</span>: ...,</div><div class="line">  <span class="attr">controller</span>: <span class="string">&apos;ContactsCtrl as contact&apos;</span></div><div class="line">})</div></pre></td></tr></table></figure>
+<p>&#x5BF9;&#x4E8E;&#x66F4;&#x9AD8;&#x7EA7;&#x7684;&#x9700;&#x8981;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>controllerProvider</code>&#x6765;&#x52A8;&#x6001;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x63A7;&#x5236;&#x5668;&#x51FD;&#x6570;&#x6216;&#x5B57;&#x7B26;&#x4E32;&#xFF1A;</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$stateProvider.state(<span class="string">&apos;contacts&apos;</span>, {</div><div class="line">  <span class="attr">template</span>: ...,</div><div class="line">  <span class="attr">controllerProvider</span>: <span class="function"><span class="keyword">function</span>(<span class="params">$stateParams</span>) </span>{</div><div class="line">      <span class="keyword">var</span> ctrlName = $stateParams.type + <span class="string">&quot;Controller&quot;</span>;</div><div class="line">      <span class="keyword">return</span> ctrlName;</div><div class="line">  }</div><div class="line">})</div></pre></td></tr></table></figure>
+<p>&#x63A7;&#x5236;&#x5668;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>$scope.on()</code>&#x65B9;&#x6CD5;&#x6765;&#x76D1;&#x542C;&#x4E8B;&#x4EF6;&#x72B6;&#x6001;&#x8F6C;&#x6362;&#x3002;</p>
+<p>&#x63A7;&#x5236;&#x5668;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x9700;&#x8981;&#x5B9E;&#x4F8B;&#x5316;&#xFF0C;&#x5F53;&#x76F8;&#x5E94;&#x7684;<code>scope</code>&#x88AB;&#x521B;&#x5EFA;&#x65F6;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5F53;&#x7528;&#x6237;&#x70B9;&#x51FB;&#x4E00;&#x4E2A;url&#x624B;&#x52A8;&#x5BFC;&#x822A;&#x4E00;&#x4E2A;&#x72B6;&#x6001;&#x65F6;&#xFF0C;<code>$stateProvider</code>&#x5C06;&#x52A0;&#x8F7D;&#x5BF9;&#x5E94;&#x7684;&#x6A21;&#x677F;&#x5230;&#x89C6;&#x56FE;&#x4E2D;&#xFF0C;&#x5E76;&#x4E14;&#x5C06;&#x63A7;&#x5236;&#x5668;&#x548C;&#x6A21;&#x677F;&#x7684;<code>scope</code>&#x7ED1;&#x5B9A;&#x5728;&#x4E00;&#x8D77;&#x3002;</p>
+<h2 id="&#x89E3;&#x51B3;&#x5668;-resolve"><a href="#&#x89E3;&#x51B3;&#x5668;-Resolve" class="headerlink" title="&#x89E3;&#x51B3;&#x5668; Resolve"></a>&#x89E3;&#x51B3;&#x5668; Resolve</h2><p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>resolve</code>&#x4E3A;&#x63A7;&#x5236;&#x5668;&#x63D0;&#x4F9B;&#x53EF;&#x9009;&#x7684;&#x4F9D;&#x8D56;&#x6CE8;&#x5165;&#x9879;&#x3002;</p>
+<p><code>resolve</code>&#x914D;&#x7F6E;&#x9879;&#x662F;&#x4E00;&#x4E2A;&#x7531;<code>key/value</code>&#x6784;&#x6210;&#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
+<ul>
+<li>key &#x2013; {string}&#xFF1A;&#x6CE8;&#x5165;&#x63A7;&#x5236;&#x5668;&#x7684;&#x4F9D;&#x8D56;&#x9879;&#x540D;&#x79F0;&#x3002;</li>
+<li>factory - {string|function}&#xFF1A;<ul>
+<li>string&#xFF1A;&#x4E00;&#x4E2A;&#x670D;&#x52A1;&#x7684;&#x522B;&#x540D;</li>
+<li>function&#xFF1A;&#x51FD;&#x6570;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x5C06;&#x4F5C;&#x4E3A;&#x4F9D;&#x8D56;&#x6CE8;&#x5165;&#x9879;&#xFF0C;&#x5982;&#x679C;&#x51FD;&#x6570;&#x662F;&#x4E00;&#x4E2A;&#x8017;&#x65F6;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x90A3;&#x4E48;&#x63A7;&#x5236;&#x5668;&#x5FC5;&#x987B;&#x7B49;&#x5F85;&#x8BE5;&#x51FD;&#x6570;&#x6267;&#x884C;&#x5B8C;&#x6210;&#xFF08;be resolved&#xFF09;&#x624D;&#x4F1A;&#x88AB;&#x5B9E;&#x4F8B;&#x5316;&#x3002;</li>
+</ul>
+</li>
+</ul>
+<h3 id="&#x4F8B;&#x5B50;"><a href="#&#x4F8B;&#x5B50;" class="headerlink" title="&#x4F8B;&#x5B50;"></a>&#x4F8B;&#x5B50;</h3><p>&#x5728;<code>controller</code>&#x5B9E;&#x4F8B;&#x5316;&#x4E4B;&#x524D;&#xFF0C;<code>resolve</code>&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x90FD;&#x5FC5;&#x987B; be resolved&#xFF0C;&#x8BF7;&#x6CE8;&#x610F;&#x6BCF;&#x4E2A; resolved object &#x662F;&#x600E;&#x6837;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x6CE8;&#x5165;&#x5230;&#x63A7;&#x5236;&#x5668;&#x4E2D;&#x7684;&#x3002;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line">$stateProvider.state(<span class="string">&apos;myState&apos;</span>, {</div><div class="line">      <span class="attr">resolve</span>:{</div><div class="line"></div><div class="line">         <span class="comment">// Example using function with simple return value.</span></div><div class="line">         <span class="comment">// Since it&apos;s not a promise, it resolves immediately.</span></div><div class="line">         simpleObj:  <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">            <span class="keyword">return</span> {<span class="attr">value</span>: <span class="string">&apos;simple!&apos;</span>};</div><div class="line">         },</div><div class="line"></div><div class="line">         <span class="comment">// Example using function with returned promise.</span></div><div class="line">         <span class="comment">// &#x8FD9;&#x662F;&#x4E00;&#x79CD;&#x5178;&#x578B;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;</span></div><div class="line">         <span class="comment">// &#x8BF7;&#x7ED9;&#x51FD;&#x6570;&#x6CE8;&#x5165;&#x4EFB;&#x4F55;&#x60F3;&#x8981;&#x7684;&#x670D;&#x52A1;&#x4F9D;&#x8D56;&#xFF0C;&#x4F8B;&#x5982; $http</span></div><div class="line">         promiseObj:  <span class="function"><span class="keyword">function</span>(<span class="params">$http</span>)</span>{</div><div class="line">            <span class="comment">// $http returns a promise for the url data</span></div><div class="line">            <span class="keyword">return</span> $http({<span class="attr">method</span>: <span class="string">&apos;GET&apos;</span>, <span class="attr">url</span>: <span class="string">&apos;/someUrl&apos;</span>});</div><div class="line">         },</div><div class="line"></div><div class="line">         <span class="comment">// Another promise example. </span></div><div class="line">         <span class="comment">// &#x5982;&#x679C;&#x60F3;&#x5BF9;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF0C; &#x53EF;&#x4EE5;&#x4F7F;&#x7528; .then &#x65B9;&#x6CD5;</span></div><div class="line">         <span class="comment">// &#x8FD9;&#x662F;&#x53E6;&#x4E00;&#x79CD;&#x5178;&#x578B;&#x4F7F;&#x7528;&#x65B9;&#x5F0F;</span></div><div class="line">         promiseObj2:  <span class="function"><span class="keyword">function</span>(<span class="params">$http</span>)</span>{</div><div class="line">            <span class="keyword">return</span> $http({<span class="attr">method</span>: <span class="string">&apos;GET&apos;</span>, <span class="attr">url</span>: <span class="string">&apos;/someUrl&apos;</span>})</div><div class="line">               .then (<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>{</div><div class="line">                   <span class="keyword">return</span> doSomeStuffFirst(data);</div><div class="line">               });</div><div class="line">         },        </div><div class="line"></div><div class="line">         <span class="comment">// &#x4F7F;&#x7528;&#x670D;&#x52A1;&#x540D;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x8FD9;&#x5C06;&#x5728;&#x6A21;&#x5757;&#x4E2D;&#x67E5;&#x627E;&#x540D;&#x79F0;&#x4E3A; &apos;translations&apos; &#x7684;&#x670D;&#x52A1;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x8BE5;&#x670D;&#x52A1; </span></div><div class="line">         <span class="comment">// <span class="doctag">Note:</span> The service could return a promise and</span></div><div class="line">         <span class="comment">// it would work just like the example above</span></div><div class="line">         translations: <span class="string">&quot;translations&quot;</span>,</div><div class="line"></div><div class="line">         <span class="comment">// &#x5C06;&#x670D;&#x52A1;&#x6A21;&#x5757;&#x4F5C;&#x4E3A;&#x89E3;&#x51B3;&#x51FD;&#x6570;&#x7684;&#x4F9D;&#x8D56;&#x9879;&#xFF0C;&#x901A;&#x8FC7;&#x53C2;&#x6570;&#x4F20;&#x5165;</span></div><div class="line">         <span class="comment">// &#x63D0;&#x793A;&#xFF1A;&#x4F9D;&#x8D56;&#x9879; $stateParams &#x4EE3;&#x8868; url &#x4E2D;&#x7684;&#x53C2;&#x6570;</span></div><div class="line">         translations2: <span class="function"><span class="keyword">function</span>(<span class="params">translations, $stateParams</span>)</span>{</div><div class="line">             <span class="comment">// Assume that getLang is a service method</span></div><div class="line">             <span class="comment">// that uses $http to fetch some translations.</span></div><div class="line">             <span class="comment">// Also assume our url was &quot;/:lang/home&quot;.</span></div><div class="line">             translations.getLang($stateParams.lang);</div><div class="line">         },</div><div class="line"></div><div class="line">         <span class="comment">// Example showing returning of custom made promise</span></div><div class="line">         greeting: <span class="function"><span class="keyword">function</span>(<span class="params">$q, $timeout</span>)</span>{</div><div class="line">             <span class="keyword">var</span> deferred = $q.defer();</div><div class="line">             $timeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{</div><div class="line">                 deferred.resolve(<span class="string">&apos;Hello!&apos;</span>);</div><div class="line">             }, <span class="number">1000</span>);</div><div class="line">             <span class="keyword">return</span> deferred.promise;</div><div class="line">         }</div><div class="line">      },</div><div class="line"></div><div class="line">      <span class="comment">// &#x63A7;&#x5236;&#x5668;&#x5C06;&#x7B49;&#x5F85;&#x4E0A;&#x9762;&#x7684;&#x89E3;&#x51B3;&#x9879;&#x90FD;&#x88AB;&#x89E3;&#x51B3;&#x540E;&#x624D;&#x88AB;&#x5B9E;&#x4F8B;&#x5316;</span></div><div class="line">      controller: <span class="function"><span class="keyword">function</span>(<span class="params">$scope, simpleObj, promiseObj, promiseObj2, translations, translations2, greeting</span>)</span>{</div><div class="line">          </div><div class="line">          $scope.simple = simpleObj.value;</div><div class="line"></div><div class="line">          <span class="comment">// &#x8FD9;&#x91CC;&#x53EF;&#x4EE5;&#x653E;&#x5FC3;&#x4F7F;&#x7528; promiseObj &#x4E2D;&#x7684;&#x5BF9;&#x8C61;</span></div><div class="line">          $scope.items = promiseObj.items;</div><div class="line">          $scope.items = promiseObj2.items;</div><div class="line"></div><div class="line">          $scope.title = translations.getLang(<span class="string">&quot;english&quot;</span>).title;</div><div class="line">          $scope.title = translations2.title;</div><div class="line"></div><div class="line">          $scope.greeting = greeting;</div><div class="line">      }</div><div class="line">   })</div></pre></td></tr></table></figure>
+<h2 id="&#x4E3A;-state-&#x5BF9;&#x8C61;&#x63D0;&#x4F9B;&#x81EA;&#x5B9A;&#x4E49;&#x6570;&#x636E;"><a href="#&#x4E3A;-state-&#x5BF9;&#x8C61;&#x63D0;&#x4F9B;&#x81EA;&#x5B9A;&#x4E49;&#x6570;&#x636E;" class="headerlink" title="&#x4E3A; $state &#x5BF9;&#x8C61;&#x63D0;&#x4F9B;&#x81EA;&#x5B9A;&#x4E49;&#x6570;&#x636E;"></a>&#x4E3A; $state &#x5BF9;&#x8C61;&#x63D0;&#x4F9B;&#x81EA;&#x5B9A;&#x4E49;&#x6570;&#x636E;</h2><p>&#x53EF;&#x4EE5;&#x7ED9; $state &#x5BF9;&#x8C61;&#x63D0;&#x4F9B;&#x81EA;&#x5B9A;&#x4E49;&#x6570;&#x636E;&#xFF08;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;<code>data</code>&#x5C5E;&#x6027;&#xFF0C;&#x4EE5;&#x514D;&#x51B2;&#x7A81;&#xFF09;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// &#x57FA;&#x4E8E;&#x5BF9;&#x8C61;&#x548C;&#x57FA;&#x4E8E;&#x5B57;&#x7B26;&#x4E32;&#x5B9A;&#x4E49; state &#x7684;&#x4F8B;&#x5B50;</span></div><div class="line"><span class="keyword">var</span> contacts = { </div><div class="line">    <span class="attr">name</span>: <span class="string">&apos;contacts&apos;</span>,</div><div class="line">    <span class="attr">templateUrl</span>: <span class="string">&apos;contacts.html&apos;</span>,</div><div class="line">    <span class="attr">data</span>: {</div><div class="line">        <span class="attr">customData1</span>: <span class="number">5</span>,</div><div class="line">        <span class="attr">customData2</span>: <span class="string">&quot;blue&quot;</span></div><div class="line">    }  </div><div class="line">}</div><div class="line">$stateProvider</div><div class="line">  .state(contacts)</div><div class="line">  .state(<span class="string">&apos;contacts.list&apos;</span>, {</div><div class="line">    <span class="attr">templateUrl</span>: <span class="string">&apos;contacts.list.html&apos;</span>,</div><div class="line">    <span class="attr">data</span>: {</div><div class="line">        <span class="attr">customData1</span>: <span class="number">44</span>,</div><div class="line">        <span class="attr">customData2</span>: <span class="string">&quot;red&quot;</span></div><div class="line">    } </div><div class="line">  })</div></pre></td></tr></table></figure>
+<p>&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E0B;&#x9762;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x8BBF;&#x95EE;&#x4E0A;&#x9762;&#x5B9A;&#x4E49;&#x7684;&#x6570;&#x636E;&#xFF1A;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Ctrl</span>(<span class="params">$state</span>)</span>{</div><div class="line">    <span class="built_in">console</span>.log($state.current.data.customData1) <span class="comment">// &#x8F93;&#x51FA; 5;</span></div><div class="line">    <span class="built_in">console</span>.log($state.current.data.customData2) <span class="comment">// &#x8F93;&#x51FA; &quot;blue&quot;;</span></div><div class="line">}</div></pre></td></tr></table></figure>
+<h2 id="onenter-&#x548C;-onexit-&#x56DE;&#x8C03;&#x51FD;&#x6570;"><a href="#onEnter-&#x548C;-onExit-&#x56DE;&#x8C03;&#x51FD;&#x6570;" class="headerlink" title="onEnter &#x548C; onExit &#x56DE;&#x8C03;&#x51FD;&#x6570;"></a>onEnter &#x548C; onExit &#x56DE;&#x8C03;&#x51FD;&#x6570;</h2><p><code>onEnter</code>&#x548C;<code>onExit</code>&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x662F;&#x53EF;&#x9009;&#x914D;&#x7F6E;&#x9879;&#xFF0C;&#x5206;&#x522B;&#x79F0;&#x4E3A;&#x5F53;&#x4E00;&#x4E2A;&#x72B6;&#x6001;&#x53D8;&#x5F97;&#x6D3B;&#x8DC3;&#x7684;&#x548C;&#x4E0D;&#x6D3B;&#x8DC3;&#x7684;&#x65F6;&#x5019;&#x89E6;&#x53D1;&#x3002;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x4E5F;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x6240;&#x6709;&#x89E3;&#x51B3;&#x4F9D;&#x8D56;&#x9879;&#x3002;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$stateProvider.state(<span class="string">&quot;contacts&quot;</span>, {</div><div class="line">  <span class="attr">template</span>: <span class="string">&apos;&lt;h1&gt;{{title}}&lt;/h1&gt;&apos;</span>,</div><div class="line">  <span class="attr">resolve</span>: { <span class="attr">title</span>: <span class="string">&apos;My Contacts&apos;</span> },</div><div class="line">  <span class="attr">controller</span>: <span class="function"><span class="keyword">function</span>(<span class="params">$scope, title</span>)</span>{</div><div class="line">    $scope.title = <span class="string">&apos;My Contacts&apos;</span>;</div><div class="line">  },</div><div class="line">  <span class="comment">// title &#x662F;&#x89E3;&#x51B3;&#x4F9D;&#x8D56;&#x9879;&#xFF0C;&#x8FD9;&#x91CC;&#x4E5F;&#x662F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x89E3;&#x51B3;&#x4F9D;&#x8D56;&#x9879;&#x7684;</span></div><div class="line">  onEnter: <span class="function"><span class="keyword">function</span>(<span class="params">title</span>)</span>{ </div><div class="line">    <span class="keyword">if</span>(title){ ... do something ... }</div><div class="line">  },</div><div class="line">  <span class="comment">// title &#x662F;&#x89E3;&#x51B3;&#x4F9D;&#x8D56;&#x9879;&#xFF0C;&#x8FD9;&#x91CC;&#x4E5F;&#x662F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x89E3;&#x51B3;&#x4F9D;&#x8D56;&#x9879;&#x7684;</span></div><div class="line">  onExit: <span class="function"><span class="keyword">function</span>(<span class="params">title</span>)</span>{</div><div class="line">    <span class="keyword">if</span>(title){ ... do something ... }</div><div class="line">  }</div><div class="line">})</div></pre></td></tr></table></figure>
+<h2 id="state-change-events-&#x72B6;&#x6001;&#x6539;&#x53D8;&#x4E8B;&#x4EF6;"><a href="#State-Change-Events-&#x72B6;&#x6001;&#x6539;&#x53D8;&#x4E8B;&#x4EF6;" class="headerlink" title="State Change Events &#x72B6;&#x6001;&#x6539;&#x53D8;&#x4E8B;&#x4EF6;"></a>State Change Events &#x72B6;&#x6001;&#x6539;&#x53D8;&#x4E8B;&#x4EF6;</h2><p>&#x6240;&#x6709;&#x8FD9;&#x4E9B;&#x4E8B;&#x4EF6;&#x90FD;&#x662F;&#x5728;<code>$rootScope</code>&#x4F5C;&#x7528;&#x57DF;&#x89E6;&#x53D1;</p>
+<ul>
+<li><strong>$stateChangeStart</strong> - &#x5F53;&#x6A21;&#x677F;&#x5F00;&#x59CB;&#x89E3;&#x6790;&#x4E4B;&#x524D;&#x89E6;&#x53D1;</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$rootScope.$on(<span class="string">&apos;$stateChangeStart&apos;</span>, </div><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">event, toState, toParams, fromState, fromParams</span>)</span>{ ... })</div></pre></td></tr></table></figure>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x4F7F;&#x7528;<code>event.preventDefault()</code>&#x53EF;&#x4EE5;&#x963B;&#x6B62;&#x6A21;&#x677F;&#x89E3;&#x6790;&#x7684;&#x53D1;&#x751F;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$rootScope.$on(<span class="string">&apos;$stateChangeStart&apos;</span>, </div><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">event, toState, toParams, fromState, fromParams</span>)</span>{ </div><div class="line">    event.preventDefault(); </div><div class="line">    <span class="comment">// transitionTo() promise will be rejected with </span></div><div class="line">    <span class="comment">// a &apos;transition prevented&apos; error</span></div><div class="line">})</div></pre></td></tr></table></figure></p>
+<ul>
+<li><strong>$stateNotFound</strong> - <code>v0.3.0</code> - &#x5728; transition &#x65F6;&#x901A;&#x8FC7;&#x72B6;&#x6001;&#x540D;&#x67E5;&#x627E;&#x72B6;&#x6001;&#xFF0C;&#x5F53;&#x72B6;&#x6001;&#x65E0;&#x6CD5;&#x627E;&#x5230;&#x65F6;&#x53D1;&#x751F;&#x3002;&#x8BE5;&#x4E8B;&#x4EF6;&#x5728; scope &#x94FE;&#x4E0A;&#x5E7F;&#x64AD;&#xFF0C;&#x53EA;&#x5141;&#x8BB8;&#x4E00;&#x6B21;&#x5904;&#x7406;&#x9519;&#x8BEF;&#x7684;&#x673A;&#x4F1A;&#x3002;<code>unfoundState</code>&#x5C06;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x4E8B;&#x4EF6;&#x76D1;&#x542C;&#x51FD;&#x6570;&#xFF0C;&#x4E0B;&#x9762;&#x4F8B;&#x5B50;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x5230;<code>unfoundState</code>&#x7684;&#x4E09;&#x4E2A;&#x5C5E;&#x6027;&#x3002;&#x4F7F;&#x7528; <code>event.preventDefault()</code> &#x6765;&#x963B;&#x6B62;&#x6A21;&#x677F;&#x89E3;&#x6790;&#xFF0C;</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// somewhere, assume lazy.state has not been defined</span></div><div class="line">$state.go(<span class="string">&quot;lazy.state&quot;</span>, {<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>}, {<span class="attr">inherit</span>:<span class="literal">false</span>});</div><div class="line"></div><div class="line"><span class="comment">// somewhere else</span></div><div class="line">$scope.$on(<span class="string">&apos;$stateNotFound&apos;</span>, </div><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">event, unfoundState, fromState, fromParams</span>)</span>{ </div><div class="line">    <span class="built_in">console</span>.log(unfoundState.to); <span class="comment">// &quot;lazy.state&quot;</span></div><div class="line">    <span class="built_in">console</span>.log(unfoundState.toParams); <span class="comment">// {a:1, b:2}</span></div><div class="line">    <span class="built_in">console</span>.log(unfoundState.options); <span class="comment">// {inherit:false} + default options</span></div><div class="line">})</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>$stateChangeSuccess</strong> - &#x5F53;&#x6A21;&#x677F;&#x89E3;&#x6790;&#x5B8C;&#x6210;&#x540E;&#x89E6;&#x53D1;</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$rootScope.$on(<span class="string">&apos;$stateChangeSuccess&apos;</span>, </div><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">event, toState, toParams, fromState, fromParams</span>)</span>{ ... })</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>$stateChangeError</strong> - &#x5F53;&#x6A21;&#x677F;&#x89E3;&#x6790;&#x8FC7;&#x7A0B;&#x4E2D;&#x53D1;&#x751F;&#x9519;&#x8BEF;&#x65F6;&#x89E6;&#x53D1;</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$rootScope.$on(<span class="string">&apos;$stateChangeError&apos;</span>, </div><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">event, toState, toParams, fromState, fromParams, error</span>)</span>{ ... })</div></pre></td></tr></table></figure>
+<h2 id="view-load-events-&#x89C6;&#x56FE;&#x52A0;&#x8F7D;&#x4E8B;&#x4EF6;"><a href="#View-Load-Events-&#x89C6;&#x56FE;&#x52A0;&#x8F7D;&#x4E8B;&#x4EF6;" class="headerlink" title="View Load Events &#x89C6;&#x56FE;&#x52A0;&#x8F7D;&#x4E8B;&#x4EF6;"></a>View Load Events &#x89C6;&#x56FE;&#x52A0;&#x8F7D;&#x4E8B;&#x4EF6;</h2><ul>
+<li><strong>$viewContentLoading</strong> - &#x5F53;&#x89C6;&#x56FE;&#x5F00;&#x59CB;&#x52A0;&#x8F7D;&#xFF0C;DOM&#x6E32;&#x67D3;&#x5B8C;&#x6210;&#x4E4B;&#x524D;&#x89E6;&#x53D1;&#xFF0C;&#x8BE5;&#x4E8B;&#x4EF6;&#x5C06;&#x5728;<code>$scope</code>&#x94FE;&#x4E0A;&#x5E7F;&#x64AD;&#x6B64;&#x4E8B;&#x4EF6;&#x3002;</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$scope.$on(<span class="string">&apos;$viewContentLoading&apos;</span>, </div><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">event, viewConfig</span>)</span>{ </div><div class="line">    <span class="comment">// Access to all the view config properties.</span></div><div class="line">    <span class="comment">// and one special property &apos;targetView&apos;</span></div><div class="line">    <span class="comment">// viewConfig.targetView </span></div><div class="line">});</div></pre></td></tr></table></figure>
+<ul>
+<li><strong>$viewContentLoaded</strong> - &#x5F53;&#x89C6;&#x56FE;&#x52A0;&#x8F7D;&#x5B8C;&#x6210;&#xFF0C;DOM&#x6E32;&#x67D3;&#x5B8C;&#x6210;&#x4E4B;&#x540E;&#x89E6;&#x53D1;&#xFF0C;&#x89C6;&#x56FE;&#x6240;&#x5728;&#x7684;<code>$scope</code>&#x53D1;&#x51FA;&#x8BE5;&#x4E8B;&#x4EF6;&#x3002;</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$scope.$on(<span class="string">&apos;$viewContentLoading&apos;</span>, </div><div class="line">$scope.$on(<span class="string">&apos;$viewContentLoaded&apos;</span>, </div><div class="line"><span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>{ ... });</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>我知道是不会有人点的，但万一有人想不开呢？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/img/wechatpay.png" alt="曹强 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/img/alipay.jpg" alt="曹强 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/angularjs/" rel="tag">#angularjs</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/03/angularJs/ui-router/index/" rel="next" title="学习 ui-router 系列文章索引">
+                <i class="fa fa-chevron-left"></i> 学习 ui-router 系列文章索引
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/04/angularJs/ui-router/学习 ui-router - 状态嵌套和视图嵌套/" rel="prev" title="学习 ui-router - 状态嵌套和视图嵌套">
+                学习 ui-router - 状态嵌套和视图嵌套 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/03/angularJs/ui-router/学习 ui-router - 管理状态/"
+           data-title="学习 ui-router - 管理状态" data-url="http://ronghuaxueleng.github.io/2016/08/03/angularJs/ui-router/学习 ui-router - 管理状态/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/avatar.jpg"
+               alt="曹强" />
+          <p class="site-author-name" itemprop="name">曹强</p>
+          <p class="site-description motion-element" itemprop="description">caoqiang's blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">81</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ronghuaxueleng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#最简单的形式"><span class="nav-number">1.</span> <span class="nav-text">最简单的形式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模板将被插入哪里"><span class="nav-number">1.1.</span> <span class="nav-text">模板将被插入哪里?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#激活状态"><span class="nav-number">1.2.</span> <span class="nav-text">激活状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#templates-模板"><span class="nav-number">2.</span> <span class="nav-text">Templates 模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#controllers-控制器"><span class="nav-number">3.</span> <span class="nav-text">Controllers 控制器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决器-resolve"><span class="nav-number">4.</span> <span class="nav-text">解决器 Resolve</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">4.1.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为-state-对象提供自定义数据"><span class="nav-number">5.</span> <span class="nav-text">为 $state 对象提供自定义数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onenter-和-onexit-回调函数"><span class="nav-number">6.</span> <span class="nav-text">onEnter 和 onExit 回调函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#state-change-events-状态改变事件"><span class="nav-number">7.</span> <span class="nav-text">State Change Events 状态改变事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#view-load-events-视图加载事件"><span class="nav-number">8.</span> <span class="nav-text">View Load Events 视图加载事件</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ronghuaxueleng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = '0 ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+  
+
+</body>
+</html>

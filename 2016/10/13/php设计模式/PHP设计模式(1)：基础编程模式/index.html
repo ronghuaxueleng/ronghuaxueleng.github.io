@@ -1,0 +1,923 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="php," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x7B80;&amp;#x4ECB;&amp;#x4FD7;&amp;#x8BDD;&amp;#x8BF4;&amp;#xFF0C;&amp;#x201C;PHP&amp;#x662F;&amp;#x4E16;&amp;#x754C;&amp;#x4E0A;&amp;#x6700;&amp;#x597D;&amp;#x7684;&amp;#x8BED;&amp;#x8A00;&amp;#x201D;&amp;#xFF0C;&amp;#x56E0;&amp;#x4E3A;PHP&amp;#x4EC0;&amp;#x4E48;&amp;#x90FD;&amp;#x80FD;&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基础编程模式">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/index.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="&amp;#x7B80;&amp;#x4ECB;&amp;#x4FD7;&amp;#x8BDD;&amp;#x8BF4;&amp;#xFF0C;&amp;#x201C;PHP&amp;#x662F;&amp;#x4E16;&amp;#x754C;&amp;#x4E0A;&amp;#x6700;&amp;#x597D;&amp;#x7684;&amp;#x8BED;&amp;#x8A00;&amp;#x201D;&amp;#xFF0C;&amp;#x56E0;&amp;#x4E3A;PHP&amp;#x4EC0;&amp;#x4E48;&amp;#x90FD;&amp;#x80FD;&amp;#">
+<meta property="og:updated_time" content="2016-10-13T07:44:59.316Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基础编程模式">
+<meta name="twitter:description" content="&amp;#x7B80;&amp;#x4ECB;&amp;#x4FD7;&amp;#x8BDD;&amp;#x8BF4;&amp;#xFF0C;&amp;#x201C;PHP&amp;#x662F;&amp;#x4E16;&amp;#x754C;&amp;#x4E0A;&amp;#x6700;&amp;#x597D;&amp;#x7684;&amp;#x8BED;&amp;#x8A00;&amp;#x201D;&amp;#xFF0C;&amp;#x56E0;&amp;#x4E3A;PHP&amp;#x4EC0;&amp;#x4E48;&amp;#x90FD;&amp;#x80FD;&amp;#">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/"/>
+
+  <title> 基础编程模式 | 白云雅阁 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="https://github.com/ronghuaxueleng">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+    </a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">白云雅阁</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">读懂别人的故事，写好自己的人生</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                基础编程模式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
+              2016-10-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/" class="leancloud_visitors" data-flag-title="基础编程模式">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+
+          
+            &nbsp; | &nbsp;
+          <span id="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/"class="leancloud_visitors" data-flag-title="基础编程模式">
+            &nbsp;阅读次数
+          </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="&#x7B80;&#x4ECB;"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</h2><p>&#x4FD7;&#x8BDD;&#x8BF4;&#xFF0C;&#x201C;PHP&#x662F;&#x4E16;&#x754C;&#x4E0A;&#x6700;&#x597D;&#x7684;&#x8BED;&#x8A00;&#x201D;&#xFF0C;&#x56E0;&#x4E3A;PHP&#x4EC0;&#x4E48;&#x90FD;&#x80FD;&#x5E72;&#x3002;&#x4F46;&#x662F;&#x5728;PHP&#x7F16;&#x7A0B;&#x4E2D;&#xFF0C;&#x4F60;&#x662F;&#x5426;&#x4F1A;&#x9047;&#x5230;&#x8FD9;&#x6837;&#x7684;&#x56F0;&#x60D1;&#xFF1A;&#x660E;&#x660E;&#x662F;&#x76F8;&#x540C;&#x7684;&#x9700;&#x6C42;&#xFF0C;&#x4F46;&#x662F;&#x4E4B;&#x524D;&#x5199;&#x7684;&#x4EE3;&#x7801;&#x5374;&#x5E76;&#x4E0D;&#x80FD;&#x91CD;&#x7528;&#xFF0C;&#x7A0D;&#x5FAE;&#x4FEE;&#x6539;&#x4E0D;&#x6EE1;&#x8DB3;&#x9700;&#x6C42;&#xFF0C;&#x5927;&#x6539;&#x53C8;&#x4F1A;&#x8BA9;&#x9875;&#x9762;&#x53D8;&#x6837;&#x3002;<br>&#x662F;&#x7684;&#xFF0C;&#x7531;&#x4E8E;PHP&#x4EC0;&#x4E48;&#x90FD;&#x80FD;&#x5E72;&#xFF0C;&#x4F46;&#x662F;&#x9AD8;&#x5EA6;&#x7075;&#x6D3B;&#x6027;&#x964D;&#x4F4E;&#x4E86;&#x4EE3;&#x7801;&#x7684;&#x7ED3;&#x6784;&#x6027;&#x3002;&#x867D;&#x7136;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x4E09;&#x65B9;&#x6846;&#x67B6;&#x6765;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x95EE;&#x9898;&#x7684;&#x6839;&#x672C;&#x5728;&#x4E8E;&#x7F3A;&#x4E4F;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x3002;<br>&#x672C;&#x7CFB;&#x5217;&#x6587;&#x7AE0;&#x5C06;&#x7531;&#x6D45;&#x5165;&#x6DF1;&#x7684;&#x4ECB;&#x7ECD;&#x5404;&#x79CD;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x3002;</p>
+<h2 id="&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;"><a href="#&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;" class="headerlink" title="&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;"></a>&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;</h2><p>&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;&#xFF0C;Object-Oriented Programming(OOP)&#x4F5C;&#x4E3A;&#x6700;&#x57FA;&#x672C;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x5E76;&#x4E0D;&#x662F;&#x4EC0;&#x4E48;&#x65B0;&#x9C9C;&#x7684;&#x8BDD;&#x9898;&#xFF0C;&#x4F46;&#x662F;&#x5927;&#x90E8;&#x5206;&#x65B0;&#x624B;&#x7684;PHP&#x7F16;&#x7A0B;&#x90FD;&#x662F;&#x5728;&#x5199;&#x6D41;&#x6C34;&#x8D26;&#xFF0C;&#x5404;&#x79CD;&#x62FC;&#x63A5;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x91CC;&#x8FD8;&#x662F;&#x8981;&#x63D0;&#x4E00;&#x4E0B;&#x3002;<br><a href="https://en.wikipedia.org/wiki/Object-oriented_programming" target="_blank" rel="external">Object-Oriented Programming</a>&#x7684;&#x6982;&#x5FF5;&#x8FD9;&#x91CC;&#x5C31;&#x4E0D;&#x8BF4;&#x4E86;&#xFF0C;&#x6BD5;&#x7ADF;&#x5F88;&#x591A;&#x4EBA;&#x90FD;&#x660E;&#x767D;&#xFF0C;&#x4F46;&#x662F;&#x5982;&#x4F55;&#x5728;PHP&#x4E2D;&#x4F7F;&#x7528;&#xFF1F;<br>&#x5047;&#x8BBE;&#x4F60;&#x9700;&#x8981;&#x5728;&#x9875;&#x9762;&#x4E0A;&#x663E;&#x793A;&#x4E0D;&#x540C;&#x7684;&#x7528;&#x6237;&#x7C7B;&#x578B;&#xFF0C;&#x5982;&#x7535;&#x8111;&#x7528;&#x6237;&#x3001;&#x624B;&#x673A;&#x7528;&#x6237;&#x7B49;&#xFF0C;&#x90A3;&#x4E48;&#x4F60;&#x53EF;&#x4EE5;&#x5C06;&#x201C;&#x663E;&#x793A;&#x201D;&#x8FD9;&#x4EF6;&#x4E8B;&#x62BD;&#x8C61;&#x4E3A;&#x4E00;&#x4E2A;&#x7C7B;&#xFF0C;&#x5982;&#xFF1A;</p>
+<pre><code>&lt;?php
+class ShowAgent {
+  private $agent;
+  public function __construct() {
+    $this-&gt;agent = $_SERVER[&apos;HTTP_USER_AGENT&apos;];
+    echo $this-&gt;agent;
+  }
+}
+$showAgent = new ShowAgent();
+?&gt;
+</code></pre><h2 id="&#x8C03;&#x8BD5;&#x6280;&#x5DE7;"><a href="#&#x8C03;&#x8BD5;&#x6280;&#x5DE7;" class="headerlink" title="&#x8C03;&#x8BD5;&#x6280;&#x5DE7;"></a>&#x8C03;&#x8BD5;&#x6280;&#x5DE7;</h2><p>&#x5728;&#x5F88;&#x591A;PHP&#x9ED8;&#x8BA4;&#x73AF;&#x5883;&#x4E2D;&#xFF0C;&#x8C03;&#x8BD5;&#x529F;&#x80FD;&#x662F;&#x5173;&#x95ED;&#x7684;&#x3002;&#x6253;&#x5F00;&#x8C03;&#x8BD5;&#x529F;&#x80FD;&#x53C8;&#x9700;&#x8981;&#x914D;&#x7F6E;php.ini&#x6587;&#x4EF6;&#xFF0C;&#x5176;&#x5B9E;&#x6709;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code>&lt;?php
+ini_set(&quot;display_errors&quot;, &quot;1&quot;);
+ERROR_REPORTING(E_ALL);
+?&gt;
+</code></pre><p>&#x5C06;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x52A0;&#x5165;&#x5230;&#x4F60;&#x7684;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x751A;&#x81F3;&#x53EF;&#x4EE5;require&#x6216;&#x8005;include&#x8FDB;&#x53BB;&#xFF0C;&#x65B9;&#x4FBF;&#x8C03;&#x8BD5;&#x3002;</p>
+<h2 id="&#x6D41;&#x6C34;&#x8D26;&#x7F16;&#x7A0B;"><a href="#&#x6D41;&#x6C34;&#x8D26;&#x7F16;&#x7A0B;" class="headerlink" title="&#x6D41;&#x6C34;&#x8D26;&#x7F16;&#x7A0B;"></a>&#x6D41;&#x6C34;&#x8D26;&#x7F16;&#x7A0B;</h2><p>&#x8FD9;&#x91CC;&#x5217;&#x51FA;&#x6D41;&#x6C34;&#x8D26;&#x7F16;&#x7A0B;&#xFF0C;&#x5E76;&#x4E0D;&#x662F;&#x8BA9;&#x4F60;&#x5B66;&#x4E60;&#xFF0C;&#x800C;&#x662F;&#x6307;&#x51FA;&#x4F55;&#x79CD;&#x7F16;&#x7A0B;&#x4E0D;&#x63A8;&#x8350;&#x4F7F;&#x7528;&#xFF1A;</p>
+<pre><code>&lt;?php
+$total = &quot;Total number is &quot;;
+$number = &quot;6&quot;;
+$totalNumber = $total.$number;
+echo $totalNumber;
+?&gt;
+</code></pre><p>&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x5E76;&#x6CA1;&#x6709;&#x9519;&#xFF0C;&#x4F46;&#x662F;&#x4EE5;&#x540E;&#x518D;&#x4E5F;&#x65E0;&#x6CD5;&#x91CD;&#x7528;&#x4E86;&#xFF0C;&#x5BF9;&#x5427;&#xFF1F;&#x6BCF;&#x6B21;&#x9047;&#x5230;&#x76F8;&#x540C;&#x95EE;&#x9898;&#xFF0C;&#x4F60;&#x90FD;&#x9700;&#x8981;&#x53CD;&#x590D;&#x62FC;&#x63A5;&#x3002;</p>
+<h2 id="&#x9762;&#x5411;&#x8FC7;&#x7A0B;&#x7F16;&#x7A0B;"><a href="#&#x9762;&#x5411;&#x8FC7;&#x7A0B;&#x7F16;&#x7A0B;" class="headerlink" title="&#x9762;&#x5411;&#x8FC7;&#x7A0B;&#x7F16;&#x7A0B;"></a>&#x9762;&#x5411;&#x8FC7;&#x7A0B;&#x7F16;&#x7A0B;</h2><p>&#x9762;&#x5411;&#x8FC7;&#x7A0B;&#x7F16;&#x7A0B;&#x66FE;&#x7ECF;&#x5F88;&#x6D41;&#x884C;&#xFF0C;&#x7F3A;&#x70B9;&#x4E5F;&#x662F;&#x65E0;&#x6CD5;&#x7EF4;&#x62A4;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code>&lt;?php
+function showTotal($total, $number) {
+  $totalNumber = $total.$number;
+  echo $totalNumber;
+}
+showTotal(&quot;Total number is&quot;, &quot;6&quot;);
+?&gt;
+</code></pre><p>&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x540C;&#x6837;&#x6CA1;&#x6709;&#x9519;&#xFF0C;&#x4F46;&#x662F;&#x65F6;&#x95F4;&#x4E45;&#x4E86;&#xFF0C;&#x7531;&#x4E8E;&#x7F3A;&#x4E4F;&#x7C7B;&#x7684;&#x6982;&#x5FF5;&#xFF0C;showTotal&#x5728;&#x5404;&#x79CD;&#x5E94;&#x7528;&#x573A;&#x666F;&#x7F3A;&#x4E4F;&#x7075;&#x6D3B;&#x6027;&#xFF0C;&#x4F60;&#x8FD8;&#x662F;&#x9700;&#x8981;&#x91CD;&#x5199;&#x4EE3;&#x7801;&#x3002;</p>
+<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>&#x8F6C;&#x53D8;&#x7F16;&#x7A0B;&#x7684;&#x601D;&#x7EF4;&#x9700;&#x8981;&#x82B1;&#x8D39;&#x7684;&#x65F6;&#x95F4;&#x662F;&#x5F88;&#x957F;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x8BB0;&#x4F4F;&#xFF1A;&#x7B97;&#x6CD5;&#x63D0;&#x9AD8;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x7684;&#x901F;&#x5EA6;&#xFF0C;&#x800C;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x63D0;&#x9AD8;&#x7F16;&#x7A0B;&#x7684;&#x901F;&#x5EA6;&#x3002;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>我知道是不会有人点的，但万一有人想不开呢？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/img/wechatpay.png" alt="曹强 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/img/alipay.jpg" alt="曹强 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/php/" rel="tag">#php</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/13/php设计模式/PHP设计模式(5)：多态/" rel="next" title="多态">
+                <i class="fa fa-chevron-left"></i> 多态
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/"
+           data-title="基础编程模式" data-url="http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/img/avatar.jpg"
+               alt="曹强" />
+          <p class="site-author-name" itemprop="name">曹强</p>
+          <p class="site-description motion-element" itemprop="description">caoqiang's blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">81</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ronghuaxueleng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象编程"><span class="nav-number">2.</span> <span class="nav-text">面向对象编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调试技巧"><span class="nav-number">3.</span> <span class="nav-text">调试技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流水账编程"><span class="nav-number">4.</span> <span class="nav-text">流水账编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向过程编程"><span class="nav-number">5.</span> <span class="nav-text">面向过程编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_uv">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ronghuaxueleng"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+  
+    <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = '0 ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+  
+
+</body>
+</html>
