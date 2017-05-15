@@ -254,8 +254,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/" itemprop="url">
-                  抽象类和接口
+                <a class="post-title-link" href="/2016/10/13/javascript/从 JavaScript 数组去重谈性能优化/" itemprop="url">
+                  从 JavaScript 数组去重谈性能优化
                 </a>
               
             
@@ -282,8 +282,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
 
@@ -298,8 +298,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/" itemprop="commentsCount"></span>
+                <a href="/2016/10/13/javascript/从 JavaScript 数组去重谈性能优化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/13/javascript/从 JavaScript 数组去重谈性能优化/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -309,10 +309,11 @@
 
           
           
-		  	 <span id="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/"class="leancloud_visitors"  data-flag-title="抽象类和接口">
-             阅读次数 &nbsp; | &nbsp;
-            </span>
-		  
+            &nbsp; | &nbsp;
+            <span id="/2016/10/13/javascript/从 JavaScript 数组去重谈性能优化/"class="leancloud_visitors" data-flag-title="从 JavaScript 数组去重谈性能优化">
+                     &nbsp;阅读次数
+                    </span>
+          
 
           
         </div>
@@ -328,288 +329,17 @@
       
         
           
-          &#x7B80;&#x4ECB;&#x5BF9;&#x4E8E;&#x7F16;&#x7A0B;&#x6765;&#x8BF4;&#xFF0C;&#x5BF9;&#x4E8B;&#x7269;&#x7684;&#x62BD;&#x8C61;&#x662F;&#x4E00;&#x4E2A;&#x8001;&#x751F;&#x5E38;&#x8C08;&#x7684;&#x8BDD;&#x9898;&#xFF0C;&#x62BD;&#x8C61;&#x95EE;&#x9898;&#x66F4;&#x5229;&#x4E8E;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;&#x4EE5;&#x53CA;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x3002;&#x548C;C/C++&#xFF0C;Java&#xFF0C;Python&#x7B49;&#x8BED;&#x8A00;&#x4E00;&#x6837;&#xFF0C;PHP&#x4E5F;&#x652F;&#x6301;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#xFF0C;&#x4F46;&#x662F;&#x53C8;&#x6709;&#x7565;&#x5FAE;&#x533A;&#x522B;&#xFF0C;&#x5982;PHP&#x652F;&#x6301;&#x5728;&#x63A5;&#x53E3;&#x4E2D;&#x5B9A;&#x4E49;&#x5E38;&#x91CF;&#xFF0C;&#x4F46;&#x662F;&#x4E0D;&#x652F;&#x6301;&#x62BD;&#x8C61;&#x53D8;&#x91CF;&#x3002;
-&#x62BD;&#x8C61;/Abstraction
-&#x5BF9;&#x4E8B;&#x7269;&#x7684;&#x62BD;&#x8C61;&#x662F;&#x6307;&#xFF0C;&#x533A;&#x522B;&#x4E24;&#x4E2A;&#x4E0D;&#x540C;&#x4E8B;&#x7269;&#x4E4B;&#x95F4;&#x7684;&#x672C;&#x8D28;&#x72
+          &#x7F18;&#x7531;JavaScript &#x6570;&#x7EC4;&#x53BB;&#x91CD;&#x7ECF;&#x5E38;&#x51FA;&#x73B0;&#x5728;&#x524D;&#x7AEF;&#x62DB;&#x8058;&#x7684;&#x7B14;&#x8BD5;&#x9898;&#x91CC;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;
+
+&#x6709;&#x6570;&#x7EC4; var arr = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;1&apos;, 0, &apos;c&apos;, 1, &apos;&apos;, 1, 0]&#xFF0C;&#x8BF7;&#x7528; JavaScript&#x5B9E;&#x73B0;&#x53BB;&#x91CD;&#x51FD;&#x6570; unqiue&#xFF0C;&#x4F7F;&#x5F97; unique(arr) &#x8FD4;&#x56DE; [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;1&apos;, 0, 1, &apos;&apos;]
+
+&#x4F5C;&#x4E3A;&#x7B14;&#x8BD5;&#x9898;&#xFF0C;&#x8003;&#x70B9;&#x6709;&#x4E8C;&#xFF1A;
+
+&#x6B63;&#x786E;&#x3002;&#x522B;&#x5C0F;&#x770B;&#x8FD9;&#x4E2A;&#x8003;&#x70B9;&#xFF0C;&#x8003;&#x8651;&#x5230; JavaScript &#x7ECF;&#x5E38;&#x8981;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x4E0A;&#x8FD0;&#x884C;&#xFF0C;&#x5728;&#x5343;&#x59FF;&#x767E;&#x6001;&#x7684;&#x5404;&#x79CD;&#x6D4F;&#x89C8;&#x5668;&#x73AF;&#x5883;&#x4E0B;&#x8981;&#x4FDD;&#x
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(10)：适配器模式/" itemprop="url">
-                  适配器模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
-              2016-10-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/13/php设计模式/PHP设计模式(10)：适配器模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/13/php设计模式/PHP设计模式(10)：适配器模式/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-		  	 <span id="/2016/10/13/php设计模式/PHP设计模式(10)：适配器模式/"class="leancloud_visitors"  data-flag-title="适配器模式">
-             阅读次数 &nbsp; | &nbsp;
-            </span>
-		  
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          &#x7B80;&#x4ECB;&#x5728;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x4E03;)&#xFF1A;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x5206;&#x7C7B;][2]&#x4E2D;&#x6211;&#x4EEC;&#x63D0;&#x5230;&#x8FC7;&#x7ED3;&#x6784;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(Structuralpatterns)&#xFF0C;&#x7ED3;&#x6784;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E13;&#x6CE8;&#x4E8E;&#x8BBE;&#x8BA1;&#x5BF9;&#x8C61;(Object)&#x548C;&#x5B9E;&#x4F8B;(Instance)&#x7684;&#x6784;&#x5EFA;&#x3001;&#x7EC4;&#x5408;&#x8FC7;&#x7A0B;&#x3002;&#x7ED3;&#x6784;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x5305;&#x62EC;&#x4E0B;&#x9762;&#x4E03;&#x79CD;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1A;
-
-&#x9002;&#x914D;&#x5668;(Adapter)
-
-&#x6865;&#x63A5;(Bridge)
-
-&#x5408;&#x6210;(Composite)
-
-&#x88C5;&#x9970;(Decorator)
-
-&#x5916;&#x90E8;(Facade)
-
-&#x8F7B;&#x91CF;(Flyweight)
-
-&#x4EE3;&#x7406;(Proxy)
-
-
-&#x8BF7;&#x65E0;&#x89C6;&#x62D7;&#x53E3;&#x7684;&#x4E2D;&#x6587;&#x7FFB;&#x8BD1;&#x3002;&#x7ED3;&#x6784;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x7740;&#x91CD;&#x4E8E;&#x4F4E;&#x8026;&#x5408;&#x300
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(10)：适配器模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/" itemprop="url">
-                  基础编程模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
-              2016-10-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-		  	 <span id="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/"class="leancloud_visitors"  data-flag-title="基础编程模式">
-             阅读次数 &nbsp; | &nbsp;
-            </span>
-		  
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          &#x7B80;&#x4ECB;&#x4FD7;&#x8BDD;&#x8BF4;&#xFF0C;&#x201C;PHP&#x662F;&#x4E16;&#x754C;&#x4E0A;&#x6700;&#x597D;&#x7684;&#x8BED;&#x8A00;&#x201D;&#xFF0C;&#x56E0;&#x4E3A;PHP&#x4EC0;&#x4E48;&#x90FD;&#x80FD;&#x5E72;&#x3002;&#x4F46;&#x662F;&#x5728;PHP&#x7F16;&#x7A0B;&#x4E2D;&#xFF0C;&#x4F60;&#x662F;&#x5426;&#x4F1A;&#x9047;&#x5230;&#x8FD9;&#x6837;&#x7684;&#x56F0;&#x60D1;&#xFF1A;&#x660E;&#x660E;&#x662F;&#x76F8;&#x540C;&#x7684;&#x9700;&#x6C42;&#xFF0C;&#x4F46;&#x662F;&#x4E4B;&#x524D;&#x5199;&#x7684;&#x4EE3;&#x7801;&#x5374;&#x5E76;&#x4E0D;&#x80FD;&#x91CD;&#x7528;&#xFF0C;&#x7A0D;&#x5FAE;&#x4FEE;&#x6539;&#x4E0D;&#x6EE1;&#x8DB3;&#x9700;&#x6C42;&#xFF0C;&#x5927;&#x6539;&#x53C8;&#x4F1A;&#x8BA9;&#x9875;&#x9762;&#x53D8;&#x6837;&#x3002;&#x662F;&#x7684;&#xFF0C;&#x7531;&#x4E8E;PHP&#x4EC0;&#x4E48;&#x90FD;&#x80FD;&#x5E72;&#xFF0C;&#x4F46;&#x662F;&#x9AD8;&#x5EA6;&#x7075;&#x6D3B;&#x6027;&#x964D;&#x4F4E;&#x4E86;&#x4EE3;&#x7801;&#x7684;&#x7ED3;&#x6784;&#x6027;&#x3002;&#x867D;&#x7136;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x4
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/13/javascript/从 JavaScript 数组去重谈性能优化/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -715,10 +445,11 @@
 
           
           
-		  	 <span id="/2016/10/13/php设计模式/PHP设计模式(5)：多态/"class="leancloud_visitors"  data-flag-title="多态">
-             阅读次数 &nbsp; | &nbsp;
-            </span>
-		  
+            &nbsp; | &nbsp;
+            <span id="/2016/10/13/php设计模式/PHP设计模式(5)：多态/"class="leancloud_visitors" data-flag-title="多态">
+                     &nbsp;阅读次数
+                    </span>
+          
 
           
         </div>
@@ -739,6 +470,146 @@
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(5)：多态/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(4)：继承/" itemprop="url">
+                  继承
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
+              2016-10-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/13/php设计模式/PHP设计模式(4)：继承/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/13/php设计模式/PHP设计模式(4)：继承/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+            &nbsp; | &nbsp;
+            <span id="/2016/10/13/php设计模式/PHP设计模式(4)：继承/"class="leancloud_visitors" data-flag-title="继承">
+                     &nbsp;阅读次数
+                    </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          &#x7B80;&#x4ECB;&#x5728;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x4E8C;)&#xFF1A;&#x62BD;&#x8C61;&#x7C7B;&#x548C;&#x63A5;&#x53E3;][2]&#x4EE5;&#x53CA;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x4E09;)&#xFF1A;&#x5C01;&#x88C5;][3]&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x89C1;&#x8FC7;&#x7EE7;&#x627F;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;extends&#x5173;&#x952E;&#x5B57;&#x3002;&#x548C;C/C++&#xFF0C;Java&#xFF0C;Python&#x7B49;&#x8BED;&#x8A00;&#x4E00;&#x6837;&#xFF0C;PHP&#x4E5F;&#x652F;&#x6301;&#x7EE7;&#x627F;&#xFF0C;&#x800C;&#x4E14;&#x548C;&#x5176;&#x4ED6;&#x8BED;&#x8A00;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;&#x3002;
+&#x7EE7;&#x627F;/Inheritance&#x8FD8;&#x662F;&#x7528;&#x52A8;&#x7269;&#x3001;&#x9CB8;&#x9C7C;&#x548C;&#x9CA4;&#x9C7C;&#x6765;&#x4E3E;&#x4F8B;&#xFF1A;
+&lt;?php
+abstract class Animal {
+  protected $name;
+
+  protected function chew($food) {
+    echo $this-&gt;name . &quot; is chewing &quot; . $food . &quot;.\n&quot;;
+  }
+  protected function digest($food) {
+    echo $this-&gt;nam
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(4)：继承/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -844,10 +715,11 @@
 
           
           
-		  	 <span id="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/"class="leancloud_visitors"  data-flag-title="MVC">
-             阅读次数 &nbsp; | &nbsp;
-            </span>
-		  
+            &nbsp; | &nbsp;
+            <span id="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/"class="leancloud_visitors" data-flag-title="MVC">
+                     &nbsp;阅读次数
+                    </span>
+          
 
           
         </div>
@@ -872,6 +744,137 @@ MVC&#x56DE;&#x5230
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(7)：设计模式分类/" itemprop="url">
+                  设计模式分类
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
+              2016-10-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/13/php设计模式/PHP设计模式(7)：设计模式分类/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/13/php设计模式/PHP设计模式(7)：设计模式分类/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+            &nbsp; | &nbsp;
+            <span id="/2016/10/13/php设计模式/PHP设计模式(7)：设计模式分类/"class="leancloud_visitors" data-flag-title="设计模式分类">
+                     &nbsp;阅读次数
+                    </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          &#x7B80;&#x4ECB;&#x6839;&#x636E;&#x76EE;&#x7684;&#x548C;&#x8303;&#x56F4;&#xFF0C;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;&#x4E94;&#x7C7B;&#x3002;&#x6309;&#x7167;&#x76EE;&#x7684;&#x5206;&#x4E3A;&#xFF1A;&#x521B;&#x5EFA;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF0C;&#x7ED3;&#x6784;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF0C;&#x4EE5;&#x53CA;&#x884C;&#x4E3A;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x3002;&#x6309;&#x7167;&#x8303;&#x56F4;&#x5206;&#x4E3A;&#xFF1A;&#x7C7B;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF0C;&#x4EE5;&#x53CA;&#x5BF9;&#x8C61;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x3002;&#x4E0B;&#x9762;&#x5206;&#x522B;&#x4ECB;&#x7ECD;&#x3002;
+&#x521B;&#x5EFA;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x521B;&#x5EFA;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(Creational patterns)&#xFF0C;&#x7528;&#x4E8E;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x65F6;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x3002;&#x66F4;&#x5177;&#x4F53;&#x4E00;&#x70B9;&#xFF0C;&#x521D;&#x59CB;&#x5316;&#x5BF9;&#x8C61;&#x6D41;&#x7A0B;&#x7684;&#x8BBE;&#
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(7)：设计模式分类/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
