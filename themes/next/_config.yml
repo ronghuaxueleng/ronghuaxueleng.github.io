@@ -300,10 +300,6 @@ facebook_comments_plugin:
 
 # Show number of visitors to each article.
 # You can visit https://leancloud.cn get AppID and AppKey.
-leancloud_visitors:
-  enable: true
-  app_id: bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz
-  app_key: 9kCQuNi7NFq5MdDBn9J1Xj1r
 
 # Show PV/UV of the website/page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi/

@@ -91,6 +91,11 @@ pagination_dir: page
 ##theme: yilia
 theme: next
 
+leancloud_visitors:
+  enable: true
+  app_id: bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz
+  app_key: 9kCQuNi7NFq5MdDBn9J1Xj1r
+
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
