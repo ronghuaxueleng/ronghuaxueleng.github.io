@@ -394,3 +394,9 @@ images: images
 version: 5.0.1
 
 since: 2015
+
+
+leancloud_visitors:
+  enable: true
+  app_id: bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz
+  app_key: 9kCQuNi7NFq5MdDBn9J1Xj1r
