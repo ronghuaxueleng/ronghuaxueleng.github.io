@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ronghuaxueleng.github.io/"/>
-  <updated>2016-10-13T07:53:52.988Z</updated>
+  <updated>2016-10-13T07:54:00.581Z</updated>
   <id>http://ronghuaxueleng.github.io/</id>
   
   <author>
@@ -16,58 +16,72 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>多态</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(5)%EF%BC%9A%E5%A4%9A%E6%80%81/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(5)：多态/</id>
+    <title>继承</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(4)%EF%BC%9A%E7%BB%A7%E6%89%BF/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(4)：继承/</id>
     <published>2016-10-12T16:00:00.000Z</published>
-    <updated>2016-10-13T07:53:52.988Z</updated>
+    <updated>2016-10-13T07:54:00.581Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>&#x5728;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x56DB;)&#xFF1A;&#x7EE7;&#x627F;][2]&#x4E2D;&#x6211;&#x4EEC;&#x4ECB;&#x7ECD;&#x4E86;&#x7EE7;&#x627F;&#xFF0C;&#x5229;&#x7528;extends&#x6765;&#x8FDB;&#x884C;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x7684;&#x65B9;&#x6CD5;&#x3002;<br>&#x5728;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x4E8C;)&#xFF1A;&#x62BD;&#x8C61;&#x7C7B;&#x548C;&#x63A5;&#x53E3;][3]&#x4E2D;&#x6211;&#x4EEC;&#x4ECB;&#x7ECD;&#x4E86;&#x63A5;&#x53E3;&#xFF0C;&#x4E8B;&#x5B9E;&#x4E0A;&#x4E5F;&#x5B58;&#x5728;&#x5229;&#x7528;interface&#x7684;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x65B9;&#x6CD5;&#xFF0C;&#x90A3;&#x5C31;&#x662F;&#x591A;&#x6001;&#x3002;<br>&#x548C;C/C++&#xFF0C;Java&#xFF0C;Python&#x7B49;&#x8BED;&#x8A00;&#x4E00;&#x6837;&#xFF0C;PHP&#x4E5F;&#x652F;&#x6301;&#x591A;&#x6001;&#x3002;&#x591A;&#x6001;&#x66F4;&#x591A;&#x662F;&#x662F;&#x4E00;&#x79CD;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x8BA9;&#x540C;&#x4E00;&#x7C7B;&#x5BF9;&#x8C61;&#x6267;&#x884C;&#x540C;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x4F46;&#x5374;&#x5B9E;&#x73B0;&#x4E0D;&#x540C;&#x7684;&#x903B;&#x8F91;&#x529F;&#x80FD;<br>&#x3002;</p>
-<h2 id="&#x591A;&#x6001;polymorphism"><a href="#&#x591A;&#x6001;-Polymorphism" class="headerlink" title="&#x591A;&#x6001;/Polymorphism"></a>&#x591A;&#x6001;/Polymorphism</h2><p>&#x8FD8;&#x662F;&#x7528;&#x52A8;&#x7269;&#x3001;&#x9CB8;&#x9C7C;&#x548C;&#x9CA4;&#x9C7C;&#x6765;&#x4E3E;&#x4F8B;&#xFF1A;</p>
+    <content type="html"><![CDATA[<h2 id="&#x7B80;&#x4ECB;"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</h2><p>&#x5728;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x4E8C;)&#xFF1A;&#x62BD;&#x8C61;&#x7C7B;&#x548C;&#x63A5;&#x53E3;][2]&#x4EE5;&#x53CA;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x4E09;)&#xFF1A;&#x5C01;&#x88C5;][3]&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x89C1;&#x8FC7;&#x7EE7;&#x627F;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;extends&#x5173;&#x952E;&#x5B57;&#x3002;<br>&#x548C;C/C++&#xFF0C;Java&#xFF0C;Python&#x7B49;&#x8BED;&#x8A00;&#x4E00;&#x6837;&#xFF0C;PHP&#x4E5F;&#x652F;&#x6301;&#x7EE7;&#x627F;&#xFF0C;&#x800C;&#x4E14;&#x548C;&#x5176;&#x4ED6;&#x8BED;&#x8A00;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;&#x3002;</p>
+<h2 id="&#x7EE7;&#x627F;inheritance"><a href="#&#x7EE7;&#x627F;-Inheritance" class="headerlink" title="&#x7EE7;&#x627F;/Inheritance"></a>&#x7EE7;&#x627F;/Inheritance</h2><p>&#x8FD8;&#x662F;&#x7528;&#x52A8;&#x7269;&#x3001;&#x9CB8;&#x9C7C;&#x548C;&#x9CA4;&#x9C7C;&#x6765;&#x4E3E;&#x4F8B;&#xFF1A;</p>
 <pre><code>&lt;?php
-interface IEat {
-  function eatFish();
-  function eatMoss();
-}
+abstract class Animal {
+  protected $name;
 
-class Whale implements IEat {
-  public function eatFish() {
-    echo &quot;Whale eats fish.\n&quot;;
+  protected function chew($food) {
+    echo $this-&gt;name . &quot; is chewing &quot; . $food . &quot;.\n&quot;;
   }
-  public function eatMoss() {
-    echo &quot;Whale doesn&apos;t eat fish\n&quot;;
+  protected function digest($food) {
+    echo $this-&gt;name . &quot; is digesting &quot; . $food . &quot;.\n&quot;;
   }
 }
 
-class Carp implements IEat {
-  public function eatFish() {
-    echo &quot;Carp doesn&apos;t eat moss.\n&quot;;
+class Whale extends Animal {
+  public function __construct() {
+    $this-&gt;name = &quot;Whale&quot;;
   }
-  public function eatMoss() {
-    echo &quot;Carp eats moss.\n&quot;;
+  public function eat($food) {
+    $this-&gt;chew($food);
+    $this-&gt;digest($food);
+  }
+}
+
+class Carp extends Animal {
+  public function __construct() {
+    $this-&gt;name = &quot;Carp&quot;;
+  }
+  public function eat($food) {
+    $this-&gt;chew($food);
+    $this-&gt;digest($food);
   }
 }
 
 $whale = new Whale();
-$whale-&gt;eatFish();
-$whale-&gt;eatMoss();
+$whale-&gt;eat(&quot;fish&quot;);
 $carp = new Carp();
-$carp-&gt;eatFish();
-$carp-&gt;eatMoss();
+$carp-&gt;eat(&quot;moss&quot;);
 ?&gt;
 </code></pre><p>&#x8FD0;&#x884C;&#x4E00;&#x4E0B;&#xFF1A;</p>
 <pre><code>$ php Inheritance.php
-Whale eats fish.
-Whale doesn&apos;t eat fish.
-Carp eats moss.
-Carp doesn&apos;t eat moss.
-</code></pre><p>&#x6CE8;&#x610F;PHP&#x7684;&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#x4E0D;&#x5305;&#x542B;&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x56E0;&#x6B64;&#x5B8C;&#x5168;&#x53EF;&#x4EE5;&#x7ED9;&#x4E0D;&#x540C;&#x7684;&#x63A5;&#x53E3;&#x5B9E;&#x73B0;&#x8FD4;&#x56DE;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x3002;&#x8FD9;&#x4E00;&#x70B9;&#x548C;C/C++&#xFF0C;Java&#x7B49;&#x8BED;&#x8A00;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x3002;&#x6B64;&#x5916;&#xFF0C;&#x8FD4;&#x56DE;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x751A;&#x81F3;&#x4E0D;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#xFF0C;&#x5BF9;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x6765;&#x8BF4;&#xFF0C;&#x4F1A;&#x989D;&#x5916;&#x589E;&#x52A0;&#x7EF4;&#x62A4;&#x6210;&#x672C;&#xFF0C;&#x5DF2;&#x7ECF;&#x548C;&#x4F7F;&#x7528;&#x63A5;&#x53E3;&#x7684;&#x521D;&#x8877;&#x4E0D;&#x540C;&#x4E86;&#xFF08;&#x63A5;&#x53E3;&#x4E3A;&#x4E86;&#x5C01;&#x88C5;&#x5B9E;&#x73B0;&#xFF0C;&#x800C;&#x4E0D;&#x540C;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x4E8B;&#x5B9E;&#x4E0A;&#x662F;&#x9700;&#x8981;&#x8C03;&#x7528;&#x8005;&#x53BB;&#x7406;&#x89E3;&#x5B9E;&#x73B0;&#x7684;&#xFF09;&#x3002;</p>
-<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>&#x5408;&#x7406;&#x5229;&#x7528;&#x591A;&#x6001;&#x5BF9;&#x63A5;&#x53E3;&#x8FDB;&#x884C;&#x4E0D;&#x540C;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x7B80;&#x5316;&#x4F60;&#x7684;&#x7F16;&#x7A0B;&#x6A21;&#x578B;&#xFF0C;&#x8BA9;&#x4EE3;&#x7801;&#x6613;&#x4E8E;&#x7EF4;&#x62A4;&#x3002;</p>
+Whale is chewing fish.
+Whale is digesting fish.
+Carp is chewing moss.
+Carp is digesting moss.
+</code></pre><p>&#x6CE8;&#x610F;$this&#x5728;Animal&#x7C7B;&#x3001;Whale&#x7C7B;&#x3001;Carp&#x7C7B;&#x4E2D;&#x7684;&#x7528;&#x6CD5;&#x3002;<br>&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x770B;&#x4F3C;&#x5E38;&#x89C1;&#xFF0C;&#x5B9E;&#x5219;&#x6697;&#x542B;&#x7384;&#x673A;&#x3002;&#x5BF9;&#x4E8E;&#x4E00;&#x4E2A;&#x597D;&#x7684;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#xFF0C;&#x9700;&#x8981;&#xFF1A;</p>
+<ol>
+<li><p>&#x7C7B;&#x548C;&#x7C7B;&#x4E4B;&#x95F4;&#x5E94;&#x8BE5;&#x662F;&#x4F4E;&#x8026;&#x5408;&#x7684;&#x3002;</p>
+</li>
+<li><p>&#x7EE7;&#x627F;&#x901A;&#x5E38;&#x662F;&#x7EE7;&#x627F;&#x81EA;&#x62BD;&#x8C61;&#x7C7B;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5177;&#x4F53;&#x7C7B;&#x3002;</p>
+</li>
+<li><p>&#x901A;&#x5E38;&#x76F4;&#x63A5;&#x7EE7;&#x627F;&#x62BD;&#x8C61;&#x7C7B;&#x7684;&#x5177;&#x4F53;&#x7C7B;&#x53EA;&#x6709;&#x4E00;&#x5C42;&#xFF0C;&#x5728;&#x62BD;&#x8C61;&#x7C7B;&#x4E2D;&#x7528;protected&#x6765;&#x9650;&#x5B9A;&#x3002;</p>
+</li>
+</ol>
+<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>&#x5408;&#x7406;&#x7684;&#x7EE7;&#x627F;&#x5BF9;&#x4E8E;&#x597D;&#x7684;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x540C;&#x6837;&#x662F;&#x5FC5;&#x4E0D;&#x53EF;&#x5C11;&#x7684;&#xFF0C;&#x7ED3;&#x5408;abstract&#x548C;protected&#xFF0C;&#x80FD;&#x8BA9;&#x4F60;&#x7F16;&#x5199;&#x51FA;&#x7ED3;&#x6784;&#x6E05;&#x6670;&#x7684;&#x4EE3;&#x7801;&#x3002;</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;&amp;#x5728;[PHP&amp;#x8BBE;&amp;#x8BA1;&amp;#
+      &lt;h2 id=&quot;&amp;#x7B80;&amp;#x4ECB;&quot;&gt;&lt;a href=&quot;#&amp;#x7B80;&amp;#x4ECB;&quot; class=&quot;headerlink&quot; title=&quot;&amp;#x7B80;&amp;#x4ECB;&quot;&gt;&lt;/a&gt;&amp;#x7B80;&amp;#x4ECB;&lt;/h2&gt;&lt;p&gt;&amp;#x5728;[PHP&amp;#
     
     </summary>
     
@@ -79,129 +93,128 @@ Carp doesn&apos;t eat moss.
   </entry>
   
   <entry>
-    <title>适配器模式</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(10)%EF%BC%9A%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(10)：适配器模式/</id>
+    <title>封装</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(3)%EF%BC%9A%E5%B0%81%E8%A3%85/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(3)：封装/</id>
     <published>2016-10-12T16:00:00.000Z</published>
-    <updated>2016-10-13T07:56:03.613Z</updated>
+    <updated>2016-10-13T07:54:07.415Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="&#x7B80;&#x4ECB;"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</h2><p>&#x5728;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x4E03;)&#xFF1A;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x5206;&#x7C7B;][2]&#x4E2D;&#x6211;&#x4EEC;&#x63D0;&#x5230;&#x8FC7;&#x7ED3;&#x6784;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(Structural<br>patterns)&#xFF0C;&#x7ED3;&#x6784;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E13;&#x6CE8;&#x4E8E;&#x8BBE;&#x8BA1;&#x5BF9;&#x8C61;(Object)&#x548C;&#x5B9E;&#x4F8B;(Instance)&#x7684;&#x6784;&#x5EFA;&#x3001;&#x7EC4;&#x5408;&#x8FC7;&#x7A0B;&#x3002;<br>&#x7ED3;&#x6784;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x5305;&#x62EC;&#x4E0B;&#x9762;&#x4E03;&#x79CD;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1A;</p>
-<ol>
-<li><p>&#x9002;&#x914D;&#x5668;(Adapter)</p>
-</li>
-<li><p>&#x6865;&#x63A5;(Bridge)</p>
-</li>
-<li><p>&#x5408;&#x6210;(Composite)</p>
-</li>
-<li><p>&#x88C5;&#x9970;(Decorator)</p>
-</li>
-<li><p>&#x5916;&#x90E8;(Facade)</p>
-</li>
-<li><p>&#x8F7B;&#x91CF;(Flyweight)</p>
-</li>
-<li><p>&#x4EE3;&#x7406;(Proxy)</p>
-</li>
-</ol>
-<p>&#x8BF7;&#x65E0;&#x89C6;&#x62D7;&#x53E3;&#x7684;&#x4E2D;&#x6587;&#x7FFB;&#x8BD1;&#x3002;&#x7ED3;&#x6784;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x7740;&#x91CD;&#x4E8E;&#x4F4E;&#x8026;&#x5408;&#x3001;&#x9AD8;&#x590D;&#x7528;&#x3001;&#x9AD8;&#x53EF;&#x7EF4;&#x62A4;&#x6027;&#x3001;&#x9AD8;&#x62D3;&#x5C55;&#x6027;&#x7684;&#x8BBE;&#x8BA1;&#x539F;&#x5219;&#x3002;</p>
-<h2 id="&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;"><a href="#&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;" class="headerlink" title="&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;"></a>&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;</h2><p>&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x662F;&#x4E00;&#x79CD;&#x5229;&#x7528;&#x9002;&#x914D;&#x5668;&#x5C06;&#x73B0;&#x6709;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x9002;&#x914D;&#x5230;&#x5DF2;&#x6709;&#x63A5;&#x53E3;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF0C;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x4F8B;&#x5B50;&#x5C31;&#x662F;&#x53D8;&#x538B;&#x5668;&#xFF0C;&#x5C06;&#x5DF2;&#x6709;&#x7684;5V&#x8F93;&#x5165;&#x7684;&#x7535;&#x5668;&#xFF0C;&#x901A;&#x8FC7;&#x53D8;&#x538B;&#x5668;&#xFF0C;&#x9002;&#x914D;&#x5230;220V&#x7684;&#x7535;&#x6E90;&#x63D2;&#x5EA7;&#x3002;<br>&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x5229;&#x7528;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x56DB;)&#xFF1A;&#x7EE7;&#x627F;][3]&#x4E2D;&#x6211;&#x4EEC;&#x63D0;&#x5230;&#x8FC7;&#x7684;&#x7EE7;&#x627F;(inheritance)&#xFF0C;&#x4EE5;&#x53CA;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x516D;)&#xFF1A;MVC][4]&#x4E2D;&#x6211;&#x4EEC;&#x63D0;&#x5230;&#x8FC7;&#x7684;&#x7EC4;&#x4EF6;(composition)&#x6765;&#x8FDB;&#x884C;&#x6A21;&#x5F0F;&#x8BBE;&#x8BA1;&#x3002;<br>&#x76F8;&#x6BD4;&#x7EE7;&#x627F;&#xFF0C;&#x7EC4;&#x4EF6;&#x53EF;&#x7528;&#x6027;&#x9AD8;&#xFF0C;&#x4F4E;&#x8026;&#x5408;&#xFF0C;&#x5197;&#x4F59;&#x5EA6;&#x4F4E;&#xFF0C;&#x56E0;&#x6B64;&#x63A8;&#x8350;&#x91C7;&#x7528;&#x7EC4;&#x4EF6;&#x7684;&#x6A21;&#x5F0F;&#x6765;&#x8FDB;&#x884C;&#x8BBE;&#x8BA1;&#x3002;</p>
-<h2 id="&#x4F55;&#x65F6;&#x4F7F;&#x7528;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;"><a href="#&#x4F55;&#x65F6;&#x4F7F;&#x7528;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#xFF1F;" class="headerlink" title="&#x4F55;&#x65F6;&#x4F7F;&#x7528;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#xFF1F;"></a>&#x4F55;&#x65F6;&#x4F7F;&#x7528;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#xFF1F;</h2><p>&#x7B80;&#x5355;&#x6765;&#x8BF4;&#xFF0C;&#x5F53;&#x4F60;&#x7684;&#x5B9E;&#x73B0;&#x548C;&#x9700;&#x8981;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x90FD;&#x65E0;&#x6CD5;&#x4FEE;&#x6539;&#x7684;&#x65F6;&#x5019;&#x3002;<br>&#x4F8B;&#x5982;&#xFF0C;&#x4F60;&#x9700;&#x8981;&#x7ED9;&#x7532;&#x65B9;&#x5DF2;&#x6709;&#x7684;&#x7CFB;&#x7EDF;&#x505A;&#x6807;&#x51C6;&#x7684;&#x517C;&#x5BB9;&#xFF0C;&#x6807;&#x51C6;&#x4E0D;&#x53EF;&#x4FEE;&#x6539;&#xFF0C;&#x7532;&#x65B9;&#x7684;&#x7CFB;&#x7EDF;&#x4E5F;&#x4E0D;&#x53EF;&#x4FEE;&#x6539;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x4F60;&#x5C31;&#x9700;&#x8981;&#x9002;&#x914D;&#x5668;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E86;&#x3002;<br>&#x5BF9;&#x4E8E;web&#x7F16;&#x7A0B;&#x6765;&#x8BF4;&#xFF0C;&#x5C06;&#x4F60;&#x73B0;&#x6709;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x548C;&#x4E09;&#x65B9;&#x5E93;&#x7ED3;&#x5408;&#x8D77;&#x6765;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x3002;</p>
-<h2 id="&#x4F7F;&#x7528;&#x7EE7;&#x627F;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;"><a href="#&#x4F7F;&#x7528;&#x7EE7;&#x627F;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;" class="headerlink" title="&#x4F7F;&#x7528;&#x7EE7;&#x627F;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;"></a>&#x4F7F;&#x7528;&#x7EE7;&#x627F;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;</h2><p>&#x7B80;&#x5355;&#x6765;&#x8BF4;&#xFF0C;&#x5C31;&#x662F;&#xFF1A;</p>
-<pre><code>&lt;?php
-class Adapter extends YourClass implements OtherInterface
-?&gt;
-</code></pre><p>&#x8FD8;&#x662F;&#x7528;&#x524D;&#x9762;&#x7684;&#x9CB8;&#x9C7C;&#x548C;&#x9CA4;&#x9C7C;&#x7684;&#x4F8B;&#x5B50;&#x6765;&#x8BF4;&#x660E;&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x9002;&#x914D;&#x5668;&#xFF0C;&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x5B9E;&#x73B0;&#x4E86;&#x9CB8;&#x9C7C;&#x7C7B;&#x548C;&#x9CA4;&#x9C7C;&#x7C7B;&#xFF1A;</p>
+    <content type="html"><![CDATA[<blockquote>
+<p>&#x539F;&#x6587;&#x5730;&#x5740;&#xFF1A;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x4E09;)&#xFF1A;&#x5C01;&#x88C5;][1]</p>
+</blockquote>
+<h2 id="&#x7B80;&#x4ECB;"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</h2><p>&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;&#x4E2D;&#xFF0C;&#x4E00;&#x5207;&#x90FD;&#x662F;&#x5BF9;&#x8C61;&#xFF0C;&#x5BF9;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x5C01;&#x88C5;&#xFF0C;&#x4E5F;&#x6210;&#x4E86;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;&#x4E2D;&#x5FC5;&#x4E0D;&#x53EF;&#x5C11;&#x7684;&#x90E8;&#x5206;&#x3002;<br>&#x548C;C/C++&#xFF0C;Java&#xFF0C;Python&#x7B49;&#x8BED;&#x8A00;&#x4E00;&#x6837;&#xFF0C;PHP&#x4E5F;&#x652F;&#x6301;&#x5C01;&#x88C5;&#x3002;</p>
+<h2 id="&#x5C01;&#x88C5;encapsulation"><a href="#&#x5C01;&#x88C5;-Encapsulation" class="headerlink" title="&#x5C01;&#x88C5;/Encapsulation"></a>&#x5C01;&#x88C5;/Encapsulation</h2><blockquote>
+<p>&#x5BF9;&#x4E8B;&#x7269;&#x7684;&#x5C01;&#x88C5;&#x662F;&#x6307;&#xFF0C;&#x5C06;&#x4E8B;&#x7269;&#x8FDB;&#x884C;&#x62BD;&#x8C61;&#x540E;&#xFF0C;&#x63D0;&#x4F9B;&#x62BD;&#x8C61;&#x6982;&#x5FF5;&#x7684;&#x5B9E;&#x73B0;&#x7684;&#x5177;&#x4F53;&#x65B9;&#x6CD5;&#x3002;</p>
+</blockquote>
+<p>&#x542C;&#x8D77;&#x6765;&#x5F88;&#x62D7;&#x53E3;&#xFF0C;&#x8FD8;&#x662F;&#x4E3E;&#x9CB8;&#x9C7C;&#x7684;&#x4F8B;&#x5B50;&#x3002;<br>&#x5BF9;&#x4E8E;&#x9CB8;&#x9C7C;&#x6765;&#x8BF4;&#xFF0C;&#x9700;&#x8981;&#x5403;&#x4E1C;&#x897F;&#x8FD9;&#x4E2A;&#x884C;&#x4E3A;&#xFF0C;&#x5403;&#x672C;&#x8EAB;&#x662F;&#x4E00;&#x4E2A;&#x62BD;&#x8C61;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x56E0;&#x4E3A;&#x5177;&#x4F53;&#x5230;&#x600E;&#x4E48;&#x5403;&#xFF0C;&#x662F;&#x5480;&#x56BC;&#x548C;&#x6D88;&#x5316;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x751A;&#x81F3;&#x5982;&#x4F55;&#x5480;&#x56BC;&#x548C;&#x6D88;&#x5316;&#x4E5F;&#x662F;&#x4E0D;&#x53EF;&#x89C1;&#x7684;&#x3002;&#x5BF9;&#x5916;&#x90E8;&#x800C;&#x8A00;&#xFF0C;&#x53EF;&#x89C1;&#x7684;&#x53EA;&#x662F;&#x5403;&#x8FD9;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x5982;&#x4F55;&#x5403;&#x3001;&#x600E;&#x4E48;&#x5403;&#xFF0C;&#x662F;&#x88AB;&#x5C01;&#x88C5;&#x5728;&#x4E86;&#x9CB8;&#x9C7C;&#x7684;&#x5B9E;&#x73B0;&#x4E2D;&#x3002;&#x751A;&#x81F3;&#x53EF;&#x4EE5;&#x8BF4;&#xFF0C;&#x6D88;&#x5316;&#x7CFB;&#x7EDF;&#xFF0C;&#x88AB;&#x5C01;&#x88C5;&#x5230;&#x4E86;&#x9CB8;&#x9C7C;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x4E2D;&#xFF0C;&#x5BF9;&#x5916;&#x90E8;&#x4E0D;&#x53EF;&#x89C1;&#xFF0C;&#x4EC5;&#x4EC5;&#x9CB8;&#x9C7C;&#x81EA;&#x5DF1;&#x53EF;&#x89C1;&#x3002;</p>
+<h2 id="&#x5C01;&#x88C5;&#x65B9;&#x6CD5;"><a href="#&#x5C01;&#x88C5;&#x65B9;&#x6CD5;" class="headerlink" title="&#x5C01;&#x88C5;&#x65B9;&#x6CD5;"></a>&#x5C01;&#x88C5;&#x65B9;&#x6CD5;</h2><p>&#x548C;&#x522B;&#x7684;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x8BED;&#x8A00;&#x4E00;&#x6837;&#xFF0C;PHP&#x4E5F;&#x53EA;&#x662F;&#x4E09;&#x79CD;&#x5C01;&#x88C5;&#x6982;&#x5FF5;&#xFF1A;Private&#xFF0C;Protected&#xFF0C;Public&#x3002;</p>
+<h3 id="&#x79C1;&#x6709;private"><a href="#&#x79C1;&#x6709;-Private" class="headerlink" title="&#x79C1;&#x6709;/Private"></a>&#x79C1;&#x6709;/Private</h3><p>&#x79C1;&#x6709;&#x7684;&#x6982;&#x5FF5;&#x662F;&#xFF0C;&#x4EC5;&#x4EC5;&#x5BF9;&#x8C61;&#x5185;&#x90E8;&#x53EF;&#x89C1;&#xFF0C;&#x5916;&#x90E8;&#x4E0D;&#x53EF;&#x89C1;&#xFF0C;&#x5982;&#xFF1A;</p>
 <pre><code>&lt;?php
 class Whale {
+  private $name;
   public function __construct() {
     $this-&gt;name = &quot;Whale&quot;;
   }
-  public function eatFish() {
-    echo &quot;Whale eat fish.\n&quot;;
+  public function eat($food) {
+    chew($food);
+    digest($food);
   }
-}
-class Carp {
-  public function __construct() {
-    $this-&gt;name = &quot;Carp&quot;;
+  private function chew($food) {
+    echo &quot;Chewing &quot; . $food . &quot;\n&quot;;
   }
-  public function eatMoss() {
-    echo &quot;Carp eat moss.\n&quot;;
+  private function digest($food) {
+    echo &quot;Digest &quot; . $food . &quot;\n&quot;;
   }
 }
 ?&gt;
-</code></pre><p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x9700;&#x8981;&#x5EFA;&#x4E00;&#x4E2A;&#x52A8;&#x7269;&#x9986;&#xFF0C;&#x6709;eatFish()&#x548C;eatMoss()&#x63A5;&#x53E3;&#xFF0C;&#x52A8;&#x7269;&#x9986;&#x63A5;&#x53E3;&#x5982;&#x4E0B;&#xFF1A;</p>
+</code></pre><p>name&#x662F;&#x9CB8;&#x9C7C;&#x7684;&#x79C1;&#x6709;&#x5C5E;&#x6027;&#xFF0C;chew()&#x548C;digest()&#x662F;&#x9CB8;&#x9C7C;&#x7684;&#x79C1;&#x6709;&#x65B9;&#x6CD5;&#xFF0C;&#x5BF9;&#x4E8E;&#x5176;&#x4ED6;&#x7C7B;&#x6765;&#x8BF4;&#xFF0C;&#x90FD;&#x662F;&#x4E0D;&#x53EF;&#x89C1;&#x7684;&#x3002;&#x5BF9;&#x4E8E;&#x73B0;&#x5B9E;&#x6765;&#x8BF4;&#xFF0C;&#x6211;&#x4EEC;&#x5982;&#x679C;&#x53EA;&#x662F;&#x6CE8;&#x91CD;&#x5403;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x5FC5;&#x8981;&#x53BB;&#x5173;&#x5FC3;&#x9CB8;&#x9C7C;&#x662F;&#x5982;&#x4F55;&#x53BB;&#x5403;&#x7684;&#x3002;</p>
+<h3 id="&#x4FDD;&#x62A4;protected"><a href="#&#x4FDD;&#x62A4;-Protected" class="headerlink" title="&#x4FDD;&#x62A4;/Protected"></a>&#x4FDD;&#x62A4;/Protected</h3><p>&#x4FDD;&#x62A4;&#x7684;&#x6982;&#x5FF5;&#x662F;&#xFF0C;&#x4EC5;&#x4EC5;&#x662F;&#x81EA;&#x8EAB;&#x7C7B;&#x548C;&#x7EE7;&#x627F;&#x7C7B;&#x53EF;&#x89C1;&#xFF0C;&#x8FD9;&#x4E2A;&#x5173;&#x952E;&#x5B57;&#x7684;&#x7528;&#x9014;&#x4E3B;&#x8981;&#x662F;&#x9632;&#x6B62;&#x6EE5;&#x7528;&#x7C7B;&#x7684;&#x6D3E;&#x751F;&#xFF0C;&#x53E6;&#x5916;&#x4E09;&#x65B9;&#x5E93;&#x7F16;&#x5199;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x7528;&#x5230;&#xFF0C;&#x9632;&#x6B62;&#x8BEF;&#x7528;&#x3002;</p>
 <pre><code>&lt;?php
-interface Animal {
-  function eatFish();
-  function eatMoss();
+abstract class Animal {
+  private $name;
+  abstract public function eat($food);
+  protected function chew($food) {
+    echo &quot;Chewing &quot; . $food . &quot;\n&quot;;
+  }
+  protected function digest($food) {
+    echo &quot;Digest &quot; . $food . &quot;\n&quot;;
+  }
 }
-?&gt;
-</code></pre><p>&#x4F46;&#x662F;&#x6211;&#x4EEC;&#x4E0D;&#x80FD;&#x4FEE;&#x6539;Whale&#x548C;Carp&#x7C7B;&#xFF0C;&#x8FD9;&#x91CC;&#x5C31;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x9002;&#x914D;&#x5668;&#x4E86;&#xFF0C;&#x521B;&#x5EFA;&#x4E24;&#x4E2A;&#x9002;&#x914D;&#x5668;&#xFF1A;</p>
-<pre><code>&lt;?php
-class WhaleAdapter extends Whale implements Animal {
+
+class Whale extends Animal {
+  private $name;
   public function __construct() {
     $this-&gt;name = &quot;Whale&quot;;
   }
-  public function eatMoss() {
-    echo &quot;Whale don&apos;t eat moss.\n&quot;;
-  }
-}
-class CarpAdapter extends Carp implements Animal {
-  public function __construct() {
-    $this-&gt;name = &quot;Carp&quot;;
-  }
-  public function eatFish() {
-    echo &quot;Carp don&apos;t eat moss.\n&quot;;
+  public function eat($food) {
+    chew($food);
+    digest($food);
   }
 }
 ?&gt;
-</code></pre><p>&#x7136;&#x540E;&#x662F;&#x8C03;&#x7528;&#x4EE3;&#x7801;&#xFF1A;</p>
+</code></pre><p>&#x9CB8;&#x9C7C;&#x7C7B;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7EE7;&#x627F;&#x4F7F;&#x7528;&#x52A8;&#x7269;&#x7C7B;&#x7684;&#x5480;&#x56BC;&#x548C;&#x6D88;&#x5316;&#x65B9;&#x6CD5;&#xFF0C;&#x4F46;&#x662F;&#x522B;&#x7684;&#x7EE7;&#x627F;&#x9CB8;&#x9C7C;&#x7C7B;&#x7684;&#x7C7B;&#x5C31;&#x4E0D;&#x53EF;&#x4EE5;&#x518D;&#x4F7F;&#x7528;&#x52A8;&#x7269;&#x7C7B;&#x7684;&#x5480;&#x56BC;&#x548C;&#x6D88;&#x5316;&#x65B9;&#x6CD5;&#x4E86;&#x3002;&#x4FDD;&#x62A4;&#x66F4;&#x591A;&#x662F;&#x7528;&#x4E8E;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x8BBE;&#x8BA1;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x4E3A;&#x4E86;&#x7F16;&#x7A0B;&#x6765;&#x5B9E;&#x73B0;&#x67D0;&#x4E2A;&#x9700;&#x6C42;&#x3002;</p>
+<h3 id="&#x516C;&#x5171;public"><a href="#&#x516C;&#x5171;-Public" class="headerlink" title="&#x516C;&#x5171;/Public"></a>&#x516C;&#x5171;/Public</h3><p>&#x516C;&#x5171;&#x7684;&#x6982;&#x5FF5;&#x5C31;&#x662F;&#xFF0C;&#x4EFB;&#x4F55;&#x7C7B;&#x3001;&#x4EFB;&#x4F55;&#x4E8B;&#x7269;&#x90FD;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#xFF0C;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x9650;&#x5236;&#xFF0C;&#x8FD9;&#x91CC;&#x4E0D;&#x518D;&#x8D58;&#x8FF0;&#x3002;</p>
+<h2 id="getterssetters"><a href="#Getters-Setters" class="headerlink" title="Getters/Setters"></a>Getters/Setters</h2><p>Getters&#x548C;Setters&#x4E5F;&#x53EB;Accessors&#x548C;Mutators&#xFF0C;&#x5728;Java/C#&#x7B49;&#x8BED;&#x8A00;&#x4E2D;&#x5E38;&#x4EE5;get()/set()&#x65B9;&#x6CD5;&#x51FA;&#x73B0;&#x3002;<br>&#x5BF9;&#x4E8E;&#x8FD9;&#x4E24;&#x4E2A;&#x4E1C;&#x897F;&#x7684;&#x4E89;&#x8BAE;&#x5F88;&#x5927;&#xFF0C;&#x8003;&#x8651;&#x4E0B;&#x9762;&#x4E00;&#x4E2A;&#x7C7B;&#xFF1A;</p>
 <pre><code>&lt;?php
-$whaleAdapter = new WhaleAdapter();
-$whaleAdapter-&gt;eatFish();
-$whaleAdapter-&gt;eatMoss();
-$carpAdapter = new CarpAdapter();
-$carpAdapter-&gt;eatMoss();
-$carpAdapter-&gt;eatFish();
+class Price {
+  public $priceA;
+  public $priceB;
+  public $priceC;
+  ...
+}
 ?&gt;
-</code></pre><p>&#x8FD0;&#x884C;&#x4E00;&#x4E0B;&#xFF1A;</p>
-<pre><code>Whale eat fish.
-Whale don&apos;t eat moss.
-Carp eat moss.
-Carp don&apos;t eat moss.
-</code></pre><h2 id="&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;"><a href="#&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;" class="headerlink" title="&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;"></a>&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;</h2><p>&#x8FD8;&#x662F;&#x4F7F;&#x7528;&#x9CB8;&#x9C7C;&#x548C;&#x9CA4;&#x9C7C;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x4E0D;&#x8FC7;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x9002;&#x914D;&#x5668;&#x53D8;&#x6210;&#x4E86;&#xFF1A;</p>
+</code></pre><p>&#x5982;&#x679C;&#x4E0D;&#x4F7F;&#x7528;Getters/Setters&#xFF0C;&#x6211;&#x4EEC;&#x7ED9;Price&#x7C7B;&#x8D4B;&#x503C;&#x548C;&#x53D6;&#x503C;&#x4E00;&#x822C;&#x662F;&#x8FD9;&#x6837;&#xFF1A;</p>
 <pre><code>&lt;?php
-class WhaleAdapter implements Animal {
-  public function __construct() {
-    $this-&gt;name = &quot;Whale&quot;;
-    $this-&gt;whale = new Whale();
+  $price = new Price();
+  $price-&gt;priceA = 1;
+  $price-&gt;priceB = 2;
+  $price-&gt;priceC = 3;
+  ...
+  echo $price-&gt;priceA;
+  echo $price-&gt;priceB;
+  echo $price-&gt;priceC;
+  ...
+?&gt;
+</code></pre><p>&#x4F46;&#x662F;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x4E86;Getters/Setters&#xFF0C;Price&#x7C7B;&#x5C06;&#x53D8;&#x6210;&#x8FD9;&#x6837;&#xFF1A;</p>
+<pre><code>&lt;?php
+class Price {
+  private $priceA;
+  private $priceB;
+  private $priceC;
+  public function getPriceA() {
+    return $this-&gt;priceA;
   }
-  public function eatFish() {
-    $this-&gt;whale-&gt;eatFish();
+  public function setPriceA($price) {
+    $this-&gt;priceA = $price;
   }
-  public function eatMoss() {
-    echo &quot;Whale don&apos;t eat moss.\n&quot;;
-  }
-}
-class CarpAdapter implements Animal {
-  public function __construct() {
-    $this-&gt;name = &quot;Carp&quot;;
-    $this-&gt;carp = new Carp();
-  }
-  public function eatFish() {
-    echo &quot;Carp don&apos;t eat moss.\n&quot;;
-  }
-  public function eatMoss() {
-    $this-&gt;carp-&gt;eatMoss();
-  }
+  ...
 }
 ?&gt;
-</code></pre><p>&#x5176;&#x4ED6;&#x7684;&#x5730;&#x65B9;&#x548C;&#x4F7F;&#x7528;&#x7EE7;&#x627F;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x4E00;&#x6837;&#xFF0C;&#x8FD9;&#x91CC;&#x4E0D;&#x518D;&#x8D58;&#x8FF0;&#x3002;</p>
-<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x5728;&#x4E0D;&#x4FEE;&#x6539;&#x73B0;&#x6709;&#x4EE3;&#x7801;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x4FDD;&#x7559;&#x4E86;&#x67B6;&#x6784;&#x3002;&#x4F7F;&#x7528;&#x7EE7;&#x627F;&#x7684;&#x9002;&#x914D;&#x5668;&#x548C;&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x7684;&#x9002;&#x914D;&#x5668;&#x5404;&#x6709;&#x5229;&#x5F0A;&#xFF0C;&#x7EE7;&#x627F;&#x7684;&#x7C7B;&#x5197;&#x4F59;&#x5EA6;/&#x7A7A;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x504F;&#x9AD8;&#xFF0C;&#x7EC4;&#x4EF6;&#x7684;&#x8C03;&#x7528;&#x6808;/&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x504F;&#x9AD8;&#xFF0C;&#x5E94;&#x8BE5;&#x7ED3;&#x5408;&#x5B9E;&#x9645;&#x60C5;&#x51B5;&#x9009;&#x62E9;&#x3002;</p>
+</code></pre><p>&#x8FD9;&#x65F6;&#x5019;&#x8D4B;&#x503C;&#x5C06;&#x53D8;&#x6210;&#x8FD9;&#x6837;&#xFF1A;</p>
+<pre><code>&lt;?php
+  $price = new Price();
+  $price-&gt;setpriceA(1);
+  $price-&gt;setPriceB(2);
+  $price-&gt;setPriceC(3);
+  ...
+  echo $price-&gt;getPriceA();
+  echo $price-&gt;getPriceB();
+  echo $price-&gt;getPriceC();
+  ...
+?&gt;
+</code></pre><p>&#x662F;&#x4E0D;&#x662F;&#x611F;&#x89C9;&#x9700;&#x8981;&#x591A;&#x6572;&#x5F88;&#x591A;&#x4EE3;&#x7801;&#xFF1F;&#x8FD9;&#x4E5F;&#x662F;&#x5F88;&#x591A;&#x7A0B;&#x5E8F;&#x5458;&#x4E0D;&#x613F;&#x610F;&#x4F7F;&#x7528;get/set&#x7684;&#x539F;&#x56E0;&#xFF0C;&#x9020;&#x6210;&#x4E86;&#x5927;&#x91CF;&#x7684;&#x770B;&#x4F3C;&#x65E0;&#x7528;&#x5197;&#x4F59;&#x7684;&#x4EE3;&#x7801;&#x3002;<br>&#x4E3A;&#x4EC0;&#x4E48;&#x53EB;&#x770B;&#x4F3C;&#x5197;&#x4F59;&#x548C;&#x65E0;&#x7528;&#xFF1F;&#x56E0;&#x4E3A;Getters/Setters&#x662F;&#x7F16;&#x7A0B;&#x8BBE;&#x8BA1;&#x65B9;&#x6CD5;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x7F16;&#x7A0B;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;&#x3002;</p>
+<blockquote>
+<p>&#x5728;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x4E2D;&#xFF0C;&#x7C7B;&#x548C;&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x8BBF;&#x95EE;&#x3001;&#x4EA4;&#x4E92;&#x548C;&#x66F4;&#x65B0;&#x5E94;&#x8BE5;&#x662F;&#x901A;&#x8FC7;Accessors&#x548C;Mutators&#xFF0C;&#x4E5F;&#x5C31;&#x662F;Getters&#x548C;Setters&#x6765;&#x5B9E;&#x73B0;&#x3002;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x548C;<br>&#x4FEE;&#x6539;&#x7834;&#x574F;&#x4E86;&#x7C7B;&#x7684;&#x5C01;&#x88C5;&#x6027;&#x3002;</p>
+</blockquote>
+<p>&#x4E3A;&#x4EC0;&#x4E48;&#x91C7;&#x7528;&#x8FD9;&#x79CD;&#x8BBE;&#x8BA1;&#x65B9;&#x5F0F;&#xFF1F;&#x56E0;&#x4E3A;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x662F;&#x5BF9;&#x73B0;&#x5B9E;&#x95EE;&#x9898;&#x7684;&#x62BD;&#x8C61;&#xFF0C;&#x800C;&#x5728;&#x7F16;&#x7A0B;&#x7684;&#x5DE5;&#x7A0B;&#x4E2D;&#x7A0B;&#x5E8F;&#x5458;&#x626E;&#x6F14;&#x7684;&#x89D2;&#x8272;&#x5F80;&#x5F80;&#x662F;&#x4E0A;&#x5E1D;&#x3002;<br>&#x8003;&#x8651;&#x8FD9;&#x6837;&#x4E00;&#x79CD;&#x573A;&#x666F;&#xFF1A;&#x4F60;&#x670B;&#x53CB;&#x8981;&#x6C42;&#x4F60;&#x6539;&#x540D;&#xFF0C;&#x51B3;&#x5B9A;&#x662F;&#x5426;&#x6539;&#x540D;&#x7684;&#x4EBA;&#x662F;&#x4F60;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x4F60;&#x670B;&#x53CB;&#x3002;&#x5728;&#x4F60;&#x7684;&#x670B;&#x53CB;&#x7684;&#x89C6;&#x89C9;&#xFF08;&#x4E5F;&#x5C31;&#x662F;&#x4F60;&#x670B;&#x53CB;&#x7684;&#x7C7B;&#xFF09;&#xFF0C;&#x4ED6;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x53BB;&#x4FEE;&#x6539;&#x4F60;&#x7684;&#x540D;&#x5B57;&#x3002;<br>&#x5982;&#x679C;&#x4F60;&#x76F4;&#x63A5;&#x91C7;&#x7528;&#x975E;Getters/Setters&#x7684;&#x8BBE;&#x8BA1;&#x65B9;&#x6CD5;&#xFF0C;&#x4E8B;&#x5B9E;&#x4E0A;&#x662F;&#x7A0B;&#x5E8F;&#x5458;&#x626E;&#x6F14;&#x7684;&#x8FD9;&#x4E2A;&#x4E0A;&#x5E1D;&#x4FEE;&#x6539;&#x4E86;&#x73B0;&#x5B9E;&#x89C4;&#x5219;&#xFF0C;&#x5141;&#x8BB8;&#x4F60;&#x670B;&#x53CB;&#x80FD;&#x591F;&#x968F;&#x610F;&#x66F4;&#x6539;&#x4F60;&#x7684;&#x59D3;&#x540D;&#xFF0C;&#x663E;&#x7136;&#x8FD9;&#x662F;&#x4E0D;&#x5408;&#x7406;&#x7684;&#x3002;</p>
+<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>&#x5408;&#x7406;&#x7684;&#x5C01;&#x88C5;&#x5BF9;&#x4E8E;&#x597D;&#x7684;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x662F;&#x5FC5;&#x4E0D;&#x53EF;&#x5C11;&#x7684;&#xFF0C;&#x867D;&#x7136;&#x4EC0;&#x4E48;&#x90FD;&#x662F;Public&#x4E5F;&#x80FD;&#x89E3;&#x51B3;&#x7F16;&#x7A0B;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x4E0D;&#x662F;&#x7528;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#x7684;&#x601D;&#x8DEF;&#x3002;</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;&amp;#x7B80;&amp;#x4ECB;&quot;&gt;&lt;a href=&quot;#&amp;#x7B80;&amp;#x4ECB;&quot; class=&quot;headerlink&quot; title=&quot;&amp;#x7B80;&amp;#x4ECB;&quot;&gt;&lt;/a&gt;&amp;#x7B80;&amp;#x4ECB;&lt;/h2&gt;&lt;p&gt;&amp;#x5728;[PHP&amp;#
+      &lt;blockquote&gt;
+&lt;p&gt;&amp;#x539F;&amp;#x6587;&amp;#x5730;&amp;#x5740;&amp;#xFF1A;[PHP&amp;#x8BBE;&amp;#x8BA1;&amp;#x6A21;&amp;#x5F0F;(&amp;#x4E09;)&amp;#xFF1A;&amp;#x5C01;&amp;#x88C5;][1]&lt;/p&gt;
+&lt;/blo
     
     </summary>
     
@@ -1116,205 +1129,129 @@ Carp eat moss.
   </entry>
   
   <entry>
-    <title>继承</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(4)%EF%BC%9A%E7%BB%A7%E6%89%BF/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(4)：继承/</id>
+    <title>适配器模式</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(10)%EF%BC%9A%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(10)：适配器模式/</id>
     <published>2016-10-12T16:00:00.000Z</published>
-    <updated>2016-10-13T07:54:00.581Z</updated>
+    <updated>2016-10-13T07:56:03.613Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="&#x7B80;&#x4ECB;"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</h2><p>&#x5728;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x4E8C;)&#xFF1A;&#x62BD;&#x8C61;&#x7C7B;&#x548C;&#x63A5;&#x53E3;][2]&#x4EE5;&#x53CA;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x4E09;)&#xFF1A;&#x5C01;&#x88C5;][3]&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x89C1;&#x8FC7;&#x7EE7;&#x627F;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;extends&#x5173;&#x952E;&#x5B57;&#x3002;<br>&#x548C;C/C++&#xFF0C;Java&#xFF0C;Python&#x7B49;&#x8BED;&#x8A00;&#x4E00;&#x6837;&#xFF0C;PHP&#x4E5F;&#x652F;&#x6301;&#x7EE7;&#x627F;&#xFF0C;&#x800C;&#x4E14;&#x548C;&#x5176;&#x4ED6;&#x8BED;&#x8A00;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;&#x3002;</p>
-<h2 id="&#x7EE7;&#x627F;inheritance"><a href="#&#x7EE7;&#x627F;-Inheritance" class="headerlink" title="&#x7EE7;&#x627F;/Inheritance"></a>&#x7EE7;&#x627F;/Inheritance</h2><p>&#x8FD8;&#x662F;&#x7528;&#x52A8;&#x7269;&#x3001;&#x9CB8;&#x9C7C;&#x548C;&#x9CA4;&#x9C7C;&#x6765;&#x4E3E;&#x4F8B;&#xFF1A;</p>
+    <content type="html"><![CDATA[<h2 id="&#x7B80;&#x4ECB;"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</h2><p>&#x5728;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x4E03;)&#xFF1A;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x5206;&#x7C7B;][2]&#x4E2D;&#x6211;&#x4EEC;&#x63D0;&#x5230;&#x8FC7;&#x7ED3;&#x6784;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(Structural<br>patterns)&#xFF0C;&#x7ED3;&#x6784;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E13;&#x6CE8;&#x4E8E;&#x8BBE;&#x8BA1;&#x5BF9;&#x8C61;(Object)&#x548C;&#x5B9E;&#x4F8B;(Instance)&#x7684;&#x6784;&#x5EFA;&#x3001;&#x7EC4;&#x5408;&#x8FC7;&#x7A0B;&#x3002;<br>&#x7ED3;&#x6784;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x5305;&#x62EC;&#x4E0B;&#x9762;&#x4E03;&#x79CD;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1A;</p>
+<ol>
+<li><p>&#x9002;&#x914D;&#x5668;(Adapter)</p>
+</li>
+<li><p>&#x6865;&#x63A5;(Bridge)</p>
+</li>
+<li><p>&#x5408;&#x6210;(Composite)</p>
+</li>
+<li><p>&#x88C5;&#x9970;(Decorator)</p>
+</li>
+<li><p>&#x5916;&#x90E8;(Facade)</p>
+</li>
+<li><p>&#x8F7B;&#x91CF;(Flyweight)</p>
+</li>
+<li><p>&#x4EE3;&#x7406;(Proxy)</p>
+</li>
+</ol>
+<p>&#x8BF7;&#x65E0;&#x89C6;&#x62D7;&#x53E3;&#x7684;&#x4E2D;&#x6587;&#x7FFB;&#x8BD1;&#x3002;&#x7ED3;&#x6784;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x7740;&#x91CD;&#x4E8E;&#x4F4E;&#x8026;&#x5408;&#x3001;&#x9AD8;&#x590D;&#x7528;&#x3001;&#x9AD8;&#x53EF;&#x7EF4;&#x62A4;&#x6027;&#x3001;&#x9AD8;&#x62D3;&#x5C55;&#x6027;&#x7684;&#x8BBE;&#x8BA1;&#x539F;&#x5219;&#x3002;</p>
+<h2 id="&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;"><a href="#&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;" class="headerlink" title="&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;"></a>&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;</h2><p>&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x662F;&#x4E00;&#x79CD;&#x5229;&#x7528;&#x9002;&#x914D;&#x5668;&#x5C06;&#x73B0;&#x6709;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x9002;&#x914D;&#x5230;&#x5DF2;&#x6709;&#x63A5;&#x53E3;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF0C;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x4F8B;&#x5B50;&#x5C31;&#x662F;&#x53D8;&#x538B;&#x5668;&#xFF0C;&#x5C06;&#x5DF2;&#x6709;&#x7684;5V&#x8F93;&#x5165;&#x7684;&#x7535;&#x5668;&#xFF0C;&#x901A;&#x8FC7;&#x53D8;&#x538B;&#x5668;&#xFF0C;&#x9002;&#x914D;&#x5230;220V&#x7684;&#x7535;&#x6E90;&#x63D2;&#x5EA7;&#x3002;<br>&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x5229;&#x7528;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x56DB;)&#xFF1A;&#x7EE7;&#x627F;][3]&#x4E2D;&#x6211;&#x4EEC;&#x63D0;&#x5230;&#x8FC7;&#x7684;&#x7EE7;&#x627F;(inheritance)&#xFF0C;&#x4EE5;&#x53CA;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x516D;)&#xFF1A;MVC][4]&#x4E2D;&#x6211;&#x4EEC;&#x63D0;&#x5230;&#x8FC7;&#x7684;&#x7EC4;&#x4EF6;(composition)&#x6765;&#x8FDB;&#x884C;&#x6A21;&#x5F0F;&#x8BBE;&#x8BA1;&#x3002;<br>&#x76F8;&#x6BD4;&#x7EE7;&#x627F;&#xFF0C;&#x7EC4;&#x4EF6;&#x53EF;&#x7528;&#x6027;&#x9AD8;&#xFF0C;&#x4F4E;&#x8026;&#x5408;&#xFF0C;&#x5197;&#x4F59;&#x5EA6;&#x4F4E;&#xFF0C;&#x56E0;&#x6B64;&#x63A8;&#x8350;&#x91C7;&#x7528;&#x7EC4;&#x4EF6;&#x7684;&#x6A21;&#x5F0F;&#x6765;&#x8FDB;&#x884C;&#x8BBE;&#x8BA1;&#x3002;</p>
+<h2 id="&#x4F55;&#x65F6;&#x4F7F;&#x7528;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;"><a href="#&#x4F55;&#x65F6;&#x4F7F;&#x7528;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#xFF1F;" class="headerlink" title="&#x4F55;&#x65F6;&#x4F7F;&#x7528;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#xFF1F;"></a>&#x4F55;&#x65F6;&#x4F7F;&#x7528;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#xFF1F;</h2><p>&#x7B80;&#x5355;&#x6765;&#x8BF4;&#xFF0C;&#x5F53;&#x4F60;&#x7684;&#x5B9E;&#x73B0;&#x548C;&#x9700;&#x8981;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x90FD;&#x65E0;&#x6CD5;&#x4FEE;&#x6539;&#x7684;&#x65F6;&#x5019;&#x3002;<br>&#x4F8B;&#x5982;&#xFF0C;&#x4F60;&#x9700;&#x8981;&#x7ED9;&#x7532;&#x65B9;&#x5DF2;&#x6709;&#x7684;&#x7CFB;&#x7EDF;&#x505A;&#x6807;&#x51C6;&#x7684;&#x517C;&#x5BB9;&#xFF0C;&#x6807;&#x51C6;&#x4E0D;&#x53EF;&#x4FEE;&#x6539;&#xFF0C;&#x7532;&#x65B9;&#x7684;&#x7CFB;&#x7EDF;&#x4E5F;&#x4E0D;&#x53EF;&#x4FEE;&#x6539;&#xFF0C;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x4F60;&#x5C31;&#x9700;&#x8981;&#x9002;&#x914D;&#x5668;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E86;&#x3002;<br>&#x5BF9;&#x4E8E;web&#x7F16;&#x7A0B;&#x6765;&#x8BF4;&#xFF0C;&#x5C06;&#x4F60;&#x73B0;&#x6709;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x548C;&#x4E09;&#x65B9;&#x5E93;&#x7ED3;&#x5408;&#x8D77;&#x6765;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x3002;</p>
+<h2 id="&#x4F7F;&#x7528;&#x7EE7;&#x627F;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;"><a href="#&#x4F7F;&#x7528;&#x7EE7;&#x627F;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;" class="headerlink" title="&#x4F7F;&#x7528;&#x7EE7;&#x627F;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;"></a>&#x4F7F;&#x7528;&#x7EE7;&#x627F;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;</h2><p>&#x7B80;&#x5355;&#x6765;&#x8BF4;&#xFF0C;&#x5C31;&#x662F;&#xFF1A;</p>
 <pre><code>&lt;?php
-abstract class Animal {
-  protected $name;
-
-  protected function chew($food) {
-    echo $this-&gt;name . &quot; is chewing &quot; . $food . &quot;.\n&quot;;
-  }
-  protected function digest($food) {
-    echo $this-&gt;name . &quot; is digesting &quot; . $food . &quot;.\n&quot;;
-  }
-}
-
-class Whale extends Animal {
+class Adapter extends YourClass implements OtherInterface
+?&gt;
+</code></pre><p>&#x8FD8;&#x662F;&#x7528;&#x524D;&#x9762;&#x7684;&#x9CB8;&#x9C7C;&#x548C;&#x9CA4;&#x9C7C;&#x7684;&#x4F8B;&#x5B50;&#x6765;&#x8BF4;&#x660E;&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x9002;&#x914D;&#x5668;&#xFF0C;&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x5DF2;&#x7ECF;&#x5B9E;&#x73B0;&#x4E86;&#x9CB8;&#x9C7C;&#x7C7B;&#x548C;&#x9CA4;&#x9C7C;&#x7C7B;&#xFF1A;</p>
+<pre><code>&lt;?php
+class Whale {
   public function __construct() {
     $this-&gt;name = &quot;Whale&quot;;
   }
-  public function eat($food) {
-    $this-&gt;chew($food);
-    $this-&gt;digest($food);
+  public function eatFish() {
+    echo &quot;Whale eat fish.\n&quot;;
   }
 }
-
-class Carp extends Animal {
+class Carp {
   public function __construct() {
     $this-&gt;name = &quot;Carp&quot;;
   }
-  public function eat($food) {
-    $this-&gt;chew($food);
-    $this-&gt;digest($food);
+  public function eatMoss() {
+    echo &quot;Carp eat moss.\n&quot;;
   }
 }
-
-$whale = new Whale();
-$whale-&gt;eat(&quot;fish&quot;);
-$carp = new Carp();
-$carp-&gt;eat(&quot;moss&quot;);
+?&gt;
+</code></pre><p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x9700;&#x8981;&#x5EFA;&#x4E00;&#x4E2A;&#x52A8;&#x7269;&#x9986;&#xFF0C;&#x6709;eatFish()&#x548C;eatMoss()&#x63A5;&#x53E3;&#xFF0C;&#x52A8;&#x7269;&#x9986;&#x63A5;&#x53E3;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code>&lt;?php
+interface Animal {
+  function eatFish();
+  function eatMoss();
+}
+?&gt;
+</code></pre><p>&#x4F46;&#x662F;&#x6211;&#x4EEC;&#x4E0D;&#x80FD;&#x4FEE;&#x6539;Whale&#x548C;Carp&#x7C7B;&#xFF0C;&#x8FD9;&#x91CC;&#x5C31;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x9002;&#x914D;&#x5668;&#x4E86;&#xFF0C;&#x521B;&#x5EFA;&#x4E24;&#x4E2A;&#x9002;&#x914D;&#x5668;&#xFF1A;</p>
+<pre><code>&lt;?php
+class WhaleAdapter extends Whale implements Animal {
+  public function __construct() {
+    $this-&gt;name = &quot;Whale&quot;;
+  }
+  public function eatMoss() {
+    echo &quot;Whale don&apos;t eat moss.\n&quot;;
+  }
+}
+class CarpAdapter extends Carp implements Animal {
+  public function __construct() {
+    $this-&gt;name = &quot;Carp&quot;;
+  }
+  public function eatFish() {
+    echo &quot;Carp don&apos;t eat moss.\n&quot;;
+  }
+}
+?&gt;
+</code></pre><p>&#x7136;&#x540E;&#x662F;&#x8C03;&#x7528;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code>&lt;?php
+$whaleAdapter = new WhaleAdapter();
+$whaleAdapter-&gt;eatFish();
+$whaleAdapter-&gt;eatMoss();
+$carpAdapter = new CarpAdapter();
+$carpAdapter-&gt;eatMoss();
+$carpAdapter-&gt;eatFish();
 ?&gt;
 </code></pre><p>&#x8FD0;&#x884C;&#x4E00;&#x4E0B;&#xFF1A;</p>
-<pre><code>$ php Inheritance.php
-Whale is chewing fish.
-Whale is digesting fish.
-Carp is chewing moss.
-Carp is digesting moss.
-</code></pre><p>&#x6CE8;&#x610F;$this&#x5728;Animal&#x7C7B;&#x3001;Whale&#x7C7B;&#x3001;Carp&#x7C7B;&#x4E2D;&#x7684;&#x7528;&#x6CD5;&#x3002;<br>&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x770B;&#x4F3C;&#x5E38;&#x89C1;&#xFF0C;&#x5B9E;&#x5219;&#x6697;&#x542B;&#x7384;&#x673A;&#x3002;&#x5BF9;&#x4E8E;&#x4E00;&#x4E2A;&#x597D;&#x7684;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#xFF0C;&#x9700;&#x8981;&#xFF1A;</p>
-<ol>
-<li><p>&#x7C7B;&#x548C;&#x7C7B;&#x4E4B;&#x95F4;&#x5E94;&#x8BE5;&#x662F;&#x4F4E;&#x8026;&#x5408;&#x7684;&#x3002;</p>
-</li>
-<li><p>&#x7EE7;&#x627F;&#x901A;&#x5E38;&#x662F;&#x7EE7;&#x627F;&#x81EA;&#x62BD;&#x8C61;&#x7C7B;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5177;&#x4F53;&#x7C7B;&#x3002;</p>
-</li>
-<li><p>&#x901A;&#x5E38;&#x76F4;&#x63A5;&#x7EE7;&#x627F;&#x62BD;&#x8C61;&#x7C7B;&#x7684;&#x5177;&#x4F53;&#x7C7B;&#x53EA;&#x6709;&#x4E00;&#x5C42;&#xFF0C;&#x5728;&#x62BD;&#x8C61;&#x7C7B;&#x4E2D;&#x7528;protected&#x6765;&#x9650;&#x5B9A;&#x3002;</p>
-</li>
-</ol>
-<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>&#x5408;&#x7406;&#x7684;&#x7EE7;&#x627F;&#x5BF9;&#x4E8E;&#x597D;&#x7684;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x540C;&#x6837;&#x662F;&#x5FC5;&#x4E0D;&#x53EF;&#x5C11;&#x7684;&#xFF0C;&#x7ED3;&#x5408;abstract&#x548C;protected&#xFF0C;&#x80FD;&#x8BA9;&#x4F60;&#x7F16;&#x5199;&#x51FA;&#x7ED3;&#x6784;&#x6E05;&#x6670;&#x7684;&#x4EE3;&#x7801;&#x3002;</p>
+<pre><code>Whale eat fish.
+Whale don&apos;t eat moss.
+Carp eat moss.
+Carp don&apos;t eat moss.
+</code></pre><h2 id="&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;"><a href="#&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;" class="headerlink" title="&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;"></a>&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;</h2><p>&#x8FD8;&#x662F;&#x4F7F;&#x7528;&#x9CB8;&#x9C7C;&#x548C;&#x9CA4;&#x9C7C;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x4E0D;&#x8FC7;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x9002;&#x914D;&#x5668;&#x53D8;&#x6210;&#x4E86;&#xFF1A;</p>
+<pre><code>&lt;?php
+class WhaleAdapter implements Animal {
+  public function __construct() {
+    $this-&gt;name = &quot;Whale&quot;;
+    $this-&gt;whale = new Whale();
+  }
+  public function eatFish() {
+    $this-&gt;whale-&gt;eatFish();
+  }
+  public function eatMoss() {
+    echo &quot;Whale don&apos;t eat moss.\n&quot;;
+  }
+}
+class CarpAdapter implements Animal {
+  public function __construct() {
+    $this-&gt;name = &quot;Carp&quot;;
+    $this-&gt;carp = new Carp();
+  }
+  public function eatFish() {
+    echo &quot;Carp don&apos;t eat moss.\n&quot;;
+  }
+  public function eatMoss() {
+    $this-&gt;carp-&gt;eatMoss();
+  }
+}
+?&gt;
+</code></pre><p>&#x5176;&#x4ED6;&#x7684;&#x5730;&#x65B9;&#x548C;&#x4F7F;&#x7528;&#x7EE7;&#x627F;&#x7684;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x4E00;&#x6837;&#xFF0C;&#x8FD9;&#x91CC;&#x4E0D;&#x518D;&#x8D58;&#x8FF0;&#x3002;</p>
+<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x5728;&#x4E0D;&#x4FEE;&#x6539;&#x73B0;&#x6709;&#x4EE3;&#x7801;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x4FDD;&#x7559;&#x4E86;&#x67B6;&#x6784;&#x3002;&#x4F7F;&#x7528;&#x7EE7;&#x627F;&#x7684;&#x9002;&#x914D;&#x5668;&#x548C;&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x7684;&#x9002;&#x914D;&#x5668;&#x5404;&#x6709;&#x5229;&#x5F0A;&#xFF0C;&#x7EE7;&#x627F;&#x7684;&#x7C7B;&#x5197;&#x4F59;&#x5EA6;/&#x7A7A;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x504F;&#x9AD8;&#xFF0C;&#x7EC4;&#x4EF6;&#x7684;&#x8C03;&#x7528;&#x6808;/&#x65F6;&#x95F4;&#x590D;&#x6742;&#x5EA6;&#x504F;&#x9AD8;&#xFF0C;&#x5E94;&#x8BE5;&#x7ED3;&#x5408;&#x5B9E;&#x9645;&#x60C5;&#x51B5;&#x9009;&#x62E9;&#x3002;</p>
 ]]></content>
     
     <summary type="html">
     
       &lt;h2 id=&quot;&amp;#x7B80;&amp;#x4ECB;&quot;&gt;&lt;a href=&quot;#&amp;#x7B80;&amp;#x4ECB;&quot; class=&quot;headerlink&quot; title=&quot;&amp;#x7B80;&amp;#x4ECB;&quot;&gt;&lt;/a&gt;&amp;#x7B80;&amp;#x4ECB;&lt;/h2&gt;&lt;p&gt;&amp;#x5728;[PHP&amp;#
-    
-    </summary>
-    
-      <category term="php" scheme="http://ronghuaxueleng.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://ronghuaxueleng.github.io/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>封装</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(3)%EF%BC%9A%E5%B0%81%E8%A3%85/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(3)：封装/</id>
-    <published>2016-10-12T16:00:00.000Z</published>
-    <updated>2016-10-13T07:54:07.415Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>&#x539F;&#x6587;&#x5730;&#x5740;&#xFF1A;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x4E09;)&#xFF1A;&#x5C01;&#x88C5;][1]</p>
-</blockquote>
-<h2 id="&#x7B80;&#x4ECB;"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</h2><p>&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;&#x4E2D;&#xFF0C;&#x4E00;&#x5207;&#x90FD;&#x662F;&#x5BF9;&#x8C61;&#xFF0C;&#x5BF9;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x5C01;&#x88C5;&#xFF0C;&#x4E5F;&#x6210;&#x4E86;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;&#x4E2D;&#x5FC5;&#x4E0D;&#x53EF;&#x5C11;&#x7684;&#x90E8;&#x5206;&#x3002;<br>&#x548C;C/C++&#xFF0C;Java&#xFF0C;Python&#x7B49;&#x8BED;&#x8A00;&#x4E00;&#x6837;&#xFF0C;PHP&#x4E5F;&#x652F;&#x6301;&#x5C01;&#x88C5;&#x3002;</p>
-<h2 id="&#x5C01;&#x88C5;encapsulation"><a href="#&#x5C01;&#x88C5;-Encapsulation" class="headerlink" title="&#x5C01;&#x88C5;/Encapsulation"></a>&#x5C01;&#x88C5;/Encapsulation</h2><blockquote>
-<p>&#x5BF9;&#x4E8B;&#x7269;&#x7684;&#x5C01;&#x88C5;&#x662F;&#x6307;&#xFF0C;&#x5C06;&#x4E8B;&#x7269;&#x8FDB;&#x884C;&#x62BD;&#x8C61;&#x540E;&#xFF0C;&#x63D0;&#x4F9B;&#x62BD;&#x8C61;&#x6982;&#x5FF5;&#x7684;&#x5B9E;&#x73B0;&#x7684;&#x5177;&#x4F53;&#x65B9;&#x6CD5;&#x3002;</p>
-</blockquote>
-<p>&#x542C;&#x8D77;&#x6765;&#x5F88;&#x62D7;&#x53E3;&#xFF0C;&#x8FD8;&#x662F;&#x4E3E;&#x9CB8;&#x9C7C;&#x7684;&#x4F8B;&#x5B50;&#x3002;<br>&#x5BF9;&#x4E8E;&#x9CB8;&#x9C7C;&#x6765;&#x8BF4;&#xFF0C;&#x9700;&#x8981;&#x5403;&#x4E1C;&#x897F;&#x8FD9;&#x4E2A;&#x884C;&#x4E3A;&#xFF0C;&#x5403;&#x672C;&#x8EAB;&#x662F;&#x4E00;&#x4E2A;&#x62BD;&#x8C61;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x56E0;&#x4E3A;&#x5177;&#x4F53;&#x5230;&#x600E;&#x4E48;&#x5403;&#xFF0C;&#x662F;&#x5480;&#x56BC;&#x548C;&#x6D88;&#x5316;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x751A;&#x81F3;&#x5982;&#x4F55;&#x5480;&#x56BC;&#x548C;&#x6D88;&#x5316;&#x4E5F;&#x662F;&#x4E0D;&#x53EF;&#x89C1;&#x7684;&#x3002;&#x5BF9;&#x5916;&#x90E8;&#x800C;&#x8A00;&#xFF0C;&#x53EF;&#x89C1;&#x7684;&#x53EA;&#x662F;&#x5403;&#x8FD9;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x5982;&#x4F55;&#x5403;&#x3001;&#x600E;&#x4E48;&#x5403;&#xFF0C;&#x662F;&#x88AB;&#x5C01;&#x88C5;&#x5728;&#x4E86;&#x9CB8;&#x9C7C;&#x7684;&#x5B9E;&#x73B0;&#x4E2D;&#x3002;&#x751A;&#x81F3;&#x53EF;&#x4EE5;&#x8BF4;&#xFF0C;&#x6D88;&#x5316;&#x7CFB;&#x7EDF;&#xFF0C;&#x88AB;&#x5C01;&#x88C5;&#x5230;&#x4E86;&#x9CB8;&#x9C7C;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x4E2D;&#xFF0C;&#x5BF9;&#x5916;&#x90E8;&#x4E0D;&#x53EF;&#x89C1;&#xFF0C;&#x4EC5;&#x4EC5;&#x9CB8;&#x9C7C;&#x81EA;&#x5DF1;&#x53EF;&#x89C1;&#x3002;</p>
-<h2 id="&#x5C01;&#x88C5;&#x65B9;&#x6CD5;"><a href="#&#x5C01;&#x88C5;&#x65B9;&#x6CD5;" class="headerlink" title="&#x5C01;&#x88C5;&#x65B9;&#x6CD5;"></a>&#x5C01;&#x88C5;&#x65B9;&#x6CD5;</h2><p>&#x548C;&#x522B;&#x7684;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x8BED;&#x8A00;&#x4E00;&#x6837;&#xFF0C;PHP&#x4E5F;&#x53EA;&#x662F;&#x4E09;&#x79CD;&#x5C01;&#x88C5;&#x6982;&#x5FF5;&#xFF1A;Private&#xFF0C;Protected&#xFF0C;Public&#x3002;</p>
-<h3 id="&#x79C1;&#x6709;private"><a href="#&#x79C1;&#x6709;-Private" class="headerlink" title="&#x79C1;&#x6709;/Private"></a>&#x79C1;&#x6709;/Private</h3><p>&#x79C1;&#x6709;&#x7684;&#x6982;&#x5FF5;&#x662F;&#xFF0C;&#x4EC5;&#x4EC5;&#x5BF9;&#x8C61;&#x5185;&#x90E8;&#x53EF;&#x89C1;&#xFF0C;&#x5916;&#x90E8;&#x4E0D;&#x53EF;&#x89C1;&#xFF0C;&#x5982;&#xFF1A;</p>
-<pre><code>&lt;?php
-class Whale {
-  private $name;
-  public function __construct() {
-    $this-&gt;name = &quot;Whale&quot;;
-  }
-  public function eat($food) {
-    chew($food);
-    digest($food);
-  }
-  private function chew($food) {
-    echo &quot;Chewing &quot; . $food . &quot;\n&quot;;
-  }
-  private function digest($food) {
-    echo &quot;Digest &quot; . $food . &quot;\n&quot;;
-  }
-}
-?&gt;
-</code></pre><p>name&#x662F;&#x9CB8;&#x9C7C;&#x7684;&#x79C1;&#x6709;&#x5C5E;&#x6027;&#xFF0C;chew()&#x548C;digest()&#x662F;&#x9CB8;&#x9C7C;&#x7684;&#x79C1;&#x6709;&#x65B9;&#x6CD5;&#xFF0C;&#x5BF9;&#x4E8E;&#x5176;&#x4ED6;&#x7C7B;&#x6765;&#x8BF4;&#xFF0C;&#x90FD;&#x662F;&#x4E0D;&#x53EF;&#x89C1;&#x7684;&#x3002;&#x5BF9;&#x4E8E;&#x73B0;&#x5B9E;&#x6765;&#x8BF4;&#xFF0C;&#x6211;&#x4EEC;&#x5982;&#x679C;&#x53EA;&#x662F;&#x6CE8;&#x91CD;&#x5403;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x5FC5;&#x8981;&#x53BB;&#x5173;&#x5FC3;&#x9CB8;&#x9C7C;&#x662F;&#x5982;&#x4F55;&#x53BB;&#x5403;&#x7684;&#x3002;</p>
-<h3 id="&#x4FDD;&#x62A4;protected"><a href="#&#x4FDD;&#x62A4;-Protected" class="headerlink" title="&#x4FDD;&#x62A4;/Protected"></a>&#x4FDD;&#x62A4;/Protected</h3><p>&#x4FDD;&#x62A4;&#x7684;&#x6982;&#x5FF5;&#x662F;&#xFF0C;&#x4EC5;&#x4EC5;&#x662F;&#x81EA;&#x8EAB;&#x7C7B;&#x548C;&#x7EE7;&#x627F;&#x7C7B;&#x53EF;&#x89C1;&#xFF0C;&#x8FD9;&#x4E2A;&#x5173;&#x952E;&#x5B57;&#x7684;&#x7528;&#x9014;&#x4E3B;&#x8981;&#x662F;&#x9632;&#x6B62;&#x6EE5;&#x7528;&#x7C7B;&#x7684;&#x6D3E;&#x751F;&#xFF0C;&#x53E6;&#x5916;&#x4E09;&#x65B9;&#x5E93;&#x7F16;&#x5199;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x7528;&#x5230;&#xFF0C;&#x9632;&#x6B62;&#x8BEF;&#x7528;&#x3002;</p>
-<pre><code>&lt;?php
-abstract class Animal {
-  private $name;
-  abstract public function eat($food);
-  protected function chew($food) {
-    echo &quot;Chewing &quot; . $food . &quot;\n&quot;;
-  }
-  protected function digest($food) {
-    echo &quot;Digest &quot; . $food . &quot;\n&quot;;
-  }
-}
-
-class Whale extends Animal {
-  private $name;
-  public function __construct() {
-    $this-&gt;name = &quot;Whale&quot;;
-  }
-  public function eat($food) {
-    chew($food);
-    digest($food);
-  }
-}
-?&gt;
-</code></pre><p>&#x9CB8;&#x9C7C;&#x7C7B;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7EE7;&#x627F;&#x4F7F;&#x7528;&#x52A8;&#x7269;&#x7C7B;&#x7684;&#x5480;&#x56BC;&#x548C;&#x6D88;&#x5316;&#x65B9;&#x6CD5;&#xFF0C;&#x4F46;&#x662F;&#x522B;&#x7684;&#x7EE7;&#x627F;&#x9CB8;&#x9C7C;&#x7C7B;&#x7684;&#x7C7B;&#x5C31;&#x4E0D;&#x53EF;&#x4EE5;&#x518D;&#x4F7F;&#x7528;&#x52A8;&#x7269;&#x7C7B;&#x7684;&#x5480;&#x56BC;&#x548C;&#x6D88;&#x5316;&#x65B9;&#x6CD5;&#x4E86;&#x3002;&#x4FDD;&#x62A4;&#x66F4;&#x591A;&#x662F;&#x7528;&#x4E8E;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x8BBE;&#x8BA1;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x4E3A;&#x4E86;&#x7F16;&#x7A0B;&#x6765;&#x5B9E;&#x73B0;&#x67D0;&#x4E2A;&#x9700;&#x6C42;&#x3002;</p>
-<h3 id="&#x516C;&#x5171;public"><a href="#&#x516C;&#x5171;-Public" class="headerlink" title="&#x516C;&#x5171;/Public"></a>&#x516C;&#x5171;/Public</h3><p>&#x516C;&#x5171;&#x7684;&#x6982;&#x5FF5;&#x5C31;&#x662F;&#xFF0C;&#x4EFB;&#x4F55;&#x7C7B;&#x3001;&#x4EFB;&#x4F55;&#x4E8B;&#x7269;&#x90FD;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#xFF0C;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x9650;&#x5236;&#xFF0C;&#x8FD9;&#x91CC;&#x4E0D;&#x518D;&#x8D58;&#x8FF0;&#x3002;</p>
-<h2 id="getterssetters"><a href="#Getters-Setters" class="headerlink" title="Getters/Setters"></a>Getters/Setters</h2><p>Getters&#x548C;Setters&#x4E5F;&#x53EB;Accessors&#x548C;Mutators&#xFF0C;&#x5728;Java/C#&#x7B49;&#x8BED;&#x8A00;&#x4E2D;&#x5E38;&#x4EE5;get()/set()&#x65B9;&#x6CD5;&#x51FA;&#x73B0;&#x3002;<br>&#x5BF9;&#x4E8E;&#x8FD9;&#x4E24;&#x4E2A;&#x4E1C;&#x897F;&#x7684;&#x4E89;&#x8BAE;&#x5F88;&#x5927;&#xFF0C;&#x8003;&#x8651;&#x4E0B;&#x9762;&#x4E00;&#x4E2A;&#x7C7B;&#xFF1A;</p>
-<pre><code>&lt;?php
-class Price {
-  public $priceA;
-  public $priceB;
-  public $priceC;
-  ...
-}
-?&gt;
-</code></pre><p>&#x5982;&#x679C;&#x4E0D;&#x4F7F;&#x7528;Getters/Setters&#xFF0C;&#x6211;&#x4EEC;&#x7ED9;Price&#x7C7B;&#x8D4B;&#x503C;&#x548C;&#x53D6;&#x503C;&#x4E00;&#x822C;&#x662F;&#x8FD9;&#x6837;&#xFF1A;</p>
-<pre><code>&lt;?php
-  $price = new Price();
-  $price-&gt;priceA = 1;
-  $price-&gt;priceB = 2;
-  $price-&gt;priceC = 3;
-  ...
-  echo $price-&gt;priceA;
-  echo $price-&gt;priceB;
-  echo $price-&gt;priceC;
-  ...
-?&gt;
-</code></pre><p>&#x4F46;&#x662F;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x4E86;Getters/Setters&#xFF0C;Price&#x7C7B;&#x5C06;&#x53D8;&#x6210;&#x8FD9;&#x6837;&#xFF1A;</p>
-<pre><code>&lt;?php
-class Price {
-  private $priceA;
-  private $priceB;
-  private $priceC;
-  public function getPriceA() {
-    return $this-&gt;priceA;
-  }
-  public function setPriceA($price) {
-    $this-&gt;priceA = $price;
-  }
-  ...
-}
-?&gt;
-</code></pre><p>&#x8FD9;&#x65F6;&#x5019;&#x8D4B;&#x503C;&#x5C06;&#x53D8;&#x6210;&#x8FD9;&#x6837;&#xFF1A;</p>
-<pre><code>&lt;?php
-  $price = new Price();
-  $price-&gt;setpriceA(1);
-  $price-&gt;setPriceB(2);
-  $price-&gt;setPriceC(3);
-  ...
-  echo $price-&gt;getPriceA();
-  echo $price-&gt;getPriceB();
-  echo $price-&gt;getPriceC();
-  ...
-?&gt;
-</code></pre><p>&#x662F;&#x4E0D;&#x662F;&#x611F;&#x89C9;&#x9700;&#x8981;&#x591A;&#x6572;&#x5F88;&#x591A;&#x4EE3;&#x7801;&#xFF1F;&#x8FD9;&#x4E5F;&#x662F;&#x5F88;&#x591A;&#x7A0B;&#x5E8F;&#x5458;&#x4E0D;&#x613F;&#x610F;&#x4F7F;&#x7528;get/set&#x7684;&#x539F;&#x56E0;&#xFF0C;&#x9020;&#x6210;&#x4E86;&#x5927;&#x91CF;&#x7684;&#x770B;&#x4F3C;&#x65E0;&#x7528;&#x5197;&#x4F59;&#x7684;&#x4EE3;&#x7801;&#x3002;<br>&#x4E3A;&#x4EC0;&#x4E48;&#x53EB;&#x770B;&#x4F3C;&#x5197;&#x4F59;&#x548C;&#x65E0;&#x7528;&#xFF1F;&#x56E0;&#x4E3A;Getters/Setters&#x662F;&#x7F16;&#x7A0B;&#x8BBE;&#x8BA1;&#x65B9;&#x6CD5;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x7F16;&#x7A0B;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;&#x3002;</p>
-<blockquote>
-<p>&#x5728;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x4E2D;&#xFF0C;&#x7C7B;&#x548C;&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x8BBF;&#x95EE;&#x3001;&#x4EA4;&#x4E92;&#x548C;&#x66F4;&#x65B0;&#x5E94;&#x8BE5;&#x662F;&#x901A;&#x8FC7;Accessors&#x548C;Mutators&#xFF0C;&#x4E5F;&#x5C31;&#x662F;Getters&#x548C;Setters&#x6765;&#x5B9E;&#x73B0;&#x3002;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x548C;<br>&#x4FEE;&#x6539;&#x7834;&#x574F;&#x4E86;&#x7C7B;&#x7684;&#x5C01;&#x88C5;&#x6027;&#x3002;</p>
-</blockquote>
-<p>&#x4E3A;&#x4EC0;&#x4E48;&#x91C7;&#x7528;&#x8FD9;&#x79CD;&#x8BBE;&#x8BA1;&#x65B9;&#x5F0F;&#xFF1F;&#x56E0;&#x4E3A;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x662F;&#x5BF9;&#x73B0;&#x5B9E;&#x95EE;&#x9898;&#x7684;&#x62BD;&#x8C61;&#xFF0C;&#x800C;&#x5728;&#x7F16;&#x7A0B;&#x7684;&#x5DE5;&#x7A0B;&#x4E2D;&#x7A0B;&#x5E8F;&#x5458;&#x626E;&#x6F14;&#x7684;&#x89D2;&#x8272;&#x5F80;&#x5F80;&#x662F;&#x4E0A;&#x5E1D;&#x3002;<br>&#x8003;&#x8651;&#x8FD9;&#x6837;&#x4E00;&#x79CD;&#x573A;&#x666F;&#xFF1A;&#x4F60;&#x670B;&#x53CB;&#x8981;&#x6C42;&#x4F60;&#x6539;&#x540D;&#xFF0C;&#x51B3;&#x5B9A;&#x662F;&#x5426;&#x6539;&#x540D;&#x7684;&#x4EBA;&#x662F;&#x4F60;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x4F60;&#x670B;&#x53CB;&#x3002;&#x5728;&#x4F60;&#x7684;&#x670B;&#x53CB;&#x7684;&#x89C6;&#x89C9;&#xFF08;&#x4E5F;&#x5C31;&#x662F;&#x4F60;&#x670B;&#x53CB;&#x7684;&#x7C7B;&#xFF09;&#xFF0C;&#x4ED6;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x53BB;&#x4FEE;&#x6539;&#x4F60;&#x7684;&#x540D;&#x5B57;&#x3002;<br>&#x5982;&#x679C;&#x4F60;&#x76F4;&#x63A5;&#x91C7;&#x7528;&#x975E;Getters/Setters&#x7684;&#x8BBE;&#x8BA1;&#x65B9;&#x6CD5;&#xFF0C;&#x4E8B;&#x5B9E;&#x4E0A;&#x662F;&#x7A0B;&#x5E8F;&#x5458;&#x626E;&#x6F14;&#x7684;&#x8FD9;&#x4E2A;&#x4E0A;&#x5E1D;&#x4FEE;&#x6539;&#x4E86;&#x73B0;&#x5B9E;&#x89C4;&#x5219;&#xFF0C;&#x5141;&#x8BB8;&#x4F60;&#x670B;&#x53CB;&#x80FD;&#x591F;&#x968F;&#x610F;&#x66F4;&#x6539;&#x4F60;&#x7684;&#x59D3;&#x540D;&#xFF0C;&#x663E;&#x7136;&#x8FD9;&#x662F;&#x4E0D;&#x5408;&#x7406;&#x7684;&#x3002;</p>
-<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>&#x5408;&#x7406;&#x7684;&#x5C01;&#x88C5;&#x5BF9;&#x4E8E;&#x597D;&#x7684;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x662F;&#x5FC5;&#x4E0D;&#x53EF;&#x5C11;&#x7684;&#xFF0C;&#x867D;&#x7136;&#x4EC0;&#x4E48;&#x90FD;&#x662F;Public&#x4E5F;&#x80FD;&#x89E3;&#x51B3;&#x7F16;&#x7A0B;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x4E0D;&#x662F;&#x7528;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#x7684;&#x601D;&#x8DEF;&#x3002;</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&amp;#x539F;&amp;#x6587;&amp;#x5730;&amp;#x5740;&amp;#xFF1A;[PHP&amp;#x8BBE;&amp;#x8BA1;&amp;#x6A21;&amp;#x5F0F;(&amp;#x4E09;)&amp;#xFF1A;&amp;#x5C01;&amp;#x88C5;][1]&lt;/p&gt;
-&lt;/blo
     
     </summary>
     
@@ -1373,6 +1310,69 @@ showTotal(&quot;Total number is&quot;, &quot;6&quot;);
     <summary type="html">
     
       &lt;h2 id=&quot;&amp;#x7B80;&amp;#x4ECB;&quot;&gt;&lt;a href=&quot;#&amp;#x7B80;&amp;#x4ECB;&quot; class=&quot;headerlink&quot; title=&quot;&amp;#x7B80;&amp;#x4ECB;&quot;&gt;&lt;/a&gt;&amp;#x7B80;&amp;#x4ECB;&lt;/h2&gt;&lt;p&gt;&amp;#x4FD7;&amp;#x8BD
+    
+    </summary>
+    
+      <category term="php" scheme="http://ronghuaxueleng.github.io/categories/php/"/>
+    
+    
+      <category term="php" scheme="http://ronghuaxueleng.github.io/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>多态</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(5)%EF%BC%9A%E5%A4%9A%E6%80%81/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(5)：多态/</id>
+    <published>2016-10-12T16:00:00.000Z</published>
+    <updated>2016-10-13T07:53:52.988Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>&#x5728;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x56DB;)&#xFF1A;&#x7EE7;&#x627F;][2]&#x4E2D;&#x6211;&#x4EEC;&#x4ECB;&#x7ECD;&#x4E86;&#x7EE7;&#x627F;&#xFF0C;&#x5229;&#x7528;extends&#x6765;&#x8FDB;&#x884C;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x7684;&#x65B9;&#x6CD5;&#x3002;<br>&#x5728;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x4E8C;)&#xFF1A;&#x62BD;&#x8C61;&#x7C7B;&#x548C;&#x63A5;&#x53E3;][3]&#x4E2D;&#x6211;&#x4EEC;&#x4ECB;&#x7ECD;&#x4E86;&#x63A5;&#x53E3;&#xFF0C;&#x4E8B;&#x5B9E;&#x4E0A;&#x4E5F;&#x5B58;&#x5728;&#x5229;&#x7528;interface&#x7684;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x65B9;&#x6CD5;&#xFF0C;&#x90A3;&#x5C31;&#x662F;&#x591A;&#x6001;&#x3002;<br>&#x548C;C/C++&#xFF0C;Java&#xFF0C;Python&#x7B49;&#x8BED;&#x8A00;&#x4E00;&#x6837;&#xFF0C;PHP&#x4E5F;&#x652F;&#x6301;&#x591A;&#x6001;&#x3002;&#x591A;&#x6001;&#x66F4;&#x591A;&#x662F;&#x662F;&#x4E00;&#x79CD;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x8BA9;&#x540C;&#x4E00;&#x7C7B;&#x5BF9;&#x8C61;&#x6267;&#x884C;&#x540C;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x4F46;&#x5374;&#x5B9E;&#x73B0;&#x4E0D;&#x540C;&#x7684;&#x903B;&#x8F91;&#x529F;&#x80FD;<br>&#x3002;</p>
+<h2 id="&#x591A;&#x6001;polymorphism"><a href="#&#x591A;&#x6001;-Polymorphism" class="headerlink" title="&#x591A;&#x6001;/Polymorphism"></a>&#x591A;&#x6001;/Polymorphism</h2><p>&#x8FD8;&#x662F;&#x7528;&#x52A8;&#x7269;&#x3001;&#x9CB8;&#x9C7C;&#x548C;&#x9CA4;&#x9C7C;&#x6765;&#x4E3E;&#x4F8B;&#xFF1A;</p>
+<pre><code>&lt;?php
+interface IEat {
+  function eatFish();
+  function eatMoss();
+}
+
+class Whale implements IEat {
+  public function eatFish() {
+    echo &quot;Whale eats fish.\n&quot;;
+  }
+  public function eatMoss() {
+    echo &quot;Whale doesn&apos;t eat fish\n&quot;;
+  }
+}
+
+class Carp implements IEat {
+  public function eatFish() {
+    echo &quot;Carp doesn&apos;t eat moss.\n&quot;;
+  }
+  public function eatMoss() {
+    echo &quot;Carp eats moss.\n&quot;;
+  }
+}
+
+$whale = new Whale();
+$whale-&gt;eatFish();
+$whale-&gt;eatMoss();
+$carp = new Carp();
+$carp-&gt;eatFish();
+$carp-&gt;eatMoss();
+?&gt;
+</code></pre><p>&#x8FD0;&#x884C;&#x4E00;&#x4E0B;&#xFF1A;</p>
+<pre><code>$ php Inheritance.php
+Whale eats fish.
+Whale doesn&apos;t eat fish.
+Carp eats moss.
+Carp doesn&apos;t eat moss.
+</code></pre><p>&#x6CE8;&#x610F;PHP&#x7684;&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#x4E0D;&#x5305;&#x542B;&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x56E0;&#x6B64;&#x5B8C;&#x5168;&#x53EF;&#x4EE5;&#x7ED9;&#x4E0D;&#x540C;&#x7684;&#x63A5;&#x53E3;&#x5B9E;&#x73B0;&#x8FD4;&#x56DE;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x3002;&#x8FD9;&#x4E00;&#x70B9;&#x548C;C/C++&#xFF0C;Java&#x7B49;&#x8BED;&#x8A00;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x3002;&#x6B64;&#x5916;&#xFF0C;&#x8FD4;&#x56DE;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x751A;&#x81F3;&#x4E0D;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#xFF0C;&#x5BF9;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x6765;&#x8BF4;&#xFF0C;&#x4F1A;&#x989D;&#x5916;&#x589E;&#x52A0;&#x7EF4;&#x62A4;&#x6210;&#x672C;&#xFF0C;&#x5DF2;&#x7ECF;&#x548C;&#x4F7F;&#x7528;&#x63A5;&#x53E3;&#x7684;&#x521D;&#x8877;&#x4E0D;&#x540C;&#x4E86;&#xFF08;&#x63A5;&#x53E3;&#x4E3A;&#x4E86;&#x5C01;&#x88C5;&#x5B9E;&#x73B0;&#xFF0C;&#x800C;&#x4E0D;&#x540C;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x4E8B;&#x5B9E;&#x4E0A;&#x662F;&#x9700;&#x8981;&#x8C03;&#x7528;&#x8005;&#x53BB;&#x7406;&#x89E3;&#x5B9E;&#x73B0;&#x7684;&#xFF09;&#x3002;</p>
+<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>&#x5408;&#x7406;&#x5229;&#x7528;&#x591A;&#x6001;&#x5BF9;&#x63A5;&#x53E3;&#x8FDB;&#x884C;&#x4E0D;&#x540C;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x7B80;&#x5316;&#x4F60;&#x7684;&#x7F16;&#x7A0B;&#x6A21;&#x578B;&#xFF0C;&#x8BA9;&#x4EE3;&#x7801;&#x6613;&#x4E8E;&#x7EF4;&#x62A4;&#x3002;</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;&amp;#x5728;[PHP&amp;#x8BBE;&amp;#x8BA1;&amp;#
     
     </summary>
     
@@ -1588,77 +1588,6 @@ Male
   </entry>
   
   <entry>
-    <title>原型设计模式</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(9)%EF%BC%9A%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(9)：原型设计模式/</id>
-    <published>2016-10-12T16:00:00.000Z</published>
-    <updated>2016-10-13T07:56:52.270Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="&#x7B80;&#x4ECB;"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</h2><p>&#x5728;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x516B;)&#xFF1A;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;][2]&#x4E2D;&#x6211;&#x4EEC;&#x4ECB;&#x7ECD;&#x4E86;&#x521B;&#x5EFA;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(Creation<br>patterns)&#x4E2D;&#x7684;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;&#xFF0C;&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x5C06;&#x4ECB;&#x7ECD;&#x53E6;&#x4E00;&#x79CD;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(Prototype Method)&#x3002;<br>&#x5728;PHP&#x4E2D;&#xFF0C;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4F9D;&#x9760;cloning&#x590D;&#x5236;&#x5BF9;&#x8C61;&#x6765;&#x5B9E;&#x73B0;&#x3002;&#x901A;&#x8FC7;cloning&#x6784;&#x9020;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x5C06;&#x5927;&#x91CF;&#x8282;&#x7701;&#x65B0;&#x5BF9;&#x8C61;&#x7684;&#x6784;&#x9020;&#x65F6;&#x95F4;&#x3002;</p>
-<h2 id="&#x4F55;&#x65F6;&#x4F7F;&#x7528;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;"><a href="#&#x4F55;&#x65F6;&#x4F7F;&#x7528;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1F;" class="headerlink" title="&#x4F55;&#x65F6;&#x4F7F;&#x7528;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1F;"></a>&#x4F55;&#x65F6;&#x4F7F;&#x7528;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1F;</h2><p>&#x7B80;&#x5355;&#x6765;&#x8BF4;&#xFF0C;&#x5F53;&#x4F60;&#x5E0C;&#x671B;&#x6839;&#x636E;&#x5DF2;&#x6709;&#x7684;&#x5BF9;&#x8C61;&#x6765;&#x521B;&#x5EFA;&#x65B0;&#x5BF9;&#x8C61;&#x65F6;&#x3002;<br>&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x6709;&#x8FD9;&#x79CD;&#x9700;&#x6C42;&#xFF1F;&#x60F3;&#x8C61;&#x4E00;&#x4E0B;&#xFF0C;&#x4F60;&#x5728;&#x505A;&#x7EC6;&#x80DE;&#x5206;&#x88C2;&#x7684;&#x9879;&#x76EE;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x7EC6;&#x80DE;&#x90FD;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x73B0;&#x5728;&#x4F60;&#x6709;&#x4E00;&#x4E2A;&#x7EC6;&#x80DE;&#x7C7B;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7EC6;&#x80DE;&#x90FD;&#x662F;&#x7531;&#x8FD9;&#x4E2A;&#x7C7B;&#x751F;&#x6210;&#x7684;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x7EC6;&#x80DE;&#x53EA;&#x662F;&#x5185;&#x90E8;&#x7684;&#x72B6;&#x6001;&#x53C2;&#x6570;&#x4E0D;&#x540C;&#x3002;<br>&#x5F53;&#x5206;&#x88C2;&#x5230;&#x7B2C;N&#x4EE3;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5DF2;&#x7ECF;&#x548C;&#x521D;&#x4EE3;&#x5927;&#x4E0D;&#x4E00;&#x6837;&#x4E86;&#xFF0C;&#x4F60;&#x662F;&#x613F;&#x610F;&#x4F7F;&#x7528;&#x7B2C;N&#x4EE3;&#x7684;&#x526F;&#x672C;&#x4FEE;&#x6539;&#x4E00;&#x4E0B;&#x5462;&#xFF1F;&#x8FD8;&#x662F;&#x613F;&#x610F;&#x4ECE;&#x521D;&#x4EE3;&#x6162;&#x6162;&#x63A8;&#x6F14;&#xFF1F;</p>
-<h2 id="example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>PHP&#x63D0;&#x4F9B;&#x4E86;&#x5185;&#x5EFA;&#x7684;__clone()&#x51FD;&#x6570;&#x4EE5;&#x53CA;clone&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x6765;&#x5B9E;&#x73B0;&#x5BF9;&#x8C61;&#x7684;&#x590D;&#x5236;&#x3002;&#x4E0B;&#x9762;&#x7ED9;&#x51FA;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
-<pre><code>&lt;?php
-abstract class Cell {
-  public $id;
-  public $dna;
-  abstract function __clone();
-}
-
-class WhaleCell extends Cell {
-  public function __construct() {
-    $this-&gt;id = 1;
-    $this-&gt;dna = &quot;ATCG&quot;;
-  }
-  public function displayDNA() {
-    echo $this-&gt;dna . &quot;\n&quot;;
-  }
-  function __clone() {
-    $this-&gt;id = $this-&gt;id + 1;
-    if ($this-&gt;id % 3 == 0) {
-      $this-&gt;dna = $this-&gt;dna . &quot;AT&quot;;
-    }
-    if ($this-&gt;id % 5 == 0) {
-      $this-&gt;dna = $this-&gt;dna . &quot;CG&quot;;
-    }
-  }
-}
-
-$whaleCell = new WhaleCell();
-$whaleCell-&gt;displayDNA();
-$whaleCell2 = clone $whaleCell;
-$whaleCell2-&gt;displayDNA();
-$whaleCell3 = clone $whaleCell2;
-$whaleCell3-&gt;displayDNA();
-$whaleCell4 = clone $whaleCell3;
-$whaleCell4-&gt;displayDNA();
-$whaleCell5 = clone $whaleCell4;
-$whaleCell5-&gt;displayDNA();
-?&gt;
-</code></pre><p>&#x8FD0;&#x884C;&#x4E00;&#x4E0B;&#xFF1A;</p>
-<pre><code>ATCG
-ATCG
-ATCGAT
-ATCGAT
-ATCGATCG
-</code></pre><p>&#x7A0B;&#x5E8F;&#x7B80;&#x5355;&#x7684;&#x6A21;&#x62DF;&#x4E86;DNA&#x7684;&#x9057;&#x4F20;&#x7A81;&#x53D8;&#xFF0C;&#x6BCF;&#x9057;&#x4F20;&#x4E09;&#x4EE3;&#xFF0C;DNA&#x589E;&#x52A0;AT&#xFF0C;&#x6BCF;&#x9057;&#x4F20;&#x4E94;&#x4EE3;&#xFF0C;DNA&#x589E;&#x52A0;CG&#x3002;</p>
-<h2 id="&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;"><a href="#&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;" class="headerlink" title="&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;"></a>&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;</h2><p>&#x4F7F;&#x7528;clone&#x521B;&#x5EFA;&#x65B0;&#x5BF9;&#x8C61;&#x65F6;&#xFF0C;&#x5E76;&#x4E0D;&#x4F1A;&#x89E6;&#x53D1;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x3002;&#x8FD9;&#x4E5F;&#x662F;&#x5728;&#x4F7F;&#x7528;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E2D;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x4E00;&#x70B9;&#x3002;clone&#x7684;&#x5E95;&#x5C42;&#x5B9E;&#x73B0;&#x5E76;&#x4E0D;&#x662F;&#x8C03;&#x7528;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x6765;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7C7B;&#xFF0C;&#x800C;&#x662F;&#x76F4;&#x63A5;&#x62F7;&#x8D1D;&#x4E00;&#x4E2A;&#x7C7B;&#x7684;&#x5730;&#x5740;&#x7A7A;&#x95F4;&#xFF0C;&#x751F;&#x6210;&#x53E6;&#x4E00;&#x4E2A;&#x7C7B;&#x3002;&#x8FD9;&#x79CD;&#x76F4;&#x63A5;&#x62F7;&#x8D1D;&#x4E5F;&#x5E26;&#x6765;&#x4E86;&#x9AD8;&#x6548;&#x3002;<br>&#x4E8B;&#x5B9E;&#x4E0A;&#xFF0C;&#x4F7F;&#x7528;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5E76;&#x4E0D;&#x4E00;&#x5B9A;&#x662F;&#x4E00;&#x4E2A;&#x597D;&#x7684;&#x8BBE;&#x8BA1;&#xFF0C;&#x7531;&#x4E8E;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5185;&#x7684;&#x903B;&#x8F91;&#x65E0;&#x6CD5;&#x88AB;&#x5916;&#x90E8;&#x63A7;&#x5236;&#xFF0C;&#x5F53;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x4E00;&#x4E2A;&#x7C7B;&#x6784;&#x9020;&#x65F6;&#x7684;&#x903B;&#x8F91;&#x65F6;&#xFF0C;&#x9664;&#x4E86;&#x4FEE;&#x6539;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5B9E;&#x73B0;&#x4EE5;&#x5916;&#xFF0C;&#x522B;&#x65E0;&#x4ED6;&#x6CD5;&#xFF0C;&#x8FD9;&#x7834;&#x574F;&#x4E86;&#x7C7B;&#x7684;&#x5C01;&#x88C5;&#x3002;</p>
-<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x5E26;&#x6765;&#x4E86;&#x53E6;&#x4E00;&#x79CD;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x7684;&#x601D;&#x8DEF;&#xFF0C;&#x5408;&#x7406;&#x7684;&#x4F7F;&#x7528;cloning&#x6784;&#x9020;&#x5BF9;&#x8C61;&#xFF0C;&#x5C06;&#x63D0;&#x9AD8;&#x7A0B;&#x5E8F;&#x521B;&#x5EFA;&#x65B0;&#x5BF9;&#x8C61;&#x65F6;&#x7684;&#x6548;&#x7387;&#x3002;</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;&amp;#x7B80;&amp;#x4ECB;&quot;&gt;&lt;a href=&quot;#&amp;#x7B80;&amp;#x4ECB;&quot; class=&quot;headerlink&quot; title=&quot;&amp;#x7B80;&amp;#x4ECB;&quot;&gt;&lt;/a&gt;&amp;#x7B80;&amp;#x4ECB;&lt;/h2&gt;&lt;p&gt;&amp;#x5728;[PHP&amp;#
-    
-    </summary>
-    
-      <category term="php" scheme="http://ronghuaxueleng.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://ronghuaxueleng.github.io/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
     <title>工厂模式</title>
     <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(8)%EF%BC%9A%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"/>
     <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(8)：工厂模式/</id>
@@ -1801,115 +1730,214 @@ Carp is created. Carp eats moss.
   </entry>
   
   <entry>
-    <title>享元模式</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/14%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/14享元模式/</id>
+    <title>原型设计模式</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(9)%EF%BC%9A%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(9)：原型设计模式/</id>
+    <published>2016-10-12T16:00:00.000Z</published>
+    <updated>2016-10-13T07:56:52.270Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="&#x7B80;&#x4ECB;"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</h2><p>&#x5728;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x516B;)&#xFF1A;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;][2]&#x4E2D;&#x6211;&#x4EEC;&#x4ECB;&#x7ECD;&#x4E86;&#x521B;&#x5EFA;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(Creation<br>patterns)&#x4E2D;&#x7684;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;&#xFF0C;&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x5C06;&#x4ECB;&#x7ECD;&#x53E6;&#x4E00;&#x79CD;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(Prototype Method)&#x3002;<br>&#x5728;PHP&#x4E2D;&#xFF0C;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4F9D;&#x9760;cloning&#x590D;&#x5236;&#x5BF9;&#x8C61;&#x6765;&#x5B9E;&#x73B0;&#x3002;&#x901A;&#x8FC7;cloning&#x6784;&#x9020;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x5C06;&#x5927;&#x91CF;&#x8282;&#x7701;&#x65B0;&#x5BF9;&#x8C61;&#x7684;&#x6784;&#x9020;&#x65F6;&#x95F4;&#x3002;</p>
+<h2 id="&#x4F55;&#x65F6;&#x4F7F;&#x7528;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;"><a href="#&#x4F55;&#x65F6;&#x4F7F;&#x7528;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1F;" class="headerlink" title="&#x4F55;&#x65F6;&#x4F7F;&#x7528;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1F;"></a>&#x4F55;&#x65F6;&#x4F7F;&#x7528;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1F;</h2><p>&#x7B80;&#x5355;&#x6765;&#x8BF4;&#xFF0C;&#x5F53;&#x4F60;&#x5E0C;&#x671B;&#x6839;&#x636E;&#x5DF2;&#x6709;&#x7684;&#x5BF9;&#x8C61;&#x6765;&#x521B;&#x5EFA;&#x65B0;&#x5BF9;&#x8C61;&#x65F6;&#x3002;<br>&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x6709;&#x8FD9;&#x79CD;&#x9700;&#x6C42;&#xFF1F;&#x60F3;&#x8C61;&#x4E00;&#x4E0B;&#xFF0C;&#x4F60;&#x5728;&#x505A;&#x7EC6;&#x80DE;&#x5206;&#x88C2;&#x7684;&#x9879;&#x76EE;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x7EC6;&#x80DE;&#x90FD;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x73B0;&#x5728;&#x4F60;&#x6709;&#x4E00;&#x4E2A;&#x7EC6;&#x80DE;&#x7C7B;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7EC6;&#x80DE;&#x90FD;&#x662F;&#x7531;&#x8FD9;&#x4E2A;&#x7C7B;&#x751F;&#x6210;&#x7684;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x7EC6;&#x80DE;&#x53EA;&#x662F;&#x5185;&#x90E8;&#x7684;&#x72B6;&#x6001;&#x53C2;&#x6570;&#x4E0D;&#x540C;&#x3002;<br>&#x5F53;&#x5206;&#x88C2;&#x5230;&#x7B2C;N&#x4EE3;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5DF2;&#x7ECF;&#x548C;&#x521D;&#x4EE3;&#x5927;&#x4E0D;&#x4E00;&#x6837;&#x4E86;&#xFF0C;&#x4F60;&#x662F;&#x613F;&#x610F;&#x4F7F;&#x7528;&#x7B2C;N&#x4EE3;&#x7684;&#x526F;&#x672C;&#x4FEE;&#x6539;&#x4E00;&#x4E0B;&#x5462;&#xFF1F;&#x8FD8;&#x662F;&#x613F;&#x610F;&#x4ECE;&#x521D;&#x4EE3;&#x6162;&#x6162;&#x63A8;&#x6F14;&#xFF1F;</p>
+<h2 id="example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>PHP&#x63D0;&#x4F9B;&#x4E86;&#x5185;&#x5EFA;&#x7684;__clone()&#x51FD;&#x6570;&#x4EE5;&#x53CA;clone&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x6765;&#x5B9E;&#x73B0;&#x5BF9;&#x8C61;&#x7684;&#x590D;&#x5236;&#x3002;&#x4E0B;&#x9762;&#x7ED9;&#x51FA;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code>&lt;?php
+abstract class Cell {
+  public $id;
+  public $dna;
+  abstract function __clone();
+}
+
+class WhaleCell extends Cell {
+  public function __construct() {
+    $this-&gt;id = 1;
+    $this-&gt;dna = &quot;ATCG&quot;;
+  }
+  public function displayDNA() {
+    echo $this-&gt;dna . &quot;\n&quot;;
+  }
+  function __clone() {
+    $this-&gt;id = $this-&gt;id + 1;
+    if ($this-&gt;id % 3 == 0) {
+      $this-&gt;dna = $this-&gt;dna . &quot;AT&quot;;
+    }
+    if ($this-&gt;id % 5 == 0) {
+      $this-&gt;dna = $this-&gt;dna . &quot;CG&quot;;
+    }
+  }
+}
+
+$whaleCell = new WhaleCell();
+$whaleCell-&gt;displayDNA();
+$whaleCell2 = clone $whaleCell;
+$whaleCell2-&gt;displayDNA();
+$whaleCell3 = clone $whaleCell2;
+$whaleCell3-&gt;displayDNA();
+$whaleCell4 = clone $whaleCell3;
+$whaleCell4-&gt;displayDNA();
+$whaleCell5 = clone $whaleCell4;
+$whaleCell5-&gt;displayDNA();
+?&gt;
+</code></pre><p>&#x8FD0;&#x884C;&#x4E00;&#x4E0B;&#xFF1A;</p>
+<pre><code>ATCG
+ATCG
+ATCGAT
+ATCGAT
+ATCGATCG
+</code></pre><p>&#x7A0B;&#x5E8F;&#x7B80;&#x5355;&#x7684;&#x6A21;&#x62DF;&#x4E86;DNA&#x7684;&#x9057;&#x4F20;&#x7A81;&#x53D8;&#xFF0C;&#x6BCF;&#x9057;&#x4F20;&#x4E09;&#x4EE3;&#xFF0C;DNA&#x589E;&#x52A0;AT&#xFF0C;&#x6BCF;&#x9057;&#x4F20;&#x4E94;&#x4EE3;&#xFF0C;DNA&#x589E;&#x52A0;CG&#x3002;</p>
+<h2 id="&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;"><a href="#&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;" class="headerlink" title="&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;"></a>&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;</h2><p>&#x4F7F;&#x7528;clone&#x521B;&#x5EFA;&#x65B0;&#x5BF9;&#x8C61;&#x65F6;&#xFF0C;&#x5E76;&#x4E0D;&#x4F1A;&#x89E6;&#x53D1;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x3002;&#x8FD9;&#x4E5F;&#x662F;&#x5728;&#x4F7F;&#x7528;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E2D;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x4E00;&#x70B9;&#x3002;clone&#x7684;&#x5E95;&#x5C42;&#x5B9E;&#x73B0;&#x5E76;&#x4E0D;&#x662F;&#x8C03;&#x7528;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x6765;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7C7B;&#xFF0C;&#x800C;&#x662F;&#x76F4;&#x63A5;&#x62F7;&#x8D1D;&#x4E00;&#x4E2A;&#x7C7B;&#x7684;&#x5730;&#x5740;&#x7A7A;&#x95F4;&#xFF0C;&#x751F;&#x6210;&#x53E6;&#x4E00;&#x4E2A;&#x7C7B;&#x3002;&#x8FD9;&#x79CD;&#x76F4;&#x63A5;&#x62F7;&#x8D1D;&#x4E5F;&#x5E26;&#x6765;&#x4E86;&#x9AD8;&#x6548;&#x3002;<br>&#x4E8B;&#x5B9E;&#x4E0A;&#xFF0C;&#x4F7F;&#x7528;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5E76;&#x4E0D;&#x4E00;&#x5B9A;&#x662F;&#x4E00;&#x4E2A;&#x597D;&#x7684;&#x8BBE;&#x8BA1;&#xFF0C;&#x7531;&#x4E8E;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5185;&#x7684;&#x903B;&#x8F91;&#x65E0;&#x6CD5;&#x88AB;&#x5916;&#x90E8;&#x63A7;&#x5236;&#xFF0C;&#x5F53;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x4E00;&#x4E2A;&#x7C7B;&#x6784;&#x9020;&#x65F6;&#x7684;&#x903B;&#x8F91;&#x65F6;&#xFF0C;&#x9664;&#x4E86;&#x4FEE;&#x6539;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5B9E;&#x73B0;&#x4EE5;&#x5916;&#xFF0C;&#x522B;&#x65E0;&#x4ED6;&#x6CD5;&#xFF0C;&#x8FD9;&#x7834;&#x574F;&#x4E86;&#x7C7B;&#x7684;&#x5C01;&#x88C5;&#x3002;</p>
+<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x5E26;&#x6765;&#x4E86;&#x53E6;&#x4E00;&#x79CD;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x7684;&#x601D;&#x8DEF;&#xFF0C;&#x5408;&#x7406;&#x7684;&#x4F7F;&#x7528;cloning&#x6784;&#x9020;&#x5BF9;&#x8C61;&#xFF0C;&#x5C06;&#x63D0;&#x9AD8;&#x7A0B;&#x5E8F;&#x521B;&#x5EFA;&#x65B0;&#x5BF9;&#x8C61;&#x65F6;&#x7684;&#x6548;&#x7387;&#x3002;</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;&amp;#x7B80;&amp;#x4ECB;&quot;&gt;&lt;a href=&quot;#&amp;#x7B80;&amp;#x4ECB;&quot; class=&quot;headerlink&quot; title=&quot;&amp;#x7B80;&amp;#x4ECB;&quot;&gt;&lt;/a&gt;&amp;#x7B80;&amp;#x4ECB;&lt;/h2&gt;&lt;p&gt;&amp;#x5728;[PHP&amp;#
+    
+    </summary>
+    
+      <category term="php" scheme="http://ronghuaxueleng.github.io/categories/php/"/>
+    
+    
+      <category term="php" scheme="http://ronghuaxueleng.github.io/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>中介者模式</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/16%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/16中介者模式/</id>
     <published>2016-10-11T16:00:00.000Z</published>
-    <updated>2016-10-12T09:05:38.810Z</updated>
+    <updated>2016-10-12T09:39:50.946Z</updated>
     
     <content type="html"><![CDATA[<hr>
 <blockquote>
-<p>&#x4EAB;&#x5143;&#x6A21;&#x5F0F;&#x7684;&#x6838;&#x5FC3;&#x662F;&#x8FD0;&#x7528;&#x5171;&#x4EAB;&#x6280;&#x672F;&#x6765;&#x6709;&#x6548;&#x652F;&#x6301;&#x5927;&#x91CF;&#x7EC6;&#x7C92;&#x5EA6;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x5982;&#x679C;&#x7CFB;&#x7EDF;&#x4E2D;&#x56E0;&#x4E3A;&#x521B;&#x5EFA;&#x4E86;&#x5927;&#x91CF;&#x7C7B;&#x4F3C;&#x7684;&#x5BF9;&#x8C61;&#x800C;&#x5BFC;&#x81F4;&#x5185;&#x5B58;&#x5360;&#x7528;&#x8FC7;&#x9AD8;&#xFF0C;&#x4EAB;&#x5143;&#x6A21;&#x5F0F;&#x5C31;&#x975E;&#x5E38;&#x6709;&#x7528;&#x4E86;&#x3002;&#x5728;JavaScript&#x4E2D;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x7279;&#x522B;&#x662F;&#x79FB;&#x52A8;&#x7AEF;&#x7684;&#x6D4F;&#x89C8;&#x5668;&#x5206;&#x914D;&#x7684;&#x5185;&#x5B58;&#x4E0D;&#x7B97;&#x591A;&#xFF0C;&#x5982;&#x4F55;&#x8282;&#x7701;&#x5185;&#x5B58;&#x5C31;&#x6210;&#x4E86;&#x4E00;&#x4EF6;&#x975E;&#x5E38;&#x6709;&#x610F;&#x4E49;&#x7684;&#x4E8B;&#x3002;</p>
+<p>&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x7684;&#x4F5C;&#x7528;&#x5C31;&#x662F;&#x89E3;&#x9664;&#x5BF9;&#x8C61;&#x4E0E;&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x7684;&#x7D27;&#x8026;&#x5408;&#x5173;&#x7CFB;&#x3002;&#x589E;&#x52A0;&#x4E00;&#x4E2A;&#x4E2D;&#x4ECB;&#x8005;&#x5BF9;&#x8C61;&#x540E;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x76F8;&#x5173;&#x5BF9;&#x8C61;&#x90FD;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E2D;&#x4ECB;&#x8005;&#x5BF9;&#x8C61;&#x6765;&#x901A;&#x4FE1;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x76F8;&#x4E92;&#x5F15;&#x7528;&#xFF0C;&#x6240;&#x4EE5;&#x5F53;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x53D1;&#x751F;&#x6539;&#x53D8;&#x65F6;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x901A;&#x77E5;&#x4E2D;&#x4ECB;&#x8005;&#x5BF9;&#x8C61;&#x5373;&#x53EF;&#x3002;&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x4F7F;&#x7F51;&#x72B6;&#x7684;&#x591A;&#x5BF9;&#x591A;&#x5173;&#x7CFB;&#x53D8;&#x6210;&#x4E86;&#x76F8;&#x5BF9;&#x7B80;&#x5355;&#x7684;&#x4E00;&#x5BF9;&#x591A;&#x5173;&#x7CFB;&#x3002;</p>
 </blockquote>
-<h3 id="&#x521D;&#x8BC6;"><a href="#&#x521D;&#x8BC6;" class="headerlink" title="&#x521D;&#x8BC6;"></a>&#x521D;&#x8BC6;</h3><p>&#x5047;&#x8BBE;&#x6709;&#x4E2A;&#x5185;&#x8863;&#x5DE5;&#x5382;&#xFF0C;&#x8981;50&#x4E2A;&#x7537;&#x6A21;50&#x4E2A;&#x5973;&#x6A21;&#xFF0C;&#x4F60;&#x53EF;&#x80FD;&#x4F1A;&#x8FD9;&#x4E48;&#x5199;&#x7A0B;&#x5E8F;&#xFF1A;</p>
-<pre><code>var Model = function(sex, underwear) {
-    this.sex = sex;
-    this.underwear = underwear;
-}
-Model.prototype.takePhoto = function() {
-    console.log(&apos;sex=&apos; + this.sex + &apos; underwear=&apos; + this.underwear );
-}
-for (var i = 1; i &lt;= 50; i++) {
-    var maleModel = new Model(&apos;male&apos;, &apos;underwear&apos; + i);
-    maleModel.takePhoto();
-}
-for (var j = 1; j &lt;= 50; j++) {
-    var femaleModel = new Model(&apos;female&apos;, &apos;underwear&apos; + j);
-    femaleModel.takePhoto();
-}
-</code></pre><p>&#x8981;&#x5F97;&#x5230;&#x4E00;&#x5F20;&#x7167;&#x7247;&#xFF0C;&#x6BCF;&#x6B21;&#x90FD;&#x9700;&#x8981;&#x4F20;&#x5165;<code>sex</code>&#xFF0C;<code>underwear</code>&#x53C2;&#x6570;&#xFF0C;&#x6839;&#x636E;&#x73B0;&#x5728;&#x7684;&#x9700;&#x6C42;&#x4E00;&#x5171;&#x4F1A;&#x4EA7;&#x751F;100&#x4E2A;&#x5BF9;&#x8C61;&#x3002;&#x4F46;&#x662F;&#x5982;&#x679C;&#x5C06;&#x6765;&#x8981;&#x751F;&#x4EA7;10000&#x79CD;&#xFF0C;&#x90A3;&#x8FD9;&#x4E2A;&#x7A0B;&#x5E8F;&#x53EF;&#x80FD;&#x4F1A;&#x56E0;&#x4E3A;&#x5B58;&#x5728;&#x592A;&#x591A;&#x5BF9;&#x8C61;&#x63D0;&#x524D;&#x5D29;&#x6E83;&#x3002;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x505A;&#x4E00;&#x70B9;&#x6539;&#x52A8;</p>
-<pre><code>var Model = function(sex) {
-    this.sex = sex;
-}
-Model.pototype.takePhoto = function() {
-    console.log(&apos;sex=&apos; + this.sex + &apos; underwear=&apos; + this.underwear );
-};
+<h3 id="&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x7684;&#x4F8B;&#x5B50;&#x8D2D;&#x4E70;&#x5546;&#x54C1;"><a href="#&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x7684;&#x4F8B;&#x5B50;&#x2013;&#x8D2D;&#x4E70;&#x5546;&#x54C1;" class="headerlink" title="&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x7684;&#x4F8B;&#x5B50;&#x2013;&#x8D2D;&#x4E70;&#x5546;&#x54C1;"></a>&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x7684;&#x4F8B;&#x5B50;&#x2013;&#x8D2D;&#x4E70;&#x5546;&#x54C1;</h3><p>&#x5047;&#x5982;&#x6211;&#x4EEC;&#x6B63;&#x5728;&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x624B;&#x673A;&#x8D2D;&#x4E70;&#x7684;&#x9875;&#x9762;&#xFF0C;&#x5728;&#x8D2D;&#x4E70;&#x6D41;&#x7A0B;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x624B;&#x673A;&#x7684;&#x989C;&#x8272;&#x4EE5;&#x53CA;&#x8F93;&#x5165;&#x8D2D;&#x4E70;&#x6570;&#x91CF;&#xFF0C;&#x540C;&#x65F6;&#x9875;&#x9762;&#x4E2D;&#x6709;&#x4E24;&#x4E2A;&#x5C55;&#x793A;&#x533A;&#x57DF;&#xFF0C;&#x5206;&#x522B;&#x5411;&#x7528;&#x6237;&#x5C55;&#x793A;&#x9009;&#x62E9;&#x597D;&#x7684;&#x989C;&#x8272;&#x548C;&#x6570;&#x91CF;&#x3002;<br>show the code&#xFF1A;</p>
+<pre><code>var colorSelect = document.getElemmentById(&apos;colorSelect&apos;),
+    numberInput= document.getElemmentById(&apos;numberInput&apos;),
+    colorInfo= document.getElemmentById(&apos;colorInfo&apos;),
+    numberInfo = document.getElemmentById(&apos;numberInfo &apos;),
+    nextBtn = document.getElemmentById(&apos;nextBtn &apos;);
 
-//&#x5206;&#x522B;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7537;&#x6A21;&#x7279;&#x5BF9;&#x8C61;&#x548C;&#x5973;&#x6A21;&#x7279;&#x5BF9;&#x8C61;
-var maleModel = new Model(&apos;male&apos;),
-    femaleModel = new Model(&apos;female&apos;);
-//&#x7ED9;&#x6A21;&#x7279;&#x4F9D;&#x6B21;&#x7A7F;&#x4E0A;&#x6240;&#x6709;&#x7684;&#x7537;&#x88C5;&#xFF0C;&#x5E76;&#x8FDB;&#x884C;&#x62CD;&#x7167;    
-for (var i = 1; i &lt;= 50; i++) {
-    maleModel.underwear = &apos;underwear&apos; + i;
-    maleModel.takePhoto();
+var goods = { //&#x624B;&#x673A;&#x5E93;&#x5B58;
+    &quot;red&quot;: 3,
+    &quot;blue&quot;: 6
+};
+//&#x9009;&#x62E9;&#x989C;&#x8272;&#x65F6;&#x5019;
+colorSelect.onchange = function() {
+    var color = this.value, //&#x989C;&#x8272;
+        number = numberInput.value, //&#x6570;&#x91CF;
+        stock = goods[color]; //&#x8BE5;&#x989C;&#x8272;&#x624B;&#x673A;&#x5BF9;&#x5E94;&#x7684;&#x5F53;&#x524D;&#x5E93;&#x5B58;
+    colorInfo.innerHTML = color;
+    if (!color) {
+        nextBtn.disabled = true;
+        nextBtn.innerHTML = &apos;&#x8BF7;&#x9009;&#x62E9;&#x624B;&#x673A;&#x989C;&#x8272;&apos;;
+        return;
+    }
+    if (((number - 0) | 0) !== number - 0) { //&#x7528;&#x6237;&#x8F93;&#x5165;&#x7684;&#x8D2D;&#x4E70;&#x6570;&#x91CF;&#x662F;&#x5426;&#x4E3A;&#x6B63;&#x6574;&#x6570;
+        nextBtn.disabled = true;
+        nextBtn.innerHTML = &apos;&#x8BF7;&#x8F93;&#x5165;&#x6B63;&#x786E;&#x7684;&#x8D2D;&#x4E70;&#x6570;&#x91CF;&apos;;
+        return;
+    }
+    if (number &gt; stock) { //&#x5E93;&#x5B58;&#x662F;&#x5426;&#x5145;&#x8DB3;
+        nextBtn.disabled = true;
+        nextBtn.innerHTML = &apos;&#x5E93;&#x5B58;&#x4E0D;&#x8DB3;&apos;;
+        return;
+    }
+    nextBtn.disable = false;
+    nextBtn.innerHTML = &apos;&#x653E;&#x5165;&#x8D2D;&#x7269;&#x8F66;&apos;;
 }
-for (var j = 1; j &lt;= 50; j++) {
-    femaleModel.underwear = &apos;underwear&apos; + j;
-    femaleModel.takePhoto();
+
+//&#x9009;&#x62E9;&#x6570;&#x91CF;&#x7684;&#x65F6;&#x5019;
+numberInput.oninput = function() {
+    var color = this.value, //&#x989C;&#x8272;
+        number = numberInput.value, //&#x6570;&#x91CF;
+        stock = goods[color]; //&#x8BE5;&#x989C;&#x8272;&#x624B;&#x673A;&#x5BF9;&#x5E94;&#x7684;&#x5F53;&#x524D;&#x5E93;&#x5B58;
+    numberInfo.innerHTML = number;
+    if (!color) {
+        nextBtn.disabled = true;
+        nextBtn.innerHTML = &apos;&#x8BF7;&#x9009;&#x62E9;&#x624B;&#x673A;&#x989C;&#x8272;&apos;;
+        return;
+    }
+    if (((number - 0) | 0) !== number - 0) { //&#x7528;&#x6237;&#x8F93;&#x5165;&#x7684;&#x8D2D;&#x4E70;&#x6570;&#x91CF;&#x662F;&#x5426;&#x4E3A;&#x6B63;&#x6574;&#x6570;
+        nextBtn.disabled = true;
+        nextBtn.innerHTML = &apos;&#x8BF7;&#x8F93;&#x5165;&#x6B63;&#x786E;&#x7684;&#x8D2D;&#x4E70;&#x6570;&#x91CF;&apos;;
+        return;
+    }
+    if (number &gt; stock) { //&#x5E93;&#x5B58;&#x662F;&#x5426;&#x5145;&#x8DB3;
+        nextBtn.disabled = true;
+        nextBtn.innerHTML = &apos;&#x5E93;&#x5B58;&#x4E0D;&#x8DB3;&apos;;
+        return;
+    }
+    nextBtn.disable = false;
+    nextBtn.innerHTML = &apos;&#x653E;&#x5165;&#x8D2D;&#x7269;&#x8F66;&apos;;
 }
-</code></pre><p>&#x4EE5;&#x4E0A;&#x5C31;&#x662F;&#x4EAB;&#x5143;&#x6A21;&#x5F0F;&#x7684;&#x96CF;&#x5F62;&#xFF0C;&#x4EAB;&#x5143;&#x6A21;&#x5F0F;&#x8981;&#x6C42;&#x5C06;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x5212;&#x5206;&#x4E3A;&#x5185;&#x90E8;&#x72B6;&#x6001;&#x4E0E;&#x5916;&#x90E8;&#x72B6;&#x6001;&#x3002;&#x4EAB;&#x5143;&#x6A21;&#x5F0F;&#x7684;&#x76EE;&#x6807;&#x662F;&#x5C3D;&#x91CF;&#x51CF;&#x5C11;&#x5171;&#x4EAB;&#x5BF9;&#x8C61;&#x7684;&#x6570;&#x91CF;&#x3002;&#x5173;&#x4E8E;&#x5982;&#x4F55;&#x5212;&#x5206;&#x5185;&#x90E8;&#x72B6;&#x6001;&#x548C;&#x5916;&#x90E8;&#x72B6;&#x6001;&#xFF0C;&#x53EF;&#x53C2;&#x8003;&#x4EE5;&#x4E0B;<br>&#xFF1A;</p>
-<ul>
-<li><p>&#x5185;&#x90E8;&#x72B6;&#x6001;&#x5B58;&#x50A8;&#x4E8E;&#x5185;&#x90E8;&#x5BF9;&#x8C61;</p>
-</li>
-<li><p>&#x5185;&#x90E8;&#x72B6;&#x6001;&#x53EF;&#x4EE5;&#x505A;&#x4E00;&#x4E9B;&#x5BF9;&#x8C61;&#x5171;&#x4EAB;</p>
-</li>
-<li><p>&#x5185;&#x90E8;&#x72B6;&#x6001;&#x72EC;&#x7ACB;&#x4E8E;&#x5177;&#x4F53;&#x7684;&#x573A;&#x666F;&#xFF0C;&#x901A;&#x5E38;&#x4E0D;&#x4F1A;&#x6539;&#x53D8;</p>
-</li>
-<li><p>&#x5916;&#x90E8;&#x72B6;&#x6001;&#x53D6;&#x51B3;&#x4E8E;&#x5177;&#x4F53;&#x7684;&#x573A;&#x666F;&#xFF0C;&#x5E76;&#x6839;&#x636E;&#x573A;&#x666F;&#x800C;&#x53D8;&#x5316;&#xFF0C;&#x5916;&#x90E8;&#x72B6;&#x6001;&#x4E0D;&#x80FD;&#x88AB;&#x5171;&#x4EAB;</p>
-</li>
-</ul>
-<p>&#x5728;&#x4E0A;&#x9762;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x6027;&#x522B;&#x662F;&#x5185;&#x90E8;&#x72B6;&#x6001;&#xFF0C;&#x5185;&#x8863;&#x662F;&#x5916;&#x90E8;&#x72B6;&#x6001;&#x3002;&#x901A;&#x5E38;&#x6765;&#x8BF4;&#x5185;&#x90E8;&#x72B6;&#x6001;&#x6709;&#x591A;&#x5C11;&#x79CD;&#x7EC4;&#x5408;&#x7CFB;&#x7EDF;&#x4E2D;&#x4FBF;&#x6700;&#x591A;&#x5B58;&#x5728;&#x591A;&#x5C11;&#x5BF9;&#x8C61;&#x3002;<br>&#x4F46;&#x662F;&#xFF0C;&#x4EE5;&#x4E0A;&#x8FD8;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x5B8C;&#x6574;&#x7684;&#x4EAB;&#x5143;&#x6A21;&#x5F0F;&#xFF0C;&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#x8FD8;&#x6709;&#x4E24;&#x4E2A;&#x95EE;&#x9898;</p>
-<ul>
-<li><p>&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x6784;&#x9020;&#x51FD;&#x6570;&#x663E;&#x793A;&#x7684;<code>new</code>&#x51FA;&#x4E86;&#x7537;&#x5973;&#x4E24;&#x4E2A;<code>model</code>&#x5BF9;&#x8C61;&#xFF0C;&#x5728;&#x5176;&#x4ED6;&#x7CFB;&#x7EDF;&#x4E2D;&#x4E5F;&#x8BB8;&#x5E76;&#x4E0D;&#x662F;&#x4E00;&#x5F00;&#x59CB;&#x5C31;&#x9700;&#x8981;&#x6240;&#x6709;&#x7684;&#x5171;&#x4EAB;&#x5BF9;&#x8C61;</p>
-</li>
-<li><p>&#x7ED9;<code>model</code>&#x5BF9;&#x8C61;&#x624B;&#x52A8;&#x8BBE;&#x7F6E;&#x4E86;<code>underwear</code>&#x5916;&#x90E8;&#x72B6;&#x6001;&#xFF0C;&#x5728;&#x66F4;&#x590D;&#x6742;&#x7684;&#x7CFB;&#x7EDF;&#x4E2D;&#x8FD9;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x6700;&#x597D;&#x7684;&#x65B9;&#x5F0F;&#x56E0;&#x4E3A;&#x5916;&#x90E8;&#x72B6;&#x6001;&#x53EF;&#x80FD;&#x76F8;&#x5BF9;&#x590D;&#x6742;&#xFF0C;&#x4ED6;&#x4E0E;&#x5171;&#x4EAB;&#x5BF9;&#x8C61;&#x7684;&#x8054;&#x7CFB;&#x4F1A;&#x53D8;&#x5F97;&#x56F0;&#x96BE;&#x3002;</p>
-</li>
-</ul>
-<p>&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x7B2C;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x5DE5;&#x5382;&#x6765;&#x89E3;&#x51B3;&#x7B2C;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x53EA;&#x6709;&#x67D0;&#x79CD;&#x5171;&#x4EAB;&#x5BF9;&#x8C61;&#x88AB;&#x771F;&#x6B63;&#x9700;&#x8981;&#x65F6;&#xFF0C;&#x4ED6;&#x624D;&#x4ECE;&#x5DE5;&#x5382;&#x4E2D;&#x88AB;&#x521B;&#x5EFA;&#x51FA;&#x6765;&#x3002;&#x5BF9;&#x4E8E;&#x7B2C;&#x4E8C;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x4E00;&#x4E2A;&#x7BA1;&#x7406;&#x5668;&#x6765;&#x8BB0;&#x5F55;&#x5BF9;&#x8C61;&#x76F8;&#x5173;&#x7684;&#x5916;&#x90E8;&#x72B6;&#x6001;&#xFF0C;&#x4F7F;&#x8FD9;&#x4E9B;&#x5916;&#x90E8;&#x72B6;&#x6001;&#x901A;&#x8FC7;&#x67D0;&#x4E2A;&#x94A9;&#x5B50;&#x548C;&#x5171;&#x4EAB;&#x5BF9;&#x8C61;&#x8054;&#x7CFB;&#x8D77;&#x6765;&#x3002;</p>
-<h3 id="&#x5BF9;&#x8C61;&#x6C60;"><a href="#&#x5BF9;&#x8C61;&#x6C60;" class="headerlink" title="&#x5BF9;&#x8C61;&#x6C60;"></a>&#x5BF9;&#x8C61;&#x6C60;</h3><p>&#x5728;java&#x4E2D;&#xFF0C;&#x5BF9;&#x8C61;&#x6C60;&#x7EF4;&#x62A4;&#x4E00;&#x4E2A;&#x88C5;&#x8F7D;&#x7A7A;&#x95F2;&#x5BF9;&#x8C61;&#x7684;&#x6C60;&#x5B50;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x5BF9;&#x8C61;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E0D;&#x662F;&#x76F4;&#x63A5;new&#xFF0C;&#x800C;&#x662F;&#x8F6C;&#x4ECE;&#x5BF9;&#x8C61;&#x6C60;&#x91CC;&#x83B7;&#x53D6;&#x3002;&#x5982;&#x679C;&#x5BF9;&#x8C61;&#x6C60;&#x91CC;&#x6CA1;&#x6709;&#x7A7A;&#x95F2;&#x5BF9;&#x8C61;&#xFF0C;&#x5219;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x5F53;&#x83B7;&#x53D6;&#x51FA;&#x7684;&#x5BF9;&#x8C61;&#x5B8C;&#x6210;&#x4ED6;/&#x5B83;&#x7684;&#x804C;&#x8D23;&#x4E4B;&#x540E;&#xFF0C;&#x518D;&#x8FDB;&#x5165;&#x6C60;&#x5B50;&#x7B49;&#x5F85;&#x4E0B;&#x6B21;&#x83B7;&#x53D6;&#x3002;</p>
-<p>&#x8FD9;&#x91CC;&#x7A0D;&#x5FAE;&#x4ECB;&#x7ECD;&#x4E00;&#x4E0B;&#x5BF9;&#x8C61;&#x6C60;&#x5DE5;&#x5382;&#x91CC;&#x5B9E;&#x73B0;&#x901A;&#x7528;&#x5BF9;&#x8C61;&#x6C60;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;</p>
-<pre><code>var objectPoolFactory = function(createObjFn) {
-    var objectPool = [];
+</code></pre><p>&#x4EE5;&#x4E0A;&#x4EE3;&#x7801;&#x770B;&#x8D77;&#x6765;&#x80FD;&#x8FD0;&#x884C;&#x4E86;&#xFF0C;&#x4F46;&#x662F;&#x52A0;&#x5165;&#x6211;&#x4EEC;&#x5BF9;json&#x6570;&#x636E;&#x5BF9;&#x8C61;&#x505A;&#x4E86;&#x4E00;&#x4E9B;&#x4FEE;&#x6539;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre><code>var goods = {
+    &quot;red|32G&quot;: 3,
+    &quot;red|16G&quot;: 3,
+    &quot;blue|32G&quot;: 3,
+    &quot;blue|16G&quot;: 3
+}
+</code></pre><p>&#x90A3;&#x6837;&#x5B50;&#x6211;&#x4EEC;&#x8981;&#x5BF9;<code>numberInput</code>&#x548C;<code>colorSelect</code>&#x8FDB;&#x884C;&#x6539;&#x5199;&#xFF0C;&#x800C;&#x4E14;&#x6DFB;&#x52A0;&#x7684;&#x5185;&#x5BB9;&#x5927;&#x540C;&#x5C0F;&#x5F02;&#x4F46;&#x662F;&#x5F88;&#x7E41;&#x590D;&#xFF0C;&#x6BCF;&#x4E2A;&#x5BF9;&#x8C61;&#x90FD;&#x662F;&#x8026;&#x5408;&#x5728;&#x4E00;&#x8D77;&#x7684;&#xFF0C;&#x5982;&#x679C;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x4EFB;&#x4F55;&#x505A;&#x4E86;&#x6539;&#x53D8;&#xFF0C;&#x53E6;&#x5916;&#x7684;&#x90FD;&#x8981;&#x8FDB;&#x884C;&#x6539;&#x53D8;&#xFF0C;&#x8FD9;&#x6837;&#x5F88;&#x9EBB;&#x70E6;</p>
+<h3 id="&#x5F15;&#x5165;&#x4E2D;&#x4ECB;&#x8005;"><a href="#&#x5F15;&#x5165;&#x4E2D;&#x4ECB;&#x8005;" class="headerlink" title="&#x5F15;&#x5165;&#x4E2D;&#x4ECB;&#x8005;"></a>&#x5F15;&#x5165;&#x4E2D;&#x4ECB;&#x8005;</h3><pre><code>var mediator = (function() {
+    var colorSelect = document.getElemmentById(&apos;colorSelect&apos;),
+        numberInput= document.getElemmentById(&apos;numberInput&apos;),
+        colorInfo= document.getElemmentById(&apos;colorInfo&apos;),
+        numberInfo = document.getElemmentById(&apos;numberInfo &apos;),
+        nextBtn = document.getElemmentById(&apos;nextBtn &apos;);
     return {
-        create: function() {
-            var obj = objectPool.length === 0 ? createObjFn.apply(this, arguments) : objectPool.shift();
-            return obj;
-        },
-        recover: function(obj) {
-            objectPool.push(obj);
+        changed: function(obj) {
+            var color = colorSelect.value, //&#x989C;&#x8272;
+                memory = memorySelect.value, //&#x5185;&#x5B58;
+                number = numberInput.value, //&#x6570;&#x91CF;
+                stock = goods[color + &apos;|&apos; + memory]; //&#x989C;&#x8272;&#x548C;&#x5185;&#x5B58;&#x5BF9;&#x5E94;&#x7684;&#x624B;&#x673A;&#x5E93;&#x5B58;&#x6570;&#x91CF;
+            if (obj === colorSelect) { //&#x5982;&#x679C;&#x6539;&#x53D8;&#x7684;&#x662F;&#x9009;&#x62E9;&#x989C;&#x8272;&#x4E0B;&#x62C9;&#x6846;
+                colorInfo.innerHTML = color;
+            } else if (obj === memorySelect) {
+                memoryInfo.innerHTML = memory ;
+            } else if (obj === numberInput) {
+                numberInfo.innerHTML = number;
+            }
+
+            if (!color) {
+                nextBtn.disabled = true;
+                nextBtn.innerHTML = &apos;&#x8BF7;&#x9009;&#x62E9;&#x624B;&#x673A;&#x989C;&#x8272;&apos;;
+                return;
+            }
+            if (!memory) {
+                nextBtn.disabled = true;
+                nextBtn.innerHTML = &apos;&#x8BF7;&#x9009;&#x62E9;&#x5185;&#x5B58;&#x5927;&#x5C0F;&apos;;
+                return;
+            }
+            if (((number - 0) | 0) !== number - 0) { //&#x7528;&#x6237;&#x8F93;&#x5165;&#x7684;&#x8D2D;&#x4E70;&#x6570;&#x91CF;&#x662F;&#x5426;&#x4E3A;&#x6B63;&#x6574;&#x6570;
+                nextBtn.disabled = true;
+                nextBtn.innerHTML = &apos;&#x8BF7;&#x8F93;&#x5165;&#x6B63;&#x786E;&#x7684;&#x8D2D;&#x4E70;&#x6570;&#x91CF;&apos;;
+                return;
+            }
+            nextBtn.disable = false;
+            nextBtn.innerHTML = &apos;&#x653E;&#x5165;&#x8D2D;&#x7269;&#x8F66;&apos;;
         }
-    }
+    }    
+})();
+//&#x4E8B;&#x4EF6;&#x51FD;&#x6570;
+colorSelect.onchange = function() {
+    mediator.changed(this);
 };
-</code></pre><p>&#x73B0;&#x5728;&#x5229;&#x7528;<code>objectPoolFactory</code>&#x6765;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x88C5;&#x8F7D;&#x4E00;&#x4E9B;<code>iframe</code>&#x7684;&#x5BF9;&#x8C61;&#x6C60;&#xFF1A;</p>
-<pre><code>var iframeFactory = objectPoolFactory( function() {
-    var iframe = document.createElement(&apos;iframe&apos;);
-    document.body.appendChild(iframe);
-    iframe.onload = function() {
-        iframe.onload = null; //&#x9632;&#x6B62;iframe&#x91CD;&#x590D;&#x52A0;&#x8F7D;&#x7684;bug
-        iframeFactory.recover(iframe); //iframe&#x52A0;&#x8F7D;&#x5B8C;&#x6210;&#x4E4B;&#x540E;&#x56DE;&#x6536;&#x8282;&#x70B9;
-    }
-    return iframe;
-});
-
-var iframe1 = iframeFactory.create();
-iframe1.src = &apos;http://baidu.com&apos;;
-
-var iframe2 = iframeFactory.create();
-iframe2.src = &apos;http://QQ.com&apos;;
-
-setTimeout(function() {
-    var iframe3 = iframeFactory.create();
-    iframe3.src = &apos;http://163.com&apos;;
-
-}, 3000);
-</code></pre><p>&#x5BF9;&#x8C61;&#x6C60;&#x662F;&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x6027;&#x80FD;&#x4F18;&#x5316;&#x65B9;&#x6848;&#xFF0C;&#x4ED6;&#x8DDF;&#x4EAB;&#x5143;&#x6A21;&#x5F0F;&#x6709;&#x4E00;&#x4E9B;&#x76F8;&#x4F3C;&#x4E4B;&#x5904;&#xFF0C;&#x4F46;&#x6CA1;&#x6709;&#x5206;&#x79BB;&#x5185;&#x90E8;&#x72B6;&#x6001;&#x548C;&#x5916;&#x90E8;&#x72B6;&#x6001;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x3002;</p>
+memorySelect.onchange = function() {
+    mediator.changed(this);
+};
+numberInput.oninput = function() {
+    mediator.changed(this);
+};
+</code></pre><p>&#x8FD9;&#x6837;&#xFF0C;&#x5047;&#x5982;&#x67D0;&#x5929;&#x6211;&#x4EEC;&#x53C8;&#x8981;&#x65B0;&#x589E;&#x4EC0;&#x4E48;&#x9700;&#x6C42;&#xFF0C;&#x5C31;&#x53EA;&#x8981;&#x80FD;&#x591F;&#x7A0D;&#x7A0D;&#x6539;&#x52A8;mediator&#x5BF9;&#x8C61;&#x5373;&#x53EF;&#x3002;</p>
+<h3 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h3><p>&#x6700;&#x540E;&#x6765;&#x4E2A;&#x603B;&#x7ED3;&#xFF1A;<br>&#x4E2D;&#x4ECB;&#x8005;&#x6A21;&#x5F0F;&#x4F7F;&#x5404;&#x4E2A;&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x5F97;&#x4EE5;&#x89E3;&#x8026;&#xFF0C;&#x4EE5;&#x4E2D;&#x4ECB;&#x8005;&#x548C;&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x7684;&#x4E00;&#x5BF9;&#x591A;&#x5173;&#x7CFB;&#x53D6;&#x4EE3;&#x4E86;&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x7684;&#x7F51;&#x72B6;&#x591A;&#x5BF9;&#x591A;&#x5173;&#x7CFB;&#xFF0C;&#x5404;&#x4E2A;&#x5BF9;&#x8C61;&#x53EA;&#x9700;&#x5173;&#x6CE8;&#x81EA;&#x8EAB;&#x529F;&#x80FD;&#x7684;&#x5B9E;&#x73B0;&#x3002;&#x4F46;&#x662F;&#x8FD9;&#x6837;&#x4E5F;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x7F3A;&#x70B9;&#xFF0C;&#x7CFB;&#x7EDF;&#x4E2D;&#x4F1A;&#x65B0;&#x589E;&#x4E00;&#x4E2A;&#x4E2D;&#x4ECB;&#x8005;&#x5BF9;&#x8C61;&#xFF0C;&#x56E0;&#x4E3A;&#x5BF9;&#x8C61;&#x4EA4;&#x4E92;&#x7684;&#x590D;&#x6742;&#x6027;&#xFF0C;&#x8F6C;&#x79FB;&#x6210;&#x4E86;&#x4E2D;&#x4ECB;&#x8005;&#x5BF9;&#x8C61;&#x7684;&#x590D;&#x6742;&#x6027;&#xFF0C;&#x4F7F;&#x5F97;&#x4E2D;&#x4ECB;&#x8005;&#x5BF9;&#x8C61;&#x901A;&#x5E38;&#x662F;&#x5DE8;&#x5927;&#x7684;&#x3002;&#x4E2D;&#x4ECB;&#x8005;&#x5BF9;&#x8C61;&#x81EA;&#x8EAB;&#x5F80;&#x5F80;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x96BE;&#x4EE5;&#x7EF4;&#x62A4;&#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
 ]]></content>
     
     <summary type="html">
     
       &lt;hr&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&amp;#x4EAB;&amp;#x5143;&amp;#x6A21;&amp;#x5F0F;&amp;#x7684;&amp;#x6838;&amp;#x5FC3;&amp;#x662F;&amp;#x8FD0;&amp;#x7528;&amp;#x5171;&amp;#x4EAB;&amp;#x6280;&amp;#x672F;&amp;#x6765
+&lt;p&gt;&amp;#x4E2D;&amp;#x4ECB;&amp;#x8005;&amp;#x6A21;&amp;#x5F0F;&amp;#x7684;&amp;#x4F5C;&amp;#x7528;&amp;#x5C31;&amp;#x662F;&amp;#x89E3;&amp;#x9664;&amp;#x5BF9;&amp;#x8C61;&amp;#x4E0E
     
     </summary>
     
@@ -2001,396 +2029,6 @@ getName.call(obj2); //222
 &lt;p&gt;this&amp;#x7684;&amp;#x6307;&amp;#x5411;&amp;#x5927;&amp;#x6982;&amp;#x53EF;&amp;#x4EE5;&amp;#x5206;&amp;#x6210;&amp;#x56DB;&amp;#x79CD;&amp;#xFF1A;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&amp;#x4F
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
-    
-    
-      <category term="javascript" scheme="http://ronghuaxueleng.github.io/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>闭包</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/2%E9%97%AD%E5%8C%85/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/2闭包/</id>
-    <published>2016-10-11T16:00:00.000Z</published>
-    <updated>2016-10-12T06:26:36.704Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>&#x95ED;&#x5305;&#x662F;js&#x4E2D;&#x4E00;&#x4E2A;&#x96BE;&#x61C2;&#x53C8;&#x5FC5;&#x987B;&#x5F81;&#x670D;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x4ED6;&#x7684;&#x5F62;&#x6210;&#x4E0E;&#x53D8;&#x91CF;&#x4F5C;&#x7528;&#x57DF;&#x4EE5;&#x53CA;&#x53D8;&#x91CF;&#x7684;&#x751F;&#x5B58;&#x5468;&#x671F;&#x5BC6;&#x5207;&#x76F8;&#x5173;&#x3002;</p>
-</blockquote>
-<h3 id="&#x53D8;&#x91CF;&#x4F5C;&#x7528;&#x57DF;&#x548C;&#x751F;&#x5B58;&#x5468;&#x671F;"><a href="#&#x53D8;&#x91CF;&#x4F5C;&#x7528;&#x57DF;&#x548C;&#x751F;&#x5B58;&#x5468;&#x671F;" class="headerlink" title="&#x53D8;&#x91CF;&#x4F5C;&#x7528;&#x57DF;&#x548C;&#x751F;&#x5B58;&#x5468;&#x671F;"></a>&#x53D8;&#x91CF;&#x4F5C;&#x7528;&#x57DF;&#x548C;&#x751F;&#x5B58;&#x5468;&#x671F;</h3><p>&#x4F5C;&#x7528;&#x57DF;&#xFF0C;&#x6309;&#x5B57;&#x9762;&#x7406;&#x89E3;&#xFF0C;&#x5C31;&#x662F;&#x6307;&#x53D8;&#x91CF;&#x7684;&#x6709;&#x6548;&#x8303;&#x56F4;&#xFF0C;&#x8D85;&#x51FA;&#x8FD9;&#x4E2A;&#x8303;&#x56F4;&#x5C31;&#x65E0;&#x6CD5;&#x8BBF;&#x95EE;&#x3002;<br>&#x5728;&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x91CC;&#x9762;&#x51FD;&#x6570;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x5916;&#x9762;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x4F46;&#x662F;&#x5916;&#x9762;&#x65E0;&#x6CD5;&#x8BBF;&#x95EE;&#x5185;&#x90E8;&#x53D8;&#x91CF;&#x3002;&#x4E3E;&#x4E2A;&#x7B80;&#x5355;&#x4F8B;&#x5B50;&#xFF1A;</p>
-<pre><code>var a = 1;
-var fun1 = function() {
-    var b = 2;
-    var fun2 = function() {
-        var c = 3;
-        alert(b); //2
-        alert(c); //3
-    }
-    fun2();
-    alert(c); //c is not defined
-};
-fun1();
-</code></pre><p>&#x751F;&#x5B58;&#x5468;&#x671F;&#xFF1A;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x7684;&#x751F;&#x5B58;&#x5468;&#x671F;&#x662F;&#x6C38;&#x4E45;&#x7684;&#xFF0C;&#x9664;&#x975E;&#x6211;&#x4EEC;&#x4E3B;&#x52A8;&#x9500;&#x6BC1;&#xFF0C;&#x4F46;&#x662F;&#x666E;&#x901A;&#x5BF9;&#x4E8E;&#x7528;var&#x58F0;&#x660E;&#x7684;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#xFF0C;&#x5F53;&#x9000;&#x51FA;&#x51FD;&#x6570;&#x4E0D;&#x518D;&#x4F7F;&#x7528;&#x65F6;&#xFF0C;&#x5C31;&#x4F1A;&#x88AB;&#x9500;&#x6BC1;&#x3002;&#x4F46;&#x662F;&#x5F53;&#x4F60;&#x4F7F;&#x7528;&#x5230;&#x95ED;&#x5305;&#x65F6;&#xFF0C;&#x60C5;&#x51B5;&#x5C31;&#x4E0D;&#x4E00;&#x6837;&#x4E86;</p>
-<pre><code>var fun = function() {
-    var a = 1;
-    return function() {
-        a++;
-        alert(a);
-    }
-};
-var f = fun();
-f(); //2
-f(); //3
-f(); //4
-f(); //5
-</code></pre><p>&#x89E3;&#x91CA;&#xFF1A;&#x5F53;&#x6267;&#x884C;var f = fun();&#x65F6;&#xFF0C;f&#x8FD4;&#x56DE;&#x4E86;&#x4E00;&#x4E2A;&#x533F;&#x540D;&#x51FD;&#x6570;&#x7684;&#x5F15;&#x7528;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x5230;fun()&#x88AB;&#x8C03;&#x7528;&#x7684;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#xFF0C;&#x800C;&#x5C40;&#x90E8;&#x53D8;&#x91CF;a&#x4E00;&#x76F4;&#x5728;&#x8FD9;&#x4E2A;&#x73AF;&#x5883;&#x4E2D;&#x3002;&#x65E2;&#x7136;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x80FD;<br>&#x88AB;&#x5916;&#x754C;&#x8BBF;&#x95EE;&#xFF0C;&#x90A3;&#x5B83;&#x5C31;&#x6709;&#x4E86;&#x4E0D;&#x88AB;&#x9500;&#x6BC1;&#x7684;&#x7406;&#x7531;&#xFF0C;&#x4E8E;&#x662F;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x751F;&#x547D;&#x88AB;&#x5EF6;&#x7EED;&#x4E86;&#x3002;</p>
-<p>&#x518D;&#x4F8B;&#x5982;&#xFF1A;</p>
-<pre><code>var nodes = document.getElemmentByTagName(&apos;div&apos;); //&#x6B64;&#x5904;&#x4ED6;&#x7684;&#x957F;&#x5EA6;&#x4E3A;5
-for (var i = 0, len = nodes.length; i &lt; len; i++) {
-    nodes[i].onclick = function() {
-        alert(i);
-    }
-};
-</code></pre><p>&#x4EE5;&#x4E0A;&#x4EE3;&#x7801;&#x65E0;&#x8BBA;&#x70B9;&#x54EA;&#x4E2A;div&#x663E;&#x793A;&#x7684;&#x90FD;&#x662F;5&#xFF08;div&#x8282;&#x70B9;&#x7684;onclick&#x662F;&#x5F02;&#x6B65;&#x89E6;&#x53D1;&#x7684;&#xFF0C;&#x5F53;&#x4E8B;&#x4EF6;&#x89E6;&#x53D1;&#x65F6;&#xFF0C;&#x5FAA;&#x73AF;&#x5DF2;&#x7ECF;&#x7ED3;&#x675F;&#xFF0C;&#x6B64;&#x65F6;i&#x7684;&#x503C;&#x662F;5&#xFF09;<br>&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#xFF1A;&#x95ED;&#x5305;&#x5927;&#x6CD5;&#x597D;</p>
-<pre><code>for (var i = 0, len = nodes.length; i &lt; len; i++) {
-    (function(i) {
-        nodes[i].onclick = function() {
-            alert(i);
-        }
-    })(i)
-};
-</code></pre><p>&#x901A;&#x5E38;&#xFF0C;&#x95ED;&#x5305;&#x53EF;&#x4EE5;&#x6709;&#x5C01;&#x88C5;&#x4E00;&#x4E9B;&#x4E0D;&#x9700;&#x8981;&#x66B4;&#x9732;&#x5728;&#x5168;&#x5C40;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x5EF6;&#x7EED;&#x5C40;&#x90E8;&#x53D8;&#x91CF;&#x5BFF;&#x547D;&#x7B49;&#x7B49;&#x7528;&#x9014;&#x3002;</p>
-<h3 id="&#x547D;&#x4EE4;&#x6A21;&#x5F0F;"><a href="#&#x547D;&#x4EE4;&#x6A21;&#x5F0F;" class="headerlink" title="&#x547D;&#x4EE4;&#x6A21;&#x5F0F;"></a>&#x547D;&#x4EE4;&#x6A21;&#x5F0F;</h3><p>&#x547D;&#x4EE4;&#x6A21;&#x5F0F;&#x7684;&#x610F;&#x56FE;&#x662F;&#x628A;&#x8BF7;&#x6C42;&#x5C01;&#x88C5;&#x4E3A;&#x5BF9;&#x8C61;&#xFF0C;&#x4ECE;&#x800C;&#x5206;&#x79BB;&#x8BF7;&#x6C42;&#x7684;&#x53D1;&#x8D77;&#x8005;&#x548C;&#x8BF7;&#x6C42;&#x7684;&#x63A5;&#x6536;&#x8005;&#xFF08;&#x6267;&#x884C;&#x8005;&#xFF09;&#x4E4B;&#x95F4;&#x7684;&#x8026;&#x5408;&#x5173;&#x7CFB;&#x3002;&#x5728;&#x547D;&#x4EE4;&#x6267;&#x884C;&#x4E4B;&#x524D;&#x53EF;&#x9884;&#x5148;&#x5F80;&#x547D;&#x4EE4;&#x5BF9;&#x8C61;&#x4E2D;&#x690D;&#x5165;&#x547D;&#x4EE4;&#x7684;&#x63A5;&#x6536;&#x8005;&#x3002;</p>
-<pre><code>var TV = {
-    open: function() {
-        alert(&apos;open&apos;);
-    },
-    close: function() {
-        alert(&apos;close&apos;);
-    }
-};
-
-var createCommand = function(receiver) {
-    var execute= function() {
-        return receiver.open(); //&#x6267;&#x884C;&#x547D;&#x4EE4;&#x6253;&#x5F00;&#x7535;&#x89C6;
-    }
-
-    var undo= function() {
-        return receiver.close(); //&#x6267;&#x884C;&#x547D;&#x4EE4;&#x5173;&#x95ED;&#x7535;&#x89C6;
-    }
-
-    return {
-        execute: execute,
-        undo: undo
-    }
-};
-
-var setComment = function(command) {
-    document.getElementById(&apos;execute&apos;).onclick = function() {
-        command.execute();
-    }
-    document.getElementById(&apos;undo&apos;).onclick = function() {
-        command.undo();
-    }
-};
-setCommand(createCommand(tv));
-</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&amp;#x95ED;&amp;#x5305;&amp;#x662F;js&amp;#x4E2D;&amp;#x4E00;&amp;#x4E2A;&amp;#x96BE;&amp;#x61C2;&amp;#x53C8;&amp;#x5FC5;&amp;#x987B;&amp;#x5F81;&amp;#x670D;&amp;#x7684;&amp;#x6982;&amp;#
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
-    
-    
-      <category term="javascript" scheme="http://ronghuaxueleng.github.io/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>代码重构</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/21%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/21代码重构/</id>
-    <published>2016-10-11T16:00:00.000Z</published>
-    <updated>2016-10-12T09:44:23.006Z</updated>
-    
-    <content type="html"><![CDATA[<hr>
-<p>&#x4E00;&#x4E9B;&#x91CD;&#x6784;&#x7684;&#x5EFA;&#x8BAE;&#xFF1A;</p>
-<ol>
-<li><p>&#x63D0;&#x70BC;&#x51FD;&#x6570;</p>
-<ul>
-<li><p>&#x907F;&#x514D;&#x51FA;&#x73B0;&#x8D85;&#x5927;&#x51FD;&#x6570;</p>
-</li>
-<li><p>&#x72EC;&#x7ACB;&#x51FA;&#x6765;&#x7684;&#x51FD;&#x6570;&#x6709;&#x52A9;&#x4E8E;&#x4EE3;&#x7801;&#x590D;&#x7528;</p>
-</li>
-<li><p>&#x72EC;&#x7ACB;&#x51FA;&#x6765;&#x7684;&#x51FD;&#x6570;&#x66F4;&#x5BB9;&#x6613;&#x88AB;&#x8986;&#x5199;</p>
-</li>
-<li><p>&#x72EC;&#x7ACB;&#x51FA;&#x6765;&#x7684;&#x51FD;&#x6570;&#x5982;&#x679C;&#x62E5;&#x6709;&#x4E00;&#x4E2A;&#x826F;&#x597D;&#x7684;&#x547D;&#x540D;&#xFF0C;</p>
-</li>
-<li><p>&#x5B83;&#x672C;&#x8EAB;&#x5C31;&#x8D77;&#x5230;&#x4E86;&#x6CE8;&#x91CA;&#x7684;&#x4F5C;&#x7528;&#x3002;</p>
-</li>
-</ul>
-</li>
-</ol>
-<p>&#x6BD4;&#x5982;&#x5728;&#x4E00;&#x4E2A;&#x8D1F;&#x8D23;&#x53D6;&#x5F97;&#x7528;&#x6237;&#x4FE1;&#x606F;&#x7684;&#x51FD;&#x6570;&#x91CC;&#x9762;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x9700;&#x8981;&#x6253;&#x5370;&#x8DDF;&#x7528;&#x6237;&#x4FE1;&#x606F;&#x6709;&#x5173;&#x7684;log&#xFF0C;&#x90A3;&#x4E48;&#x6253;&#x5370;log&#x7684;&#x8BED;&#x53E5;&#x5C31;&#x53EF;&#x4EE5;&#x88AB;&#x5C01;&#x88C5;&#x5728;&#x4E00;&#x4E2A;&#x72EC;&#x7ACB;&#x7684;&#x51FD;&#x6570;&#x91CC;&#xFF1A;</p>
-<pre><code>var getUserInfo = function() {
-    ajax(&apos;http://xxx.com/userInfo&apos;, function(data) {
-        console.log(&apos;userId: &apos; + data.userId);
-        console.log(&apos;userName: &apos; + data.userName);
-        console.log(&apos;nickName: &apos; + data.nickName);
-    });
-};
-</code></pre><p>&#x53EF;&#x4EE5;&#x6539;&#x6210;&#xFF1A;</p>
-<pre><code>var getUserInfo = function() {
-    ajax(&apos;http://xxx.com/userInfo&apos;, function(data) {
-        printDetails(data);
-    });
-};
-var printDetails = function(data) {
-    console.log(&apos;userId: &apos; + data.userId);
-    console.log(&apos;userName: &apos; + data.userName);
-    console.log(&apos;nickName: &apos; + data.nickName);
-}
-</code></pre><ol>
-<li>&#x5408;&#x5E76;&#x91CD;&#x590D;&#x7684;&#x6761;&#x4EF6;&#x7247;&#x6BB5;<br>&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x5185;&#x6709;&#x4E00;&#x4E9B;&#x6761;&#x4EF6;&#x5206;&#x652F;&#x8BED;&#x53E5;&#xFF0C;&#x800C;&#x8FD9;&#x4E9B;&#x6761;&#x4EF6;&#x5206;&#x652F;&#x8BED;&#x53E5;&#x5185;&#x90E8;&#x6563;&#x6B65;&#x4E86;&#x4E00;&#x4E9B;&#x91CD;&#x590D;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x6709;&#x5FC5;&#x8981;&#x8FDB;&#x884C;&#x5408;&#x5E76;&#x53BB;&#x91CD;&#x5DE5;&#x4F5C;&#x3002;</li>
-</ol>
-<pre><code>//&#x9875;&#x9762;&#x8DF3;&#x8F6C;
-var paging = function(currPage) {
-    if (currPage &lt;= 0) {
-        currPage = 0;
-        jump(currPage); //&#x8DF3;&#x8F6C;
-    } else if (currPage &gt;= totalPage) {
-        currPage = totalPage;
-        jump(currPage); //&#x8DF3;&#x8F6C;
-    } else {
-        jump(currPage); //&#x8DF3;&#x8F6C;
-    }
-}
-</code></pre><p>&#x6539;&#x6210;</p>
-<pre><code>//&#x9875;&#x9762;&#x8DF3;&#x8F6C;
-var paging = function(currPage) {
-    if (currPage &lt;= 0) {
-        currPage = 0;
-    } else if (currPage &gt;= totalPage) {
-        currPage = totalPage;
-    } 
-    jump(currPage); //&#x8DF3;&#x8F6C;
-}
-</code></pre><ol>
-<li>&#x628A;&#x6761;&#x4EF6;&#x5206;&#x652F;&#x8BED;&#x53E5;&#x63D0;&#x70BC;&#x6210;&#x51FD;&#x6570;<br>&#x5728;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x4E2D;&#xFF0C;&#x590D;&#x6742;&#x7684;&#x6761;&#x4EF6;&#x5206;&#x652F;&#x8BED;&#x53E5;&#x662F;&#x5BFC;&#x81F4;&#x7A0B;&#x5E8F;&#x96BE;&#x4EE5;&#x9605;&#x8BFB;&#x548C;&#x7406;&#x89E3;&#x7684;&#x91CD;&#x8981;&#x539F;&#x56E0;&#xFF0C;&#x800C;&#x4E14;&#x5BB9;&#x6613;&#x5BFC;&#x81F4;&#x4E00;&#x4E2A;&#x5E9E;&#x5927;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x6240;&#x4EE5;&#x901A;&#x5E38;&#x6211;&#x4EEC;&#x8981;&#x8FDB;&#x884C;&#x4E00;&#x5B9A;&#x7684;&#x63D0;&#x70BC;&#x3002;</li>
-</ol>
-<pre><code>//&#x8BA1;&#x7B97;&#x5546;&#x54C1;&#x4EF7;&#x683C;&#xFF0C;&#x5982;&#x679C;&#x5904;&#x4E8E;&#x590F;&#x5B63;&#xFF0C;&#x5168;&#x90E8;&#x5546;&#x54C1;&#x516B;&#x6298;&#x51FA;&#x552E;
-var getPrice = function(price) {
-    var date = new Date();
-    if (date.getMonth() &gt;= 6 &amp;&amp; date.getMonth &lt;= 9) { //&#x590F;&#x5B63;
-        return price * 0.8;
-    }
-    return price;
-}
-</code></pre><p>&#x6539;&#x6210;</p>
-<pre><code>//&#x8BA1;&#x7B97;&#x5546;&#x54C1;&#x4EF7;&#x683C;&#xFF0C;&#x5982;&#x679C;&#x5904;&#x4E8E;&#x590F;&#x5B63;&#xFF0C;&#x5168;&#x90E8;&#x5546;&#x54C1;&#x516B;&#x6298;&#x51FA;&#x552E;
-var getPrice = function(price) {
-
-    if (isSummer()) { //&#x590F;&#x5B63;
-        return price * 0.8;
-    }
-    return price;
-}
-var isSummer = function() {
-    var date = new Date();
-    return date.getMonth() &gt;= 6 &amp;&amp; date.getMonth &lt;= 9;
-}
-</code></pre><ol>
-<li>&#x5408;&#x7406;&#x4F7F;&#x7528;&#x5FAA;&#x73AF;</li>
-</ol>
-<pre><code>var createXHR = function() {
-    var xhr;
-    try{
-        xhr = new ActiveXObject(&apos;MSXML2.XMLHttp.6.0&apos;);
-    } catch(e) {
-        try {
-            xhr = new ActiveXObject(&apos;MSXML2.XMLHttp.3.0&apos;);
-        } catch(e) {
-            xhr = new ActiveXObject(&apos;MSXML2.XMLHttp&apos;);
-        }
-    }
-    return xhr;
-};
-var xhr = createXHR();
-</code></pre><p>&#x6539;&#x6210;&#xFF1A;</p>
-<pre><code>var createXHR = function() {
-    var versions = [&apos;MSXML2.XMLHttp.6.0&apos;, &apos;MSXML2.XMLHttp.3.0&apos;, &apos;MSXML2.XMLHttp&apos;];
-    for (var i = 0, version; version = versions[i++]; ) {
-        try {
-            return new ActiveObject(version);
-        } catch(e) {
-
-        }
-    }
-};
-var xhr = createXHR();
-</code></pre><ol>
-<li>&#x63D0;&#x524D;&#x8BA9;&#x51FD;&#x6570;&#x9000;&#x51FA;&#x4EE3;&#x66FF;&#x5D4C;&#x5957;&#x6761;&#x4EF6;&#x5206;&#x652F;</li>
-</ol>
-<pre><code>var del = function(obj) {
-    var ret;
-    if (!obj.isReadOnly) { //&#x4E0D;&#x4E3A;&#x53EA;&#x8BFB;&#x7684;&#x65F6;&#x5019;&#x624D;&#x53EF;&#x4EE5;&#x5220;&#x9664;
-        if (obj.isFolder) { //&#x5982;&#x679C;&#x662F;&#x6587;&#x4EF6;&#x5939;
-            ret = deleteFolder(obj);
-        } else if (obj.isFile) { //&#x5982;&#x679C;&#x662F;&#x6587;&#x4EF6;
-            ret = deleteFile(obj);
-        }
-    }
-    return ret;
-}
-</code></pre><p>&#x6539;&#x6210;&#xFF1A;</p>
-<pre><code>var del = function(obj) {
-    if (obj.isReadOnly) { 
-        return;
-    }
-    if (obj.isFolder) { //&#x5982;&#x679C;&#x662F;&#x6587;&#x4EF6;&#x5939;
-        return deleteFolder(obj);
-    } 
-    if (obj.isFile) { //&#x5982;&#x679C;&#x662F;&#x6587;&#x4EF6;
-        return deleteFile(obj);
-    }
-}
-</code></pre><ol>
-<li>&#x4F20;&#x9012;&#x5BF9;&#x8C61;&#x53C2;&#x6570;&#x4EE3;&#x66FF;&#x8FC7;&#x957F;&#x7684;&#x53C2;&#x6570;&#x5217;&#x8868;<br>&#x6709;&#x65F6;&#x5019;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x53EF;&#x80FD;&#x63A5;&#x6536;&#x591A;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x800C;&#x53C2;&#x6570;&#x7684;&#x6570;&#x91CF;&#x8D8A;&#x591A;&#x51FD;&#x6570;&#x5C31;&#x8D8A;&#x96BE;&#x7406;&#x89E3;&#x548C;&#x4F7F;&#x7528;&#x3002;&#x8FD9;&#x65F6;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x628A;&#x53C2;&#x6570;&#x653E;&#x5165;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x5185;&#xFF0C;&#x7136;&#x540E;&#x628A;&#x5BF9;&#x8C61;&#x4F20;&#x5165;&#x3002;</li>
-</ol>
-<pre><code>var setUserInfo = function(id, name, address, sex, mobile, qq) {
-    console.log(&apos;id=&apos; + id);
-    console.log(&apos;name=&apos; + name);
-    console.log(&apos;address=&apos; + address);
-    console.log(&apos;sex=&apos; + sex);
-    console.log(&apos;mobile=&apos; + mobile);
-    console.log(&apos;qq=&apos; + qq);
-}
-setUserInfo(1234, cyseria, guangzhou, female, 188***, 52***);
-</code></pre><p>&#x6539;&#x6210;&#xFF1A;</p>
-<pre><code>var setUserInfo = function(obj) {
-    console.log(&apos;id=&apos; + obj.id);
-    console.log(&apos;name=&apos; + obj.name);
-    console.log(&apos;address=&apos; + obj.address);
-    console.log(&apos;sex=&apos; + obj.sex);
-    console.log(&apos;mobile=&apos; + obj.mobile);
-    console.log(&apos;qq=&apos; + obj.qq);
-}
-setUserInfo({
-    id: 1234, 
-    name: cyseria, 
-    address: guangzhou, 
-    sex: female, 
-    mobile: 188***, 
-    qq: 52***
-});
-</code></pre><ol>
-<li><p>&#x5C3D;&#x91CF;&#x51CF;&#x5C11;&#x53C2;&#x6570;&#x6570;&#x91CF;<br>&#x5C3D;&#x91CF;&#x51CF;&#x5C11;&#x4E00;&#x4E9B;&#x6CA1;&#x5FC5;&#x8981;&#x7684;&#x4E0D;&#x4F1A;&#x4F7F;&#x7528;&#x6216;&#x8005;&#x53EF;&#x4EE5;&#x6C42;&#x51FA;&#x7684;&#x53C2;&#x6570;&#x3002;&#x8FD9;&#x91CC;&#x4E0D;&#x505A;&#x8FC7;&#x591A;&#x9610;&#x8FF0;&#x3002;</p>
-</li>
-<li><p>&#x5C11;&#x7528;&#x4E09;&#x76EE;&#x8FD0;&#x7B97;<br>&#x6709;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x7528;&#x4E09;&#x76EE;&#x8FD0;&#x7B97;&#x4F1A;&#x89C9;&#x5F97;&#x5B83;&#x6027;&#x80FD;&#x9AD8;&#xFF0C;&#x4EE3;&#x7801;&#x91CF;&#x5C11;&#x3002;&#x4F46;&#x662F;&#x5728;&#x5B9E;&#x9645;&#x5F00;&#x53D1;&#x4E2D;&#xFF0C;&#x5373;&#x4F7F;&#x628A;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;&#x5FAA;&#x73AF;&#x4E00;&#x767E;&#x4E07;&#x6B21;&#xFF0C;&#x4F7F;&#x7528;&#x4E09;&#x76EE;&#x8FD0;&#x7B97;&#x548C;<code>if,else</code>&#x7684;&#x65F6;&#x95F4;&#x5F00;&#x9500;&#x4F9D;&#x65E7;&#x5728;&#x540C;&#x4E2A;&#x7EA7;&#x522B;&#x4E2D;&#x3002;&#x540C;&#x6837;&#xFF0C;&#x76F8;&#x6BD4;&#x635F;&#x5931;&#x7684;&#x4EE3;&#x7801;&#x53EF;&#x8BFB;&#x6027;&#x548C;&#x53EF;&#x7EF4;&#x62A4;&#x6027;&#xFF0C;&#x4ED6;&#x80FD;&#x8282;&#x7701;&#x7684;&#x4EE3;&#x7801;&#x91CF;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#x4E0D;&#x8BA1;&#x3002;</p>
-</li>
-</ol>
-<p>&#x81F3;&#x4E8E;&#x4F8B;&#x5B50;&#xFF0C;&#x770B;&#x770B;&#x4E0B;&#x9762;&#x90A3;&#x4E2A;&#x4F60;&#x5C31;&#x77E5;&#x9053;&#x4E86;&#xFF1A;</p>
-<pre><code>if (!aup || bup) {
-    return a === doc ? -1 :
-        b === doc ? 1 : 
-        aup ? -1 : 
-        bup : -1 :
-        sortInput ? (indexOf.call(sortInput, a) - indexOf.call(sortInput, b)) : 
-        0;
-}
-</code></pre><p>&#x5F53;&#x7136;&#xFF0C;&#x5982;&#x679C;&#x53EA;&#x662F;&#x7B80;&#x5355;&#x7684;&#x4E00;&#x53E5;&#xFF0C;&#x7528;&#x4E00;&#x4E0B;&#x4E5F;&#x6CA1;&#x4EC0;&#x4E48;&#x6240;&#x8C13;&#x3002;</p>
-<ol>
-<li>&#x5408;&#x7406;&#x4F7F;&#x7528;&#x94FE;&#x5F0F;&#x8C03;&#x7528;<br>&#x4F7F;&#x7528;jq&#x7684;&#x5BF9;&#x94FE;&#x5F0F;&#x8C03;&#x7528;&#x4E00;&#x5B9A;&#x4E0D;&#x964C;&#x751F;&#xFF0C;&#x5728;&#x81EA;&#x5DF1;&#x7F16;&#x5199;&#x51FD;&#x6570;&#x7684;&#x65F6;&#x5019;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8FD9;&#x70B9;&#xFF0C;&#x8FD4;&#x56DE;&#x81EA;&#x8EAB;&#x3002;&#x4F46;&#x662F;&#x4ED6;&#x4E5F;&#x6709;&#x4E00;&#x4E2A;&#x574F;&#x5904;&#xFF0C;&#x8C03;&#x8BD5;&#x7684;&#x65F6;&#x5019;&#x4E0D;&#x65B9;&#x4FBF;&#x3002;&#x6240;&#x4EE5;&#x5982;&#x679C;&#x94FE;&#x6761;&#x7684;&#x7ED3;&#x6784;&#x7A33;&#x5B9A;&#x540E;&#x671F;&#x4E0D;&#x6613;&#x4FEE;&#x6539;&#xFF0C;&#x90A3;&#x4E48;&#x4F7F;&#x7528;&#x4ED6;&#x65E0;&#x53EF;&#x539A;&#x975E;&#xFF0C;&#x4F46;&#x662F;&#x5982;&#x679C;&#x8BE5;&#x94FE;&#x7ECF;&#x5E38;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x90A3;&#x4E48;&#x8FD8;&#x662F;&#x7528;&#x666E;&#x901A;&#x7684;&#x8C03;&#x7528;&#x5427;&#x3002;</li>
-</ol>
-<pre><code>var User = {
-    id: null,
-    name: null,
-    setId: function(id) {
-        this.id = id;
-        return this;
-    },
-    setName: function(name) {
-        this.name= name;
-        return this;
-    }
-};
-console.log(User.setId(1234).setName(&apos;cyseria&apos;));
-</code></pre><ol>
-<li>&#x5206;&#x89E3;&#x5927;&#x578B;&#x7C7B;</li>
-</ol>
-<pre><code>var Spirit = function(name) {
-    this.name = name;
-};
-Spirit.prototype.attack = function(type) {
-    if (type === &apos;waveBoxing&apos;) {
-        console.log(this.name + &apos;:&#x4F7F;&#x7528;&#x6CE2;&#x52A8;&#x62F3;&apos;);
-    } else if (type === &apos;whirlKick&apos;) {
-        console.log(this.name + &apos;:&#x4F7F;&#x7528;&#x65CB;&#x98CE;&#x817F;&apos;);
-    }
-};
-var Spirit = new Spirit(&apos;AAA&apos;);
-Spirit .attack(&apos;waveBoxing&apos;);
-Spirit .attack(&apos;whirlKick&apos;);
-</code></pre><p>&#x6539;&#x6210;&#xFF1A;</p>
-<pre><code>var Attack = function(spirit) {
-    this.spirit = spirit;
-};
-Attack.prototype.start = function(type) {
-    return this.list[type].call(this);
-}
-Attack.prototype.list= function(type) {
-    waveBoxing: function() {
-        console.log(this.spirit.name + &apos;:&#x4F7F;&#x7528;&#x6CE2;&#x52A8;&#x62F3;&apos;);
-    },
-    whirlKick: function() {
-        console.log(this.spirit.name + &apos;:&#x4F7F;&#x7528;&#x65CB;&#x98CE;&#x817F;&apos;);
-    }
-};
-var Spirit = function(name) {
-    this.name = name;
-    this.attackObj = new Attack(this);
-};
-Spirit.prototype.attack = function(type) {
-    this.attackObj.start(type);
-};
-
-var Spirit = new Spirit(&apos;AAA&apos;);
-Spirit .attack(&apos;waveBoxing&apos;);
-Spirit .attack(&apos;whirlKick&apos;);
-</code></pre><ol>
-<li>&#x7528;return&#x9000;&#x51FA;&#x591A;&#x91CD;&#x5FAA;&#x73AF;<br>&#x5047;&#x8BBE;&#x5728;&#x51FD;&#x6570;&#x4F53;&#x5185;&#x6709;&#x4E00;&#x4E2A;&#x4E24;&#x91CD;&#x5FAA;&#x73AF;&#x8BED;&#x53E5;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5728;&#x5185;&#x5C42;&#x5FAA;&#x73AF;&#x4E2D;&#x5224;&#x65AD;&#x5F53;&#x8FBE;&#x5230;&#x67D0;&#x4E2A;&#x4E34;&#x754C;&#x6761;&#x4EF6;&#x65F6;&#x9000;&#x51FA;&#x5916;&#x5C42;&#x5FAA;&#x73AF;&#x3002;</li>
-</ol>
-<pre><code>var print = function(i) {
-    console.log(i);
-};
-var func = function() {
-    for (var i = 0; i &lt; 10; i++) {
-        for (var j = 0; j &lt; 10; j++) {
-            if (i * j &gt; 30) {
-                return print(i);
-            }
-        }
-    }
-};
-func();
-</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
-&lt;p&gt;&amp;#x4E00;&amp;#x4E9B;&amp;#x91CD;&amp;#x6784;&amp;#x7684;&amp;#x5EFA;&amp;#x8BAE;&amp;#xFF1A;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&amp;#x63D0;&amp;#x70BC;&amp;#x51FD;&amp;#x6570;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&amp;#
     
     </summary>
     
@@ -2514,110 +2152,6 @@ window.onresize = throttle(function() {
   </entry>
   
   <entry>
-    <title>单例模式</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/4%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/4单例模式/</id>
-    <published>2016-10-11T16:00:00.000Z</published>
-    <updated>2016-10-12T07:04:54.943Z</updated>
-    
-    <content type="html"><![CDATA[<hr>
-<p>&#x7528;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x6765;&#x6807;&#x5FD7;&#x5F53;&#x524D;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x4E3A;&#x67D0;&#x4E2A;&#x7C7B;&#x521B;&#x5EFA;&#x8FC7;&#x5BF9;&#x8C61;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x5728;&#x4E0B;&#x4E00;&#x6B21;&#x83B7;&#x53D6;&#x8BE5;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x65F6;&#xFF0C;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x4E4B;&#x524D;&#x521B;&#x5EFA;&#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
-<h3 id="&#x5B9E;&#x73B0;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;"><a href="#&#x5B9E;&#x73B0;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;" class="headerlink" title="&#x5B9E;&#x73B0;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;"></a>&#x5B9E;&#x73B0;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;</h3><pre><code>//1.&#x5B9E;&#x73B0;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;
-var Singleton = function (name) {
-  this.name = name;
-};
-Singleton.prototype.getName = function() {
-  alert(this.name);
-};
-Singleton.getInstance = (function() {
-  var instance = null;
-  return function(name) {
-    if (!instance) {
-      instance = new Singleton(name);
-    }
-    return instance;
-  }
-})();
-var a = Singleton.getInstance(&apos;sven1&apos;);
-var b = Singleton.getInstance(&apos;sven2&apos;);
-
-console.log(a === b); //true
-</code></pre><p>&#x4EE5;&#x4E0A;&#xFF0C;&#x6211;&#x4EEC;&#x901A;&#x8FC7;<code>Singleton.getInstance</code>&#x6765;&#x83B7;&#x53D6;<code>Singleton</code>&#x7C7B;&#x7684;&#x552F;&#x4E00;&#x5BF9;&#x8C61;&#xFF0C;&#x867D;&#x7136;&#x7B80;&#x5355;&#x4F46;&#x662F;&#x589E;&#x52A0;&#x4E86;&#x8FD9;&#x4E2A;&#x7C7B;&#x7684;&#x201C;&#x4E0D;&#x900F;&#x660E;&#x6027;&#x201D;&#xFF0C;<code>Singleton</code>&#x7C7B;&#x7684;&#x4F7F;&#x7528;&#x8005;&#x5FC5;&#x987B;&#x77E5;&#x9053;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x5355;&#x4F8B;&#x7C7B;&#xFF0C;&#x8DDF;&#x4EE5;&#x5F80;&#x901A;&#x8FC7;<code>new xxx</code>&#x7684;&#x65B9;&#x6CD5;&#x4E0D;&#x540C;</p>
-<h3 id="&#x900F;&#x660E;&#x7684;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;"><a href="#&#x900F;&#x660E;&#x7684;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;" class="headerlink" title="&#x900F;&#x660E;&#x7684;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;"></a>&#x900F;&#x660E;&#x7684;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;</h3><p>&#x6709;&#x4E86;&#x4EE5;&#x4E0A;&#x7684;&#x4E0D;&#x8DB3;&#xFF0C;&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x5C31;&#x6765;&#x89E3;&#x51B3;</p>
-<pre><code>//&#x900F;&#x660E;&#x7684;&#x5355;&#x4F8B;&#x6A21;&#x5F0F; 
-var CreateDiv = (function() {
-  var instance;
-  var CreateDiv = function(html) {
-    if (instance) {
-      return instance;
-    }
-    this.html = html;
-    this.init();
-    return instance = this;
-  };
-
-  CreateDiv.prototype.init = function() {
-    var div = document.createElement(&apos;div&apos;);
-    div.innerHTML = this.html;
-    document.body.appendChild(div);
-  };
-
-  return CreateDiv;
-})();
-var aa = new CreateDiv(&apos;sven1&apos;);
-var bb = new CreateDiv(&apos;sven2&apos;);
-
-console.log(aa === bb);
-</code></pre><p>&#x4EE5;&#x4E0A;&#x4EE3;&#x7801;&#xFF0C;CreateDiv&#x505A;&#x4E86;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x548C;&#x6267;&#x884C;&#x521D;&#x59CB;&#x5316;init&#x65B9;&#x6CD5;&#xFF0C;&#x4E14;&#x4FDD;&#x8BC1;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x3002;<br>&#x4F46;&#x662F;&#xFF0C;&#x5047;&#x5982;&#x6709;&#x4E00;&#x5929;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5229;&#x7528;&#x8FD9;&#x4E2A;&#x7C7B;&#xFF0C;&#x5728;&#x9875;&#x9762;&#x4E2D;&#x521B;&#x5EFA;&#x5343;&#x5343;&#x4E07;&#x4E07;&#x4E2A;div&#xFF0C;&#x5373;&#x8981;&#x8BA9;&#x8FD9;&#x4E2A;&#x7C7B;&#x4ECE;&#x5355;&#x4F8B;&#x7C7B;&#x53D8;&#x6210;&#x4E00;&#x4E2A;&#x666E;&#x901A;&#x7684;&#x53EF;&#x4EE5;&#x4EA7;&#x751F;&#x591A;&#x4E2A;&#x5B9E;&#x4F8B;&#x7684;&#x7C7B;&#xFF0C;&#x90A3;&#x6211;&#x4EEC;&#x5FC5;&#x987B;&#x6539;&#x5199;CreateDiv&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x628A;&#x63A7;&#x5236;&#x521B;&#x5EFA;&#x552F;&#x4E00;&#x7684;&#x90A3;&#x4E00;&#x6BB5;&#x53BB;&#x6389;&#x2026;&#x8FD9;&#x6837;&#x597D;&#x50CF;&#x6709;&#x70B9;&#x592A;&#x9EBB;&#x70E6;&#x4E86;</p>
-<h3 id="&#x7528;&#x4EE3;&#x7406;&#x5B9E;&#x73B0;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;"><a href="#&#x7528;&#x4EE3;&#x7406;&#x5B9E;&#x73B0;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;" class="headerlink" title="&#x7528;&#x4EE3;&#x7406;&#x5B9E;&#x73B0;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;"></a>&#x7528;&#x4EE3;&#x7406;&#x5B9E;&#x73B0;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;</h3><p>&#x8FD9;&#x91CC;&#x5C31;&#x53EF;&#x4EE5;&#x5F15;&#x5165;&#x4EE3;&#x7406;&#x7C7B;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x601D;&#x60F3;&#x5C31;&#x662F;&#x5C06;&#x8D1F;&#x8D23;&#x7BA1;&#x7406;&#x7684;&#x5355;&#x4F8B;&#x903B;&#x8F91;&#x79FB;&#x5230;&#x4E00;&#x4E2A;&#x4EE3;&#x7406;&#x7C7B;&#x4E2D;&#xFF0C;&#x8FD9;&#x6837;CreateDiv&#x5C31;&#x53D8;&#x6210;&#x4E00;&#x4E2A;&#x666E;&#x901A;&#x7684;&#x7C7B;&#xFF0C;&#x4EE3;&#x7801;&#x6B64;&#x5904;&#x7701;&#x7565;&#x2026;</p>
-<h3 id="javascript&#x4E2D;&#x7684;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;"><a href="#JavaScript&#x4E2D;&#x7684;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;" class="headerlink" title="JavaScript&#x4E2D;&#x7684;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;"></a>JavaScript&#x4E2D;&#x7684;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;</h3><p>&#x524D;&#x9762;&#x51E0;&#x79CD;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x66F4;&#x591A;&#x662F;&#x63A5;&#x8FD1;&#x4F20;&#x7EDF;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x8BED;&#x8A00;&#x4E2D;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x5355;&#x4F8B;&#x4ECE;&#x201C;&#x7C7B;&#x201D;&#x4E2D;&#x521B;&#x5EFA;&#x51FA;&#x6765;&#x3002;<br>&#x7136;&#x800C;&#xFF0C;js&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x6CA1;&#x6709;&#x7C7B;&#x7684;&#x8BED;&#x8A00;&#xFF0C;&#x751F;&#x642C;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x7684;&#x6982;&#x5FF5;&#x5E76;&#x65E0;&#x610F;&#x4E49;&#x3002;&#x6211;&#x4EEC;&#x53EA;&#x8981;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7C7B;&#x5462;&#xFF1F;&#x6211;&#x4EEC;&#x53EA;&#x662F;&#x8981;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x7684;&#x5B9E;&#x4F8B;&#x5C31;&#x597D;&#x4E86;..&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x7528;<code>var a = {}</code>&#x6765;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x5B57;&#x9762;&#x91CF;&#x3002;</p>
-<h3 id="&#x60F0;&#x6027;&#x5355;&#x4F8B;"><a href="#&#x60F0;&#x6027;&#x5355;&#x4F8B;" class="headerlink" title="&#x60F0;&#x6027;&#x5355;&#x4F8B;"></a>&#x60F0;&#x6027;&#x5355;&#x4F8B;</h3><p>&#x60F0;&#x6027;&#x5355;&#x4F8B;&#xFF1A;&#x9700;&#x8981;&#x7684;&#x65F6;&#x5019;&#x624D;&#x521B;&#x5EFA;&#x3002;<br>&#x4F8B;&#x5982;&#xFF0C;&#x4EE5;&#x4E00;&#x4E2A;&#x767B;&#x5F55;&#x60AC;&#x6D6E;&#x7A97;&#x4E3A;&#x4F8B;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728;&#x9875;&#x9762;&#x52A0;&#x8F7D;&#x7684;&#x65F6;&#x5019;&#x521B;&#x5EFA;&#x597D;&#x8FD9;&#x4E2A;div&#x7A97;&#x53E3;&#xFF0C;&#x7136;&#x540E;&#x70B9;&#x51FB;&#x767B;&#x5F55;&#x6309;&#x94AE;&#x7684;&#x65F6;&#x5019;&#x5F00;&#x59CB;&#x663E;&#x793A;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x6837;&#x5982;&#x679C;&#x7528;&#x6237;&#x53EA;&#x662F;&#x968F;&#x4FBF;&#x6D4F;&#x89C8;&#x4E0B;&#x5C31;&#x767D;&#x767D;&#x6D6A;&#x8D39;&#x4E86;&#x4E00;&#x4E9B;dom&#x8282;&#x70B9;&#x3002;<br>&#x8FD8;&#x6709;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#xFF0C;&#x70B9;&#x51FB;&#x7684;&#x65F6;&#x5019;&#x518D;&#x521B;&#x5EFA;&#xFF0C;&#x5173;&#x95ED;&#x7684;&#x65F6;&#x5019;&#x9500;&#x6BC1;&#x3002;&#x4F46;&#x662F;&#x5982;&#x679C;&#x7528;&#x6237;&#x9891;&#x7E41;&#x7684;&#x8FDB;&#x884C;&#x6CE8;&#x9500;&#x7B49;&#x64CD;&#x4F5C;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x8981;&#x9891;&#x7E41;&#x7684;&#x521B;&#x5EFA;&#x548C;&#x5220;&#x9664;div&#xFF0C;&#x663E;&#x7136;&#x8FD9;&#x4E5F;&#x4E0D;&#x5408;&#x7406;&#x3002;<br>&#x6240;&#x4EE5;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x60F0;&#x6027;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x5C31;&#x51FA;&#x9A6C;&#x4E86;&#x3002;</p>
-<pre><code>var createLoginLayer = (function() {
-    var div;
-    return function() {
-        if (!div) {
-            div = document.createElement(&apos;div&apos;);
-            //&#x521B;&#x5EFA;&#x6DFB;&#x52A0;&#x7B49;dom&#x64CD;&#x4F5C;...
-        }
-        return div;
-    }
-})();
-
-$(&quot;xxx&quot;).onclick = function() {
-    var loginLayer = createLoginLayer();
-    loginLayer.show();
-}
-</code></pre><h3 id="&#x901A;&#x7528;&#x7684;&#x60F0;&#x6027;&#x5B9E;&#x4F8B;"><a href="#&#x901A;&#x7528;&#x7684;&#x60F0;&#x6027;&#x5B9E;&#x4F8B;" class="headerlink" title="&#x901A;&#x7528;&#x7684;&#x60F0;&#x6027;&#x5B9E;&#x4F8B;"></a>&#x901A;&#x7528;&#x7684;&#x60F0;&#x6027;&#x5B9E;&#x4F8B;</h3><p>&#x770B;&#x8D77;&#x6765;&#x597D;&#x50CF;&#x6CA1;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#xFF0C;&#x7136;&#x800C;&#xFF0C;&#x4ED6;&#x8FD8;&#x662F;&#x8FDD;&#x53CD;&#x4E86;&#x5355;&#x4E00;&#x7684;&#x539F;&#x5219;&#xFF0C;&#x521B;&#x5EFA;&#x7684;&#x5BF9;&#x8C61;&#x903B;&#x8F91;&#x90FD;&#x653E;&#x5728;createLoginLayer&#x5185;&#x90E8;&#xFF0C;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x8981;&#x521B;&#x5EFA;&#x522B;&#x7684;&#x4E1C;&#x897F;&#x4F8B;&#x5982;iframe&#xFF0C;&#x5C31;&#x8981;&#x51E0;&#x4E4E;&#x5C06;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x7167;&#x6284;&#x4E00;&#x904D;&#x4E86;&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x5E94;&#x8BE5;&#x628A;&#x4E0D;&#x53D8;&#x7684;&#x90E8;&#x5206;&#x9694;&#x79BB;&#x51FA;&#x6765;&#x3002;</p>
-<pre><code>var getSingle = function(fn) {
-    var result;
-    return function() {
-        return result || (result = fn.apply(this, arguments));
-    }
-};
-
-var createLoginLayer = function() {
-    //&#x521B;&#x5EFA;&#x767B;&#x5F55;&#x6846;
-}  
-
-var createSingleLoginLayer = getSingle(createLoginLayer);
-</code></pre><p>&#x4E8E;&#x662F;&#xFF0C;&#x76EE;&#x7684;&#x8FBE;&#x6210;&#x3002;<br>&#x5F53;&#x7136;&#xFF0C;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x7528;&#x9014;&#x8FDC;&#x8FDC;&#x4E0D;&#x6B62;&#x4E8E;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#xFF0C;&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x5728;&#x6E32;&#x67D3;&#x5B8C;&#x9875;&#x9762;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x8981;&#x7ED9;&#x8FD9;&#x4E2A;&#x5217;&#x8868;&#x7ED1;&#x5B9A;click&#x4E8B;&#x4EF6;&#xFF0C;&#x5982;&#x679C;&#x662F;ajax&#x52A8;&#x6001;&#x5411;&#x5217;&#x8868;&#x91CC;&#x9762;&#x52A0;&#x8F7D;&#x6570;&#x636E;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x53EA;&#x9700;&#x8981;&#x7B2C;&#x4E00;&#x6B21;&#x6E32;&#x67D3;&#x7684;&#x65F6;&#x5019;&#x7ED1;&#x5B9A;&#x3002;&#x5982;&#x679C;&#x4E0D;&#x7528;jq&#x7684;<code>$(&quot;&quot;).one(&apos;click&apos;, function(){})</code>&#x7684;&#x8BDD;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x7528;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#xFF0C;&#x505A;&#x6CD5;&#x7C7B;&#x4F3C;&#x3002;</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
-&lt;p&gt;&amp;#x7528;&amp;#x4E00;&amp;#x4E2A;&amp;#x53D8;&amp;#x91CF;&amp;#x6765;&amp;#x6807;&amp;#x5FD7;&amp;#x5F53;&amp;#x524D;&amp;#x662F;&amp;#x5426;&amp;#x5DF2;&amp;#x7ECF;&amp;#x4E3A;&amp;#x67D0;&amp;#x4
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
-    
-    
-      <category term="javascript" scheme="http://ronghuaxueleng.github.io/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
     <title>策略模式</title>
     <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/5%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/"/>
     <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/5策略模式/</id>
@@ -2727,6 +2261,373 @@ console.log(calculateBonus(&apos;A&apos;, 1000); //30000
     
       &lt;blockquote&gt;
 &lt;p&gt;&amp;#x5B9A;&amp;#x4E49;&amp;#xFF1A;&amp;#x5B9A;&amp;#x4E49;&amp;#x4E00;&amp;#x7CFB;&amp;#x5217;&amp;#x7B97;&amp;#x6CD5;&amp;#xFF0C;&amp;#x628A;&amp;#x4ED6;&amp;#x4EEC;&amp;#x4E00;&amp;#x4
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>策略模式的应用</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/6%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%BA%94%E7%94%A8/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/</id>
+    <published>2016-10-11T16:00:00.000Z</published>
+    <updated>2016-10-12T07:11:36.568Z</updated>
+    
+    <content type="html"><![CDATA[<hr>
+<h3 id="&#x7528;&#x7B56;&#x7565;&#x6A21;&#x5F0F;&#x5B9E;&#x73B0;&#x7F13;&#x52A8;&#x52A8;&#x753B;"><a href="#&#x7528;&#x7B56;&#x7565;&#x6A21;&#x5F0F;&#x5B9E;&#x73B0;&#x7F13;&#x52A8;&#x52A8;&#x753B;" class="headerlink" title="&#x7528;&#x7B56;&#x7565;&#x6A21;&#x5F0F;&#x5B9E;&#x73B0;&#x7F13;&#x52A8;&#x52A8;&#x753B;"></a>&#x7528;&#x7B56;&#x7565;&#x6A21;&#x5F0F;&#x5B9E;&#x73B0;&#x7F13;&#x52A8;&#x52A8;&#x753B;</h3><p>&#x9700;&#x6C42;&#xFF1A;&#x8BA9;&#x5C0F;&#x7403;&#x4EE5;&#x5404;&#x79CD;&#x7F13;&#x52A8;&#x6548;&#x679C;&#x5728;&#x9875;&#x9762;&#x4E2D;&#x8FD0;&#x52A8;<br>&#x52A8;&#x753B;&#x5F00;&#x59CB;&#x524D;&#x9700;&#x8981;&#x8BB0;&#x5F55;&#x7684;&#xFF1A;</p>
+<ul>
+<li><p>&#x5C0F;&#x7403;&#x6240;&#x5728;&#x539F;&#x59CB;&#x4F4D;&#x7F6E;</p>
+</li>
+<li><p>&#x5C0F;&#x7403;&#x79FB;&#x52A8;&#x7684;&#x76EE;&#x6807;&#x4F4D;&#x7F6E;</p>
+</li>
+<li><p>&#x52A8;&#x753B;&#x5F00;&#x59CB;&#x65F6;&#x7684;&#x65F6;&#x95F4;&#x70B9;</p>
+</li>
+<li><p>&#x5C0F;&#x7403;&#x8FD0;&#x52A8;&#x7684;&#x65F6;&#x95F4;&#x70B9;<br>&#x4E4B;&#x540E;&#xFF0C;&#x7528;<code>setInterval</code>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5B9A;&#x65F6;&#x5668;&#xFF0C;&#x5B9A;&#x65F6;&#x5668;&#x6BCF;19&#x79D2;&#x5FAA;&#x73AF;&#x4E00;&#x6B21;&#x3002;</p>
+</li>
+</ul>
+<pre><code>//&#x7F13;&#x52A8;&#x7B97;&#x6CD5;&#xFF0C;&#x6B64;&#x7B97;&#x6CD5;&#x79FB;&#x690D;&#x4E8E;flash
+
+var tween = {
+    //t&#xFF1A;&#x52A8;&#x753B;&#x5DF2;&#x6D88;&#x8017;&#x7684;&#x65F6;&#x95F4;&#xFF0C;b&#xFF1A;&#x5C0F;&#x7403;&#x539F;&#x59CB;&#x4F4D;&#x7F6E;&#xFF0C;c&#xFF1A;&#x5C0F;&#x7403;&#x76EE;&#x6807;&#x4F4D;&#x7F6E;&#xFF0C;d&#xFF1A;&#x52A8;&#x753B;&#x6301;&#x7EED;&#x65F6;&#x95F4;
+    linear: function(t, b, c, d) {
+        return c*t/d + b;
+    },
+    reseIn: function(t, b, c, d) {
+        return c * (t /= d) * t + b;
+    },
+    strongEaseIn: function(t, b, c, d) {
+        return c * (t /= d) * t * t * t * t + b;
+    },
+    strongEaseOut: function(t, b, c, d) {
+        return c * (( t = t / d - 1) * t * t * t * t + 1) + b;
+    },
+    sineaseIn: function(t, b, c, d) {
+        return c * (t /= d) * t * t + b;
+    },
+    sineaseOur: function(t, b, c, d) {
+        return c * ((t = t / d - 1) * t * t + 1 ) + b;
+    }
+};
+</code></pre><p>&#x63A5;&#x7740;Animation&#x7C7B;</p>
+<pre><code>var Animate = function( dom ) {
+    this.dom = dom;              //&#x8FDB;&#x884C;&#x8FD0;&#x52A8;&#x7684;dom&#x8282;&#x70B9;
+    this.startTime = 0;         //&#x52A8;&#x753B;&#x5F00;&#x59CB;&#x65F6;&#x95F4;
+    this.startPos = 0;           //&#x52A8;&#x753B;&#x5F00;&#x59CB;&#x65F6;&#x5019;dom&#x4F4D;&#x7F6E;
+    this.endPos = 0;            //&#x7ED3;&#x675F;dom&#x4F4D;&#x7F6E;
+    this.propertyName = null;     //dom&#x8282;&#x70B9;&#x9700;&#x8981;&#x88AB;&#x6539;&#x53D8;&#x7684;&#x5C5E;&#x6027;&#x540D;
+    this.easing = null;    //&#x7F13;&#x52A8;&#x7B97;&#x6CD5;
+    this.duration = null;   //&#x52A8;&#x753B;&#x6301;&#x7EED;&#x65F6;&#x95F4;
+};
+</code></pre><p>Animate.prototype.start&#x65B9;&#x6CD5;&#x8D1F;&#x8D23;&#x542F;&#x52A8;&#x8FD9;&#x4E2A;&#x52A8;&#x753B;<br>Animate.prototype.step&#x4EE3;&#x8868;&#x5C0F;&#x7403;&#x8FD0;&#x52A8;&#x7684;&#x6BCF;&#x4E00;&#x5E27;&#x8981;&#x505A;&#x7684;&#x4E8B;&#x60C5;</p>
+<pre><code>Animate.prototype.start = function( propertyName, endPos, duration, easing) {
+    this.startTime = +new Date;  //&#x52A8;&#x753B;&#x542F;&#x52A8;&#x65F6;&#x95F4;
+    this.startPos = this.dom.getBoundingClientRect()[ propertyName ]; //dom&#x8282;&#x70B9;&#x521D;&#x59CB;&#x4F4D;&#x7F6E;
+    this.endPos = endPos;
+    this.duration = duration;
+    this.easing = tween[ easing ]; 
+
+    var self = this;
+    var timeId = setInterval(function() { //&#x542F;&#x52A8;&#x5B9A;&#x65F6;&#x5668;&#xFF0C;&#x5F00;&#x59CB;&#x6267;&#x884C;&#x52A8;&#x753B;
+        if (self.step() === false) {
+            clearInterval(timeId);
+        }
+    }, 19);
+};
+
+
+Animate.prototype.step = function() {
+    var t = +new Date;
+    if (t &gt;= this.startTime + this.duration) {
+        this.update(this.endPos);
+        return false;
+    }
+    var pos = this.easing(t - this.startTime, this.startPos, this.endPos = this.startPos, this.duration);
+
+    this.update(pos);
+};
+
+Animate.prototype.update = function(pos) {
+    this.dom.style[this.propertyName] = pos + &apos;px&apos;;
+};
+</code></pre><p>&#x6700;&#x540E;&#xFF0C;&#x8C03;&#x7528;</p>
+<pre><code>var div = document.getElementById(&apos;div&apos;);
+var animate = new Animate(div);
+animate.start(&apos;left&apos;, 500, 1000, &apos;strongEaseOut&apos;);
+</code></pre><h3 id="&#x8868;&#x5355;&#x9A8C;&#x8BC1;"><a href="#&#x8868;&#x5355;&#x9A8C;&#x8BC1;" class="headerlink" title="&#x8868;&#x5355;&#x9A8C;&#x8BC1;"></a>&#x8868;&#x5355;&#x9A8C;&#x8BC1;</h3><p>&#x9700;&#x6C42;&#xFF1A;</p>
+<ul>
+<li><p>&#x7528;&#x6237;&#x540D;&#x4E0D;&#x80FD;&#x4E3A;&#x7A7A;</p>
+</li>
+<li><p>&#x5BC6;&#x7801;&#x957F;&#x5EA6;&#x4E0D;&#x80FD;&#x5C11;&#x4E8E;6&#x4F4D;</p>
+</li>
+<li><p>&#x624B;&#x673A;&#x53F7;&#x7801;&#x7B26;&#x5408;&#x683C;&#x5F0F;</p>
+</li>
+</ul>
+<p>&#x5E38;&#x89C4;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x8FD9;&#x4E48;&#x5199;&#xFF1A;</p>
+<pre><code>var registerForm = document.getElementById(&apos;registerForm&apos;);
+
+registerForm.onsubmit = function() {
+  if (registerForm.userName.value === &apos;&apos;) {
+    alert(&quot;&#x7528;&#x6237;&#x540D;&#x4E0D;&#x80FD;&#x4E3A;&#x7A7A;&quot;);
+    return false;
+  }
+  if (registerForm.password.value.length &lt; 6) {
+    alert(&quot;&#x5BC6;&#x7801;&#x957F;&#x5EA6;&#x4E0D;&#x80FD;&#x5C11;&#x4E8E;6&#x4F4D;&quot;);
+    return false;
+  }
+  if (!/(^1[3|5|8][0-9]{9}$)/.test(registerForm.phoneNumber.value)) {
+    alert(&quot;&#x624B;&#x673A;&#x53F7;&#x7801;&#x683C;&#x5F0F;&#x4E0D;&#x6B63;&#x786E;&quot;);
+    return false;
+  }
+}
+</code></pre><p>&#x5F53;&#x7136;&#xFF0C;&#x8FD9;&#x4E2A;&#x4E5F;&#x6709;&#x51FD;&#x6570;&#x5E9E;&#x5927;&#xFF0C;&#x7F3A;&#x4E4F;&#x5F39;&#x6027;&#xFF0C;&#x590D;&#x7528;&#x6027;&#x5DEE;&#x7B49;&#x95EE;&#x9898;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x5F00;&#x59CB;&#x7A81;&#x51FA;&#x672C;&#x6587;&#x7684;&#x91CD;&#x70B9;&#xFF0C;&#x7B56;&#x7565;&#x6A21;&#x5F0F;&#x7684;&#x5E94;&#x7528;</p>
+<pre><code>var strategies = {
+  isNonEmpty: function(value, errorMsg) {
+    if (value == &apos;&apos;) {
+      return errorMsg;
+    }
+  },
+  minLength: function(value, length, errorMsg) {
+    if (value.length &lt; length) {
+      return errorMsg;
+    }
+  },
+  isMobile: function(value, errorMsg) {
+    if (!/(^1[3|5|8][0-9]{9}$)/.test(value)) {
+      return errorMsg;
+    }
+  }
+};
+
+var Validator = function() {
+  this.cache = [];
+};
+
+Validator.prototype.add = function(dom, rule, errorMsg) {
+  var ary = rule.split(&apos;:&apos;);
+  this.cache.push(function() {
+    var strategy = ary.shift();
+    ary.unshift(dom.value);
+    ary.push(errorMsg);
+    return strategies[strategy].apply(dom, ary);
+  })
+};
+
+Validator.prototype.start = function() {
+  for (var i = 0; validataFunc; validataFunc = this.cache[i++]) {
+    var msg = validataFunc();
+    if (msg) {
+      return msg;
+    }
+  }
+}
+
+var registerForm = document.getElementById(&apos;registerForm&apos;);
+registerForm.onsubmit = function() {
+  var errorMsg = validataFunc();
+
+  if (errorMsg) {
+    alert(errorMsg);
+    return false;
+  }
+};
+
+var validataFunc = function() {
+  var validator = new Validator();
+
+  validator.add(registerForm.userName, &apos;isNonEmpty&apos;, &apos;&#x7528;&#x6237;&#x540D;&#x4E0D;&#x80FD;&#x4E3A;&#x7A7A;&apos;);
+  validator.add(registerForm.password, &apos;minLength:6&apos;, &apos;&#x5BC6;&#x7801;&#x957F;&#x5EA6;&#x4E0D;&#x80FD;&#x5C11;&#x4E8E;6&#x4F4D;&apos;);
+  validator.add(registerForm.phoneNumber, &apos;isMobile&apos;, &apos;&#x624B;&#x673A;&#x53F7;&#x7801;&#x683C;&#x5F0F;&#x4E0D;&#x6B63;&#x786E;&apos;);
+
+  var errorMsg = validator.start();
+  return errorMsg;
+}
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+&lt;h3 id=&quot;&amp;#x7528;&amp;#x7B56;&amp;#x7565;&amp;#x6A21;&amp;#x5F0F;&amp;#x5B9E;&amp;#x73B0;&amp;#x7F13;&amp;#x52A8;&amp;#x52A8;&amp;#x753B;&quot;&gt;&lt;a href=&quot;#&amp;#x7528;&amp;#x7B56;&amp;#x7565;&amp;#x
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>代理模式</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/7%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/7代理模式/</id>
+    <published>2016-10-11T16:00:00.000Z</published>
+    <updated>2016-10-12T07:19:08.156Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#x662F;&#x4E3A;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x4EE3;&#x7528;&#x54C1;&#x6216;&#x5360;&#x4F4D;&#x7B26;&#xFF0C;&#x4EE5;&#x4FBF;&#x63A7;&#x5236;&#x5BF9;&#x4ED6;&#x7684;&#x8BBF;&#x95EE;&#x3002;&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#x7684;&#x5173;&#x952E;&#x662F;&#xFF0C;&#x5F53;&#x5BA2;&#x6237;&#x4E0D;&#x65B9;&#x4FBF;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x6216;&#x8005;&#x4E0D;&#x6EE1;&#x8DB3;&#x9700;&#x8981;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x6765;&#x63A7;&#x5236;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x8BBF;&#x95EE;&#xFF0C;&#x5BA2;&#x6237;&#x5B9E;&#x9645;&#x4E0A;&#x8BBF;&#x95EE;&#x7684;&#x662F;&#x66FF;&#x8EAB;&#x5BF9;&#x8C61;&#x3002;&#x66FF;&#x8EAB;&#x5BF9;&#x8C61;&#x5BF9;&#x8BF7;&#x6C42;&#x505A;&#x51FA;&#x4E00;&#x4E9B;&#x5904;&#x7406;&#x540E;&#x518D;&#x628A;&#x8BF7;&#x6C42;&#x8F6C;&#x4EA4;&#x7ED9;&#x672C;&#x4F53;&#x5BF9;&#x8C61;&#x3002;</p>
+</blockquote>
+<p>&#x4E0D;&#x4F7F;&#x7528;&#x4EE3;&#x7406;&#xFF1A;&#x5BA2;&#x6237; &#x2192; &#x672C;&#x4F53;<br>&#x4F7F;&#x7528;&#x4EE3;&#x7406;&#xFF1A;&#x5BA2;&#x6237; &#x2192; &#x4EE3;&#x7406; &#x2192; &#x672C;&#x4F53;</p>
+<p>&#x5148;&#x6765;&#x4E00;&#x4E2A;&#x5E26;&#x70B9;&#x8DA3;&#x5473;&#x6027;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x5C0F;&#x660E;&#x8981;&#x7ED9;&#x5973;&#x795E;A&#x9001;&#x82B1;&#xFF0C;&#x7136;&#x540E;&#x4ED6;&#x4E0D;&#x597D;&#x610F;&#x601D;&#xFF0C;&#x6253;&#x7B97;&#x8BA9;B&#x4EE3;&#x9001;</p>
+<pre><code>var Flower = function(){};
+var xiaoming = {
+    sendFlower: function( traget ) {
+      var flower = new Flower();
+      target.receveFlower( flower );
+    }
+};
+
+var A = {
+    receiveFlower: function( flower ) {
+      console.log(&apos;&#x6536;&#x5230;&#x82B1;&apos; + flower);
+  }
+};
+
+xiaoming.sendFlower(A);
+
+//&#x5F15;&#x5165;&#x4EE3;&#x7406;B
+var B = {
+    receiverFlower: function( flower ) {
+      A.receiveFlower( flower );
+  }
+};
+</code></pre><p>&#x6B64;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x7B80;&#x5355;&#x7684;&#x5B8C;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x4EE3;&#x7406;&#x6A21;&#x5F0F;</p>
+<p>&#x63A5;&#x7740;&#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x539F;&#x9700;&#x6C42;&#x4E0A;&#x505A;&#x70B9;&#x6539;&#x52A8;&#xFF0C;&#x5047;&#x8BBE;&#x5973;&#x795E;&#x5FC3;&#x60C5;&#x597D;&#x7684;&#x65F6;&#x5019;&#x6210;&#x529F;&#x7387;&#x4F1A;&#x589E;&#x5927;&#xFF0C;&#x5C0F;&#x660E;&#x8DDF;&#x5973;&#x795E;&#x4E0D;&#x719F;&#x4E0D;&#x77E5;&#x9053;&#x5979;&#x5FC3;&#x60C5;&#xFF0C;&#x800C;B&#x8DDF;&#x5973;&#x795E;&#x6BD4;&#x8F83;&#x719F;&#x53EF;&#x4EE5;&#x53BB;&#x76D1;&#x542C;&#x5979;&#x5FC3;&#x60C5;&#x7684;&#x53D8;&#x5316;&#x6070;&#x5F53;&#x65F6;&#x673A;&#x9001;&#x82B1;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x4E0D;&#x4F1A;&#x9020;&#x6210;&#x4E0D;&#x5FC5;&#x8981;&#x6D6A;&#x8D39;&#x4E86;&#xFF0C;&#x4E8E;&#x662F;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code>//&#x4EE3;&#x7406;B
+var B = {
+    receiverFlower: function( flower ) {
+      A.listenGoodMood(function() { //&#x76D1;&#x542C;A&#x7684;&#x597D;&#x5FC3;&#x60C5;
+        A.receiveFlower( flower );
+    })&#xFF1B;
+  }
+};
+
+//&#x5973;&#x795E;A&#x4E5F;&#x8981;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x53EF;&#x88AB;&#x76D1;&#x542C;&#x7684;&#x65B9;&#x6CD5;&#xFF08;&#x5F53;&#x7136;&#x6211;&#x4EEC;&#x53EA;&#x662F;&#x5047;&#x8BBE;&#xFF0C;&#x6BD5;&#x7ADF;&#x5973;&#x4EBA;&#x6211;&#x4EEC;&#x662F;&#x6478;&#x4E0D;&#x900F;&#x7684;&#xFF09;
+var A = {
+    receiveFlower: function( flower ) {
+      console.log(&apos;&#x6536;&#x5230;&#x82B1;&apos; + flower);
+  },
+  listenGoodMood: function( fn ) {
+      setTimeout(function() { //&#x5047;&#x8BBE;A&#x7684;&#x5FC3;&#x60C5;&#x5341;&#x79D2;&#x4E4B;&#x540E;&#x4F1A;&#x53D8;&#x597D;
+        fn();
+    }, 10000);
+  }
+};
+</code></pre><p>&#x518D;&#x5047;&#x8BBE;&#x4E70;&#x82B1;&#x662F;&#x4E00;&#x4E2A;&#x4EE3;&#x4EF7;&#x6602;&#x8D35;&#x7684;&#x64CD;&#x4F5C;&#xFF08;&#x8BF4;&#x4E0D;&#x5B9A;&#x4F1A;&#x88AB;&#x522B;&#x4EBA;&#x8BEF;&#x4F1A;&#x4EC0;&#x4E48;&#x7684;&#xFF0C;&#x800C;&#x4E14;&#x82B1;&#x653E;&#x592A;&#x4E45;&#x4E5F;&#x4F1A;&#x8C22;&#xFF09;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5F53;&#x9700;&#x8981;&#x7684;&#x65F6;&#x5019;&#x518D;&#x53BB;&#x505A;&#x8FD9;&#x4E8B;&#x624D;&#x6BD4;&#x8F83;&#x5212;&#x7B97;&#xFF0C;&#x5C31;&#x662F;&#x5728;A&#x5FC3;&#x60C5;&#x597D;&#x7684;&#x65F6;&#x5019;&#x518D;&#x53BB;new&#x4E00;&#x4E2A;&#x82B1;&#x51FA;&#x6765;&#x3002;</p>
+<pre><code>//&#x5F15;&#x5165;&#x4EE3;&#x7406;B
+var B = {
+    receiverFlower: function( flower ) {
+      A.listenGoodMood(function() { //&#x76D1;&#x542C;A&#x7684;&#x597D;&#x5FC3;&#x60C5;
+        var Flower = function(){};
+      A.receiveFlower( flower );
+    })&#xFF1B;
+  }
+};
+</code></pre><p>&#x6B64;&#x5916;&#xFF0C;&#x4EE3;&#x7406;B&#x53EF;&#x4EE5;&#x5E2E;&#x52A9;A&#x505A;&#x4E00;&#x4E9B;&#x8FC7;&#x6EE4;&#x8BF7;&#x6C42;&#xFF0C;&#x6BD4;&#x5982;&#x628A;&#x4E00;&#x4E9B;&#x5E74;&#x7EAA;&#x592A;&#x5927;&#x7684;&#xFF0C;&#x6CA1;&#x6709;&#x5B9D;&#x9A6C;&#x7684;&#x9001;&#x82B1;&#x8005;&#x90FD;&#x8FC7;&#x6EE4;&#x6389;&#xFF0C;&#x8FD9;&#x79CD;&#x8BF7;&#x6C42;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5728;&#x4EE3;&#x7406;B&#x4E2D;&#x88AB;&#x62D2;&#x7EDD;&#x6389;&#xFF0C;&#x8FD9;&#x79CD;&#x4EE3;&#x7406;&#x65B9;&#x5F0F;&#x53EB;<strong>&#x4FDD;&#x62A4;&#x4EE3;&#x7406;</strong></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&amp;#x4EE3;&amp;#x7406;&amp;#x6A21;&amp;#x5F0F;&amp;#x662F;&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#x63D0;&amp;#x4F9B;&amp;#x4E00;&amp;#x4E2A;&amp;#x4EE3;&amp;#x7
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>代理模式的应用</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/8%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%BA%94%E7%94%A8/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/</id>
+    <published>2016-10-11T16:00:00.000Z</published>
+    <updated>2016-10-12T07:34:37.880Z</updated>
+    
+    <content type="html"><![CDATA[<hr>
+<h3 id="&#x865A;&#x62DF;&#x4EE3;&#x7406;&#x5B9E;&#x73B0;&#x56FE;&#x7247;&#x9884;&#x52A0;&#x8F7D;"><a href="#&#x865A;&#x62DF;&#x4EE3;&#x7406;&#x5B9E;&#x73B0;&#x56FE;&#x7247;&#x9884;&#x52A0;&#x8F7D;" class="headerlink" title="&#x865A;&#x62DF;&#x4EE3;&#x7406;&#x5B9E;&#x73B0;&#x56FE;&#x7247;&#x9884;&#x52A0;&#x8F7D;"></a>&#x865A;&#x62DF;&#x4EE3;&#x7406;&#x5B9E;&#x73B0;&#x56FE;&#x7247;&#x9884;&#x52A0;&#x8F7D;</h3><p>&#x56FE;&#x7247;&#x9884;&#x52A0;&#x8F7D;&#xFF1A;&#x56FE;&#x7247;&#x8FC7;&#x5927;&#x6216;&#x8005;&#x7F51;&#x7EDC;&#x4E0D;&#x4F73;&#x65F6;&#xFF0C;&#x56FE;&#x7247;&#x4F4D;&#x7F6E;&#x6709;&#x6BB5;&#x65F6;&#x95F4;&#x4F1A;&#x662F;&#x4E00;&#x7247;&#x7A7A;&#x767D;&#xFF0C;&#x5E38;&#x89C1;&#x7684;&#x7528;&#x4E00;&#x5F20;loading&#x5360;&#x4F4D;&#xFF0C;&#x7136;&#x540E;&#x5F02;&#x6B65;&#x52A0;&#x8F7D;&#x56FE;&#x7247;&#xFF0C;&#x7B49;&#x56FE;&#x7247;&#x52A0;&#x8F7D;&#x597D;&#x4E86;&#x518D;&#x628A;&#x5B83;&#x586B;&#x5145;&#x5230;img&#x8282;&#x70B9;&#x91CC;&#x3002;</p>
+<pre><code>var myImage = (function() {
+    var imgNode = document.createElement(&apos;img&apos;);
+    document.body.appendChild( imgNode );
+    return {
+        setSrc : function( src ) {
+            imgNode.src = src;
+        }
+    }
+})();
+
+var proxyImage = (function() {
+    var img = new Image;
+    img.onload = function() {//&#x56FE;&#x7247;&#x52A0;&#x8F7D;&#x5B8C;&#x6210;&#x4E4B;&#x540E;&#x89E6;&#x53D1;
+        myImage.setSrc(this.src);
+    }
+    return {
+        setSrc: function(src) {
+            myImage.setSrc(&apos;loading.gif&apos;); //loading&#x56FE;&#x7247;
+            img.src = src;
+        }
+    }
+})();
+proxyImage.setSrc(&apos;xxxx&apos;);
+</code></pre><p>&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x901A;&#x8FC7;proxyImage&#x95F4;&#x63A5;&#x5730;&#x8BBF;&#x95EE;MyImage&#xFF0C;proxyImage&#x63A7;&#x5236;&#x4E86;&#x5BA2;&#x6237;&#x5BF9;MyImage&#x7684;&#x8BBF;&#x95EE;&#xFF0C;&#x56E0;&#x6B64;&#x5728;&#x6B64;&#x8FC7;&#x7A0B;&#x4E2D;&#x52A0;&#x5165;&#x4E00;&#x4E9B;&#x989D;&#x5916;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x6BD4;&#x5982;&#x5728;&#x771F;&#x6B63;&#x56FE;&#x7247;&#x52A0;&#x5728;&#x4E4B;&#x524D;&#x5148;&#x628A;img&#x7684;&#x8282;&#x70B9;&#x7684;src&#x8BBE;&#x7F6E;&#x6210;&#x4E00;&#x5F20;&#x672C;&#x5730;&#x7684;&#x56FE;&#x7247;&#x3002;</p>
+<h3 id="&#x865A;&#x62DF;&#x4EE3;&#x7406;&#x5408;&#x5E76;http&#x8BF7;&#x6C42;"><a href="#&#x865A;&#x62DF;&#x4EE3;&#x7406;&#x5408;&#x5E76;http&#x8BF7;&#x6C42;" class="headerlink" title="&#x865A;&#x62DF;&#x4EE3;&#x7406;&#x5408;&#x5E76;http&#x8BF7;&#x6C42;"></a>&#x865A;&#x62DF;&#x4EE3;&#x7406;&#x5408;&#x5E76;http&#x8BF7;&#x6C42;</h3><p>&#x5047;&#x8BBE;&#x6211;&#x6709;&#x4E00;&#x5806;&#x9009;&#x9879;(checkbox)&#xFF0C;&#x6BCF;&#x6B21;&#x70B9;&#x51FB;&#x5C31;&#x4F1A;&#x5F80;&#x670D;&#x52A1;&#x5668;&#x540C;&#x6B65;&#x6587;&#x4EF6;&#xFF0C;&#x624B;&#x901F;&#x5FEB;&#x7684;&#x4E00;&#x79D2;&#x6216;&#x8BB8;&#x53EF;&#x4EE5;&#x70B9;&#x4E2D;&#x56DB;&#x4E94;&#x4E2A;&#xFF0C;&#x7136;&#x800C;&#x592A;&#x8FC7;&#x5E73;&#x51E1;&#x7684;&#x670D;&#x52A1;&#x5668;&#x8BF7;&#x6C42;&#x5F00;&#x9500;&#x7565;&#x5927;&#x3002;<br>&#x56E0;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x51B3;&#x5B9A;&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;&#x4EE3;&#x7406;&#x51FD;&#x6570;&#xFF0C;&#x5C06;&#x4E24;&#x79D2;&#x4E4B;&#x5185;&#x7684;&#x6570;&#x636E;&#x4F20;&#x8F93;&#x6536;&#x96C6;&#x5230;&#x4E00;&#x8D77;&#x4E24;&#x79D2;&#x518D;&#x53D1;&#x9001;&#x4E00;&#x6B21;&#xFF0C;&#x5BF9;&#x4E8E;&#x5B9E;&#x65F6;&#x6027;&#x8981;&#x6C42;&#x4E0D;&#x662F;&#x5F88;&#x9AD8;&#x7684;&#x7CFB;&#x7EDF;&#x4E24;&#x79D2;&#x5EF6;&#x8FDF;&#x4E0D;&#x4F1A;&#x6709;&#x592A;&#x5927;&#x526F;&#x4F5C;&#x7528;&#x4F46;&#x662F;&#x5BF9;&#x670D;&#x52A1;&#x5668;&#x7684;&#x538B;&#x529B;&#x5C31;&#x662F;&#x91CF;&#x7EA7;&#x7684;&#x51CF;&#x5C11;&#x3002;</p>
+<pre><code>var synchronousFile = function(id) {
+    console.log(&apos;&#x5F00;&#x59CB;&#x540C;&#x6B65;&#x6587;&#x4EF6;&apos; + id);
+};
+
+var proxySynchronousFile = (function() {
+    var cache = [], //&#x4FDD;&#x5B58;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x5185;&#x9700;&#x8981;&#x540C;&#x6B65;&#x7684;ID
+        timer;
+    return function(id) {
+        cache.push(id);
+        if (timer) { //&#x4FDD;&#x8BC1;&#x4E0D;&#x4F1A;&#x8986;&#x76D6;&#x5DF2;&#x542F;&#x52A8;&#x7684;&#x5B9A;&#x65F6;&#x5668;
+            return;
+        }
+        timer = setTimeout(function() {
+            synchronousFile(cache.join(&apos;,&apos;)); //&#x4E24;&#x79D2;&#x540E;&#x5411;&#x672C;&#x4F53;&#x53D1;&#x9001;&#x9700;&#x8981;&#x540C;&#x6B65;&#x7684;ID&#x96C6;&#x5408;
+            clearTimeout(timer);
+            timer = null;
+            cache.length = 0;
+        }, 2000);
+    }
+})();
+
+var chechbox = document.getElementByTagName(&apos;input&apos;);
+for(var i = 0, c; c = checkbox[i++];) {
+    c.onclick = function() {
+        if(this.checked === true) {
+            proxySychronousFile(this.id);
+        }
+    }
+}
+</code></pre><h3 id="&#x5176;&#x4ED6;&#x4EE3;&#x7406;&#x6A21;&#x5F0F;"><a href="#&#x5176;&#x4ED6;&#x4EE3;&#x7406;&#x6A21;&#x5F0F;" class="headerlink" title="&#x5176;&#x4ED6;&#x4EE3;&#x7406;&#x6A21;&#x5F0F;"></a>&#x5176;&#x4ED6;&#x4EE3;&#x7406;&#x6A21;&#x5F0F;</h3><ul>
+<li><p>&#x7F13;&#x5B58;&#x4EE3;&#x7406;&#xFF1A;&#x4E3A;&#x4E00;&#x4E9B;&#x5F00;&#x9500;&#x5927;&#x7684;&#x8FD0;&#x7B97;&#x7ED3;&#x679C;&#x63D0;&#x4F9B;&#x6682;&#x65F6;&#x7684;&#x5B58;&#x50A8;&#xFF0C;&#x5728;&#x4E0B;&#x6B21;&#x8FD0;&#x7B97;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x4F20;&#x8FC7;&#x6765;&#x7684;&#x53C2;&#x6570;&#x8DDF;&#x4E4B;&#x524D;&#x7684;&#x4E00;&#x76F4;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x524D;&#x9762;&#x7684;&#x5B58;&#x50A8;&#x8FD0;&#x7B97;&#x7ED3;&#x679C;</p>
+</li>
+<li><p>&#x9632;&#x706B;&#x5899;&#x4EE3;&#x7406;&#xFF1A;&#x63A7;&#x5236;&#x7F51;&#x7EDC;&#x8D44;&#x6E90;&#x7684;&#x8BBF;&#x95EE;&#xFF0C;&#x4FDD;&#x62A4;&#x4E3B;&#x9898;&#x4E0D;&#x8BA9;&#x201C;&#x574F;&#x4EBA;&#x201D;&#x63A5;&#x8FD1;</p>
+</li>
+<li><p>&#x8FDC;&#x7A0B;&#x4EE3;&#x7406;&#xFF1A;&#x4E3A;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x5728;&#x4E0D;&#x540C;&#x7684;&#x5730;&#x5740;&#x7A7A;&#x95F4;&#x63D0;&#x4F9B;&#x5C40;&#x90E8;&#x4EE3;&#x8868;</p>
+</li>
+<li><p>&#x4FDD;&#x62A4;&#x4EE3;&#x7406;&#xFF1A;&#x7528;&#x4E8E;&#x5BF9;&#x8C61;&#x5E94;&#x8BE5;&#x6709;&#x4E0D;&#x540C;&#x8BBF;&#x95EE;&#x6743;&#x9650;&#x7684;&#x60C5;&#x51B5;</p>
+</li>
+<li><p>&#x667A;&#x80FD;&#x5F15;&#x7528;&#x4EE3;&#x7406;&#xFF1A;&#x53D6;&#x4EE3;&#x4E86;&#x7B80;&#x5355;&#x7684;&#x6307;&#x9488;&#xFF0C;&#x5B83;&#x5728;&#x8BBF;&#x95EE;&#x5BF9;&#x8C61;&#x65F6;&#x6267;&#x884C;&#x4E86;&#x4E00;&#x4E9B;&#x9644;&#x52A0;&#x64CD;&#x4F5C;&#xFF0C;&#x6BD4;&#x5982;&#x8BA1;&#x7B97;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x88AB;&#x5F15;&#x7528;&#x7684;&#x6B21;&#x6570;</p>
+</li>
+<li><p>&#x5199;&#x65F6;&#x670D;&#x9970;&#x4EE3;&#x7406;&#xFF1A;&#x901A;&#x5E38;&#x7528;&#x4E8E;&#x590D;&#x5236;&#x4E00;&#x4E2A;&#x5E9E;&#x5927;&#x5BF9;&#x8C61;&#x65F6;&#x5019;&#x7684;&#x60C5;&#x51B5;&#x3002;&#x5199;&#x65F6;&#x590D;&#x5236;&#x4EE3;&#x7406;&#x5EF6;&#x8FDF;&#x4E86;&#x590D;&#x5236;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x5F53;&#x5BF9;&#x8C61;&#x88AB;&#x771F;&#x6B63;&#x4FEE;&#x6539;&#x65F6;&#xFF0C;&#x624D;&#x80FD;&#x5BF9;&#x5B83;&#x8FDB;&#x884C;&#x590D;&#x5236;&#x64CD;&#x4F5C;&#x3002;<br>&#x2026;..</p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+&lt;h3 id=&quot;&amp;#x865A;&amp;#x62DF;&amp;#x4EE3;&amp;#x7406;&amp;#x5B9E;&amp;#x73B0;&amp;#x56FE;&amp;#x7247;&amp;#x9884;&amp;#x52A0;&amp;#x8F7D;&quot;&gt;&lt;a href=&quot;#&amp;#x865A;&amp;#x62DF;&amp;#x4EE3;&amp;#x
     
     </summary>
     
