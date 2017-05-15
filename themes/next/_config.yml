@@ -398,5 +398,6 @@ since: 2015
 
 leancloud_visitors:
   enable: true
+  class: Counter # leanclound上的class名称
   app_id: bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz
   app_key: 9kCQuNi7NFq5MdDBn9J1Xj1r
