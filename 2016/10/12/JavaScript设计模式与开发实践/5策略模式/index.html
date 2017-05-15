@@ -483,16 +483,16 @@ console.log(calculateBonus(&apos;A&apos;, 1000); //30000
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/" rel="next" title="代理模式">
-                <i class="fa fa-chevron-left"></i> 代理模式
+              <a href="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/" rel="next" title="策略模式的应用">
+                <i class="fa fa-chevron-left"></i> 策略模式的应用
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/12/JavaScript设计模式与开发实践/1this关键字/" rel="prev" title="this关键字">
-                this关键字 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/" rel="prev" title="单例模式">
+                单例模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -908,6 +908,7 @@ function showTime(Counter) {
 	var query = new AV.Query(Counter);
 	$(".leancloud_visitors").each(function() {
 		var url = $(this).attr("id").trim();
+        console.log(url);
 		query.equalTo("url", url);
 		query.find({
 			success: function(results) {

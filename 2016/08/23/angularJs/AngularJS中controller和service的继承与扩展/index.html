@@ -467,16 +467,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/22/css/说说 tabindex 的那些事儿/" rel="next" title="说说 tabindex 的那些事儿">
-                <i class="fa fa-chevron-left"></i> 说说 tabindex 的那些事儿
+              <a href="/2016/08/22/angularJs/用$scope还是用controller as/" rel="next" title="用$scope还是用controller as">
+                <i class="fa fa-chevron-left"></i> 用$scope还是用controller as
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/30/javascript/call和apply区别解析/" rel="prev" title="call和apply区别解析">
-                call和apply区别解析 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/30/javascript/fetch和XMLHttpRequest讲解/" rel="prev" title="fetch和XMLHttpRequest讲解">
+                fetch和XMLHttpRequest讲解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -892,6 +892,7 @@ function showTime(Counter) {
 	var query = new AV.Query(Counter);
 	$(".leancloud_visitors").each(function() {
 		var url = $(this).attr("id").trim();
+        console.log(url);
 		query.equalTo("url", url);
 		query.find({
 			success: function(results) {

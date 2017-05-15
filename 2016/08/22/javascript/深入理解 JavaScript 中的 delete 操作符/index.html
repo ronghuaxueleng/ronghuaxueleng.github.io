@@ -530,8 +530,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/22/angularJs/用$scope还是用controller as/" rel="prev" title="用$scope还是用controller as">
-                用$scope还是用controller as <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/22/css/说说 tabindex 的那些事儿/" rel="prev" title="说说 tabindex 的那些事儿">
+                说说 tabindex 的那些事儿 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -947,6 +947,7 @@ function showTime(Counter) {
 	var query = new AV.Query(Counter);
 	$(".leancloud_visitors").each(function() {
 		var url = $(this).attr("id").trim();
+        console.log(url);
 		query.equalTo("url", url);
 		query.find({
 			success: function(results) {

@@ -402,16 +402,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/30/javascript/fetch和XMLHttpRequest讲解/" rel="next" title="fetch和XMLHttpRequest讲解">
-                <i class="fa fa-chevron-left"></i> fetch和XMLHttpRequest讲解
+              <a href="/2016/08/30/javascript/call和apply区别解析/" rel="next" title="call和apply区别解析">
+                <i class="fa fa-chevron-left"></i> call和apply区别解析
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/10/javascript设计模式/JavaScript设计模式——Module模式/" rel="prev" title="JavaScript Module模式">
-                JavaScript Module模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/10/javascript设计模式/Javascript设计模式——设计模式类别/" rel="prev" title="Javascript 设计模式类别">
+                Javascript 设计模式类别 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -827,6 +827,7 @@ function showTime(Counter) {
 	var query = new AV.Query(Counter);
 	$(".leancloud_visitors").each(function() {
 		var url = $(this).attr("id").trim();
+        console.log(url);
 		query.equalTo("url", url);
 		query.find({
 			success: function(results) {

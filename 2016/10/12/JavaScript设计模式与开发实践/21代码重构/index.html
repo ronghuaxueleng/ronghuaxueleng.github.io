@@ -664,16 +664,16 @@ func();
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/" rel="next" title="适配器模式">
-                <i class="fa fa-chevron-left"></i> 适配器模式
+              <a href="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/" rel="next" title="组合模式">
+                <i class="fa fa-chevron-left"></i> 组合模式
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/" rel="prev" title="迭代器模式">
-                迭代器模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/12/JavaScript设计模式与开发实践/14享元模式/" rel="prev" title="享元模式">
+                享元模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1089,6 +1089,7 @@ function showTime(Counter) {
 	var query = new AV.Query(Counter);
 	$(".leancloud_visitors").each(function() {
 		var url = $(this).attr("id").trim();
+        console.log(url);
 		query.equalTo("url", url);
 		query.find({
 			success: function(results) {

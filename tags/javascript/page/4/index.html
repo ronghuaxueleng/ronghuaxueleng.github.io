@@ -274,9 +274,9 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/2016/08/30/javascript/fetch和XMLHttpRequest讲解/" itemprop="url">
+            <a class="post-title-link" href="/2016/08/30/javascript/call和apply区别解析/" itemprop="url">
               
-                <span itemprop="name">fetch和XMLHttpRequest讲解</span>
+                <span itemprop="name">call和apply区别解析</span>
               
             </a>
         
@@ -302,9 +302,9 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/2016/08/30/javascript/call和apply区别解析/" itemprop="url">
+            <a class="post-title-link" href="/2016/08/30/javascript/fetch和XMLHttpRequest讲解/" itemprop="url">
               
-                <span itemprop="name">call和apply区别解析</span>
+                <span itemprop="name">fetch和XMLHttpRequest讲解</span>
               
             </a>
         
@@ -892,6 +892,7 @@ function showTime(Counter) {
 	var query = new AV.Query(Counter);
 	$(".leancloud_visitors").each(function() {
 		var url = $(this).attr("id").trim();
+        console.log(url);
 		query.equalTo("url", url);
 		query.find({
 			success: function(results) {

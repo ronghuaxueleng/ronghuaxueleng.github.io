@@ -679,8 +679,8 @@ D3.js&#x662F;&#x4E00;&#x4E2A;JavaScript&#x5E93;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&
             
               
                 
-                <a class="post-title-link" href="/2016/09/19/javascript/jQuery的deferred对象详解/" itemprop="url">
-                  jQuery的deferred对象详解
+                <a class="post-title-link" href="/2016/09/19/javascript/Javascript 严格模式详解/" itemprop="url">
+                  Javascript 严格模式详解
                 </a>
               
             
@@ -723,8 +723,8 @@ D3.js&#x662F;&#x4E00;&#x4E2A;JavaScript&#x5E93;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/19/javascript/jQuery的deferred对象详解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/javascript/jQuery的deferred对象详解/" itemprop="commentsCount"></span>
+                <a href="/2016/09/19/javascript/Javascript 严格模式详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/javascript/Javascript 严格模式详解/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -734,7 +734,7 @@ D3.js&#x662F;&#x4E00;&#x4E2A;JavaScript&#x5E93;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&
 
           
           
-             <span id="/2016/09/19/javascript/jQuery的deferred对象详解/" class="leancloud_visitors" data-flag-title="jQuery的deferred对象详解">
+             <span id="/2016/09/19/javascript/Javascript 严格模式详解/" class="leancloud_visitors" data-flag-title="Javascript 严格模式详解">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -748,7 +748,7 @@ D3.js&#x662F;&#x4E00;&#x4E2A;JavaScript&#x5E93;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&
 
           
             &nbsp; | &nbsp;
-          <span id="/2016/09/19/javascript/jQuery的deferred对象详解/"class="leancloud_visitors" data-flag-title="jQuery的deferred对象详解">
+          <span id="/2016/09/19/javascript/Javascript 严格模式详解/"class="leancloud_visitors" data-flag-title="Javascript 严格模式详解">
             &nbsp;阅读次数
           </span>
           
@@ -764,11 +764,21 @@ D3.js&#x662F;&#x4E00;&#x4E2A;JavaScript&#x5E93;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&
 
       
         
-          <p><a href="http://jquery.com/">jQuery</a>的开发速度很快，几乎每半年一个大版本，每两个月一个小版本。</p>
-<p>每个版本都会引入一些新功能。今天我想介绍的，就是从jQuery 1.5.0版本开始引入的一个新功能—-<a href="http://api.jquery.com/category/deferred-object/">deferred对象</a>。</p>
-<p>这个功能很重要，未来将成为jQuery的核心方法，它彻底改变了如何在jQuery中使用ajax。为了实现它，jQuery的全部ajax代码都被改写了。但是，<br>它比较抽象，初学者很难掌握，网上的教程也不多。所以，我把自己的学习笔记整理出来了，希望对大家有用。</p>
+          <hr>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>除了正常运行模式，ECMAscript 5添加了第二种运行模式：<a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Functions_and_function_scope/Strict_mode">“严格模式”</a>（strict mode）。顾名思义，这种模式使得Javascript在更严格的条件下运行。</p>
+<p><img src="/img/javascript/bg2013011401.jpg" alt=""></p>
+<p>设立”严格模式”的目的，主要有以下几个：</p>
+<ul>
+<li>消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;</li>
+<li>消除代码运行的一些不安全之处，保证代码运行的安全；</li>
+<li>提高编译器效率，增加运行速度；</li>
+<li>为未来新版本的Javascript做好铺垫。</li>
+</ul>
+<p>“严格模式”体现了Javascript更合理、更安全、更严谨的发展方向，包括IE10在内的主流浏览器，都已经<a href="http://kangax.github.com/es5-compat-table">支持</a>它，许多大项目已经开始全面拥抱它。</p>
+<p>另一方面，同样的代码，在”严格模式”中，可能会有不一样的运行结果；一些在”正常模式”下可以运行的语句，在”严格模式”下将不能运行。掌握这些内容，有助于更细致深入地理解Javascript，让你变成一个更好的程序员。</p>
+<p>本文将对”严格模式”做详细介绍。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/19/javascript/jQuery的deferred对象详解/#more" rel="contents">
+            <a class="btn" href="/2016/09/19/javascript/Javascript 严格模式详解/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1312,6 +1322,7 @@ function showTime(Counter) {
 	var query = new AV.Query(Counter);
 	$(".leancloud_visitors").each(function() {
 		var url = $(this).attr("id").trim();
+        console.log(url);
 		query.equalTo("url", url);
 		query.find({
 			success: function(results) {

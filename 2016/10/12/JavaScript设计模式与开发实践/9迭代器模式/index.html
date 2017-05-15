@@ -531,8 +531,8 @@ var uploadObj = iteratorUploadObj(getActiveUploadObj, getFlashUploadObj, getForm
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/" rel="next" title="代码重构">
-                <i class="fa fa-chevron-left"></i> 代码重构
+              <a href="/2016/10/12/JavaScript设计模式与开发实践/1this关键字/" rel="next" title="this关键字">
+                <i class="fa fa-chevron-left"></i> this关键字
               </a>
             
           </div>
@@ -956,6 +956,7 @@ function showTime(Counter) {
 	var query = new AV.Query(Counter);
 	$(".leancloud_visitors").each(function() {
 		var url = $(this).attr("id").trim();
+        console.log(url);
 		query.equalTo("url", url);
 		query.find({
 			success: function(results) {

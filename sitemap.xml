@@ -100,14 +100,14 @@
   </url>
   
   <url>
-    <loc>http://ronghuaxueleng.github.io/2015/12/15/npm-setting/</loc>
+    <loc>http://ronghuaxueleng.github.io/categories/index.html</loc>
     
     <lastmod>2016-10-12T10:25:08.102Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ronghuaxueleng.github.io/categories/index.html</loc>
+    <loc>http://ronghuaxueleng.github.io/2015/12/15/npm-setting/</loc>
     
     <lastmod>2016-10-12T10:25:08.102Z</lastmod>
     
@@ -163,14 +163,14 @@
   </url>
   
   <url>
-    <loc>http://ronghuaxueleng.github.io/2016/09/10/javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E2%80%94%E2%80%94Constructor%E6%9E%84%E9%80%A0%E5%99%A8%E6%A8%A1%E5%BC%8F/</loc>
+    <loc>http://ronghuaxueleng.github.io/2016/09/10/javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E2%80%94%E2%80%94Module%E6%A8%A1%E5%BC%8F/</loc>
     
     <lastmod>2016-10-12T10:25:08.099Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ronghuaxueleng.github.io/2016/09/10/javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E2%80%94%E2%80%94Module%E6%A8%A1%E5%BC%8F/</loc>
+    <loc>http://ronghuaxueleng.github.io/2016/09/10/javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E2%80%94%E2%80%94Constructor%E6%9E%84%E9%80%A0%E5%99%A8%E6%A8%A1%E5%BC%8F/</loc>
     
     <lastmod>2016-10-12T10:25:08.099Z</lastmod>
     
@@ -205,7 +205,7 @@
   </url>
   
   <url>
-    <loc>http://ronghuaxueleng.github.io/2016/08/30/javascript/call%E5%92%8Capply%E5%8C%BA%E5%88%AB%E8%A7%A3%E6%9E%90/</loc>
+    <loc>http://ronghuaxueleng.github.io/2016/08/30/javascript/fetch%E5%92%8CXMLHttpRequest%E8%AE%B2%E8%A7%A3/</loc>
     
     <lastmod>2016-10-12T10:25:08.097Z</lastmod>
     
@@ -219,7 +219,7 @@
   </url>
   
   <url>
-    <loc>http://ronghuaxueleng.github.io/2016/08/30/javascript/fetch%E5%92%8CXMLHttpRequest%E8%AE%B2%E8%A7%A3/</loc>
+    <loc>http://ronghuaxueleng.github.io/2016/08/30/javascript/call%E5%92%8Capply%E5%8C%BA%E5%88%AB%E8%A7%A3%E6%9E%90/</loc>
     
     <lastmod>2016-10-12T10:25:08.097Z</lastmod>
     
@@ -233,6 +233,13 @@
   </url>
   
   <url>
+    <loc>http://ronghuaxueleng.github.io/2016/09/19/javascript/Javascript%E5%AE%9A%E4%B9%89%E7%B1%BB%EF%BC%88class%EF%BC%89%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/</loc>
+    
+    <lastmod>2016-10-12T10:25:08.096Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://ronghuaxueleng.github.io/2016/09/19/javascript/Javascript%20%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F%E8%AF%A6%E8%A7%A3/</loc>
     
     <lastmod>2016-10-12T10:25:08.096Z</lastmod>
@@ -240,9 +247,9 @@
   </url>
   
   <url>
-    <loc>http://ronghuaxueleng.github.io/2016/09/19/javascript/Javascript%E5%AE%9A%E4%B9%89%E7%B1%BB%EF%BC%88class%EF%BC%89%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/</loc>
+    <loc>http://ronghuaxueleng.github.io/2015/08/25/jQuery/jQuery%E6%8A%80%E5%B7%A7/</loc>
     
-    <lastmod>2016-10-12T10:25:08.096Z</lastmod>
+    <lastmod>2016-10-12T10:25:08.095Z</lastmod>
     
   </url>
   
@@ -261,9 +268,9 @@
   </url>
   
   <url>
-    <loc>http://ronghuaxueleng.github.io/2015/08/25/jQuery/jQuery%E6%8A%80%E5%B7%A7/</loc>
+    <loc>http://ronghuaxueleng.github.io/2016/08/11/gulp/gulp%E6%AF%8F%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9%E7%94%9F%E6%88%90%E5%8D%95%E7%8B%AC%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6/</loc>
     
-    <lastmod>2016-10-12T10:25:08.095Z</lastmod>
+    <lastmod>2016-10-12T10:25:08.094Z</lastmod>
     
   </url>
   
@@ -275,21 +282,14 @@
   </url>
   
   <url>
-    <loc>http://ronghuaxueleng.github.io/2016/08/11/gulp/gulp%E6%AF%8F%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9%E7%94%9F%E6%88%90%E5%8D%95%E7%8B%AC%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6/</loc>
-    
-    <lastmod>2016-10-12T10:25:08.094Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ronghuaxueleng.github.io/2016/03/21/grunt-install/</loc>
+    <loc>http://ronghuaxueleng.github.io/2016/08/10/gulp/gulp%E4%BD%BF%E7%94%A8%E5%B0%8F%E4%BE%8B%E4%B8%80/</loc>
     
     <lastmod>2016-10-12T10:25:08.093Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ronghuaxueleng.github.io/2016/08/10/gulp/gulp%E4%BD%BF%E7%94%A8%E5%B0%8F%E4%BE%8B%E4%B8%80/</loc>
+    <loc>http://ronghuaxueleng.github.io/2016/03/21/grunt-install/</loc>
     
     <lastmod>2016-10-12T10:25:08.093Z</lastmod>
     
@@ -331,14 +331,14 @@
   </url>
   
   <url>
-    <loc>http://ronghuaxueleng.github.io/2016/08/06/angularJs/ui-router/%E5%AD%A6%E4%B9%A0%20ui-router%20-%20%E8%B7%AF%E7%94%B1%E6%8E%A7%E5%88%B6/</loc>
+    <loc>http://ronghuaxueleng.github.io/2016/09/25/api/html/Fullscreen%20API%EF%BC%9A%E5%85%A8%E5%B1%8F%E6%93%8D%E4%BD%9C/</loc>
     
     <lastmod>2016-10-12T10:25:08.089Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ronghuaxueleng.github.io/2016/09/25/api/html/Fullscreen%20API%EF%BC%9A%E5%85%A8%E5%B1%8F%E6%93%8D%E4%BD%9C/</loc>
+    <loc>http://ronghuaxueleng.github.io/2016/08/06/angularJs/ui-router/%E5%AD%A6%E4%B9%A0%20ui-router%20-%20%E8%B7%AF%E7%94%B1%E6%8E%A7%E5%88%B6/</loc>
     
     <lastmod>2016-10-12T10:25:08.089Z</lastmod>
     
@@ -366,14 +366,14 @@
   </url>
   
   <url>
-    <loc>http://ronghuaxueleng.github.io/2016/08/03/angularJs/ui-router/index/</loc>
+    <loc>http://ronghuaxueleng.github.io/2016/08/05/angularJs/ui-router/%E5%AD%A6%E4%B9%A0%20ui-router%20-%20%E5%A4%9A%E4%B8%AA%E5%91%BD%E5%90%8D%E7%9A%84%E8%A7%86%E5%9B%BE/</loc>
     
     <lastmod>2016-10-12T10:25:08.087Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ronghuaxueleng.github.io/2016/08/05/angularJs/ui-router/%E5%AD%A6%E4%B9%A0%20ui-router%20-%20%E5%A4%9A%E4%B8%AA%E5%91%BD%E5%90%8D%E7%9A%84%E8%A7%86%E5%9B%BE/</loc>
+    <loc>http://ronghuaxueleng.github.io/2016/08/03/angularJs/ui-router/index/</loc>
     
     <lastmod>2016-10-12T10:25:08.087Z</lastmod>
     
@@ -401,14 +401,14 @@
   </url>
   
   <url>
-    <loc>http://ronghuaxueleng.github.io/2016/08/02/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9AECMAScript%E4%B8%AD%E7%9A%84%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B/</loc>
+    <loc>http://ronghuaxueleng.github.io/2016/07/29/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%9A%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E3%80%81%E9%97%AD%E5%8C%85%E3%80%81%E7%A7%81%E6%9C%89%E5%8F%98%E9%87%8F%20/</loc>
     
     <lastmod>2016-10-12T10:25:08.084Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ronghuaxueleng.github.io/2016/07/29/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%9A%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E3%80%81%E9%97%AD%E5%8C%85%E3%80%81%E7%A7%81%E6%9C%89%E5%8F%98%E9%87%8F%20/</loc>
+    <loc>http://ronghuaxueleng.github.io/2016/08/02/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9AECMAScript%E4%B8%AD%E7%9A%84%E5%8E%9F%E5%A7%8B%E7%B1%BB%E5%9E%8B/</loc>
     
     <lastmod>2016-10-12T10:25:08.084Z</lastmod>
     
@@ -422,14 +422,14 @@
   </url>
   
   <url>
-    <loc>http://ronghuaxueleng.github.io/2016/08/01/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AECMAScript%E5%9F%BA%E7%A1%80/</loc>
+    <loc>http://ronghuaxueleng.github.io/2016/08/03/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9AECMAScript%E4%B8%AD%E7%9A%84%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/</loc>
     
     <lastmod>2016-10-12T10:25:08.083Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ronghuaxueleng.github.io/2016/08/03/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9AECMAScript%E4%B8%AD%E7%9A%84%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/</loc>
+    <loc>http://ronghuaxueleng.github.io/2016/08/01/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AECMAScript%E5%9F%BA%E7%A1%80/</loc>
     
     <lastmod>2016-10-12T10:25:08.083Z</lastmod>
     
