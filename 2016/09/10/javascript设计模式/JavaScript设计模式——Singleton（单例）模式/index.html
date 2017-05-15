@@ -308,7 +308,7 @@ singleton不同于静态类(或对象)，因为我们可以推迟它们的初始
 
           
           
-            阅读次数 | &nbsp;
+            阅读次数 &nbsp;
             <span id="/2016/09/10/javascript设计模式/JavaScript设计模式——Singleton（单例）模式/"class="leancloud_visitors" data-flag-title="JavaScript Singleton（单例）模式"></span>
           
 
@@ -335,7 +335,7 @@ singleton不同于静态类(或对象)，因为我们可以推迟它们的初始
 </blockquote>
 <h2 id="&#x9002;&#x7528;&#x7684;&#x573A;&#x666F;"><a href="#&#x9002;&#x7528;&#x7684;&#x573A;&#x666F;" class="headerlink" title="&#x9002;&#x7528;&#x7684;&#x573A;&#x666F;"></a><strong>&#x9002;&#x7528;&#x7684;&#x573A;&#x666F;</strong></h2><p>1&#x3001;&#x5F53;&#x7C7B;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#x800C;&#x4E14;&#x5BA2;&#x6237;&#x53EF;&#x4EE5;&#x4ECE;&#x4E00;&#x4E2A;&#x4F17;&#x6240;&#x5468;&#x77E5;&#x7684;&#x8BBF;&#x95EE;&#x70B9;&#x8BBF;&#x95EE;&#x5B83;&#x65F6;&#x3002;<br>2&#x3001;&#x8BE5;&#x552F;&#x4E00;&#x7684;&#x5B9E;&#x4F8B;&#x5E94;&#x8BE5;&#x662F;&#x901A;&#x8FC7;&#x5B50;&#x7C7B;&#x5316;&#x53EF;&#x6269;&#x5C55;&#x7684;&#xFF0C;&#x5E76;&#x4E14;&#x5BA2;&#x6237;&#x5E94;&#x8BE5;&#x65E0;&#x9700;&#x66F4;&#x6539;&#x4EE3;&#x7801;&#x5C31;&#x80FD;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x6269;&#x5C55;&#x7684;&#x5B9E;&#x4F8B;&#x65F6;&#x3002;</p>
 <h2 id="&#x5EF6;&#x8FDF;&#x6267;&#x884C;"><a href="#&#x5EF6;&#x8FDF;&#x6267;&#x884C;" class="headerlink" title="&#x5EF6;&#x8FDF;&#x6267;&#x884C;"></a><strong>&#x5EF6;&#x8FDF;&#x6267;&#x884C;</strong></h2><p>&#x6211;&#x4EEC;&#x770B;&#x4E0B;&#x9762;&#x4EE3;&#x7801;&#xFF1A;</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">mySingleton.getInstance=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>._instance==<span class="literal">null</span>){</div><div class="line">		<span class="keyword">if</span>(isFoo()){</div><div class="line">			<span class="keyword">this</span>._instance=<span class="keyword">new</span> FooSingleton();</div><div class="line">		}<span class="keyword">else</span>{</div><div class="line">			<span class="keyword">this</span>._instance=<span class="keyword">new</span> BasicSingleton();</div><div class="line">		}</div><div class="line">	}</div><div class="line">	<span class="keyword">return</span> <span class="keyword">this</span>._instance;</div><div class="line">};</div></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">mySingleton.getInstance=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>._instance==<span class="literal">null</span>){</div><div class="line">		<span class="keyword">if</span>(isFoo()){</div><div class="line">			<span class="keyword">this</span>._instance=<span class="keyword">new</span> FooSingleton();</div><div class="line">		}<span class="keyword">else</span>{</div><div class="line">			<span class="keyword">this</span>._instance=<span class="keyword">new</span> BasicSingleton();</div><div class="line">		}</div><div class="line">	}</div><div class="line">	<span class="keyword">return</span> <span class="keyword">this</span>._instance;</div><div class="line">};</div></pre></td></tr></table></figure>
 <p>&#x5728;&#x8FD9;&#x91CC;&#xFF0C;getInstance&#x53D8;&#x5F97;&#x6709;&#x70B9;&#x50CF;Factory&#xFF08;&#x5DE5;&#x5382;&#xFF09;&#x65B9;&#x6CD5;&#xFF0C;&#x5F53;&#x8BBF;&#x95EE;&#x5B83;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x4E0D;&#x9700;&#x8981;&#x66F4;&#x65B0;&#x4EE3;&#x7801;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x8BBF;&#x95EE;&#x70B9;&#x3002;FooSingleton&#xFF08;&#x4E0A;&#x9762;&#xFF09;&#x5C06;&#x662F;&#x4E00;&#x4E2A;BasicSingleton&#x7684;&#x5B50;&#x7C7B;&#xFF0C;&#x5E76;&#x5C06;&#x5B9E;&#x73B0;&#x76F8;&#x540C;&#x7684;&#x63A5;&#x53E3;&#x3002;</p>
 <p><strong>&#x90A3;&#x4E48;&#x95EE;&#x9898;&#x6765;&#x4E86;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x5EF6;&#x8FDF;&#x6267;&#x884C;Singleton&#x5462;&#xFF1F;</strong></p>
 <p>&#x5728;C++&#x4E2D;&#xFF0C;Singleton&#x8D1F;&#x8D23;&#x9694;&#x7EDD;&#x52A8;&#x6001;&#x521D;&#x59CB;&#x5316;&#x987A;&#x5E8F;&#x7684;&#x4E0D;&#x53EF;&#x9884;&#x77E5;&#x6027;&#xFF0C;&#x5C06;&#x63A7;&#x5236;&#x6743;&#x5F52;&#x8FD8;&#x7ED9;&#x7A0B;&#x5E8F;&#x5458;&#x3002;</p>
@@ -397,16 +397,16 @@ singleton不同于静态类(或对象)，因为我们可以推迟它们的初始
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/10/javascript设计模式/Javascript设计模式——设计模式类别/" rel="next" title="Javascript 设计模式类别">
-                <i class="fa fa-chevron-left"></i> Javascript 设计模式类别
+              <a href="/2016/09/10/javascript设计模式/JavaScript设计模式——Module模式/" rel="next" title="JavaScript Module模式">
+                <i class="fa fa-chevron-left"></i> JavaScript Module模式
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/10/javascript设计模式/JavaScript设计模式——认识设计模式/" rel="prev" title="认识JavaScript设计模式">
-                认识JavaScript设计模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/10/javascript设计模式/Javascript设计模式——反模式/" rel="prev" title="Javascript 反模式">
+                Javascript 反模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
