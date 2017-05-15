@@ -454,16 +454,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/19/javascript/Javascript定义类（class）的三种方法/" rel="next" title="Javascript定义类（class）的三种方法">
-                <i class="fa fa-chevron-left"></i> Javascript定义类（class）的三种方法
+              <a href="/2016/09/19/sendEmail/" rel="next" title="使用sendMail发送邮件">
+                <i class="fa fa-chevron-left"></i> 使用sendMail发送邮件
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/19/javascript/12种不宜使用的Javascript语法/" rel="prev" title="12种不宜使用的Javascript语法">
-                12种不宜使用的Javascript语法 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/19/javascript/Javascript的this用法/" rel="prev" title="Javascript的this用法">
+                Javascript的this用法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -883,13 +883,13 @@ function showTime(Counter) {
 		query.find({
 			success: function(results) {
 				if (results.length == 0) {
-					var content = '0 ' + $(document.getElementById(url)).text();
+					var content = '0';
 					$(document.getElementById(url)).text(content);
 					return;
 				}
 				for (var i = 0; i < results.length; i++) {
 					var object = results[i];
-					var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+					var content = object.get('time');
 					$(document.getElementById(url)).text(content);
 				}
 			},
@@ -915,7 +915,7 @@ function addCount(Counter) {
 				counter.increment("time");
 				counter.save(null, {
 					success: function(counter) {
-						var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+						var content =  counter.get('time');
 						$(document.getElementById(url)).text(content);
 					},
 					error: function(counter, error) {
@@ -930,7 +930,7 @@ function addCount(Counter) {
 				newcounter.save(null, {
 					success: function(newcounter) {
 					    console.log("newcounter.get('time')="+newcounter.get('time'));
-						var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+						var content = newcounter.get('time');
 						$(document.getElementById(url)).text(content);
 					},
 					error: function(newcounter, error) {

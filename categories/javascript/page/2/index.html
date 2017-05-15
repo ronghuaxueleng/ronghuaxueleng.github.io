@@ -246,9 +246,9 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/" itemprop="url">
+            <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/1this关键字/" itemprop="url">
               
-                <span itemprop="name">状态模式</span>
+                <span itemprop="name">this关键字</span>
               
             </a>
         
@@ -386,9 +386,9 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/" itemprop="url">
+            <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/" itemprop="url">
               
-                <span itemprop="name">单例模式</span>
+                <span itemprop="name">策略模式</span>
               
             </a>
         
@@ -414,9 +414,9 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/" itemprop="url">
+            <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/" itemprop="url">
               
-                <span itemprop="name">策略模式</span>
+                <span itemprop="name">单例模式</span>
               
             </a>
         
@@ -897,13 +897,13 @@ function showTime(Counter) {
 		query.find({
 			success: function(results) {
 				if (results.length == 0) {
-					var content = '0 ' + $(document.getElementById(url)).text();
+					var content = '0';
 					$(document.getElementById(url)).text(content);
 					return;
 				}
 				for (var i = 0; i < results.length; i++) {
 					var object = results[i];
-					var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+					var content = object.get('time');
 					$(document.getElementById(url)).text(content);
 				}
 			},
@@ -929,7 +929,7 @@ function addCount(Counter) {
 				counter.increment("time");
 				counter.save(null, {
 					success: function(counter) {
-						var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+						var content =  counter.get('time');
 						$(document.getElementById(url)).text(content);
 					},
 					error: function(counter, error) {
@@ -944,7 +944,7 @@ function addCount(Counter) {
 				newcounter.save(null, {
 					success: function(newcounter) {
 					    console.log("newcounter.get('time')="+newcounter.get('time'));
-						var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+						var content = newcounter.get('time');
 						$(document.getElementById(url)).text(content);
 					},
 					error: function(newcounter, error) {

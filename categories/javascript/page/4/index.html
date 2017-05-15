@@ -442,6 +442,34 @@
 
       <h1 class="post-title">
         
+            <a class="post-title-link" href="/2016/08/30/javascript/理解Javascript的prototype/" itemprop="url">
+              
+                <span itemprop="name">理解Javascript的prototype</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-08-30T00:00:00+08:00"
+              content="2016-08-30" >
+          08-30
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
             <a class="post-title-link" href="/2016/08/30/javascript/fetch和XMLHttpRequest讲解/" itemprop="url">
               
                 <span itemprop="name">fetch和XMLHttpRequest讲解</span>
@@ -473,34 +501,6 @@
             <a class="post-title-link" href="/2016/08/30/javascript/call和apply区别解析/" itemprop="url">
               
                 <span itemprop="name">call和apply区别解析</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-30T00:00:00+08:00"
-              content="2016-08-30" >
-          08-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/30/javascript/理解Javascript的prototype/" itemprop="url">
-              
-                <span itemprop="name">理解Javascript的prototype</span>
               
             </a>
         
@@ -897,13 +897,13 @@ function showTime(Counter) {
 		query.find({
 			success: function(results) {
 				if (results.length == 0) {
-					var content = '0 ' + $(document.getElementById(url)).text();
+					var content = '0';
 					$(document.getElementById(url)).text(content);
 					return;
 				}
 				for (var i = 0; i < results.length; i++) {
 					var object = results[i];
-					var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+					var content = object.get('time');
 					$(document.getElementById(url)).text(content);
 				}
 			},
@@ -929,7 +929,7 @@ function addCount(Counter) {
 				counter.increment("time");
 				counter.save(null, {
 					success: function(counter) {
-						var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+						var content =  counter.get('time');
 						$(document.getElementById(url)).text(content);
 					},
 					error: function(counter, error) {
@@ -944,7 +944,7 @@ function addCount(Counter) {
 				newcounter.save(null, {
 					success: function(newcounter) {
 					    console.log("newcounter.get('time')="+newcounter.get('time'));
-						var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+						var content = newcounter.get('time');
 						$(document.getElementById(url)).text(content);
 					},
 					error: function(newcounter, error) {

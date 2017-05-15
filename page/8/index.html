@@ -646,8 +646,8 @@ D3.js&#x662F;&#x4E00;&#x4E2A;JavaScript&#x5E93;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&
             
               
                 
-                <a class="post-title-link" href="/2016/09/19/javascript/jQuery的deferred对象详解/" itemprop="url">
-                  jQuery的deferred对象详解
+                <a class="post-title-link" href="/2016/09/19/javascript/Javascript定义类（class）的三种方法/" itemprop="url">
+                  Javascript定义类（class）的三种方法
                 </a>
               
             
@@ -666,32 +666,13 @@ D3.js&#x662F;&#x4E00;&#x4E2A;JavaScript&#x5E93;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&
           </span>
 
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/19/javascript/jQuery的deferred对象详解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/javascript/jQuery的deferred对象详解/" itemprop="commentsCount"></span>
+                <a href="/2016/09/19/javascript/Javascript定义类（class）的三种方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/javascript/Javascript定义类（class）的三种方法/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -702,7 +683,7 @@ D3.js&#x662F;&#x4E00;&#x4E2A;JavaScript&#x5E93;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&
           
           
             &nbsp; | &nbsp;
-            <span id="/2016/09/19/javascript/jQuery的deferred对象详解/"class="leancloud_visitors" data-flag-title="jQuery的deferred对象详解">
+            <span id="/2016/09/19/javascript/Javascript定义类（class）的三种方法/"class="leancloud_visitors" data-flag-title="Javascript定义类（class）的三种方法">
                      &nbsp;阅读次数
                     </span>
           
@@ -720,11 +701,15 @@ D3.js&#x662F;&#x4E00;&#x4E2A;JavaScript&#x5E93;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&
 
       
         
-          <p><a href="http://jquery.com/">jQuery</a>的开发速度很快，几乎每半年一个大版本，每两个月一个小版本。</p>
-<p>每个版本都会引入一些新功能。今天我想介绍的，就是从jQuery 1.5.0版本开始引入的一个新功能—-<a href="http://api.jquery.com/category/deferred-object/">deferred对象</a>。</p>
-<p>这个功能很重要，未来将成为jQuery的核心方法，它彻底改变了如何在jQuery中使用ajax。为了实现它，jQuery的全部ajax代码都被改写了。但是，<br>它比较抽象，初学者很难掌握，网上的教程也不多。所以，我把自己的学习笔记整理出来了，希望对大家有用。</p>
+          
+          &#x5C06;&#x8FD1;20&#x5E74;&#x524D;&#xFF0C;Javascript&#x8BDE;&#x751F;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EA;&#x662F;&#x4E00;&#x79CD;&#x7B80;&#x5355;&#x7684;&#x7F51;&#x9875;&#x811A;&#x672C;&#x8BED;&#x8A00;&#x3002;&#x5982;&#x679C;&#x4F60;&#x5FD8;&#x4E86;&#x586B;&#x5199;&#x7528;&#x6237;&#x540D;&#xFF0C;&#x5B83;&#x5C31;&#x8DF3;&#x51FA;&#x4E00;&#x4E2A;&#x8B66;&#x544A;&#x3002;
+
+&#x5982;&#x4ECA;&#xFF0C;&#x5B83;&#x53D8;&#x5F97;&#x51E0;&#x4E4E;&#x65E0;&#x6240;&#x4E0D;&#x80FD;&#xFF0C;&#x4ECE;&#x524D;&#x7AEF;&#x5230;&#x540E;&#x7AEF;&#xFF0C;&#x6709;&#x7740;&#x5404;&#x79CD;&#x532A;&#x5937;&#x6240;&#x601D;&#x7684;&#x7528;&#x9014;&#x3002;&#x7A0B;&#x5E8F;&#x5458;&#x7528;&#x5B83;&#x5B8C;&#x6210;&#x8D8A;&#x6765;&#x8D8A;&#x5E9E;&#x5927;&#x7684;&#x9879;&#x76EE;&#x3002;
+Javascript&#x4EE3;&#x7801;&#x7684;&#x590D;&#x6742;&#x5EA6;&#x4E5F;&#x76F4;&#x7EBF;&#x4E0A;&#x5347;&#x3002;&#x5355;&#x4E2A;&#x7F51;&#x9875;&#x5305;&#x542B;10000&#x884C;Javascript&#x4EE3;&#x7801;&#xFF0C;&#x65E9;&#x5C31;&#x53F8;&#x7A7A;&#x89C1;
+          ...
+
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/19/javascript/jQuery的deferred对象详解/#more" rel="contents">
+            <a class="btn" href="/2016/09/19/javascript/Javascript定义类（class）的三种方法/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1261,13 +1246,13 @@ function showTime(Counter) {
 		query.find({
 			success: function(results) {
 				if (results.length == 0) {
-					var content = '0 ' + $(document.getElementById(url)).text();
+					var content = '0';
 					$(document.getElementById(url)).text(content);
 					return;
 				}
 				for (var i = 0; i < results.length; i++) {
 					var object = results[i];
-					var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+					var content = object.get('time');
 					$(document.getElementById(url)).text(content);
 				}
 			},
@@ -1293,7 +1278,7 @@ function addCount(Counter) {
 				counter.increment("time");
 				counter.save(null, {
 					success: function(counter) {
-						var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+						var content =  counter.get('time');
 						$(document.getElementById(url)).text(content);
 					},
 					error: function(counter, error) {
@@ -1308,7 +1293,7 @@ function addCount(Counter) {
 				newcounter.save(null, {
 					success: function(newcounter) {
 					    console.log("newcounter.get('time')="+newcounter.get('time'));
-						var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+						var content = newcounter.get('time');
 						$(document.getElementById(url)).text(content);
 					},
 					error: function(newcounter, error) {
