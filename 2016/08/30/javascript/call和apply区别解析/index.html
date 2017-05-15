@@ -305,15 +305,10 @@
 
           
           
-             <span id="/2016/08/30/javascript/call和apply区别解析/" class="leancloud_visitors" data-flag-title="call和apply区别解析">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
+		  	 <span id="/2016/08/30/javascript/call和apply区别解析/"class="leancloud_visitors"  data-flag-title="call和apply区别解析">
+            &nbsp; | &nbsp; 阅读次数
+            </span>
+		  
 
           
 
@@ -823,7 +818,6 @@ function showTime(Counter) {
 	var query = new AV.Query(Counter);
 	$(".leancloud_visitors").each(function() {
 		var url = $(this).attr("id").trim();
-        console.log(url);
 		query.equalTo("url", url);
 		query.find({
 			success: function(results) {

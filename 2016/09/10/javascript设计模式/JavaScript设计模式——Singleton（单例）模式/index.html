@@ -308,15 +308,10 @@ singleton不同于静态类(或对象)，因为我们可以推迟它们的初始
 
           
           
-             <span id="/2016/09/10/javascript设计模式/JavaScript设计模式——Singleton（单例）模式/" class="leancloud_visitors" data-flag-title="JavaScript Singleton（单例）模式">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
+		  	 <span id="/2016/09/10/javascript设计模式/JavaScript设计模式——Singleton（单例）模式/"class="leancloud_visitors"  data-flag-title="JavaScript Singleton（单例）模式">
+            &nbsp; | &nbsp; 阅读次数
+            </span>
+		  
 
           
 
@@ -410,16 +405,16 @@ singleton不同于静态类(或对象)，因为我们可以推迟它们的初始
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/10/javascript设计模式/JavaScript设计模式——认识设计模式/" rel="next" title="认识JavaScript设计模式">
-                <i class="fa fa-chevron-left"></i> 认识JavaScript设计模式
+              <a href="/2016/08/30/javascript/理解Javascript的prototype/" rel="next" title="理解Javascript的prototype">
+                <i class="fa fa-chevron-left"></i> 理解Javascript的prototype
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/10/javascript设计模式/JavaScript设计模式——Constructor构造器模式/" rel="prev" title="JavaScript Constructor(构造器)模式">
-                JavaScript Constructor(构造器)模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/10/javascript设计模式/JavaScript设计模式——认识设计模式/" rel="prev" title="认识JavaScript设计模式">
+                认识JavaScript设计模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -835,7 +830,6 @@ function showTime(Counter) {
 	var query = new AV.Query(Counter);
 	$(".leancloud_visitors").each(function() {
 		var url = $(this).attr("id").trim();
-        console.log(url);
 		query.equalTo("url", url);
 		query.find({
 			success: function(results) {

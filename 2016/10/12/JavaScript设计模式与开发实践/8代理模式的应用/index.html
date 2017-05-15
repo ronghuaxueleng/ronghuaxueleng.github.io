@@ -305,15 +305,10 @@
 
           
           
-             <span id="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/" class="leancloud_visitors" data-flag-title="代理模式的应用">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
+		  	 <span id="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/"class="leancloud_visitors"  data-flag-title="代理模式的应用">
+            &nbsp; | &nbsp; 阅读次数
+            </span>
+		  
 
           
 
@@ -456,8 +451,8 @@ for(var i = 0, c; c = checkbox[i++];) {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/" rel="next" title="迭代器模式">
-                <i class="fa fa-chevron-left"></i> 迭代器模式
+              <a href="/2016/10/12/JavaScript设计模式与开发实践/1this关键字/" rel="next" title="this关键字">
+                <i class="fa fa-chevron-left"></i> this关键字
               </a>
             
           </div>
@@ -881,7 +876,6 @@ function showTime(Counter) {
 	var query = new AV.Query(Counter);
 	$(".leancloud_visitors").each(function() {
 		var url = $(this).attr("id").trim();
-        console.log(url);
 		query.equalTo("url", url);
 		query.find({
 			success: function(results) {

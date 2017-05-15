@@ -305,15 +305,10 @@
 
           
           
-             <span id="/2016/09/25/api/html/Fullscreen API：全屏操作/" class="leancloud_visitors" data-flag-title="Fullscreen API：全屏操作">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
+		  	 <span id="/2016/09/25/api/html/Fullscreen API：全屏操作/"class="leancloud_visitors"  data-flag-title="Fullscreen API：全屏操作">
+            &nbsp; | &nbsp; 阅读次数
+            </span>
+		  
 
           
 
@@ -420,8 +415,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/" rel="prev" title="发布订阅模式">
-                发布订阅模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/" rel="prev" title="高阶函数">
+                高阶函数 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -837,7 +832,6 @@ function showTime(Counter) {
 	var query = new AV.Query(Counter);
 	$(".leancloud_visitors").each(function() {
 		var url = $(this).attr("id").trim();
-        console.log(url);
 		query.equalTo("url", url);
 		query.find({
 			success: function(results) {

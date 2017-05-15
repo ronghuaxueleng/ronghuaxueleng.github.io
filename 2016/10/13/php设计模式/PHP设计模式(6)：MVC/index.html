@@ -311,15 +311,10 @@ Introduction20&amp;#x4E16;&amp;#x7EAA;80&amp;#x5E74;&amp;#x4EE3;&amp;#xFF0C;&amp
 
           
           
-             <span id="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/" class="leancloud_visitors" data-flag-title="MVC">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
+		  	 <span id="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/"class="leancloud_visitors"  data-flag-title="MVC">
+            &nbsp; | &nbsp; 阅读次数
+            </span>
+		  
 
           
 
@@ -540,16 +535,16 @@ Male
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/13/php设计模式/PHP设计模式(8)：工厂模式/" rel="next" title="工厂模式">
-                <i class="fa fa-chevron-left"></i> 工厂模式
+              <a href="/2016/10/13/php设计模式/PHP设计模式(7)：设计模式分类/" rel="next" title="设计模式分类">
+                <i class="fa fa-chevron-left"></i> 设计模式分类
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/13/php设计模式/PHP设计模式(4)：继承/" rel="prev" title="继承">
-                继承 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/13/php设计模式/PHP设计模式(5)：多态/" rel="prev" title="多态">
+                多态 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -965,7 +960,6 @@ function showTime(Counter) {
 	var query = new AV.Query(Counter);
 	$(".leancloud_visitors").each(function() {
 		var url = $(this).attr("id").trim();
-        console.log(url);
 		query.equalTo("url", url);
 		query.find({
 			success: function(results) {

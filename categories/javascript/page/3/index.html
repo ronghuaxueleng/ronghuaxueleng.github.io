@@ -302,9 +302,9 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/" itemprop="url">
+            <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/" itemprop="url">
               
-                <span itemprop="name">模版方法</span>
+                <span itemprop="name">组合模式</span>
               
             </a>
         
@@ -330,9 +330,9 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/" itemprop="url">
+            <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/14享元模式/" itemprop="url">
               
-                <span itemprop="name">组合模式</span>
+                <span itemprop="name">享元模式</span>
               
             </a>
         
@@ -893,7 +893,6 @@ function showTime(Counter) {
 	var query = new AV.Query(Counter);
 	$(".leancloud_visitors").each(function() {
 		var url = $(this).attr("id").trim();
-        console.log(url);
 		query.equalTo("url", url);
 		query.find({
 			success: function(results) {

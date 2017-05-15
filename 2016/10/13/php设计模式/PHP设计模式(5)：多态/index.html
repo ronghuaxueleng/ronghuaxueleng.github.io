@@ -305,15 +305,10 @@
 
           
           
-             <span id="/2016/10/13/php设计模式/PHP设计模式(5)：多态/" class="leancloud_visitors" data-flag-title="多态">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
+		  	 <span id="/2016/10/13/php设计模式/PHP设计模式(5)：多态/"class="leancloud_visitors"  data-flag-title="多态">
+            &nbsp; | &nbsp; 阅读次数
+            </span>
+		  
 
           
 
@@ -427,13 +422,17 @@ Carp doesn&apos;t eat moss.
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/" rel="next" title="抽象类和接口">
-                <i class="fa fa-chevron-left"></i> 抽象类和接口
+              <a href="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/" rel="next" title="MVC">
+                <i class="fa fa-chevron-left"></i> MVC
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/13/php设计模式/PHP设计模式(4)：继承/" rel="prev" title="继承">
+                继承 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -848,7 +847,6 @@ function showTime(Counter) {
 	var query = new AV.Query(Counter);
 	$(".leancloud_visitors").each(function() {
 		var url = $(this).attr("id").trim();
-        console.log(url);
 		query.equalTo("url", url);
 		query.find({
 			success: function(results) {

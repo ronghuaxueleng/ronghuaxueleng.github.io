@@ -314,15 +314,10 @@
 
           
           
-             <span id="/2016/10/12/JavaScript设计模式与开发实践/1this关键字/" class="leancloud_visitors" data-flag-title="this关键字">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
+		  	 <span id="/2016/10/12/JavaScript设计模式与开发实践/1this关键字/"class="leancloud_visitors"  data-flag-title="this关键字">
+            &nbsp; | &nbsp; 阅读次数
+            </span>
+		  
 
           
 
@@ -460,16 +455,16 @@ getName.call(obj2); //222
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/" rel="next" title="适配器模式">
-                <i class="fa fa-chevron-left"></i> 适配器模式
+              <a href="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/" rel="next" title="状态模式">
+                <i class="fa fa-chevron-left"></i> 状态模式
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/" rel="prev" title="迭代器模式">
-                迭代器模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/" rel="prev" title="代理模式的应用">
+                代理模式的应用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -885,7 +880,6 @@ function showTime(Counter) {
 	var query = new AV.Query(Counter);
 	$(".leancloud_visitors").each(function() {
 		var url = $(this).attr("id").trim();
-        console.log(url);
 		query.equalTo("url", url);
 		query.find({
 			success: function(results) {

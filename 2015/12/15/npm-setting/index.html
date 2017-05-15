@@ -311,15 +311,10 @@ npm install xxx -g &amp;#x5C06;&amp;#x">
 
           
           
-             <span id="/2015/12/15/npm-setting/" class="leancloud_visitors" data-flag-title="NPM安装及优化步骤--详细版">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
+		  	 <span id="/2015/12/15/npm-setting/"class="leancloud_visitors"  data-flag-title="NPM安装及优化步骤--详细版">
+            &nbsp; | &nbsp; 阅读次数
+            </span>
+		  
 
           
 
@@ -879,7 +874,6 @@ function showTime(Counter) {
 	var query = new AV.Query(Counter);
 	$(".leancloud_visitors").each(function() {
 		var url = $(this).attr("id").trim();
-        console.log(url);
 		query.equalTo("url", url);
 		query.find({
 			success: function(results) {
