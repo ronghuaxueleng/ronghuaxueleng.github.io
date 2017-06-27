@@ -254,160 +254,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/16中介者模式/" itemprop="url">
-                  中介者模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/12/JavaScript设计模式与开发实践/16中介者模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/16中介者模式/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/16中介者模式/"class="leancloud_visitors" data-flag-title="中介者模式"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-
-中介者模式的作用就是解除对象与对象之间的紧耦合关系。增加一个中介者对象后，所有的相关对象都可以通过中介者对象来通信，而不是相互引用，所以当一个对象发生改变时，只需要通知中介者对象即可。中介者模式使网状的多对多关系变成了相对简单的一对多关系。
-
-中介者模式的例子–购买商品假如我们正在编写一个手机购买的页面，在购买流程中，可以选择手机的颜色以及输入购买数量，同时页面中有两个展示区域，分别向用户展示选择好的颜色和数量。show the code：
-var colorSelect = document.getElemmentById(&apos;colorSelect&apos;),
-    numberInput= document.getElemmentById(&apos;numberInput&apos;),
-    colorInfo= document.getElemmentById(&apos;colorInfo&apos;),
-    numberInfo = document.getElemmentById(&apos;numberInfo &apos;),
-    nextBtn = document.getElemmentById(&apos;nextBtn &apos;);
-
-var goods = { //手机库存
-    &quot;red&quot;: 3,
-    &quot;blue&quot;: 6
-};
-//选择颜色时候
-colorSelect.onchange = function() {
-    var color = this.value, //颜色
-        number = numberInput.value, //数量
-        stock = goods[color]; //该颜色手机对应的当前库存
-    colorInfo.innerHTML = color;
-    if (!color) {
-        nextBtn.disabled = true;
-        nextBtn.innerHTML = &apos;请选择手机颜色&apos;;
-        return;
-    }
-    if (((number - 0) | 0) !== number - 0) { //用户输入的
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/16中介者模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/17装饰者模式/" itemprop="url">
                   装饰者模式
                 </a>
@@ -449,13 +295,6 @@ colorSelect.onchange = function() {
           
 
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/12/JavaScript设计模式与开发实践/17装饰者模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/17装饰者模式/" itemprop="commentsCount"></span>
-                </a>
-              </span>
             
           
 
@@ -615,13 +454,6 @@ Function.prototype.after = function (afterfn) {
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/12/JavaScript设计模式与开发实践/15职责链模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/15职责链模式/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -728,8 +560,8 @@ var order = function (orderType, pay, stock) {
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/11命令模式/" itemprop="url">
-                  命令模式
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/16中介者模式/" itemprop="url">
+                  中介者模式
                 </a>
               
             
@@ -770,13 +602,6 @@ var order = function (orderType, pay, stock) {
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/12/JavaScript设计模式与开发实践/11命令模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/11命令模式/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -784,7 +609,7 @@ var order = function (orderType, pay, stock) {
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/11命令模式/"class="leancloud_visitors" data-flag-title="命令模式"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/16中介者模式/"class="leancloud_visitors" data-flag-title="中介者模式"></span>
           
 
           
@@ -802,48 +627,36 @@ var order = function (orderType, pay, stock) {
         
           
           
-命令模式是最简单和优雅的模式之一，命令模式中的命令指的是一个执行某些特定事情的指令。命令模式最常见的应用场景是：有时候需要向某些对象发送请求，但是不知道请求的接收者是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送者和请求接收者能够消除彼此之间的耦合关系。
 
-菜单程序假设要编写一个用户界面程序，该用户界面上至少有数十个button按钮，通过分析我们发现按下按钮之后会发生的一些事情是不变的，而具体会发生什么事情是可变的。通过command对象的帮助，将来我们可以轻易改变这种关联。废话不多说，上代码：
-//负责往按钮上面安装命令
-var setCommand = function( button, command ) {
-    button.onclick = function() { //执行的动作
-        command.execute();
+中介者模式的作用就是解除对象与对象之间的紧耦合关系。增加一个中介者对象后，所有的相关对象都可以通过中介者对象来通信，而不是相互引用，所以当一个对象发生改变时，只需要通知中介者对象即可。中介者模式使网状的多对多关系变成了相对简单的一对多关系。
+
+中介者模式的例子–购买商品假如我们正在编写一个手机购买的页面，在购买流程中，可以选择手机的颜色以及输入购买数量，同时页面中有两个展示区域，分别向用户展示选择好的颜色和数量。show the code：
+var colorSelect = document.getElemmentById(&apos;colorSelect&apos;),
+    numberInput= document.getElemmentById(&apos;numberInput&apos;),
+    colorInfo= document.getElemmentById(&apos;colorInfo&apos;),
+    numberInfo = document.getElemmentById(&apos;numberInfo &apos;),
+    nextBtn = document.getElemmentById(&apos;nextBtn &apos;);
+
+var goods = { //手机库存
+    &quot;red&quot;: 3,
+    &quot;blue&quot;: 6
+};
+//选择颜色时候
+colorSelect.onchange = function() {
+    var color = this.value, //颜色
+        number = numberInput.value, //数量
+        stock = goods[color]; //该颜色手机对应的当前库存
+    colorInfo.innerHTML = color;
+    if (!color) {
+        nextBtn.disabled = true;
+        nextBtn.innerHTML = &apos;请选择手机颜色&apos;;
+        return;
     }
-};
-
-//一些功能函数
-var MenuBar = {
-    refresh: function() {
-        console.log(&apos;刷新菜单栏目&apos;);
-    }
-};
-var SubMenu = {
-    add: function() {
-        console.log(&apos;增加子菜单&apos;);
-    },
-    del: function() {
-        console.log(&apos;删除子菜单&apos;);
-    }
-};
-
-//封装
-var RefreshMenuBarCommand = function( receiver ) {
-    this.receiver = receiver;
-};
-RefreshMenuBarCommand.prototype.execute = function() {
-    this.receiver.refresh();
-};
-var AddSubMenuCommand = function( receiver ) {
-    this.receiver = receiver;
-};
-AddSubMenuCommand.prototype.execute = function() {
-    this.receiver.add();
-
+    if (((number - 0) | 0) !== number - 0) { //用户输入的
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/11命令模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/16中介者模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -936,13 +749,6 @@ AddSubMenuCommand.prototype.execute = function() {
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/12/JavaScript设计模式与开发实践/14享元模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/14享元模式/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -1001,6 +807,179 @@ var maleModel = new Model(&ap
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/14享元模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/" itemprop="url">
+                  模版方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/"class="leancloud_visitors" data-flag-title="模版方法"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+
+模版方法是一种只需要使用继承就可以实现的非常简单的模式。他由两部分组成，第一部分是抽象父类，第二部分是具体实现子类。通常在抽象父类中封装了子类的算法框架，包括实现一些共用方法以及封装子类所有方法的执行顺序。子类通过继承这个抽象类，也继承了整个算法结构，并且可以选择重写父类的方法。
+
+Coffee or Tea假设我们现在要泡一杯咖啡步骤如下：
+
+把水煮沸
+用沸水冲泡咖啡
+把咖啡倒进杯子
+加糖和牛奶
+
+泡茶的步骤：
+
+把水煮沸
+用沸水浸泡茶叶
+把茶水倒进杯子
+加柠檬
+
+经过比较，我们可以发现泡茶和泡咖啡有以下共同点：
+
+原料不同。一个是茶一个是咖啡，但是我们都可以把它们抽象为“饮料”
+
+泡的方式不同。咖啡是冲泡，茶叶是浸泡，我们都可以抽象成“泡”。
+
+加入的调料不同。一个是糖和牛奶，一个是柠檬，我们把它们抽象成“调料”。
+
+
+所以经过抽象后，无论是泡咖啡还是泡茶我们都是要进行下列步骤：
+
+把水煮沸
+用沸水冲泡咖啡
+把饮料倒进杯子
+加调料现在用代码来表示这个抽象过程
+
+var Beverage = function()  {};
+Beverage.prototype.boilWater = function() {
+    console.log(&apos;把水煮沸&apos;);
+};
+Beverage.prototype.brew = function(){}; //空方法，应该由子类重写
+Beverage.prototype.pourInCup = function(){}; //空方法，应该由子类重写
+Beverage.prototype.addCondiments = function(){}; //空方法，应该由子类重写
+
+Beverage.prototype.init= function(){
+    this.boilWater();
+    this.brew();
+    this.pourInCup();
+    this.addCondiments();
+}; 
+接着就是创建Coffee子类和Tea子类
+var Coffee = function() {};
+Coffee.prototype = new Beverage();
+Coffee.prototype.brew = function() {
+    console.log(&apo
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1266,30 +1245,9 @@ var maleModel = new Model(&ap
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"ronghuaxueleng"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
 
 
+  
 
 
 

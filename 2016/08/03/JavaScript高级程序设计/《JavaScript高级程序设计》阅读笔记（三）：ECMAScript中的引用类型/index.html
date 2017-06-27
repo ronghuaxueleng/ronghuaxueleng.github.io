@@ -293,13 +293,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/03/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记（三）：ECMAScript中的引用类型/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/03/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记（三）：ECMAScript中的引用类型/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -325,9 +318,9 @@
         <hr>
 <h4 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h4><h5 id="object类"><a href="#Object类" class="headerlink" title="Object类"></a>Object类</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">ECMAScript中的所有类都是由Object类继承而来。</div><div class="line"></div><div class="line">Object类具有下列属性：</div><div class="line"></div><div class="line">Constructor：对创建对象的函数的引用（指针），对于Object类，该指针指向原始的Object()函数</div><div class="line"></div><div class="line">Prototype：对该对象的对象原型的引用。</div><div class="line"></div><div class="line">Object类还有几个方法：</div><div class="line">    1、PropertyIsEnumerable(property)：判断给定的属性是否可以用for...in语句进行枚举</div><div class="line"></div><div class="line">    2、ToString()：返回对象的原始字符串表示。</div><div class="line"></div><div class="line">    3、ValueOf()：返回最适合该对象的原始值。对于许多类，该方法返回的值都与toString()的返回值相同。</div><div class="line"></div><div class="line">上面列出的每种属性和方法都会被其他类覆盖。</div></pre></td></tr></table></figure>
 <h5 id="boolen类"><a href="#Boolen类" class="headerlink" title="Boolen类"></a>Boolen类</h5><p>在ECMAScript中很少使用Boolean对象，因为不易理解，如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oFalseObject = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>);</div><div class="line"><span class="keyword">var</span> bResult= oFalseObject &amp;&amp; <span class="literal">true</span>; <span class="comment">//outpus true</span></div></pre></td></tr></table></figure>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oFalseObject = <span class="keyword">new</span> <span class="type">Boolean</span>(<span class="literal">false</span>);</div><div class="line"><span class="keyword">var</span> bResult= oFalseObject &amp;&amp; <span class="literal">true</span>; <span class="comment">//outpus true</span></div></pre></td></tr></table></figure>
 <p>在这段代码中，用false值创建Boolean对象，然后用这个值与原始值true进行 AND 操作。在Boolean运算中，false和true进行AND 操作的结果是 false。不过，在这行代码中，计算的是oFalseObject，而不是它的值false。在Boolean表达式中，所有对象都会被自动转换为true，所以结果为true。参考下面的代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oFalseObject = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>);</div><div class="line"><span class="keyword">var</span> bResult= oFalseObject &amp;&amp; <span class="literal">true</span>; <span class="comment">//outpus true</span></div><div class="line"><span class="keyword">var</span> bResult2= oFalseObject.valueOf() &amp;&amp; <span class="literal">true</span>; <span class="comment">//outpus false</span></div></pre></td></tr></table></figure>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oFalseObject = <span class="keyword">new</span> <span class="type">Boolean</span>(<span class="literal">false</span>);</div><div class="line"><span class="keyword">var</span> bResult= oFalseObject &amp;&amp; <span class="literal">true</span>; <span class="comment">//outpus true</span></div><div class="line"><span class="keyword">var</span> bResult2= oFalseObject.valueOf() &amp;&amp; <span class="literal">true</span>; <span class="comment">//outpus false</span></div></pre></td></tr></table></figure>
 <h5 id="number类"><a href="#Number类" class="headerlink" title="Number类"></a>Number类</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Number的toString()方法在上篇文章中有详细的介绍。</div><div class="line"></div><div class="line">Number有几个处理数值的专用方法：</div><div class="line"></div><div class="line">toFixed(参数)：返回的是具有指定位数小数的数字的字符串表示。参数范围为0—20</div><div class="line"></div><div class="line">toExponential(参数)：返回的是用科学计数法表示的数字的字符串形式。与toFixed()方法相似，toExponential()也有一个参数要输出的小数的位数。参数范围为0—20</div><div class="line"></div><div class="line">toPrecision(参数)：根据最有意义的形式来返回数字的预定形式或指数形式。它有一个参数，即用于表示数字总数（不包括指数）。参数最小为1</div></pre></td></tr></table></figure>
 <p>以上三个方法都会进行舍入操作。示例代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oNumber=<span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">99</span>);</div><div class="line"><span class="built_in">console</span>.log(oNumber.toFixed(<span class="number">0</span>));    <span class="comment">//outpus 99</span></div><div class="line"><span class="built_in">console</span>.log(oNumber.toFixed(<span class="number">2</span>));    <span class="comment">//outpus 99.00</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> oNumber1=<span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">99</span>);</div><div class="line"><span class="built_in">console</span>.log(oNumber1.toExponential(<span class="number">0</span>));    <span class="comment">//outpus 1e+2 进行了舍入操作</span></div><div class="line"><span class="built_in">console</span>.log(oNumber1.toExponential(<span class="number">1</span>));    <span class="comment">//outpus 9.9e+1</span></div><div class="line"><span class="built_in">console</span>.log(oNumber1.toExponential(<span class="number">2</span>));    <span class="comment">//outpus 9.90e+1</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> oNumber3=<span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">99</span>);</div><div class="line"><span class="built_in">console</span>.log(oNumber3.toPrecision(<span class="number">0</span>));    <span class="comment">//outpus error precision 0 out of range</span></div><div class="line"><span class="built_in">console</span>.log(oNumber3.toPrecision(<span class="number">1</span>));    <span class="comment">//outpus 1e+2 进行了舍入操作</span></div><div class="line"><span class="built_in">console</span>.log(oNumber3.toPrecision(<span class="number">2</span>));    <span class="comment">//outpus 99</span></div><div class="line"><span class="built_in">console</span>.log(oNumber3.toPrecision(<span class="number">3</span>));    <span class="comment">//outpus 99.0</span></div></pre></td></tr></table></figure>
@@ -442,10 +435,6 @@
 
           
   <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/08/03/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记（三）：ECMAScript中的引用类型/"
-           data-title="《JavaScript高级程序设计》阅读笔记（三）：ECMAScript中的引用类型" data-url="http://ronghuaxueleng.github.io/2016/08/03/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记（三）：ECMAScript中的引用类型/">
-      </div>
     
   </div>
 
@@ -695,30 +684,9 @@
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"ronghuaxueleng"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
 
 
+  
 
 
 

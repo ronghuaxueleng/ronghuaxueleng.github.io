@@ -254,8 +254,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(10)：适配器模式/" itemprop="url">
-                  适配器模式
+                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(3)：封装/" itemprop="url">
+                  封装
                 </a>
               
             
@@ -296,13 +296,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/13/php设计模式/PHP设计模式(10)：适配器模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/13/php设计模式/PHP设计模式(10)：适配器模式/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -310,7 +303,7 @@
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/13/php设计模式/PHP设计模式(10)：适配器模式/"class="leancloud_visitors" data-flag-title="适配器模式"></span>
+            <span id="/2016/10/13/php设计模式/PHP设计模式(3)：封装/"class="leancloud_visitors" data-flag-title="封装"></span>
           
 
           
@@ -327,47 +320,44 @@
       
         
           
-          简介在[PHP设计模式(七)：设计模式分类][2]中我们提到过结构设计模式(Structuralpatterns)，结构设计模式专注于设计对象(Object)和实例(Instance)的构建、组合过程。结构设计模式包括下面七种设计模式：
+          
+原文地址：[PHP设计模式(三)：封装][1]
 
-适配器(Adapter)
+简介面向对象编程中，一切都是对象，对一个对象的封装，也成了面向对象编程中必不可少的部分。和C/C++，Java，Python等语言一样，PHP也支持封装。
+封装/Encapsulation
+对事物的封装是指，将事物进行抽象后，提供抽象概念的实现的具体方法。
 
-桥接(Bridge)
-
-合成(Composite)
-
-装饰(Decorator)
-
-外部(Facade)
-
-轻量(Flyweight)
-
-代理(Proxy)
-
-
-请无视拗口的中文翻译。结构设计模式着重于低耦合、高复用、高可维护性、高拓展性的设计原则。
-适配器模式适配器模式是一种利用适配器将现有的实现，适配到已有接口的设计模式，最常见的例子就是变压器，将已有的5V输入的电器，通过变压器，适配到220V的电源插座。适配器模式利用[PHP设计模式(四)：继承][3]中我们提到过的继承(inheritance)，以及[PHP设计模式(六)：MVC][4]中我们提到过的组件(composition)来进行模式设计。相比继承，组件可用性高，低耦合，冗余度低，因此推荐采用组件的模式来进行设计。
-何时使用适配器模式？简单来说，当你的实现和需要的接口，都无法修改的时候。例如，你需要给甲方已有的系统做标准的兼容，标准不可修改，甲方的系统也不可修改，这个时候你就需要适配器的设计模式了。对于web编程来说，将你现有的实现，和三方库结合起来，就需要使用适配器模式。
-使用继承的适配器模式简单来说，就是：
-&lt;?php
-class Adapter extends YourClass implements OtherInterface
-?&gt;
-还是用前面的鲸鱼和鲤鱼的例子来说明如何使用适配器，假设我们已经实现了鲸鱼类和鲤鱼类：
+听起来很拗口，还是举鲸鱼的例子。对于鲸鱼来说，需要吃东西这个行为，吃本身是一个抽象的概念，因为具体到怎么吃，是咀嚼和消化的过程，甚至如何咀嚼和消化也是不可见的。对外部而言，可见的只是吃这一个接口，如何吃、怎么吃，是被封装在了鲸鱼的实现中。甚至可以说，消化系统，被封装到了鲸鱼这个对象中，对外部不可见，仅仅鲸鱼自己可见。
+封装方法和别的程序设计语言一样，PHP也只是三种封装概念：Private，Protected，Public。
+私有/Private私有的概念是，仅仅对象内部可见，外部不可见，如：
 &lt;?php
 class Whale {
+  private $name;
   public function __construct() {
     $this-&gt;name = &quot;Whale&quot;;
   }
-  public function eatFish() {
-    echo &quot;Whale eat fish.\n&quot;;
+  public function eat($food) {
+    chew($food);
+    digest($food);
+  }
+  private function chew($food) {
+    echo &quot;Chewing &quot; . $food . &quot;\n&quot;;
+  }
+  private function digest($food) {
+    echo &quot;Digest &quot; . $food . &quot;\n&quot;;
   }
 }
-class Carp {
-  public function __construct() {
-    $this-&gt;name = &quot;Car
+?&gt;
+name是鲸鱼的私有属性，chew()和digest()是鲸鱼的私有方法，对于其他类来说，都是不可见的。对于现实来说，我们如果只是注重吃，并没有必要去关心鲸鱼是如何去吃的。
+保护/Protected保护的概念是，仅仅是自身类和继承类可见，这个关键字的用途主要是防止滥用类的派生，另外三方库编写的时候会用到，防止误用。
+&lt;?php
+abstract class Animal {
+  private $name;
+ 
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(10)：适配器模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(3)：封装/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -459,13 +449,6 @@ class Carp {
           
 
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/13/php设计模式/PHP设计模式(4)：继承/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/13/php设计模式/PHP设计模式(4)：继承/" itemprop="commentsCount"></span>
-                </a>
-              </span>
             
           
 
@@ -587,8 +570,8 @@ Whale is chewin
             
               
                 
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/" itemprop="url">
-                  抽象类和接口
+                <a class="post-title-link" href="/2016/10/13/javascript/44个 Javascript 变态题解析 (上)/" itemprop="url">
+                  44个 Javascript 变态题解析 (上)
                 </a>
               
             
@@ -615,8 +598,8 @@ Whale is chewin
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
 
@@ -629,13 +612,6 @@ Whale is chewin
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -643,7 +619,7 @@ Whale is chewin
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/"class="leancloud_visitors" data-flag-title="抽象类和接口"></span>
+            <span id="/2016/10/13/javascript/44个 Javascript 变态题解析 (上)/"class="leancloud_visitors" data-flag-title="44个 Javascript 变态题解析 (上)"></span>
           
 
           
@@ -660,37 +636,55 @@ Whale is chewin
       
         
           
-          简介对于编程来说，对事物的抽象是一个老生常谈的话题，抽象问题更利于面向对象编程以及程序设计模式。和C/C++，Java，Python等语言一样，PHP也支持面向对象，但是又有略微区别，如PHP支持在接口中定义常量，但是不支持抽象变量。
-抽象/Abstraction
-对事物的抽象是指，区别两个不同事物之间的本质特征，这两个事物应该在某个视角上有明确的区分界限。
+          原题来自: javascript-puzzlers
+读者可以先去做一下感受感受. 当初笔者的成绩是 21/44…
+当初笔者做这套题的时候不仅怀疑智商, 连人生都开始怀疑了….
+不过, 对于基础知识的理解是深入编程的前提. 让我们一起来看看这些变态题到底变态不变态吧!
+第1题[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].map(parseInt)
+知识点:
 
-如，鲸鱼和鲤鱼，这两个事物在动物的视角上，有明确的区分界限，属于不同的动物；但是在水生动物的视角上，他们属于同一种动物的抽象。合理的对问题进行抽象，构造模型，将更容易通过编程来解决问题。记住：抽象是编程解决问题的基础，越复杂的问题，越需要一开始就对问题进行抽象，而不是直接写代码。
-抽象类/Abstract Class抽象类是一个编程概念，PHP中叫Abstract Classes。在设计模式中，抽象类不能够被实例化/初始化，但是可以依靠具体类的继承来实现。有点抽象，对吧？用代码来解释：
-&lt;?php
-abstract class Animal {
-  public $name;
-  abstract public function eat($food);
-}
-?&gt;
-定义了动物这个抽象类，动物的属性是名字name，然后有一个方法是吃食物eat food。为什么动物是抽象类？因为动物这个物种并不是一个存在于自然界的东西，它是人类脑海里抽象出的东西。存在自然界的是鲸鱼和鲤鱼这样的确定性动物。比如鲸鱼的概念，应该是属于动物，继承Animal类，我们定义鲸鱼这个类以及吃东西的方法：
-&lt;?php
-class Whale extends Animal {
-  public function __construct() {
-    $this-&gt;name = &quot;Whale&quot;;
-  }
-  public function eat($food) {
-    echo $this-&gt;name . &quot; eat &quot; . $food . &quot;.\n&quot;;
-  }
-}
-?&gt;
-现在我们可以初始鲸鱼类，并且调用吃的方法了：
-&lt;?php
-  $whale = new Whale();
-  $whale-&gt;eat(&quot;fish&quot;
+Array/map
+Number/parseInt
+Global_Objects/parseInt
+JavaScript parseInt
+
+首先, map接受两个参数, 一个回调函数 callback, 一个回调函数的this值
+其中回调函数接受三个参数 currentValue, index, arrary;
+而题目中, map只传入了回调函数–parseInt.
+其次, parseInt 只接受两个两个参数 string, radix(基数).
+
+在没有指定基数，或者基数为 0 的情况下，JavaScript 作如下处理：
+
+&gt;
+
+
+如果字符串 string 以”0x”或者”0X”开头, 则基数是16 (16进制).
+
+如果字符串 string 以”0”开头, 基数是8（八进制）或者10（十进制），那么具体是哪个基数由实现环境决- 定。ECMAScript 5规定使用10，但是并不是所有的浏览器都遵循这个规定。因此，永远都要明确给出radix参数的值。
+
+如果字符串 string 以其它任何值开头，则基数是10 (十进制)。
+
+
+
+所以本题即问
+parseInt(&apos;1&apos;, 0);
+parseInt(&apos;2&apos;, 1);
+parseInt(&apos;3&apos;, 2);
+首先后两者参数不合法.
+所以答案是 [1, NaN, NaN]
+第2题[typeof null, null instanceof Object]
+两个知识点:
+
+Operators/typeof
+Operators/instanceof
+Operators/instanceof(中)
+
+typeof 返回一个表示类型的字符串.
+instanceof 运算符用来检测 constructor.prototype 是否存在于参数 object 的原型链上.
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/#more" rel="contents">
+            <a class="btn" href="/2016/10/13/javascript/44个 Javascript 变态题解析 (上)/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -782,13 +776,6 @@ class Whale extends Animal {
           
 
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/13/javascript/44个 Javascript 变态题解析 (下)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/13/javascript/44个 Javascript 变态题解析 (下)/" itemprop="commentsCount"></span>
-                </a>
-              </span>
             
           
 
@@ -914,8 +901,8 @@ a &lt;   c
             
               
                 
-                <a class="post-title-link" href="/2016/10/13/javascript/44个 Javascript 变态题解析 (上)/" itemprop="url">
-                  44个 Javascript 变态题解析 (上)
+                <a class="post-title-link" href="/2016/10/13/javascript/从 JavaScript 数组去重谈性能优化/" itemprop="url">
+                  从 JavaScript 数组去重谈性能优化
                 </a>
               
             
@@ -956,13 +943,6 @@ a &lt;   c
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/13/javascript/44个 Javascript 变态题解析 (上)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/13/javascript/44个 Javascript 变态题解析 (上)/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -970,7 +950,7 @@ a &lt;   c
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/13/javascript/44个 Javascript 变态题解析 (上)/"class="leancloud_visitors" data-flag-title="44个 Javascript 变态题解析 (上)"></span>
+            <span id="/2016/10/13/javascript/从 JavaScript 数组去重谈性能优化/"class="leancloud_visitors" data-flag-title="从 JavaScript 数组去重谈性能优化"></span>
           
 
           
@@ -987,55 +967,44 @@ a &lt;   c
       
         
           
-          原题来自: javascript-puzzlers
-读者可以先去做一下感受感受. 当初笔者的成绩是 21/44…
-当初笔者做这套题的时候不仅怀疑智商, 连人生都开始怀疑了….
-不过, 对于基础知识的理解是深入编程的前提. 让我们一起来看看这些变态题到底变态不变态吧!
-第1题[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].map(parseInt)
-知识点:
+          缘由JavaScript 数组去重经常出现在前端招聘的笔试题里，比如：
 
-Array/map
-Number/parseInt
-Global_Objects/parseInt
-JavaScript parseInt
+有数组 var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, &#39;c&#39;, 1, &#39;&#39;, 1, 0]，请用 JavaScript实现去重函数 unqiue，使得 unique(arr) 返回 [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, 1, &#39;&#39;]
 
-首先, map接受两个参数, 一个回调函数 callback, 一个回调函数的this值
-其中回调函数接受三个参数 currentValue, index, arrary;
-而题目中, map只传入了回调函数–parseInt.
-其次, parseInt 只接受两个两个参数 string, radix(基数).
+作为笔试题，考点有二：
 
-在没有指定基数，或者基数为 0 的情况下，JavaScript 作如下处理：
+正确。别小看这个考点，考虑到 JavaScript 经常要在浏览器上运行，在千姿百态的各种浏览器环境下要保障一个函数的正确性可不是一件简单的事，不信你继续读完这篇博客。
 
-&gt;
+性能。虽然大部分情况下 JavaScript 语言本身（狭义范畴，不包含 DOM 等延拓）不会导致性能问题，但很不幸这是一道考题，因此面试官们还是会把性能作为一个考点。
 
 
-如果字符串 string 以”0x”或者”0X”开头, 则基数是16 (16进制).
+在继续往下阅读之前，建议先实现一个自己认为最好的版本。
+直觉方案对于数组去重，只要写过程序的，立刻就能得到第一个解法：
+function unique(arr) {
+  var ret = []
 
-如果字符串 string 以”0”开头, 基数是8（八进制）或者10（十进制），那么具体是哪个基数由实现环境决- 定。ECMAScript 5规定使用10，但是并不是所有的浏览器都遵循这个规定。因此，永远都要明确给出radix参数的值。
+  for (var i = 0; i &lt; arr.length; i++) {
+    var item = arr[i]
+    if (ret.indexOf(item) === -1) {
+      ret.push(item)
+    }
+  }
 
-如果字符串 string 以其它任何值开头，则基数是10 (十进制)。
-
-
-
-所以本题即问
-parseInt(&apos;1&apos;, 0);
-parseInt(&apos;2&apos;, 1);
-parseInt(&apos;3&apos;, 2);
-首先后两者参数不合法.
-所以答案是 [1, NaN, NaN]
-第2题[typeof null, null instanceof Object]
-两个知识点:
-
-Operators/typeof
-Operators/instanceof
-Operators/instanceof(中)
-
-typeof 返回一个表示类型的字符串.
-instanceof 运算符用来检测 constructor.prototype 是否存在于参数 object 的原型链上.
+  return ret
+}
+直觉往往很靠谱，在现代浏览器下，上面这个函数很正确，性能也不错。但前端最大的悲哀也是挑战之处在于，要支持各种运行环境。在 IE6-8 下，数组的indexOf 方法还不存在。直觉方案要稍微改造一下：
+var indexOf = [].indexOf ?
+    function(arr, item) {
+      return arr.indexOf(item)
+    } :
+    function indexOf(arr, item) {
+      for (var i = 0; i &lt; arr.length; i++) {
+        if (arr[i] === item) {
+   
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/javascript/44个 Javascript 变态题解析 (上)/#more" rel="contents">
+            <a class="btn" href="/2016/10/13/javascript/从 JavaScript 数组去重谈性能优化/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1301,30 +1270,9 @@ instanceof 运算符用来检测 constructor.prototype 是否存在于参数 obj
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"ronghuaxueleng"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
 
 
+  
 
 
 

@@ -254,6 +254,132 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/24/d3/D3.js 入门教程系列/" itemprop="url">
+                  D3.js 入门教程系列
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-24T00:00:00+08:00" content="2016-09-24">
+              2016-09-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/d3/" itemprop="url" rel="index">
+                    <span itemprop="name">d3</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/09/24/d3/D3.js 入门教程系列/"class="leancloud_visitors" data-flag-title="D3.js 入门教程系列"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          初识D3D3是指数据驱动文档（Data-Driven Documents），根据D3的官方定义：
+
+D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通过使用HTML、SVG和CSS把数据鲜活形象地展现出来。D3严格遵循Web标准，因而可以让你的程序轻松兼容现代主流浏览器并避免对特定框架的依赖。同时，它提供了强大的可视化组件，可以让使用者以数据驱动的方式去操作DOM。—-D3维基（2013年8月）
+
+从一个Hello Wordld示例来看看d3如何运行 点击查看在线DEMO123456789101112131415161718192021222324252627282930313233function render(data)&#123;    var demo = d3.select('body')        .selectAll('p')        .data(data, function (d) &#123;          return d;        &#125;);        demo.enter()        .append('p')        .style('width', 0+'px')        .style('background', '#eee');    demo.text(function (d) &#123;          return d;        &#125;)        .transition()        .duration(1000)        .style('width', function (d) &#123;          return d+'px';        &#125;);    demo.exit()        .transition()        .duration(1000)        .style('width', 0+'px')        .remove();&#125;render([100,300,500]);setTimeout(function()&#123;    render([300,500,1000]);&#125;,1000)
+通过链式风格的方式让整个运行步骤非常清晰，D3的API设计跟我
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/24/d3/D3.js 入门教程系列/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/24/d3/D3.js 进阶教程系列/" itemprop="url">
                   D3.js 进阶教程系列
                 </a>
@@ -295,13 +421,6 @@
           
 
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/24/d3/D3.js 进阶教程系列/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/24/d3/D3.js 进阶教程系列/" itemprop="commentsCount"></span>
-                </a>
-              </span>
             
           
 
@@ -407,139 +526,6 @@ d3.select(‘#demo1&apos;).on(&apos;click&apos;, function(){
             
               
                 
-                <a class="post-title-link" href="/2016/09/24/d3/D3.js 入门教程系列/" itemprop="url">
-                  D3.js 入门教程系列
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-24T00:00:00+08:00" content="2016-09-24">
-              2016-09-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/d3/" itemprop="url" rel="index">
-                    <span itemprop="name">d3</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/24/d3/D3.js 入门教程系列/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/24/d3/D3.js 入门教程系列/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/09/24/d3/D3.js 入门教程系列/"class="leancloud_visitors" data-flag-title="D3.js 入门教程系列"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          初识D3D3是指数据驱动文档（Data-Driven Documents），根据D3的官方定义：
-
-D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通过使用HTML、SVG和CSS把数据鲜活形象地展现出来。D3严格遵循Web标准，因而可以让你的程序轻松兼容现代主流浏览器并避免对特定框架的依赖。同时，它提供了强大的可视化组件，可以让使用者以数据驱动的方式去操作DOM。—-D3维基（2013年8月）
-
-从一个Hello Wordld示例来看看d3如何运行 点击查看在线DEMO123456789101112131415161718192021222324252627282930313233function render(data)&#123;    var demo = d3.select('body')        .selectAll('p')        .data(data, function (d) &#123;          return d;        &#125;);        demo.enter()        .append('p')        .style('width', 0+'px')        .style('background', '#eee');    demo.text(function (d) &#123;          return d;        &#125;)        .transition()        .duration(1000)        .style('width', function (d) &#123;          return d+'px';        &#125;);    demo.exit()        .transition()        .duration(1000)        .style('width', 0+'px')        .remove();&#125;render([100,300,500]);setTimeout(function()&#123;    render([300,500,1000]);&#125;,1000)
-通过链式风格的方式让整个运行步骤非常清晰，D3的API设计跟我
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/24/d3/D3.js 入门教程系列/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/09/19/javascript/Javascript异步编程的4种方法/" itemprop="url">
                   Javascript异步编程的4种方法
                 </a>
@@ -581,13 +567,6 @@ D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通
           
 
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/19/javascript/Javascript异步编程的4种方法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/javascript/Javascript异步编程的4种方法/" itemprop="commentsCount"></span>
-                </a>
-              </span>
             
           
 
@@ -666,8 +645,8 @@ D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通
             
               
                 
-                <a class="post-title-link" href="/2016/09/19/javascript/jQuery的deferred对象详解/" itemprop="url">
-                  jQuery的deferred对象详解
+                <a class="post-title-link" href="/2016/09/19/javascript/Javascript定义类（class）的三种方法/" itemprop="url">
+                  Javascript定义类（class）的三种方法
                 </a>
               
             
@@ -686,34 +665,8 @@ D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通
           </span>
 
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
 
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/19/javascript/jQuery的deferred对象详解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/javascript/jQuery的deferred对象详解/" itemprop="commentsCount"></span>
-                </a>
-              </span>
             
           
 
@@ -722,7 +675,7 @@ D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通
           
           
             阅读次数 &nbsp;
-            <span id="/2016/09/19/javascript/jQuery的deferred对象详解/"class="leancloud_visitors" data-flag-title="jQuery的deferred对象详解"></span>
+            <span id="/2016/09/19/javascript/Javascript定义类（class）的三种方法/"class="leancloud_visitors" data-flag-title="Javascript定义类（class）的三种方法"></span>
           
 
           
@@ -738,11 +691,31 @@ D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通
 
       
         
-          <p><a href="http://jquery.com/" target="_blank" rel="external">jQuery</a>的开发速度很快，几乎每半年一个大版本，每两个月一个小版本。</p>
-<p>每个版本都会引入一些新功能。今天我想介绍的，就是从jQuery 1.5.0版本开始引入的一个新功能—-<a href="http://api.jquery.com/category/deferred-object/" target="_blank" rel="external">deferred对象</a>。</p>
-<p>这个功能很重要，未来将成为jQuery的核心方法，它彻底改变了如何在jQuery中使用ajax。为了实现它，jQuery的全部ajax代码都被改写了。但是，<br>它比较抽象，初学者很难掌握，网上的教程也不多。所以，我把自己的学习笔记整理出来了，希望对大家有用。</p>
+          
+          将近20年前，Javascript诞生的时候，只是一种简单的网页脚本语言。如果你忘了填写用户名，它就跳出一个警告。
+
+如今，它变得几乎无所不能，从前端到后端，有着各种匪夷所思的用途。程序员用它完成越来越庞大的项目。
+Javascript代码的复杂度也直线上升。单个网页包含10000行Javascript代码，早就司空见惯。2010年，一个工程师透露，Gmail的代码长度是443000行！
+
+编写和维护如此复杂的代码，必须使用模块化策略。目前，业界的主流做法是采用”面向对象编程”。因此，Javascript如何实现面向对象编程，就成了一个热门课题。
+麻烦的是，Javascipt语法不支持”类”（class），导致传统的面向对象编程方法无法直接使用。程序员们做了很多探索，研究如何用Javascript模拟”类”。本文总结了Javascript定义”类”的三种方法，讨论了每种方法的特点，着重介绍了我眼中的最佳方法。
+==============================================
+Javascript定义类（class）的三种方法
+作者：阮一峰
+
+在面向对象编程中，类（class）是对象（object）的模板，定义了同一组对象（又称”实例”）共有的属性和方法。
+Javascript语言不支持”类”，但是可以用一些变通的方法，模拟出”类”。
+一、构造函数法
+这是经典方法，也是教科书必教的方法。它用构造函数模拟”类”，在其内部用this关键字指代实例对象。123function Cat() &#123;  this.name = "大毛";&#125;
+生成实例的时候，使用new关键字。12var cat1 = new Cat();alert(cat1.name); // 大毛
+类的属性和方法，还可以定义在构造函数的prototype对象之上。123Cat.prototype.makeSound = function()&#123;  alert("喵喵喵");&#125;
+关于这种方法的详细介绍，请看我写的系列文章《Javascript面向对象编程》，这里就不多说了。它的主要缺点是，比较复杂，用到了this和prototype，编写和阅读都很费力。
+二、Object.create()法
+为了解决”构造函数法”的缺点，更方便地生成对象，Javasc
+          ...
+
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/19/javascript/jQuery的deferred对象详解/#more" rel="contents">
+            <a class="btn" href="/2016/09/19/javascript/Javascript定义类（class）的三种方法/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -834,13 +807,6 @@ D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通
           
 
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/19/javascript/12种不宜使用的Javascript语法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/javascript/12种不宜使用的Javascript语法/" itemprop="commentsCount"></span>
-                </a>
-              </span>
             
           
 
@@ -1136,30 +1102,9 @@ D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"ronghuaxueleng"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
 
 
+  
 
 
 
