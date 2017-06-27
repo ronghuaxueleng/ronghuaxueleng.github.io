@@ -254,173 +254,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/2闭包/" itemprop="url">
-                  闭包
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/12/JavaScript设计模式与开发实践/2闭包/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/2闭包/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/2闭包/"class="leancloud_visitors" data-flag-title="闭包"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-闭包是js中一个难懂又必须征服的概念，他的形成与变量作用域以及变量的生存周期密切相关。
-
-变量作用域和生存周期作用域，按字面理解，就是指变量的有效范围，超出这个范围就无法访问。在函数中，里面函数可以访问外面的变量，但是外面无法访问内部变量。举个简单例子：
-var a = 1;
-var fun1 = function() {
-    var b = 2;
-    var fun2 = function() {
-        var c = 3;
-        alert(b); //2
-        alert(c); //3
-    }
-    fun2();
-    alert(c); //c is not defined
-};
-fun1();
-生存周期：全局变量的生存周期是永久的，除非我们主动销毁，但是普通对于用var声明的局部变量，当退出函数不再使用时，就会被销毁。但是当你使用到闭包时，情况就不一样了
-var fun = function() {
-    var a = 1;
-    return function() {
-        a++;
-        alert(a);
-    }
-};
-var f = fun();
-f(); //2
-f(); //3
-f(); //4
-f(); //5
-解释：当执行var f = fun();时，f返回了一个匿名函数的引用，它可以访问到fun()被调用的生产环境，而局部变量a一直在这个环境中。既然局部变量能被外界访问，那它就有了不被销毁的理由，于是局部变量生命被延续了。
-再例如：
-var nodes = document.getElemmentByTagName(&apos;div&apos;); //此处他的长度为5
-for (var i = 0, len = nodes.length; i &lt; len; i++) {
-    nodes[i].onclick = function() {
-        alert(i);
-    }
-};
-以上代码无论点哪个div显示的都是5（div节点的onclick是异步触发的，当事件触发时，循环已经结束，此时i的值是5）解决方法：闭包大法好
-for (var i = 0, len = nodes.length; i &lt; len; i++) {
- 
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/2闭包/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/" itemprop="url">
                   高阶函数
                 </a>
@@ -587,8 +420,8 @@ var func = function()
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/" itemprop="url">
-                  设计原则和编程技巧
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/" itemprop="url">
+                  单例模式
                 </a>
               
             
@@ -631,8 +464,8 @@ var func = function()
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/" itemprop="commentsCount"></span>
+                <a href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/4单例模式/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -643,7 +476,7 @@ var func = function()
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/"class="leancloud_visitors" data-flag-title="设计原则和编程技巧"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/"class="leancloud_visitors" data-flag-title="单例模式"></span>
           
 
           
@@ -661,43 +494,215 @@ var func = function()
         
           
           
-单一职责原则就一个类而言，应该仅有一个引起它变化的原因。在JavaScript中，需要用到类的场景并不太多，单一职责原则（SRP）更多的是被运用在对象或者方法级别上。总之，SRP原则体现为：一个对象（方法）只做一件事情。例如：
+用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。
+实现单例模式//1.实现单例模式
+var Singleton = function (name) {
+  this.name = name;
+};
+Singleton.prototype.getName = function() {
+  alert(this.name);
+};
+Singleton.getInstance = (function() {
+  var instance = null;
+  return function(name) {
+    if (!instance) {
+      instance = new Singleton(name);
+    }
+    return instance;
+  }
+})();
+var a = Singleton.getInstance(&apos;sven1&apos;);
+var b = Singleton.getInstance(&apos;sven2&apos;);
 
-代理模式
+console.log(a === b); //true
+以上，我们通过Singleton.getInstance来获取Singleton类的唯一对象，虽然简单但是增加了这个类的“不透明性”，Singleton类的使用者必须知道这是一个单例类，跟以往通过new xxx的方法不同
+透明的单例模式有了以上的不足，我们现在就来解决
+//透明的单例模式 
+var CreateDiv = (function() {
+  var instance;
+  var CreateDiv = function(html) {
+    if (instance) {
+      return instance;
+    }
+    this.html = html;
+    this.init();
+    return instance = this;
+  };
 
-迭代器模式
+  CreateDiv.prototype.init = function() {
+    var div = document.createElement(&apos;div&apos;);
+    div.innerHTML = this.html;
+    document.b
+          ...
 
-单例模式
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
 
-装饰者模式但是，并不是所有的职责都应该一一分离的，一方面如果随着需求的变化，有两个职责是同时变化的，那就不必分离他们。比如在ajax请求的时候，创建xhr对象和发送xhr请求几乎总是在一起的，那么创建xhr对象的职责和发送xhr对象的职责就没有必要分开。
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
 
 
-另一方面，职责的变化轴线仅当它们确定会发生变化时才有意义，即使两个职责已经被耦合在一起但他们没有发生改变的征兆，那么也许没有必要主动分离他们，在代码需要重构的时候再分离也不迟。
-最少知识原则最少知识原则（LKP）说的是一个软件实体应当尽可能少与其他实体发生相互作用。这里的软件的实体是一个广义的概念，不仅包括对象，还包括系统，类，模块，函数，变量等。单一职责原则指导我们把对象划分成较小的粒度，这可以提高对象的可复用性。但越来越多的对象之间可能会产生错综复杂的联系，如果修改了其中一个对象，很可能会影响到跟它相互引用的其他对象。对象和对象耦合在一起，有可能会降低他们的复用性。在程序中，对象的“朋友”太多并不是一件好事。最少知识原则要求我们在设计程序时，应当尽量减少对象之间的交互。如果两个对象之间不必彼此直接通信，那么两个对象就不要发生直接的相互联系。常见的做法是引入一个第三者对象，来承担这些对象之间的通信作用。如果一些对象需要向另一些对象发起请求，可以通过第三者对象来转发这些请求。体现地方：
+    
+      
 
-中介者模式
+  
+  
 
-外观模式
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
-开放-封闭原则在面向对象的程序设计中，开放-封闭原则（OCP）是最重要的一条原则。他的定义为：软件实体（类，模块，函数）等应该是可以拓展的，但是不可修改的。举例：
+    
+      <header class="post-header">
 
-发布-订阅模式
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/11命令模式/" itemprop="url">
+                  命令模式
+                </a>
+              
+            
+          </h1>
+        
 
-模板方法模式
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
 
-策略模式
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
 
-代理模式
+                
+                
 
-职责链模式
+              
+            </span>
+          
 
-
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/12/JavaScript设计模式与开发实践/11命令模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/11命令模式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
 
           
 
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/11命令模式/"class="leancloud_visitors" data-flag-title="命令模式"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+命令模式是最简单和优雅的模式之一，命令模式中的命令指的是一个执行某些特定事情的指令。命令模式最常见的应用场景是：有时候需要向某些对象发送请求，但是不知道请求的接收者是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送者和请求接收者能够消除彼此之间的耦合关系。
+
+菜单程序假设要编写一个用户界面程序，该用户界面上至少有数十个button按钮，通过分析我们发现按下按钮之后会发生的一些事情是不变的，而具体会发生什么事情是可变的。通过command对象的帮助，将来我们可以轻易改变这种关联。废话不多说，上代码：
+//负责往按钮上面安装命令
+var setCommand = function( button, command ) {
+    button.onclick = function() { //执行的动作
+        command.execute();
+    }
+};
+
+//一些功能函数
+var MenuBar = {
+    refresh: function() {
+        console.log(&apos;刷新菜单栏目&apos;);
+    }
+};
+var SubMenu = {
+    add: function() {
+        console.log(&apos;增加子菜单&apos;);
+    },
+    del: function() {
+        console.log(&apos;删除子菜单&apos;);
+    }
+};
+
+//封装
+var RefreshMenuBarCommand = function( receiver ) {
+    this.receiver = receiver;
+};
+RefreshMenuBarCommand.prototype.execute = function() {
+    this.receiver.refresh();
+};
+var AddSubMenuCommand = function( receiver ) {
+    this.receiver = receiver;
+};
+AddSubMenuCommand.prototype.execute = function() {
+    this.receiver.add();
+
+          ...
+
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/11命令模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -911,8 +916,8 @@ var calculateBonus = function(performanceLevel, salary) {
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/" itemprop="url">
-                  策略模式的应用
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/" itemprop="url">
+                  代理模式
                 </a>
               
             
@@ -955,8 +960,8 @@ var calculateBonus = function(performanceLevel, salary) {
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/" itemprop="commentsCount"></span>
+                <a href="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/7代理模式/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -967,7 +972,7 @@ var calculateBonus = function(performanceLevel, salary) {
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/"class="leancloud_visitors" data-flag-title="策略模式的应用"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/"class="leancloud_visitors" data-flag-title="代理模式"></span>
           
 
           
@@ -985,51 +990,53 @@ var calculateBonus = function(performanceLevel, salary) {
         
           
           
-用策略模式实现缓动动画需求：让小球以各种缓动效果在页面中运动动画开始前需要记录的：
+代理模式是为一个对象提供一个代用品或占位符，以便控制对他的访问。代理模式的关键是，当客户不方便直接访问一个对象或者不满足需要的时候，提供一个对象来控制这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理后再把请求转交给本体对象。
 
-小球所在原始位置
-
-小球移动的目标位置
-
-动画开始时的时间点
-
-小球运动的时间点之后，用setInterval创建一个定时器，定时器每19秒循环一次。
-
-
-//缓动算法，此算法移植于flash
-
-var tween = {
-    //t：动画已消耗的时间，b：小球原始位置，c：小球目标位置，d：动画持续时间
-    linear: function(t, b, c, d) {
-        return c*t/d + b;
-    },
-    reseIn: function(t, b, c, d) {
-        return c * (t /= d) * t + b;
-    },
-    strongEaseIn: function(t, b, c, d) {
-        return c * (t /= d) * t * t * t * t + b;
-    },
-    strongEaseOut: function(t, b, c, d) {
-        return c * (( t = t / d - 1) * t * t * t * t + 1) + b;
-    },
-    sineaseIn: function(t, b, c, d) {
-        return c * (t /= d) * t * t + b;
-    },
-    sineaseOur: function(t, b, c, d) {
-        return c * ((t = t / d - 1) * t * t + 1 ) + b;
+不使用代理：客户 → 本体使用代理：客户 → 代理 → 本体
+先来一个带点趣味性的例子，小明要给女神A送花，然后他不好意思，打算让B代送
+var Flower = function(){};
+var xiaoming = {
+    sendFlower: function( traget ) {
+      var flower = new Flower();
+      target.receveFlower( flower );
     }
 };
-接着Animation类
-var Animate = function( dom ) {
-    this.dom = dom;              //进行运动的dom节点
-    this.startTime = 0;         //动画开始时间
-    this.startPos = 0;           //动画开始时候dom位置
-    this.endPos = 0;            //结束dom位置
-    this.propertyName = null;     
+
+var A = {
+    receiveFlower: function( flower ) {
+      console.log(&apos;收到花&apos; + flower);
+  }
+};
+
+xiaoming.sendFlower(A);
+
+//引入代理B
+var B = {
+    receiverFlower: function( flower ) {
+      A.receiveFlower( flower );
+  }
+};
+此时，我们就简单的完成了一个代理模式
+接着，我们在原需求上做点改动，假设女神心情好的时候成功率会增大，小明跟女神不熟不知道她心情，而B跟女神比较熟可以去监听她心情的变化恰当时机送花，这样就不会造成不必要浪费了，于是代码如下：
+//代理B
+var B = {
+    receiverFlower: function( flower ) {
+      A.listenGoodMood(function() { //监听A的好心情
+        A.receiveFlower( flower );
+    })；
+  }
+};
+
+//女神A也要提供一个可被监听的方法（当然我们只是假设，毕竟女人我们是摸不透的）
+var A = {
+    receiveFlower: function( flower ) {
+      console.log(&apos;收到花&apos; + flower);
+  },
+  listenG
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1196,7 +1203,7 @@ var Animate = function( dom ) {
 
 <!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
+<span id="busuanzi_container_site_pv" style="display:none">
   本站访客数<span id="busuanzi_value_site_uv"></span>人次
 </span>
 <!-- 不蒜子计数初始值纠正 -->
@@ -1208,7 +1215,8 @@ var Animate = function( dom ) {
         function fixCount() {
             if ($("#busuanzi_container_site_pv").css("display") != "none") {
                 clearInterval(int);
-                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+                console.log(parseInt($("#busuanzi_value_site_uv").html()));
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + busuanziSiteOffset);
             }
         }
     });

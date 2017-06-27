@@ -254,177 +254,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/" itemprop="url">
-                  代理模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/7代理模式/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/"class="leancloud_visitors" data-flag-title="代理模式"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-代理模式是为一个对象提供一个代用品或占位符，以便控制对他的访问。代理模式的关键是，当客户不方便直接访问一个对象或者不满足需要的时候，提供一个对象来控制这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理后再把请求转交给本体对象。
-
-不使用代理：客户 → 本体使用代理：客户 → 代理 → 本体
-先来一个带点趣味性的例子，小明要给女神A送花，然后他不好意思，打算让B代送
-var Flower = function(){};
-var xiaoming = {
-    sendFlower: function( traget ) {
-      var flower = new Flower();
-      target.receveFlower( flower );
-    }
-};
-
-var A = {
-    receiveFlower: function( flower ) {
-      console.log(&apos;收到花&apos; + flower);
-  }
-};
-
-xiaoming.sendFlower(A);
-
-//引入代理B
-var B = {
-    receiverFlower: function( flower ) {
-      A.receiveFlower( flower );
-  }
-};
-此时，我们就简单的完成了一个代理模式
-接着，我们在原需求上做点改动，假设女神心情好的时候成功率会增大，小明跟女神不熟不知道她心情，而B跟女神比较熟可以去监听她心情的变化恰当时机送花，这样就不会造成不必要浪费了，于是代码如下：
-//代理B
-var B = {
-    receiverFlower: function( flower ) {
-      A.listenGoodMood(function() { //监听A的好心情
-        A.receiveFlower( flower );
-    })；
-  }
-};
-
-//女神A也要提供一个可被监听的方法（当然我们只是假设，毕竟女人我们是摸不透的）
-var A = {
-    receiveFlower: function( flower ) {
-      console.log(&apos;收到花&apos; + flower);
-  },
-  listenG
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/" itemprop="url">
                   代理模式的应用
                 </a>
@@ -734,8 +563,8 @@ var compare = function(ary1, ary2) {
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/" itemprop="url">
-                  代码重构
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/" itemprop="url">
+                  发布订阅模式
                 </a>
               
             
@@ -778,8 +607,8 @@ var compare = function(ary1, ary2) {
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/21代码重构/" itemprop="commentsCount"></span>
+                <a href="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -790,7 +619,7 @@ var compare = function(ary1, ary2) {
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/"class="leancloud_visitors" data-flag-title="代码重构"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/"class="leancloud_visitors" data-flag-title="发布订阅模式"></span>
           
 
           
@@ -808,55 +637,32 @@ var compare = function(ary1, ary2) {
         
           
           
-一些重构的建议：
 
-提炼函数
-
-避免出现超大函数
-
-独立出来的函数有助于代码复用
-
-独立出来的函数更容易被覆写
-
-独立出来的函数如果拥有一个良好的命名，
-
-它本身就起到了注释的作用。
+发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。在JavaScript开发中，我们一般用事件模型来替代传统的发布—订阅模式。
 
 
+发布—订阅模式可以广泛应用于异步编程中，这是一种替代传递回调函数的方案。比如，我们可以订阅ajax 请求的error、succ 等事件。 或者如果想在动画的每一帧完成之后做一些事情，那我们可以订阅一个事件，然后在动画的每一帧完成之后发布这个事件。在异步编程中使用发布—订阅模式，我们就无需过多关注对象在异步运行期间的内部状态，而只需要订阅感兴趣的事件发生点。
+
+发布—订阅模式可以取代对象之间硬编码的通知机制，一个对象不用再显式地调用另外一个对象的某个接口。发布—订阅模式让两个对象松耦合地联系在一起，虽然不太清楚彼此的细节，但这不影响它们之间相互通信。当有新的订阅者出现时，发布者的代码不需要任何修改；同样发布者需要改变时，也不会影响到之前的订阅者。只要之前约定的事件名没有变化，就可以自由地改变它们。
 
 
-比如在一个负责取得用户信息的函数里面，我们还需要打印跟用户信息有关的log，那么打印log的语句就可以被封装在一个独立的函数里：
-var getUserInfo = function() {
-    ajax(&apos;http://xxx.com/userInfo&apos;, function(data) {
-        console.log(&apos;userId: &apos; + data.userId);
-        console.log(&apos;userName: &apos; + data.userName);
-        console.log(&apos;nickName: &apos; + data.nickName);
-    });
-};
-可以改成：
-var getUserInfo = function() {
-    ajax(&apos;http://xxx.com/userInfo&apos;, function(data) {
-        printDetails(data);
-    });
-};
-var printDetails = function(data) {
-    console.log(&apos;userId: &apos; + data.userId);
-    console.log(&apos;userName: &apos; + data.userName);
-    console.log(&apos;nickName: &apos; + data.nickName);
-}
+DOM 事件实际上，只要我们曾经在DOM节点上面绑定过事件函数，那我们就曾经使用过发布—订阅模式，例如
+document.body.addEventListener( &apos;click&apos;, function(){
+    alert(2);
+}, false );
+document.body.click(); // 模拟用户点击
+在这里需要监控用户点击document.body的动作，但是我们没办法预知用户将在什么时候点击。所以我们订阅document.body上的click事件，当body 节点被点击时，body节点便会向订阅者发布这个消息。当然我们还可以随意增加或者删除订阅者，增加任何订阅者都不会影响发布者代码的编写。
+自定义事件除了DOM 事件，我们还会经常实现一些自定义的事件，这种依靠自定义事件完成的发布—订阅模式可以用于任何JavaScript 代码中。步骤：
 
-合并重复的条件片段如果一个函数内有一些条件分支语句，而这些条件分支语句内部散步了一些重复的代码，那么就有必要进行合并去重工作。
+指定好谁充当发布者（例如售楼处）
 
-//页面跳转
-var paging = function(currPage) {
-    if (currPage &lt;= 0) {
-        currPage = 0;
-        jump(currPage); //跳转
-    } else if (currPage 
+然后给发布者添加一个缓存列表，用于存放回调函数以便通知订阅者（售楼处的花名册）
+
+最后发布消息的时候，发布者会遍历整个缓存列表，依次触发里面存放的订阅者回调函数（遍历花名册挨个发短信通知有空房）另外，我们还可以往回调函数里填入一些参数，订阅者
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -907,8 +713,8 @@ var paging = function(currPage) {
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/17装饰者模式/" itemprop="url">
-                  装饰者模式
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/" itemprop="url">
+                  组合模式
                 </a>
               
             
@@ -951,8 +757,8 @@ var paging = function(currPage) {
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/12/JavaScript设计模式与开发实践/17装饰者模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/17装饰者模式/" itemprop="commentsCount"></span>
+                <a href="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/12组合模式/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -963,7 +769,182 @@ var paging = function(currPage) {
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/17装饰者模式/"class="leancloud_visitors" data-flag-title="装饰者模式"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/"class="leancloud_visitors" data-flag-title="组合模式"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          组合模式
+
+组合模式将对象组合成树形结构，以表示“部分-整体”的层次结构。除了用来表示树形结构之外，组合模式的另一个好处是通过对象的多态性表现，使得用户对单个对象和组合对象的使用具有一致性。
+
+请求在树中传递的过程在组合模式中，请求在树中传递的过程总是遵循一种逻辑。请求从树的最顶端的对象往下传递，如果当前处理请求的对象是叶对象，叶对象自身会对请求做相互相应的处理；如果当前处理请求对象是组合对象，组合对象则会遍历它下面的节点，将请求继续传递。总之，组合对象的请求是从上到下沿着树传递，直到树的尽头。作为客户，只要关心树最顶层的组合对象，客户只需要请求这个组合对象，请求便会向下延续。
+现在，假设一个需求，我们需要一个超级遥控器可以控制家里所有的电器，且拥有以下功能
+
+打开空调
+
+打开电视和音响
+
+关门，开电脑，登录QQ  
+
+
+依旧，废话不多说，show the code
+var MacroCommand = function() {
+  return {
+    commandsList : [],
+    add: function( command ) {
+      this.commandsList.push( command );
+    },
+    execute: function() {
+      for (var i = 0, command; command = this.commandsList[i++];) {
+        command.execute();
+      }
+    }
+  };
+};
+
+var openAcCommand = {
+  execute: function() {
+    console.log(&apos;打开空调&apos;);
+  }
+};
+
+/*家里电视和音响是连接在一起的，所以可以用一个宏命令来组合打开电视和打开音响的命令*/
+var openTvCommand = {
+  execute: function() {
+    console.log(&apos;打开电视&apos;);
+  }
+};
+var openSoundCommand = {
+  execute: function() {
+    console.log(&apos;打开音响&apos;);
+  }
+};
+
+var macr
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/" itemprop="url">
+                  模版方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/13模版方法/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/"class="leancloud_visitors" data-flag-title="模版方法"></span>
           
 
           
@@ -982,46 +963,61 @@ var paging = function(currPage) {
           
           
 
-装饰者模式：给对象动态地增加职责。跟继承相比，装饰者是一种更轻便灵活的做法，是一种“即用即付”的方式。
+模版方法是一种只需要使用继承就可以实现的非常简单的模式。他由两部分组成，第一部分是抽象父类，第二部分是具体实现子类。通常在抽象父类中封装了子类的算法框架，包括实现一些共用方法以及封装子类所有方法的执行顺序。子类通过继承这个抽象类，也继承了整个算法结构，并且可以选择重写父类的方法。
 
-js的装饰者假设我们在编写一个飞机大战游戏，这个飞机可以升级，发射导弹，发射原子弹
-var plane = {
-    fire: function() {
-        console.log(&apos;发射普通子弹&apos;);
-    }
-};
-var missileDecorator = function() {
-    console.log(&apos;发射导弹&apos;);
-};
-var atomDecorator = function() {
-    console.log(&apos;发射原子弹&apos;);
-};
-var fire1 = plane.fire;
-plane.fire = function() {
-    fire1();
-    missileDecorator();
-};
+Coffee or Tea假设我们现在要泡一杯咖啡步骤如下：
 
-var fire2 = plane.fire;
-plane.fire = function() {
-    fire2();
-    atomDecorator();
+把水煮沸
+用沸水冲泡咖啡
+把咖啡倒进杯子
+加糖和牛奶
+
+泡茶的步骤：
+
+把水煮沸
+用沸水浸泡茶叶
+把茶水倒进杯子
+加柠檬
+
+经过比较，我们可以发现泡茶和泡咖啡有以下共同点：
+
+原料不同。一个是茶一个是咖啡，但是我们都可以把它们抽象为“饮料”
+
+泡的方式不同。咖啡是冲泡，茶叶是浸泡，我们都可以抽象成“泡”。
+
+加入的调料不同。一个是糖和牛奶，一个是柠檬，我们把它们抽象成“调料”。
+
+
+所以经过抽象后，无论是泡咖啡还是泡茶我们都是要进行下列步骤：
+
+把水煮沸
+用沸水冲泡咖啡
+把饮料倒进杯子
+加调料现在用代码来表示这个抽象过程
+
+var Beverage = function()  {};
+Beverage.prototype.boilWater = function() {
+    console.log(&apos;把水煮沸&apos;);
 };
-plane.fire(); //&quot;发射普通子弹&quot;&quot;发射导弹&quot;&quot;发射原子弹&quot;
-用AOP装饰函数首先给出Function.prototype.before方法和Function.prototype.after方法
-Function.prototype.before = function (beforefn) {
-  var __self = this; //保存原函数的引用
-  return function() {  //返回包含了原函数和新函数的代理函数
-    beforefn.apply(this, arguments); //执行新函数，且保证this不被劫持，新函数接受的参数也会原封不动的传入原函数，新函数在原函数之前执行
-    return __self.apply(this, arguments); //执行原函数并返回原函数的执行结果，并保证this不被劫持
-  };
-};
-Function.prototype.after = function (afterfn) {
-  var __self 
+Beverage.prototype.brew = function(){}; //空方法，应该由子类重写
+Beverage.prototype.pourInCup = function(){}; //空方法，应该由子类重写
+Beverage.prototype.addCondiments = function(){}; //空方法，应该由子类重写
+
+Beverage.prototype.init= function(){
+    this.boilWater();
+    this.brew();
+    this.pourInCup();
+    this.addCondiments();
+}; 
+接着就是创建Coffee子类和Tea子类
+var Coffee = function() {};
+Coffee.prototype = new Beverage();
+Coffee.prototype.brew = function() {
+    console.log(&apo
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/17装饰者模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1188,7 +1184,7 @@ Function.prototype.after = function (afterfn) {
 
 <!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
+<span id="busuanzi_container_site_pv" style="display:none">
   本站访客数<span id="busuanzi_value_site_uv"></span>人次
 </span>
 <!-- 不蒜子计数初始值纠正 -->
@@ -1200,7 +1196,8 @@ Function.prototype.after = function (afterfn) {
         function fixCount() {
             if ($("#busuanzi_container_site_pv").css("display") != "none") {
                 clearInterval(int);
-                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+                console.log(parseInt($("#busuanzi_value_site_uv").html()));
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + busuanziSiteOffset);
             }
         }
     });

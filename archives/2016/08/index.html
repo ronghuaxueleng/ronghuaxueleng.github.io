@@ -262,6 +262,43 @@
 
       <h1 class="post-title">
         
+            <a class="post-title-link" href="/2016/08/30/javascript/fetch和XMLHttpRequest讲解/" itemprop="url">
+              
+                <span itemprop="name">fetch和XMLHttpRequest讲解</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-08-30T00:00:00+08:00"
+              content="2016-08-30" >
+          08-30
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+    
+
+      
+      
+      
+
+      
+      
+
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
             <a class="post-title-link" href="/2016/08/30/javascript/理解Javascript的prototype/" itemprop="url">
               
                 <span itemprop="name">理解Javascript的prototype</span>
@@ -302,43 +339,6 @@
             <a class="post-title-link" href="/2016/08/30/javascript/call和apply区别解析/" itemprop="url">
               
                 <span itemprop="name">call和apply区别解析</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-30T00:00:00+08:00"
-              content="2016-08-30" >
-          08-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/30/javascript/fetch和XMLHttpRequest讲解/" itemprop="url">
-              
-                <span itemprop="name">fetch和XMLHttpRequest讲解</span>
               
             </a>
         
@@ -1122,7 +1122,7 @@
 
 <!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
+<span id="busuanzi_container_site_pv" style="display:none">
   本站访客数<span id="busuanzi_value_site_uv"></span>人次
 </span>
 <!-- 不蒜子计数初始值纠正 -->
@@ -1134,7 +1134,8 @@
         function fixCount() {
             if ($("#busuanzi_container_site_pv").css("display") != "none") {
                 clearInterval(int);
-                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+                console.log(parseInt($("#busuanzi_value_site_uv").html()));
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + busuanziSiteOffset);
             }
         }
     });
