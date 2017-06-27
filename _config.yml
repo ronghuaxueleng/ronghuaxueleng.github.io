@@ -102,3 +102,5 @@ deploy:
   type: git
   repository: http://github.com/ronghuaxueleng/ronghuaxueleng.github.io.git
   branch: master
+  name: ronghuaxueleng
+  email: caoqianghappy@126.com
