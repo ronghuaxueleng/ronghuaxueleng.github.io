@@ -254,151 +254,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/" itemprop="url">
-                  MVC
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
-              2016-10-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/13/php设计模式/PHP设计模式(6)：MVC/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/"class="leancloud_visitors" data-flag-title="MVC"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-原文地址：[PHP设计模式(六)：MVC][1]
-
-Introduction20世纪80年代，计算机发展迅速，编程技术也日益分化。桌面应用编程，也逐渐出现了用户图形界面和程序逻辑分离的程序设计。到了90年代，web的出现更是让这种程序设计模式得以延续。这种设计模式便是MVC(Model-View-Control)，除了MVC，还有MVC的变种，如MVVM(Model-View-View-Model)等。
-MVC回到80年代的桌面应用编程，当时面向对象的编程设计模式（见PHP设计模式(一)：基础编程模式）兴起，程序员将桌面应用分割成两个大的对象：领域对象(domain objects)和可视对象(presentation objects)。领域对象是对现实事物的抽象模型，可视对象是对用户界面部分的抽象模型。后来人们发现，只有领域对象和可视对象是不够的，特别是在复杂的业务中。根据PHP设计模式(三)：封装中介绍的设计原则，在面向对象程序设计中，类和类之间的访问、交互和更新应该是通过Accessors和Mutators。那么如果操作领域对象呢？人们引入了控制器(controller)的对象，通过控制器来操作领域模型。到此，MVC模型逐渐稳定下来，用户通过可视对象操作控制器对象，控制器对象再去操作领域对象。
-MVC中的设计模式上面介绍的MVC属于抽象度比较高的设计模式，在实际编程中，需要遵守下面的设计模式。
-基于接口去编程基于接口去编程的好处就是分离设计和实现，这一点我们在PHP设计模式(二)：抽象类和接口已经介绍过了，下面我们举一个实际的例子来说明这个设计的好处。
-&lt;?php
-abstract class Animal {
-  protected $name;
-  abstract protected function eatFish();
-  abstract protected function eatMoss();
-  public function eat() {
-    if ($this-&gt;eatFish()) {
-      echo $this-&gt;name . &quot; can eat fish.\n&quot;;
-    }
-    if ($this-&gt;eatMoss()) {
-      echo $this-&gt;n
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(8)：工厂模式/" itemprop="url">
                   工厂模式
                 </a>
@@ -714,8 +569,161 @@ $whale
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/" itemprop="url">
-                  迭代器模式
+                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/" itemprop="url">
+                  基础编程模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
+              2016-10-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/"class="leancloud_visitors" data-flag-title="基础编程模式"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          简介俗话说，“PHP是世界上最好的语言”，因为PHP什么都能干。但是在PHP编程中，你是否会遇到这样的困惑：明明是相同的需求，但是之前写的代码却并不能重用，稍微修改不满足需求，大改又会让页面变样。是的，由于PHP什么都能干，但是高度灵活性降低了代码的结构性。虽然可以利用三方框架来解决问题，但问题的根本在于缺乏设计模式。本系列文章将由浅入深的介绍各种设计模式。
+面向对象编程面向对象编程，Object-Oriented Programming(OOP)作为最基本的设计模式并不是什么新鲜的话题，但是大部分新手的PHP编程都是在写流水账，各种拼接字符串，所以这里还是要提一下。Object-Oriented Programming的概念这里就不说了，毕竟很多人都明白，但是如何在PHP中使用？假设你需要在页面上显示不同的用户类型，如电脑用户、手机用户等，那么你可以将“显示”这件事抽象为一个类，如：
+&lt;?php
+class ShowAgent {
+  private $agent;
+  public function __construct() {
+    $this-&gt;agent = $_SERVER[&apos;HTTP_USER_AGENT&apos;];
+    echo $this-&gt;agent;
+  }
+}
+$showAgent = new ShowAgent();
+?&gt;
+调试技巧在很多PHP默认环境中，调试功能是关闭的。打开调试功能又需要配置php.ini文件，其实有一个简单的方法：
+&lt;?php
+ini_set(&quot;display_errors&quot;, &quot;1&quot;);
+ERROR_REPORTING(E_ALL);
+?&gt;
+将这段代码加入到你的代码中，甚至可以require或者include进去，方便调试。
+流水账编程这里列出流水账编程，并不是让你学习，而是指出何种编程不推荐使用：
+&lt;?php
+$total = &quot;Total number is &quot;;
+$number = &quot;6&quot;;
+$totalNumber = $total.$number;
+echo $totalNumber;
+?&gt;
+这段代码并没有错，但是以后再也无法重用了，对吧？每次遇到相同问题，你
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/" itemprop="url">
+                  状态模式
                 </a>
               
             
@@ -758,8 +766,8 @@ $whale
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/" itemprop="commentsCount"></span>
+                <a href="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/18状态模式/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -770,7 +778,7 @@ $whale
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/"class="leancloud_visitors" data-flag-title="迭代器模式"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/"class="leancloud_visitors" data-flag-title="状态模式"></span>
           
 
           
@@ -789,34 +797,47 @@ $whale
           
           
 
-迭代器模式是指提供一种方法，顺序访问一个聚合对象中的各个元素，而又不需要暴露该对象的内部表示。迭代器模式可以把迭代的过程从业务逻辑中分离出来，在使用迭代器模式之后，即使不关心内部构造，也可以按顺序访问其中的每个元素。
+状态模式的关键是区分事物内部的状态，事物内部状态的改变往往会带来事物的行为改变。
 
-jQuery中的迭代器迭代器模式无非就是循环访问聚合对象中的各个元素。比如jQuery中的$.each函数，其中回调函数中的i为当前 索引，n为当前元素，代码如下
-$.each([1, 2, 3], function(i, n) {
-    console.log(&apos;当前坐标：&apos; + i);
-    console.log(&apos;当前值：&apos; + n);
-});
-然而，作为一个合格的前端开发者，我们不应该只是会用，而更应该去研究他的实现，因此下面我们就来自己实现一个each函数
-var each = function(ary, callback) {
-    for(var i = 0, l = ary.length; i &lt; l; i++) {
-        callback.call(ary[i], i, ary[i]); //把下标和元素当作参数传给callback函数
-    }
+电灯程序首先给一个不用状态模式的电灯程序例子：
+var Light = function() {
+  this.state = &apos;off&apos;; //电灯初始状态off
+  this.button = null; //电灯开关按钮
 };
-each([1,2,3], function(i, n) {
-    alert([i,n]);
-});
-内部迭代器和外部迭代器像刚刚编写的each函数属于内部迭代器，each函数的内部已经定义好了迭代规则，它完全接手整个迭代过程，外部只需要一次初始调用.然而，如果你想同时迭代两个数组，例如：判断两个数组里的元素的值是否完全相等。此时如果不去改写each函数本身的代码，就只能够增加一个compare函数然后对each的回调进行更改了。
-var compare = function(ary1, ary2) {
-    if (ary1.length !== ary2.length) {
-        throw new Error(&apos;ary1和ary2不相等&apos;);
-    }
-    each(ary1, function(i ,n) {
-        if (n !== ary2[i]) {
-            throw new Error(&apos;ary1和ary2不相等&apo
+
+Light.prototype.init = function() {
+  var button = document.createElement(&apos;button&apos;),
+      self = this;
+
+  button.innerHTML = &apos;开关&apos;;
+  this.button = document.body.appendChild(button);
+  this.button.onclick = function() {
+    self.buttonWasPressed();
+  };
+};
+
+Light.prototype.buttonWasPressed = function() {
+  if (this.state === &apos;off&apos;) {
+    console.log(&apos;开灯&apos;);
+    this.state = &apos;on&apos;;
+  } else if (this.state === &apos;on&apos;) {
+    console.log(&apos;关灯&apos;);
+    this.state = &apos;off&apos;;
+  }
+};
+
+var light = new Light();
+light.init();
+这样子看起来非常完美。但是假如我们有三种光，甚至四种五种，只能在buttonWasPressed里面新增代码，这样就显得他很不稳定了。而且所有跟状态有关的行为，这里只是console，但是在实际应用中要处理的事情庞大得多…所以，我们用状态模式进行改写
+//OffLightState
+var OffLightState = function(light) {
+  this.light = light;
+};
+OffLightState.prototype.buttonW
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1153,7 +1174,7 @@ var MyClass2 = function() {
 <!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <span id="busuanzi_container_site_pv" style="display:none">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  本站总访问量<span id="busuanzi_value_site_pv"></span>人次
 </span>
 <!-- 不蒜子计数初始值纠正 -->
 <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
@@ -1164,7 +1185,7 @@ var MyClass2 = function() {
         function fixCount() {
             if ($("#busuanzi_container_site_pv").css("display") != "none") {
                 clearInterval(int);
-                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + busuanziSiteOffset);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
             }
         }
     });
