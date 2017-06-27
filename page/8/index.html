@@ -1059,7 +1059,6 @@ D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通
         function fixCount() {
             if ($("#busuanzi_container_site_pv").css("display") != "none") {
                 clearInterval(int);
-                console.log(parseInt($("#busuanzi_value_site_uv").html()));
                 $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + busuanziSiteOffset);
             }
         }
