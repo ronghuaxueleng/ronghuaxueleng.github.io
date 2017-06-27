@@ -86,22 +86,17 @@
 
 
 
-<meta name="description" content="this是Javascript语言的一个关键字。
-它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，123function test()&amp;#123;  this.x = 1;&amp;#125;
-随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。">
+<meta name="description" content="this是Javascript语言的一个关键字。 它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，123function test()&amp;#123;  this.x = 1;&amp;#125; 随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Javascript的this用法">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/2016/09/19/javascript/Javascript的this用法/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="this是Javascript语言的一个关键字。
-它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，123function test()&amp;#123;  this.x = 1;&amp;#125;
-随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。">
+<meta property="og:description" content="this是Javascript语言的一个关键字。 它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，123function test()&amp;#123;  this.x = 1;&amp;#125; 随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。">
 <meta property="og:updated_time" content="2016-10-12T10:25:08.097Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Javascript的this用法">
-<meta name="twitter:description" content="this是Javascript语言的一个关键字。
-它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，123function test()&amp;#123;  this.x = 1;&amp;#125;
-随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。">
+<meta name="twitter:description" content="this是Javascript语言的一个关键字。 它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，123function test()&amp;#123;  this.x = 1;&amp;#125; 随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。">
 
 
 
@@ -327,24 +322,24 @@
       
 
       
-        <p>this&#x662F;Javascript&#x8BED;&#x8A00;&#x7684;&#x4E00;&#x4E2A;&#x5173;&#x952E;&#x5B57;&#x3002;</p>
-<p>&#x5B83;&#x4EE3;&#x8868;&#x51FD;&#x6570;&#x8FD0;&#x884C;&#x65F6;&#xFF0C;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x7684;&#x4E00;&#x4E2A;&#x5185;&#x90E8;&#x5BF9;&#x8C61;&#xFF0C;&#x53EA;&#x80FD;&#x5728;&#x51FD;&#x6570;&#x5185;&#x90E8;&#x4F7F;&#x7528;&#x3002;&#x6BD4;&#x5982;&#xFF0C;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>{</div><div class="line">  <span class="keyword">this</span>.x = <span class="number">1</span>;</div><div class="line">}</div></pre></td></tr></table></figure></p>
-<p>&#x968F;&#x7740;&#x51FD;&#x6570;&#x4F7F;&#x7528;&#x573A;&#x5408;&#x7684;&#x4E0D;&#x540C;&#xFF0C;this&#x7684;&#x503C;&#x4F1A;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x3002;&#x4F46;&#x662F;&#x6709;&#x4E00;&#x4E2A;&#x603B;&#x7684;&#x539F;&#x5219;&#xFF0C;&#x90A3;&#x5C31;&#x662F;<strong>this&#x6307;&#x7684;&#x662F;&#xFF0C;&#x8C03;&#x7528;&#x51FD;&#x6570;&#x7684;&#x90A3;&#x4E2A;&#x5BF9;&#x8C61;</strong>&#x3002;</p>
+        <p>this是Javascript语言的一个关键字。</p>
+<p>它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.x = <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是<strong>this指的是，调用函数的那个对象</strong>。</p>
 <a id="more"></a>
-<p>&#x4E0B;&#x9762;&#x5206;&#x56DB;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x8BE6;&#x7EC6;&#x8BA8;&#x8BBA;this&#x7684;&#x7528;&#x6CD5;&#x3002;</p>
-<h3 id="&#x60C5;&#x51B5;&#x4E00;&#x7EAF;&#x7CB9;&#x7684;&#x51FD;&#x6570;&#x8C03;&#x7528;"><a href="#&#x60C5;&#x51B5;&#x4E00;&#xFF1A;&#x7EAF;&#x7CB9;&#x7684;&#x51FD;&#x6570;&#x8C03;&#x7528;" class="headerlink" title="&#x60C5;&#x51B5;&#x4E00;&#xFF1A;&#x7EAF;&#x7CB9;&#x7684;&#x51FD;&#x6570;&#x8C03;&#x7528;"></a><strong>&#x60C5;&#x51B5;&#x4E00;&#xFF1A;&#x7EAF;&#x7CB9;&#x7684;&#x51FD;&#x6570;&#x8C03;&#x7528;</strong></h3><p>&#x8FD9;&#x662F;&#x51FD;&#x6570;&#x7684;&#x6700;&#x901A;&#x5E38;&#x7528;&#x6CD5;&#xFF0C;&#x5C5E;&#x4E8E;&#x5168;&#x5C40;&#x6027;&#x8C03;&#x7528;&#xFF0C;&#x56E0;&#x6B64;this&#x5C31;&#x4EE3;&#x8868;&#x5168;&#x5C40;&#x5BF9;&#x8C61;Global&#x3002;</p>
-<p>&#x8BF7;&#x770B;&#x4E0B;&#x9762;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#xFF0C;&#x5B83;&#x7684;&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x662F;1&#x3002;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>{</div><div class="line">  <span class="keyword">this</span>.x = <span class="number">1</span>;</div><div class="line">  alert(<span class="keyword">this</span>.x);</div><div class="line">}</div><div class="line">test(); <span class="comment">// 1</span></div></pre></td></tr></table></figure></p>
-<p>&#x4E3A;&#x4E86;&#x8BC1;&#x660E;this&#x5C31;&#x662F;&#x5168;&#x5C40;&#x5BF9;&#x8C61;&#xFF0C;&#x6211;&#x5BF9;&#x4EE3;&#x7801;&#x505A;&#x4E00;&#x4E9B;&#x6539;&#x53D8;&#xFF1A;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>{</div><div class="line">  alert(<span class="keyword">this</span>.x);</div><div class="line">}</div><div class="line">test(); <span class="comment">// 1</span></div></pre></td></tr></table></figure></p>
-<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x8FD8;&#x662F;1&#x3002;&#x518D;&#x53D8;&#x4E00;&#x4E0B;&#xFF1A;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>{</div><div class="line"> <span class="keyword">this</span>.x = <span class="number">0</span>;</div><div class="line">}</div><div class="line"></div><div class="line">test();</div><div class="line">alert(x); <span class="comment">//0</span></div></pre></td></tr></table></figure></p>
-<h3 id="&#x60C5;&#x51B5;&#x4E8C;&#x4F5C;&#x4E3A;&#x5BF9;&#x8C61;&#x65B9;&#x6CD5;&#x7684;&#x8C03;&#x7528;"><a href="#&#x60C5;&#x51B5;&#x4E8C;&#xFF1A;&#x4F5C;&#x4E3A;&#x5BF9;&#x8C61;&#x65B9;&#x6CD5;&#x7684;&#x8C03;&#x7528;" class="headerlink" title="&#x60C5;&#x51B5;&#x4E8C;&#xFF1A;&#x4F5C;&#x4E3A;&#x5BF9;&#x8C61;&#x65B9;&#x6CD5;&#x7684;&#x8C03;&#x7528;"></a><strong>&#x60C5;&#x51B5;&#x4E8C;&#xFF1A;&#x4F5C;&#x4E3A;&#x5BF9;&#x8C61;&#x65B9;&#x6CD5;&#x7684;&#x8C03;&#x7528;</strong></h3><p>&#x51FD;&#x6570;&#x8FD8;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x67D0;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#xFF0C;&#x8FD9;&#x65F6;this&#x5C31;&#x6307;&#x8FD9;&#x4E2A;&#x4E0A;&#x7EA7;&#x5BF9;&#x8C61;&#x3002;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>{</div><div class="line">  alert(<span class="keyword">this</span>.x);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">var</span> o = {};</div><div class="line">o.x = <span class="number">1</span>;</div><div class="line">o.m = test;</div><div class="line">o.m(); <span class="comment">// 1</span></div></pre></td></tr></table></figure></p>
-<h3 id="&#x60C5;&#x51B5;&#x4E09;-&#x4F5C;&#x4E3A;&#x6784;&#x9020;&#x51FD;&#x6570;&#x8C03;&#x7528;"><a href="#&#x60C5;&#x51B5;&#x4E09;&#xFF1A;-&#x4F5C;&#x4E3A;&#x6784;&#x9020;&#x51FD;&#x6570;&#x8C03;&#x7528;" class="headerlink" title="&#x60C5;&#x51B5;&#x4E09;&#xFF1A; &#x4F5C;&#x4E3A;&#x6784;&#x9020;&#x51FD;&#x6570;&#x8C03;&#x7528;"></a><strong>&#x60C5;&#x51B5;&#x4E09;&#xFF1A; &#x4F5C;&#x4E3A;&#x6784;&#x9020;&#x51FD;&#x6570;&#x8C03;&#x7528;</strong></h3><p>&#x6240;&#x8C13;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x5C31;&#x662F;&#x901A;&#x8FC7;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x65B0;&#x5BF9;&#x8C61;&#xFF08;object&#xFF09;&#x3002;&#x8FD9;&#x65F6;&#xFF0C;this&#x5C31;&#x6307;&#x8FD9;&#x4E2A;&#x65B0;&#x5BF9;&#x8C61;&#x3002;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>{</div><div class="line">  <span class="keyword">this</span>.x = <span class="number">1</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> test();</div><div class="line">alert(o.x); <span class="comment">// 1</span></div></pre></td></tr></table></figure></p>
-<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x4E3A;1&#x3002;&#x4E3A;&#x4E86;&#x8868;&#x660E;&#x8FD9;&#x65F6;this&#x4E0D;&#x662F;&#x5168;&#x5C40;&#x5BF9;&#x8C61;&#xFF0C;&#x6211;&#x5BF9;&#x4EE3;&#x7801;&#x505A;&#x4E00;&#x4E9B;&#x6539;&#x53D8;&#xFF1A;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">2</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>{</div><div class="line">  <span class="keyword">this</span>.x = <span class="number">1</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> test();</div><div class="line">alert(x); <span class="comment">//2</span></div></pre></td></tr></table></figure></p>
-<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x4E3A;2&#xFF0C;&#x8868;&#x660E;&#x5168;&#x5C40;&#x53D8;&#x91CF;x&#x7684;&#x503C;&#x6839;&#x672C;&#x6CA1;&#x53D8;&#x3002;</p>
-<h3 id="&#x60C5;&#x51B5;&#x56DB;-apply&#x8C03;&#x7528;"><a href="#&#x60C5;&#x51B5;&#x56DB;&#xFF1A;-apply&#x8C03;&#x7528;" class="headerlink" title="&#x60C5;&#x51B5;&#x56DB;&#xFF1A; apply&#x8C03;&#x7528;"></a><strong>&#x60C5;&#x51B5;&#x56DB;&#xFF1A; apply&#x8C03;&#x7528;</strong></h3><p>apply()&#x662F;&#x51FD;&#x6570;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x5B83;&#x7684;&#x4F5C;&#x7528;&#x662F;&#x6539;&#x53D8;&#x51FD;&#x6570;&#x7684;&#x8C03;&#x7528;&#x5BF9;&#x8C61;&#xFF0C;&#x5B83;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x5C31;&#x8868;&#x793A;&#x6539;&#x53D8;&#x540E;&#x7684;&#x8C03;&#x7528;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x56E0;&#x6B64;&#xFF0C;this&#x6307;&#x7684;&#x5C31;&#x662F;&#x8FD9;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x3002;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">0</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>{</div><div class="line">  alert(<span class="keyword">this</span>.x);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">var</span> o={};</div><div class="line">o.x = <span class="number">1</span>;</div><div class="line">o.m = test;</div><div class="line">o.m.apply(); <span class="comment">//0</span></div></pre></td></tr></table></figure></p>
-<p>apply()&#x7684;&#x53C2;&#x6570;&#x4E3A;&#x7A7A;&#x65F6;&#xFF0C;&#x9ED8;&#x8BA4;&#x8C03;&#x7528;&#x5168;&#x5C40;&#x5BF9;&#x8C61;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x8FD9;&#x65F6;&#x7684;&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x4E3A;0&#xFF0C;&#x8BC1;&#x660E;this&#x6307;&#x7684;&#x662F;&#x5168;&#x5C40;&#x5BF9;&#x8C61;&#x3002;</p>
-<p>&#x5982;&#x679C;&#x628A;&#x6700;&#x540E;&#x4E00;&#x884C;&#x4EE3;&#x7801;&#x4FEE;&#x6539;&#x4E3A;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">o.m.apply(o); <span class="comment">//1</span></div></pre></td></tr></table></figure></p>
-<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x5C31;&#x53D8;&#x6210;&#x4E86;1&#xFF0C;&#x8BC1;&#x660E;&#x4E86;&#x8FD9;&#x65F6;this&#x4EE3;&#x8868;&#x7684;&#x662F;&#x5BF9;&#x8C61;o&#x3002;</p>
-<p>&#xFF08;&#x5B8C;&#xFF09;</p>
+<p>下面分四种情况，详细讨论this的用法。</p>
+<h3 id="情况一纯粹的函数调用"><a href="#情况一：纯粹的函数调用" class="headerlink" title="情况一：纯粹的函数调用"></a><strong>情况一：纯粹的函数调用</strong></h3><p>这是函数的最通常用法，属于全局性调用，因此this就代表全局对象Global。</p>
+<p>请看下面这段代码，它的运行结果是1。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.x = <span class="number">1</span>;</div><div class="line">  alert(<span class="keyword">this</span>.x);</div><div class="line">&#125;</div><div class="line">test(); <span class="comment">// 1</span></div></pre></td></tr></table></figure></p>
+<p>为了证明this就是全局对象，我对代码做一些改变：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  alert(<span class="keyword">this</span>.x);</div><div class="line">&#125;</div><div class="line">test(); <span class="comment">// 1</span></div></pre></td></tr></table></figure></p>
+<p>运行结果还是1。再变一下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line"> <span class="keyword">this</span>.x = <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">test();</div><div class="line">alert(x); <span class="comment">//0</span></div></pre></td></tr></table></figure></p>
+<h3 id="情况二作为对象方法的调用"><a href="#情况二：作为对象方法的调用" class="headerlink" title="情况二：作为对象方法的调用"></a><strong>情况二：作为对象方法的调用</strong></h3><p>函数还可以作为某个对象的方法调用，这时this就指这个上级对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  alert(<span class="keyword">this</span>.x);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> o = &#123;&#125;;</div><div class="line">o.x = <span class="number">1</span>;</div><div class="line">o.m = test;</div><div class="line">o.m(); <span class="comment">// 1</span></div></pre></td></tr></table></figure></p>
+<h3 id="情况三-作为构造函数调用"><a href="#情况三：-作为构造函数调用" class="headerlink" title="情况三： 作为构造函数调用"></a><strong>情况三： 作为构造函数调用</strong></h3><p>所谓构造函数，就是通过这个函数生成一个新对象（object）。这时，this就指这个新对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.x = <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> test();</div><div class="line">alert(o.x); <span class="comment">// 1</span></div></pre></td></tr></table></figure></p>
+<p>运行结果为1。为了表明这时this不是全局对象，我对代码做一些改变：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">2</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.x = <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> test();</div><div class="line">alert(x); <span class="comment">//2</span></div></pre></td></tr></table></figure></p>
+<p>运行结果为2，表明全局变量x的值根本没变。</p>
+<h3 id="情况四-apply调用"><a href="#情况四：-apply调用" class="headerlink" title="情况四： apply调用"></a><strong>情况四： apply调用</strong></h3><p>apply()是函数对象的一个方法，它的作用是改变函数的调用对象，它的第一个参数就表示改变后的调用这个函数的对象。因此，this指的就是这第一个参数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">0</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  alert(<span class="keyword">this</span>.x);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> o=&#123;&#125;;</div><div class="line">o.x = <span class="number">1</span>;</div><div class="line">o.m = test;</div><div class="line">o.m.apply(); <span class="comment">//0</span></div></pre></td></tr></table></figure></p>
+<p>apply()的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指的是全局对象。</p>
+<p>如果把最后一行代码修改为<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">o.m.apply(o); <span class="comment">//1</span></div></pre></td></tr></table></figure></p>
+<p>运行结果就变成了1，证明了这时this代表的是对象o。</p>
+<p>（完）</p>
 
       
     </div>
@@ -397,16 +392,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/19/javascript/jQuery的deferred对象详解/" rel="next" title="jQuery的deferred对象详解">
-                <i class="fa fa-chevron-left"></i> jQuery的deferred对象详解
+              <a href="/2016/09/19/javascript/12种不宜使用的Javascript语法/" rel="next" title="12种不宜使用的Javascript语法">
+                <i class="fa fa-chevron-left"></i> 12种不宜使用的Javascript语法
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/19/javascript/Javascript定义类（class）的三种方法/" rel="prev" title="Javascript定义类（class）的三种方法">
-                Javascript定义类（class）的三种方法 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/19/javascript/Javascript异步编程的4种方法/" rel="prev" title="Javascript异步编程的4种方法">
+                Javascript异步编程的4种方法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -579,10 +574,24 @@
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 

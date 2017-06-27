@@ -86,16 +86,17 @@
 
 
 
-<meta name="description" content="&amp;#x5B9A;&amp;#x4E49;&amp;#xFF1A;&amp;#x5B9A;&amp;#x4E49;&amp;#x4E00;&amp;#x7CFB;&amp;#x5217;&amp;#x7B97;&amp;#x6CD5;&amp;#xFF0C;&amp;#x628A;&amp;#x4ED6;&amp;#x4EEC;&amp;#x4E00;&amp;#x4E2A;&amp;#x4E2A;&amp;#x5C01;&amp;#x88C5;&amp;#x8D77;&amp;#x6765;&amp;#xFF0C;&amp;#x5E76;&amp;#x4E14;&amp;#x4F7F">
+<meta name="description" content="定义：定义一系列算法，把他们一个个封装起来，并且使他们可以相互替换。  需求：绩效为S的人年终奖有4倍工资，绩效为A的人年终奖有3倍工资，绩效为B的人年终奖有2倍工资。 var calculateBonus = function(performanceLevel, salary) {     if (performanceLevel === &amp;apos;S&amp;apos;) {         re">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="策略模式">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/5策略模式/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="&amp;#x5B9A;&amp;#x4E49;&amp;#xFF1A;&amp;#x5B9A;&amp;#x4E49;&amp;#x4E00;&amp;#x7CFB;&amp;#x5217;&amp;#x7B97;&amp;#x6CD5;&amp;#xFF0C;&amp;#x628A;&amp;#x4ED6;&amp;#x4EEC;&amp;#x4E00;&amp;#x4E2A;&amp;#x4E2A;&amp;#x5C01;&amp;#x88C5;&amp;#x8D77;&amp;#x6765;&amp;#xFF0C;&amp;#x5E76;&amp;#x4E14;&amp;#x4F7F">
-<meta property="og:updated_time" content="2016-10-12T07:04:46.705Z">
+<meta property="og:description" content="定义：定义一系列算法，把他们一个个封装起来，并且使他们可以相互替换。  需求：绩效为S的人年终奖有4倍工资，绩效为A的人年终奖有3倍工资，绩效为B的人年终奖有2倍工资。 var calculateBonus = function(performanceLevel, salary) {     if (performanceLevel === &amp;apos;S&amp;apos;) {         re">
+<meta property="og:updated_time" content="2016-10-12T07:04:46.706Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="策略模式">
-<meta name="twitter:description" content="&amp;#x5B9A;&amp;#x4E49;&amp;#xFF1A;&amp;#x5B9A;&amp;#x4E49;&amp;#x4E00;&amp;#x7CFB;&amp;#x5217;&amp;#x7B97;&amp;#x6CD5;&amp;#xFF0C;&amp;#x628A;&amp;#x4ED6;&amp;#x4EEC;&amp;#x4E00;&amp;#x4E2A;&amp;#x4E2A;&amp;#x5C01;&amp;#x88C5;&amp;#x8D77;&amp;#x6765;&amp;#xFF0C;&amp;#x5E76;&amp;#x4E14;&amp;#x4F7F">
+<meta name="twitter:description" content="定义：定义一系列算法，把他们一个个封装起来，并且使他们可以相互替换。  需求：绩效为S的人年终奖有4倍工资，绩效为A的人年终奖有3倍工资，绩效为B的人年终奖有2倍工资。 var calculateBonus = function(performanceLevel, salary) {     if (performanceLevel === &amp;apos;S&amp;apos;) {         re">
 
 
 
@@ -322,9 +323,9 @@
 
       
         <blockquote>
-<p>&#x5B9A;&#x4E49;&#xFF1A;&#x5B9A;&#x4E49;&#x4E00;&#x7CFB;&#x5217;&#x7B97;&#x6CD5;&#xFF0C;&#x628A;&#x4ED6;&#x4EEC;&#x4E00;&#x4E2A;&#x4E2A;&#x5C01;&#x88C5;&#x8D77;&#x6765;&#xFF0C;&#x5E76;&#x4E14;&#x4F7F;&#x4ED6;&#x4EEC;&#x53EF;&#x4EE5;&#x76F8;&#x4E92;&#x66FF;&#x6362;&#x3002;</p>
+<p>定义：定义一系列算法，把他们一个个封装起来，并且使他们可以相互替换。</p>
 </blockquote>
-<p>&#x9700;&#x6C42;&#xFF1A;&#x7EE9;&#x6548;&#x4E3A;S&#x7684;&#x4EBA;&#x5E74;&#x7EC8;&#x5956;&#x6709;4&#x500D;&#x5DE5;&#x8D44;&#xFF0C;&#x7EE9;&#x6548;&#x4E3A;A&#x7684;&#x4EBA;&#x5E74;&#x7EC8;&#x5956;&#x6709;3&#x500D;&#x5DE5;&#x8D44;&#xFF0C;&#x7EE9;&#x6548;&#x4E3A;B&#x7684;&#x4EBA;&#x5E74;&#x7EC8;&#x5956;&#x6709;2&#x500D;&#x5DE5;&#x8D44;&#x3002;</p>
+<p>需求：绩效为S的人年终奖有4倍工资，绩效为A的人年终奖有3倍工资，绩效为B的人年终奖有2倍工资。</p>
 <pre><code>var calculateBonus = function(performanceLevel, salary) {
     if (performanceLevel === &apos;S&apos;) {
         return salary * 4;
@@ -337,8 +338,8 @@
     }
 };
 
-calculateBonus(&apos;B&apos;, 20000); //&#x8F38;&#x51FA;&#xFF1A;40000
-</code></pre><p>&#x7136;&#x800C;&#xFF0C;calculateBonus&#x51FD;&#x6570;&#x6BD4;&#x8F83;&#x5E9E;&#x5927;&#xFF0C;&#x5305;&#x542B;&#x4E86;&#x5F88;&#x591A;if&#x8BED;&#x53E5;&#xFF0C;&#x4E14;&#x7F3A;&#x4E4F;&#x5F39;&#x6027;&#xFF0C;&#x5982;&#x679C;&#x589E;&#x52A0;&#x65B0;&#x7684;&#x7EE9;&#x6548;&#x7B49;&#x7EA7;&#xFF0C;&#x590D;&#x7528;&#x6027;&#x5DEE;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x7A0B;&#x5E8F;&#x7684;&#x5176;&#x4ED6;&#x5730;&#x65B9;&#x9700;&#x8981;&#x91CD;&#x7528;&#x8FD9;&#x4E9B;&#x8BA1;&#x7B97;&#x5956;&#x91D1;&#x7684;&#x7B97;&#x6CD5;&#xFF0C;&#x6211;&#x4EEC;&#x7684;&#x9009;&#x62E9;&#x53EA;&#x6709;&#x590D;&#x5236;&#x548C;&#x7C98;&#x8D34;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x6211;&#x4EEC;&#x8981;&#x91CD;&#x6784;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x3002;</p>
+calculateBonus(&apos;B&apos;, 20000); //輸出：40000
+</code></pre><p>然而，calculateBonus函数比较庞大，包含了很多if语句，且缺乏弹性，如果增加新的绩效等级，复用性差，如果在程序的其他地方需要重用这些计算奖金的算法，我们的选择只有复制和粘贴。因此，我们要重构这段代码。</p>
 <pre><code>var performanceS = function(salary) {
     return salary * 4;
 }
@@ -361,11 +362,11 @@ var calculateBonus = function(performanceLevel, salary) {
     }
 };
 
-calculateBonus(&apos;A&apos;, 10000);//&#x8F38;&#x51FA;&#xFF1A;30000
-</code></pre><p>&#x6211;&#x4EEC;&#x7684;&#x7A0B;&#x5E8F;&#x5F97;&#x5230;&#x4E86;&#x4E00;&#x5B9A;&#x7684;&#x6539;&#x5584;&#xFF0C;&#x4F46;calculateBonus&#x51FD;&#x6570;&#x53EF;&#x80FD;&#x8D8A;&#x6765;&#x8D8A;&#x5E9E;&#x5927;&#xFF0C;&#x4F9D;&#x65E7;&#x7F3A;&#x4E4F;&#x5F39;&#x6027;&#x3002;</p>
-<h3 id="&#x7B56;&#x7565;&#x6A21;&#x5F0F;"><a href="#&#x7B56;&#x7565;&#x6A21;&#x5F0F;" class="headerlink" title="&#x7B56;&#x7565;&#x6A21;&#x5F0F;"></a>&#x7B56;&#x7565;&#x6A21;&#x5F0F;</h3><p>&#x8FD9;&#x65F6;&#x5019;&#x7B56;&#x7565;&#x6A21;&#x5F0F;&#x8BE5;&#x51FA;&#x573A;&#x4E86;&#x3002;</p>
-<p><strong>&#x6211;&#x4EEC;&#x8981;&#x5C06;&#x7B97;&#x6CD5;&#x7684;&#x4F7F;&#x7528;&#x4E0E;&#x7B97;&#x6CD5;&#x7684;&#x5B9E;&#x73B0;&#x5206;&#x79BB;&#x5F00;&#x6765;</strong></p>
-<pre><code>//&#x6211;&#x4EEC;&#x5148;&#x628A;&#x6BCF;&#x79CD;&#x7EE9;&#x6548;&#x7684;&#x8BA1;&#x7B97;&#x89C4;&#x5219;&#x5C01;&#x88C5;&#x5728;&#x5BF9;&#x5E94;&#x7684;&#x7B56;&#x7565;&#x7C7B;&#x91CC;
+calculateBonus(&apos;A&apos;, 10000);//輸出：30000
+</code></pre><p>我们的程序得到了一定的改善，但calculateBonus函数可能越来越庞大，依旧缺乏弹性。</p>
+<h3 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h3><p>这时候策略模式该出场了。</p>
+<p><strong>我们要将算法的使用与算法的实现分离开来</strong></p>
+<pre><code>//我们先把每种绩效的计算规则封装在对应的策略类里
 var porformanceS = function() {};
 porformanceS.prototype.calculate = function(salary) {
     return salary * 4;
@@ -378,7 +379,7 @@ var porformanceB = function() {};
 porformanceB.prototype.calculate = function(salary) {
     return salary * 2;
 };
-//&#x63A5;&#x4E0B;&#x6765;&#x5B9A;&#x4E49;&#x5956;&#x91D1;&#x7C7B;Bonus:
+//接下来定义奖金类Bonus:
 var Bonus = function() {
     this.salary = null;
     this.strategy = null;
@@ -394,12 +395,12 @@ Bonus.prototype.getBonus = function() {
     return this.strategy.calculate(this.salary);
 }
 
-//&#x4F7F;&#x7528;
+//使用
 var Bonus = new Bonus();
 bonus.setSalary(1000);
 bonus.setStrategy(new performanceS());
 bonus.getBonus();
-</code></pre><h3 id="javascript&#x7248;&#x672C;"><a href="#JavaScript&#x7248;&#x672C;" class="headerlink" title="JavaScript&#x7248;&#x672C;"></a>JavaScript&#x7248;&#x672C;</h3><p>&#x5728;JavaScript&#x4E2D;&#xFF0C;&#x51FD;&#x6570;&#x5373;&#x5BF9;&#x8C61;&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x628A;strategy&#x5B9A;&#x4E49;&#x6210;&#x51FD;&#x6570;:</p>
+</code></pre><h3 id="javascript版本"><a href="#JavaScript版本" class="headerlink" title="JavaScript版本"></a>JavaScript版本</h3><p>在JavaScript中，函数即对象，因此我们可以直接把strategy定义成函数:</p>
 <pre><code>var strategies = {
     &quot;S&quot;: function ( salary ){
         return salary * 4;
@@ -470,16 +471,16 @@ console.log(calculateBonus(&apos;A&apos;, 1000); //30000
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/25/api/html/Fullscreen API：全屏操作/" rel="next" title="Fullscreen API：全屏操作">
-                <i class="fa fa-chevron-left"></i> Fullscreen API：全屏操作
+              <a href="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/" rel="next" title="策略模式的应用">
+                <i class="fa fa-chevron-left"></i> 策略模式的应用
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/" rel="prev" title="设计原则和编程技巧">
-                设计原则和编程技巧 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/" rel="prev" title="单例模式">
+                单例模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -652,10 +653,24 @@ console.log(calculateBonus(&apos;A&apos;, 1000); //30000
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 

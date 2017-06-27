@@ -86,34 +86,17 @@
 
 
 
-<meta name="description" content="&amp;#x4E00;&amp;#x4E9B;&amp;#x91CD;&amp;#x6784;&amp;#x7684;&amp;#x5EFA;&amp;#x8BAE;&amp;#xFF1A;
-
-&amp;#x63D0;&amp;#x70BC;&amp;#x51FD;&amp;#x6570;
-
-&amp;#x907F;&amp;#x514D;&amp;#x51FA;&amp;#x73B0;&amp;#x8D85;&amp;#x5927;&amp;#x51FD;&amp;#x6570;
-
-&amp;#x72EC;&amp;#x7ACB;&amp;#x51FA;&amp;#x6765;&amp;">
+<meta name="description" content="一些重构的建议：  提炼函数  避免出现超大函数  独立出来的函数有助于代码复用  独立出来的函数更容易被覆写  独立出来的函数如果拥有一个良好的命名，  它本身就起到了注释的作用。     比如在一个负责取得用户信息的函数里面，我们还需要打印跟用户信息有关的log，那么打印log的语句就可以被封装在一个独立的函数里： var getUserInfo = function() {     aja">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="代码重构">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/21代码重构/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="&amp;#x4E00;&amp;#x4E9B;&amp;#x91CD;&amp;#x6784;&amp;#x7684;&amp;#x5EFA;&amp;#x8BAE;&amp;#xFF1A;
-
-&amp;#x63D0;&amp;#x70BC;&amp;#x51FD;&amp;#x6570;
-
-&amp;#x907F;&amp;#x514D;&amp;#x51FA;&amp;#x73B0;&amp;#x8D85;&amp;#x5927;&amp;#x51FD;&amp;#x6570;
-
-&amp;#x72EC;&amp;#x7ACB;&amp;#x51FA;&amp;#x6765;&amp;">
+<meta property="og:description" content="一些重构的建议：  提炼函数  避免出现超大函数  独立出来的函数有助于代码复用  独立出来的函数更容易被覆写  独立出来的函数如果拥有一个良好的命名，  它本身就起到了注释的作用。     比如在一个负责取得用户信息的函数里面，我们还需要打印跟用户信息有关的log，那么打印log的语句就可以被封装在一个独立的函数里： var getUserInfo = function() {     aja">
 <meta property="og:updated_time" content="2016-10-12T09:44:23.006Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="代码重构">
-<meta name="twitter:description" content="&amp;#x4E00;&amp;#x4E9B;&amp;#x91CD;&amp;#x6784;&amp;#x7684;&amp;#x5EFA;&amp;#x8BAE;&amp;#xFF1A;
-
-&amp;#x63D0;&amp;#x70BC;&amp;#x51FD;&amp;#x6570;
-
-&amp;#x907F;&amp;#x514D;&amp;#x51FA;&amp;#x73B0;&amp;#x8D85;&amp;#x5927;&amp;#x51FD;&amp;#x6570;
-
-&amp;#x72EC;&amp;#x7ACB;&amp;#x51FA;&amp;#x6765;&amp;">
+<meta name="twitter:description" content="一些重构的建议：  提炼函数  避免出现超大函数  独立出来的函数有助于代码复用  独立出来的函数更容易被覆写  独立出来的函数如果拥有一个良好的命名，  它本身就起到了注释的作用。     比如在一个负责取得用户信息的函数里面，我们还需要打印跟用户信息有关的log，那么打印log的语句就可以被封装在一个独立的函数里： var getUserInfo = function() {     aja">
 
 
 
@@ -340,24 +323,24 @@
 
       
         <hr>
-<p>&#x4E00;&#x4E9B;&#x91CD;&#x6784;&#x7684;&#x5EFA;&#x8BAE;&#xFF1A;</p>
+<p>一些重构的建议：</p>
 <ol>
-<li><p>&#x63D0;&#x70BC;&#x51FD;&#x6570;</p>
+<li><p>提炼函数</p>
 <ul>
-<li><p>&#x907F;&#x514D;&#x51FA;&#x73B0;&#x8D85;&#x5927;&#x51FD;&#x6570;</p>
+<li><p>避免出现超大函数</p>
 </li>
-<li><p>&#x72EC;&#x7ACB;&#x51FA;&#x6765;&#x7684;&#x51FD;&#x6570;&#x6709;&#x52A9;&#x4E8E;&#x4EE3;&#x7801;&#x590D;&#x7528;</p>
+<li><p>独立出来的函数有助于代码复用</p>
 </li>
-<li><p>&#x72EC;&#x7ACB;&#x51FA;&#x6765;&#x7684;&#x51FD;&#x6570;&#x66F4;&#x5BB9;&#x6613;&#x88AB;&#x8986;&#x5199;</p>
+<li><p>独立出来的函数更容易被覆写</p>
 </li>
-<li><p>&#x72EC;&#x7ACB;&#x51FA;&#x6765;&#x7684;&#x51FD;&#x6570;&#x5982;&#x679C;&#x62E5;&#x6709;&#x4E00;&#x4E2A;&#x826F;&#x597D;&#x7684;&#x547D;&#x540D;&#xFF0C;</p>
+<li><p>独立出来的函数如果拥有一个良好的命名，</p>
 </li>
-<li><p>&#x5B83;&#x672C;&#x8EAB;&#x5C31;&#x8D77;&#x5230;&#x4E86;&#x6CE8;&#x91CA;&#x7684;&#x4F5C;&#x7528;&#x3002;</p>
+<li><p>它本身就起到了注释的作用。</p>
 </li>
 </ul>
 </li>
 </ol>
-<p>&#x6BD4;&#x5982;&#x5728;&#x4E00;&#x4E2A;&#x8D1F;&#x8D23;&#x53D6;&#x5F97;&#x7528;&#x6237;&#x4FE1;&#x606F;&#x7684;&#x51FD;&#x6570;&#x91CC;&#x9762;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x9700;&#x8981;&#x6253;&#x5370;&#x8DDF;&#x7528;&#x6237;&#x4FE1;&#x606F;&#x6709;&#x5173;&#x7684;log&#xFF0C;&#x90A3;&#x4E48;&#x6253;&#x5370;log&#x7684;&#x8BED;&#x53E5;&#x5C31;&#x53EF;&#x4EE5;&#x88AB;&#x5C01;&#x88C5;&#x5728;&#x4E00;&#x4E2A;&#x72EC;&#x7ACB;&#x7684;&#x51FD;&#x6570;&#x91CC;&#xFF1A;</p>
+<p>比如在一个负责取得用户信息的函数里面，我们还需要打印跟用户信息有关的log，那么打印log的语句就可以被封装在一个独立的函数里：</p>
 <pre><code>var getUserInfo = function() {
     ajax(&apos;http://xxx.com/userInfo&apos;, function(data) {
         console.log(&apos;userId: &apos; + data.userId);
@@ -365,7 +348,7 @@
         console.log(&apos;nickName: &apos; + data.nickName);
     });
 };
-</code></pre><p>&#x53EF;&#x4EE5;&#x6539;&#x6210;&#xFF1A;</p>
+</code></pre><p>可以改成：</p>
 <pre><code>var getUserInfo = function() {
     ajax(&apos;http://xxx.com/userInfo&apos;, function(data) {
         printDetails(data);
@@ -377,46 +360,46 @@ var printDetails = function(data) {
     console.log(&apos;nickName: &apos; + data.nickName);
 }
 </code></pre><ol>
-<li>&#x5408;&#x5E76;&#x91CD;&#x590D;&#x7684;&#x6761;&#x4EF6;&#x7247;&#x6BB5;<br>&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x5185;&#x6709;&#x4E00;&#x4E9B;&#x6761;&#x4EF6;&#x5206;&#x652F;&#x8BED;&#x53E5;&#xFF0C;&#x800C;&#x8FD9;&#x4E9B;&#x6761;&#x4EF6;&#x5206;&#x652F;&#x8BED;&#x53E5;&#x5185;&#x90E8;&#x6563;&#x6B65;&#x4E86;&#x4E00;&#x4E9B;&#x91CD;&#x590D;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x6709;&#x5FC5;&#x8981;&#x8FDB;&#x884C;&#x5408;&#x5E76;&#x53BB;&#x91CD;&#x5DE5;&#x4F5C;&#x3002;</li>
+<li>合并重复的条件片段<br>如果一个函数内有一些条件分支语句，而这些条件分支语句内部散步了一些重复的代码，那么就有必要进行合并去重工作。</li>
 </ol>
-<pre><code>//&#x9875;&#x9762;&#x8DF3;&#x8F6C;
+<pre><code>//页面跳转
 var paging = function(currPage) {
     if (currPage &lt;= 0) {
         currPage = 0;
-        jump(currPage); //&#x8DF3;&#x8F6C;
+        jump(currPage); //跳转
     } else if (currPage &gt;= totalPage) {
         currPage = totalPage;
-        jump(currPage); //&#x8DF3;&#x8F6C;
+        jump(currPage); //跳转
     } else {
-        jump(currPage); //&#x8DF3;&#x8F6C;
+        jump(currPage); //跳转
     }
 }
-</code></pre><p>&#x6539;&#x6210;</p>
-<pre><code>//&#x9875;&#x9762;&#x8DF3;&#x8F6C;
+</code></pre><p>改成</p>
+<pre><code>//页面跳转
 var paging = function(currPage) {
     if (currPage &lt;= 0) {
         currPage = 0;
     } else if (currPage &gt;= totalPage) {
         currPage = totalPage;
     } 
-    jump(currPage); //&#x8DF3;&#x8F6C;
+    jump(currPage); //跳转
 }
 </code></pre><ol>
-<li>&#x628A;&#x6761;&#x4EF6;&#x5206;&#x652F;&#x8BED;&#x53E5;&#x63D0;&#x70BC;&#x6210;&#x51FD;&#x6570;<br>&#x5728;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x4E2D;&#xFF0C;&#x590D;&#x6742;&#x7684;&#x6761;&#x4EF6;&#x5206;&#x652F;&#x8BED;&#x53E5;&#x662F;&#x5BFC;&#x81F4;&#x7A0B;&#x5E8F;&#x96BE;&#x4EE5;&#x9605;&#x8BFB;&#x548C;&#x7406;&#x89E3;&#x7684;&#x91CD;&#x8981;&#x539F;&#x56E0;&#xFF0C;&#x800C;&#x4E14;&#x5BB9;&#x6613;&#x5BFC;&#x81F4;&#x4E00;&#x4E2A;&#x5E9E;&#x5927;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x6240;&#x4EE5;&#x901A;&#x5E38;&#x6211;&#x4EEC;&#x8981;&#x8FDB;&#x884C;&#x4E00;&#x5B9A;&#x7684;&#x63D0;&#x70BC;&#x3002;</li>
+<li>把条件分支语句提炼成函数<br>在程序设计中，复杂的条件分支语句是导致程序难以阅读和理解的重要原因，而且容易导致一个庞大的函数，所以通常我们要进行一定的提炼。</li>
 </ol>
-<pre><code>//&#x8BA1;&#x7B97;&#x5546;&#x54C1;&#x4EF7;&#x683C;&#xFF0C;&#x5982;&#x679C;&#x5904;&#x4E8E;&#x590F;&#x5B63;&#xFF0C;&#x5168;&#x90E8;&#x5546;&#x54C1;&#x516B;&#x6298;&#x51FA;&#x552E;
+<pre><code>//计算商品价格，如果处于夏季，全部商品八折出售
 var getPrice = function(price) {
     var date = new Date();
-    if (date.getMonth() &gt;= 6 &amp;&amp; date.getMonth &lt;= 9) { //&#x590F;&#x5B63;
+    if (date.getMonth() &gt;= 6 &amp;&amp; date.getMonth &lt;= 9) { //夏季
         return price * 0.8;
     }
     return price;
 }
-</code></pre><p>&#x6539;&#x6210;</p>
-<pre><code>//&#x8BA1;&#x7B97;&#x5546;&#x54C1;&#x4EF7;&#x683C;&#xFF0C;&#x5982;&#x679C;&#x5904;&#x4E8E;&#x590F;&#x5B63;&#xFF0C;&#x5168;&#x90E8;&#x5546;&#x54C1;&#x516B;&#x6298;&#x51FA;&#x552E;
+</code></pre><p>改成</p>
+<pre><code>//计算商品价格，如果处于夏季，全部商品八折出售
 var getPrice = function(price) {
 
-    if (isSummer()) { //&#x590F;&#x5B63;
+    if (isSummer()) { //夏季
         return price * 0.8;
     }
     return price;
@@ -426,7 +409,7 @@ var isSummer = function() {
     return date.getMonth() &gt;= 6 &amp;&amp; date.getMonth &lt;= 9;
 }
 </code></pre><ol>
-<li>&#x5408;&#x7406;&#x4F7F;&#x7528;&#x5FAA;&#x73AF;</li>
+<li>合理使用循环</li>
 </ol>
 <pre><code>var createXHR = function() {
     var xhr;
@@ -442,7 +425,7 @@ var isSummer = function() {
     return xhr;
 };
 var xhr = createXHR();
-</code></pre><p>&#x6539;&#x6210;&#xFF1A;</p>
+</code></pre><p>改成：</p>
 <pre><code>var createXHR = function() {
     var versions = [&apos;MSXML2.XMLHttp.6.0&apos;, &apos;MSXML2.XMLHttp.3.0&apos;, &apos;MSXML2.XMLHttp&apos;];
     for (var i = 0, version; version = versions[i++]; ) {
@@ -455,33 +438,33 @@ var xhr = createXHR();
 };
 var xhr = createXHR();
 </code></pre><ol>
-<li>&#x63D0;&#x524D;&#x8BA9;&#x51FD;&#x6570;&#x9000;&#x51FA;&#x4EE3;&#x66FF;&#x5D4C;&#x5957;&#x6761;&#x4EF6;&#x5206;&#x652F;</li>
+<li>提前让函数退出代替嵌套条件分支</li>
 </ol>
 <pre><code>var del = function(obj) {
     var ret;
-    if (!obj.isReadOnly) { //&#x4E0D;&#x4E3A;&#x53EA;&#x8BFB;&#x7684;&#x65F6;&#x5019;&#x624D;&#x53EF;&#x4EE5;&#x5220;&#x9664;
-        if (obj.isFolder) { //&#x5982;&#x679C;&#x662F;&#x6587;&#x4EF6;&#x5939;
+    if (!obj.isReadOnly) { //不为只读的时候才可以删除
+        if (obj.isFolder) { //如果是文件夹
             ret = deleteFolder(obj);
-        } else if (obj.isFile) { //&#x5982;&#x679C;&#x662F;&#x6587;&#x4EF6;
+        } else if (obj.isFile) { //如果是文件
             ret = deleteFile(obj);
         }
     }
     return ret;
 }
-</code></pre><p>&#x6539;&#x6210;&#xFF1A;</p>
+</code></pre><p>改成：</p>
 <pre><code>var del = function(obj) {
     if (obj.isReadOnly) { 
         return;
     }
-    if (obj.isFolder) { //&#x5982;&#x679C;&#x662F;&#x6587;&#x4EF6;&#x5939;
+    if (obj.isFolder) { //如果是文件夹
         return deleteFolder(obj);
     } 
-    if (obj.isFile) { //&#x5982;&#x679C;&#x662F;&#x6587;&#x4EF6;
+    if (obj.isFile) { //如果是文件
         return deleteFile(obj);
     }
 }
 </code></pre><ol>
-<li>&#x4F20;&#x9012;&#x5BF9;&#x8C61;&#x53C2;&#x6570;&#x4EE3;&#x66FF;&#x8FC7;&#x957F;&#x7684;&#x53C2;&#x6570;&#x5217;&#x8868;<br>&#x6709;&#x65F6;&#x5019;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x53EF;&#x80FD;&#x63A5;&#x6536;&#x591A;&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x800C;&#x53C2;&#x6570;&#x7684;&#x6570;&#x91CF;&#x8D8A;&#x591A;&#x51FD;&#x6570;&#x5C31;&#x8D8A;&#x96BE;&#x7406;&#x89E3;&#x548C;&#x4F7F;&#x7528;&#x3002;&#x8FD9;&#x65F6;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x628A;&#x53C2;&#x6570;&#x653E;&#x5165;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x5185;&#xFF0C;&#x7136;&#x540E;&#x628A;&#x5BF9;&#x8C61;&#x4F20;&#x5165;&#x3002;</li>
+<li>传递对象参数代替过长的参数列表<br>有时候一个函数可能接收多个参数，而参数的数量越多函数就越难理解和使用。这时我们可以把参数放入一个对象内，然后把对象传入。</li>
 </ol>
 <pre><code>var setUserInfo = function(id, name, address, sex, mobile, qq) {
     console.log(&apos;id=&apos; + id);
@@ -492,7 +475,7 @@ var xhr = createXHR();
     console.log(&apos;qq=&apos; + qq);
 }
 setUserInfo(1234, cyseria, guangzhou, female, 188***, 52***);
-</code></pre><p>&#x6539;&#x6210;&#xFF1A;</p>
+</code></pre><p>改成：</p>
 <pre><code>var setUserInfo = function(obj) {
     console.log(&apos;id=&apos; + obj.id);
     console.log(&apos;name=&apos; + obj.name);
@@ -510,12 +493,12 @@ setUserInfo({
     qq: 52***
 });
 </code></pre><ol>
-<li><p>&#x5C3D;&#x91CF;&#x51CF;&#x5C11;&#x53C2;&#x6570;&#x6570;&#x91CF;<br>&#x5C3D;&#x91CF;&#x51CF;&#x5C11;&#x4E00;&#x4E9B;&#x6CA1;&#x5FC5;&#x8981;&#x7684;&#x4E0D;&#x4F1A;&#x4F7F;&#x7528;&#x6216;&#x8005;&#x53EF;&#x4EE5;&#x6C42;&#x51FA;&#x7684;&#x53C2;&#x6570;&#x3002;&#x8FD9;&#x91CC;&#x4E0D;&#x505A;&#x8FC7;&#x591A;&#x9610;&#x8FF0;&#x3002;</p>
+<li><p>尽量减少参数数量<br>尽量减少一些没必要的不会使用或者可以求出的参数。这里不做过多阐述。</p>
 </li>
-<li><p>&#x5C11;&#x7528;&#x4E09;&#x76EE;&#x8FD0;&#x7B97;<br>&#x6709;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x7528;&#x4E09;&#x76EE;&#x8FD0;&#x7B97;&#x4F1A;&#x89C9;&#x5F97;&#x5B83;&#x6027;&#x80FD;&#x9AD8;&#xFF0C;&#x4EE3;&#x7801;&#x91CF;&#x5C11;&#x3002;&#x4F46;&#x662F;&#x5728;&#x5B9E;&#x9645;&#x5F00;&#x53D1;&#x4E2D;&#xFF0C;&#x5373;&#x4F7F;&#x628A;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;&#x5FAA;&#x73AF;&#x4E00;&#x767E;&#x4E07;&#x6B21;&#xFF0C;&#x4F7F;&#x7528;&#x4E09;&#x76EE;&#x8FD0;&#x7B97;&#x548C;<code>if,else</code>&#x7684;&#x65F6;&#x95F4;&#x5F00;&#x9500;&#x4F9D;&#x65E7;&#x5728;&#x540C;&#x4E2A;&#x7EA7;&#x522B;&#x4E2D;&#x3002;&#x540C;&#x6837;&#xFF0C;&#x76F8;&#x6BD4;&#x635F;&#x5931;&#x7684;&#x4EE3;&#x7801;&#x53EF;&#x8BFB;&#x6027;&#x548C;&#x53EF;&#x7EF4;&#x62A4;&#x6027;&#xFF0C;&#x4ED6;&#x80FD;&#x8282;&#x7701;&#x7684;&#x4EE3;&#x7801;&#x91CF;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#x4E0D;&#x8BA1;&#x3002;</p>
+<li><p>少用三目运算<br>有时候我们用三目运算会觉得它性能高，代码量少。但是在实际开发中，即使把一段代码循环一百万次，使用三目运算和<code>if,else</code>的时间开销依旧在同个级别中。同样，相比损失的代码可读性和可维护性，他能节省的代码量可以忽略不计。</p>
 </li>
 </ol>
-<p>&#x81F3;&#x4E8E;&#x4F8B;&#x5B50;&#xFF0C;&#x770B;&#x770B;&#x4E0B;&#x9762;&#x90A3;&#x4E2A;&#x4F60;&#x5C31;&#x77E5;&#x9053;&#x4E86;&#xFF1A;</p>
+<p>至于例子，看看下面那个你就知道了：</p>
 <pre><code>if (!aup || bup) {
     return a === doc ? -1 :
         b === doc ? 1 : 
@@ -524,9 +507,9 @@ setUserInfo({
         sortInput ? (indexOf.call(sortInput, a) - indexOf.call(sortInput, b)) : 
         0;
 }
-</code></pre><p>&#x5F53;&#x7136;&#xFF0C;&#x5982;&#x679C;&#x53EA;&#x662F;&#x7B80;&#x5355;&#x7684;&#x4E00;&#x53E5;&#xFF0C;&#x7528;&#x4E00;&#x4E0B;&#x4E5F;&#x6CA1;&#x4EC0;&#x4E48;&#x6240;&#x8C13;&#x3002;</p>
+</code></pre><p>当然，如果只是简单的一句，用一下也没什么所谓。</p>
 <ol>
-<li>&#x5408;&#x7406;&#x4F7F;&#x7528;&#x94FE;&#x5F0F;&#x8C03;&#x7528;<br>&#x4F7F;&#x7528;jq&#x7684;&#x5BF9;&#x94FE;&#x5F0F;&#x8C03;&#x7528;&#x4E00;&#x5B9A;&#x4E0D;&#x964C;&#x751F;&#xFF0C;&#x5728;&#x81EA;&#x5DF1;&#x7F16;&#x5199;&#x51FD;&#x6570;&#x7684;&#x65F6;&#x5019;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8FD9;&#x70B9;&#xFF0C;&#x8FD4;&#x56DE;&#x81EA;&#x8EAB;&#x3002;&#x4F46;&#x662F;&#x4ED6;&#x4E5F;&#x6709;&#x4E00;&#x4E2A;&#x574F;&#x5904;&#xFF0C;&#x8C03;&#x8BD5;&#x7684;&#x65F6;&#x5019;&#x4E0D;&#x65B9;&#x4FBF;&#x3002;&#x6240;&#x4EE5;&#x5982;&#x679C;&#x94FE;&#x6761;&#x7684;&#x7ED3;&#x6784;&#x7A33;&#x5B9A;&#x540E;&#x671F;&#x4E0D;&#x6613;&#x4FEE;&#x6539;&#xFF0C;&#x90A3;&#x4E48;&#x4F7F;&#x7528;&#x4ED6;&#x65E0;&#x53EF;&#x539A;&#x975E;&#xFF0C;&#x4F46;&#x662F;&#x5982;&#x679C;&#x8BE5;&#x94FE;&#x7ECF;&#x5E38;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x90A3;&#x4E48;&#x8FD8;&#x662F;&#x7528;&#x666E;&#x901A;&#x7684;&#x8C03;&#x7528;&#x5427;&#x3002;</li>
+<li>合理使用链式调用<br>使用jq的对链式调用一定不陌生，在自己编写函数的时候也可以使用这点，返回自身。但是他也有一个坏处，调试的时候不方便。所以如果链条的结构稳定后期不易修改，那么使用他无可厚非，但是如果该链经常发生变化那么还是用普通的调用吧。</li>
 </ol>
 <pre><code>var User = {
     id: null,
@@ -542,22 +525,22 @@ setUserInfo({
 };
 console.log(User.setId(1234).setName(&apos;cyseria&apos;));
 </code></pre><ol>
-<li>&#x5206;&#x89E3;&#x5927;&#x578B;&#x7C7B;</li>
+<li>分解大型类</li>
 </ol>
 <pre><code>var Spirit = function(name) {
     this.name = name;
 };
 Spirit.prototype.attack = function(type) {
     if (type === &apos;waveBoxing&apos;) {
-        console.log(this.name + &apos;:&#x4F7F;&#x7528;&#x6CE2;&#x52A8;&#x62F3;&apos;);
+        console.log(this.name + &apos;:使用波动拳&apos;);
     } else if (type === &apos;whirlKick&apos;) {
-        console.log(this.name + &apos;:&#x4F7F;&#x7528;&#x65CB;&#x98CE;&#x817F;&apos;);
+        console.log(this.name + &apos;:使用旋风腿&apos;);
     }
 };
 var Spirit = new Spirit(&apos;AAA&apos;);
 Spirit .attack(&apos;waveBoxing&apos;);
 Spirit .attack(&apos;whirlKick&apos;);
-</code></pre><p>&#x6539;&#x6210;&#xFF1A;</p>
+</code></pre><p>改成：</p>
 <pre><code>var Attack = function(spirit) {
     this.spirit = spirit;
 };
@@ -566,10 +549,10 @@ Attack.prototype.start = function(type) {
 }
 Attack.prototype.list= function(type) {
     waveBoxing: function() {
-        console.log(this.spirit.name + &apos;:&#x4F7F;&#x7528;&#x6CE2;&#x52A8;&#x62F3;&apos;);
+        console.log(this.spirit.name + &apos;:使用波动拳&apos;);
     },
     whirlKick: function() {
-        console.log(this.spirit.name + &apos;:&#x4F7F;&#x7528;&#x65CB;&#x98CE;&#x817F;&apos;);
+        console.log(this.spirit.name + &apos;:使用旋风腿&apos;);
     }
 };
 var Spirit = function(name) {
@@ -584,7 +567,7 @@ var Spirit = new Spirit(&apos;AAA&apos;);
 Spirit .attack(&apos;waveBoxing&apos;);
 Spirit .attack(&apos;whirlKick&apos;);
 </code></pre><ol>
-<li>&#x7528;return&#x9000;&#x51FA;&#x591A;&#x91CD;&#x5FAA;&#x73AF;<br>&#x5047;&#x8BBE;&#x5728;&#x51FD;&#x6570;&#x4F53;&#x5185;&#x6709;&#x4E00;&#x4E2A;&#x4E24;&#x91CD;&#x5FAA;&#x73AF;&#x8BED;&#x53E5;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5728;&#x5185;&#x5C42;&#x5FAA;&#x73AF;&#x4E2D;&#x5224;&#x65AD;&#x5F53;&#x8FBE;&#x5230;&#x67D0;&#x4E2A;&#x4E34;&#x754C;&#x6761;&#x4EF6;&#x65F6;&#x9000;&#x51FA;&#x5916;&#x5C42;&#x5FAA;&#x73AF;&#x3002;</li>
+<li>用return退出多重循环<br>假设在函数体内有一个两重循环语句，我们需要在内层循环中判断当达到某个临界条件时退出外层循环。</li>
 </ol>
 <pre><code>var print = function(i) {
     console.log(i);
@@ -651,15 +634,15 @@ func();
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/12/JavaScript设计模式与开发实践/2闭包/" rel="next" title="闭包">
-                <i class="fa fa-chevron-left"></i> 闭包
+              <a href="/2016/10/12/JavaScript设计模式与开发实践/16中介者模式/" rel="next" title="中介者模式">
+                <i class="fa fa-chevron-left"></i> 中介者模式
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/13/php设计模式/PHP设计模式(10)：适配器模式/" rel="prev" title="适配器模式">
+              <a href="/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/" rel="prev" title="适配器模式">
                 适配器模式 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -833,10 +816,24 @@ func();
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 

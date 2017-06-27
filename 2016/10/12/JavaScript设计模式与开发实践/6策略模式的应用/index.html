@@ -86,16 +86,17 @@
 
 
 
-<meta name="description" content="&amp;#x7528;&amp;#x7B56;&amp;#x7565;&amp;#x6A21;&amp;#x5F0F;&amp;#x5B9E;&amp;#x73B0;&amp;#x7F13;&amp;#x52A8;&amp;#x52A8;&amp;#x753B;&amp;#x9700;&amp;#x6C42;&amp;#xFF1A;&amp;#x8BA9;&amp;#x5C0F;&amp;#x7403;&amp;#x4EE5;&amp;#x5404;&amp;#x79CD;&amp;#x7F13;&amp;#x52A8;&amp;#x6548;&amp;#x679C;&amp;#x5728">
+<meta name="description" content="用策略模式实现缓动动画需求：让小球以各种缓动效果在页面中运动动画开始前需要记录的：  小球所在原始位置  小球移动的目标位置  动画开始时的时间点  小球运动的时间点之后，用setInterval创建一个定时器，定时器每19秒循环一次。   //缓动算法，此算法移植于flash  var tween = {     //t：动画已消耗的时间，b：小球原始位置，c：小球目标位置，d：动画持续时间">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="策略模式的应用">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="&amp;#x7528;&amp;#x7B56;&amp;#x7565;&amp;#x6A21;&amp;#x5F0F;&amp;#x5B9E;&amp;#x73B0;&amp;#x7F13;&amp;#x52A8;&amp;#x52A8;&amp;#x753B;&amp;#x9700;&amp;#x6C42;&amp;#xFF1A;&amp;#x8BA9;&amp;#x5C0F;&amp;#x7403;&amp;#x4EE5;&amp;#x5404;&amp;#x79CD;&amp;#x7F13;&amp;#x52A8;&amp;#x6548;&amp;#x679C;&amp;#x5728">
+<meta property="og:description" content="用策略模式实现缓动动画需求：让小球以各种缓动效果在页面中运动动画开始前需要记录的：  小球所在原始位置  小球移动的目标位置  动画开始时的时间点  小球运动的时间点之后，用setInterval创建一个定时器，定时器每19秒循环一次。   //缓动算法，此算法移植于flash  var tween = {     //t：动画已消耗的时间，b：小球原始位置，c：小球目标位置，d：动画持续时间">
 <meta property="og:updated_time" content="2016-10-12T07:11:36.568Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="策略模式的应用">
-<meta name="twitter:description" content="&amp;#x7528;&amp;#x7B56;&amp;#x7565;&amp;#x6A21;&amp;#x5F0F;&amp;#x5B9E;&amp;#x73B0;&amp;#x7F13;&amp;#x52A8;&amp;#x52A8;&amp;#x753B;&amp;#x9700;&amp;#x6C42;&amp;#xFF1A;&amp;#x8BA9;&amp;#x5C0F;&amp;#x7403;&amp;#x4EE5;&amp;#x5404;&amp;#x79CD;&amp;#x7F13;&amp;#x52A8;&amp;#x6548;&amp;#x679C;&amp;#x5728">
+<meta name="twitter:description" content="用策略模式实现缓动动画需求：让小球以各种缓动效果在页面中运动动画开始前需要记录的：  小球所在原始位置  小球移动的目标位置  动画开始时的时间点  小球运动的时间点之后，用setInterval创建一个定时器，定时器每19秒循环一次。   //缓动算法，此算法移植于flash  var tween = {     //t：动画已消耗的时间，b：小球原始位置，c：小球目标位置，d：动画持续时间">
 
 
 
@@ -322,21 +323,21 @@
 
       
         <hr>
-<h3 id="&#x7528;&#x7B56;&#x7565;&#x6A21;&#x5F0F;&#x5B9E;&#x73B0;&#x7F13;&#x52A8;&#x52A8;&#x753B;"><a href="#&#x7528;&#x7B56;&#x7565;&#x6A21;&#x5F0F;&#x5B9E;&#x73B0;&#x7F13;&#x52A8;&#x52A8;&#x753B;" class="headerlink" title="&#x7528;&#x7B56;&#x7565;&#x6A21;&#x5F0F;&#x5B9E;&#x73B0;&#x7F13;&#x52A8;&#x52A8;&#x753B;"></a>&#x7528;&#x7B56;&#x7565;&#x6A21;&#x5F0F;&#x5B9E;&#x73B0;&#x7F13;&#x52A8;&#x52A8;&#x753B;</h3><p>&#x9700;&#x6C42;&#xFF1A;&#x8BA9;&#x5C0F;&#x7403;&#x4EE5;&#x5404;&#x79CD;&#x7F13;&#x52A8;&#x6548;&#x679C;&#x5728;&#x9875;&#x9762;&#x4E2D;&#x8FD0;&#x52A8;<br>&#x52A8;&#x753B;&#x5F00;&#x59CB;&#x524D;&#x9700;&#x8981;&#x8BB0;&#x5F55;&#x7684;&#xFF1A;</p>
+<h3 id="用策略模式实现缓动动画"><a href="#用策略模式实现缓动动画" class="headerlink" title="用策略模式实现缓动动画"></a>用策略模式实现缓动动画</h3><p>需求：让小球以各种缓动效果在页面中运动<br>动画开始前需要记录的：</p>
 <ul>
-<li><p>&#x5C0F;&#x7403;&#x6240;&#x5728;&#x539F;&#x59CB;&#x4F4D;&#x7F6E;</p>
+<li><p>小球所在原始位置</p>
 </li>
-<li><p>&#x5C0F;&#x7403;&#x79FB;&#x52A8;&#x7684;&#x76EE;&#x6807;&#x4F4D;&#x7F6E;</p>
+<li><p>小球移动的目标位置</p>
 </li>
-<li><p>&#x52A8;&#x753B;&#x5F00;&#x59CB;&#x65F6;&#x7684;&#x65F6;&#x95F4;&#x70B9;</p>
+<li><p>动画开始时的时间点</p>
 </li>
-<li><p>&#x5C0F;&#x7403;&#x8FD0;&#x52A8;&#x7684;&#x65F6;&#x95F4;&#x70B9;<br>&#x4E4B;&#x540E;&#xFF0C;&#x7528;<code>setInterval</code>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5B9A;&#x65F6;&#x5668;&#xFF0C;&#x5B9A;&#x65F6;&#x5668;&#x6BCF;19&#x79D2;&#x5FAA;&#x73AF;&#x4E00;&#x6B21;&#x3002;</p>
+<li><p>小球运动的时间点<br>之后，用<code>setInterval</code>创建一个定时器，定时器每19秒循环一次。</p>
 </li>
 </ul>
-<pre><code>//&#x7F13;&#x52A8;&#x7B97;&#x6CD5;&#xFF0C;&#x6B64;&#x7B97;&#x6CD5;&#x79FB;&#x690D;&#x4E8E;flash
+<pre><code>//缓动算法，此算法移植于flash
 
 var tween = {
-    //t&#xFF1A;&#x52A8;&#x753B;&#x5DF2;&#x6D88;&#x8017;&#x7684;&#x65F6;&#x95F4;&#xFF0C;b&#xFF1A;&#x5C0F;&#x7403;&#x539F;&#x59CB;&#x4F4D;&#x7F6E;&#xFF0C;c&#xFF1A;&#x5C0F;&#x7403;&#x76EE;&#x6807;&#x4F4D;&#x7F6E;&#xFF0C;d&#xFF1A;&#x52A8;&#x753B;&#x6301;&#x7EED;&#x65F6;&#x95F4;
+    //t：动画已消耗的时间，b：小球原始位置，c：小球目标位置，d：动画持续时间
     linear: function(t, b, c, d) {
         return c*t/d + b;
     },
@@ -356,26 +357,26 @@ var tween = {
         return c * ((t = t / d - 1) * t * t + 1 ) + b;
     }
 };
-</code></pre><p>&#x63A5;&#x7740;Animation&#x7C7B;</p>
+</code></pre><p>接着Animation类</p>
 <pre><code>var Animate = function( dom ) {
-    this.dom = dom;              //&#x8FDB;&#x884C;&#x8FD0;&#x52A8;&#x7684;dom&#x8282;&#x70B9;
-    this.startTime = 0;         //&#x52A8;&#x753B;&#x5F00;&#x59CB;&#x65F6;&#x95F4;
-    this.startPos = 0;           //&#x52A8;&#x753B;&#x5F00;&#x59CB;&#x65F6;&#x5019;dom&#x4F4D;&#x7F6E;
-    this.endPos = 0;            //&#x7ED3;&#x675F;dom&#x4F4D;&#x7F6E;
-    this.propertyName = null;     //dom&#x8282;&#x70B9;&#x9700;&#x8981;&#x88AB;&#x6539;&#x53D8;&#x7684;&#x5C5E;&#x6027;&#x540D;
-    this.easing = null;    //&#x7F13;&#x52A8;&#x7B97;&#x6CD5;
-    this.duration = null;   //&#x52A8;&#x753B;&#x6301;&#x7EED;&#x65F6;&#x95F4;
+    this.dom = dom;              //进行运动的dom节点
+    this.startTime = 0;         //动画开始时间
+    this.startPos = 0;           //动画开始时候dom位置
+    this.endPos = 0;            //结束dom位置
+    this.propertyName = null;     //dom节点需要被改变的属性名
+    this.easing = null;    //缓动算法
+    this.duration = null;   //动画持续时间
 };
-</code></pre><p>Animate.prototype.start&#x65B9;&#x6CD5;&#x8D1F;&#x8D23;&#x542F;&#x52A8;&#x8FD9;&#x4E2A;&#x52A8;&#x753B;<br>Animate.prototype.step&#x4EE3;&#x8868;&#x5C0F;&#x7403;&#x8FD0;&#x52A8;&#x7684;&#x6BCF;&#x4E00;&#x5E27;&#x8981;&#x505A;&#x7684;&#x4E8B;&#x60C5;</p>
+</code></pre><p>Animate.prototype.start方法负责启动这个动画<br>Animate.prototype.step代表小球运动的每一帧要做的事情</p>
 <pre><code>Animate.prototype.start = function( propertyName, endPos, duration, easing) {
-    this.startTime = +new Date;  //&#x52A8;&#x753B;&#x542F;&#x52A8;&#x65F6;&#x95F4;
-    this.startPos = this.dom.getBoundingClientRect()[ propertyName ]; //dom&#x8282;&#x70B9;&#x521D;&#x59CB;&#x4F4D;&#x7F6E;
+    this.startTime = +new Date;  //动画启动时间
+    this.startPos = this.dom.getBoundingClientRect()[ propertyName ]; //dom节点初始位置
     this.endPos = endPos;
     this.duration = duration;
     this.easing = tween[ easing ]; 
 
     var self = this;
-    var timeId = setInterval(function() { //&#x542F;&#x52A8;&#x5B9A;&#x65F6;&#x5668;&#xFF0C;&#x5F00;&#x59CB;&#x6267;&#x884C;&#x52A8;&#x753B;
+    var timeId = setInterval(function() { //启动定时器，开始执行动画
         if (self.step() === false) {
             clearInterval(timeId);
         }
@@ -397,37 +398,37 @@ Animate.prototype.step = function() {
 Animate.prototype.update = function(pos) {
     this.dom.style[this.propertyName] = pos + &apos;px&apos;;
 };
-</code></pre><p>&#x6700;&#x540E;&#xFF0C;&#x8C03;&#x7528;</p>
+</code></pre><p>最后，调用</p>
 <pre><code>var div = document.getElementById(&apos;div&apos;);
 var animate = new Animate(div);
 animate.start(&apos;left&apos;, 500, 1000, &apos;strongEaseOut&apos;);
-</code></pre><h3 id="&#x8868;&#x5355;&#x9A8C;&#x8BC1;"><a href="#&#x8868;&#x5355;&#x9A8C;&#x8BC1;" class="headerlink" title="&#x8868;&#x5355;&#x9A8C;&#x8BC1;"></a>&#x8868;&#x5355;&#x9A8C;&#x8BC1;</h3><p>&#x9700;&#x6C42;&#xFF1A;</p>
+</code></pre><h3 id="表单验证"><a href="#表单验证" class="headerlink" title="表单验证"></a>表单验证</h3><p>需求：</p>
 <ul>
-<li><p>&#x7528;&#x6237;&#x540D;&#x4E0D;&#x80FD;&#x4E3A;&#x7A7A;</p>
+<li><p>用户名不能为空</p>
 </li>
-<li><p>&#x5BC6;&#x7801;&#x957F;&#x5EA6;&#x4E0D;&#x80FD;&#x5C11;&#x4E8E;6&#x4F4D;</p>
+<li><p>密码长度不能少于6位</p>
 </li>
-<li><p>&#x624B;&#x673A;&#x53F7;&#x7801;&#x7B26;&#x5408;&#x683C;&#x5F0F;</p>
+<li><p>手机号码符合格式</p>
 </li>
 </ul>
-<p>&#x5E38;&#x89C4;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x8FD9;&#x4E48;&#x5199;&#xFF1A;</p>
+<p>常规，我们可能这么写：</p>
 <pre><code>var registerForm = document.getElementById(&apos;registerForm&apos;);
 
 registerForm.onsubmit = function() {
   if (registerForm.userName.value === &apos;&apos;) {
-    alert(&quot;&#x7528;&#x6237;&#x540D;&#x4E0D;&#x80FD;&#x4E3A;&#x7A7A;&quot;);
+    alert(&quot;用户名不能为空&quot;);
     return false;
   }
   if (registerForm.password.value.length &lt; 6) {
-    alert(&quot;&#x5BC6;&#x7801;&#x957F;&#x5EA6;&#x4E0D;&#x80FD;&#x5C11;&#x4E8E;6&#x4F4D;&quot;);
+    alert(&quot;密码长度不能少于6位&quot;);
     return false;
   }
   if (!/(^1[3|5|8][0-9]{9}$)/.test(registerForm.phoneNumber.value)) {
-    alert(&quot;&#x624B;&#x673A;&#x53F7;&#x7801;&#x683C;&#x5F0F;&#x4E0D;&#x6B63;&#x786E;&quot;);
+    alert(&quot;手机号码格式不正确&quot;);
     return false;
   }
 }
-</code></pre><p>&#x5F53;&#x7136;&#xFF0C;&#x8FD9;&#x4E2A;&#x4E5F;&#x6709;&#x51FD;&#x6570;&#x5E9E;&#x5927;&#xFF0C;&#x7F3A;&#x4E4F;&#x5F39;&#x6027;&#xFF0C;&#x590D;&#x7528;&#x6027;&#x5DEE;&#x7B49;&#x95EE;&#x9898;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x5F00;&#x59CB;&#x7A81;&#x51FA;&#x672C;&#x6587;&#x7684;&#x91CD;&#x70B9;&#xFF0C;&#x7B56;&#x7565;&#x6A21;&#x5F0F;&#x7684;&#x5E94;&#x7528;</p>
+</code></pre><p>当然，这个也有函数庞大，缺乏弹性，复用性差等问题，所以，开始突出本文的重点，策略模式的应用</p>
 <pre><code>var strategies = {
   isNonEmpty: function(value, errorMsg) {
     if (value == &apos;&apos;) {
@@ -482,9 +483,9 @@ registerForm.onsubmit = function() {
 var validataFunc = function() {
   var validator = new Validator();
 
-  validator.add(registerForm.userName, &apos;isNonEmpty&apos;, &apos;&#x7528;&#x6237;&#x540D;&#x4E0D;&#x80FD;&#x4E3A;&#x7A7A;&apos;);
-  validator.add(registerForm.password, &apos;minLength:6&apos;, &apos;&#x5BC6;&#x7801;&#x957F;&#x5EA6;&#x4E0D;&#x80FD;&#x5C11;&#x4E8E;6&#x4F4D;&apos;);
-  validator.add(registerForm.phoneNumber, &apos;isMobile&apos;, &apos;&#x624B;&#x673A;&#x53F7;&#x7801;&#x683C;&#x5F0F;&#x4E0D;&#x6B63;&#x786E;&apos;);
+  validator.add(registerForm.userName, &apos;isNonEmpty&apos;, &apos;用户名不能为空&apos;);
+  validator.add(registerForm.password, &apos;minLength:6&apos;, &apos;密码长度不能少于6位&apos;);
+  validator.add(registerForm.phoneNumber, &apos;isMobile&apos;, &apos;手机号码格式不正确&apos;);
 
   var errorMsg = validator.start();
   return errorMsg;
@@ -549,8 +550,8 @@ var validataFunc = function() {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/12/JavaScript设计模式与开发实践/11命令模式/" rel="prev" title="命令模式">
-                命令模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/" rel="prev" title="策略模式">
+                策略模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -723,10 +724,24 @@ var validataFunc = function() {
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 

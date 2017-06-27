@@ -86,22 +86,17 @@
 
 
 
-<meta name="description" content="&amp;#x539F;&amp;#x6587;&amp;#x5730;&amp;#x5740;&amp;#xFF1A;[PHP&amp;#x8BBE;&amp;#x8BA1;&amp;#x6A21;&amp;#x5F0F;(&amp;#x4E09;)&amp;#xFF1A;&amp;#x5C01;&amp;#x88C5;][1]
-
-&amp;#x7B80;&amp;#x4ECB;&amp;#x9762;&amp;#x5411;&amp;#x5BF9;&amp;#x8C61;&amp;#x7F16;&amp;#x7A0B;&amp;#x4E2D;&amp;#xFF0C;&amp;#x">
+<meta name="description" content="原文地址：[PHP设计模式(三)：封装][1]  简介面向对象编程中，一切都是对象，对一个对象的封装，也成了面向对象编程中必不可少的部分。和C/C++，Java，Python等语言一样，PHP也支持封装。 封装/Encapsulation 对事物的封装是指，将事物进行抽象后，提供抽象概念的实现的具体方法。  听起来很拗口，还是举鲸鱼的例子。对于鲸鱼来说，需要吃东西这个行为，吃本身是一个抽象的概念">
+<meta name="keywords" content="php">
 <meta property="og:type" content="article">
 <meta property="og:title" content="封装">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(3)：封装/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="&amp;#x539F;&amp;#x6587;&amp;#x5730;&amp;#x5740;&amp;#xFF1A;[PHP&amp;#x8BBE;&amp;#x8BA1;&amp;#x6A21;&amp;#x5F0F;(&amp;#x4E09;)&amp;#xFF1A;&amp;#x5C01;&amp;#x88C5;][1]
-
-&amp;#x7B80;&amp;#x4ECB;&amp;#x9762;&amp;#x5411;&amp;#x5BF9;&amp;#x8C61;&amp;#x7F16;&amp;#x7A0B;&amp;#x4E2D;&amp;#xFF0C;&amp;#x">
+<meta property="og:description" content="原文地址：[PHP设计模式(三)：封装][1]  简介面向对象编程中，一切都是对象，对一个对象的封装，也成了面向对象编程中必不可少的部分。和C/C++，Java，Python等语言一样，PHP也支持封装。 封装/Encapsulation 对事物的封装是指，将事物进行抽象后，提供抽象概念的实现的具体方法。  听起来很拗口，还是举鲸鱼的例子。对于鲸鱼来说，需要吃东西这个行为，吃本身是一个抽象的概念">
 <meta property="og:updated_time" content="2016-10-13T07:54:07.415Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="封装">
-<meta name="twitter:description" content="&amp;#x539F;&amp;#x6587;&amp;#x5730;&amp;#x5740;&amp;#xFF1A;[PHP&amp;#x8BBE;&amp;#x8BA1;&amp;#x6A21;&amp;#x5F0F;(&amp;#x4E09;)&amp;#xFF1A;&amp;#x5C01;&amp;#x88C5;][1]
-
-&amp;#x7B80;&amp;#x4ECB;&amp;#x9762;&amp;#x5411;&amp;#x5BF9;&amp;#x8C61;&amp;#x7F16;&amp;#x7A0B;&amp;#x4E2D;&amp;#xFF0C;&amp;#x">
+<meta name="twitter:description" content="原文地址：[PHP设计模式(三)：封装][1]  简介面向对象编程中，一切都是对象，对一个对象的封装，也成了面向对象编程中必不可少的部分。和C/C++，Java，Python等语言一样，PHP也支持封装。 封装/Encapsulation 对事物的封装是指，将事物进行抽象后，提供抽象概念的实现的具体方法。  听起来很拗口，还是举鲸鱼的例子。对于鲸鱼来说，需要吃东西这个行为，吃本身是一个抽象的概念">
 
 
 
@@ -328,15 +323,15 @@
 
       
         <blockquote>
-<p>&#x539F;&#x6587;&#x5730;&#x5740;&#xFF1A;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x4E09;)&#xFF1A;&#x5C01;&#x88C5;][1]</p>
+<p>原文地址：[PHP设计模式(三)：封装][1]</p>
 </blockquote>
-<h2 id="&#x7B80;&#x4ECB;"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</h2><p>&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;&#x4E2D;&#xFF0C;&#x4E00;&#x5207;&#x90FD;&#x662F;&#x5BF9;&#x8C61;&#xFF0C;&#x5BF9;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x5C01;&#x88C5;&#xFF0C;&#x4E5F;&#x6210;&#x4E86;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;&#x4E2D;&#x5FC5;&#x4E0D;&#x53EF;&#x5C11;&#x7684;&#x90E8;&#x5206;&#x3002;<br>&#x548C;C/C++&#xFF0C;Java&#xFF0C;Python&#x7B49;&#x8BED;&#x8A00;&#x4E00;&#x6837;&#xFF0C;PHP&#x4E5F;&#x652F;&#x6301;&#x5C01;&#x88C5;&#x3002;</p>
-<h2 id="&#x5C01;&#x88C5;encapsulation"><a href="#&#x5C01;&#x88C5;-Encapsulation" class="headerlink" title="&#x5C01;&#x88C5;/Encapsulation"></a>&#x5C01;&#x88C5;/Encapsulation</h2><blockquote>
-<p>&#x5BF9;&#x4E8B;&#x7269;&#x7684;&#x5C01;&#x88C5;&#x662F;&#x6307;&#xFF0C;&#x5C06;&#x4E8B;&#x7269;&#x8FDB;&#x884C;&#x62BD;&#x8C61;&#x540E;&#xFF0C;&#x63D0;&#x4F9B;&#x62BD;&#x8C61;&#x6982;&#x5FF5;&#x7684;&#x5B9E;&#x73B0;&#x7684;&#x5177;&#x4F53;&#x65B9;&#x6CD5;&#x3002;</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>面向对象编程中，一切都是对象，对一个对象的封装，也成了面向对象编程中必不可少的部分。<br>和C/C++，Java，Python等语言一样，PHP也支持封装。</p>
+<h2 id="封装encapsulation"><a href="#封装-Encapsulation" class="headerlink" title="封装/Encapsulation"></a>封装/Encapsulation</h2><blockquote>
+<p>对事物的封装是指，将事物进行抽象后，提供抽象概念的实现的具体方法。</p>
 </blockquote>
-<p>&#x542C;&#x8D77;&#x6765;&#x5F88;&#x62D7;&#x53E3;&#xFF0C;&#x8FD8;&#x662F;&#x4E3E;&#x9CB8;&#x9C7C;&#x7684;&#x4F8B;&#x5B50;&#x3002;<br>&#x5BF9;&#x4E8E;&#x9CB8;&#x9C7C;&#x6765;&#x8BF4;&#xFF0C;&#x9700;&#x8981;&#x5403;&#x4E1C;&#x897F;&#x8FD9;&#x4E2A;&#x884C;&#x4E3A;&#xFF0C;&#x5403;&#x672C;&#x8EAB;&#x662F;&#x4E00;&#x4E2A;&#x62BD;&#x8C61;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x56E0;&#x4E3A;&#x5177;&#x4F53;&#x5230;&#x600E;&#x4E48;&#x5403;&#xFF0C;&#x662F;&#x5480;&#x56BC;&#x548C;&#x6D88;&#x5316;&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x751A;&#x81F3;&#x5982;&#x4F55;&#x5480;&#x56BC;&#x548C;&#x6D88;&#x5316;&#x4E5F;&#x662F;&#x4E0D;&#x53EF;&#x89C1;&#x7684;&#x3002;&#x5BF9;&#x5916;&#x90E8;&#x800C;&#x8A00;&#xFF0C;&#x53EF;&#x89C1;&#x7684;&#x53EA;&#x662F;&#x5403;&#x8FD9;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x5982;&#x4F55;&#x5403;&#x3001;&#x600E;&#x4E48;&#x5403;&#xFF0C;&#x662F;&#x88AB;&#x5C01;&#x88C5;&#x5728;&#x4E86;&#x9CB8;&#x9C7C;&#x7684;&#x5B9E;&#x73B0;&#x4E2D;&#x3002;&#x751A;&#x81F3;&#x53EF;&#x4EE5;&#x8BF4;&#xFF0C;&#x6D88;&#x5316;&#x7CFB;&#x7EDF;&#xFF0C;&#x88AB;&#x5C01;&#x88C5;&#x5230;&#x4E86;&#x9CB8;&#x9C7C;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x4E2D;&#xFF0C;&#x5BF9;&#x5916;&#x90E8;&#x4E0D;&#x53EF;&#x89C1;&#xFF0C;&#x4EC5;&#x4EC5;&#x9CB8;&#x9C7C;&#x81EA;&#x5DF1;&#x53EF;&#x89C1;&#x3002;</p>
-<h2 id="&#x5C01;&#x88C5;&#x65B9;&#x6CD5;"><a href="#&#x5C01;&#x88C5;&#x65B9;&#x6CD5;" class="headerlink" title="&#x5C01;&#x88C5;&#x65B9;&#x6CD5;"></a>&#x5C01;&#x88C5;&#x65B9;&#x6CD5;</h2><p>&#x548C;&#x522B;&#x7684;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x8BED;&#x8A00;&#x4E00;&#x6837;&#xFF0C;PHP&#x4E5F;&#x53EA;&#x662F;&#x4E09;&#x79CD;&#x5C01;&#x88C5;&#x6982;&#x5FF5;&#xFF1A;Private&#xFF0C;Protected&#xFF0C;Public&#x3002;</p>
-<h3 id="&#x79C1;&#x6709;private"><a href="#&#x79C1;&#x6709;-Private" class="headerlink" title="&#x79C1;&#x6709;/Private"></a>&#x79C1;&#x6709;/Private</h3><p>&#x79C1;&#x6709;&#x7684;&#x6982;&#x5FF5;&#x662F;&#xFF0C;&#x4EC5;&#x4EC5;&#x5BF9;&#x8C61;&#x5185;&#x90E8;&#x53EF;&#x89C1;&#xFF0C;&#x5916;&#x90E8;&#x4E0D;&#x53EF;&#x89C1;&#xFF0C;&#x5982;&#xFF1A;</p>
+<p>听起来很拗口，还是举鲸鱼的例子。<br>对于鲸鱼来说，需要吃东西这个行为，吃本身是一个抽象的概念，因为具体到怎么吃，是咀嚼和消化的过程，甚至如何咀嚼和消化也是不可见的。对外部而言，可见的只是吃这一个接口，如何吃、怎么吃，是被封装在了鲸鱼的实现中。甚至可以说，消化系统，被封装到了鲸鱼这个对象中，对外部不可见，仅仅鲸鱼自己可见。</p>
+<h2 id="封装方法"><a href="#封装方法" class="headerlink" title="封装方法"></a>封装方法</h2><p>和别的程序设计语言一样，PHP也只是三种封装概念：Private，Protected，Public。</p>
+<h3 id="私有private"><a href="#私有-Private" class="headerlink" title="私有/Private"></a>私有/Private</h3><p>私有的概念是，仅仅对象内部可见，外部不可见，如：</p>
 <pre><code>&lt;?php
 class Whale {
   private $name;
@@ -355,8 +350,8 @@ class Whale {
   }
 }
 ?&gt;
-</code></pre><p>name&#x662F;&#x9CB8;&#x9C7C;&#x7684;&#x79C1;&#x6709;&#x5C5E;&#x6027;&#xFF0C;chew()&#x548C;digest()&#x662F;&#x9CB8;&#x9C7C;&#x7684;&#x79C1;&#x6709;&#x65B9;&#x6CD5;&#xFF0C;&#x5BF9;&#x4E8E;&#x5176;&#x4ED6;&#x7C7B;&#x6765;&#x8BF4;&#xFF0C;&#x90FD;&#x662F;&#x4E0D;&#x53EF;&#x89C1;&#x7684;&#x3002;&#x5BF9;&#x4E8E;&#x73B0;&#x5B9E;&#x6765;&#x8BF4;&#xFF0C;&#x6211;&#x4EEC;&#x5982;&#x679C;&#x53EA;&#x662F;&#x6CE8;&#x91CD;&#x5403;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x5FC5;&#x8981;&#x53BB;&#x5173;&#x5FC3;&#x9CB8;&#x9C7C;&#x662F;&#x5982;&#x4F55;&#x53BB;&#x5403;&#x7684;&#x3002;</p>
-<h3 id="&#x4FDD;&#x62A4;protected"><a href="#&#x4FDD;&#x62A4;-Protected" class="headerlink" title="&#x4FDD;&#x62A4;/Protected"></a>&#x4FDD;&#x62A4;/Protected</h3><p>&#x4FDD;&#x62A4;&#x7684;&#x6982;&#x5FF5;&#x662F;&#xFF0C;&#x4EC5;&#x4EC5;&#x662F;&#x81EA;&#x8EAB;&#x7C7B;&#x548C;&#x7EE7;&#x627F;&#x7C7B;&#x53EF;&#x89C1;&#xFF0C;&#x8FD9;&#x4E2A;&#x5173;&#x952E;&#x5B57;&#x7684;&#x7528;&#x9014;&#x4E3B;&#x8981;&#x662F;&#x9632;&#x6B62;&#x6EE5;&#x7528;&#x7C7B;&#x7684;&#x6D3E;&#x751F;&#xFF0C;&#x53E6;&#x5916;&#x4E09;&#x65B9;&#x5E93;&#x7F16;&#x5199;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x7528;&#x5230;&#xFF0C;&#x9632;&#x6B62;&#x8BEF;&#x7528;&#x3002;</p>
+</code></pre><p>name是鲸鱼的私有属性，chew()和digest()是鲸鱼的私有方法，对于其他类来说，都是不可见的。对于现实来说，我们如果只是注重吃，并没有必要去关心鲸鱼是如何去吃的。</p>
+<h3 id="保护protected"><a href="#保护-Protected" class="headerlink" title="保护/Protected"></a>保护/Protected</h3><p>保护的概念是，仅仅是自身类和继承类可见，这个关键字的用途主要是防止滥用类的派生，另外三方库编写的时候会用到，防止误用。</p>
 <pre><code>&lt;?php
 abstract class Animal {
   private $name;
@@ -380,9 +375,9 @@ class Whale extends Animal {
   }
 }
 ?&gt;
-</code></pre><p>&#x9CB8;&#x9C7C;&#x7C7B;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7EE7;&#x627F;&#x4F7F;&#x7528;&#x52A8;&#x7269;&#x7C7B;&#x7684;&#x5480;&#x56BC;&#x548C;&#x6D88;&#x5316;&#x65B9;&#x6CD5;&#xFF0C;&#x4F46;&#x662F;&#x522B;&#x7684;&#x7EE7;&#x627F;&#x9CB8;&#x9C7C;&#x7C7B;&#x7684;&#x7C7B;&#x5C31;&#x4E0D;&#x53EF;&#x4EE5;&#x518D;&#x4F7F;&#x7528;&#x52A8;&#x7269;&#x7C7B;&#x7684;&#x5480;&#x56BC;&#x548C;&#x6D88;&#x5316;&#x65B9;&#x6CD5;&#x4E86;&#x3002;&#x4FDD;&#x62A4;&#x66F4;&#x591A;&#x662F;&#x7528;&#x4E8E;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x8BBE;&#x8BA1;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x4E3A;&#x4E86;&#x7F16;&#x7A0B;&#x6765;&#x5B9E;&#x73B0;&#x67D0;&#x4E2A;&#x9700;&#x6C42;&#x3002;</p>
-<h3 id="&#x516C;&#x5171;public"><a href="#&#x516C;&#x5171;-Public" class="headerlink" title="&#x516C;&#x5171;/Public"></a>&#x516C;&#x5171;/Public</h3><p>&#x516C;&#x5171;&#x7684;&#x6982;&#x5FF5;&#x5C31;&#x662F;&#xFF0C;&#x4EFB;&#x4F55;&#x7C7B;&#x3001;&#x4EFB;&#x4F55;&#x4E8B;&#x7269;&#x90FD;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#xFF0C;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x9650;&#x5236;&#xFF0C;&#x8FD9;&#x91CC;&#x4E0D;&#x518D;&#x8D58;&#x8FF0;&#x3002;</p>
-<h2 id="getterssetters"><a href="#Getters-Setters" class="headerlink" title="Getters/Setters"></a>Getters/Setters</h2><p>Getters&#x548C;Setters&#x4E5F;&#x53EB;Accessors&#x548C;Mutators&#xFF0C;&#x5728;Java/C#&#x7B49;&#x8BED;&#x8A00;&#x4E2D;&#x5E38;&#x4EE5;get()/set()&#x65B9;&#x6CD5;&#x51FA;&#x73B0;&#x3002;<br>&#x5BF9;&#x4E8E;&#x8FD9;&#x4E24;&#x4E2A;&#x4E1C;&#x897F;&#x7684;&#x4E89;&#x8BAE;&#x5F88;&#x5927;&#xFF0C;&#x8003;&#x8651;&#x4E0B;&#x9762;&#x4E00;&#x4E2A;&#x7C7B;&#xFF1A;</p>
+</code></pre><p>鲸鱼类可以通过继承使用动物类的咀嚼和消化方法，但是别的继承鲸鱼类的类就不可以再使用动物类的咀嚼和消化方法了。保护更多是用于面向对象设计，而不是为了编程来实现某个需求。</p>
+<h3 id="公共public"><a href="#公共-Public" class="headerlink" title="公共/Public"></a>公共/Public</h3><p>公共的概念就是，任何类、任何事物都可以访问，没有任何限制，这里不再赘述。</p>
+<h2 id="getterssetters"><a href="#Getters-Setters" class="headerlink" title="Getters/Setters"></a>Getters/Setters</h2><p>Getters和Setters也叫Accessors和Mutators，在Java/C#等语言中常以get()/set()方法出现。<br>对于这两个东西的争议很大，考虑下面一个类：</p>
 <pre><code>&lt;?php
 class Price {
   public $priceA;
@@ -391,7 +386,7 @@ class Price {
   ...
 }
 ?&gt;
-</code></pre><p>&#x5982;&#x679C;&#x4E0D;&#x4F7F;&#x7528;Getters/Setters&#xFF0C;&#x6211;&#x4EEC;&#x7ED9;Price&#x7C7B;&#x8D4B;&#x503C;&#x548C;&#x53D6;&#x503C;&#x4E00;&#x822C;&#x662F;&#x8FD9;&#x6837;&#xFF1A;</p>
+</code></pre><p>如果不使用Getters/Setters，我们给Price类赋值和取值一般是这样：</p>
 <pre><code>&lt;?php
   $price = new Price();
   $price-&gt;priceA = 1;
@@ -403,7 +398,7 @@ class Price {
   echo $price-&gt;priceC;
   ...
 ?&gt;
-</code></pre><p>&#x4F46;&#x662F;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x4E86;Getters/Setters&#xFF0C;Price&#x7C7B;&#x5C06;&#x53D8;&#x6210;&#x8FD9;&#x6837;&#xFF1A;</p>
+</code></pre><p>但是如果使用了Getters/Setters，Price类将变成这样：</p>
 <pre><code>&lt;?php
 class Price {
   private $priceA;
@@ -418,7 +413,7 @@ class Price {
   ...
 }
 ?&gt;
-</code></pre><p>&#x8FD9;&#x65F6;&#x5019;&#x8D4B;&#x503C;&#x5C06;&#x53D8;&#x6210;&#x8FD9;&#x6837;&#xFF1A;</p>
+</code></pre><p>这时候赋值将变成这样：</p>
 <pre><code>&lt;?php
   $price = new Price();
   $price-&gt;setpriceA(1);
@@ -430,12 +425,12 @@ class Price {
   echo $price-&gt;getPriceC();
   ...
 ?&gt;
-</code></pre><p>&#x662F;&#x4E0D;&#x662F;&#x611F;&#x89C9;&#x9700;&#x8981;&#x591A;&#x6572;&#x5F88;&#x591A;&#x4EE3;&#x7801;&#xFF1F;&#x8FD9;&#x4E5F;&#x662F;&#x5F88;&#x591A;&#x7A0B;&#x5E8F;&#x5458;&#x4E0D;&#x613F;&#x610F;&#x4F7F;&#x7528;get/set&#x7684;&#x539F;&#x56E0;&#xFF0C;&#x9020;&#x6210;&#x4E86;&#x5927;&#x91CF;&#x7684;&#x770B;&#x4F3C;&#x65E0;&#x7528;&#x5197;&#x4F59;&#x7684;&#x4EE3;&#x7801;&#x3002;<br>&#x4E3A;&#x4EC0;&#x4E48;&#x53EB;&#x770B;&#x4F3C;&#x5197;&#x4F59;&#x548C;&#x65E0;&#x7528;&#xFF1F;&#x56E0;&#x4E3A;Getters/Setters&#x662F;&#x7F16;&#x7A0B;&#x8BBE;&#x8BA1;&#x65B9;&#x6CD5;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x7F16;&#x7A0B;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;&#x3002;</p>
+</code></pre><p>是不是感觉需要多敲很多代码？这也是很多程序员不愿意使用get/set的原因，造成了大量的看似无用冗余的代码。<br>为什么叫看似冗余和无用？因为Getters/Setters是编程设计方法，而不是编程实现方法。</p>
 <blockquote>
-<p>&#x5728;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x4E2D;&#xFF0C;&#x7C7B;&#x548C;&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x8BBF;&#x95EE;&#x3001;&#x4EA4;&#x4E92;&#x548C;&#x66F4;&#x65B0;&#x5E94;&#x8BE5;&#x662F;&#x901A;&#x8FC7;Accessors&#x548C;Mutators&#xFF0C;&#x4E5F;&#x5C31;&#x662F;Getters&#x548C;Setters&#x6765;&#x5B9E;&#x73B0;&#x3002;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x548C;<br>&#x4FEE;&#x6539;&#x7834;&#x574F;&#x4E86;&#x7C7B;&#x7684;&#x5C01;&#x88C5;&#x6027;&#x3002;</p>
+<p>在面向对象程序设计中，类和类之间的访问、交互和更新应该是通过Accessors和Mutators，也就是Getters和Setters来实现。直接访问和<br>修改破坏了类的封装性。</p>
 </blockquote>
-<p>&#x4E3A;&#x4EC0;&#x4E48;&#x91C7;&#x7528;&#x8FD9;&#x79CD;&#x8BBE;&#x8BA1;&#x65B9;&#x5F0F;&#xFF1F;&#x56E0;&#x4E3A;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x662F;&#x5BF9;&#x73B0;&#x5B9E;&#x95EE;&#x9898;&#x7684;&#x62BD;&#x8C61;&#xFF0C;&#x800C;&#x5728;&#x7F16;&#x7A0B;&#x7684;&#x5DE5;&#x7A0B;&#x4E2D;&#x7A0B;&#x5E8F;&#x5458;&#x626E;&#x6F14;&#x7684;&#x89D2;&#x8272;&#x5F80;&#x5F80;&#x662F;&#x4E0A;&#x5E1D;&#x3002;<br>&#x8003;&#x8651;&#x8FD9;&#x6837;&#x4E00;&#x79CD;&#x573A;&#x666F;&#xFF1A;&#x4F60;&#x670B;&#x53CB;&#x8981;&#x6C42;&#x4F60;&#x6539;&#x540D;&#xFF0C;&#x51B3;&#x5B9A;&#x662F;&#x5426;&#x6539;&#x540D;&#x7684;&#x4EBA;&#x662F;&#x4F60;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x4F60;&#x670B;&#x53CB;&#x3002;&#x5728;&#x4F60;&#x7684;&#x670B;&#x53CB;&#x7684;&#x89C6;&#x89C9;&#xFF08;&#x4E5F;&#x5C31;&#x662F;&#x4F60;&#x670B;&#x53CB;&#x7684;&#x7C7B;&#xFF09;&#xFF0C;&#x4ED6;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x53BB;&#x4FEE;&#x6539;&#x4F60;&#x7684;&#x540D;&#x5B57;&#x3002;<br>&#x5982;&#x679C;&#x4F60;&#x76F4;&#x63A5;&#x91C7;&#x7528;&#x975E;Getters/Setters&#x7684;&#x8BBE;&#x8BA1;&#x65B9;&#x6CD5;&#xFF0C;&#x4E8B;&#x5B9E;&#x4E0A;&#x662F;&#x7A0B;&#x5E8F;&#x5458;&#x626E;&#x6F14;&#x7684;&#x8FD9;&#x4E2A;&#x4E0A;&#x5E1D;&#x4FEE;&#x6539;&#x4E86;&#x73B0;&#x5B9E;&#x89C4;&#x5219;&#xFF0C;&#x5141;&#x8BB8;&#x4F60;&#x670B;&#x53CB;&#x80FD;&#x591F;&#x968F;&#x610F;&#x66F4;&#x6539;&#x4F60;&#x7684;&#x59D3;&#x540D;&#xFF0C;&#x663E;&#x7136;&#x8FD9;&#x662F;&#x4E0D;&#x5408;&#x7406;&#x7684;&#x3002;</p>
-<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>&#x5408;&#x7406;&#x7684;&#x5C01;&#x88C5;&#x5BF9;&#x4E8E;&#x597D;&#x7684;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x662F;&#x5FC5;&#x4E0D;&#x53EF;&#x5C11;&#x7684;&#xFF0C;&#x867D;&#x7136;&#x4EC0;&#x4E48;&#x90FD;&#x662F;Public&#x4E5F;&#x80FD;&#x89E3;&#x51B3;&#x7F16;&#x7A0B;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x4E0D;&#x662F;&#x7528;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#x7684;&#x601D;&#x8DEF;&#x3002;</p>
+<p>为什么采用这种设计方式？因为程序设计是对现实问题的抽象，而在编程的工程中程序员扮演的角色往往是上帝。<br>考虑这样一种场景：你朋友要求你改名，决定是否改名的人是你，而不是你朋友。在你的朋友的视觉（也就是你朋友的类），他不能直接去修改你的名字。<br>如果你直接采用非Getters/Setters的设计方法，事实上是程序员扮演的这个上帝修改了现实规则，允许你朋友能够随意更改你的姓名，显然这是不合理的。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>合理的封装对于好的程序设计是必不可少的，虽然什么都是Public也能解决编程问题，但是这不是用程序设计解决问题的思路。</p>
 
       
     </div>
@@ -488,16 +483,16 @@ class Price {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/" rel="next" title="抽象类和接口">
-                <i class="fa fa-chevron-left"></i> 抽象类和接口
+              <a href="/2016/10/13/php设计模式/PHP设计模式(4)：继承/" rel="next" title="继承">
+                <i class="fa fa-chevron-left"></i> 继承
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/13/javascript/44个 Javascript 变态题解析 (上)/" rel="prev" title="44个 Javascript 变态题解析 (上)">
-                44个 Javascript 变态题解析 (上) <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/" rel="prev" title="抽象类和接口">
+                抽象类和接口 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -670,10 +665,24 @@ class Price {
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 

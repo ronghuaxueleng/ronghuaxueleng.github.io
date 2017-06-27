@@ -328,9 +328,14 @@
         
           
           
-&#x539F;&#x59CB;&#x7C7B;&#x578B;1ECMAScript&#x6709;5&#x79CD;&#x539F;&#x59CB;&#x7C7B;&#x578B;(primitive type)&#xFF0C;&#x5373;Undefined&#x3001;Null&#x3001;Boolean&#x3001;Number&#x548C;String&#x3002;ECMAScript&#x63D0;&#x4F9B;&#x4E86;typeof&#x6765;&#x5224;&#x65AD;&#x503C;&#x7684;&#x7C7B;&#x578B;&#x3002;
-typeof&#x8FD0;&#x7B97;&#x7B26;123var sTemp=&quot;test string&quot;;alert(typeof sTemp);//outpus &quot;string&quot;alert(typeof 95);//outpus &quot;number&quot;
-1typeof&#x8FD0;&#x7B97;&#x7B26;&#x8FD4;&#x56DE;&#x503C;&#x53EA;&#x6709;5&#x79CD;&#xFF0C;&#x5206;&#x522B;&#x4E3A;&#xFF1A;&#x5982;&#x679C;&#x53D8;&#x91CF;&#x662F;Undefined&#x578B;&#x8FD4;&#x56DE;&quot;undefined&quot;&#xFF0C;&#x5982;&#x679C;&#x53D8;&#x91CF;&#x662F;Boolean&#x578B;&#x8FD4;&#x56DE;&quot;boolean&quot;&#xFF0C;&#x5982;&#x679C;&#x53D8;&#x91CF;&#x662F;Number&#x578B;&#x8FD4;&#x56DE;&quot;number&quot;&#xFF0C;&#x5982;&#x679C;&#x53D8;&#x91CF;&#x662F;String&#x578B;&#x8FD4;&#x56DE;&quot;string&quot;&#xFF0C;&#x5982;&#x679C;&#x53D8;&#x
+原始类型1ECMAScript有5种原始类型(primitive type)，即Undefined、Null、Boolean、Number和String。ECMAScript提供了typeof来判断值的类型。
+typeof运算符123var sTemp="test string";alert(typeof sTemp);//outpus "string"alert(typeof 95);//outpus "number"
+1typeof运算符返回值只有5种，分别为：如果变量是Undefined型返回&quot;undefined&quot;，如果变量是Boolean型返回&quot;boolean&quot;，如果变量是Number型返回&quot;number&quot;，如果变量是String型返回&quot;string&quot;，如果变量是一种引用类型或Null类型返回&quot;object&quot;。
+Undefined类型1Undefined类型只有一个值，即undefined。当声明的变量未初始化和函数无明确的返回值时该变量的默认值和函数的返回值都是undefined。需要注意的是值undefined并不同于未定义的值，但typeof不区分这两种值。参考下面的代码：
+12345678var oTemp;alert(typeof oTemp); //outpus "undefined"alert(typeof otemp2); //outpus "undefined"alert(oTemp==undefined); //outpus "true"alert(oTemp2==undefined); //causes errorfunction testFunc()&#123;&#125;alert(testFunc() == undefined); //outpus "true"
+Null类型1Null也是只有一个值的类型，它只有一个专用值null。值undefined实际不是从值null派生来的，因此ECMAScript把它们定义为相等。
+1alert(null == undefined); //outpus "true"
+1尽管这两个值相等，但它们的含义不同。undefined是声明了变量但未对其初始化时的值，null则用于表示尚未存在的对象。
           ...
 
           <div class="post-more-link text-center">
@@ -459,8 +464,20 @@ typeof&#x8FD0;&#x7B97;&#x7B26;123var sTemp=&quot;test string&quot;;alert(typeof 
         
           
           
-&#x8BED;&#x6CD5;&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;&#x3001;&#x53D8;&#x91CF;&#x5F31;&#x7C7B;&#x578B;&#x3001;&#x884C;&#x5C3E;&#x5206;&#x53F7;&#x53EF;&#x6709;&#x53EF;&#x65E0;&#x3001;&#x6CE8;&#x91CA;&#x4E3A;&#x53CC;&#x659C;&#x7EBF;&#x3001;&#x62EC;&#x53F7;&#x8868;&#x660E;&#x4EE3;&#x7801;&#x5757;&#x53D8;&#x91CF;&#x53D8;&#x91CF;&#x7528;var&#x58F0;&#x660E;&#xFF0C;&#x53D8;&#x91CF;&#x7684;&#x547D;&#x540D;&#x89C4;&#x5219;&#xFF1A;&#x7B2C;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x5FC5;&#x987B;&#x662F;&#x5B57;&#x6BCD;&#x3001;&#x4E0B;&#x5212;&#x7EBF;&#x6216;&#x7F8E;&#x5143;&#x7B26;&#x53F7;&#xFF1B;&#x4F59;&#x4E0B;&#x7684;&#x5B57;&#x7B26;&#x53EF;&#x4EE5;&#x662F;&#x4E0B;&#x5212;&#x7EBF;&#x3001;&#x7F8E;&#x5143;&#x7B26;&#x53F7;&#x6216;&#x4EFB;&#x4F55;&#x5B57;&#x6BCD;&#x6216;&#x6570;&#x5B57;&#x5B57;&#x7B26;&#x3002;&#x53D8;&#x91CF;&#x547D;&#x540D;&#x89C4;&#x8303;&#xFF1A;
-Camel&#x6807;&#x8BB0;&#x6CD5;&#xFF1A;&#x9996;&#x5B57;&#x6BCD;&#x5C0F;&#x5199;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x7684;&#x5355;&#x8BCD;&#x90F
+语法区分大小写、变量弱类型、行尾分号可有可无、注释为双斜线、括号表明代码块变量变量用var声明，变量的命名规则：第一个字符必须是字母、下划线或美元符号；余下的字符可以是下划线、美元符号或任何字母或数字字符。变量命名规范：
+Camel标记法：首字母小写，接下来的单词都以大写字母开头。例如：**m**y**T**est**V**alue=0,**m**y**S**econd**T**est**V**alue="hi"```;1234- Pascal标记法：首字母大写，接下来的单词都以大写字母开头。例如：```var **M**y**T**est**V**alue=0,**M**y**S**econd**T**est**V**alue=&quot;hi&quot;```;- 匈牙利类型标记法：在以Pascal标记法命名的变量前附加一个小写字母（或小写字母序列），说明该变量的类型。例如，i表示整数，s表示字符串，如下面所示：
+
+类型：数组　　　　前缀：a　　示例：aValues
+类型：布尔型　　　前缀：b　　示例：bFound
+类型：浮点型　　　前缀：f　　 示例：fValue
+类型：函数　　　　前缀：fn　  示例：fnMethod
+类型：整型　　　　前缀：i　　 示例：iValue
+类型：对象　　　　前缀：o　　示例：oType
+类型：正则　　　　前缀：re　  示例：rePatten
+类型：字符串　　　前缀：s　　示例：sValue
+类型：变量　　　　前缀：v　　示例：vValue12#### 关键字ECMA-262 定义的关键字为：
+break　　case　　catch　　continue　　default　　delete　　do　　else　　finally　　for　　function　　if　　in　　instanceof　　new　　return　　switch　　this　　throw　　try　　typeof　　var　　void　　while　　with12#### 保留字ECMA-262第3版中保留字为：
+abstract　　boolean　　byte　　char　　class　　const　　debugger　　double　　enum　　export　　extends　　final　　float　　goto　　implements　　impor
           ...
 
           <div class="post-more-link text-center">
@@ -589,11 +606,14 @@ Camel&#x6807;&#x8BB0;&#x6CD5;&#xFF1A;&#x9996;&#x5B57;&#x6BCD;&#x5C0F;&#x5199;&#x
         
           
           
-&#x539F;&#x578B;&#x94FE;&#x7EE7;&#x627F;&#x8BA9;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x539F;&#x578B;&#x5BF9;&#x8C61;&#x7B49;&#x4E8E;&#x53E6;&#x4E00;&#x4E2A;&#x7C7B;&#x578B;&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x5229;&#x7528;&#x539F;&#x578B;&#x8BA9;&#x4E00;&#x4E2A;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x7EE7;&#x627F;&#x53E6;&#x4E00;&#x4E2A;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x7684;&#x5C5E;&#x6027;&#x548C;&#x65B9;&#x6CD5;
-123456789101112131415161718192021222324function SuperType(){    this.property=true;}SuperType.prototype.getSuperValue=function(){    return this.property;};function SubType(){    this.subProperty=false;}//&#x7EE7;&#x627F;SuperTypeSubType.prototype=new SuperType();SubType.prototype.getSubValue=function(){    return this.subProperty;}var instance=new SubType();alert(instance.getSuperValue());//true
-&#x4EE3;&#x7801;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x5B8C;&#x6574;&#x539F;&#x578B;&#x94FE;&#x5982;&#x4E0B;
+原型链继承让构造函数的原型对象等于另一个类型的实例，利用原型让一个引用类型继承另一个引用类型的属性和方法
+123456789101112131415161718192021222324function SuperType()&#123;    this.property=true;&#125;SuperType.prototype.getSuperValue=function()&#123;    return this.property;&#125;;function SubType()&#123;    this.subProperty=false;&#125;//继承SuperTypeSubType.prototype=new SuperType();SubType.prototype.getSubValue=function()&#123;    return this.subProperty;&#125;var instance=new SubType();alert(instance.getSuperValue());//true
+代码示例中，完整原型链如下
 
-&#x539F;&#x578B;&#x94FE;&#x7EE7;&#x627F;&#x7684;&#x95EE;&#x9898;&#xFF1A;&#x7
+原型链继承的问题：父类型引用类型的属性会被所有子类型实例共享，这是不符合预期的
+1234567891011121314151617181920212223function SuperType()&#123;    this.colors=["red","blue","green"];&#125;function SubType()&#123;&#125;//继承SuperTypeSubType.prototype=new SuperType();var instance1=new SubType();instance1.colors.push("black");alert(instance1.colors);//"red","blue","green","black"var instance2=new SubType();alert(instance2.colors);//"red","blue","green","black"
+借用构造函数继承基本思想是在子类型构造函数内部调用超类型构造函数
+12345678910111213141516171819202122function SuperTy
           ...
 
           <div class="post-more-link text-center">
@@ -722,10 +742,13 @@ Camel&#x6807;&#x8BB0;&#x6CD5;&#xFF1A;&#x9996;&#x5B57;&#x6BCD;&#x5C0F;&#x5199;&#x
         
           
           
-&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;&#x4F18;&#x70B9;&#xFF1A;&#x6709;&#x4E86;&#x5C01;&#x88C5;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x89E3;&#x51B3;&#x4E86;&#x521B;&#x5EFA;&#x591A;&#x4E2A;&#x76F8;&#x4F3C;&#x5BF9;&#x8C61;&#x7684;&#x95EE;&#x9898;
-&#x7F3A;&#x70B9;&#xFF1A;&#x6CA1;&#x6709;&#x89E3;&#x51B3;&#x5BF9;&#x8C61;&#x8BC6;&#x522B;&#x95EE;&#x9898;,&#x6240;&#x6709;&#x5BF9;&#x8C61;&#x90FD;&#x4EC5;&#x662F;Object&#x7684;&#x5B9E;&#x4F8B;
-12345678910111213141516function createPerson(name,age,job){    var o=new Object();    o.name=name;    o.age=age;    o.job=job;    o.sayName=function(){        alert(this.name);    };    return o;}var person1=createPerson(&quot;Jack&quot;,29,&quot;Engineer&quot;);//&#x68C0;&#x6D4B;&#x5BF9;&#x8C61;&#x7C7B;&#x578B;alert(person1 instanceof Object) //truealert(person1 instanceof Person) //error Person is not defined
-&#x6784;&#x9020;&#x51FD;&#x6570;&#x6A21;&#x5F0F;&#x6784;&#x9020;&#x51FD;&#x6570;&#x6A21;&#x5F0F
+创建对象工厂模式工厂模式优点：有了封装的概念，解决了创建多个相似对象的问题
+缺点：没有解决对象识别问题,所有对象都仅是Object的实例
+12345678910111213141516function createPerson(name,age,job)&#123;    var o=new Object();    o.name=name;    o.age=age;    o.job=job;    o.sayName=function()&#123;        alert(this.name);    &#125;;    return o;&#125;var person1=createPerson("Jack",29,"Engineer");//检测对象类型alert(person1 instanceof Object) //truealert(person1 instanceof Person) //error Person is not defined
+构造函数模式构造函数模式相比工厂模式的优点就在于，构造函数模式可以将他的实例标示为特定类型
+123456789101112131415function Person(name,age,job)&#123;    this.name=name;    this.age=age;    this.job=job;    this.sayName=function()&#123;        alert(this.name);    &#125;;&#125;var person1=new Person("Jack",29,"Engineer");//检测对象类型alert(person1 instanceof Object) //truealert(person1 instanceof Person) //true
+构造函数也是函数，如果不通过new 操作符调用，和其他函数没有不同
+12345678910111213141516171819202122function Person(name,age,job)&#123;    this.name=name;    this.age=age;    this.job=job;    this.sayName=function()&#123;     
           ...
 
           <div class="post-more-link text-center">
@@ -854,10 +877,16 @@ Camel&#x6807;&#x8BB0;&#x6CD5;&#xFF1A;&#x9996;&#x5B57;&#x6BCD;&#x5C0F;&#x5199;&#x
         
           
           
-&#x5B9A;&#x4E49;&#x51FD;&#x6570;&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#xFF1A;&#x51FD;&#x6570;&#x58F0;&#x660E;&#x548C;&#x51FD;&#x6570;&#x8868;&#x8FBE;&#x5F0F;&#x3002;&#x5B83;&#x4EEC;&#x4E4B;&#x95F4;&#x4E00;&#x4E2A;&#x91CD;&#x8981;&#x7684;&#x533A;&#x522B;&#x662F;&#x51FD;&#x6570;&#x63D0;&#x5347;&#x3002;1.&#x51FD;&#x6570;&#x58F0;&#x660E;&#x4F1A;&#x8FDB;&#x884C;&#x51FD;&#x6570;&#x63D0;&#x5347;&#xFF0C;&#x6240;&#x4EE5;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x5728;&#x51FD;&#x6570;&#x58F0;&#x660E;&#x4E4B;&#x524D;&#x4E5F;&#x4E0D;&#x4F1A;&#x62A5;&#x9519;&#xFF1A;12345678test();function test(){alert(1);}
-2.&#x51FD;&#x6570;&#x8868;&#x8FBE;&#x5F0F;&#x4E0D;&#x4F1A;&#x8FDB;&#x884C;&#x51FD;&#x6570;&#x63D0;&#x5347;&#xFF0C;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x5728;&#x51FD;&#x6570;&#x58F0;&#x660E;&#x4E4B;&#x524D;&#x7684;&#x8BDD;&#x4F1A;&#x62A5;&#x9519;&#xFF1A;12345678test(); // test is not a functionvar test=function(){alert(1);}
+定义函数有两种方式：函数声明和函数表达式。它们之间一个重要的区别是函数提升。1.函数声明会进行函数提升，所以函数调用在函数声明之前也不会报错：12345678test();function test()&#123;alert(1);&#125;
+2.函数表达式不会进行函数提升，函数调用在函数声明之前的话会报错：12345678test(); // test is not a functionvar test=function()&#123;alert(1);&#125;
 
-&#x9012;&#x5F52;&#x51FD;&#x6570;&#x662F;&#x901A;&#x8FC7;&#x5728;&#x51FD;&#x6570;
+递归函数是通过在函数内部调用自身实现的。直接使用函数名进行递归调用123456789101112131415161718function f(num)&#123;  if(num==1)&#123;  return 1;  &#125;else&#123;  return num*f(num-1);  &#125;&#125;console.log(f(4));//24console.log(f(5));//120
+这种实现的缺点是，在函数内部直接写死了函数名称。如果进行如下设置就会报错：
+123456var test=f;f=null;console.log(test(3));//报错， f is not a function
+通过arguments.callee解决，arguments.callee是一个指向正在执行的函数的指针。这样就避免了上述问题。123456789101112131415161718192021222324function f(num)&#123;  if(num==1)&#123;  return 1;  &#125;else&#123;  return num*arguments.callee(num-1);  &#125;&#125;console.log(f(4));//24console.log(f(5));//120var test=f;f=null;console.log(test(3));//6
+不过这种方式还有一个缺点，就是在严格模式下会执行失败。
+添加”use strict”后执行会报错：
+12'caller', 'callee', and 'arguments' properties may not be accessed on strict mo
           ...
 
           <div class="post-more-link text-center">
@@ -1025,10 +1054,24 @@ Camel&#x6807;&#x8BB0;&#x6CD5;&#xFF1A;&#x9996;&#x5B57;&#x6BCD;&#x5C0F;&#x5199;&#x
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 

@@ -86,16 +86,17 @@
 
 
 
-<meta name="description" content="&amp;#x547D;&amp;#x4EE4;&amp;#x6A21;&amp;#x5F0F;&amp;#x662F;&amp;#x6700;&amp;#x7B80;&amp;#x5355;&amp;#x548C;&amp;#x4F18;&amp;#x96C5;&amp;#x7684;&amp;#x6A21;&amp;#x5F0F;&amp;#x4E4B;&amp;#x4E00;&amp;#xFF0C;&amp;#x547D;&amp;#x4EE4;&amp;#x6A21;&amp;#x5F0F;&amp;#x4E2D;&amp;#x7684;&amp;#x547D;&amp;#x4EE4">
+<meta name="description" content="命令模式是最简单和优雅的模式之一，命令模式中的命令指的是一个执行某些特定事情的指令。命令模式最常见的应用场景是：有时候需要向某些对象发送请求，但是不知道请求的接收者是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送者和请求接收者能够消除彼此之间的耦合关系。  菜单程序假设要编写一个用户界面程序，该用户界面上至少有数十个button按钮，通过分析我们发现按下按钮之">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="命令模式">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/11命令模式/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="&amp;#x547D;&amp;#x4EE4;&amp;#x6A21;&amp;#x5F0F;&amp;#x662F;&amp;#x6700;&amp;#x7B80;&amp;#x5355;&amp;#x548C;&amp;#x4F18;&amp;#x96C5;&amp;#x7684;&amp;#x6A21;&amp;#x5F0F;&amp;#x4E4B;&amp;#x4E00;&amp;#xFF0C;&amp;#x547D;&amp;#x4EE4;&amp;#x6A21;&amp;#x5F0F;&amp;#x4E2D;&amp;#x7684;&amp;#x547D;&amp;#x4EE4">
+<meta property="og:description" content="命令模式是最简单和优雅的模式之一，命令模式中的命令指的是一个执行某些特定事情的指令。命令模式最常见的应用场景是：有时候需要向某些对象发送请求，但是不知道请求的接收者是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送者和请求接收者能够消除彼此之间的耦合关系。  菜单程序假设要编写一个用户界面程序，该用户界面上至少有数十个button按钮，通过分析我们发现按下按钮之">
 <meta property="og:updated_time" content="2016-10-12T08:39:41.266Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="命令模式">
-<meta name="twitter:description" content="&amp;#x547D;&amp;#x4EE4;&amp;#x6A21;&amp;#x5F0F;&amp;#x662F;&amp;#x6700;&amp;#x7B80;&amp;#x5355;&amp;#x548C;&amp;#x4F18;&amp;#x96C5;&amp;#x7684;&amp;#x6A21;&amp;#x5F0F;&amp;#x4E4B;&amp;#x4E00;&amp;#xFF0C;&amp;#x547D;&amp;#x4EE4;&amp;#x6A21;&amp;#x5F0F;&amp;#x4E2D;&amp;#x7684;&amp;#x547D;&amp;#x4EE4">
+<meta name="twitter:description" content="命令模式是最简单和优雅的模式之一，命令模式中的命令指的是一个执行某些特定事情的指令。命令模式最常见的应用场景是：有时候需要向某些对象发送请求，但是不知道请求的接收者是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送者和请求接收者能够消除彼此之间的耦合关系。  菜单程序假设要编写一个用户界面程序，该用户界面上至少有数十个button按钮，通过分析我们发现按下按钮之">
 
 
 
@@ -322,32 +323,32 @@
 
       
         <blockquote>
-<p>&#x547D;&#x4EE4;&#x6A21;&#x5F0F;&#x662F;&#x6700;&#x7B80;&#x5355;&#x548C;&#x4F18;&#x96C5;&#x7684;&#x6A21;&#x5F0F;&#x4E4B;&#x4E00;&#xFF0C;&#x547D;&#x4EE4;&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x547D;&#x4EE4;&#x6307;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x6267;&#x884C;&#x67D0;&#x4E9B;&#x7279;&#x5B9A;&#x4E8B;&#x60C5;&#x7684;&#x6307;&#x4EE4;&#x3002;&#x547D;&#x4EE4;&#x6A21;&#x5F0F;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x5E94;&#x7528;&#x573A;&#x666F;&#x662F;&#xFF1A;&#x6709;&#x65F6;&#x5019;&#x9700;&#x8981;&#x5411;&#x67D0;&#x4E9B;&#x5BF9;&#x8C61;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#xFF0C;&#x4F46;&#x662F;&#x4E0D;&#x77E5;&#x9053;&#x8BF7;&#x6C42;&#x7684;&#x63A5;&#x6536;&#x8005;&#x662F;&#x8C01;&#xFF0C;&#x4E5F;&#x4E0D;&#x77E5;&#x9053;&#x88AB;&#x8BF7;&#x6C42;&#x7684;&#x64CD;&#x4F5C;&#x662F;&#x4EC0;&#x4E48;&#x3002;&#x6B64;&#x65F6;&#x5E0C;&#x671B;&#x7528;&#x4E00;&#x79CD;&#x677E;&#x8026;&#x5408;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x8BBE;&#x8BA1;&#x7A0B;&#x5E8F;&#xFF0C;&#x4F7F;&#x5F97;&#x8BF7;&#x6C42;&#x53D1;&#x9001;&#x8005;&#x548C;&#x8BF7;&#x6C42;&#x63A5;&#x6536;&#x8005;&#x80FD;&#x591F;&#x6D88;&#x9664;&#x5F7C;&#x6B64;&#x4E4B;&#x95F4;&#x7684;&#x8026;&#x5408;&#x5173;&#x7CFB;&#x3002;</p>
+<p>命令模式是最简单和优雅的模式之一，命令模式中的命令指的是一个执行某些特定事情的指令。命令模式最常见的应用场景是：有时候需要向某些对象发送请求，但是不知道请求的接收者是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送者和请求接收者能够消除彼此之间的耦合关系。</p>
 </blockquote>
-<h3 id="&#x83DC;&#x5355;&#x7A0B;&#x5E8F;"><a href="#&#x83DC;&#x5355;&#x7A0B;&#x5E8F;" class="headerlink" title="&#x83DC;&#x5355;&#x7A0B;&#x5E8F;"></a>&#x83DC;&#x5355;&#x7A0B;&#x5E8F;</h3><p>&#x5047;&#x8BBE;&#x8981;&#x7F16;&#x5199;&#x4E00;&#x4E2A;&#x7528;&#x6237;&#x754C;&#x9762;&#x7A0B;&#x5E8F;&#xFF0C;&#x8BE5;&#x7528;&#x6237;&#x754C;&#x9762;&#x4E0A;&#x81F3;&#x5C11;&#x6709;&#x6570;&#x5341;&#x4E2A;button&#x6309;&#x94AE;&#xFF0C;&#x901A;&#x8FC7;&#x5206;&#x6790;&#x6211;&#x4EEC;&#x53D1;&#x73B0;&#x6309;&#x4E0B;&#x6309;&#x94AE;&#x4E4B;&#x540E;&#x4F1A;&#x53D1;&#x751F;&#x7684;&#x4E00;&#x4E9B;&#x4E8B;&#x60C5;&#x662F;&#x4E0D;&#x53D8;&#x7684;&#xFF0C;&#x800C;&#x5177;&#x4F53;&#x4F1A;&#x53D1;&#x751F;&#x4EC0;&#x4E48;&#x4E8B;&#x60C5;&#x662F;&#x53EF;&#x53D8;&#x7684;&#x3002;<br>&#x901A;&#x8FC7;<code>command</code>&#x5BF9;&#x8C61;&#x7684;&#x5E2E;&#x52A9;&#xFF0C;&#x5C06;&#x6765;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x8F7B;&#x6613;&#x6539;&#x53D8;&#x8FD9;&#x79CD;&#x5173;&#x8054;&#x3002;<br>&#x5E9F;&#x8BDD;&#x4E0D;&#x591A;&#x8BF4;&#xFF0C;&#x4E0A;&#x4EE3;&#x7801;&#xFF1A;</p>
-<pre><code>//&#x8D1F;&#x8D23;&#x5F80;&#x6309;&#x94AE;&#x4E0A;&#x9762;&#x5B89;&#x88C5;&#x547D;&#x4EE4;
+<h3 id="菜单程序"><a href="#菜单程序" class="headerlink" title="菜单程序"></a>菜单程序</h3><p>假设要编写一个用户界面程序，该用户界面上至少有数十个button按钮，通过分析我们发现按下按钮之后会发生的一些事情是不变的，而具体会发生什么事情是可变的。<br>通过<code>command</code>对象的帮助，将来我们可以轻易改变这种关联。<br>废话不多说，上代码：</p>
+<pre><code>//负责往按钮上面安装命令
 var setCommand = function( button, command ) {
-    button.onclick = function() { //&#x6267;&#x884C;&#x7684;&#x52A8;&#x4F5C;
+    button.onclick = function() { //执行的动作
         command.execute();
     }
 };
 
-//&#x4E00;&#x4E9B;&#x529F;&#x80FD;&#x51FD;&#x6570;
+//一些功能函数
 var MenuBar = {
     refresh: function() {
-        console.log(&apos;&#x5237;&#x65B0;&#x83DC;&#x5355;&#x680F;&#x76EE;&apos;);
+        console.log(&apos;刷新菜单栏目&apos;);
     }
 };
 var SubMenu = {
     add: function() {
-        console.log(&apos;&#x589E;&#x52A0;&#x5B50;&#x83DC;&#x5355;&apos;);
+        console.log(&apos;增加子菜单&apos;);
     },
     del: function() {
-        console.log(&apos;&#x5220;&#x9664;&#x5B50;&#x83DC;&#x5355;&apos;);
+        console.log(&apos;删除子菜单&apos;);
     }
 };
 
-//&#x5C01;&#x88C5;
+//封装
 var RefreshMenuBarCommand = function( receiver ) {
     this.receiver = receiver;
 };
@@ -364,19 +365,19 @@ var DelSubMenuCommand = function( receiver ) {
     this.receiver = receiver;
 };
 DelSubMenuCommand.prototype.execute = function() {
-    console.log(&apos;&#x5220;&#x9664;&#x5B50;&#x83DC;&#x5355;&apos;);
+    console.log(&apos;删除子菜单&apos;);
 };
 
-//&#x5C06;&#x547D;&#x4EE4;&#x4F20;&#x5165;command&#x5BF9;&#x8C61;&#x4E2D;
+//将命令传入command对象中
 var refreshMenuBarCommand = new RefreshMenuBarCommand(MenuBar);
 var addSubMenuCommand = new AddSubMenuCommand (SubMenu);
 var delSubMenuCommand = new DelSubMenuCommand (SubMenu);
 
-//&#x628A;command&#x5BF9;&#x8C61;&#x5B89;&#x88C5;&#x5230;button&#x4E0A;
+//把command对象安装到button上
 setCommand(button1, refreshMenuBarCommand);
 setCommand(button2, addSubMenuCommand );
 setCommand(button3, delSubMenuCommand );
-</code></pre><h3 id="javascript&#x4E2D;&#x7684;&#x547D;&#x4EE4;&#x6A21;&#x5F0F;"><a href="#JavaScript&#x4E2D;&#x7684;&#x547D;&#x4EE4;&#x6A21;&#x5F0F;" class="headerlink" title="JavaScript&#x4E2D;&#x7684;&#x547D;&#x4EE4;&#x6A21;&#x5F0F;"></a>JavaScript&#x4E2D;&#x7684;&#x547D;&#x4EE4;&#x6A21;&#x5F0F;</h3><p>&#x4EE5;&#x4E0A;&#x5B9E;&#x4F8B;&#x4EE3;&#x7801;&#x662F;&#x6A21;&#x62DF;&#x4F20;&#x7EDF;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x8BED;&#x8A00;&#x7684;&#x547D;&#x4EE4;&#x6A21;&#x5F0F;&#xFF0C;&#x7136;&#x800C;js&#x662F;&#x4E00;&#x95E8;&#x795E;&#x5947;&#x7684;&#x8BED;&#x8A00;&#xFF0C;&#x8FD0;&#x884C;&#x5757;&#x4E0D;&#x4E00;&#x5B9A;&#x8981;&#x5C01;&#x88C5;&#x5728;<code>command.execute</code>&#x65B9;&#x6CD5;&#x4E2D;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5C01;&#x88C5;&#x5728;&#x666E;&#x901A;&#x51FD;&#x6570;&#x4E2D;&#x3002;&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x4E00;&#x7B49;&#x5BF9;&#x8C61;&#xFF0C;&#x672C;&#x8EAB;&#x5C31;&#x53EF;&#x4EE5;&#x56DB;&#x5904;&#x4F20;&#x9012;&#x3002;</p>
+</code></pre><h3 id="javascript中的命令模式"><a href="#JavaScript中的命令模式" class="headerlink" title="JavaScript中的命令模式"></a>JavaScript中的命令模式</h3><p>以上实例代码是模拟传统面向对象语言的命令模式，然而js是一门神奇的语言，运行块不一定要封装在<code>command.execute</code>方法中，也可以封装在普通函数中。函数作为一等对象，本身就可以四处传递。</p>
 <pre><code>var setCommand = function( button, func ) {
     button.onclick = function() {
         func();
@@ -384,7 +385,7 @@ setCommand(button3, delSubMenuCommand );
 };
 var MenuBar = {
     refresh: function() {
-        console.log(&apos;&#x5237;&#x65B0;&#x83DC;&#x5355;&#x754C;&#x9762;&apos;);
+        console.log(&apos;刷新菜单界面&apos;);
     }
 };
 var RefreshMenuBarCommand = function( receiver ) {
@@ -394,7 +395,7 @@ var RefreshMenuBarCommand = function( receiver ) {
 };
 var refreshMenuBarCommand = RefreshMenuBarCommand( MenuBar );
 setCommand( button1, refreshMenuBarCommand );
-</code></pre><p>&#x770B;&#x4E86;&#x4E0A;&#x9762;&#x4EE3;&#x7801;&#x4E4B;&#x540E;&#xFF0C;&#x4F60;&#x53EF;&#x80FD;&#x4F1A;&#x53D1;&#x73B0;&#xFF0C;&#x4F7F;&#x7528;&#x95ED;&#x5305;&#xFF0C;&#x4EE3;&#x7801;&#x91CF;&#x5DF2;&#x7ECF;&#x51CF;&#x5C11;&#x4E86;&#x5F88;&#x591A;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x60F3;&#x51C6;&#x786E;&#x7684;&#x8868;&#x8FBE;&#x5F53;&#x524D;&#x6B63;&#x5728;&#x4F7F;&#x7528;&#x547D;&#x4EE4;&#x6A21;&#x5F0F;&#xFF0C;&#x6216;&#x8005;&#x9664;&#x4E86;&#x6267;&#x884C;&#x547D;&#x4EE4;&#x4E4B;&#x5916;&#xFF0C;&#x5C06;&#x6765;&#x6709;&#x53EF;&#x80FD;&#x8FD8;&#x8981;&#x63D0;&#x4F9B;&#x64A4;&#x9500;&#x547D;&#x4EE4;&#x7B49;&#x64CD;&#x4F5C;&#x3002;&#x90A3;&#x6211;&#x4EEC;&#x6700;&#x597D;&#x8FD8;&#x662F;&#x628A;&#x6267;&#x884C;&#x51FD;&#x6570;&#x6539;&#x4E3A;&#x8C03;&#x7528;execute&#x65B9;&#x6CD5;&#xFF1A;</p>
+</code></pre><p>看了上面代码之后，你可能会发现，使用闭包，代码量已经减少了很多。但是，如果想准确的表达当前正在使用命令模式，或者除了执行命令之外，将来有可能还要提供撤销命令等操作。那我们最好还是把执行函数改为调用execute方法：</p>
 <pre><code>var RefreshMenuBarCommand = function( receiver ) {
     return {
         execute: function() {
@@ -409,13 +410,13 @@ var setCommand = function( button, command ) {
 };
 var refreshMenuBarCommand = RefreshMenuBarCommand( MenuBar );
 setCommand(button1, refreshMenuBarCommand);
-</code></pre><h3 id="&#x64A4;&#x9500;&#x548C;&#x91CD;&#x505A;"><a href="#&#x64A4;&#x9500;&#x548C;&#x91CD;&#x505A;" class="headerlink" title="&#x64A4;&#x9500;&#x548C;&#x91CD;&#x505A;"></a>&#x64A4;&#x9500;&#x548C;&#x91CD;&#x505A;</h3><p>&#x5F88;&#x591A;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x64A4;&#x9500;&#x4E00;&#x7CFB;&#x5217;&#x547D;&#x4EE4;&#xFF0C;&#x6BD4;&#x5982;&#x5728;&#x4E00;&#x4E2A;&#x4E0B;&#x56F4;&#x68CB;&#x7A0B;&#x5E8F;&#x4E2D;&#x7684;&#x6BC1;&#x68CB;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x628A;&#x6240;&#x6709;&#x6267;&#x884C;&#x8FC7;&#x7684;&#x4E0B;&#x68CB;&#x547D;&#x4EE4;&#x90FD;&#x5B58;&#x50A8;&#x5728;&#x4E00;&#x4E2A;&#x5386;&#x53F2;&#x5217;&#x8868;&#x4E2D;&#xFF0C;&#x7136;&#x540E;&#x5012;&#x5E8F;&#x5FAA;&#x73AF;&#x6765;&#x4F9D;&#x6B21;&#x6267;&#x884C;&#x8FD9;&#x4E9B;&#x547D;&#x4EE4;&#x7684;<code>undo</code>&#x64CD;&#x4F5C;&#x3002;<br>&#x7136;&#x800C;&#xFF0C;&#x5728;&#x67D0;&#x4E9B;&#x60C5;&#x51B5;&#x4E0B;&#x65E0;&#x6CD5;&#x987A;&#x5229;&#x7684;&#x4F7F;&#x7528;<code>undo</code>&#xFF0C;&#x6BD4;&#x5982;&#x5728;&#x4E00;&#x4E2A;Canvas&#x753B;&#x56FE;&#x7684;&#x7A0B;&#x5E8F;&#x4E2D;&#xFF0C;&#x8FD9;&#x65F6;&#x6700;&#x597D;&#x7684;&#x529E;&#x6CD5;&#x662F;&#x6E05;&#x9664;&#x753B;&#x5E03;&#xFF0C;&#x7136;&#x540E;&#x628A;&#x521A;&#x6267;&#x884C;&#x7684;&#x547D;&#x4EE4;&#x5168;&#x90E8;&#x91CD;&#x65B0;&#x6267;&#x884C;&#x4E00;&#x904D;&#xFF0C;&#x8FD9;&#x4E00;&#x70B9;&#x540C;&#x6837;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x5386;&#x53F2;&#x5217;&#x8868;&#x5806;&#x6808;&#x5B9E;&#x73B0;&#x3002;<br>&#x4E0B;&#x9762;&#x4EE5;&#x4E00;&#x4E2A;&#x8857;&#x5934;&#x9738;&#x738B;&#x7684;&#x6E38;&#x620F;&#x4E3A;&#x4F8B;&#xFF1A;</p>
+</code></pre><h3 id="撤销和重做"><a href="#撤销和重做" class="headerlink" title="撤销和重做"></a>撤销和重做</h3><p>很多时候，我们需要撤销一系列命令，比如在一个下围棋程序中的毁棋，我们可以把所有执行过的下棋命令都存储在一个历史列表中，然后倒序循环来依次执行这些命令的<code>undo</code>操作。<br>然而，在某些情况下无法顺利的使用<code>undo</code>，比如在一个Canvas画图的程序中，这时最好的办法是清除画布，然后把刚执行的命令全部重新执行一遍，这一点同样可以利用历史列表堆栈实现。<br>下面以一个街头霸王的游戏为例：</p>
 <pre><code>var Ryu = {
     attack: function() {
-        console.log(&apos;&#x653B;&#x51FB;&apos;);
+        console.log(&apos;攻击&apos;);
     },
     defense: function() {
-        console.log(&apos;&#x9632;&#x5FA1;&apos;);
+        console.log(&apos;防御&apos;);
     }
 };
 var makeCommand = function( receiver, state ) {
@@ -423,18 +424,18 @@ var makeCommand = function( receiver, state ) {
         receiver[ state ]();
     }
 };
-var commandStack = []; // &#x4FDD;&#x5B58;&#x547D;&#x4EE4;&#x7684;&#x5806;&#x6808;
+var commandStack = []; // 保存命令的堆栈
 document.onkeypress = function( ev ) {
     var keyCode = ev.keyCode,
         command = makeCommand( Ryu, commands[ keyCode ]);
     if( command ) {
-        command(); //&#x6267;&#x884C;&#x547D;&#x4EE4;
-        commandStack.push( command ); //&#x5C06;&#x521A;&#x521A;&#x6267;&#x884C;&#x8FC7;&#x7684;&#x547D;&#x4EE4;&#x4FDD;&#x5B58;&#x8FDB;&#x5806;&#x6808;
+        command(); //执行命令
+        commandStack.push( command ); //将刚刚执行过的命令保存进堆栈
     }
 };
-document.getElementById(&apos;reply&apos;).onclick = function() { //&#x70B9;&#x51FB;&#x64AD;&#x653E;&#x5F55;&#x50CF;
+document.getElementById(&apos;reply&apos;).onclick = function() { //点击播放录像
     var command;
-    while( command = commandStack.shift() ) { //&#x4ECE;&#x5806;&#x6808;&#x91CC;&#x4F9D;&#x6B21;&#x53D6;&#x51FA;&#x547D;&#x4EE4;&#x5E76;&#x6267;&#x884C;
+    while( command = commandStack.shift() ) { //从堆栈里依次取出命令并执行
         command();
     }
 };
@@ -490,16 +491,16 @@ document.getElementById(&apos;reply&apos;).onclick = function() { //&#x70B9;&#x5
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/" rel="next" title="策略模式的应用">
-                <i class="fa fa-chevron-left"></i> 策略模式的应用
+              <a href="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/" rel="next" title="发布订阅模式">
+                <i class="fa fa-chevron-left"></i> 发布订阅模式
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/" rel="prev" title="单例模式">
-                单例模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/" rel="prev" title="模版方法">
+                模版方法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -672,10 +673,24 @@ document.getElementById(&apos;reply&apos;).onclick = function() { //&#x70B9;&#x5
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 

@@ -86,16 +86,17 @@
 
 
 
-<meta name="description" content="&amp;#x7B80;&amp;#x4ECB;&amp;#x5728;[PHP&amp;#x8BBE;&amp;#x8BA1;&amp;#x6A21;&amp;#x5F0F;(&amp;#x516B;)&amp;#xFF1A;&amp;#x5DE5;&amp;#x5382;&amp;#x6A21;&amp;#x5F0F;][2]&amp;#x4E2D;&amp;#x6211;&amp;#x4EEC;&amp;#x4ECB;&amp;#x7ECD;&amp;#x4E86;&amp;#x521B;&amp;#x5EFA;&amp;#x8BBE;&amp;#x8BA1;&amp;#x6A2">
+<meta name="description" content="简介在[PHP设计模式(八)：工厂模式][2]中我们介绍了创建设计模式(Creationpatterns)中的工厂模式，下面我们将介绍另一种原型设计模式(Prototype Method)。在PHP中，原型设计模式依靠cloning复制对象来实现。通过cloning构造的对象，将大量节省新对象的构造时间。 何时使用原型设计模式？简单来说，当你希望根据已有的对象来创建新对象时。为什么会有这种需求？想">
+<meta name="keywords" content="php">
 <meta property="og:type" content="article">
 <meta property="og:title" content="原型设计模式">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(9)：原型设计模式/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="&amp;#x7B80;&amp;#x4ECB;&amp;#x5728;[PHP&amp;#x8BBE;&amp;#x8BA1;&amp;#x6A21;&amp;#x5F0F;(&amp;#x516B;)&amp;#xFF1A;&amp;#x5DE5;&amp;#x5382;&amp;#x6A21;&amp;#x5F0F;][2]&amp;#x4E2D;&amp;#x6211;&amp;#x4EEC;&amp;#x4ECB;&amp;#x7ECD;&amp;#x4E86;&amp;#x521B;&amp;#x5EFA;&amp;#x8BBE;&amp;#x8BA1;&amp;#x6A2">
+<meta property="og:description" content="简介在[PHP设计模式(八)：工厂模式][2]中我们介绍了创建设计模式(Creationpatterns)中的工厂模式，下面我们将介绍另一种原型设计模式(Prototype Method)。在PHP中，原型设计模式依靠cloning复制对象来实现。通过cloning构造的对象，将大量节省新对象的构造时间。 何时使用原型设计模式？简单来说，当你希望根据已有的对象来创建新对象时。为什么会有这种需求？想">
 <meta property="og:updated_time" content="2016-10-13T07:56:52.270Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="原型设计模式">
-<meta name="twitter:description" content="&amp;#x7B80;&amp;#x4ECB;&amp;#x5728;[PHP&amp;#x8BBE;&amp;#x8BA1;&amp;#x6A21;&amp;#x5F0F;(&amp;#x516B;)&amp;#xFF1A;&amp;#x5DE5;&amp;#x5382;&amp;#x6A21;&amp;#x5F0F;][2]&amp;#x4E2D;&amp;#x6211;&amp;#x4EEC;&amp;#x4ECB;&amp;#x7ECD;&amp;#x4E86;&amp;#x521B;&amp;#x5EFA;&amp;#x8BBE;&amp;#x8BA1;&amp;#x6A2">
+<meta name="twitter:description" content="简介在[PHP设计模式(八)：工厂模式][2]中我们介绍了创建设计模式(Creationpatterns)中的工厂模式，下面我们将介绍另一种原型设计模式(Prototype Method)。在PHP中，原型设计模式依靠cloning复制对象来实现。通过cloning构造的对象，将大量节省新对象的构造时间。 何时使用原型设计模式？简单来说，当你希望根据已有的对象来创建新对象时。为什么会有这种需求？想">
 
 
 
@@ -321,9 +322,9 @@
       
 
       
-        <h2 id="&#x7B80;&#x4ECB;"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</h2><p>&#x5728;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x516B;)&#xFF1A;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;][2]&#x4E2D;&#x6211;&#x4EEC;&#x4ECB;&#x7ECD;&#x4E86;&#x521B;&#x5EFA;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(Creation<br>patterns)&#x4E2D;&#x7684;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;&#xFF0C;&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x5C06;&#x4ECB;&#x7ECD;&#x53E6;&#x4E00;&#x79CD;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(Prototype Method)&#x3002;<br>&#x5728;PHP&#x4E2D;&#xFF0C;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4F9D;&#x9760;cloning&#x590D;&#x5236;&#x5BF9;&#x8C61;&#x6765;&#x5B9E;&#x73B0;&#x3002;&#x901A;&#x8FC7;cloning&#x6784;&#x9020;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x5C06;&#x5927;&#x91CF;&#x8282;&#x7701;&#x65B0;&#x5BF9;&#x8C61;&#x7684;&#x6784;&#x9020;&#x65F6;&#x95F4;&#x3002;</p>
-<h2 id="&#x4F55;&#x65F6;&#x4F7F;&#x7528;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;"><a href="#&#x4F55;&#x65F6;&#x4F7F;&#x7528;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1F;" class="headerlink" title="&#x4F55;&#x65F6;&#x4F7F;&#x7528;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1F;"></a>&#x4F55;&#x65F6;&#x4F7F;&#x7528;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1F;</h2><p>&#x7B80;&#x5355;&#x6765;&#x8BF4;&#xFF0C;&#x5F53;&#x4F60;&#x5E0C;&#x671B;&#x6839;&#x636E;&#x5DF2;&#x6709;&#x7684;&#x5BF9;&#x8C61;&#x6765;&#x521B;&#x5EFA;&#x65B0;&#x5BF9;&#x8C61;&#x65F6;&#x3002;<br>&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x6709;&#x8FD9;&#x79CD;&#x9700;&#x6C42;&#xFF1F;&#x60F3;&#x8C61;&#x4E00;&#x4E0B;&#xFF0C;&#x4F60;&#x5728;&#x505A;&#x7EC6;&#x80DE;&#x5206;&#x88C2;&#x7684;&#x9879;&#x76EE;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x7EC6;&#x80DE;&#x90FD;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x73B0;&#x5728;&#x4F60;&#x6709;&#x4E00;&#x4E2A;&#x7EC6;&#x80DE;&#x7C7B;&#xFF0C;&#x6BCF;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7EC6;&#x80DE;&#x90FD;&#x662F;&#x7531;&#x8FD9;&#x4E2A;&#x7C7B;&#x751F;&#x6210;&#x7684;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x7EC6;&#x80DE;&#x53EA;&#x662F;&#x5185;&#x90E8;&#x7684;&#x72B6;&#x6001;&#x53C2;&#x6570;&#x4E0D;&#x540C;&#x3002;<br>&#x5F53;&#x5206;&#x88C2;&#x5230;&#x7B2C;N&#x4EE3;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5DF2;&#x7ECF;&#x548C;&#x521D;&#x4EE3;&#x5927;&#x4E0D;&#x4E00;&#x6837;&#x4E86;&#xFF0C;&#x4F60;&#x662F;&#x613F;&#x610F;&#x4F7F;&#x7528;&#x7B2C;N&#x4EE3;&#x7684;&#x526F;&#x672C;&#x4FEE;&#x6539;&#x4E00;&#x4E0B;&#x5462;&#xFF1F;&#x8FD8;&#x662F;&#x613F;&#x610F;&#x4ECE;&#x521D;&#x4EE3;&#x6162;&#x6162;&#x63A8;&#x6F14;&#xFF1F;</p>
-<h2 id="example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>PHP&#x63D0;&#x4F9B;&#x4E86;&#x5185;&#x5EFA;&#x7684;__clone()&#x51FD;&#x6570;&#x4EE5;&#x53CA;clone&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x6765;&#x5B9E;&#x73B0;&#x5BF9;&#x8C61;&#x7684;&#x590D;&#x5236;&#x3002;&#x4E0B;&#x9762;&#x7ED9;&#x51FA;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在[PHP设计模式(八)：工厂模式][2]中我们介绍了创建设计模式(Creation<br>patterns)中的工厂模式，下面我们将介绍另一种原型设计模式(Prototype Method)。<br>在PHP中，原型设计模式依靠cloning复制对象来实现。通过cloning构造的对象，将大量节省新对象的构造时间。</p>
+<h2 id="何时使用原型设计模式"><a href="#何时使用原型设计模式？" class="headerlink" title="何时使用原型设计模式？"></a>何时使用原型设计模式？</h2><p>简单来说，当你希望根据已有的对象来创建新对象时。<br>为什么会有这种需求？想象一下，你在做细胞分裂的项目，每一个细胞都是一个对象，现在你有一个细胞类，每一个新的细胞都是由这个类生成的，不同的细胞只是内部的状态参数不同。<br>当分裂到第N代的时候，已经和初代大不一样了，你是愿意使用第N代的副本修改一下呢？还是愿意从初代慢慢推演？</p>
+<h2 id="example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>PHP提供了内建的__clone()函数以及clone关键字，来实现对象的复制。下面给出一个例子：</p>
 <pre><code>&lt;?php
 abstract class Cell {
   public $id;
@@ -361,15 +362,15 @@ $whaleCell4-&gt;displayDNA();
 $whaleCell5 = clone $whaleCell4;
 $whaleCell5-&gt;displayDNA();
 ?&gt;
-</code></pre><p>&#x8FD0;&#x884C;&#x4E00;&#x4E0B;&#xFF1A;</p>
+</code></pre><p>运行一下：</p>
 <pre><code>ATCG
 ATCG
 ATCGAT
 ATCGAT
 ATCGATCG
-</code></pre><p>&#x7A0B;&#x5E8F;&#x7B80;&#x5355;&#x7684;&#x6A21;&#x62DF;&#x4E86;DNA&#x7684;&#x9057;&#x4F20;&#x7A81;&#x53D8;&#xFF0C;&#x6BCF;&#x9057;&#x4F20;&#x4E09;&#x4EE3;&#xFF0C;DNA&#x589E;&#x52A0;AT&#xFF0C;&#x6BCF;&#x9057;&#x4F20;&#x4E94;&#x4EE3;&#xFF0C;DNA&#x589E;&#x52A0;CG&#x3002;</p>
-<h2 id="&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;"><a href="#&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;" class="headerlink" title="&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;"></a>&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;</h2><p>&#x4F7F;&#x7528;clone&#x521B;&#x5EFA;&#x65B0;&#x5BF9;&#x8C61;&#x65F6;&#xFF0C;&#x5E76;&#x4E0D;&#x4F1A;&#x89E6;&#x53D1;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x3002;&#x8FD9;&#x4E5F;&#x662F;&#x5728;&#x4F7F;&#x7528;&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E2D;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x4E00;&#x70B9;&#x3002;clone&#x7684;&#x5E95;&#x5C42;&#x5B9E;&#x73B0;&#x5E76;&#x4E0D;&#x662F;&#x8C03;&#x7528;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x6765;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7C7B;&#xFF0C;&#x800C;&#x662F;&#x76F4;&#x63A5;&#x62F7;&#x8D1D;&#x4E00;&#x4E2A;&#x7C7B;&#x7684;&#x5730;&#x5740;&#x7A7A;&#x95F4;&#xFF0C;&#x751F;&#x6210;&#x53E6;&#x4E00;&#x4E2A;&#x7C7B;&#x3002;&#x8FD9;&#x79CD;&#x76F4;&#x63A5;&#x62F7;&#x8D1D;&#x4E5F;&#x5E26;&#x6765;&#x4E86;&#x9AD8;&#x6548;&#x3002;<br>&#x4E8B;&#x5B9E;&#x4E0A;&#xFF0C;&#x4F7F;&#x7528;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5E76;&#x4E0D;&#x4E00;&#x5B9A;&#x662F;&#x4E00;&#x4E2A;&#x597D;&#x7684;&#x8BBE;&#x8BA1;&#xFF0C;&#x7531;&#x4E8E;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5185;&#x7684;&#x903B;&#x8F91;&#x65E0;&#x6CD5;&#x88AB;&#x5916;&#x90E8;&#x63A7;&#x5236;&#xFF0C;&#x5F53;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x4E00;&#x4E2A;&#x7C7B;&#x6784;&#x9020;&#x65F6;&#x7684;&#x903B;&#x8F91;&#x65F6;&#xFF0C;&#x9664;&#x4E86;&#x4FEE;&#x6539;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5B9E;&#x73B0;&#x4EE5;&#x5916;&#xFF0C;&#x522B;&#x65E0;&#x4ED6;&#x6CD5;&#xFF0C;&#x8FD9;&#x7834;&#x574F;&#x4E86;&#x7C7B;&#x7684;&#x5C01;&#x88C5;&#x3002;</p>
-<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>&#x539F;&#x578B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x5E26;&#x6765;&#x4E86;&#x53E6;&#x4E00;&#x79CD;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x7684;&#x601D;&#x8DEF;&#xFF0C;&#x5408;&#x7406;&#x7684;&#x4F7F;&#x7528;cloning&#x6784;&#x9020;&#x5BF9;&#x8C61;&#xFF0C;&#x5C06;&#x63D0;&#x9AD8;&#x7A0B;&#x5E8F;&#x521B;&#x5EFA;&#x65B0;&#x5BF9;&#x8C61;&#x65F6;&#x7684;&#x6548;&#x7387;&#x3002;</p>
+</code></pre><p>程序简单的模拟了DNA的遗传突变，每遗传三代，DNA增加AT，每遗传五代，DNA增加CG。</p>
+<h2 id="原型设计模式中的构造函数"><a href="#原型设计模式中的构造函数" class="headerlink" title="原型设计模式中的构造函数"></a>原型设计模式中的构造函数</h2><p>使用clone创建新对象时，并不会触发类的构造函数。这也是在使用原型设计模式中需要注意的一点。clone的底层实现并不是调用类的构造函数来创建一个类，而是直接拷贝一个类的地址空间，生成另一个类。这种直接拷贝也带来了高效。<br>事实上，使用构造函数并不一定是一个好的设计，由于构造函数内的逻辑无法被外部控制，当需要修改一个类构造时的逻辑时，除了修改类的构造函数实现以外，别无他法，这破坏了类的封装。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>原型设计模式带来了另一种创建对象的思路，合理的使用cloning构造对象，将提高程序创建新对象时的效率。</p>
 
       
     </div>
@@ -422,16 +423,16 @@ ATCGATCG
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/13/php设计模式/PHP设计模式(8)：工厂模式/" rel="next" title="工厂模式">
-                <i class="fa fa-chevron-left"></i> 工厂模式
+              <a href="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/" rel="next" title="状态模式">
+                <i class="fa fa-chevron-left"></i> 状态模式
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/" rel="prev" title="基础编程模式">
-                基础编程模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/13/php设计模式/PHP设计模式(8)：工厂模式/" rel="prev" title="工厂模式">
+                工厂模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -604,10 +605,24 @@ ATCGATCG
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 

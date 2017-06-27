@@ -86,16 +86,17 @@
 
 
 
-<meta name="description" content="Introduction&amp;#x5728;[PHP&amp;#x8BBE;&amp;#x8BA1;&amp;#x6A21;&amp;#x5F0F;(&amp;#x56DB;)&amp;#xFF1A;&amp;#x7EE7;&amp;#x627F;][2]&amp;#x4E2D;&amp;#x6211;&amp;#x4EEC;&amp;#x4ECB;&amp;#x7ECD;&amp;#x4E86;&amp;#x7EE7;&amp;#x627F;&amp;#xFF0C;&amp;#x5229;&amp;#x7528;extends&amp;#x6765;&amp;#x">
+<meta name="description" content="Introduction在[PHP设计模式(四)：继承][2]中我们介绍了继承，利用extends来进行程序设计的方法。在[PHP设计模式(二)：抽象类和接口][3]中我们介绍了接口，事实上也存在利用interface的程序设计方法，那就是多态。和C/C++，Java，Python等语言一样，PHP也支持多态。多态更多是是一种面向对象程序设计的概念，让同一类对象执行同一个接口，但却实现不同的逻辑功">
+<meta name="keywords" content="php">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多态">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(5)：多态/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="Introduction&amp;#x5728;[PHP&amp;#x8BBE;&amp;#x8BA1;&amp;#x6A21;&amp;#x5F0F;(&amp;#x56DB;)&amp;#xFF1A;&amp;#x7EE7;&amp;#x627F;][2]&amp;#x4E2D;&amp;#x6211;&amp;#x4EEC;&amp;#x4ECB;&amp;#x7ECD;&amp;#x4E86;&amp;#x7EE7;&amp;#x627F;&amp;#xFF0C;&amp;#x5229;&amp;#x7528;extends&amp;#x6765;&amp;#x">
+<meta property="og:description" content="Introduction在[PHP设计模式(四)：继承][2]中我们介绍了继承，利用extends来进行程序设计的方法。在[PHP设计模式(二)：抽象类和接口][3]中我们介绍了接口，事实上也存在利用interface的程序设计方法，那就是多态。和C/C++，Java，Python等语言一样，PHP也支持多态。多态更多是是一种面向对象程序设计的概念，让同一类对象执行同一个接口，但却实现不同的逻辑功">
 <meta property="og:updated_time" content="2016-10-13T07:53:52.988Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多态">
-<meta name="twitter:description" content="Introduction&amp;#x5728;[PHP&amp;#x8BBE;&amp;#x8BA1;&amp;#x6A21;&amp;#x5F0F;(&amp;#x56DB;)&amp;#xFF1A;&amp;#x7EE7;&amp;#x627F;][2]&amp;#x4E2D;&amp;#x6211;&amp;#x4EEC;&amp;#x4ECB;&amp;#x7ECD;&amp;#x4E86;&amp;#x7EE7;&amp;#x627F;&amp;#xFF0C;&amp;#x5229;&amp;#x7528;extends&amp;#x6765;&amp;#x">
+<meta name="twitter:description" content="Introduction在[PHP设计模式(四)：继承][2]中我们介绍了继承，利用extends来进行程序设计的方法。在[PHP设计模式(二)：抽象类和接口][3]中我们介绍了接口，事实上也存在利用interface的程序设计方法，那就是多态。和C/C++，Java，Python等语言一样，PHP也支持多态。多态更多是是一种面向对象程序设计的概念，让同一类对象执行同一个接口，但却实现不同的逻辑功">
 
 
 
@@ -321,8 +322,8 @@
       
 
       
-        <h2 id="introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>&#x5728;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x56DB;)&#xFF1A;&#x7EE7;&#x627F;][2]&#x4E2D;&#x6211;&#x4EEC;&#x4ECB;&#x7ECD;&#x4E86;&#x7EE7;&#x627F;&#xFF0C;&#x5229;&#x7528;extends&#x6765;&#x8FDB;&#x884C;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x7684;&#x65B9;&#x6CD5;&#x3002;<br>&#x5728;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x4E8C;)&#xFF1A;&#x62BD;&#x8C61;&#x7C7B;&#x548C;&#x63A5;&#x53E3;][3]&#x4E2D;&#x6211;&#x4EEC;&#x4ECB;&#x7ECD;&#x4E86;&#x63A5;&#x53E3;&#xFF0C;&#x4E8B;&#x5B9E;&#x4E0A;&#x4E5F;&#x5B58;&#x5728;&#x5229;&#x7528;interface&#x7684;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x65B9;&#x6CD5;&#xFF0C;&#x90A3;&#x5C31;&#x662F;&#x591A;&#x6001;&#x3002;<br>&#x548C;C/C++&#xFF0C;Java&#xFF0C;Python&#x7B49;&#x8BED;&#x8A00;&#x4E00;&#x6837;&#xFF0C;PHP&#x4E5F;&#x652F;&#x6301;&#x591A;&#x6001;&#x3002;&#x591A;&#x6001;&#x66F4;&#x591A;&#x662F;&#x662F;&#x4E00;&#x79CD;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x8BA9;&#x540C;&#x4E00;&#x7C7B;&#x5BF9;&#x8C61;&#x6267;&#x884C;&#x540C;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x4F46;&#x5374;&#x5B9E;&#x73B0;&#x4E0D;&#x540C;&#x7684;&#x903B;&#x8F91;&#x529F;&#x80FD;<br>&#x3002;</p>
-<h2 id="&#x591A;&#x6001;polymorphism"><a href="#&#x591A;&#x6001;-Polymorphism" class="headerlink" title="&#x591A;&#x6001;/Polymorphism"></a>&#x591A;&#x6001;/Polymorphism</h2><p>&#x8FD8;&#x662F;&#x7528;&#x52A8;&#x7269;&#x3001;&#x9CB8;&#x9C7C;&#x548C;&#x9CA4;&#x9C7C;&#x6765;&#x4E3E;&#x4F8B;&#xFF1A;</p>
+        <h2 id="introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>在[PHP设计模式(四)：继承][2]中我们介绍了继承，利用extends来进行程序设计的方法。<br>在[PHP设计模式(二)：抽象类和接口][3]中我们介绍了接口，事实上也存在利用interface的程序设计方法，那就是多态。<br>和C/C++，Java，Python等语言一样，PHP也支持多态。多态更多是是一种面向对象程序设计的概念，让同一类对象执行同一个接口，但却实现不同的逻辑功能<br>。</p>
+<h2 id="多态polymorphism"><a href="#多态-Polymorphism" class="headerlink" title="多态/Polymorphism"></a>多态/Polymorphism</h2><p>还是用动物、鲸鱼和鲤鱼来举例：</p>
 <pre><code>&lt;?php
 interface IEat {
   function eatFish();
@@ -354,14 +355,14 @@ $carp = new Carp();
 $carp-&gt;eatFish();
 $carp-&gt;eatMoss();
 ?&gt;
-</code></pre><p>&#x8FD0;&#x884C;&#x4E00;&#x4E0B;&#xFF1A;</p>
+</code></pre><p>运行一下：</p>
 <pre><code>$ php Inheritance.php
 Whale eats fish.
 Whale doesn&apos;t eat fish.
 Carp eats moss.
 Carp doesn&apos;t eat moss.
-</code></pre><p>&#x6CE8;&#x610F;PHP&#x7684;&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#x4E0D;&#x5305;&#x542B;&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x56E0;&#x6B64;&#x5B8C;&#x5168;&#x53EF;&#x4EE5;&#x7ED9;&#x4E0D;&#x540C;&#x7684;&#x63A5;&#x53E3;&#x5B9E;&#x73B0;&#x8FD4;&#x56DE;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x3002;&#x8FD9;&#x4E00;&#x70B9;&#x548C;C/C++&#xFF0C;Java&#x7B49;&#x8BED;&#x8A00;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x3002;&#x6B64;&#x5916;&#xFF0C;&#x8FD4;&#x56DE;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x751A;&#x81F3;&#x4E0D;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#xFF0C;&#x5BF9;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x6765;&#x8BF4;&#xFF0C;&#x4F1A;&#x989D;&#x5916;&#x589E;&#x52A0;&#x7EF4;&#x62A4;&#x6210;&#x672C;&#xFF0C;&#x5DF2;&#x7ECF;&#x548C;&#x4F7F;&#x7528;&#x63A5;&#x53E3;&#x7684;&#x521D;&#x8877;&#x4E0D;&#x540C;&#x4E86;&#xFF08;&#x63A5;&#x53E3;&#x4E3A;&#x4E86;&#x5C01;&#x88C5;&#x5B9E;&#x73B0;&#xFF0C;&#x800C;&#x4E0D;&#x540C;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x4E8B;&#x5B9E;&#x4E0A;&#x662F;&#x9700;&#x8981;&#x8C03;&#x7528;&#x8005;&#x53BB;&#x7406;&#x89E3;&#x5B9E;&#x73B0;&#x7684;&#xFF09;&#x3002;</p>
-<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>&#x5408;&#x7406;&#x5229;&#x7528;&#x591A;&#x6001;&#x5BF9;&#x63A5;&#x53E3;&#x8FDB;&#x884C;&#x4E0D;&#x540C;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x7B80;&#x5316;&#x4F60;&#x7684;&#x7F16;&#x7A0B;&#x6A21;&#x578B;&#xFF0C;&#x8BA9;&#x4EE3;&#x7801;&#x6613;&#x4E8E;&#x7EF4;&#x62A4;&#x3002;</p>
+</code></pre><p>注意PHP的函数定义不包含返回值，因此完全可以给不同的接口实现返回不同类型的数据。这一点和C/C++，Java等语言是不同的。此外，返回不同类型的数据，甚至不返回结果，对程序设计来说，会额外增加维护成本，已经和使用接口的初衷不同了（接口为了封装实现，而不同的返回值事实上是需要调用者去理解实现的）。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>合理利用多态对接口进行不同的实现，简化你的编程模型，让代码易于维护。</p>
 
       
     </div>
@@ -414,13 +415,17 @@ Carp doesn&apos;t eat moss.
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/" rel="next" title="基础编程模式">
-                <i class="fa fa-chevron-left"></i> 基础编程模式
+              <a href="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/" rel="next" title="MVC">
+                <i class="fa fa-chevron-left"></i> MVC
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/13/php设计模式/PHP设计模式(4)：继承/" rel="prev" title="继承">
+                继承 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -592,10 +597,24 @@ Carp doesn&apos;t eat moss.
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 

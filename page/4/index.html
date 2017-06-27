@@ -254,6 +254,173 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/2闭包/" itemprop="url">
+                  闭包
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/12/JavaScript设计模式与开发实践/2闭包/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/2闭包/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/2闭包/"class="leancloud_visitors" data-flag-title="闭包"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+闭包是js中一个难懂又必须征服的概念，他的形成与变量作用域以及变量的生存周期密切相关。
+
+变量作用域和生存周期作用域，按字面理解，就是指变量的有效范围，超出这个范围就无法访问。在函数中，里面函数可以访问外面的变量，但是外面无法访问内部变量。举个简单例子：
+var a = 1;
+var fun1 = function() {
+    var b = 2;
+    var fun2 = function() {
+        var c = 3;
+        alert(b); //2
+        alert(c); //3
+    }
+    fun2();
+    alert(c); //c is not defined
+};
+fun1();
+生存周期：全局变量的生存周期是永久的，除非我们主动销毁，但是普通对于用var声明的局部变量，当退出函数不再使用时，就会被销毁。但是当你使用到闭包时，情况就不一样了
+var fun = function() {
+    var a = 1;
+    return function() {
+        a++;
+        alert(a);
+    }
+};
+var f = fun();
+f(); //2
+f(); //3
+f(); //4
+f(); //5
+解释：当执行var f = fun();时，f返回了一个匿名函数的引用，它可以访问到fun()被调用的生产环境，而局部变量a一直在这个环境中。既然局部变量能被外界访问，那它就有了不被销毁的理由，于是局部变量生命被延续了。
+再例如：
+var nodes = document.getElemmentByTagName(&apos;div&apos;); //此处他的长度为5
+for (var i = 0, len = nodes.length; i &lt; len; i++) {
+    nodes[i].onclick = function() {
+        alert(i);
+    }
+};
+以上代码无论点哪个div显示的都是5（div节点的onclick是异步触发的，当事件触发时，循环已经结束，此时i的值是5）解决方法：闭包大法好
+for (var i = 0, len = nodes.length; i &lt; len; i++) {
+ 
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/2闭包/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/" itemprop="url">
                   高阶函数
                 </a>
@@ -328,14 +495,44 @@
         
           
           
-&#x9AD8;&#x9636;&#x51FD;&#x6570;&#x662F;&#x81F3;&#x5C11;&#x6EE1;&#x8DB3;&#x4E0B;&#x5217;&#x6761;&#x4EF6;&#x4E4B;&#x4E00;&#x7684;&#x51FD;&#x6570;
+高阶函数是至少满足下列条件之一的函数
 
-&#x51FD;&#x6570;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x88AB;&#x4F20;&#x9012;
-&#x51FD;&#x6570;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x8FD4;&#x56DE;&#x503C;&#x8F93;&#x51FA;&#xFF08;js&#x8FD9;&#x4E48;&#x597D;&#x7684;&#x8BED;&#x8A00;&#x4E2D;&#x7684;&#x51FD;&#x6570;&#x5F53;&#x7136;&#x6EE1;&#x8DB3; ^^&#xFF09;_
+函数可以作为参数被传递
+函数可以作为返回值输出（js这么好的语言中的函数当然满足 ^^）_
 
-&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x628A;&#x51FD;&#x6570;&#x5F53;&#x4F5C;&#x53C2;&#x6570;&#x4F20;&#x9012;&#xFF0C;&#x53EF;&#x4EE5;&#x62BD;&#x79BB;&#x51FA;&#x4E00;&#x90E8;&#x5206;&#x5BB9;&#x6613;&#x53D8;&#x5316;&#x7684;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#xFF0C;&#x628A;&#x8FD9;&#x90E8;&#x5206;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x653E;&#x5728;&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x5206;&#x79BB;&#x4E1A;&#x52A1;&#x4EE3;&#x7801;&#x4E2D;&#x53D8;&#x4E0E;&#x4E0D;&#x53D8;&#x7684;&#x90E8;&#x5206;&#x3002;
+函数作为参数传递把函数当作参数传递，可以抽离出一部分容易变化的业务逻辑，把这部分业务逻辑放在函数中，可以分离业务代码中变与不变的部分。
 
-&#
+回调函数，ajax异步，callback
+
+var getUserInfo() = function(userId, callback) {
+    $.ajax(&apos;http://xxx.com/getUserInfo?&apos; + userId, function(data) {
+        if (typeof(callback === &apos;function&apos;) {
+            callback(data);
+        }
+    });
+}
+getUserInfo(13157, function(data) {
+    alert(data.user);
+})
+高阶函数实现AOPAOP（面向切面编程），把一些跟核心业务逻辑模块无关的功能抽离出来（通常包括日志统计，安全控制，异常处理等）
+Function.prototype.before = function(beforefn) {
+    var __self = this; //保存原函数的引用
+    return function() { //返回包含原函数和新函数的“代理”函数
+        beforefn.apply(this, arguments); //执行新函数，修正this
+        return __self.apply(this, arguments); //执行原函数
+    }
+};
+
+Function.prototype.after= function(afterfn) {
+    var __self = this; 
+    return function() { 
+        var ret = __self.apply(this, arguments);
+        afterfn.apply(this, arguments); 
+        return ret ;
+    }
+};
+
+var func = function()
           ...
 
           <div class="post-more-link text-center">
@@ -464,8 +661,8 @@
         
           
           
-&#x7528;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x6765;&#x6807;&#x5FD7;&#x5F53;&#x524D;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x4E3A;&#x67D0;&#x4E2A;&#x7C7B;&#x521B;&#x5EFA;&#x8FC7;&#x5BF9;&#x8C61;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x5728;&#x4E0B;&#x4E00;&#x6B21;&#x83B7;&#x53D6;&#x8BE5;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x65F6;&#xFF0C;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x4E4B;&#x524D;&#x521B;&#x5EFA;&#x7684;&#x5BF9;&#x8C61;&#x3002;
-&#x5B9E;&#x73B0;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;//1.&#x5B9E;&#x73B0;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;
+用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。
+实现单例模式//1.实现单例模式
 var Singleton = function (name) {
   this.name = name;
 };
@@ -485,7 +682,24 @@ var a = Singleton.getInstance(&apos;sven1&apos;);
 var b = Singleton.getInstance(&apos;sven2&apos;);
 
 console.log(a === b); //true
-&#x4EE5;&#x4E0A;&#xFF0C;&#x62
+以上，我们通过Singleton.getInstance来获取Singleton类的唯一对象，虽然简单但是增加了这个类的“不透明性”，Singleton类的使用者必须知道这是一个单例类，跟以往通过new xxx的方法不同
+透明的单例模式有了以上的不足，我们现在就来解决
+//透明的单例模式 
+var CreateDiv = (function() {
+  var instance;
+  var CreateDiv = function(html) {
+    if (instance) {
+      return instance;
+    }
+    this.html = html;
+    this.init();
+    return instance = this;
+  };
+
+  CreateDiv.prototype.init = function() {
+    var div = document.createElement(&apos;div&apos;);
+    div.innerHTML = this.html;
+    document.b
           ...
 
           <div class="post-more-link text-center">
@@ -540,8 +754,8 @@ console.log(a === b); //true
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/11命令模式/" itemprop="url">
-                  命令模式
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/" itemprop="url">
+                  策略模式
                 </a>
               
             
@@ -584,8 +798,8 @@ console.log(a === b); //true
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/12/JavaScript设计模式与开发实践/11命令模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/11命令模式/" itemprop="commentsCount"></span>
+                <a href="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/5策略模式/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -596,7 +810,7 @@ console.log(a === b); //true
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/11命令模式/"class="leancloud_visitors" data-flag-title="命令模式"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/"class="leancloud_visitors" data-flag-title="策略模式"></span>
           
 
           
@@ -614,11 +828,45 @@ console.log(a === b); //true
         
           
           
-&#x547D;&#x4EE4;&#x6A21;&#x5F0F;&#x662F;&#x6700;&#x7B80;&#x5355;&#x548C;&#x4F18;&#x96C5;&#x7684;&#x6A21;&#x5F0F;&#x4E4B;&#x4E00;&#xFF0C;&#x547D;&#x4EE4;&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x547D;&#x4EE4;&#x6307;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x6267;&#x884C;&#x67D0;&#x4E9B;&#x7279;&#x5B9A;&#x4E8B;&#x60C5;&#x7684;&#x6307;&#x4EE4;&#x3002;&#x547D;&#x4EE4;&#x6A21;&#x5F0F;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x5E94;&#x7528;&#x573A;&#x666F;&#x662F;&#xFF1A;&#x6709;&#x65F6;&#x5019;&#x9700;&#x8981;&#x5411;&#x67D0;&#x4E9B;&#x5BF9;&#x8C61;&#x53D1;&#x9001;&#x8BF7;&#x6C42;&#xFF0C;&#x4F46;&#x662F;&#x4E0D;&#x77E5;&#x9053;&#x8BF7;&#x6C42;&#x7684;&#x63A5;&#x6536;&#x8005;&#x662F;&#x8C01;&#xFF0C;&#x4E5F;&#x4E0D;&#x77E5;&#x9053;&#x88AB;&#x8BF7;&#x6C42;&#x7684;&#x64CD;&#x4F5C;&#x662F;&#x4EC0;&#x4E48;&#x3002;&#x6B64;&#x65F6;&#x5E0C;&#x671B;&#x7528;&#x4E00;&#x79CD;&#x677E;&#x8026;&#x5408;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x8BBE;&#x8BA1;&#x7A0B;&#x5E8F;&#xFF0C;&#x4F7F;&#x5F97;&#x8BF7;&#x6C42;&#x53D1;&#x9001;&#x8005
+定义：定义一系列算法，把他们一个个封装起来，并且使他们可以相互替换。
+
+需求：绩效为S的人年终奖有4倍工资，绩效为A的人年终奖有3倍工资，绩效为B的人年终奖有2倍工资。
+var calculateBonus = function(performanceLevel, salary) {
+    if (performanceLevel === &apos;S&apos;) {
+        return salary * 4;
+    }
+    if (performanceLevel === &apos;A&apos;) {
+        return salary * 3;
+    }
+    if (performanceLevel === &apos;B&apos;) {
+        return salary * 2;
+    }
+};
+
+calculateBonus(&apos;B&apos;, 20000); //輸出：40000
+然而，calculateBonus函数比较庞大，包含了很多if语句，且缺乏弹性，如果增加新的绩效等级，复用性差，如果在程序的其他地方需要重用这些计算奖金的算法，我们的选择只有复制和粘贴。因此，我们要重构这段代码。
+var performanceS = function(salary) {
+    return salary * 4;
+}
+var performanceA = function(salary) {
+    return salary * 3;
+}
+var performanceB = function(salary) {
+    return salary * 2;
+}
+
+var calculateBonus = function(performanceLevel, salary) {
+    if (performanceLevel == &apos;S&apos;) {
+        return performanceS(salary);
+    }
+    if (performanceLevel == &apos;A&apos;) {
+        return performanceA(salary);
+    }
+    if (performanceLevel == &apos;B
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/11命令模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -743,156 +991,51 @@ console.log(a === b); //true
         
           
           
-&#x7528;&#x7B56;&#x7565;&#x6A21;&#x5F0F;&#x5B9E;&#x73B0;&#x7F13;&#x52A8;&#x52A8;&#x753B;&#x9700;&#x6C42;&#xFF1A;&#x8BA9;&#x5C0F;&#x7403;&#x4EE5;&#x5404;&#x79CD;&#x7F13;&#x52A8;&#x6548;&#x679C;&#x5728;&#x9875;&#x9762;&#x4E2D;&#x8FD0;&#x52A8;&#x52A8;&#x753B;&#x5F00;&#x59CB;&#x524D;&#x9700;&#x8981;&#x8BB0;&#x5F55;&#x7684;&#xFF1A;
+用策略模式实现缓动动画需求：让小球以各种缓动效果在页面中运动动画开始前需要记录的：
 
-&#x5C0F;&#x7403;&#x6240;&#x5728;&#x539F;&#x59CB;&#x4F4D;&#x7F6E;
+小球所在原始位置
 
-&#x5C0F;&#x7403;&#x79FB;&#x52A8;&#x7684;&#x76EE;&#x6807;&#x4F4D;&#x7F6E;
+小球移动的目标位置
 
-&#x52A8;&#x753B;&#x5F00;&#x59CB;&#x65F6;&#x7684;&#x65F6;&#x95F4;&#x70B9;
+动画开始时的时间点
 
-&#x5C0F;&#x7403;&#x8FD0;&#x52A8;&#x7684;&#x65F6;&#x95F4;&#x70B9;&#x4E4B;&#x540E;&#xFF0C;&#x7528;setInterval&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5B9A;&#x65F6;&#x5668;&#xFF0C;&#x5B9A;&#x65F6;&#x5668;&#x6BCF;19&#x79D2;&#x5FAA;&#x73AF;&#x4E00;&#x6B21;&#x3002;
+小球运动的时间点之后，用setInterval创建一个定时器，定时器每19秒循环一次。
 
 
-//&#x7F13;&#x52A8;&#x7B97;&#x6CD5;&#xFF0C;&#x6B64;&#x7B97;&#x6CD5;&#x79FB;&#x690D;&#x4E8E;flash
+//缓动算法，此算法移植于flash
 
 var tween = {
-    //t&#xFF1A;&#x52A8;&#x753B;&#x5DF2;&#x6D88;&#x8017;&#x7684;&#x65F6;&#x95F4;&#xFF0C;b
+    //t：动画已消耗的时间，b：小球原始位置，c：小球目标位置，d：动画持续时间
+    linear: function(t, b, c, d) {
+        return c*t/d + b;
+    },
+    reseIn: function(t, b, c, d) {
+        return c * (t /= d) * t + b;
+    },
+    strongEaseIn: function(t, b, c, d) {
+        return c * (t /= d) * t * t * t * t + b;
+    },
+    strongEaseOut: function(t, b, c, d) {
+        return c * (( t = t / d - 1) * t * t * t * t + 1) + b;
+    },
+    sineaseIn: function(t, b, c, d) {
+        return c * (t /= d) * t * t + b;
+    },
+    sineaseOur: function(t, b, c, d) {
+        return c * ((t = t / d - 1) * t * t + 1 ) + b;
+    }
+};
+接着Animation类
+var Animate = function( dom ) {
+    this.dom = dom;              //进行运动的dom节点
+    this.startTime = 0;         //动画开始时间
+    this.startPos = 0;           //动画开始时候dom位置
+    this.endPos = 0;            //结束dom位置
+    this.propertyName = null;     
           ...
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/" itemprop="url">
-                  代理模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/7代理模式/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/"class="leancloud_visitors" data-flag-title="代理模式"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#x662F;&#x4E3A;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x4EE3;&#x7528;&#x54C1;&#x6216;&#x5360;&#x4F4D;&#x7B26;&#xFF0C;&#x4EE5;&#x4FBF;&#x63A7;&#x5236;&#x5BF9;&#x4ED6;&#x7684;&#x8BBF;&#x95EE;&#x3002;&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#x7684;&#x5173;&#x952E;&#x662F;&#xFF0C;&#x5F53;&#x5BA2;&#x6237;&#x4E0D;&#x65B9;&#x4FBF;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x6216;&#x8005;&#x4E0D;&#x6EE1;&#x8DB3;&#x9700;&#x8981;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x6765;&#x63A7;&#x5236;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x8BBF;&#x95EE;&#xFF0C;&#x5BA2;&#x6237;&#x5B9E;&#x9645;&#x4E0A;&#x8BBF;&#x95EE;&#x7684;&#x662F;&#x66FF;&#x8EAB;&#x5BF9;&#x8C61;&#x3002;&#x66FF;&#x8EAB;&#x5BF9;&#x8C61;&#x5BF9;&#x8BF7;&#x6C42;&#x505A;&#x51FA;&#x4E00;&#x4E9B;&#x5904;&#x7406;&#x540E;&#x518D;&#x628A;&#x8BF7;&#x6C42;&#x8F6C;&#x4EA4;&#x7ED9;&#x672C;&#x4F53;&#x5BF9;&#x8C61;&#x3002;
-
-&#x4E0D;&#x4F
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1056,10 +1199,24 @@ var tween = {
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 

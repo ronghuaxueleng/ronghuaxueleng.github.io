@@ -86,16 +86,17 @@
 
 
 
-<meta name="description" content="&amp;#x9002;&amp;#x914D;&amp;#x5668;&amp;#x6A21;&amp;#x5F0F;&amp;#x7684;&amp;#x4F5C;&amp;#x7528;&amp;#x662F;&amp;#x89E3;&amp;#x51B3;&amp;#x4E24;&amp;#x4E2A;&amp;#x8F6F;&amp;#x4EF6;&amp;#x5B9E;&amp;#x4F53;&amp;#x95F4;&amp;#x7684;&amp;#x63A5;&amp;#x53E3;&amp;#x4E0D;&amp;#x517C;&amp;#x5BB9;&amp;#x95E">
+<meta name="description" content="适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。  适配器模式的应用适配模式是一种“亡羊补牢”的模式，没有人会在程序的设计之初就使用它，因为没有人可以完全预料到未来的事情，也许现在好好工作的接口未来就不再适用于新系统，那么我们可以使用适配器模式把旧的接口包装成新的接口，使他继续保持生命力。比如在json数据流行之">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="适配器模式">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="&amp;#x9002;&amp;#x914D;&amp;#x5668;&amp;#x6A21;&amp;#x5F0F;&amp;#x7684;&amp;#x4F5C;&amp;#x7528;&amp;#x662F;&amp;#x89E3;&amp;#x51B3;&amp;#x4E24;&amp;#x4E2A;&amp;#x8F6F;&amp;#x4EF6;&amp;#x5B9E;&amp;#x4F53;&amp;#x95F4;&amp;#x7684;&amp;#x63A5;&amp;#x53E3;&amp;#x4E0D;&amp;#x517C;&amp;#x5BB9;&amp;#x95E">
-<meta property="og:updated_time" content="2016-10-12T09:42:12.639Z">
+<meta property="og:description" content="适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。  适配器模式的应用适配模式是一种“亡羊补牢”的模式，没有人会在程序的设计之初就使用它，因为没有人可以完全预料到未来的事情，也许现在好好工作的接口未来就不再适用于新系统，那么我们可以使用适配器模式把旧的接口包装成新的接口，使他继续保持生命力。比如在json数据流行之">
+<meta property="og:updated_time" content="2016-10-12T09:42:12.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="适配器模式">
-<meta name="twitter:description" content="&amp;#x9002;&amp;#x914D;&amp;#x5668;&amp;#x6A21;&amp;#x5F0F;&amp;#x7684;&amp;#x4F5C;&amp;#x7528;&amp;#x662F;&amp;#x89E3;&amp;#x51B3;&amp;#x4E24;&amp;#x4E2A;&amp;#x8F6F;&amp;#x4EF6;&amp;#x5B9E;&amp;#x4F53;&amp;#x95F4;&amp;#x7684;&amp;#x63A5;&amp;#x53E3;&amp;#x4E0D;&amp;#x517C;&amp;#x5BB9;&amp;#x95E">
+<meta name="twitter:description" content="适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。  适配器模式的应用适配模式是一种“亡羊补牢”的模式，没有人会在程序的设计之初就使用它，因为没有人可以完全预料到未来的事情，也许现在好好工作的接口未来就不再适用于新系统，那么我们可以使用适配器模式把旧的接口包装成新的接口，使他继续保持生命力。比如在json数据流行之">
 
 
 
@@ -323,18 +324,18 @@
       
         <hr>
 <blockquote>
-<p>&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x7684;&#x4F5C;&#x7528;&#x662F;&#x89E3;&#x51B3;&#x4E24;&#x4E2A;&#x8F6F;&#x4EF6;&#x5B9E;&#x4F53;&#x95F4;&#x7684;&#x63A5;&#x53E3;&#x4E0D;&#x517C;&#x5BB9;&#x95EE;&#x9898;&#x3002;&#x4F7F;&#x7528;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x4E4B;&#x540E;&#xFF0C;&#x539F;&#x672C;&#x7531;&#x4E8E;&#x63A5;&#x53E3;&#x4E0D;&#x517C;&#x5BB9;&#x800C;&#x4E0D;&#x80FD;&#x5DE5;&#x4F5C;&#x7684;&#x4E24;&#x4E2A;&#x8F6F;&#x4EF6;&#x5B9E;&#x4F53;&#x53EF;&#x4EE5;&#x4E00;&#x8D77;&#x5DE5;&#x4F5C;&#x3002;</p>
+<p>适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。</p>
 </blockquote>
-<h3 id="&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x7684;&#x5E94;&#x7528;"><a href="#&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x7684;&#x5E94;&#x7528;" class="headerlink" title="&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x7684;&#x5E94;&#x7528;"></a>&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x7684;&#x5E94;&#x7528;</h3><p>&#x9002;&#x914D;&#x6A21;&#x5F0F;&#x662F;&#x4E00;&#x79CD;&#x201C;&#x4EA1;&#x7F8A;&#x8865;&#x7262;&#x201D;&#x7684;&#x6A21;&#x5F0F;&#xFF0C;&#x6CA1;&#x6709;&#x4EBA;&#x4F1A;&#x5728;&#x7A0B;&#x5E8F;&#x7684;&#x8BBE;&#x8BA1;&#x4E4B;&#x521D;&#x5C31;&#x4F7F;&#x7528;&#x5B83;&#xFF0C;&#x56E0;&#x4E3A;&#x6CA1;&#x6709;&#x4EBA;&#x53EF;&#x4EE5;&#x5B8C;&#x5168;&#x9884;&#x6599;&#x5230;&#x672A;&#x6765;&#x7684;&#x4E8B;&#x60C5;&#xFF0C;&#x4E5F;&#x8BB8;&#x73B0;&#x5728;&#x597D;&#x597D;&#x5DE5;&#x4F5C;&#x7684;&#x63A5;&#x53E3;&#x672A;&#x6765;&#x5C31;&#x4E0D;&#x518D;&#x9002;&#x7528;&#x4E8E;&#x65B0;&#x7CFB;&#x7EDF;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x628A;&#x65E7;&#x7684;&#x63A5;&#x53E3;&#x5305;&#x88C5;&#x6210;&#x65B0;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x4F7F;&#x4ED6;&#x7EE7;&#x7EED;&#x4FDD;&#x6301;&#x751F;&#x547D;&#x529B;&#x3002;<br>&#x6BD4;&#x5982;&#x5728;json&#x6570;&#x636E;&#x6D41;&#x884C;&#x4E4B;&#x524D;&#xFF0C;&#x5F88;&#x591A;cgi&#x8FD4;&#x56DE;&#x7684;&#x90FD;&#x662F;XML&#x683C;&#x5F0F;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x5982;&#x679C;&#x4ECA;&#x5929;&#x4ECD;&#x7136;&#x60F3;&#x7528;&#x8FD9;&#x4E9B;&#x63A5;&#x53E3;&#xFF0C;&#x663E;&#x7136;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x521B;&#x9020;&#x4E00;&#x4E2A;XML-JSON&#x9002;&#x914D;&#x5668;&#x3002;</p>
-<p>&#x6BD4;&#x5982;&#x6709;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;&#xFF0C;&#x6211;&#x4EEC;&#x5411;googleMap&#x548C;baiduMap&#x90FD;&#x53D1;&#x51FA;&#x663E;&#x793A;&#x8BF7;&#x6C42;&#x65F6;&#xFF0C;&#x4ED6;&#x4EEC;&#x5206;&#x522B;&#x4EE5;&#x5404;&#x81EA;&#x7684;&#x65B9;&#x5F0F;&#x5728;&#x9875;&#x9762;&#x4E2D;&#x5C55;&#x73B0;&#x4E86;&#x5730;&#x56FE;&#xFF1A;</p>
+<h3 id="适配器模式的应用"><a href="#适配器模式的应用" class="headerlink" title="适配器模式的应用"></a>适配器模式的应用</h3><p>适配模式是一种“亡羊补牢”的模式，没有人会在程序的设计之初就使用它，因为没有人可以完全预料到未来的事情，也许现在好好工作的接口未来就不再适用于新系统，那么我们可以使用适配器模式把旧的接口包装成新的接口，使他继续保持生命力。<br>比如在json数据流行之前，很多cgi返回的都是XML格式的数据，如果今天仍然想用这些接口，显然我们可以创造一个XML-JSON适配器。</p>
+<p>比如有一段代码，我们向googleMap和baiduMap都发出显示请求时，他们分别以各自的方式在页面中展现了地图：</p>
 <pre><code>var googleMap = {
     show: function() {
-        console.log(&apos;&#x5F00;&#x59CB;&#x6E32;&#x67D3;&#x8C37;&#x6B4C;&#x5730;&#x56FE;&apos;);
+        console.log(&apos;开始渲染谷歌地图&apos;);
     }
 };
 var baiduMap = {
     show: function() {
-        console.log(&apos;&#x5F00;&#x59CB;&#x6E32;&#x67D3;&#x767E;&#x5EA6;&#x5730;&#x56FE;&apos;);
+        console.log(&apos;开始渲染百度地图&apos;);
     }
 };
 
@@ -344,18 +345,18 @@ var renderMap = function(map) {
     }
 };
 
-renderMap(googleMap); //&#x5F00;&#x59CB;&#x6E32;&#x67D3;&#x8C37;&#x6B4C;&#x5730;&#x56FE;
-renderMap(baiduMap); //&#x5F00;&#x59CB;&#x6E32;&#x67D3;&#x767E;&#x5EA6;&#x5730;&#x56FE;
-</code></pre><p>&#x8FD9;&#x4E2A;&#x7A0B;&#x5E8F;&#x80FD;&#x8FD0;&#x884C;&#x7684;&#x5173;&#x952E;&#x4E4B;&#x5904;&#x5728;&#x4E8E;<code>googleMap</code>&#x548C;<code>baiduMap</code>&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x81F4;&#x7684;show&#x65B9;&#x6CD5;&#xFF0C;&#x4F46;&#x662F;&#x7B2C;&#x4E09;&#x65B9;&#x63A5;&#x53E3;&#x5E76;&#x4E0D;&#x5728;&#x6211;&#x4EEC;&#x7684;&#x63A7;&#x5236;&#x8303;&#x56F4;&#x5185;&#xFF0C;&#x52A0;&#x5165;<code>baiduMap</code>&#x63D0;&#x4F9B;&#x7684;&#x663E;&#x793A;&#x5730;&#x56FE;&#x7684;&#x65B9;&#x6CD5;&#x4E0D;&#x53EB;<code>show</code>&#xFF0C;&#x800C;&#x53EB;<code>display</code>&#x5462;?</p>
-<p>&#x6B64;&#x65F6;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x589E;&#x52A0;<code>baiduMapAdapter</code>&#x6765;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#xFF1A;</p>
+renderMap(googleMap); //开始渲染谷歌地图
+renderMap(baiduMap); //开始渲染百度地图
+</code></pre><p>这个程序能运行的关键之处在于<code>googleMap</code>和<code>baiduMap</code>提供了一致的show方法，但是第三方接口并不在我们的控制范围内，加入<code>baiduMap</code>提供的显示地图的方法不叫<code>show</code>，而叫<code>display</code>呢?</p>
+<p>此时我们可以通过增加<code>baiduMapAdapter</code>来解决问题：</p>
 <pre><code>var googleMap = {
     show: function() {
-        console.log(&apos;&#x5F00;&#x59CB;&#x6E32;&#x67D3;&#x8C37;&#x6B4C;&#x5730;&#x56FE;&apos;);
+        console.log(&apos;开始渲染谷歌地图&apos;);
     }
 };
 var baiduMap = {
     display: function() {
-        console.log(&apos;&#x5F00;&#x59CB;&#x6E32;&#x67D3;&#x767E;&#x5EA6;&#x5730;&#x56FE;&apos;);
+        console.log(&apos;开始渲染百度地图&apos;);
     }
 };
 var baiduAdapter = {
@@ -369,15 +370,15 @@ var renderMap = function(map) {
     }
 };
 
-renderMap(googleMap); //&#x5F00;&#x59CB;&#x6E32;&#x67D3;&#x8C37;&#x6B4C;&#x5730;&#x56FE;
-renderMap(baiduAdapter); //&#x5F00;&#x59CB;&#x6E32;&#x67D3;&#x767E;&#x5EA6;&#x5730;&#x56FE;
-</code></pre><h3 id="&#x5C0F;&#x7ED3;"><a href="#&#x5C0F;&#x7ED3;" class="headerlink" title="&#x5C0F;&#x7ED3;"></a>&#x5C0F;&#x7ED3;</h3><p>&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x662F;&#x4E00;&#x5BF9;&#x76F8;&#x5BF9;&#x7B80;&#x5355;&#x7684;&#x6A21;&#x5F0F;&#xFF0C;&#x4F46;&#x662F;&#x6709;&#x4E00;&#x4E9B;&#x6A21;&#x5F0F;&#x8DDF;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x7684;&#x7ED3;&#x6784;&#x975E;&#x5E38;&#x76F8;&#x4F3C;&#xFF0C;&#x6BD4;&#x5982;&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F;&#xFF0C;&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#x548C;&#x5916;&#x89C2;&#x6A21;&#x5F0F;&#xFF0C;&#x8FD9;&#x51E0;&#x79CD;&#x90FD;&#x5C5E;&#x4E8E;&#x201C;&#x5305;&#x88C5;&#x6A21;&#x5F0F;&#x201D;&#xFF0C;&#x90FD;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x6765;&#x5305;&#x88C5;&#x53E6;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x3002;&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x5C31;&#x6765;&#x505A;&#x4E00;&#x4E9B;&#x533A;&#x5206;&#xFF1A;</p>
+renderMap(googleMap); //开始渲染谷歌地图
+renderMap(baiduAdapter); //开始渲染百度地图
+</code></pre><h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>适配器模式是一对相对简单的模式，但是有一些模式跟适配器模式的结构非常相似，比如装饰者模式，代理模式和外观模式，这几种都属于“包装模式”，都是一个对象来包装另一个对象。我们现在就来做一些区分：</p>
 <ul>
-<li><p>&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x4E3B;&#x8981;&#x7528;&#x6765;&#x89E3;&#x51B3;&#x4E24;&#x4E2A;&#x5DF2;&#x6709;&#x63A5;&#x53E3;&#x4E4B;&#x95F4;&#x7684;&#x4E0D;&#x5339;&#x914D;&#x95EE;&#x9898;&#xFF0C;&#x5B83;&#x4E0D;&#x9700;&#x8981;&#x8003;&#x8651;&#x8FD9;&#x4E9B;&#x63A5;&#x53E3;&#x662F;&#x600E;&#x6837;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x4E5F;&#x4E0D;&#x8003;&#x8651;&#x5B83;&#x4EEC;&#x8BB2;&#x6765;&#x53EF;&#x80FD;&#x4F1A;&#x5982;&#x4F55;&#x6F14;&#x5316;&#x3002;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x4E0D;&#x9700;&#x8981;&#x6539;&#x53D8;&#x5DF2;&#x6709;&#x63A5;&#x53E3;&#xFF0C;&#x5C31;&#x80FD;&#x591F;&#x5B9E;&#x73B0;&#x5B83;&#x4EEC;&#x7684;&#x534F;&#x540C;&#x4F5C;&#x7528;&#x3002;</p>
+<li><p>适配器模式主要用来解决两个已有接口之间的不匹配问题，它不需要考虑这些接口是怎样实现的，也不考虑它们讲来可能会如何演化。适配器模式不需要改变已有接口，就能够实现它们的协同作用。</p>
 </li>
-<li><p>&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F;&#x548C;&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#x4E5F;&#x4E0D;&#x4F1A;&#x6539;&#x53D8;&#x539F;&#x6709;&#x5BF9;&#x8C61;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x4F46;&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F;&#x7684;&#x4F5C;&#x7528;&#x662F;&#x4E3A;&#x4E86;&#x7ED9;&#x5BF9;&#x8C61;&#x589E;&#x52A0;&#x529F;&#x80FD;&#x3002;&#x88C5;&#x9970;&#x8005;&#x6A21;&#x5F0F;&#x5E38;&#x5E38;&#x5F62;&#x6210;&#x4E00;&#x6761;&#x957F;&#x7684;&#x88C5;&#x9970;&#x94FE;&#xFF0C;&#x800C;&#x9002;&#x914D;&#x5668;&#x6A21;&#x5F0F;&#x901A;&#x5E38;&#x53EA;&#x5305;&#x88C5;&#x4E00;&#x6B21;&#x3002;&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#x662F;&#x4E3A;&#x4E86;&#x63A7;&#x5236;&#x5BF9;&#x8C61;&#x7684;&#x8BBF;&#x95EE;&#xFF0C;&#x901A;&#x5E38;&#x4E5F;&#x53EA;&#x5305;&#x88C5;&#x4E00;&#x6B21;&#x3002;</p>
+<li><p>装饰者模式和代理模式也不会改变原有对象的接口，但装饰者模式的作用是为了给对象增加功能。装饰者模式常常形成一条长的装饰链，而适配器模式通常只包装一次。代理模式是为了控制对象的访问，通常也只包装一次。</p>
 </li>
-<li><p>&#x5916;&#x89C2;&#x6A21;&#x5F0F;&#x7684;&#x4F5C;&#x7528;&#x548C;&#x9002;&#x914D;&#x5668;&#x6BD4;&#x8F83;&#x50CF;&#x662F;&#xFF0C;&#x6709;&#x4EBA;&#x628A;&#x5916;&#x89C2;&#x6A21;&#x5F0F;&#x770B;&#x6210;&#x4E00;&#x7EC4;&#x5BF9;&#x8C61;&#x7684;&#x9002;&#x914D;&#x5668;&#xFF0C;&#x4F46;&#x5916;&#x89C2;&#x6A21;&#x5F0F;&#x6700;&#x663E;&#x8457;&#x7684;&#x7279;&#x70B9;&#x662F;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x63A5;&#x53E3;&#x3002;</p>
+<li><p>外观模式的作用和适配器比较像是，有人把外观模式看成一组对象的适配器，但外观模式最显著的特点是定义了一个新的接口。</p>
 </li>
 </ul>
 
@@ -432,16 +433,16 @@ renderMap(baiduAdapter); //&#x5F00;&#x59CB;&#x6E32;&#x67D3;&#x767E;&#x5EA6;&#x57
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/12/JavaScript设计模式与开发实践/1this关键字/" rel="next" title="this关键字">
-                <i class="fa fa-chevron-left"></i> this关键字
+              <a href="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/" rel="next" title="代码重构">
+                <i class="fa fa-chevron-left"></i> 代码重构
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/" rel="prev" title="状态模式">
-                状态模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/" rel="prev" title="迭代器模式">
+                迭代器模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -614,10 +615,24 @@ renderMap(baiduAdapter); //&#x5F00;&#x59CB;&#x6E32;&#x67D3;&#x767E;&#x5EA6;&#x57
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 

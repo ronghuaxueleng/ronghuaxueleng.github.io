@@ -86,16 +86,17 @@
 
 
 
-<meta name="description" content="&amp;#x7B80;&amp;#x4ECB;&amp;#x5BF9;&amp;#x4E8E;&amp;#x7F16;&amp;#x7A0B;&amp;#x6765;&amp;#x8BF4;&amp;#xFF0C;&amp;#x5BF9;&amp;#x4E8B;&amp;#x7269;&amp;#x7684;&amp;#x62BD;&amp;#x8C61;&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x8001;&amp;#x751F;&amp;#x5E38;&amp;#x8C08;&amp;#x7684;&amp;#x8BDD;&amp;#x9898;">
+<meta name="description" content="简介对于编程来说，对事物的抽象是一个老生常谈的话题，抽象问题更利于面向对象编程以及程序设计模式。和C/C++，Java，Python等语言一样，PHP也支持面向对象，但是又有略微区别，如PHP支持在接口中定义常量，但是不支持抽象变量。 抽象/Abstraction 对事物的抽象是指，区别两个不同事物之间的本质特征，这两个事物应该在某个视角上有明确的区分界限。  如，鲸鱼和鲤鱼，这两个事物在动物的视">
+<meta name="keywords" content="php">
 <meta property="og:type" content="article">
 <meta property="og:title" content="抽象类和接口">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="&amp;#x7B80;&amp;#x4ECB;&amp;#x5BF9;&amp;#x4E8E;&amp;#x7F16;&amp;#x7A0B;&amp;#x6765;&amp;#x8BF4;&amp;#xFF0C;&amp;#x5BF9;&amp;#x4E8B;&amp;#x7269;&amp;#x7684;&amp;#x62BD;&amp;#x8C61;&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x8001;&amp;#x751F;&amp;#x5E38;&amp;#x8C08;&amp;#x7684;&amp;#x8BDD;&amp;#x9898;">
+<meta property="og:description" content="简介对于编程来说，对事物的抽象是一个老生常谈的话题，抽象问题更利于面向对象编程以及程序设计模式。和C/C++，Java，Python等语言一样，PHP也支持面向对象，但是又有略微区别，如PHP支持在接口中定义常量，但是不支持抽象变量。 抽象/Abstraction 对事物的抽象是指，区别两个不同事物之间的本质特征，这两个事物应该在某个视角上有明确的区分界限。  如，鲸鱼和鲤鱼，这两个事物在动物的视">
 <meta property="og:updated_time" content="2016-10-13T07:48:50.518Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="抽象类和接口">
-<meta name="twitter:description" content="&amp;#x7B80;&amp;#x4ECB;&amp;#x5BF9;&amp;#x4E8E;&amp;#x7F16;&amp;#x7A0B;&amp;#x6765;&amp;#x8BF4;&amp;#xFF0C;&amp;#x5BF9;&amp;#x4E8B;&amp;#x7269;&amp;#x7684;&amp;#x62BD;&amp;#x8C61;&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x8001;&amp;#x751F;&amp;#x5E38;&amp;#x8C08;&amp;#x7684;&amp;#x8BDD;&amp;#x9898;">
+<meta name="twitter:description" content="简介对于编程来说，对事物的抽象是一个老生常谈的话题，抽象问题更利于面向对象编程以及程序设计模式。和C/C++，Java，Python等语言一样，PHP也支持面向对象，但是又有略微区别，如PHP支持在接口中定义常量，但是不支持抽象变量。 抽象/Abstraction 对事物的抽象是指，区别两个不同事物之间的本质特征，这两个事物应该在某个视角上有明确的区分界限。  如，鲸鱼和鲤鱼，这两个事物在动物的视">
 
 
 
@@ -321,19 +322,19 @@
       
 
       
-        <h2 id="&#x7B80;&#x4ECB;"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</h2><p>&#x5BF9;&#x4E8E;&#x7F16;&#x7A0B;&#x6765;&#x8BF4;&#xFF0C;&#x5BF9;&#x4E8B;&#x7269;&#x7684;&#x62BD;&#x8C61;&#x662F;&#x4E00;&#x4E2A;&#x8001;&#x751F;&#x5E38;&#x8C08;&#x7684;&#x8BDD;&#x9898;&#xFF0C;&#x62BD;&#x8C61;&#x95EE;&#x9898;&#x66F4;&#x5229;&#x4E8E;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;&#x4EE5;&#x53CA;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x3002;<br>&#x548C;C/C++&#xFF0C;Java&#xFF0C;Python&#x7B49;&#x8BED;&#x8A00;&#x4E00;&#x6837;&#xFF0C;PHP&#x4E5F;&#x652F;&#x6301;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#xFF0C;&#x4F46;&#x662F;&#x53C8;&#x6709;&#x7565;&#x5FAE;&#x533A;&#x522B;&#xFF0C;&#x5982;PHP&#x652F;&#x6301;&#x5728;&#x63A5;&#x53E3;&#x4E2D;&#x5B9A;&#x4E49;&#x5E38;&#x91CF;&#xFF0C;&#x4F46;&#x662F;&#x4E0D;&#x652F;&#x6301;&#x62BD;&#x8C61;&#x53D8;&#x91CF;&#x3002;</p>
-<h2 id="&#x62BD;&#x8C61;abstraction"><a href="#&#x62BD;&#x8C61;-Abstraction" class="headerlink" title="&#x62BD;&#x8C61;/Abstraction"></a>&#x62BD;&#x8C61;/Abstraction</h2><blockquote>
-<p>&#x5BF9;&#x4E8B;&#x7269;&#x7684;&#x62BD;&#x8C61;&#x662F;&#x6307;&#xFF0C;&#x533A;&#x522B;&#x4E24;&#x4E2A;&#x4E0D;&#x540C;&#x4E8B;&#x7269;&#x4E4B;&#x95F4;&#x7684;&#x672C;&#x8D28;&#x7279;&#x5F81;&#xFF0C;&#x8FD9;&#x4E24;&#x4E2A;&#x4E8B;&#x7269;&#x5E94;&#x8BE5;&#x5728;&#x67D0;&#x4E2A;&#x89C6;&#x89D2;&#x4E0A;&#x6709;&#x660E;&#x786E;&#x7684;&#x533A;&#x5206;&#x754C;&#x9650;&#x3002;</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>对于编程来说，对事物的抽象是一个老生常谈的话题，抽象问题更利于面向对象编程以及程序设计模式。<br>和C/C++，Java，Python等语言一样，PHP也支持面向对象，但是又有略微区别，如PHP支持在接口中定义常量，但是不支持抽象变量。</p>
+<h2 id="抽象abstraction"><a href="#抽象-Abstraction" class="headerlink" title="抽象/Abstraction"></a>抽象/Abstraction</h2><blockquote>
+<p>对事物的抽象是指，区别两个不同事物之间的本质特征，这两个事物应该在某个视角上有明确的区分界限。</p>
 </blockquote>
-<p>&#x5982;&#xFF0C;&#x9CB8;&#x9C7C;&#x548C;&#x9CA4;&#x9C7C;&#xFF0C;&#x8FD9;&#x4E24;&#x4E2A;&#x4E8B;&#x7269;&#x5728;&#x52A8;&#x7269;&#x7684;&#x89C6;&#x89D2;&#x4E0A;&#xFF0C;&#x6709;&#x660E;&#x786E;&#x7684;&#x533A;&#x5206;&#x754C;&#x9650;&#xFF0C;&#x5C5E;&#x4E8E;&#x4E0D;&#x540C;&#x7684;&#x52A8;&#x7269;&#xFF1B;&#x4F46;&#x662F;&#x5728;&#x6C34;&#x751F;&#x52A8;&#x7269;&#x7684;&#x89C6;&#x89D2;&#x4E0A;&#xFF0C;&#x4ED6;&#x4EEC;&#x5C5E;&#x4E8E;&#x540C;&#x4E00;&#x79CD;&#x52A8;&#x7269;&#x7684;&#x62BD;&#x8C61;&#x3002;<br>&#x5408;&#x7406;&#x7684;&#x5BF9;&#x95EE;&#x9898;&#x8FDB;&#x884C;&#x62BD;&#x8C61;&#xFF0C;&#x6784;&#x9020;&#x6A21;&#x578B;&#xFF0C;&#x5C06;&#x66F4;&#x5BB9;&#x6613;&#x901A;&#x8FC7;&#x7F16;&#x7A0B;&#x6765;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#x3002;<br>&#x8BB0;&#x4F4F;&#xFF1A;&#x62BD;&#x8C61;&#x662F;&#x7F16;&#x7A0B;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#x7684;&#x57FA;&#x7840;&#xFF0C;&#x8D8A;&#x590D;&#x6742;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x8D8A;&#x9700;&#x8981;&#x4E00;&#x5F00;&#x59CB;&#x5C31;&#x5BF9;&#x95EE;&#x9898;&#x8FDB;&#x884C;&#x62BD;&#x8C61;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x76F4;&#x63A5;&#x5199;&#x4EE3;&#x7801;&#x3002;</p>
-<h2 id="&#x62BD;&#x8C61;&#x7C7B;abstract-class"><a href="#&#x62BD;&#x8C61;&#x7C7B;-Abstract-Class" class="headerlink" title="&#x62BD;&#x8C61;&#x7C7B;/Abstract Class"></a>&#x62BD;&#x8C61;&#x7C7B;/Abstract Class</h2><p>&#x62BD;&#x8C61;&#x7C7B;&#x662F;&#x4E00;&#x4E2A;&#x7F16;&#x7A0B;&#x6982;&#x5FF5;&#xFF0C;PHP&#x4E2D;&#x53EB;Abstract Classes&#x3002;&#x5728;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4E2D;&#xFF0C;&#x62BD;&#x8C61;&#x7C7B;&#x4E0D;&#x80FD;&#x591F;&#x88AB;&#x5B9E;&#x4F8B;&#x5316;/&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x4F46;&#x662F;&#x53EF;&#x4EE5;&#x4F9D;&#x9760;&#x5177;&#x4F53;&#x7C7B;&#x7684;&#x7EE7;&#x627F;&#x6765;&#x5B9E;&#x73B0;&#x3002;<br>&#x6709;&#x70B9;&#x62BD;&#x8C61;&#xFF0C;&#x5BF9;&#x5427;&#xFF1F;&#x7528;&#x4EE3;&#x7801;&#x6765;&#x89E3;&#x91CA;&#xFF1A;</p>
+<p>如，鲸鱼和鲤鱼，这两个事物在动物的视角上，有明确的区分界限，属于不同的动物；但是在水生动物的视角上，他们属于同一种动物的抽象。<br>合理的对问题进行抽象，构造模型，将更容易通过编程来解决问题。<br>记住：抽象是编程解决问题的基础，越复杂的问题，越需要一开始就对问题进行抽象，而不是直接写代码。</p>
+<h2 id="抽象类abstract-class"><a href="#抽象类-Abstract-Class" class="headerlink" title="抽象类/Abstract Class"></a>抽象类/Abstract Class</h2><p>抽象类是一个编程概念，PHP中叫Abstract Classes。在设计模式中，抽象类不能够被实例化/初始化，但是可以依靠具体类的继承来实现。<br>有点抽象，对吧？用代码来解释：</p>
 <pre><code>&lt;?php
 abstract class Animal {
   public $name;
   abstract public function eat($food);
 }
 ?&gt;
-</code></pre><p>&#x5B9A;&#x4E49;&#x4E86;&#x52A8;&#x7269;&#x8FD9;&#x4E2A;&#x62BD;&#x8C61;&#x7C7B;&#xFF0C;&#x52A8;&#x7269;&#x7684;&#x5C5E;&#x6027;&#x662F;&#x540D;&#x5B57;name&#xFF0C;&#x7136;&#x540E;&#x6709;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x662F;&#x5403;&#x98DF;&#x7269;eat food&#x3002;<br>&#x4E3A;&#x4EC0;&#x4E48;&#x52A8;&#x7269;&#x662F;&#x62BD;&#x8C61;&#x7C7B;&#xFF1F;&#x56E0;&#x4E3A;&#x52A8;&#x7269;&#x8FD9;&#x4E2A;&#x7269;&#x79CD;&#x5E76;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x5B58;&#x5728;&#x4E8E;&#x81EA;&#x7136;&#x754C;&#x7684;&#x4E1C;&#x897F;&#xFF0C;&#x5B83;&#x662F;&#x4EBA;&#x7C7B;&#x8111;&#x6D77;&#x91CC;&#x62BD;&#x8C61;&#x51FA;&#x7684;&#x4E1C;&#x897F;&#x3002;&#x5B58;&#x5728;&#x81EA;&#x7136;&#x754C;&#x7684;&#x662F;&#x9CB8;&#x9C7C;&#x548C;&#x9CA4;&#x9C7C;&#x8FD9;&#x6837;&#x7684;&#x786E;&#x5B9A;&#x6027;&#x52A8;&#x7269;&#x3002;<br>&#x6BD4;&#x5982;&#x9CB8;&#x9C7C;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x5E94;&#x8BE5;&#x662F;&#x5C5E;&#x4E8E;&#x52A8;&#x7269;&#xFF0C;&#x7EE7;&#x627F;Animal&#x7C7B;&#xFF0C;&#x6211;&#x4EEC;&#x5B9A;&#x4E49;&#x9CB8;&#x9C7C;&#x8FD9;&#x4E2A;&#x7C7B;&#x4EE5;&#x53CA;&#x5403;&#x4E1C;&#x897F;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;</p>
+</code></pre><p>定义了动物这个抽象类，动物的属性是名字name，然后有一个方法是吃食物eat food。<br>为什么动物是抽象类？因为动物这个物种并不是一个存在于自然界的东西，它是人类脑海里抽象出的东西。存在自然界的是鲸鱼和鲤鱼这样的确定性动物。<br>比如鲸鱼的概念，应该是属于动物，继承Animal类，我们定义鲸鱼这个类以及吃东西的方法：</p>
 <pre><code>&lt;?php
 class Whale extends Animal {
   public function __construct() {
@@ -344,22 +345,22 @@ class Whale extends Animal {
   }
 }
 ?&gt;
-</code></pre><p>&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x521D;&#x59CB;&#x9CB8;&#x9C7C;&#x7C7B;&#xFF0C;&#x5E76;&#x4E14;&#x8C03;&#x7528;&#x5403;&#x7684;&#x65B9;&#x6CD5;&#x4E86;&#xFF1A;</p>
+</code></pre><p>现在我们可以初始鲸鱼类，并且调用吃的方法了：</p>
 <pre><code>&lt;?php
   $whale = new Whale();
   $whale-&gt;eat(&quot;fish&quot;);
 ?&gt;
-</code></pre><p>&#x8FD0;&#x884C;&#x4E00;&#x4E0B;&#xFF1A;</p>
+</code></pre><p>运行一下：</p>
 <pre><code>$ php Whale.php
 Whale eat fish.
-</code></pre><h2 id="&#x63A5;&#x53E3;interface"><a href="#&#x63A5;&#x53E3;-Interface" class="headerlink" title="&#x63A5;&#x53E3;/Interface"></a>&#x63A5;&#x53E3;/Interface</h2><p>PHP&#x4E5F;&#x652F;&#x6301;&#x9762;&#x5411;&#x8FC7;&#x7A0B;&#x7F16;&#x7A0B;&#x6982;&#x5FF5;&#x4E2D;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x4E0B;&#x9762;&#x540C;&#x6837;&#x7528;&#x9CB8;&#x9C7C;&#x7684;&#x4F8B;&#x5B50;&#x6765;&#x8BB2;&#x8FF0;&#xFF1A;</p>
+</code></pre><h2 id="接口interface"><a href="#接口-Interface" class="headerlink" title="接口/Interface"></a>接口/Interface</h2><p>PHP也支持面向过程编程概念中的接口，下面同样用鲸鱼的例子来讲述：</p>
 <pre><code>&lt;?php
 interface IAction {
   public function eat($food);
   public function swim();
 }
 ?&gt;
-</code></pre><p>&#x540C;&#x6837;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x9CB8;&#x9C7C;&#x7C7B;&#xFF0C;&#x6765;&#x5B9E;&#x73B0;&#x4E0A;&#x8FF0;&#x63A5;&#x53E3;&#xFF1A;</p>
+</code></pre><p>同样定义一个鲸鱼类，来实现上述接口：</p>
 <pre><code>&lt;?php
 class Whale implements IAction {
   public function eat($food) {
@@ -370,15 +371,15 @@ class Whale implements IAction {
   }
 }
 ?&gt;
-</code></pre><p>&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x521D;&#x59CB;&#x9CB8;&#x9C7C;&#x7C7B;&#xFF0C;&#x5E76;&#x4E14;&#x8C03;&#x7528;&#x5403;&#x7684;&#x65B9;&#x6CD5;&#x4E86;&#xFF1A;</p>
+</code></pre><p>现在我们可以初始鲸鱼类，并且调用吃的方法了：</p>
 <pre><code>&lt;?php
   $whale = new Whale();
   $whale-&gt;eat(&quot;fish&quot;);
 ?&gt;
-</code></pre><p>&#x8FD0;&#x884C;&#x4E00;&#x4E0B;&#xFF1A;</p>
+</code></pre><p>运行一下：</p>
 <pre><code>$ php Whale.php
 Whale eat fish.
-</code></pre><h2 id="&#x62BD;&#x8C61;&#x7C7B;vs&#x63A5;&#x53E3;"><a href="#&#x62BD;&#x8C61;&#x7C7B;vs&#x63A5;&#x53E3;" class="headerlink" title="&#x62BD;&#x8C61;&#x7C7B;vs&#x63A5;&#x53E3;"></a>&#x62BD;&#x8C61;&#x7C7B;vs&#x63A5;&#x53E3;</h2><p>&#x4E0A;&#x9762;&#x7684;&#x62BD;&#x8C61;&#x7C7B;&#x548C;&#x63A5;&#x53E3;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x770B;&#x4E0A;&#x53BB;&#x662F;&#x4E0D;&#x662F;&#x7C7B;&#x4F3C;&#xFF1F;&#x4E8B;&#x5B9E;&#x4E0A;&#xFF0C;&#x5BF9;&#x4E8E;PHP&#x7F16;&#x7A0B;&#x6765;&#x8BF4;&#xFF0C;&#x62BD;&#x8C61;&#x7C7B;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x63A5;&#x53E3;&#x4E5F;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x3002;<br>&#x62BD;&#x8C61;&#x7C7B;&#x7684;&#x63A5;&#x53E3;&#x7684;&#x533A;&#x522B;&#xFF0C;&#x4E0D;&#x5728;&#x4E8E;&#x7F16;&#x7A0B;&#x5B9E;&#x73B0;&#xFF0C;&#x800C;&#x5728;&#x4E8E;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x7684;&#x4E0D;&#x540C;&#x3002;<br>&#x4E00;&#x822C;&#x6765;&#x8BB2;&#xFF0C;&#x62BD;&#x8C61;&#x7528;&#x4E8E;&#x4E0D;&#x540C;&#x7684;&#x4E8B;&#x7269;&#xFF0C;&#x800C;&#x63A5;&#x53E3;&#x7528;&#x4E8E;&#x4E8B;&#x7269;&#x7684;&#x884C;&#x4E3A;&#x3002;<br>&#x5982;&#xFF1A;&#x6C34;&#x751F;&#x751F;&#x7269;&#x662F;&#x9CB8;&#x9C7C;&#x7684;&#x62BD;&#x8C61;&#x6982;&#x5FF5;&#xFF0C;&#x4F46;&#x662F;&#x6C34;&#x751F;&#x751F;&#x7269;&#x5E76;&#x4E0D;&#x662F;&#x9CB8;&#x9C7C;&#x7684;&#x884C;&#x4E3A;&#xFF0C;&#x5403;&#x4E1C;&#x897F;&#x624D;&#x662F;&#x9CB8;&#x9C7C;&#x7684;&#x884C;&#x4E3A;&#x3002;<br>&#x5BF9;&#x4E8E;&#x5927;&#x578B;&#x9879;&#x76EE;&#x6765;&#x8BF4;&#xFF0C;&#x5BF9;&#x8C61;&#x90FD;&#x662F;&#x7531;&#x57FA;&#x672C;&#x7684;&#x62BD;&#x8C61;&#x7C7B;&#x7EE7;&#x627F;&#x5B9E;&#x73B0;&#xFF0C;&#x800C;&#x8FD9;&#x4E9B;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;&#x901A;&#x5E38;&#x90FD;&#x7531;&#x63A5;&#x53E3;&#x6765;&#x5B9A;&#x4E49;&#x3002;<br>&#x6B64;&#x5916;&#xFF0C;&#x5BF9;&#x4E8E;&#x4E8B;&#x7269;&#x5C5E;&#x6027;&#x7684;&#x66F4;&#x6539;&#xFF0C;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;&#x63A5;&#x53E3;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x76F4;&#x63A5;&#x8D4B;&#x503C;&#x6216;&#x8005;&#x522B;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5982;&#xFF1A;</p>
+</code></pre><h2 id="抽象类vs接口"><a href="#抽象类vs接口" class="headerlink" title="抽象类vs接口"></a>抽象类vs接口</h2><p>上面的抽象类和接口的例子，看上去是不是类似？事实上，对于PHP编程来说，抽象类可以实现的功能，接口也可以实现。<br>抽象类的接口的区别，不在于编程实现，而在于程序设计模式的不同。<br>一般来讲，抽象用于不同的事物，而接口用于事物的行为。<br>如：水生生物是鲸鱼的抽象概念，但是水生生物并不是鲸鱼的行为，吃东西才是鲸鱼的行为。<br>对于大型项目来说，对象都是由基本的抽象类继承实现，而这些类的方法通常都由接口来定义。<br>此外，对于事物属性的更改，建议使用接口，而不是直接赋值或者别的方式，如：</p>
 <pre><code>&lt;?php
 interface IAction {
   public function eat();
@@ -407,11 +408,11 @@ class Observer {
 }
 $observer = new observer();
 ?&gt;
-</code></pre><p>&#x8FD0;&#x884C;&#x4E00;&#x4E0B;&#xFF1A;</p>
+</code></pre><p>运行一下：</p>
 <pre><code>$ php Observer.php
 Whale eat fish.
 Carp eat moss.
-</code></pre><h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>&#x597D;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x662F;&#x4E25;&#x683C;&#x5BF9;&#x95EE;&#x9898;&#x8FDB;&#x884C;&#x62BD;&#x8C61;&#xFF0C;&#x867D;&#x7136;&#x62BD;&#x8C61;&#x7C7B;&#x548C;&#x63A5;&#x53E3;&#x5BF9;&#x4E8E;&#x7F16;&#x7A0B;&#x5B9E;&#x73B0;&#x6765;&#x8BF4;&#x662F;&#x7C7B;&#x4F3C;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x5BF9;&#x4E8E;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x3002;</p>
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>好的设计模式是严格对问题进行抽象，虽然抽象类和接口对于编程实现来说是类似的，但是对于程序设计模式是不同的。</p>
 
       
     </div>
@@ -464,16 +465,16 @@ Carp eat moss.
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/13/php设计模式/PHP设计模式(10)：适配器模式/" rel="next" title="适配器模式">
-                <i class="fa fa-chevron-left"></i> 适配器模式
+              <a href="/2016/10/13/php设计模式/PHP设计模式(3)：封装/" rel="next" title="封装">
+                <i class="fa fa-chevron-left"></i> 封装
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/13/php设计模式/PHP设计模式(3)：封装/" rel="prev" title="封装">
-                封装 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/" rel="prev" title="基础编程模式">
+                基础编程模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -646,10 +647,24 @@ Carp eat moss.
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 

@@ -86,16 +86,17 @@
 
 
 
-<meta name="description" content="&amp;#x7B80;&amp;#x4ECB;&amp;#x4FD7;&amp;#x8BDD;&amp;#x8BF4;&amp;#xFF0C;&amp;#x201C;PHP&amp;#x662F;&amp;#x4E16;&amp;#x754C;&amp;#x4E0A;&amp;#x6700;&amp;#x597D;&amp;#x7684;&amp;#x8BED;&amp;#x8A00;&amp;#x201D;&amp;#xFF0C;&amp;#x56E0;&amp;#x4E3A;PHP&amp;#x4EC0;&amp;#x4E48;&amp;#x90FD;&amp;#x80FD;&amp;#">
+<meta name="description" content="简介俗话说，“PHP是世界上最好的语言”，因为PHP什么都能干。但是在PHP编程中，你是否会遇到这样的困惑：明明是相同的需求，但是之前写的代码却并不能重用，稍微修改不满足需求，大改又会让页面变样。是的，由于PHP什么都能干，但是高度灵活性降低了代码的结构性。虽然可以利用三方框架来解决问题，但问题的根本在于缺乏设计模式。本系列文章将由浅入深的介绍各种设计模式。 面向对象编程面向对象编程，Object">
+<meta name="keywords" content="php">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基础编程模式">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="&amp;#x7B80;&amp;#x4ECB;&amp;#x4FD7;&amp;#x8BDD;&amp;#x8BF4;&amp;#xFF0C;&amp;#x201C;PHP&amp;#x662F;&amp;#x4E16;&amp;#x754C;&amp;#x4E0A;&amp;#x6700;&amp;#x597D;&amp;#x7684;&amp;#x8BED;&amp;#x8A00;&amp;#x201D;&amp;#xFF0C;&amp;#x56E0;&amp;#x4E3A;PHP&amp;#x4EC0;&amp;#x4E48;&amp;#x90FD;&amp;#x80FD;&amp;#">
+<meta property="og:description" content="简介俗话说，“PHP是世界上最好的语言”，因为PHP什么都能干。但是在PHP编程中，你是否会遇到这样的困惑：明明是相同的需求，但是之前写的代码却并不能重用，稍微修改不满足需求，大改又会让页面变样。是的，由于PHP什么都能干，但是高度灵活性降低了代码的结构性。虽然可以利用三方框架来解决问题，但问题的根本在于缺乏设计模式。本系列文章将由浅入深的介绍各种设计模式。 面向对象编程面向对象编程，Object">
 <meta property="og:updated_time" content="2016-10-13T07:44:59.316Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基础编程模式">
-<meta name="twitter:description" content="&amp;#x7B80;&amp;#x4ECB;&amp;#x4FD7;&amp;#x8BDD;&amp;#x8BF4;&amp;#xFF0C;&amp;#x201C;PHP&amp;#x662F;&amp;#x4E16;&amp;#x754C;&amp;#x4E0A;&amp;#x6700;&amp;#x597D;&amp;#x7684;&amp;#x8BED;&amp;#x8A00;&amp;#x201D;&amp;#xFF0C;&amp;#x56E0;&amp;#x4E3A;PHP&amp;#x4EC0;&amp;#x4E48;&amp;#x90FD;&amp;#x80FD;&amp;#">
+<meta name="twitter:description" content="简介俗话说，“PHP是世界上最好的语言”，因为PHP什么都能干。但是在PHP编程中，你是否会遇到这样的困惑：明明是相同的需求，但是之前写的代码却并不能重用，稍微修改不满足需求，大改又会让页面变样。是的，由于PHP什么都能干，但是高度灵活性降低了代码的结构性。虽然可以利用三方框架来解决问题，但问题的根本在于缺乏设计模式。本系列文章将由浅入深的介绍各种设计模式。 面向对象编程面向对象编程，Object">
 
 
 
@@ -321,8 +322,8 @@
       
 
       
-        <h2 id="&#x7B80;&#x4ECB;"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</h2><p>&#x4FD7;&#x8BDD;&#x8BF4;&#xFF0C;&#x201C;PHP&#x662F;&#x4E16;&#x754C;&#x4E0A;&#x6700;&#x597D;&#x7684;&#x8BED;&#x8A00;&#x201D;&#xFF0C;&#x56E0;&#x4E3A;PHP&#x4EC0;&#x4E48;&#x90FD;&#x80FD;&#x5E72;&#x3002;&#x4F46;&#x662F;&#x5728;PHP&#x7F16;&#x7A0B;&#x4E2D;&#xFF0C;&#x4F60;&#x662F;&#x5426;&#x4F1A;&#x9047;&#x5230;&#x8FD9;&#x6837;&#x7684;&#x56F0;&#x60D1;&#xFF1A;&#x660E;&#x660E;&#x662F;&#x76F8;&#x540C;&#x7684;&#x9700;&#x6C42;&#xFF0C;&#x4F46;&#x662F;&#x4E4B;&#x524D;&#x5199;&#x7684;&#x4EE3;&#x7801;&#x5374;&#x5E76;&#x4E0D;&#x80FD;&#x91CD;&#x7528;&#xFF0C;&#x7A0D;&#x5FAE;&#x4FEE;&#x6539;&#x4E0D;&#x6EE1;&#x8DB3;&#x9700;&#x6C42;&#xFF0C;&#x5927;&#x6539;&#x53C8;&#x4F1A;&#x8BA9;&#x9875;&#x9762;&#x53D8;&#x6837;&#x3002;<br>&#x662F;&#x7684;&#xFF0C;&#x7531;&#x4E8E;PHP&#x4EC0;&#x4E48;&#x90FD;&#x80FD;&#x5E72;&#xFF0C;&#x4F46;&#x662F;&#x9AD8;&#x5EA6;&#x7075;&#x6D3B;&#x6027;&#x964D;&#x4F4E;&#x4E86;&#x4EE3;&#x7801;&#x7684;&#x7ED3;&#x6784;&#x6027;&#x3002;&#x867D;&#x7136;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x4E09;&#x65B9;&#x6846;&#x67B6;&#x6765;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x95EE;&#x9898;&#x7684;&#x6839;&#x672C;&#x5728;&#x4E8E;&#x7F3A;&#x4E4F;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x3002;<br>&#x672C;&#x7CFB;&#x5217;&#x6587;&#x7AE0;&#x5C06;&#x7531;&#x6D45;&#x5165;&#x6DF1;&#x7684;&#x4ECB;&#x7ECD;&#x5404;&#x79CD;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x3002;</p>
-<h2 id="&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;"><a href="#&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;" class="headerlink" title="&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;"></a>&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;</h2><p>&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;&#xFF0C;Object-Oriented Programming(OOP)&#x4F5C;&#x4E3A;&#x6700;&#x57FA;&#x672C;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x5E76;&#x4E0D;&#x662F;&#x4EC0;&#x4E48;&#x65B0;&#x9C9C;&#x7684;&#x8BDD;&#x9898;&#xFF0C;&#x4F46;&#x662F;&#x5927;&#x90E8;&#x5206;&#x65B0;&#x624B;&#x7684;PHP&#x7F16;&#x7A0B;&#x90FD;&#x662F;&#x5728;&#x5199;&#x6D41;&#x6C34;&#x8D26;&#xFF0C;&#x5404;&#x79CD;&#x62FC;&#x63A5;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x91CC;&#x8FD8;&#x662F;&#x8981;&#x63D0;&#x4E00;&#x4E0B;&#x3002;<br><a href="https://en.wikipedia.org/wiki/Object-oriented_programming" target="_blank" rel="external">Object-Oriented Programming</a>&#x7684;&#x6982;&#x5FF5;&#x8FD9;&#x91CC;&#x5C31;&#x4E0D;&#x8BF4;&#x4E86;&#xFF0C;&#x6BD5;&#x7ADF;&#x5F88;&#x591A;&#x4EBA;&#x90FD;&#x660E;&#x767D;&#xFF0C;&#x4F46;&#x662F;&#x5982;&#x4F55;&#x5728;PHP&#x4E2D;&#x4F7F;&#x7528;&#xFF1F;<br>&#x5047;&#x8BBE;&#x4F60;&#x9700;&#x8981;&#x5728;&#x9875;&#x9762;&#x4E0A;&#x663E;&#x793A;&#x4E0D;&#x540C;&#x7684;&#x7528;&#x6237;&#x7C7B;&#x578B;&#xFF0C;&#x5982;&#x7535;&#x8111;&#x7528;&#x6237;&#x3001;&#x624B;&#x673A;&#x7528;&#x6237;&#x7B49;&#xFF0C;&#x90A3;&#x4E48;&#x4F60;&#x53EF;&#x4EE5;&#x5C06;&#x201C;&#x663E;&#x793A;&#x201D;&#x8FD9;&#x4EF6;&#x4E8B;&#x62BD;&#x8C61;&#x4E3A;&#x4E00;&#x4E2A;&#x7C7B;&#xFF0C;&#x5982;&#xFF1A;</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>俗话说，“PHP是世界上最好的语言”，因为PHP什么都能干。但是在PHP编程中，你是否会遇到这样的困惑：明明是相同的需求，但是之前写的代码却并不能重用，稍微修改不满足需求，大改又会让页面变样。<br>是的，由于PHP什么都能干，但是高度灵活性降低了代码的结构性。虽然可以利用三方框架来解决问题，但问题的根本在于缺乏设计模式。<br>本系列文章将由浅入深的介绍各种设计模式。</p>
+<h2 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h2><p>面向对象编程，Object-Oriented Programming(OOP)作为最基本的设计模式并不是什么新鲜的话题，但是大部分新手的PHP编程都是在写流水账，各种拼接字符串，所以这里还是要提一下。<br><a href="https://en.wikipedia.org/wiki/Object-oriented_programming" target="_blank" rel="external">Object-Oriented Programming</a>的概念这里就不说了，毕竟很多人都明白，但是如何在PHP中使用？<br>假设你需要在页面上显示不同的用户类型，如电脑用户、手机用户等，那么你可以将“显示”这件事抽象为一个类，如：</p>
 <pre><code>&lt;?php
 class ShowAgent {
   private $agent;
@@ -333,21 +334,21 @@ class ShowAgent {
 }
 $showAgent = new ShowAgent();
 ?&gt;
-</code></pre><h2 id="&#x8C03;&#x8BD5;&#x6280;&#x5DE7;"><a href="#&#x8C03;&#x8BD5;&#x6280;&#x5DE7;" class="headerlink" title="&#x8C03;&#x8BD5;&#x6280;&#x5DE7;"></a>&#x8C03;&#x8BD5;&#x6280;&#x5DE7;</h2><p>&#x5728;&#x5F88;&#x591A;PHP&#x9ED8;&#x8BA4;&#x73AF;&#x5883;&#x4E2D;&#xFF0C;&#x8C03;&#x8BD5;&#x529F;&#x80FD;&#x662F;&#x5173;&#x95ED;&#x7684;&#x3002;&#x6253;&#x5F00;&#x8C03;&#x8BD5;&#x529F;&#x80FD;&#x53C8;&#x9700;&#x8981;&#x914D;&#x7F6E;php.ini&#x6587;&#x4EF6;&#xFF0C;&#x5176;&#x5B9E;&#x6709;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;</p>
+</code></pre><h2 id="调试技巧"><a href="#调试技巧" class="headerlink" title="调试技巧"></a>调试技巧</h2><p>在很多PHP默认环境中，调试功能是关闭的。打开调试功能又需要配置php.ini文件，其实有一个简单的方法：</p>
 <pre><code>&lt;?php
 ini_set(&quot;display_errors&quot;, &quot;1&quot;);
 ERROR_REPORTING(E_ALL);
 ?&gt;
-</code></pre><p>&#x5C06;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x52A0;&#x5165;&#x5230;&#x4F60;&#x7684;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x751A;&#x81F3;&#x53EF;&#x4EE5;require&#x6216;&#x8005;include&#x8FDB;&#x53BB;&#xFF0C;&#x65B9;&#x4FBF;&#x8C03;&#x8BD5;&#x3002;</p>
-<h2 id="&#x6D41;&#x6C34;&#x8D26;&#x7F16;&#x7A0B;"><a href="#&#x6D41;&#x6C34;&#x8D26;&#x7F16;&#x7A0B;" class="headerlink" title="&#x6D41;&#x6C34;&#x8D26;&#x7F16;&#x7A0B;"></a>&#x6D41;&#x6C34;&#x8D26;&#x7F16;&#x7A0B;</h2><p>&#x8FD9;&#x91CC;&#x5217;&#x51FA;&#x6D41;&#x6C34;&#x8D26;&#x7F16;&#x7A0B;&#xFF0C;&#x5E76;&#x4E0D;&#x662F;&#x8BA9;&#x4F60;&#x5B66;&#x4E60;&#xFF0C;&#x800C;&#x662F;&#x6307;&#x51FA;&#x4F55;&#x79CD;&#x7F16;&#x7A0B;&#x4E0D;&#x63A8;&#x8350;&#x4F7F;&#x7528;&#xFF1A;</p>
+</code></pre><p>将这段代码加入到你的代码中，甚至可以require或者include进去，方便调试。</p>
+<h2 id="流水账编程"><a href="#流水账编程" class="headerlink" title="流水账编程"></a>流水账编程</h2><p>这里列出流水账编程，并不是让你学习，而是指出何种编程不推荐使用：</p>
 <pre><code>&lt;?php
 $total = &quot;Total number is &quot;;
 $number = &quot;6&quot;;
 $totalNumber = $total.$number;
 echo $totalNumber;
 ?&gt;
-</code></pre><p>&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x5E76;&#x6CA1;&#x6709;&#x9519;&#xFF0C;&#x4F46;&#x662F;&#x4EE5;&#x540E;&#x518D;&#x4E5F;&#x65E0;&#x6CD5;&#x91CD;&#x7528;&#x4E86;&#xFF0C;&#x5BF9;&#x5427;&#xFF1F;&#x6BCF;&#x6B21;&#x9047;&#x5230;&#x76F8;&#x540C;&#x95EE;&#x9898;&#xFF0C;&#x4F60;&#x90FD;&#x9700;&#x8981;&#x53CD;&#x590D;&#x62FC;&#x63A5;&#x3002;</p>
-<h2 id="&#x9762;&#x5411;&#x8FC7;&#x7A0B;&#x7F16;&#x7A0B;"><a href="#&#x9762;&#x5411;&#x8FC7;&#x7A0B;&#x7F16;&#x7A0B;" class="headerlink" title="&#x9762;&#x5411;&#x8FC7;&#x7A0B;&#x7F16;&#x7A0B;"></a>&#x9762;&#x5411;&#x8FC7;&#x7A0B;&#x7F16;&#x7A0B;</h2><p>&#x9762;&#x5411;&#x8FC7;&#x7A0B;&#x7F16;&#x7A0B;&#x66FE;&#x7ECF;&#x5F88;&#x6D41;&#x884C;&#xFF0C;&#x7F3A;&#x70B9;&#x4E5F;&#x662F;&#x65E0;&#x6CD5;&#x7EF4;&#x62A4;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</p>
+</code></pre><p>这段代码并没有错，但是以后再也无法重用了，对吧？每次遇到相同问题，你都需要反复拼接。</p>
+<h2 id="面向过程编程"><a href="#面向过程编程" class="headerlink" title="面向过程编程"></a>面向过程编程</h2><p>面向过程编程曾经很流行，缺点也是无法维护，例如：</p>
 <pre><code>&lt;?php
 function showTotal($total, $number) {
   $totalNumber = $total.$number;
@@ -355,8 +356,8 @@ function showTotal($total, $number) {
 }
 showTotal(&quot;Total number is&quot;, &quot;6&quot;);
 ?&gt;
-</code></pre><p>&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x540C;&#x6837;&#x6CA1;&#x6709;&#x9519;&#xFF0C;&#x4F46;&#x662F;&#x65F6;&#x95F4;&#x4E45;&#x4E86;&#xFF0C;&#x7531;&#x4E8E;&#x7F3A;&#x4E4F;&#x7C7B;&#x7684;&#x6982;&#x5FF5;&#xFF0C;showTotal&#x5728;&#x5404;&#x79CD;&#x5E94;&#x7528;&#x573A;&#x666F;&#x7F3A;&#x4E4F;&#x7075;&#x6D3B;&#x6027;&#xFF0C;&#x4F60;&#x8FD8;&#x662F;&#x9700;&#x8981;&#x91CD;&#x5199;&#x4EE3;&#x7801;&#x3002;</p>
-<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>&#x8F6C;&#x53D8;&#x7F16;&#x7A0B;&#x7684;&#x601D;&#x7EF4;&#x9700;&#x8981;&#x82B1;&#x8D39;&#x7684;&#x65F6;&#x95F4;&#x662F;&#x5F88;&#x957F;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x8BB0;&#x4F4F;&#xFF1A;&#x7B97;&#x6CD5;&#x63D0;&#x9AD8;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x7684;&#x901F;&#x5EA6;&#xFF0C;&#x800C;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x63D0;&#x9AD8;&#x7F16;&#x7A0B;&#x7684;&#x901F;&#x5EA6;&#x3002;</p>
+</code></pre><p>这段代码同样没有错，但是时间久了，由于缺乏类的概念，showTotal在各种应用场景缺乏灵活性，你还是需要重写代码。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>转变编程的思维需要花费的时间是很长的，但是记住：算法提高程序运行的速度，而设计模式提高编程的速度。</p>
 
       
     </div>
@@ -409,16 +410,16 @@ showTotal(&quot;Total number is&quot;, &quot;6&quot;);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/13/php设计模式/PHP设计模式(9)：原型设计模式/" rel="next" title="原型设计模式">
-                <i class="fa fa-chevron-left"></i> 原型设计模式
+              <a href="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/" rel="next" title="抽象类和接口">
+                <i class="fa fa-chevron-left"></i> 抽象类和接口
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/13/php设计模式/PHP设计模式(5)：多态/" rel="prev" title="多态">
-                多态 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/13/javascript/44个 Javascript 变态题解析 (上)/" rel="prev" title="44个 Javascript 变态题解析 (上)">
+                44个 Javascript 变态题解析 (上) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -591,10 +592,24 @@ showTotal(&quot;Total number is&quot;, &quot;6&quot;);
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 

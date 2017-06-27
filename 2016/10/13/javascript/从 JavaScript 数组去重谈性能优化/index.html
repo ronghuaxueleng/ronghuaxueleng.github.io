@@ -86,16 +86,17 @@
 
 
 
-<meta name="description" content="&amp;#x7F18;&amp;#x7531;JavaScript &amp;#x6570;&amp;#x7EC4;&amp;#x53BB;&amp;#x91CD;&amp;#x7ECF;&amp;#x5E38;&amp;#x51FA;&amp;#x73B0;&amp;#x5728;&amp;#x524D;&amp;#x7AEF;&amp;#x62DB;&amp;#x8058;&amp;#x7684;&amp;#x7B14;&amp;#x8BD5;&amp;#x9898;&amp;#x91CC;&amp;#xFF0C;&amp;#x6BD4;&amp;#x5982;&amp;#xFF">
+<meta name="description" content="缘由JavaScript 数组去重经常出现在前端招聘的笔试题里，比如：  有数组 var arr = [&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;, &amp;#39;1&amp;#39;, 0, &amp;#39;c&amp;#39;, 1, &amp;#39;&amp;#39;, 1, 0]，请用 JavaScript实现去重函数 unqiue，使得 unique(arr) 返回 [&amp;#39;a&amp;#39;,">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从 JavaScript 数组去重谈性能优化">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/2016/10/13/javascript/从 JavaScript 数组去重谈性能优化/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="&amp;#x7F18;&amp;#x7531;JavaScript &amp;#x6570;&amp;#x7EC4;&amp;#x53BB;&amp;#x91CD;&amp;#x7ECF;&amp;#x5E38;&amp;#x51FA;&amp;#x73B0;&amp;#x5728;&amp;#x524D;&amp;#x7AEF;&amp;#x62DB;&amp;#x8058;&amp;#x7684;&amp;#x7B14;&amp;#x8BD5;&amp;#x9898;&amp;#x91CC;&amp;#xFF0C;&amp;#x6BD4;&amp;#x5982;&amp;#xFF">
+<meta property="og:description" content="缘由JavaScript 数组去重经常出现在前端招聘的笔试题里，比如：  有数组 var arr = [&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;, &amp;#39;1&amp;#39;, 0, &amp;#39;c&amp;#39;, 1, &amp;#39;&amp;#39;, 1, 0]，请用 JavaScript实现去重函数 unqiue，使得 unique(arr) 返回 [&amp;#39;a&amp;#39;,">
 <meta property="og:updated_time" content="2016-10-13T08:34:52.608Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从 JavaScript 数组去重谈性能优化">
-<meta name="twitter:description" content="&amp;#x7F18;&amp;#x7531;JavaScript &amp;#x6570;&amp;#x7EC4;&amp;#x53BB;&amp;#x91CD;&amp;#x7ECF;&amp;#x5E38;&amp;#x51FA;&amp;#x73B0;&amp;#x5728;&amp;#x524D;&amp;#x7AEF;&amp;#x62DB;&amp;#x8058;&amp;#x7684;&amp;#x7B14;&amp;#x8BD5;&amp;#x9898;&amp;#x91CC;&amp;#xFF0C;&amp;#x6BD4;&amp;#x5982;&amp;#xFF">
+<meta name="twitter:description" content="缘由JavaScript 数组去重经常出现在前端招聘的笔试题里，比如：  有数组 var arr = [&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;, &amp;#39;1&amp;#39;, 0, &amp;#39;c&amp;#39;, 1, &amp;#39;&amp;#39;, 1, 0]，请用 JavaScript实现去重函数 unqiue，使得 unique(arr) 返回 [&amp;#39;a&amp;#39;,">
 
 
 
@@ -321,19 +322,19 @@
       
 
       
-        <h2 id="&#x7F18;&#x7531;"><a href="#&#x7F18;&#x7531;" class="headerlink" title="&#x7F18;&#x7531;"></a>&#x7F18;&#x7531;</h2><p>JavaScript &#x6570;&#x7EC4;&#x53BB;&#x91CD;&#x7ECF;&#x5E38;&#x51FA;&#x73B0;&#x5728;&#x524D;&#x7AEF;&#x62DB;&#x8058;&#x7684;&#x7B14;&#x8BD5;&#x9898;&#x91CC;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;</p>
+        <h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h2><p>JavaScript 数组去重经常出现在前端招聘的笔试题里，比如：</p>
 <blockquote>
-<p>&#x6709;&#x6570;&#x7EC4; <code>var arr = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;1&apos;, 0, &apos;c&apos;, 1, &apos;&apos;, 1, 0]</code>&#xFF0C;&#x8BF7;&#x7528; JavaScript<br>&#x5B9E;&#x73B0;&#x53BB;&#x91CD;&#x51FD;&#x6570; <code>unqiue</code>&#xFF0C;&#x4F7F;&#x5F97; <code>unique(arr)</code> &#x8FD4;&#x56DE; <code>[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;1&apos;, 0, 1, &apos;&apos;]</code></p>
+<p>有数组 <code>var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, &#39;c&#39;, 1, &#39;&#39;, 1, 0]</code>，请用 JavaScript<br>实现去重函数 <code>unqiue</code>，使得 <code>unique(arr)</code> 返回 <code>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, 1, &#39;&#39;]</code></p>
 </blockquote>
-<p>&#x4F5C;&#x4E3A;&#x7B14;&#x8BD5;&#x9898;&#xFF0C;&#x8003;&#x70B9;&#x6709;&#x4E8C;&#xFF1A;</p>
+<p>作为笔试题，考点有二：</p>
 <ol>
-<li><p><strong>&#x6B63;&#x786E;</strong>&#x3002;&#x522B;&#x5C0F;&#x770B;&#x8FD9;&#x4E2A;&#x8003;&#x70B9;&#xFF0C;&#x8003;&#x8651;&#x5230; JavaScript &#x7ECF;&#x5E38;&#x8981;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x4E0A;&#x8FD0;&#x884C;&#xFF0C;&#x5728;&#x5343;&#x59FF;&#x767E;&#x6001;&#x7684;&#x5404;&#x79CD;&#x6D4F;&#x89C8;&#x5668;&#x73AF;&#x5883;&#x4E0B;&#x8981;&#x4FDD;&#x969C;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x7684;&#x6B63;&#x786E;&#x6027;&#x53EF;&#x4E0D;&#x662F;&#x4E00;&#x4EF6;&#x7B80;&#x5355;&#x7684;&#x4E8B;&#xFF0C;&#x4E0D;&#x4FE1;&#x4F60;&#x7EE7;&#x7EED;&#x8BFB;&#x5B8C;&#x8FD9;&#x7BC7;&#x535A;&#x5BA2;&#x3002;</p>
+<li><p><strong>正确</strong>。别小看这个考点，考虑到 JavaScript 经常要在浏览器上运行，在千姿百态的各种浏览器环境下要保障一个函数的正确性可不是一件简单的事，不信你继续读完这篇博客。</p>
 </li>
-<li><p><strong>&#x6027;&#x80FD;</strong>&#x3002;&#x867D;&#x7136;&#x5927;&#x90E8;&#x5206;&#x60C5;&#x51B5;&#x4E0B; JavaScript &#x8BED;&#x8A00;&#x672C;&#x8EAB;&#xFF08;&#x72ED;&#x4E49;&#x8303;&#x7574;&#xFF0C;&#x4E0D;&#x5305;&#x542B; DOM &#x7B49;&#x5EF6;&#x62D3;&#xFF09;&#x4E0D;&#x4F1A;&#x5BFC;&#x81F4;&#x6027;&#x80FD;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x5F88;&#x4E0D;&#x5E78;&#x8FD9;&#x662F;&#x4E00;&#x9053;&#x8003;&#x9898;&#xFF0C;&#x56E0;&#x6B64;&#x9762;&#x8BD5;&#x5B98;&#x4EEC;&#x8FD8;&#x662F;&#x4F1A;&#x628A;&#x6027;&#x80FD;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x8003;&#x70B9;&#x3002;</p>
+<li><p><strong>性能</strong>。虽然大部分情况下 JavaScript 语言本身（狭义范畴，不包含 DOM 等延拓）不会导致性能问题，但很不幸这是一道考题，因此面试官们还是会把性能作为一个考点。</p>
 </li>
 </ol>
-<p>&#x5728;&#x7EE7;&#x7EED;&#x5F80;&#x4E0B;&#x9605;&#x8BFB;&#x4E4B;&#x524D;&#xFF0C;&#x5EFA;&#x8BAE;&#x5148;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x81EA;&#x5DF1;&#x8BA4;&#x4E3A;&#x6700;&#x597D;&#x7684;&#x7248;&#x672C;&#x3002;</p>
-<h2 id="&#x76F4;&#x89C9;&#x65B9;&#x6848;"><a href="#&#x76F4;&#x89C9;&#x65B9;&#x6848;" class="headerlink" title="&#x76F4;&#x89C9;&#x65B9;&#x6848;"></a>&#x76F4;&#x89C9;&#x65B9;&#x6848;</h2><p>&#x5BF9;&#x4E8E;&#x6570;&#x7EC4;&#x53BB;&#x91CD;&#xFF0C;&#x53EA;&#x8981;&#x5199;&#x8FC7;&#x7A0B;&#x5E8F;&#x7684;&#xFF0C;&#x7ACB;&#x523B;&#x5C31;&#x80FD;&#x5F97;&#x5230;&#x7B2C;&#x4E00;&#x4E2A;&#x89E3;&#x6CD5;&#xFF1A;</p>
+<p>在继续往下阅读之前，建议先实现一个自己认为最好的版本。</p>
+<h2 id="直觉方案"><a href="#直觉方案" class="headerlink" title="直觉方案"></a>直觉方案</h2><p>对于数组去重，只要写过程序的，立刻就能得到第一个解法：</p>
 <pre><code>function unique(arr) {
   var ret = []
 
@@ -346,7 +347,7 @@
 
   return ret
 }
-</code></pre><p>&#x76F4;&#x89C9;&#x5F80;&#x5F80;&#x5F88;&#x9760;&#x8C31;&#xFF0C;&#x5728;&#x73B0;&#x4EE3;&#x6D4F;&#x89C8;&#x5668;&#x4E0B;&#xFF0C;&#x4E0A;&#x9762;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x5F88;&#x6B63;&#x786E;&#xFF0C;&#x6027;&#x80FD;&#x4E5F;&#x4E0D;&#x9519;&#x3002;&#x4F46;&#x524D;&#x7AEF;&#x6700;&#x5927;&#x7684;&#x60B2;&#x54C0;&#x4E5F;&#x662F;&#x6311;&#x6218;&#x4E4B;&#x5904;&#x5728;&#x4E8E;&#xFF0C;&#x8981;&#x652F;&#x6301;&#x5404;&#x79CD;&#x8FD0;&#x884C;&#x73AF;&#x5883;&#x3002;&#x5728; IE6-8 &#x4E0B;&#xFF0C;&#x6570;&#x7EC4;&#x7684;<br><code>indexOf</code> &#x65B9;&#x6CD5;&#x8FD8;&#x4E0D;&#x5B58;&#x5728;&#x3002;&#x76F4;&#x89C9;&#x65B9;&#x6848;&#x8981;&#x7A0D;&#x5FAE;&#x6539;&#x9020;&#x4E00;&#x4E0B;&#xFF1A;</p>
+</code></pre><p>直觉往往很靠谱，在现代浏览器下，上面这个函数很正确，性能也不错。但前端最大的悲哀也是挑战之处在于，要支持各种运行环境。在 IE6-8 下，数组的<br><code>indexOf</code> 方法还不存在。直觉方案要稍微改造一下：</p>
 <pre><code>var indexOf = [].indexOf ?
     function(arr, item) {
       return arr.indexOf(item)
@@ -372,8 +373,8 @@ function unique(arr) {
 
   return ret
 }
-</code></pre><p>&#x5199;&#x5230;&#x8FD9;&#x4E00;&#x6B65;&#xFF0C;&#x6B63;&#x786E;&#x6027;&#x5DF2;&#x6CA1;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x6027;&#x80FD;&#x4E0A;&#xFF0C;&#x4E24;&#x91CD;&#x5FAA;&#x73AF;&#x4F1A;&#x8BA9;&#x9762;&#x8BD5;&#x5B98;&#x4EEC;&#x770B;&#x4E86;&#x4E0D;&#x723D;&#x3002;</p>
-<h2 id="&#x4F18;&#x5316;&#x65B9;&#x6848;"><a href="#&#x4F18;&#x5316;&#x65B9;&#x6848;" class="headerlink" title="&#x4F18;&#x5316;&#x65B9;&#x6848;"></a>&#x4F18;&#x5316;&#x65B9;&#x6848;</h2><p>&#x4E00;&#x8C08;&#x5230;&#x4F18;&#x5316;&#xFF0C;&#x5F80;&#x5F80;&#x5C31;&#x662F;&#x516B;&#x4ED9;&#x8FC7;&#x6D77;&#x3001;&#x767E;&#x82B1;&#x9F50;&#x653E;&#x3002;&#x4F46;&#x516B;&#x4ED9;&#x5F80;&#x5F80;&#x4E0D;&#x63A5;&#x5730;&#x6C14;&#xFF0C;&#x767E;&#x82B1;&#x5219;&#x5F88;&#x5BB9;&#x6613;&#x62DB;&#x6765;&#x81ED;&#x866B;&#x3002;&#x6570;&#x7EC4;&#x53BB;&#x91CD;&#x7684;&#x5404;&#x79CD;&#x4F18;&#x5316;&#x65B9;&#x6848;&#x5728;&#x6B64;&#x4E0D;&#x4E00;&#x4E00;&#x8BA8;&#x8BBA;&#xFF0C;&#x4E0B;&#x9762;&#x53EA;&#x8BF4;&#x6700;&#x5E38;&#x7528;&#x6548;&#x679C;&#x4E5F;&#x5F88;&#x4E0D;&#x9519;&#x7684;&#x4E00;&#x79CD;&#x3002;</p>
+</code></pre><p>写到这一步，正确性已没问题，但性能上，两重循环会让面试官们看了不爽。</p>
+<h2 id="优化方案"><a href="#优化方案" class="headerlink" title="优化方案"></a>优化方案</h2><p>一谈到优化，往往就是八仙过海、百花齐放。但八仙往往不接地气，百花则很容易招来臭虫。数组去重的各种优化方案在此不一一讨论，下面只说最常用效果也很不错的一种。</p>
 <pre><code>function unique(arr) {
   var ret = []
   var hash = {}
@@ -389,19 +390,19 @@ function unique(arr) {
 
   return ret
 }
-</code></pre><p>&#x6838;&#x5FC3;&#x662F;&#x6784;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A; <code>hash</code> &#x5BF9;&#x8C61;&#x6765;&#x66FF;&#x4EE3; <code>indexOf</code>. &#x6CE8;&#x610F;&#x5728; JavaScript &#x91CC;&#xFF0C;&#x5BF9;&#x8C61;&#x7684;&#x952E;&#x503C;&#x53EA;&#x80FD;&#x662F;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x56E0;&#x6B64;&#x9700;&#x8981; <code>var key =
-typeof(item) + item</code> &#x6765;&#x533A;&#x5206;&#x6570;&#x503C; <code>1</code> &#x548C;&#x5B57;&#x7B26;&#x4E32; <code>&apos;1&apos;</code> &#x7B49;&#x60C5;&#x51B5;&#x3002;</p>
-<p>&#x4F46;&#x4F18;&#x5316;&#x771F;&#x7684;&#x5F88;&#x5BB9;&#x6613;&#x5E26;&#x6765;&#x5751;&#xFF0C;&#x6BD4;&#x5982;&#x4E0A;&#x9762;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x5BF9;&#x4E0B;&#x9762;&#x8FD9;&#x79CD;&#x8F93;&#x5165;&#x5C31;&#x65E0;&#x6CD5;&#x5224;&#x65AD;&#xFF1A;</p>
+</code></pre><p>核心是构建了一个 <code>hash</code> 对象来替代 <code>indexOf</code>. 注意在 JavaScript 里，对象的键值只能是字符串，因此需要 <code>var key =
+typeof(item) + item</code> 来区分数值 <code>1</code> 和字符串 <code>&#39;1&#39;</code> 等情况。</p>
+<p>但优化真的很容易带来坑，比如上面的实现，对下面这种输入就无法判断：</p>
 <pre><code>unique([ new String(1), new Number(1) ])
-</code></pre><p>&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x4FEE;&#x6539;&#x4EE3;&#x7801;&#xFF0C;&#x505A;&#x5230;&#x6027;&#x80FD;&#x548C;&#x6B63;&#x786E;&#x6027;&#x90FD;&#x5F88;&#x597D;&#x3002;&#x4F46;&#x5F80;&#x5F80;&#xFF0C;&#x8FD9;&#x5E26;&#x6765;&#x7684;&#x7ED3;&#x679C;&#x5E76;&#x4E0D;&#x597D;&#x3002;</p>
-<h2 id="&#x771F;&#x5B9E;&#x9700;&#x6C42;"><a href="#&#x771F;&#x5B9E;&#x9700;&#x6C42;" class="headerlink" title="&#x771F;&#x5B9E;&#x9700;&#x6C42;"></a>&#x771F;&#x5B9E;&#x9700;&#x6C42;</h2><p>&#x5199;&#x5230;&#x8FD9;&#x91CC;&#xFF0C;&#x8FD9;&#x7BC7;&#x535A;&#x5BA2;&#x624D;&#x7B97;&#x8FDB;&#x5165;&#x6B63;&#x9898;&#x3002;&#x7A0B;&#x5E8F;&#x5458;&#x5FC3;&#x4E2D;&#x90FD;&#x4F1A;&#x6709;&#x4E00;&#x4E9B;&#x68A6;&#x60F3;&#xFF0C;&#x6BD4;&#x5982;&#x5199;&#x51FA;&#x53C8;&#x901A;&#x7528;&#x6027;&#x80FD;&#x53C8;&#x597D;&#x7684;&#x666E;&#x9002;&#x51FD;&#x6570;&#x3002;&#x8FD9;&#x79CD;&#x68A6;&#x60F3;&#x662F;&#x8BA9;&#x7A0B;&#x5E8F;&#x5458;&#x53D8;&#x5F97;&#x5353;&#x8D8A;&#x7684;&#x91CD;&#x8981;&#x5185;&#x9A71;&#x529B;&#xFF0C;&#x4F46;&#x5018;&#x82E5;&#x4E0D;&#x52A0;&#x4EE5;&#x63A7;&#x5236;&#xFF0C;&#x4E5F;&#x5F88;&#x5BB9;<br>&#x6613;&#x8D70;&#x5165;&#x8FF7;&#x9014;&#x3002;</p>
-<p>&#x56DE;&#x5230;&#x6027;&#x80FD;&#x4F18;&#x5316;&#x3002;&#x8FD9;&#x5E74;&#x5934;&#x6709;&#x5404;&#x79CD;&#x5404;&#x6837;&#x4F18;&#x5316;&#xFF0C;&#x6838;&#x5FC3;&#x7CFB;&#x7EDF;&#x3001;&#x6570;&#x636E;&#x5E93;&#x3001;&#x7F51;&#x7EDC;&#x3001;&#x524D;&#x7AEF;&#x7B49;&#x7B49;&#xFF0C;&#x6240;&#x6709;&#x8FD9;&#x4E9B;&#x4F18;&#x5316;&#xFF0C;&#x90FD;&#x5FC5;&#x987B;&#x56DE;&#x7B54;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF1A;</p>
+</code></pre><p>可以继续修改代码，做到性能和正确性都很好。但往往，这带来的结果并不好。</p>
+<h2 id="真实需求"><a href="#真实需求" class="headerlink" title="真实需求"></a>真实需求</h2><p>写到这里，这篇博客才算进入正题。程序员心中都会有一些梦想，比如写出又通用性能又好的普适函数。这种梦想是让程序员变得卓越的重要内驱力，但倘若不加以控制，也很容<br>易走入迷途。</p>
+<p>回到性能优化。这年头有各种各样优化，核心系统、数据库、网络、前端等等，所有这些优化，都必须回答下面这个问题：</p>
 <ol>
-<li><p><strong>&#x5F53;&#x524D;&#x6709;&#x4EC0;&#x4E48;</strong>&#x3002;&#x5728;&#x4EC0;&#x4E48;&#x573A;&#x666F;&#x4E0B;&#x8FDB;&#x884C;&#x4F18;&#x5316;&#xFF0C;&#x573A;&#x666F;&#x4E0B;&#x6709;&#x54EA;&#x4E9B;&#x5177;&#x4F53;&#x9650;&#x5236;&#x3002;&#x7406;&#x6E05;&#x9650;&#x5236;&#x5F88;&#x91CD;&#x8981;&#xFF0C;&#x9650;&#x5236;&#x5F80;&#x5F80;&#x5E26;&#x6765;&#x81EA;&#x7531;&#x3002;</p>
+<li><p><strong>当前有什么</strong>。在什么场景下进行优化，场景下有哪些具体限制。理清限制很重要，限制往往带来自由。</p>
 </li>
-<li><p><strong>&#x7A76;&#x7ADF;&#x8981;&#x4EC0;&#x4E48;</strong>&#x3002;&#x4F18;&#x5316;&#x7684;&#x76EE;&#x7684;&#x662F;&#x4EC0;&#x4E48;&#x3002;&#x662F;&#x63D0;&#x9AD8;&#x7A33;&#x5B9A;&#x6027;&#xFF0C;&#x8FD8;&#x662F;&#x589E;&#x5927;&#x541E;&#x5410;&#x91CF;&#xFF0C;&#x6291;&#x6216;&#x51CF;&#x5C11;&#x7528;&#x6237;&#x7B49;&#x5F85;&#x65F6;&#x95F4;&#x3002;&#x5728;&#x56DE;&#x7B54;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x4E4B;&#x524D;&#xFF0C;&#x4F18;&#x5316;&#x90FD;&#x662F;&#x5F92;&#x52B3;&#x3002;&#x5BF9;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x7684;&#x51C6;&#x786E;&#x56DE;&#x7B54;&#xFF0C;&#x80FD;&#x4E3A;&#x4F18;&#x5316;&#x5E26;&#x6765;&#x5177;&#x4F53;&#x53EF;&#x6D4B;&#x91CF;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x8FD9;&#x6837;&#x4F18;&#x5316;&#x624D;&#x6709;&#x76EE;&#x6807;&#x3002;</p>
+<li><p><strong>究竟要什么</strong>。优化的目的是什么。是提高稳定性，还是增大吞吐量，抑或减少用户等待时间。在回答这个问题之前，优化都是徒劳。对这个问题的准确回答，能为优化带来具体可测量的参数，这样优化才有目标。</p>
 </li>
-<li><p><strong>&#x53EF;&#x4EE5;&#x653E;&#x5F03;&#x4EC0;&#x4E48;</strong>&#x3002;&#x9C7C;&#x4E0E;&#x718A;&#x638C;&#x4E0D;&#x53EF;&#x517C;&#x5F97;&#x3002;&#x4F18;&#x5316;&#x7684;&#x672C;&#x8D28;&#x662F;&#x5728;&#x5177;&#x4F53;&#x573A;&#x666F;&#x4E0B;&#x7684;&#x53D6;&#x820D;&#x3001;&#x6743;&#x8861;&#x3002;&#x4EC0;&#x4E48;&#x90FD;&#x4E0D;&#x613F;&#x610F;&#x653E;&#x5F03;&#x7684;&#x8BDD;&#xFF0C;&#x4F18;&#x5316;&#x5F80;&#x5F80;&#x4F1A;&#x4E3E;&#x6B65;&#x7EF4;&#x8270;&#x3002;</p>
+<li><p><strong>可以放弃什么</strong>。鱼与熊掌不可兼得。优化的本质是在具体场景下的取舍、权衡。什么都不愿意放弃的话，优化往往会举步维艰。</p>
 </li>
 </ol>
 
@@ -456,16 +457,16 @@ typeof(item) + item</code> &#x6765;&#x533A;&#x5206;&#x6570;&#x503C; <code>1</cod
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/13/php设计模式/PHP设计模式(4)：继承/" rel="next" title="继承">
-                <i class="fa fa-chevron-left"></i> 继承
+              <a href="/2016/10/13/javascript/44个 Javascript 变态题解析 (下)/" rel="next" title="44个 Javascript 变态题解析 (下)">
+                <i class="fa fa-chevron-left"></i> 44个 Javascript 变态题解析 (下)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/" rel="prev" title="MVC">
-                MVC <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/13/php设计模式/PHP设计模式(10)：适配器模式/" rel="prev" title="适配器模式">
+                适配器模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -638,10 +639,24 @@ typeof(item) + item</code> &#x6765;&#x533A;&#x5206;&#x6570;&#x503C; <code>1</cod
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 

@@ -86,16 +86,17 @@
 
 
 
-<meta name="description" content="&amp;#x4EAB;&amp;#x5143;&amp;#x6A21;&amp;#x5F0F;&amp;#x7684;&amp;#x6838;&amp;#x5FC3;&amp;#x662F;&amp;#x8FD0;&amp;#x7528;&amp;#x5171;&amp;#x4EAB;&amp;#x6280;&amp;#x672F;&amp;#x6765;&amp;#x6709;&amp;#x6548;&amp;#x652F;&amp;#x6301;&amp;#x5927;&amp;#x91CF;&amp;#x7EC6;&amp;#x7C92;&amp;#x5EA6;&amp;#x768">
+<meta name="description" content="享元模式的核心是运用共享技术来有效支持大量细粒度的对象。如果系统中因为创建了大量类似的对象而导致内存占用过高，享元模式就非常有用了。在JavaScript中，浏览器特别是移动端的浏览器分配的内存不算多，如何节省内存就成了一件非常有意义的事。  初识假设有个内衣工厂，要50个男模50个女模，你可能会这么写程序： var Model = function(sex, underwear) {">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="享元模式">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/14享元模式/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="&amp;#x4EAB;&amp;#x5143;&amp;#x6A21;&amp;#x5F0F;&amp;#x7684;&amp;#x6838;&amp;#x5FC3;&amp;#x662F;&amp;#x8FD0;&amp;#x7528;&amp;#x5171;&amp;#x4EAB;&amp;#x6280;&amp;#x672F;&amp;#x6765;&amp;#x6709;&amp;#x6548;&amp;#x652F;&amp;#x6301;&amp;#x5927;&amp;#x91CF;&amp;#x7EC6;&amp;#x7C92;&amp;#x5EA6;&amp;#x768">
+<meta property="og:description" content="享元模式的核心是运用共享技术来有效支持大量细粒度的对象。如果系统中因为创建了大量类似的对象而导致内存占用过高，享元模式就非常有用了。在JavaScript中，浏览器特别是移动端的浏览器分配的内存不算多，如何节省内存就成了一件非常有意义的事。  初识假设有个内衣工厂，要50个男模50个女模，你可能会这么写程序： var Model = function(sex, underwear) {">
 <meta property="og:updated_time" content="2016-10-12T09:05:38.810Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="享元模式">
-<meta name="twitter:description" content="&amp;#x4EAB;&amp;#x5143;&amp;#x6A21;&amp;#x5F0F;&amp;#x7684;&amp;#x6838;&amp;#x5FC3;&amp;#x662F;&amp;#x8FD0;&amp;#x7528;&amp;#x5171;&amp;#x4EAB;&amp;#x6280;&amp;#x672F;&amp;#x6765;&amp;#x6709;&amp;#x6548;&amp;#x652F;&amp;#x6301;&amp;#x5927;&amp;#x91CF;&amp;#x7EC6;&amp;#x7C92;&amp;#x5EA6;&amp;#x768">
+<meta name="twitter:description" content="享元模式的核心是运用共享技术来有效支持大量细粒度的对象。如果系统中因为创建了大量类似的对象而导致内存占用过高，享元模式就非常有用了。在JavaScript中，浏览器特别是移动端的浏览器分配的内存不算多，如何节省内存就成了一件非常有意义的事。  初识假设有个内衣工厂，要50个男模50个女模，你可能会这么写程序： var Model = function(sex, underwear) {">
 
 
 
@@ -323,9 +324,9 @@
       
         <hr>
 <blockquote>
-<p>&#x4EAB;&#x5143;&#x6A21;&#x5F0F;&#x7684;&#x6838;&#x5FC3;&#x662F;&#x8FD0;&#x7528;&#x5171;&#x4EAB;&#x6280;&#x672F;&#x6765;&#x6709;&#x6548;&#x652F;&#x6301;&#x5927;&#x91CF;&#x7EC6;&#x7C92;&#x5EA6;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x5982;&#x679C;&#x7CFB;&#x7EDF;&#x4E2D;&#x56E0;&#x4E3A;&#x521B;&#x5EFA;&#x4E86;&#x5927;&#x91CF;&#x7C7B;&#x4F3C;&#x7684;&#x5BF9;&#x8C61;&#x800C;&#x5BFC;&#x81F4;&#x5185;&#x5B58;&#x5360;&#x7528;&#x8FC7;&#x9AD8;&#xFF0C;&#x4EAB;&#x5143;&#x6A21;&#x5F0F;&#x5C31;&#x975E;&#x5E38;&#x6709;&#x7528;&#x4E86;&#x3002;&#x5728;JavaScript&#x4E2D;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x7279;&#x522B;&#x662F;&#x79FB;&#x52A8;&#x7AEF;&#x7684;&#x6D4F;&#x89C8;&#x5668;&#x5206;&#x914D;&#x7684;&#x5185;&#x5B58;&#x4E0D;&#x7B97;&#x591A;&#xFF0C;&#x5982;&#x4F55;&#x8282;&#x7701;&#x5185;&#x5B58;&#x5C31;&#x6210;&#x4E86;&#x4E00;&#x4EF6;&#x975E;&#x5E38;&#x6709;&#x610F;&#x4E49;&#x7684;&#x4E8B;&#x3002;</p>
+<p>享元模式的核心是运用共享技术来有效支持大量细粒度的对象。如果系统中因为创建了大量类似的对象而导致内存占用过高，享元模式就非常有用了。在JavaScript中，浏览器特别是移动端的浏览器分配的内存不算多，如何节省内存就成了一件非常有意义的事。</p>
 </blockquote>
-<h3 id="&#x521D;&#x8BC6;"><a href="#&#x521D;&#x8BC6;" class="headerlink" title="&#x521D;&#x8BC6;"></a>&#x521D;&#x8BC6;</h3><p>&#x5047;&#x8BBE;&#x6709;&#x4E2A;&#x5185;&#x8863;&#x5DE5;&#x5382;&#xFF0C;&#x8981;50&#x4E2A;&#x7537;&#x6A21;50&#x4E2A;&#x5973;&#x6A21;&#xFF0C;&#x4F60;&#x53EF;&#x80FD;&#x4F1A;&#x8FD9;&#x4E48;&#x5199;&#x7A0B;&#x5E8F;&#xFF1A;</p>
+<h3 id="初识"><a href="#初识" class="headerlink" title="初识"></a>初识</h3><p>假设有个内衣工厂，要50个男模50个女模，你可能会这么写程序：</p>
 <pre><code>var Model = function(sex, underwear) {
     this.sex = sex;
     this.underwear = underwear;
@@ -341,7 +342,7 @@ for (var j = 1; j &lt;= 50; j++) {
     var femaleModel = new Model(&apos;female&apos;, &apos;underwear&apos; + j);
     femaleModel.takePhoto();
 }
-</code></pre><p>&#x8981;&#x5F97;&#x5230;&#x4E00;&#x5F20;&#x7167;&#x7247;&#xFF0C;&#x6BCF;&#x6B21;&#x90FD;&#x9700;&#x8981;&#x4F20;&#x5165;<code>sex</code>&#xFF0C;<code>underwear</code>&#x53C2;&#x6570;&#xFF0C;&#x6839;&#x636E;&#x73B0;&#x5728;&#x7684;&#x9700;&#x6C42;&#x4E00;&#x5171;&#x4F1A;&#x4EA7;&#x751F;100&#x4E2A;&#x5BF9;&#x8C61;&#x3002;&#x4F46;&#x662F;&#x5982;&#x679C;&#x5C06;&#x6765;&#x8981;&#x751F;&#x4EA7;10000&#x79CD;&#xFF0C;&#x90A3;&#x8FD9;&#x4E2A;&#x7A0B;&#x5E8F;&#x53EF;&#x80FD;&#x4F1A;&#x56E0;&#x4E3A;&#x5B58;&#x5728;&#x592A;&#x591A;&#x5BF9;&#x8C61;&#x63D0;&#x524D;&#x5D29;&#x6E83;&#x3002;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x505A;&#x4E00;&#x70B9;&#x6539;&#x52A8;</p>
+</code></pre><p>要得到一张照片，每次都需要传入<code>sex</code>，<code>underwear</code>参数，根据现在的需求一共会产生100个对象。但是如果将来要生产10000种，那这个程序可能会因为存在太多对象提前崩溃。所以我们做一点改动</p>
 <pre><code>var Model = function(sex) {
     this.sex = sex;
 }
@@ -349,10 +350,10 @@ Model.pototype.takePhoto = function() {
     console.log(&apos;sex=&apos; + this.sex + &apos; underwear=&apos; + this.underwear );
 };
 
-//&#x5206;&#x522B;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7537;&#x6A21;&#x7279;&#x5BF9;&#x8C61;&#x548C;&#x5973;&#x6A21;&#x7279;&#x5BF9;&#x8C61;
+//分别创建一个男模特对象和女模特对象
 var maleModel = new Model(&apos;male&apos;),
     femaleModel = new Model(&apos;female&apos;);
-//&#x7ED9;&#x6A21;&#x7279;&#x4F9D;&#x6B21;&#x7A7F;&#x4E0A;&#x6240;&#x6709;&#x7684;&#x7537;&#x88C5;&#xFF0C;&#x5E76;&#x8FDB;&#x884C;&#x62CD;&#x7167;    
+//给模特依次穿上所有的男装，并进行拍照    
 for (var i = 1; i &lt;= 50; i++) {
     maleModel.underwear = &apos;underwear&apos; + i;
     maleModel.takePhoto();
@@ -361,27 +362,27 @@ for (var j = 1; j &lt;= 50; j++) {
     femaleModel.underwear = &apos;underwear&apos; + j;
     femaleModel.takePhoto();
 }
-</code></pre><p>&#x4EE5;&#x4E0A;&#x5C31;&#x662F;&#x4EAB;&#x5143;&#x6A21;&#x5F0F;&#x7684;&#x96CF;&#x5F62;&#xFF0C;&#x4EAB;&#x5143;&#x6A21;&#x5F0F;&#x8981;&#x6C42;&#x5C06;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x5212;&#x5206;&#x4E3A;&#x5185;&#x90E8;&#x72B6;&#x6001;&#x4E0E;&#x5916;&#x90E8;&#x72B6;&#x6001;&#x3002;&#x4EAB;&#x5143;&#x6A21;&#x5F0F;&#x7684;&#x76EE;&#x6807;&#x662F;&#x5C3D;&#x91CF;&#x51CF;&#x5C11;&#x5171;&#x4EAB;&#x5BF9;&#x8C61;&#x7684;&#x6570;&#x91CF;&#x3002;&#x5173;&#x4E8E;&#x5982;&#x4F55;&#x5212;&#x5206;&#x5185;&#x90E8;&#x72B6;&#x6001;&#x548C;&#x5916;&#x90E8;&#x72B6;&#x6001;&#xFF0C;&#x53EF;&#x53C2;&#x8003;&#x4EE5;&#x4E0B;<br>&#xFF1A;</p>
+</code></pre><p>以上就是享元模式的雏形，享元模式要求将对象的属性划分为内部状态与外部状态。享元模式的目标是尽量减少共享对象的数量。关于如何划分内部状态和外部状态，可参考以下<br>：</p>
 <ul>
-<li><p>&#x5185;&#x90E8;&#x72B6;&#x6001;&#x5B58;&#x50A8;&#x4E8E;&#x5185;&#x90E8;&#x5BF9;&#x8C61;</p>
+<li><p>内部状态存储于内部对象</p>
 </li>
-<li><p>&#x5185;&#x90E8;&#x72B6;&#x6001;&#x53EF;&#x4EE5;&#x505A;&#x4E00;&#x4E9B;&#x5BF9;&#x8C61;&#x5171;&#x4EAB;</p>
+<li><p>内部状态可以做一些对象共享</p>
 </li>
-<li><p>&#x5185;&#x90E8;&#x72B6;&#x6001;&#x72EC;&#x7ACB;&#x4E8E;&#x5177;&#x4F53;&#x7684;&#x573A;&#x666F;&#xFF0C;&#x901A;&#x5E38;&#x4E0D;&#x4F1A;&#x6539;&#x53D8;</p>
+<li><p>内部状态独立于具体的场景，通常不会改变</p>
 </li>
-<li><p>&#x5916;&#x90E8;&#x72B6;&#x6001;&#x53D6;&#x51B3;&#x4E8E;&#x5177;&#x4F53;&#x7684;&#x573A;&#x666F;&#xFF0C;&#x5E76;&#x6839;&#x636E;&#x573A;&#x666F;&#x800C;&#x53D8;&#x5316;&#xFF0C;&#x5916;&#x90E8;&#x72B6;&#x6001;&#x4E0D;&#x80FD;&#x88AB;&#x5171;&#x4EAB;</p>
+<li><p>外部状态取决于具体的场景，并根据场景而变化，外部状态不能被共享</p>
 </li>
 </ul>
-<p>&#x5728;&#x4E0A;&#x9762;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x6027;&#x522B;&#x662F;&#x5185;&#x90E8;&#x72B6;&#x6001;&#xFF0C;&#x5185;&#x8863;&#x662F;&#x5916;&#x90E8;&#x72B6;&#x6001;&#x3002;&#x901A;&#x5E38;&#x6765;&#x8BF4;&#x5185;&#x90E8;&#x72B6;&#x6001;&#x6709;&#x591A;&#x5C11;&#x79CD;&#x7EC4;&#x5408;&#x7CFB;&#x7EDF;&#x4E2D;&#x4FBF;&#x6700;&#x591A;&#x5B58;&#x5728;&#x591A;&#x5C11;&#x5BF9;&#x8C61;&#x3002;<br>&#x4F46;&#x662F;&#xFF0C;&#x4EE5;&#x4E0A;&#x8FD8;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x5B8C;&#x6574;&#x7684;&#x4EAB;&#x5143;&#x6A21;&#x5F0F;&#xFF0C;&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#x8FD8;&#x6709;&#x4E24;&#x4E2A;&#x95EE;&#x9898;</p>
+<p>在上面例子中，性别是内部状态，内衣是外部状态。通常来说内部状态有多少种组合系统中便最多存在多少对象。<br>但是，以上还不是一个完整的享元模式，在这个例子中还有两个问题</p>
 <ul>
-<li><p>&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x6784;&#x9020;&#x51FD;&#x6570;&#x663E;&#x793A;&#x7684;<code>new</code>&#x51FA;&#x4E86;&#x7537;&#x5973;&#x4E24;&#x4E2A;<code>model</code>&#x5BF9;&#x8C61;&#xFF0C;&#x5728;&#x5176;&#x4ED6;&#x7CFB;&#x7EDF;&#x4E2D;&#x4E5F;&#x8BB8;&#x5E76;&#x4E0D;&#x662F;&#x4E00;&#x5F00;&#x59CB;&#x5C31;&#x9700;&#x8981;&#x6240;&#x6709;&#x7684;&#x5171;&#x4EAB;&#x5BF9;&#x8C61;</p>
+<li><p>我们通过构造函数显示的<code>new</code>出了男女两个<code>model</code>对象，在其他系统中也许并不是一开始就需要所有的共享对象</p>
 </li>
-<li><p>&#x7ED9;<code>model</code>&#x5BF9;&#x8C61;&#x624B;&#x52A8;&#x8BBE;&#x7F6E;&#x4E86;<code>underwear</code>&#x5916;&#x90E8;&#x72B6;&#x6001;&#xFF0C;&#x5728;&#x66F4;&#x590D;&#x6742;&#x7684;&#x7CFB;&#x7EDF;&#x4E2D;&#x8FD9;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x6700;&#x597D;&#x7684;&#x65B9;&#x5F0F;&#x56E0;&#x4E3A;&#x5916;&#x90E8;&#x72B6;&#x6001;&#x53EF;&#x80FD;&#x76F8;&#x5BF9;&#x590D;&#x6742;&#xFF0C;&#x4ED6;&#x4E0E;&#x5171;&#x4EAB;&#x5BF9;&#x8C61;&#x7684;&#x8054;&#x7CFB;&#x4F1A;&#x53D8;&#x5F97;&#x56F0;&#x96BE;&#x3002;</p>
+<li><p>给<code>model</code>对象手动设置了<code>underwear</code>外部状态，在更复杂的系统中这不是一个最好的方式因为外部状态可能相对复杂，他与共享对象的联系会变得困难。</p>
 </li>
 </ul>
-<p>&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x7B2C;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x5DE5;&#x5382;&#x6765;&#x89E3;&#x51B3;&#x7B2C;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x53EA;&#x6709;&#x67D0;&#x79CD;&#x5171;&#x4EAB;&#x5BF9;&#x8C61;&#x88AB;&#x771F;&#x6B63;&#x9700;&#x8981;&#x65F6;&#xFF0C;&#x4ED6;&#x624D;&#x4ECE;&#x5DE5;&#x5382;&#x4E2D;&#x88AB;&#x521B;&#x5EFA;&#x51FA;&#x6765;&#x3002;&#x5BF9;&#x4E8E;&#x7B2C;&#x4E8C;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x4E00;&#x4E2A;&#x7BA1;&#x7406;&#x5668;&#x6765;&#x8BB0;&#x5F55;&#x5BF9;&#x8C61;&#x76F8;&#x5173;&#x7684;&#x5916;&#x90E8;&#x72B6;&#x6001;&#xFF0C;&#x4F7F;&#x8FD9;&#x4E9B;&#x5916;&#x90E8;&#x72B6;&#x6001;&#x901A;&#x8FC7;&#x67D0;&#x4E2A;&#x94A9;&#x5B50;&#x548C;&#x5171;&#x4EAB;&#x5BF9;&#x8C61;&#x8054;&#x7CFB;&#x8D77;&#x6765;&#x3002;</p>
-<h3 id="&#x5BF9;&#x8C61;&#x6C60;"><a href="#&#x5BF9;&#x8C61;&#x6C60;" class="headerlink" title="&#x5BF9;&#x8C61;&#x6C60;"></a>&#x5BF9;&#x8C61;&#x6C60;</h3><p>&#x5728;java&#x4E2D;&#xFF0C;&#x5BF9;&#x8C61;&#x6C60;&#x7EF4;&#x62A4;&#x4E00;&#x4E2A;&#x88C5;&#x8F7D;&#x7A7A;&#x95F2;&#x5BF9;&#x8C61;&#x7684;&#x6C60;&#x5B50;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x5BF9;&#x8C61;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E0D;&#x662F;&#x76F4;&#x63A5;new&#xFF0C;&#x800C;&#x662F;&#x8F6C;&#x4ECE;&#x5BF9;&#x8C61;&#x6C60;&#x91CC;&#x83B7;&#x53D6;&#x3002;&#x5982;&#x679C;&#x5BF9;&#x8C61;&#x6C60;&#x91CC;&#x6CA1;&#x6709;&#x7A7A;&#x95F2;&#x5BF9;&#x8C61;&#xFF0C;&#x5219;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x5F53;&#x83B7;&#x53D6;&#x51FA;&#x7684;&#x5BF9;&#x8C61;&#x5B8C;&#x6210;&#x4ED6;/&#x5B83;&#x7684;&#x804C;&#x8D23;&#x4E4B;&#x540E;&#xFF0C;&#x518D;&#x8FDB;&#x5165;&#x6C60;&#x5B50;&#x7B49;&#x5F85;&#x4E0B;&#x6B21;&#x83B7;&#x53D6;&#x3002;</p>
-<p>&#x8FD9;&#x91CC;&#x7A0D;&#x5FAE;&#x4ECB;&#x7ECD;&#x4E00;&#x4E0B;&#x5BF9;&#x8C61;&#x6C60;&#x5DE5;&#x5382;&#x91CC;&#x5B9E;&#x73B0;&#x901A;&#x7528;&#x5BF9;&#x8C61;&#x6C60;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<p>我们通过第一个对象工厂来解决第一个问题，只有某种共享对象被真正需要时，他才从工厂中被创建出来。对于第二个问题，可以用一个管理器来记录对象相关的外部状态，使这些外部状态通过某个钩子和共享对象联系起来。</p>
+<h3 id="对象池"><a href="#对象池" class="headerlink" title="对象池"></a>对象池</h3><p>在java中，对象池维护一个装载空闲对象的池子，如果需要对象的时候，不是直接new，而是转从对象池里获取。如果对象池里没有空闲对象，则创建一个新的对象，当获取出的对象完成他/它的职责之后，再进入池子等待下次获取。</p>
+<p>这里稍微介绍一下对象池工厂里实现通用对象池的方法：</p>
 <pre><code>var objectPoolFactory = function(createObjFn) {
     var objectPool = [];
     return {
@@ -394,13 +395,13 @@ for (var j = 1; j &lt;= 50; j++) {
         }
     }
 };
-</code></pre><p>&#x73B0;&#x5728;&#x5229;&#x7528;<code>objectPoolFactory</code>&#x6765;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x88C5;&#x8F7D;&#x4E00;&#x4E9B;<code>iframe</code>&#x7684;&#x5BF9;&#x8C61;&#x6C60;&#xFF1A;</p>
+</code></pre><p>现在利用<code>objectPoolFactory</code>来创建一个装载一些<code>iframe</code>的对象池：</p>
 <pre><code>var iframeFactory = objectPoolFactory( function() {
     var iframe = document.createElement(&apos;iframe&apos;);
     document.body.appendChild(iframe);
     iframe.onload = function() {
-        iframe.onload = null; //&#x9632;&#x6B62;iframe&#x91CD;&#x590D;&#x52A0;&#x8F7D;&#x7684;bug
-        iframeFactory.recover(iframe); //iframe&#x52A0;&#x8F7D;&#x5B8C;&#x6210;&#x4E4B;&#x540E;&#x56DE;&#x6536;&#x8282;&#x70B9;
+        iframe.onload = null; //防止iframe重复加载的bug
+        iframeFactory.recover(iframe); //iframe加载完成之后回收节点
     }
     return iframe;
 });
@@ -416,7 +417,7 @@ setTimeout(function() {
     iframe3.src = &apos;http://163.com&apos;;
 
 }, 3000);
-</code></pre><p>&#x5BF9;&#x8C61;&#x6C60;&#x662F;&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x6027;&#x80FD;&#x4F18;&#x5316;&#x65B9;&#x6848;&#xFF0C;&#x4ED6;&#x8DDF;&#x4EAB;&#x5143;&#x6A21;&#x5F0F;&#x6709;&#x4E00;&#x4E9B;&#x76F8;&#x4F3C;&#x4E4B;&#x5904;&#xFF0C;&#x4F46;&#x6CA1;&#x6709;&#x5206;&#x79BB;&#x5185;&#x90E8;&#x72B6;&#x6001;&#x548C;&#x5916;&#x90E8;&#x72B6;&#x6001;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x3002;</p>
+</code></pre><p>对象池是另外一种性能优化方案，他跟享元模式有一些相似之处，但没有分离内部状态和外部状态这个过程。</p>
 
       
     </div>
@@ -469,16 +470,16 @@ setTimeout(function() {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/12/JavaScript设计模式与开发实践/16中介者模式/" rel="next" title="中介者模式">
-                <i class="fa fa-chevron-left"></i> 中介者模式
+              <a href="/2016/09/25/api/html/Fullscreen API：全屏操作/" rel="next" title="Fullscreen API：全屏操作">
+                <i class="fa fa-chevron-left"></i> Fullscreen API：全屏操作
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/" rel="prev" title="模版方法">
-                模版方法 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/" rel="prev" title="设计原则和编程技巧">
+                设计原则和编程技巧 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -651,10 +652,24 @@ setTimeout(function() {
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 

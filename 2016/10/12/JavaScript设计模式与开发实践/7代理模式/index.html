@@ -86,16 +86,17 @@
 
 
 
-<meta name="description" content="&amp;#x4EE3;&amp;#x7406;&amp;#x6A21;&amp;#x5F0F;&amp;#x662F;&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#x63D0;&amp;#x4F9B;&amp;#x4E00;&amp;#x4E2A;&amp;#x4EE3;&amp;#x7528;&amp;#x54C1;&amp;#x6216;&amp;#x5360;&amp;#x4F4D;&amp;#x7B26;&amp;#xFF0C;&amp;#x4EE5;&amp;#x4FBF;&amp;#x63A7">
+<meta name="description" content="代理模式是为一个对象提供一个代用品或占位符，以便控制对他的访问。代理模式的关键是，当客户不方便直接访问一个对象或者不满足需要的时候，提供一个对象来控制这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理后再把请求转交给本体对象。  不使用代理：客户 → 本体使用代理：客户 → 代理 → 本体 先来一个带点趣味性的例子，小明要给女神A送花，然后他不好意思，打算让B代送 var F">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="代理模式">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/7代理模式/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="&amp;#x4EE3;&amp;#x7406;&amp;#x6A21;&amp;#x5F0F;&amp;#x662F;&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#x63D0;&amp;#x4F9B;&amp;#x4E00;&amp;#x4E2A;&amp;#x4EE3;&amp;#x7528;&amp;#x54C1;&amp;#x6216;&amp;#x5360;&amp;#x4F4D;&amp;#x7B26;&amp;#xFF0C;&amp;#x4EE5;&amp;#x4FBF;&amp;#x63A7">
-<meta property="og:updated_time" content="2016-10-12T07:19:08.156Z">
+<meta property="og:description" content="代理模式是为一个对象提供一个代用品或占位符，以便控制对他的访问。代理模式的关键是，当客户不方便直接访问一个对象或者不满足需要的时候，提供一个对象来控制这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理后再把请求转交给本体对象。  不使用代理：客户 → 本体使用代理：客户 → 代理 → 本体 先来一个带点趣味性的例子，小明要给女神A送花，然后他不好意思，打算让B代送 var F">
+<meta property="og:updated_time" content="2016-10-12T07:19:08.157Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="代理模式">
-<meta name="twitter:description" content="&amp;#x4EE3;&amp;#x7406;&amp;#x6A21;&amp;#x5F0F;&amp;#x662F;&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#x63D0;&amp;#x4F9B;&amp;#x4E00;&amp;#x4E2A;&amp;#x4EE3;&amp;#x7528;&amp;#x54C1;&amp;#x6216;&amp;#x5360;&amp;#x4F4D;&amp;#x7B26;&amp;#xFF0C;&amp;#x4EE5;&amp;#x4FBF;&amp;#x63A7">
+<meta name="twitter:description" content="代理模式是为一个对象提供一个代用品或占位符，以便控制对他的访问。代理模式的关键是，当客户不方便直接访问一个对象或者不满足需要的时候，提供一个对象来控制这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理后再把请求转交给本体对象。  不使用代理：客户 → 本体使用代理：客户 → 代理 → 本体 先来一个带点趣味性的例子，小明要给女神A送花，然后他不好意思，打算让B代送 var F">
 
 
 
@@ -322,10 +323,10 @@
 
       
         <blockquote>
-<p>&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#x662F;&#x4E3A;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x4EE3;&#x7528;&#x54C1;&#x6216;&#x5360;&#x4F4D;&#x7B26;&#xFF0C;&#x4EE5;&#x4FBF;&#x63A7;&#x5236;&#x5BF9;&#x4ED6;&#x7684;&#x8BBF;&#x95EE;&#x3002;&#x4EE3;&#x7406;&#x6A21;&#x5F0F;&#x7684;&#x5173;&#x952E;&#x662F;&#xFF0C;&#x5F53;&#x5BA2;&#x6237;&#x4E0D;&#x65B9;&#x4FBF;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x6216;&#x8005;&#x4E0D;&#x6EE1;&#x8DB3;&#x9700;&#x8981;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x6765;&#x63A7;&#x5236;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x8BBF;&#x95EE;&#xFF0C;&#x5BA2;&#x6237;&#x5B9E;&#x9645;&#x4E0A;&#x8BBF;&#x95EE;&#x7684;&#x662F;&#x66FF;&#x8EAB;&#x5BF9;&#x8C61;&#x3002;&#x66FF;&#x8EAB;&#x5BF9;&#x8C61;&#x5BF9;&#x8BF7;&#x6C42;&#x505A;&#x51FA;&#x4E00;&#x4E9B;&#x5904;&#x7406;&#x540E;&#x518D;&#x628A;&#x8BF7;&#x6C42;&#x8F6C;&#x4EA4;&#x7ED9;&#x672C;&#x4F53;&#x5BF9;&#x8C61;&#x3002;</p>
+<p>代理模式是为一个对象提供一个代用品或占位符，以便控制对他的访问。代理模式的关键是，当客户不方便直接访问一个对象或者不满足需要的时候，提供一个对象来控制这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理后再把请求转交给本体对象。</p>
 </blockquote>
-<p>&#x4E0D;&#x4F7F;&#x7528;&#x4EE3;&#x7406;&#xFF1A;&#x5BA2;&#x6237; &#x2192; &#x672C;&#x4F53;<br>&#x4F7F;&#x7528;&#x4EE3;&#x7406;&#xFF1A;&#x5BA2;&#x6237; &#x2192; &#x4EE3;&#x7406; &#x2192; &#x672C;&#x4F53;</p>
-<p>&#x5148;&#x6765;&#x4E00;&#x4E2A;&#x5E26;&#x70B9;&#x8DA3;&#x5473;&#x6027;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x5C0F;&#x660E;&#x8981;&#x7ED9;&#x5973;&#x795E;A&#x9001;&#x82B1;&#xFF0C;&#x7136;&#x540E;&#x4ED6;&#x4E0D;&#x597D;&#x610F;&#x601D;&#xFF0C;&#x6253;&#x7B97;&#x8BA9;B&#x4EE3;&#x9001;</p>
+<p>不使用代理：客户 → 本体<br>使用代理：客户 → 代理 → 本体</p>
+<p>先来一个带点趣味性的例子，小明要给女神A送花，然后他不好意思，打算让B代送</p>
 <pre><code>var Flower = function(){};
 var xiaoming = {
     sendFlower: function( traget ) {
@@ -336,51 +337,51 @@ var xiaoming = {
 
 var A = {
     receiveFlower: function( flower ) {
-      console.log(&apos;&#x6536;&#x5230;&#x82B1;&apos; + flower);
+      console.log(&apos;收到花&apos; + flower);
   }
 };
 
 xiaoming.sendFlower(A);
 
-//&#x5F15;&#x5165;&#x4EE3;&#x7406;B
+//引入代理B
 var B = {
     receiverFlower: function( flower ) {
       A.receiveFlower( flower );
   }
 };
-</code></pre><p>&#x6B64;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x7B80;&#x5355;&#x7684;&#x5B8C;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x4EE3;&#x7406;&#x6A21;&#x5F0F;</p>
-<p>&#x63A5;&#x7740;&#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x539F;&#x9700;&#x6C42;&#x4E0A;&#x505A;&#x70B9;&#x6539;&#x52A8;&#xFF0C;&#x5047;&#x8BBE;&#x5973;&#x795E;&#x5FC3;&#x60C5;&#x597D;&#x7684;&#x65F6;&#x5019;&#x6210;&#x529F;&#x7387;&#x4F1A;&#x589E;&#x5927;&#xFF0C;&#x5C0F;&#x660E;&#x8DDF;&#x5973;&#x795E;&#x4E0D;&#x719F;&#x4E0D;&#x77E5;&#x9053;&#x5979;&#x5FC3;&#x60C5;&#xFF0C;&#x800C;B&#x8DDF;&#x5973;&#x795E;&#x6BD4;&#x8F83;&#x719F;&#x53EF;&#x4EE5;&#x53BB;&#x76D1;&#x542C;&#x5979;&#x5FC3;&#x60C5;&#x7684;&#x53D8;&#x5316;&#x6070;&#x5F53;&#x65F6;&#x673A;&#x9001;&#x82B1;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x4E0D;&#x4F1A;&#x9020;&#x6210;&#x4E0D;&#x5FC5;&#x8981;&#x6D6A;&#x8D39;&#x4E86;&#xFF0C;&#x4E8E;&#x662F;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code>//&#x4EE3;&#x7406;B
+</code></pre><p>此时，我们就简单的完成了一个代理模式</p>
+<p>接着，我们在原需求上做点改动，假设女神心情好的时候成功率会增大，小明跟女神不熟不知道她心情，而B跟女神比较熟可以去监听她心情的变化恰当时机送花，这样就不会造成不必要浪费了，于是代码如下：</p>
+<pre><code>//代理B
 var B = {
     receiverFlower: function( flower ) {
-      A.listenGoodMood(function() { //&#x76D1;&#x542C;A&#x7684;&#x597D;&#x5FC3;&#x60C5;
+      A.listenGoodMood(function() { //监听A的好心情
         A.receiveFlower( flower );
-    })&#xFF1B;
+    })；
   }
 };
 
-//&#x5973;&#x795E;A&#x4E5F;&#x8981;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x53EF;&#x88AB;&#x76D1;&#x542C;&#x7684;&#x65B9;&#x6CD5;&#xFF08;&#x5F53;&#x7136;&#x6211;&#x4EEC;&#x53EA;&#x662F;&#x5047;&#x8BBE;&#xFF0C;&#x6BD5;&#x7ADF;&#x5973;&#x4EBA;&#x6211;&#x4EEC;&#x662F;&#x6478;&#x4E0D;&#x900F;&#x7684;&#xFF09;
+//女神A也要提供一个可被监听的方法（当然我们只是假设，毕竟女人我们是摸不透的）
 var A = {
     receiveFlower: function( flower ) {
-      console.log(&apos;&#x6536;&#x5230;&#x82B1;&apos; + flower);
+      console.log(&apos;收到花&apos; + flower);
   },
   listenGoodMood: function( fn ) {
-      setTimeout(function() { //&#x5047;&#x8BBE;A&#x7684;&#x5FC3;&#x60C5;&#x5341;&#x79D2;&#x4E4B;&#x540E;&#x4F1A;&#x53D8;&#x597D;
+      setTimeout(function() { //假设A的心情十秒之后会变好
         fn();
     }, 10000);
   }
 };
-</code></pre><p>&#x518D;&#x5047;&#x8BBE;&#x4E70;&#x82B1;&#x662F;&#x4E00;&#x4E2A;&#x4EE3;&#x4EF7;&#x6602;&#x8D35;&#x7684;&#x64CD;&#x4F5C;&#xFF08;&#x8BF4;&#x4E0D;&#x5B9A;&#x4F1A;&#x88AB;&#x522B;&#x4EBA;&#x8BEF;&#x4F1A;&#x4EC0;&#x4E48;&#x7684;&#xFF0C;&#x800C;&#x4E14;&#x82B1;&#x653E;&#x592A;&#x4E45;&#x4E5F;&#x4F1A;&#x8C22;&#xFF09;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5F53;&#x9700;&#x8981;&#x7684;&#x65F6;&#x5019;&#x518D;&#x53BB;&#x505A;&#x8FD9;&#x4E8B;&#x624D;&#x6BD4;&#x8F83;&#x5212;&#x7B97;&#xFF0C;&#x5C31;&#x662F;&#x5728;A&#x5FC3;&#x60C5;&#x597D;&#x7684;&#x65F6;&#x5019;&#x518D;&#x53BB;new&#x4E00;&#x4E2A;&#x82B1;&#x51FA;&#x6765;&#x3002;</p>
-<pre><code>//&#x5F15;&#x5165;&#x4EE3;&#x7406;B
+</code></pre><p>再假设买花是一个代价昂贵的操作（说不定会被别人误会什么的，而且花放太久也会谢），所以我们当需要的时候再去做这事才比较划算，就是在A心情好的时候再去new一个花出来。</p>
+<pre><code>//引入代理B
 var B = {
     receiverFlower: function( flower ) {
-      A.listenGoodMood(function() { //&#x76D1;&#x542C;A&#x7684;&#x597D;&#x5FC3;&#x60C5;
+      A.listenGoodMood(function() { //监听A的好心情
         var Flower = function(){};
       A.receiveFlower( flower );
-    })&#xFF1B;
+    })；
   }
 };
-</code></pre><p>&#x6B64;&#x5916;&#xFF0C;&#x4EE3;&#x7406;B&#x53EF;&#x4EE5;&#x5E2E;&#x52A9;A&#x505A;&#x4E00;&#x4E9B;&#x8FC7;&#x6EE4;&#x8BF7;&#x6C42;&#xFF0C;&#x6BD4;&#x5982;&#x628A;&#x4E00;&#x4E9B;&#x5E74;&#x7EAA;&#x592A;&#x5927;&#x7684;&#xFF0C;&#x6CA1;&#x6709;&#x5B9D;&#x9A6C;&#x7684;&#x9001;&#x82B1;&#x8005;&#x90FD;&#x8FC7;&#x6EE4;&#x6389;&#xFF0C;&#x8FD9;&#x79CD;&#x8BF7;&#x6C42;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5728;&#x4EE3;&#x7406;B&#x4E2D;&#x88AB;&#x62D2;&#x7EDD;&#x6389;&#xFF0C;&#x8FD9;&#x79CD;&#x4EE3;&#x7406;&#x65B9;&#x5F0F;&#x53EB;<strong>&#x4FDD;&#x62A4;&#x4EE3;&#x7406;</strong></p>
+</code></pre><p>此外，代理B可以帮助A做一些过滤请求，比如把一些年纪太大的，没有宝马的送花者都过滤掉，这种请求就可以直接在代理B中被拒绝掉，这种代理方式叫<strong>保护代理</strong></p>
 
       
     </div>
@@ -615,10 +616,24 @@ var B = {
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 

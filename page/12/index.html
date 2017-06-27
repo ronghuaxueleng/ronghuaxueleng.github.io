@@ -453,7 +453,7 @@
       
         
           <p>delete 操作符用于删除对象的属性。</p>
-<p>似乎很多同学（包括我）对 delete 操作符都是似是而非，为什么有的属性可以被删除，有的却不能被删除？为什么能够删除对象的属性却不能删除变量或函数？在 eval 和 <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Strict_mode">严格模式</a>下，delete 操作符又有哪些特性？等等。。</p>
+<p>似乎很多同学（包括我）对 delete 操作符都是似是而非，为什么有的属性可以被删除，有的却不能被删除？为什么能够删除对象的属性却不能删除变量或函数？在 eval 和 <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Strict_mode" target="_blank" rel="external">严格模式</a>下，delete 操作符又有哪些特性？等等。。</p>
 <p>本文将从基本概念到 ECMPScript 内部原理来学习 delete 操作符。</p>
 <h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p><strong>表达式</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> object.property    <span class="comment">// 点操作符方式，常用方式</span></div><div class="line"><span class="keyword">delete</span> object[<span class="string">'property'</span>] <span class="comment">// 字符串属性名方式</span></div></pre></td></tr></table></figure>
@@ -463,7 +463,7 @@
 <li>property - 将要删除的属性</li>
 </ul>
 <p><strong>返回值</strong></p>
-<p>delete 操作符返回 true 或 false。当被 delete 的对象的属性存在并且拥有 DontDelete (对象属性的一个内部属性，拥有该内部属性表明该属性不能被删除) 时返回 false（在<a href="https://developer.mozilla.org/en-US/docs/JavaScript/Strict_mode">严格模式</a>下将抛出异常），否则返回 true。需要注意的是，对象属性不存在时也返回 true，<em>所以返回值并非完全等同于删除成功与否</em>。</p>
+<p>delete 操作符返回 true 或 false。当被 delete 的对象的属性存在并且拥有 DontDelete (对象属性的一个内部属性，拥有该内部属性表明该属性不能被删除) 时返回 false（在<a href="https://developer.mozilla.org/en-US/docs/JavaScript/Strict_mode" target="_blank" rel="external">严格模式</a>下将抛出异常），否则返回 true。需要注意的是，对象属性不存在时也返回 true，<em>所以返回值并非完全等同于删除成功与否</em>。</p>
 <p><img src="http://bubkoo.qiniudn.com/delete-operator.jpg" alt=""></p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/08/22/javascript/深入理解 JavaScript 中的 delete 操作符/#more" rel="contents">
@@ -589,7 +589,7 @@
 
       
         
-          <p><a href="http://www.w3.org/html/wg/drafts/html/master/editing.html#attr-tabindex">tabindex</a> 属性用于管理键盘焦点，决定元素是否能被选中，以及按下 <code>tab</code> 键过程中被选中的顺序，使用得当能够极大的提高应用的易用性，然而，不恰当地使用时可以键盘用户对应用的可用性。到底如何使用？设置为 <code>0</code> 会有什么效果？设置为 <code>-1</code> 会有什么效果？本文将为你揭晓。</p>
+          <p><a href="http://www.w3.org/html/wg/drafts/html/master/editing.html#attr-tabindex" target="_blank" rel="external">tabindex</a> 属性用于管理键盘焦点，决定元素是否能被选中，以及按下 <code>tab</code> 键过程中被选中的顺序，使用得当能够极大的提高应用的易用性，然而，不恰当地使用时可以键盘用户对应用的可用性。到底如何使用？设置为 <code>0</code> 会有什么效果？设置为 <code>-1</code> 会有什么效果？本文将为你揭晓。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/08/22/css/说说 tabindex 的那些事儿/#more" rel="contents">
               阅读全文 &raquo;
@@ -1010,10 +1010,24 @@
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 

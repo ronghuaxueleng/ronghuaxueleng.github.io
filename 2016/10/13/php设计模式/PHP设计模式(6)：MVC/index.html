@@ -86,22 +86,17 @@
 
 
 
-<meta name="description" content="&amp;#x539F;&amp;#x6587;&amp;#x5730;&amp;#x5740;&amp;#xFF1A;[PHP&amp;#x8BBE;&amp;#x8BA1;&amp;#x6A21;&amp;#x5F0F;(&amp;#x516D;)&amp;#xFF1A;MVC][1]
-
-Introduction20&amp;#x4E16;&amp;#x7EAA;80&amp;#x5E74;&amp;#x4EE3;&amp;#xFF0C;&amp;#x8BA1;&amp;#x7B97;&amp;#x673A;&amp;#x53D1;&amp;#x5C55;">
+<meta name="description" content="原文地址：[PHP设计模式(六)：MVC][1]  Introduction20世纪80年代，计算机发展迅速，编程技术也日益分化。桌面应用编程，也逐渐出现了用户图形界面和程序逻辑分离的程序设计。到了90年代，web的出现更是让这种程序设计模式得以延续。这种设计模式便是MVC(Model-View-Control)，除了MVC，还有MVC的变种，如MVVM(Model-View-View-Mode">
+<meta name="keywords" content="php">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MVC">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(6)：MVC/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="&amp;#x539F;&amp;#x6587;&amp;#x5730;&amp;#x5740;&amp;#xFF1A;[PHP&amp;#x8BBE;&amp;#x8BA1;&amp;#x6A21;&amp;#x5F0F;(&amp;#x516D;)&amp;#xFF1A;MVC][1]
-
-Introduction20&amp;#x4E16;&amp;#x7EAA;80&amp;#x5E74;&amp;#x4EE3;&amp;#xFF0C;&amp;#x8BA1;&amp;#x7B97;&amp;#x673A;&amp;#x53D1;&amp;#x5C55;">
-<meta property="og:updated_time" content="2016-10-13T07:53:47.039Z">
+<meta property="og:description" content="原文地址：[PHP设计模式(六)：MVC][1]  Introduction20世纪80年代，计算机发展迅速，编程技术也日益分化。桌面应用编程，也逐渐出现了用户图形界面和程序逻辑分离的程序设计。到了90年代，web的出现更是让这种程序设计模式得以延续。这种设计模式便是MVC(Model-View-Control)，除了MVC，还有MVC的变种，如MVVM(Model-View-View-Mode">
+<meta property="og:updated_time" content="2016-10-13T07:53:47.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MVC">
-<meta name="twitter:description" content="&amp;#x539F;&amp;#x6587;&amp;#x5730;&amp;#x5740;&amp;#xFF1A;[PHP&amp;#x8BBE;&amp;#x8BA1;&amp;#x6A21;&amp;#x5F0F;(&amp;#x516D;)&amp;#xFF1A;MVC][1]
-
-Introduction20&amp;#x4E16;&amp;#x7EAA;80&amp;#x5E74;&amp;#x4EE3;&amp;#xFF0C;&amp;#x8BA1;&amp;#x7B97;&amp;#x673A;&amp;#x53D1;&amp;#x5C55;">
+<meta name="twitter:description" content="原文地址：[PHP设计模式(六)：MVC][1]  Introduction20世纪80年代，计算机发展迅速，编程技术也日益分化。桌面应用编程，也逐渐出现了用户图形界面和程序逻辑分离的程序设计。到了90年代，web的出现更是让这种程序设计模式得以延续。这种设计模式便是MVC(Model-View-Control)，除了MVC，还有MVC的变种，如MVVM(Model-View-View-Mode">
 
 
 
@@ -328,12 +323,12 @@ Introduction20&amp;#x4E16;&amp;#x7EAA;80&amp;#x5E74;&amp;#x4EE3;&amp;#xFF0C;&amp
 
       
         <blockquote>
-<p>&#x539F;&#x6587;&#x5730;&#x5740;&#xFF1A;[PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x516D;)&#xFF1A;MVC][1]</p>
+<p>原文地址：[PHP设计模式(六)：MVC][1]</p>
 </blockquote>
-<h2 id="introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>20&#x4E16;&#x7EAA;80&#x5E74;&#x4EE3;&#xFF0C;&#x8BA1;&#x7B97;&#x673A;&#x53D1;&#x5C55;&#x8FC5;&#x901F;&#xFF0C;&#x7F16;&#x7A0B;&#x6280;&#x672F;&#x4E5F;&#x65E5;&#x76CA;&#x5206;&#x5316;&#x3002;&#x684C;&#x9762;&#x5E94;&#x7528;&#x7F16;&#x7A0B;&#xFF0C;&#x4E5F;&#x9010;&#x6E10;&#x51FA;&#x73B0;&#x4E86;&#x7528;&#x6237;&#x56FE;&#x5F62;&#x754C;&#x9762;&#x548C;&#x7A0B;&#x5E8F;&#x903B;&#x8F91;&#x5206;&#x79BB;&#x7684;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x3002;&#x5230;&#x4E86;90&#x5E74;&#x4EE3;&#xFF0C;web&#x7684;&#x51FA;&#x73B0;&#x66F4;&#x662F;&#x8BA9;&#x8FD9;&#x79CD;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x5F97;&#x4EE5;&#x5EF6;&#x7EED;&#x3002;<br>&#x8FD9;&#x79CD;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x4FBF;&#x662F;<a href="https://en.wikipedia.org/wiki/Model-view-controller" target="_blank" rel="external">MVC(Model-View-Control)</a>&#xFF0C;&#x9664;&#x4E86;MVC&#xFF0C;&#x8FD8;&#x6709;MVC&#x7684;&#x53D8;&#x79CD;&#xFF0C;&#x5982;<a href="https://en.wikipedia.org/wiki/Model-view-viewmodel" target="_blank" rel="external">MVVM(Model-View-View-Model)</a>&#x7B49;&#x3002;</p>
-<h2 id="mvc"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>&#x56DE;&#x5230;80&#x5E74;&#x4EE3;&#x7684;&#x684C;&#x9762;&#x5E94;&#x7528;&#x7F16;&#x7A0B;&#xFF0C;&#x5F53;&#x65F6;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x7F16;&#x7A0B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF08;&#x89C1;<a href="http://csprojectedu.com/2016/02/22/PHPDesignPatterns-1/" target="_blank" rel="external">PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x4E00;)&#xFF1A;&#x57FA;&#x7840;&#x7F16;&#x7A0B;&#x6A21;&#x5F0F;</a>&#xFF09;&#x5174;&#x8D77;&#xFF0C;&#x7A0B;&#x5E8F;&#x5458;&#x5C06;&#x684C;&#x9762;&#x5E94;&#x7528;&#x5206;&#x5272;&#x6210;&#x4E24;&#x4E2A;&#x5927;&#x7684;&#x5BF9;&#x8C61;&#xFF1A;&#x9886;&#x57DF;&#x5BF9;&#x8C61;(domain objects)&#x548C;&#x53EF;&#x89C6;&#x5BF9;&#x8C61;(presentation objects)&#x3002;&#x9886;&#x57DF;&#x5BF9;&#x8C61;&#x662F;&#x5BF9;&#x73B0;&#x5B9E;&#x4E8B;&#x7269;&#x7684;&#x62BD;&#x8C61;&#x6A21;&#x578B;&#xFF0C;&#x53EF;&#x89C6;&#x5BF9;&#x8C61;&#x662F;&#x5BF9;&#x7528;&#x6237;&#x754C;&#x9762;&#x90E8;&#x5206;&#x7684;&#x62BD;&#x8C61;&#x6A21;&#x578B;&#x3002;<br>&#x540E;&#x6765;&#x4EBA;&#x4EEC;&#x53D1;&#x73B0;&#xFF0C;&#x53EA;&#x6709;&#x9886;&#x57DF;&#x5BF9;&#x8C61;&#x548C;&#x53EF;&#x89C6;&#x5BF9;&#x8C61;&#x662F;&#x4E0D;&#x591F;&#x7684;&#xFF0C;&#x7279;&#x522B;&#x662F;&#x5728;&#x590D;&#x6742;&#x7684;&#x4E1A;&#x52A1;&#x4E2D;&#x3002;&#x6839;&#x636E;<a href="http://csprojectedu.com/2016/02/26/PHPDesignPatterns-3/" target="_blank" rel="external">PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x4E09;)&#xFF1A;&#x5C01;&#x88C5;</a>&#x4E2D;&#x4ECB;&#x7ECD;&#x7684;&#x8BBE;&#x8BA1;&#x539F;&#x5219;&#xFF0C;&#x5728;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x4E2D;&#xFF0C;&#x7C7B;&#x548C;&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x8BBF;&#x95EE;&#x3001;&#x4EA4;&#x4E92;&#x548C;&#x66F4;&#x65B0;&#x5E94;&#x8BE5;&#x662F;&#x901A;&#x8FC7;Accessors&#x548C;Mutators&#x3002;<br>&#x90A3;&#x4E48;&#x5982;&#x679C;&#x64CD;&#x4F5C;&#x9886;&#x57DF;&#x5BF9;&#x8C61;&#x5462;&#xFF1F;&#x4EBA;&#x4EEC;&#x5F15;&#x5165;&#x4E86;&#x63A7;&#x5236;&#x5668;(controller)&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x901A;&#x8FC7;&#x63A7;&#x5236;&#x5668;&#x6765;&#x64CD;&#x4F5C;&#x9886;&#x57DF;&#x6A21;&#x578B;&#x3002;<br>&#x5230;&#x6B64;&#xFF0C;MVC&#x6A21;&#x578B;&#x9010;&#x6E10;&#x7A33;&#x5B9A;&#x4E0B;&#x6765;&#xFF0C;&#x7528;&#x6237;&#x901A;&#x8FC7;&#x53EF;&#x89C6;&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;&#x63A7;&#x5236;&#x5668;&#x5BF9;&#x8C61;&#xFF0C;&#x63A7;&#x5236;&#x5668;&#x5BF9;&#x8C61;&#x518D;&#x53BB;&#x64CD;&#x4F5C;&#x9886;&#x57DF;&#x5BF9;&#x8C61;&#x3002;</p>
-<h2 id="mvc&#x4E2D;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;"><a href="#MVC&#x4E2D;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;" class="headerlink" title="MVC&#x4E2D;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;"></a>MVC&#x4E2D;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;</h2><p>&#x4E0A;&#x9762;&#x4ECB;&#x7ECD;&#x7684;MVC&#x5C5E;&#x4E8E;&#x62BD;&#x8C61;&#x5EA6;&#x6BD4;&#x8F83;&#x9AD8;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF0C;&#x5728;&#x5B9E;&#x9645;&#x7F16;&#x7A0B;&#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x9075;&#x5B88;&#x4E0B;&#x9762;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x3002;</p>
-<h3 id="&#x57FA;&#x4E8E;&#x63A5;&#x53E3;&#x53BB;&#x7F16;&#x7A0B;"><a href="#&#x57FA;&#x4E8E;&#x63A5;&#x53E3;&#x53BB;&#x7F16;&#x7A0B;" class="headerlink" title="&#x57FA;&#x4E8E;&#x63A5;&#x53E3;&#x53BB;&#x7F16;&#x7A0B;"></a>&#x57FA;&#x4E8E;&#x63A5;&#x53E3;&#x53BB;&#x7F16;&#x7A0B;</h3><p>&#x57FA;&#x4E8E;&#x63A5;&#x53E3;&#x53BB;&#x7F16;&#x7A0B;&#x7684;&#x597D;&#x5904;&#x5C31;&#x662F;&#x5206;&#x79BB;&#x8BBE;&#x8BA1;&#x548C;&#x5B9E;&#x73B0;&#xFF0C;&#x8FD9;&#x4E00;&#x70B9;&#x6211;&#x4EEC;&#x5728;<a href="http://csprojectedu.com/2016/02/24/PHPDesignPatterns-2/" target="_blank" rel="external">PHP&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;(&#x4E8C;)&#xFF1A;&#x62BD;&#x8C61;&#x7C7B;&#x548C;&#x63A5;&#x53E3;</a>&#x5DF2;&#x7ECF;&#x4ECB;&#x7ECD;&#x8FC7;&#x4E86;&#xFF0C;&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x4E3E;&#x4E00;&#x4E2A;&#x5B9E;&#x9645;&#x7684;&#x4F8B;&#x5B50;&#x6765;&#x8BF4;&#x660E;&#x8FD9;&#x4E2A;&#x8BBE;&#x8BA1;&#x7684;&#x597D;&#x5904;&#x3002;</p>
+<h2 id="introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>20世纪80年代，计算机发展迅速，编程技术也日益分化。桌面应用编程，也逐渐出现了用户图形界面和程序逻辑分离的程序设计。到了90年代，web的出现更是让这种程序设计模式得以延续。<br>这种设计模式便是<a href="https://en.wikipedia.org/wiki/Model-view-controller" target="_blank" rel="external">MVC(Model-View-Control)</a>，除了MVC，还有MVC的变种，如<a href="https://en.wikipedia.org/wiki/Model-view-viewmodel" target="_blank" rel="external">MVVM(Model-View-View-Model)</a>等。</p>
+<h2 id="mvc"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>回到80年代的桌面应用编程，当时面向对象的编程设计模式（见<a href="http://csprojectedu.com/2016/02/22/PHPDesignPatterns-1/" target="_blank" rel="external">PHP设计模式(一)：基础编程模式</a>）兴起，程序员将桌面应用分割成两个大的对象：领域对象(domain objects)和可视对象(presentation objects)。领域对象是对现实事物的抽象模型，可视对象是对用户界面部分的抽象模型。<br>后来人们发现，只有领域对象和可视对象是不够的，特别是在复杂的业务中。根据<a href="http://csprojectedu.com/2016/02/26/PHPDesignPatterns-3/" target="_blank" rel="external">PHP设计模式(三)：封装</a>中介绍的设计原则，在面向对象程序设计中，类和类之间的访问、交互和更新应该是通过Accessors和Mutators。<br>那么如果操作领域对象呢？人们引入了控制器(controller)的对象，通过控制器来操作领域模型。<br>到此，MVC模型逐渐稳定下来，用户通过可视对象操作控制器对象，控制器对象再去操作领域对象。</p>
+<h2 id="mvc中的设计模式"><a href="#MVC中的设计模式" class="headerlink" title="MVC中的设计模式"></a>MVC中的设计模式</h2><p>上面介绍的MVC属于抽象度比较高的设计模式，在实际编程中，需要遵守下面的设计模式。</p>
+<h3 id="基于接口去编程"><a href="#基于接口去编程" class="headerlink" title="基于接口去编程"></a>基于接口去编程</h3><p>基于接口去编程的好处就是分离设计和实现，这一点我们在<a href="http://csprojectedu.com/2016/02/24/PHPDesignPatterns-2/" target="_blank" rel="external">PHP设计模式(二)：抽象类和接口</a>已经介绍过了，下面我们举一个实际的例子来说明这个设计的好处。</p>
 <pre><code>&lt;?php
 abstract class Animal {
   protected $name;
@@ -349,7 +344,7 @@ abstract class Animal {
   }
 }
 ?&gt;
-</code></pre><p>&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x9CB8;&#x9C7C;&#x7C7B;&#xFF1A;</p>
+</code></pre><p>我们创建一个鲸鱼类：</p>
 <pre><code>&lt;?php
 include_once(&apos;Animal.php&apos;);
 class Whale extends Animal {
@@ -367,10 +362,10 @@ class Whale extends Animal {
 $whale = new Whale();
 $whale-&gt;eat();
 ?&gt;
-</code></pre><p>&#x8FD0;&#x884C;&#x4E00;&#x4E0B;&#xFF1A;</p>
+</code></pre><p>运行一下：</p>
 <pre><code>$ php Whale.php
 Whale eats fish.
-</code></pre><p>&#x770B;&#x4E0A;&#x53BB;&#x6CA1;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#xFF0C;&#x5BF9;&#x5427;&#xFF1F;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x9CA4;&#x9C7C;&#x7C7B;&#xFF1A;</p>
+</code></pre><p>看上去没什么问题，对吧？我们创建一个鲤鱼类：</p>
 <pre><code>&lt;?php
 include_once(&apos;Animal.php&apos;);
 class Carp extends Animal {
@@ -385,13 +380,13 @@ class Carp extends Animal {
 $carp = new Carp();
 $carp-&gt;eat();
 ?&gt;
-</code></pre><p>&#x8FD0;&#x884C;&#x4E00;&#x4E0B;&#xFF1A;</p>
+</code></pre><p>运行一下：</p>
 <pre><code>$ php Carp.php
 PHP Fatal error: Class Carp contains 1 abstract method and must therefore be
 declared abstract or implement the remaining method (Animal::eatFish) in
 Carp.php on line 9
-</code></pre><p>&#x62A5;&#x9519;&#x4E86;&#xFF0C;&#x5BF9;&#x5427;&#xFF1F;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x5B9E;&#x73B0;Carp.php&#x7684;&#x65F6;&#x5019;&#x6545;&#x610F;&#x6CA1;&#x6709;&#x53BB;&#x5B9E;&#x73B0;eatFish&#x63A5;&#x53E3;&#xFF0C;&#x57FA;&#x4E8E;&#x63A5;&#x53E3;&#x7684;&#x7F16;&#x7A0B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x53EF;&#x4EE5;&#x5728;&#x5F00;&#x53D1;&#x671F;&#x5C31;&#x53D1;&#x73B0;&#x8FD9;&#x79CD;&#x903B;&#x8F91;&#x9519;&#x8BEF;&#x3002;</p>
-<h3 id="&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x800C;&#x4E0D;&#x662F;&#x7EE7;&#x627F;"><a href="#&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x800C;&#x4E0D;&#x662F;&#x7EE7;&#x627F;" class="headerlink" title="&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x800C;&#x4E0D;&#x662F;&#x7EE7;&#x627F;"></a>&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x800C;&#x4E0D;&#x662F;&#x7EE7;&#x627F;</h3><p>&#x5C06;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x62C6;&#x6210;&#x66F4;&#x5C0F;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x8FD9;&#x4E9B;&#x5C0F;&#x7684;&#x5BF9;&#x8C61;&#x6210;&#x4E3A;&#x7EC4;&#x4EF6;(composition)&#x3002;&#x5C3D;&#x91CF;&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x800C;&#x4E0D;&#x662F;&#x7EE7;&#x627F;&#x7684;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x7684;&#x610F;&#x4E49;&#x5728;&#x4E8E;&#xFF0C;&#x591A;&#x79CD;&#x7EE7;&#x627F;&#x4E4B;&#x4E0B;&#xFF0C;&#x5B50;&#x7C7B;&#x53EF;&#x80FD;&#x4F1A;&#x62E5;&#x6709;&#x5927;&#x91CF;&#x6BEB;&#x65E0;&#x610F;&#x4E49;&#x7684;&#x672A;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;&#x3002;&#x800C;&#x901A;&#x8FC7;&#x7EC4;&#x4EF6;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5B50;&#x7C7B;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x9700;&#x8981;&#x7684;&#x7EC4;&#x4EF6;&#x3002;<br>&#x4E0B;&#x9762;&#x7ED9;&#x51FA;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
+</code></pre><p>报错了，对吧？因为我们实现Carp.php的时候故意没有去实现eatFish接口，基于接口的编程设计模式可以在开发期就发现这种逻辑错误。</p>
+<h3 id="使用组件而不是继承"><a href="#使用组件而不是继承" class="headerlink" title="使用组件而不是继承"></a>使用组件而不是继承</h3><p>将一个对象拆成更小的对象，这些小的对象成为组件(composition)。尽量使用组件而不是继承的设计模式的意义在于，多种继承之下，子类可能会拥有大量毫无意义的未实现方法。而通过组件的方式，子类可以选择需要的组件。<br>下面给出一个例子：</p>
 <pre><code>&lt;?php
 abstract class Animal {
   protected $name;
@@ -428,7 +423,7 @@ class BullWhale extends Whale {
   }
 }
 ?&gt;
-</code></pre><p>&#x8FD9;&#x91CC;&#x7684;BullWhale&#x5176;&#x5B9E;&#x975E;&#x5E38;&#x5197;&#x4F59;&#xFF0C;&#x5B9E;&#x9645;&#x7684;&#x4E1A;&#x52A1;&#x6A21;&#x578B;&#x53EF;&#x80FD;&#x5E76;&#x4E0D;&#x9700;&#x8981;&#x8FD9;&#x4E48;&#x590D;&#x6742;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x591A;&#x91CD;&#x7EE7;&#x627F;&#x7684;&#x6076;&#x679C;&#x3002;<br>&#x800C;&#x7EC4;&#x4EF6;&#x5219;&#x4E0D;&#x540C;&#xFF0C;&#x901A;&#x8FC7;&#x5C06;&#x884C;&#x4E3A;&#x62C6;&#x5206;&#x6210;&#x4E0D;&#x540C;&#x7684;&#x90E8;&#x5206;&#xFF0C;&#x53C8;&#x6700;&#x7EC8;&#x5B50;&#x7C7B;&#x51B3;&#x5B9A;&#x4F7F;&#x7528;&#x54EA;&#x4E9B;&#x7EC4;&#x4EF6;&#x3002;<br>&#x4E0B;&#x9762;&#x7ED9;&#x51FA;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
+</code></pre><p>这里的BullWhale其实非常冗余，实际的业务模型可能并不需要这么复杂，这就是多重继承的恶果。<br>而组件则不同，通过将行为拆分成不同的部分，又最终子类决定使用哪些组件。<br>下面给出一个例子：</p>
 <pre><code>&lt;?php
 class Action {
   private $name;
@@ -469,12 +464,12 @@ $bullWhale = new BullWhale();
 $bullWhale-&gt;eatFood(&quot;fish&quot;);
 echo $bullWhale-&gt;getGender() . &quot;\n&quot;;
 ?&gt;
-</code></pre><p>&#x8FD0;&#x884C;&#x4E00;&#x4E0B;&#xFF1A;</p>
+</code></pre><p>运行一下：</p>
 <pre><code>$ php BullWhale.php
 Bill Whale eat fish.
 Male
-</code></pre><p>BullWhale&#x7531;Action&#x548C;Gender&#x7EC4;&#x4EF6;&#x6784;&#x6210;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x7C7B;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x4E0D;&#x540C;&#x7684;&#x7EC4;&#x4EF6;&#x7EC4;&#x5408;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x4E0D;&#x4F1A;&#x9020;&#x6210;&#x7C7B;&#x5197;&#x4F59;&#x4E86;&#x3002;</p>
-<h2 id="&#x603B;&#x7ED3;"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</h2><p>&#x5B9E;&#x9645;&#x7F16;&#x7A0B;&#x4E2D;&#xFF0C;&#x66F4;&#x591A;&#x7684;&#x5F80;&#x5F80;&#x662F;&#x6DF7;&#x5408;&#x67B6;&#x6784;&#xFF0C;&#x5982;&#x65E2;&#x5305;&#x542B;&#x7EE7;&#x627F;&#xFF0C;&#x53C8;&#x5305;&#x542B;&#x7EC4;&#x4EF6;&#x7684;&#x7F16;&#x7A0B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x3002;&#x4E0D;&#x8FC7;&#xFF0C;&#x638C;&#x63E1;&#x57FA;&#x672C;&#x7684;&#x7F16;&#x7A0B;&#x67B6;&#x6784;&#x8BBE;&#x8BA1;&#x662F;&#x4E00;&#x5207;&#x7684;&#x57FA;&#x7840;&#x3002;</p>
+</code></pre><p>BullWhale由Action和Gender组件构成，不同的类可以选择不同的组件组合，这样就不会造成类冗余了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>实际编程中，更多的往往是混合架构，如既包含继承，又包含组件的编程设计模式。不过，掌握基本的编程架构设计是一切的基础。</p>
 
       
     </div>
@@ -527,16 +522,16 @@ Male
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/13/javascript/从 JavaScript 数组去重谈性能优化/" rel="next" title="从 JavaScript 数组去重谈性能优化">
-                <i class="fa fa-chevron-left"></i> 从 JavaScript 数组去重谈性能优化
+              <a href="/2016/10/13/php设计模式/PHP设计模式(8)：工厂模式/" rel="next" title="工厂模式">
+                <i class="fa fa-chevron-left"></i> 工厂模式
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/10/13/php设计模式/PHP设计模式(7)：设计模式分类/" rel="prev" title="设计模式分类">
-                设计模式分类 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/13/php设计模式/PHP设计模式(5)：多态/" rel="prev" title="多态">
+                多态 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -709,10 +704,24 @@ Male
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 

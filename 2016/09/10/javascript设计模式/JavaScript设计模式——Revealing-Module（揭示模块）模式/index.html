@@ -86,22 +86,17 @@
 
 
 
-<meta name="description" content="前言在对Module模式有个熟悉的了解之后，我们来认识一个稍有改进的版本——ChristianHeilmann的Revealing Module模式。
-模式的由来原来的Module模式可能无法实现这样的需求：当我们从另一个方法调用一个公有方法或者访问公有变量时，必须要重复主对象的名称。而且使用Module时必须要切换到对象字面量表示法来让某种方法变成公有方法。
-我们需要的可能是这样的一个模式：能够">
+<meta name="description" content="前言在对Module模式有个熟悉的了解之后，我们来认识一个稍有改进的版本——ChristianHeilmann的Revealing Module模式。 模式的由来原来的Module模式可能无法实现这样的需求：当我们从另一个方法调用一个公有方法或者访问公有变量时，必须要重复主对象的名称。而且使用Module时必须要切换到对象字面量表示法来让某种方法变成公有方法。 我们需要的可能是这样的一个模式：能够">
+<meta name="keywords" content="Javascript设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript Revealing Module（揭示模块）模式">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/2016/09/10/javascript设计模式/JavaScript设计模式——Revealing-Module（揭示模块）模式/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="前言在对Module模式有个熟悉的了解之后，我们来认识一个稍有改进的版本——ChristianHeilmann的Revealing Module模式。
-模式的由来原来的Module模式可能无法实现这样的需求：当我们从另一个方法调用一个公有方法或者访问公有变量时，必须要重复主对象的名称。而且使用Module时必须要切换到对象字面量表示法来让某种方法变成公有方法。
-我们需要的可能是这样的一个模式：能够">
+<meta property="og:description" content="前言在对Module模式有个熟悉的了解之后，我们来认识一个稍有改进的版本——ChristianHeilmann的Revealing Module模式。 模式的由来原来的Module模式可能无法实现这样的需求：当我们从另一个方法调用一个公有方法或者访问公有变量时，必须要重复主对象的名称。而且使用Module时必须要切换到对象字面量表示法来让某种方法变成公有方法。 我们需要的可能是这样的一个模式：能够">
 <meta property="og:updated_time" content="2016-10-12T10:25:08.100Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript Revealing Module（揭示模块）模式">
-<meta name="twitter:description" content="前言在对Module模式有个熟悉的了解之后，我们来认识一个稍有改进的版本——ChristianHeilmann的Revealing Module模式。
-模式的由来原来的Module模式可能无法实现这样的需求：当我们从另一个方法调用一个公有方法或者访问公有变量时，必须要重复主对象的名称。而且使用Module时必须要切换到对象字面量表示法来让某种方法变成公有方法。
-我们需要的可能是这样的一个模式：能够">
+<meta name="twitter:description" content="前言在对Module模式有个熟悉的了解之后，我们来认识一个稍有改进的版本——ChristianHeilmann的Revealing Module模式。 模式的由来原来的Module模式可能无法实现这样的需求：当我们从另一个方法调用一个公有方法或者访问公有变量时，必须要重复主对象的名称。而且使用Module时必须要切换到对象字面量表示法来让某种方法变成公有方法。 我们需要的可能是这样的一个模式：能够">
 
 
 
@@ -327,15 +322,15 @@
       
 
       
-        <h1 id="&#x524D;&#x8A00;"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</h1><p>&#x5728;&#x5BF9;Module&#x6A21;&#x5F0F;&#x6709;&#x4E2A;&#x719F;&#x6089;&#x7684;&#x4E86;&#x89E3;&#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x6765;&#x8BA4;&#x8BC6;&#x4E00;&#x4E2A;&#x7A0D;&#x6709;&#x6539;&#x8FDB;&#x7684;&#x7248;&#x672C;&#x2014;&#x2014;ChristianHeilmann&#x7684;Revealing Module&#x6A21;&#x5F0F;&#x3002;</p>
-<h1 id="&#x6A21;&#x5F0F;&#x7684;&#x7531;&#x6765;"><a href="#&#x6A21;&#x5F0F;&#x7684;&#x7531;&#x6765;" class="headerlink" title="&#x6A21;&#x5F0F;&#x7684;&#x7531;&#x6765;"></a>&#x6A21;&#x5F0F;&#x7684;&#x7531;&#x6765;</h1><p>&#x539F;&#x6765;&#x7684;Module&#x6A21;&#x5F0F;&#x53EF;&#x80FD;&#x65E0;&#x6CD5;&#x5B9E;&#x73B0;&#x8FD9;&#x6837;&#x7684;&#x9700;&#x6C42;&#xFF1A;<br>&#x5F53;&#x6211;&#x4EEC;&#x4ECE;&#x53E6;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x4E00;&#x4E2A;&#x516C;&#x6709;&#x65B9;&#x6CD5;&#x6216;&#x8005;&#x8BBF;&#x95EE;&#x516C;&#x6709;&#x53D8;&#x91CF;&#x65F6;&#xFF0C;&#x5FC5;&#x987B;&#x8981;&#x91CD;&#x590D;&#x4E3B;&#x5BF9;&#x8C61;&#x7684;&#x540D;&#x79F0;&#x3002;&#x800C;&#x4E14;&#x4F7F;&#x7528;Module&#x65F6;&#x5FC5;&#x987B;&#x8981;&#x5207;&#x6362;&#x5230;&#x5BF9;&#x8C61;&#x5B57;&#x9762;&#x91CF;&#x8868;&#x793A;&#x6CD5;&#x6765;&#x8BA9;&#x67D0;&#x79CD;&#x65B9;&#x6CD5;&#x53D8;&#x6210;&#x516C;&#x6709;&#x65B9;&#x6CD5;&#x3002;</p>
-<p>&#x6211;&#x4EEC;&#x9700;&#x8981;&#x7684;&#x53EF;&#x80FD;&#x662F;&#x8FD9;&#x6837;&#x7684;&#x4E00;&#x4E2A;&#x6A21;&#x5F0F;&#xFF1A;<br>&#x80FD;&#x591F;&#x5728;&#x79C1;&#x6709;&#x8303;&#x56F4;&#x5185;&#x7B80;&#x5355;&#x5B9A;&#x4E49;&#x6240;&#x6709;&#x7684;&#x51FD;&#x6570;&#x548C;&#x53D8;&#x91CF;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x533F;&#x540D;&#x5BF9;&#x8C61;&#xFF0C;&#x5B83;&#x62E5;&#x6709;&#x6307;&#x5411;&#x79C1;&#x6709;&#x51FD;&#x6570;&#x7684;&#x6307;&#x9488;&#xFF0C;&#x8BE5;&#x51FD;&#x6570;&#x662F;&#x5B83;&#x5E0C;&#x671B;&#x5C55;&#x793A;&#x4E3A;&#x516C;&#x6709;&#x7684;&#x65B9;&#x6CD5;&#x3002; </p>
-<p>&#x6709;&#x70B9;&#x62D7;&#x53E3;&#xFF0C;&#x8FD8;&#x662F;&#x4E0A;&#x4EE3;&#x7801;&#x5427; (&#x2606;_&#x2606;)</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在对Module模式有个熟悉的了解之后，我们来认识一个稍有改进的版本——ChristianHeilmann的Revealing Module模式。</p>
+<h1 id="模式的由来"><a href="#模式的由来" class="headerlink" title="模式的由来"></a>模式的由来</h1><p>原来的Module模式可能无法实现这样的需求：<br>当我们从另一个方法调用一个公有方法或者访问公有变量时，必须要重复主对象的名称。而且使用Module时必须要切换到对象字面量表示法来让某种方法变成公有方法。</p>
+<p>我们需要的可能是这样的一个模式：<br>能够在私有范围内简单定义所有的函数和变量，并返回一个匿名对象，它拥有指向私有函数的指针，该函数是它希望展示为公有的方法。 </p>
+<p>有点拗口，还是上代码吧 (☆_☆)</p>
 <a id="more"></a>
-<h1 id="&#x4EE3;&#x7801;"><a href="#&#x4EE3;&#x7801;" class="headerlink" title="&#x4EE3;&#x7801;"></a>&#x4EE3;&#x7801;</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myRevealingModule=(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</div><div class="line">	<span class="keyword">var</span> privateVar=<span class="string">&quot;Ben Cherry&quot;</span>,</div><div class="line">		publicVar=<span class="string">&quot;Hey there!&quot;</span>;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">privateFunction</span>(<span class="params"></span>)</span>{</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">&quot;Name&#xFF1A;&quot;</span>+privateVar);</div><div class="line">	}</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">publicSetName</span>(<span class="params">strName</span>)</span>{</div><div class="line">		privateName=strName;</div><div class="line">	}</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">publicGetName</span>(<span class="params"></span>)</span>{</div><div class="line">		privateFunction();</div><div class="line">	}</div><div class="line">	<span class="comment">/*&#x5C06;&#x66B4;&#x9732;&#x7684;&#x516C;&#x6709;&#x6307;&#x9488;&#x6307;&#x5411;&#x5230;&#x79C1;&#x6709;&#x51FD;&#x6570;&#x548C;&#x5C5E;&#x6027;&#x4E0A;*/</span></div><div class="line">	<span class="keyword">return</span>{</div><div class="line">		<span class="attr">setName</span>:publicSetName,</div><div class="line">		<span class="attr">greeting</span>:publicVar,</div><div class="line">		<span class="attr">getName</span>:publicGetName</div><div class="line">	};</div><div class="line">})();</div><div class="line"></div><div class="line">myRevealingModule.setName(<span class="string">&quot;Paul Kinlan&quot;</span>);</div></pre></td></tr></table></figure>
-<h1 id="&#x4F18;&#x70B9;"><a href="#&#x4F18;&#x70B9;" class="headerlink" title="&#x4F18;&#x70B9;"></a>&#x4F18;&#x70B9;</h1><p>&#x8BE5;&#x6A21;&#x5F0F;&#x53EF;&#x4EE5;&#x4F7F;&#x811A;&#x672C;&#x8BED;&#x6CD5;&#x66F4;&#x52A0;&#x4E00;&#x81F4;&#xFF0C;&#x5728;&#x6A21;&#x5757;&#x4EE3;&#x7801;&#x5E95;&#x90E8;&#xFF0C;&#x5B83;&#x4E5F;&#x4F1A;&#x5F88;&#x5BB9;&#x6613;&#x6307;&#x51FA;&#x54EA;&#x4E9B;&#x51FD;&#x6570;&#x548C;&#x53D8;&#x91CF;&#x53EF;&#x4EE5;&#x88AB;&#x516C;&#x5F00;&#x8BBF;&#x95EE;&#xFF0C;&#x4ECE;&#x800C;&#x6539;&#x5584;&#x53EF;&#x8BFB;&#x6027;&#x3002;</p>
-<h1 id="&#x7F3A;&#x70B9;"><a href="#&#x7F3A;&#x70B9;" class="headerlink" title="&#x7F3A;&#x70B9;"></a>&#x7F3A;&#x70B9;</h1><p>&#x8BE5;&#x6A21;&#x5F0F;&#x7684;&#x4E00;&#x4E2A;&#x7F3A;&#x70B9;&#x662F;&#xFF1A;&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x79C1;&#x6709;&#x51FD;&#x6570;&#x5F15;&#x7528;&#x4E00;&#x4E2A;&#x516C;&#x6709;&#x51FD;&#x6570;&#xFF0C;&#x5728;&#x9700;&#x8981;&#x6253;&#x8865;&#x4E01;&#x65F6;&#xFF0C;&#x516C;&#x6709;&#x51FD;&#x6570;&#x662F;&#x4E0D;&#x80FD;&#x88AB;&#x8986;&#x76D6;&#x7684;&#x3002;&#x8FD9;&#x65F6;&#x56E0;&#x4E3A;&#x79C1;&#x6709;&#x51FD;&#x6570;&#x5C06;&#x7EE7;&#x7EED;&#x5F15;&#x7528;&#x79C1;&#x6709;&#x5B9E;&#x73B0;&#xFF0C;&#x8BE5;&#x6A21;&#x5F0F;&#x5E76;&#x4E0D;&#x9002;&#x7528;&#x4E8E;&#x516C;&#x6709;&#x6210;&#x5458;&#xFF0C;&#x53EA;&#x9002;&#x7528;&#x4E8E;&#x51FD;&#x6570;&#x3002;</p>
-<p>&#x5F15;&#x7528;&#x79C1;&#x6709;&#x53D8;&#x91CF;&#x7684;&#x516C;&#x6709;&#x5BF9;&#x8C61;&#x6210;&#x5458;&#x4E5F;&#x9075;&#x5B88;&#x65E0;&#x8865;&#x4E01;&#x89C4;&#x5219;&#xFF0C;&#x6B63;&#x56E0;&#x4E3A;&#x5982;&#x6B64;&#xFF0C;&#x91C7;&#x7528;Revealing Module&#x6A21;&#x5F0F;&#x521B;&#x5EFA;&#x7684;&#x6A21;&#x5757;&#x53EF;&#x80FD;&#x6BD4;&#x90A3;&#x4E9B;&#x91C7;&#x7528;&#x539F;&#x59CB;Module&#x6A21;&#x5F0F;&#x521B;&#x5EFA;&#x7684;&#x6A21;&#x5757;&#x66F4;&#x52A0;&#x8106;&#x5F31;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x4F7F;&#x7528;&#x65F6;&#x5E94;&#x8BE5;&#x7279;&#x522B;&#x5C0F;&#x5FC3;&#x3002;</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myRevealingModule=(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> privateVar=<span class="string">"Ben Cherry"</span>,</div><div class="line">		publicVar=<span class="string">"Hey there!"</span>;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">privateFunction</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">"Name："</span>+privateVar);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">publicSetName</span>(<span class="params">strName</span>)</span>&#123;</div><div class="line">		privateName=strName;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">publicGetName</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		privateFunction();</div><div class="line">	&#125;</div><div class="line">	<span class="comment">/*将暴露的公有指针指向到私有函数和属性上*/</span></div><div class="line">	<span class="keyword">return</span>&#123;</div><div class="line">		<span class="attr">setName</span>:publicSetName,</div><div class="line">		<span class="attr">greeting</span>:publicVar,</div><div class="line">		<span class="attr">getName</span>:publicGetName</div><div class="line">	&#125;;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line">myRevealingModule.setName(<span class="string">"Paul Kinlan"</span>);</div></pre></td></tr></table></figure>
+<h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><p>该模式可以使脚本语法更加一致，在模块代码底部，它也会很容易指出哪些函数和变量可以被公开访问，从而改善可读性。</p>
+<h1 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h1><p>该模式的一个缺点是：如果一个私有函数引用一个公有函数，在需要打补丁时，公有函数是不能被覆盖的。这时因为私有函数将继续引用私有实现，该模式并不适用于公有成员，只适用于函数。</p>
+<p>引用私有变量的公有对象成员也遵守无补丁规则，正因为如此，采用Revealing Module模式创建的模块可能比那些采用原始Module模式创建的模块更加脆弱，所以在使用时应该特别小心。</p>
 
       
     </div>
@@ -388,16 +383,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/10/javascript设计模式/Javascript设计模式——设计模式类别/" rel="next" title="Javascript 设计模式类别">
-                <i class="fa fa-chevron-left"></i> Javascript 设计模式类别
+              <a href="/2016/09/10/javascript设计模式/Javascript设计模式——反模式/" rel="next" title="Javascript 反模式">
+                <i class="fa fa-chevron-left"></i> Javascript 反模式
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/10/javascript设计模式/JavaScript设计模式——Constructor构造器模式/" rel="prev" title="JavaScript Constructor(构造器)模式">
-                JavaScript Constructor(构造器)模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/10/javascript设计模式/Javascript设计模式——设计模式类别/" rel="prev" title="Javascript 设计模式类别">
+                Javascript 设计模式类别 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -570,10 +565,24 @@
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 

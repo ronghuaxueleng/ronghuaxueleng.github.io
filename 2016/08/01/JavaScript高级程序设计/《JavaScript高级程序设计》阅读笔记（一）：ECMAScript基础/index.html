@@ -86,16 +86,17 @@
 
 
 
-<meta name="description" content="&amp;#x8BED;&amp;#x6CD5;&amp;#x533A;&amp;#x5206;&amp;#x5927;&amp;#x5C0F;&amp;#x5199;&amp;#x3001;&amp;#x53D8;&amp;#x91CF;&amp;#x5F31;&amp;#x7C7B;&amp;#x578B;&amp;#x3001;&amp;#x884C;&amp;#x5C3E;&amp;#x5206;&amp;#x53F7;&amp;#x53EF;&amp;#x6709;&amp;#x53EF;&amp;#x65E0;&amp;#x3001;&amp;#x6CE8;&amp;#x91CA">
+<meta name="description" content="语法区分大小写、变量弱类型、行尾分号可有可无、注释为双斜线、括号表明代码块变量变量用var声明，变量的命名规则：第一个字符必须是字母、下划线或美元符号；余下的字符可以是下划线、美元符号或任何字母或数字字符。变量命名规范： Camel标记法：首字母小写，接下来的单词都以大写字母开头。例如：**m**y**T**est**V**alue=0,**m**y**S**econd**T**est**V**">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《JavaScript高级程序设计》阅读笔记（一）：ECMAScript基础">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/2016/08/01/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记（一）：ECMAScript基础/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="&amp;#x8BED;&amp;#x6CD5;&amp;#x533A;&amp;#x5206;&amp;#x5927;&amp;#x5C0F;&amp;#x5199;&amp;#x3001;&amp;#x53D8;&amp;#x91CF;&amp;#x5F31;&amp;#x7C7B;&amp;#x578B;&amp;#x3001;&amp;#x884C;&amp;#x5C3E;&amp;#x5206;&amp;#x53F7;&amp;#x53EF;&amp;#x6709;&amp;#x53EF;&amp;#x65E0;&amp;#x3001;&amp;#x6CE8;&amp;#x91CA">
-<meta property="og:updated_time" content="2016-10-12T10:25:08.083Z">
+<meta property="og:description" content="语法区分大小写、变量弱类型、行尾分号可有可无、注释为双斜线、括号表明代码块变量变量用var声明，变量的命名规则：第一个字符必须是字母、下划线或美元符号；余下的字符可以是下划线、美元符号或任何字母或数字字符。变量命名规范： Camel标记法：首字母小写，接下来的单词都以大写字母开头。例如：**m**y**T**est**V**alue=0,**m**y**S**econd**T**est**V**">
+<meta property="og:updated_time" content="2016-10-12T10:25:08.084Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《JavaScript高级程序设计》阅读笔记（一）：ECMAScript基础">
-<meta name="twitter:description" content="&amp;#x8BED;&amp;#x6CD5;&amp;#x533A;&amp;#x5206;&amp;#x5927;&amp;#x5C0F;&amp;#x5199;&amp;#x3001;&amp;#x53D8;&amp;#x91CF;&amp;#x5F31;&amp;#x7C7B;&amp;#x578B;&amp;#x3001;&amp;#x884C;&amp;#x5C3E;&amp;#x5206;&amp;#x53F7;&amp;#x53EF;&amp;#x6709;&amp;#x53EF;&amp;#x65E0;&amp;#x3001;&amp;#x6CE8;&amp;#x91CA">
+<meta name="twitter:description" content="语法区分大小写、变量弱类型、行尾分号可有可无、注释为双斜线、括号表明代码块变量变量用var声明，变量的命名规则：第一个字符必须是字母、下划线或美元符号；余下的字符可以是下划线、美元符号或任何字母或数字字符。变量命名规范： Camel标记法：首字母小写，接下来的单词都以大写字母开头。例如：**m**y**T**est**V**alue=0,**m**y**S**econd**T**est**V**">
 
 
 
@@ -322,22 +323,22 @@
 
       
         <hr>
-<h4 id="&#x8BED;&#x6CD5;"><a href="#&#x8BED;&#x6CD5;" class="headerlink" title="&#x8BED;&#x6CD5;"></a>&#x8BED;&#x6CD5;</h4><h5 id="&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;-&#x53D8;&#x91CF;&#x5F31;&#x7C7B;&#x578B;-&#x884C;&#x5C3E;&#x5206;&#x53F7;&#x53EF;&#x6709;&#x53EF;&#x65E0;-&#x6CE8;&#x91CA;&#x4E3A;&#x53CC;&#x659C;&#x7EBF;-&#x62EC;&#x53F7;&#x8868;&#x660E;&#x4EE3;&#x7801;&#x5757;"><a href="#&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;&#x3001;&#x53D8;&#x91CF;&#x5F31;&#x7C7B;&#x578B;&#x3001;&#x884C;&#x5C3E;&#x5206;&#x53F7;&#x53EF;&#x6709;&#x53EF;&#x65E0;&#x3001;&#x6CE8;&#x91CA;&#x4E3A;&#x53CC;&#x659C;&#x7EBF;&#x3001;&#x62EC;&#x53F7;&#x8868;&#x660E;&#x4EE3;&#x7801;&#x5757;" class="headerlink" title="&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;&#x3001;&#x53D8;&#x91CF;&#x5F31;&#x7C7B;&#x578B;&#x3001;&#x884C;&#x5C3E;&#x5206;&#x53F7;&#x53EF;&#x6709;&#x53EF;&#x65E0;&#x3001;&#x6CE8;&#x91CA;&#x4E3A;&#x53CC;&#x659C;&#x7EBF;&#x3001;&#x62EC;&#x53F7;&#x8868;&#x660E;&#x4EE3;&#x7801;&#x5757;"></a>&#x533A;&#x5206;&#x5927;&#x5C0F;&#x5199;&#x3001;&#x53D8;&#x91CF;&#x5F31;&#x7C7B;&#x578B;&#x3001;&#x884C;&#x5C3E;&#x5206;&#x53F7;&#x53EF;&#x6709;&#x53EF;&#x65E0;&#x3001;&#x6CE8;&#x91CA;&#x4E3A;&#x53CC;&#x659C;&#x7EBF;&#x3001;&#x62EC;&#x53F7;&#x8868;&#x660E;&#x4EE3;&#x7801;&#x5757;</h5><h4 id="&#x53D8;&#x91CF;"><a href="#&#x53D8;&#x91CF;" class="headerlink" title="&#x53D8;&#x91CF;"></a>&#x53D8;&#x91CF;</h4><h5 id="&#x53D8;&#x91CF;&#x7528;var&#x58F0;&#x660E;&#x53D8;&#x91CF;&#x7684;&#x547D;&#x540D;&#x89C4;&#x5219;&#x7B2C;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x5FC5;&#x987B;&#x662F;&#x5B57;&#x6BCD;-&#x4E0B;&#x5212;&#x7EBF;&#x6216;&#x7F8E;&#x5143;&#x7B26;&#x53F7;&#x4F59;&#x4E0B;&#x7684;&#x5B57;&#x7B26;&#x53EF;&#x4EE5;&#x662F;&#x4E0B;&#x5212;&#x7EBF;-&#x7F8E;&#x5143;&#x7B26;&#x53F7;&#x6216;&#x4EFB;&#x4F55;&#x5B57;&#x6BCD;&#x6216;&#x6570;&#x5B57;&#x5B57;&#x7B26;"><a href="#&#x53D8;&#x91CF;&#x7528;var&#x58F0;&#x660E;&#xFF0C;&#x53D8;&#x91CF;&#x7684;&#x547D;&#x540D;&#x89C4;&#x5219;&#xFF1A;&#x7B2C;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x5FC5;&#x987B;&#x662F;&#x5B57;&#x6BCD;&#x3001;&#x4E0B;&#x5212;&#x7EBF;&#x6216;&#x7F8E;&#x5143;&#x7B26;&#x53F7;&#xFF1B;&#x4F59;&#x4E0B;&#x7684;&#x5B57;&#x7B26;&#x53EF;&#x4EE5;&#x662F;&#x4E0B;&#x5212;&#x7EBF;&#x3001;&#x7F8E;&#x5143;&#x7B26;&#x53F7;&#x6216;&#x4EFB;&#x4F55;&#x5B57;&#x6BCD;&#x6216;&#x6570;&#x5B57;&#x5B57;&#x7B26;&#x3002;" class="headerlink" title="&#x53D8;&#x91CF;&#x7528;var&#x58F0;&#x660E;&#xFF0C;&#x53D8;&#x91CF;&#x7684;&#x547D;&#x540D;&#x89C4;&#x5219;&#xFF1A;&#x7B2C;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x5FC5;&#x987B;&#x662F;&#x5B57;&#x6BCD;&#x3001;&#x4E0B;&#x5212;&#x7EBF;&#x6216;&#x7F8E;&#x5143;&#x7B26;&#x53F7;&#xFF1B;&#x4F59;&#x4E0B;&#x7684;&#x5B57;&#x7B26;&#x53EF;&#x4EE5;&#x662F;&#x4E0B;&#x5212;&#x7EBF;&#x3001;&#x7F8E;&#x5143;&#x7B26;&#x53F7;&#x6216;&#x4EFB;&#x4F55;&#x5B57;&#x6BCD;&#x6216;&#x6570;&#x5B57;&#x5B57;&#x7B26;&#x3002;"></a>&#x53D8;&#x91CF;&#x7528;var&#x58F0;&#x660E;&#xFF0C;&#x53D8;&#x91CF;&#x7684;&#x547D;&#x540D;&#x89C4;&#x5219;&#xFF1A;&#x7B2C;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x5FC5;&#x987B;&#x662F;&#x5B57;&#x6BCD;&#x3001;&#x4E0B;&#x5212;&#x7EBF;&#x6216;&#x7F8E;&#x5143;&#x7B26;&#x53F7;&#xFF1B;&#x4F59;&#x4E0B;&#x7684;&#x5B57;&#x7B26;&#x53EF;&#x4EE5;&#x662F;&#x4E0B;&#x5212;&#x7EBF;&#x3001;&#x7F8E;&#x5143;&#x7B26;&#x53F7;&#x6216;&#x4EFB;&#x4F55;&#x5B57;&#x6BCD;&#x6216;&#x6570;&#x5B57;&#x5B57;&#x7B26;&#x3002;</h5><h6 id="&#x53D8;&#x91CF;&#x547D;&#x540D;&#x89C4;&#x8303;"><a href="#&#x53D8;&#x91CF;&#x547D;&#x540D;&#x89C4;&#x8303;&#xFF1A;" class="headerlink" title="&#x53D8;&#x91CF;&#x547D;&#x540D;&#x89C4;&#x8303;&#xFF1A;"></a>&#x53D8;&#x91CF;&#x547D;&#x540D;&#x89C4;&#x8303;&#xFF1A;</h6><ul>
-<li>Camel&#x6807;&#x8BB0;&#x6CD5;&#xFF1A;&#x9996;&#x5B57;&#x6BCD;&#x5C0F;&#x5199;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x7684;&#x5355;&#x8BCD;&#x90FD;&#x4EE5;&#x5927;&#x5199;&#x5B57;&#x6BCD;&#x5F00;&#x5934;&#x3002;&#x4F8B;&#x5982;&#xFF1A;<figure class="highlight plain"><figcaption><span>**m**y**T**est**V**alue=0,**m**y**S**econd**T**est**V**alue=&quot;hi&quot;```;</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- Pascal&#x6807;&#x8BB0;&#x6CD5;&#xFF1A;&#x9996;&#x5B57;&#x6BCD;&#x5927;&#x5199;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x7684;&#x5355;&#x8BCD;&#x90FD;&#x4EE5;&#x5927;&#x5199;&#x5B57;&#x6BCD;&#x5F00;&#x5934;&#x3002;&#x4F8B;&#x5982;&#xFF1A;```var&#xA0;**M**y**T**est**V**alue=0,**M**y**S**econd**T**est**V**alue=&quot;hi&quot;```;</div><div class="line"></div><div class="line">- &#x5308;&#x7259;&#x5229;&#x7C7B;&#x578B;&#x6807;&#x8BB0;&#x6CD5;&#xFF1A;&#x5728;&#x4EE5;Pascal&#x6807;&#x8BB0;&#x6CD5;&#x547D;&#x540D;&#x7684;&#x53D8;&#x91CF;&#x524D;&#x9644;&#x52A0;&#x4E00;&#x4E2A;&#x5C0F;&#x5199;&#x5B57;&#x6BCD;&#xFF08;&#x6216;&#x5C0F;&#x5199;&#x5B57;&#x6BCD;&#x5E8F;&#x5217;&#xFF09;&#xFF0C;&#x8BF4;&#x660E;&#x8BE5;&#x53D8;&#x91CF;&#x7684;&#x7C7B;&#x578B;&#x3002;&#x4F8B;&#x5982;&#xFF0C;i&#x8868;&#x793A;&#x6574;&#x6570;&#xFF0C;s&#x8868;&#x793A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5982;&#x4E0B;&#x9762;&#x6240;&#x793A;&#xFF1A;</div></pre></td></tr></table></figure></li>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><h5 id="区分大小写-变量弱类型-行尾分号可有可无-注释为双斜线-括号表明代码块"><a href="#区分大小写、变量弱类型、行尾分号可有可无、注释为双斜线、括号表明代码块" class="headerlink" title="区分大小写、变量弱类型、行尾分号可有可无、注释为双斜线、括号表明代码块"></a>区分大小写、变量弱类型、行尾分号可有可无、注释为双斜线、括号表明代码块</h5><h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><h5 id="变量用var声明变量的命名规则第一个字符必须是字母-下划线或美元符号余下的字符可以是下划线-美元符号或任何字母或数字字符"><a href="#变量用var声明，变量的命名规则：第一个字符必须是字母、下划线或美元符号；余下的字符可以是下划线、美元符号或任何字母或数字字符。" class="headerlink" title="变量用var声明，变量的命名规则：第一个字符必须是字母、下划线或美元符号；余下的字符可以是下划线、美元符号或任何字母或数字字符。"></a>变量用var声明，变量的命名规则：第一个字符必须是字母、下划线或美元符号；余下的字符可以是下划线、美元符号或任何字母或数字字符。</h5><h6 id="变量命名规范"><a href="#变量命名规范：" class="headerlink" title="变量命名规范："></a>变量命名规范：</h6><ul>
+<li>Camel标记法：首字母小写，接下来的单词都以大写字母开头。例如：<figure class="highlight plain"><figcaption><span>**m**y**T**est**V**alue=0,**m**y**S**econd**T**est**V**alue="hi"```;</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- Pascal标记法：首字母大写，接下来的单词都以大写字母开头。例如：```var **M**y**T**est**V**alue=0,**M**y**S**econd**T**est**V**alue=&quot;hi&quot;```;</div><div class="line"></div><div class="line">- 匈牙利类型标记法：在以Pascal标记法命名的变量前附加一个小写字母（或小写字母序列），说明该变量的类型。例如，i表示整数，s表示字符串，如下面所示：</div></pre></td></tr></table></figure></li>
 </ul>
-<p>&#x7C7B;&#x578B;&#xFF1A;&#x6570;&#x7EC4;&#x3000;&#x3000;&#x3000;&#x3000;&#x524D;&#x7F00;&#xFF1A;a&#x3000;&#x3000;&#x793A;&#x4F8B;&#xFF1A;aValues</p>
-<p>&#x7C7B;&#x578B;&#xFF1A;&#x5E03;&#x5C14;&#x578B;&#x3000;&#x3000;&#x3000;&#x524D;&#x7F00;&#xFF1A;b&#x3000;&#x3000;&#x793A;&#x4F8B;&#xFF1A;bFound</p>
-<p>&#x7C7B;&#x578B;&#xFF1A;&#x6D6E;&#x70B9;&#x578B;&#x3000;&#x3000;&#x3000;&#x524D;&#x7F00;&#xFF1A;f&#x3000;&#x3000; &#x793A;&#x4F8B;&#xFF1A;fValue</p>
-<p>&#x7C7B;&#x578B;&#xFF1A;&#x51FD;&#x6570;&#x3000;&#x3000;&#x3000;&#x3000;&#x524D;&#x7F00;&#xFF1A;fn&#x3000;  &#x793A;&#x4F8B;&#xFF1A;fnMethod</p>
-<p>&#x7C7B;&#x578B;&#xFF1A;&#x6574;&#x578B;&#x3000;&#x3000;&#x3000;&#x3000;&#x524D;&#x7F00;&#xFF1A;i&#x3000;&#x3000; &#x793A;&#x4F8B;&#xFF1A;iValue</p>
-<p>&#x7C7B;&#x578B;&#xFF1A;&#x5BF9;&#x8C61;&#x3000;&#x3000;&#x3000;&#x3000;&#x524D;&#x7F00;&#xFF1A;o&#x3000;&#x3000;&#x793A;&#x4F8B;&#xFF1A;oType</p>
-<p>&#x7C7B;&#x578B;&#xFF1A;&#x6B63;&#x5219;&#x3000;&#x3000;&#x3000;&#x3000;&#x524D;&#x7F00;&#xFF1A;re&#x3000;  &#x793A;&#x4F8B;&#xFF1A;rePatten</p>
-<p>&#x7C7B;&#x578B;&#xFF1A;&#x5B57;&#x7B26;&#x4E32;&#x3000;&#x3000;&#x3000;&#x524D;&#x7F00;&#xFF1A;s&#x3000;&#x3000;&#x793A;&#x4F8B;&#xFF1A;sValue</p>
-<p>&#x7C7B;&#x578B;&#xFF1A;&#x53D8;&#x91CF;&#x3000;&#x3000;&#x3000;&#x3000;&#x524D;&#x7F00;&#xFF1A;v&#x3000;&#x3000;&#x793A;&#x4F8B;&#xFF1A;vValue<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#### &#x5173;&#x952E;&#x5B57;</span></div><div class="line">ECMA<span class="number">-262</span> &#x5B9A;&#x4E49;&#x7684;&#x5173;&#x952E;&#x5B57;&#x4E3A;&#xFF1A;</div></pre></td></tr></table></figure></p>
-<p>break&#x3000;&#x3000;case&#x3000;&#x3000;catch&#x3000;&#x3000;continue&#x3000;&#x3000;default&#x3000;&#x3000;delete&#x3000;&#x3000;do&#x3000;&#x3000;else&#x3000;&#x3000;finally&#x3000;&#x3000;for&#x3000;&#x3000;function&#x3000;&#x3000;if&#x3000;&#x3000;in&#x3000;&#x3000;instanceof&#x3000;&#x3000;new&#x3000;&#x3000;return&#x3000;&#x3000;switch&#x3000;&#x3000;this&#x3000;&#x3000;throw&#x3000;&#x3000;try&#x3000;&#x3000;typeof&#x3000;&#x3000;var&#x3000;&#x3000;void&#x3000;&#x3000;while&#x3000;&#x3000;with<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#### &#x4FDD;&#x7559;&#x5B57;</div><div class="line">ECMA<span class="number">-262</span>&#x7B2C;<span class="number">3</span>&#x7248;&#x4E2D;&#x4FDD;&#x7559;&#x5B57;&#x4E3A;&#xFF1A;</div></pre></td></tr></table></figure></p>
-<p>abstract&#x3000;&#x3000;boolean&#x3000;&#x3000;byte&#x3000;&#x3000;char&#x3000;&#x3000;class&#x3000;&#x3000;const&#x3000;&#x3000;debugger&#x3000;&#x3000;double&#x3000;&#x3000;enum&#x3000;&#x3000;export&#x3000;&#x3000;extends&#x3000;&#x3000;final&#x3000;&#x3000;float&#x3000;&#x3000;goto&#x3000;&#x3000;implements&#x3000;&#x3000;import&#x3000;&#x3000;int&#x3000;&#x3000;interface&#x3000;&#x3000;long&#x3000;&#x3000;native&#x3000;&#x3000;package&#x3000;&#x3000;private&#x3000;&#x3000;protected&#x3000;&#x3000;public&#x3000;&#x3000;short&#x3000;&#x3000;static&#x3000;&#x3000;super&#x3000;&#x3000;synchronized&#x3000;&#x3000;throws&#x3000;&#x3000;transient&#x3000;&#x3000;volatile<br>```</p>
-<h4 id="&#x539F;&#x59CB;&#x503C;&#x548C;&#x5F15;&#x7528;&#x503C;"><a href="#&#x539F;&#x59CB;&#x503C;&#x548C;&#x5F15;&#x7528;&#x503C;" class="headerlink" title="&#x539F;&#x59CB;&#x503C;&#x548C;&#x5F15;&#x7528;&#x503C;"></a>&#x539F;&#x59CB;&#x503C;&#x548C;&#x5F15;&#x7528;&#x503C;</h4><p>&#x539F;&#x59CB;&#x503C;(primitive value)&#x662F;&#x5B58;&#x50A8;&#x5728;&#x6808;(stack)&#x4E2D;&#x7684;&#x7B80;&#x5355;&#x6570;&#x636E;&#x6BB5;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x5B83;&#x4EEC;&#x7684;&#x503C;&#x76F4;&#x63A5;&#x5B58;&#x50A8;&#x5728;&#x53D8;&#x91CF;&#x8BBF;&#x95EE;&#x7684;&#x4F4D;&#x7F6E;&#x3002;</p>
-<p>&#x5F15;&#x7528;&#x503C;(reference value)&#x662F;&#x5B58;&#x50A8;&#x5728;&#x5806;(heap)&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x5B58;&#x50A8;&#x5728;&#x53D8;&#x91CF;&#x5904;&#x7684;&#x503C;&#x662F;&#x4E00;&#x4E2A;&#x6307;&#x9488;(point)&#xFF0C;&#x6307;&#x5411;&#x5B58;&#x50A8;&#x5BF9;&#x8C61;&#x7684;&#x5185;&#x5B58;&#x5904;&#x3002;</p>
+<p>类型：数组　　　　前缀：a　　示例：aValues</p>
+<p>类型：布尔型　　　前缀：b　　示例：bFound</p>
+<p>类型：浮点型　　　前缀：f　　 示例：fValue</p>
+<p>类型：函数　　　　前缀：fn　  示例：fnMethod</p>
+<p>类型：整型　　　　前缀：i　　 示例：iValue</p>
+<p>类型：对象　　　　前缀：o　　示例：oType</p>
+<p>类型：正则　　　　前缀：re　  示例：rePatten</p>
+<p>类型：字符串　　　前缀：s　　示例：sValue</p>
+<p>类型：变量　　　　前缀：v　　示例：vValue<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#### 关键字</div><div class="line">ECMA<span class="number">-262</span> 定义的关键字为：</div></pre></td></tr></table></figure></p>
+<p>break　　case　　catch　　continue　　default　　delete　　do　　else　　finally　　for　　function　　if　　in　　instanceof　　new　　return　　switch　　this　　throw　　try　　typeof　　var　　void　　while　　with<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#### 保留字</div><div class="line">ECMA<span class="number">-262</span>第<span class="number">3</span>版中保留字为：</div></pre></td></tr></table></figure></p>
+<p>abstract　　boolean　　byte　　char　　class　　const　　debugger　　double　　enum　　export　　extends　　final　　float　　goto　　implements　　import　　int　　interface　　long　　native　　package　　private　　protected　　public　　short　　static　　super　　synchronized　　throws　　transient　　volatile<br>```</p>
+<h4 id="原始值和引用值"><a href="#原始值和引用值" class="headerlink" title="原始值和引用值"></a>原始值和引用值</h4><p>原始值(primitive value)是存储在栈(stack)中的简单数据段，也就是说，它们的值直接存储在变量访问的位置。</p>
+<p>引用值(reference value)是存储在堆(heap)中的对象，也就是说，存储在变量处的值是一个指针(point)，指向存储对象的内存处。</p>
 
       
     </div>
@@ -572,10 +573,24 @@
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 

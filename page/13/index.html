@@ -703,7 +703,7 @@
 
       
         
-          <p>参考原文：<a href="https://github.com/angular-ui/ui-router/wiki/The-Components">https://github.com/angular-ui/ui-router/wiki/The-Components</a></p>
+          <p>参考原文：<a href="https://github.com/angular-ui/ui-router/wiki/The-Components" target="_blank" rel="external">https://github.com/angular-ui/ui-router/wiki/The-Components</a></p>
 <ul>
 <li><p><strong>$state / $stateProvider</strong>：管理状态定义、当前状态和状态转换。包含触发状态转换的事件和回调函数，异步解决目标状态的任何依赖项，更新<code>$location</code>到当前状态。由于状态包含关联的 url，通过$urlRouterProvider生成一个路由规则来执行转换的状态。</p>
 </li>
@@ -838,7 +838,7 @@
 
       
         
-          <p>参考原文：<a href="https://github.com/angular-ui/ui-router/wiki/URL-Routing">https://github.com/angular-ui/ui-router/wiki/URL-Routing</a></p>
+          <p>参考原文：<a href="https://github.com/angular-ui/ui-router/wiki/URL-Routing" target="_blank" rel="external">https://github.com/angular-ui/ui-router/wiki/URL-Routing</a></p>
 <p>在你的应用中大多数状态都有与其相关联的 url，路由控制不是设计完成 state 之后的事后想法，而是开始开发时就应该考虑的问题。</p>
 <p>这里是如何设置一个基本url。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$stateProvider</div><div class="line">    .state(<span class="string">'contacts'</span>, &#123;</div><div class="line">        <span class="attr">url</span>: <span class="string">"/contacts"</span>,</div><div class="line">        <span class="attr">templateUrl</span>: <span class="string">'contacts.html'</span></div><div class="line">    &#125;)</div></pre></td></tr></table></figure>
@@ -1008,10 +1008,24 @@
     NexT.Pisces
   </a>
 </div>
+
+<!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv">
-  本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        var busuanziSiteOffset = parseInt(1203);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
+            }
+        }
+    });
+</script>
+
 
         
 
