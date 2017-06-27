@@ -254,6 +254,162 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/" itemprop="url">
+                  代理模式的应用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/"class="leancloud_visitors" data-flag-title="代理模式的应用"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+虚拟代理实现图片预加载图片预加载：图片过大或者网络不佳时，图片位置有段时间会是一片空白，常见的用一张loading占位，然后异步加载图片，等图片加载好了再把它填充到img节点里。
+var myImage = (function() {
+    var imgNode = document.createElement(&apos;img&apos;);
+    document.body.appendChild( imgNode );
+    return {
+        setSrc : function( src ) {
+            imgNode.src = src;
+        }
+    }
+})();
+
+var proxyImage = (function() {
+    var img = new Image;
+    img.onload = function() {//图片加载完成之后触发
+        myImage.setSrc(this.src);
+    }
+    return {
+        setSrc: function(src) {
+            myImage.setSrc(&apos;loading.gif&apos;); //loading图片
+            img.src = src;
+        }
+    }
+})();
+proxyImage.setSrc(&apos;xxxx&apos;);
+这里我们通过proxyImage间接地访问MyImage，proxyImage控制了客户对MyImage的访问，因此在此过程中加入一些额外的操作，比如在真正图片加在之前先把img的节点的src设置成一张本地的图片。
+虚拟代理合并http请求假设我有一堆选项(checkbox)，每次点击就会往服务器同步文件，手速快的一秒或许可以点中四五个，然而太过平凡的服务器请求开销略大。因此，我们决定设置一个代理函数，将两秒之内的数据传输收集到一起两秒再发送一次，对于实时性要求不是很高的系统两秒延迟不会有太大副作用但是对服务器的压力就是量级的减少。
+var synchronousFile = function(id) {
+    console.log(&apos;开始同步文件&apos; + 
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/" itemprop="url">
                   代理模式
                 </a>
@@ -375,162 +531,6 @@ var A = {
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/" itemprop="url">
-                  代理模式的应用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/"class="leancloud_visitors" data-flag-title="代理模式的应用"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-虚拟代理实现图片预加载图片预加载：图片过大或者网络不佳时，图片位置有段时间会是一片空白，常见的用一张loading占位，然后异步加载图片，等图片加载好了再把它填充到img节点里。
-var myImage = (function() {
-    var imgNode = document.createElement(&apos;img&apos;);
-    document.body.appendChild( imgNode );
-    return {
-        setSrc : function( src ) {
-            imgNode.src = src;
-        }
-    }
-})();
-
-var proxyImage = (function() {
-    var img = new Image;
-    img.onload = function() {//图片加载完成之后触发
-        myImage.setSrc(this.src);
-    }
-    return {
-        setSrc: function(src) {
-            myImage.setSrc(&apos;loading.gif&apos;); //loading图片
-            img.src = src;
-        }
-    }
-})();
-proxyImage.setSrc(&apos;xxxx&apos;);
-这里我们通过proxyImage间接地访问MyImage，proxyImage控制了客户对MyImage的访问，因此在此过程中加入一些额外的操作，比如在真正图片加在之前先把img的节点的src设置成一张本地的图片。
-虚拟代理合并http请求假设我有一堆选项(checkbox)，每次点击就会往服务器同步文件，手速快的一秒或许可以点中四五个，然而太过平凡的服务器请求开销略大。因此，我们决定设置一个代理函数，将两秒之内的数据传输收集到一起两秒再发送一次，对于实时性要求不是很高的系统两秒延迟不会有太大副作用但是对服务器的压力就是量级的减少。
-var synchronousFile = function(id) {
-    console.log(&apos;开始同步文件&apos; + 
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -734,6 +734,171 @@ var compare = function(ary1, ary2) {
             
               
                 
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/" itemprop="url">
+                  适配器模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/19适配器模式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/"class="leancloud_visitors" data-flag-title="适配器模式"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+
+适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。
+
+适配器模式的应用适配模式是一种“亡羊补牢”的模式，没有人会在程序的设计之初就使用它，因为没有人可以完全预料到未来的事情，也许现在好好工作的接口未来就不再适用于新系统，那么我们可以使用适配器模式把旧的接口包装成新的接口，使他继续保持生命力。比如在json数据流行之前，很多cgi返回的都是XML格式的数据，如果今天仍然想用这些接口，显然我们可以创造一个XML-JSON适配器。
+比如有一段代码，我们向googleMap和baiduMap都发出显示请求时，他们分别以各自的方式在页面中展现了地图：
+var googleMap = {
+    show: function() {
+        console.log(&apos;开始渲染谷歌地图&apos;);
+    }
+};
+var baiduMap = {
+    show: function() {
+        console.log(&apos;开始渲染百度地图&apos;);
+    }
+};
+
+var renderMap = function(map) {
+    if (map.show.instanceof Function) {
+        map.show();
+    }
+};
+
+renderMap(googleMap); //开始渲染谷歌地图
+renderMap(baiduMap); //开始渲染百度地图
+这个程序能运行的关键之处在于googleMap和baiduMap提供了一致的show方法，但是第三方接口并不在我们的控制范围内，加入baiduMap提供的显示地图的方法不叫show，而叫display呢?
+此时我们可以通过增加baiduMapAdapter来解决问题：
+var googleMap = {
+    show: function() {
+        console.log(&apos;开始渲染谷歌地图&apos;);
+    }
+};
+var baiduMap = {
+    display: function() {
+        console.log(&apos;开始渲染百度地图&apos;);
+    }
+};
+var baid
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/" itemprop="url">
                   代码重构
                 </a>
@@ -857,172 +1022,6 @@ var paging = function(currPage) {
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/" itemprop="url">
-                  状态模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/12/JavaScript设计模式与开发实践/18状态模式/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/"class="leancloud_visitors" data-flag-title="状态模式"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-
-状态模式的关键是区分事物内部的状态，事物内部状态的改变往往会带来事物的行为改变。
-
-电灯程序首先给一个不用状态模式的电灯程序例子：
-var Light = function() {
-  this.state = &apos;off&apos;; //电灯初始状态off
-  this.button = null; //电灯开关按钮
-};
-
-Light.prototype.init = function() {
-  var button = document.createElement(&apos;button&apos;),
-      self = this;
-
-  button.innerHTML = &apos;开关&apos;;
-  this.button = document.body.appendChild(button);
-  this.button.onclick = function() {
-    self.buttonWasPressed();
-  };
-};
-
-Light.prototype.buttonWasPressed = function() {
-  if (this.state === &apos;off&apos;) {
-    console.log(&apos;开灯&apos;);
-    this.state = &apos;on&apos;;
-  } else if (this.state === &apos;on&apos;) {
-    console.log(&apos;关灯&apos;);
-    this.state = &apos;off&apos;;
-  }
-};
-
-var light = new Light();
-light.init();
-这样子看起来非常完美。但是假如我们有三种光，甚至四种五种，只能在buttonWasPressed里面新增代码，这样就显得他很不稳定了。而且所有跟状态有关的行为，这里只是console，但是在实际应用中要处理的事情庞大得多…所以，我们用状态模式进行改写
-//OffLightState
-var OffLightState = function(light) {
-  this.light = light;
-};
-OffLightState.prototype.buttonW
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1189,7 +1188,7 @@ OffLightState.prototype.buttonW
 
 <!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_uv" style="display:none">
+<span id="busuanzi_container_site_uv">
   本站访客数<span id="busuanzi_value_site_uv"></span>人次
 </span>
 <!-- 不蒜子计数初始值纠正 -->
