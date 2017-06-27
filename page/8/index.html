@@ -254,139 +254,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/09/24/d3/D3.js 入门教程系列/" itemprop="url">
-                  D3.js 入门教程系列
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-24T00:00:00+08:00" content="2016-09-24">
-              2016-09-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/d3/" itemprop="url" rel="index">
-                    <span itemprop="name">d3</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/24/d3/D3.js 入门教程系列/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/24/d3/D3.js 入门教程系列/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/09/24/d3/D3.js 入门教程系列/"class="leancloud_visitors" data-flag-title="D3.js 入门教程系列"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          初识D3D3是指数据驱动文档（Data-Driven Documents），根据D3的官方定义：
-
-D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通过使用HTML、SVG和CSS把数据鲜活形象地展现出来。D3严格遵循Web标准，因而可以让你的程序轻松兼容现代主流浏览器并避免对特定框架的依赖。同时，它提供了强大的可视化组件，可以让使用者以数据驱动的方式去操作DOM。—-D3维基（2013年8月）
-
-从一个Hello Wordld示例来看看d3如何运行 点击查看在线DEMO123456789101112131415161718192021222324252627282930313233function render(data)&#123;    var demo = d3.select('body')        .selectAll('p')        .data(data, function (d) &#123;          return d;        &#125;);        demo.enter()        .append('p')        .style('width', 0+'px')        .style('background', '#eee');    demo.text(function (d) &#123;          return d;        &#125;)        .transition()        .duration(1000)        .style('width', function (d) &#123;          return d+'px';        &#125;);    demo.exit()        .transition()        .duration(1000)        .style('width', 0+'px')        .remove();&#125;render([100,300,500]);setTimeout(function()&#123;    render([300,500,1000]);&#125;,1000)
-通过链式风格的方式让整个运行步骤非常清晰，D3的API设计跟我
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/24/d3/D3.js 入门教程系列/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/09/24/d3/D3.js 进阶教程系列/" itemprop="url">
                   D3.js 进阶教程系列
                 </a>
@@ -490,6 +357,139 @@ d3.select(‘#demo1&apos;).on(&apos;click&apos;, function(){
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/24/d3/D3.js 进阶教程系列/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/24/d3/D3.js 入门教程系列/" itemprop="url">
+                  D3.js 入门教程系列
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-24T00:00:00+08:00" content="2016-09-24">
+              2016-09-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/d3/" itemprop="url" rel="index">
+                    <span itemprop="name">d3</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/24/d3/D3.js 入门教程系列/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/24/d3/D3.js 入门教程系列/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/09/24/d3/D3.js 入门教程系列/"class="leancloud_visitors" data-flag-title="D3.js 入门教程系列"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          初识D3D3是指数据驱动文档（Data-Driven Documents），根据D3的官方定义：
+
+D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通过使用HTML、SVG和CSS把数据鲜活形象地展现出来。D3严格遵循Web标准，因而可以让你的程序轻松兼容现代主流浏览器并避免对特定框架的依赖。同时，它提供了强大的可视化组件，可以让使用者以数据驱动的方式去操作DOM。—-D3维基（2013年8月）
+
+从一个Hello Wordld示例来看看d3如何运行 点击查看在线DEMO123456789101112131415161718192021222324252627282930313233function render(data)&#123;    var demo = d3.select('body')        .selectAll('p')        .data(data, function (d) &#123;          return d;        &#125;);        demo.enter()        .append('p')        .style('width', 0+'px')        .style('background', '#eee');    demo.text(function (d) &#123;          return d;        &#125;)        .transition()        .duration(1000)        .style('width', function (d) &#123;          return d+'px';        &#125;);    demo.exit()        .transition()        .duration(1000)        .style('width', 0+'px')        .remove();&#125;render([100,300,500]);setTimeout(function()&#123;    render([300,500,1000]);&#125;,1000)
+通过链式风格的方式让整个运行步骤非常清晰，D3的API设计跟我
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/24/d3/D3.js 入门教程系列/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -666,8 +666,8 @@ d3.select(‘#demo1&apos;).on(&apos;click&apos;, function(){
             
               
                 
-                <a class="post-title-link" href="/2016/09/19/javascript/Javascript的this用法/" itemprop="url">
-                  Javascript的this用法
+                <a class="post-title-link" href="/2016/09/19/javascript/jQuery的deferred对象详解/" itemprop="url">
+                  jQuery的deferred对象详解
                 </a>
               
             
@@ -710,8 +710,8 @@ d3.select(‘#demo1&apos;).on(&apos;click&apos;, function(){
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/19/javascript/Javascript的this用法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/javascript/Javascript的this用法/" itemprop="commentsCount"></span>
+                <a href="/2016/09/19/javascript/jQuery的deferred对象详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/19/javascript/jQuery的deferred对象详解/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -722,7 +722,7 @@ d3.select(‘#demo1&apos;).on(&apos;click&apos;, function(){
           
           
             阅读次数 &nbsp;
-            <span id="/2016/09/19/javascript/Javascript的this用法/"class="leancloud_visitors" data-flag-title="Javascript的this用法"></span>
+            <span id="/2016/09/19/javascript/jQuery的deferred对象详解/"class="leancloud_visitors" data-flag-title="jQuery的deferred对象详解"></span>
           
 
           
@@ -738,11 +738,11 @@ d3.select(‘#demo1&apos;).on(&apos;click&apos;, function(){
 
       
         
-          <p>this是Javascript语言的一个关键字。</p>
-<p>它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.x = <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是<strong>this指的是，调用函数的那个对象</strong>。</p>
+          <p><a href="http://jquery.com/" target="_blank" rel="external">jQuery</a>的开发速度很快，几乎每半年一个大版本，每两个月一个小版本。</p>
+<p>每个版本都会引入一些新功能。今天我想介绍的，就是从jQuery 1.5.0版本开始引入的一个新功能—-<a href="http://api.jquery.com/category/deferred-object/" target="_blank" rel="external">deferred对象</a>。</p>
+<p>这个功能很重要，未来将成为jQuery的核心方法，它彻底改变了如何在jQuery中使用ajax。为了实现它，jQuery的全部ajax代码都被改写了。但是，<br>它比较抽象，初学者很难掌握，网上的教程也不多。所以，我把自己的学习笔记整理出来了，希望对大家有用。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/19/javascript/Javascript的this用法/#more" rel="contents">
+            <a class="btn" href="/2016/09/19/javascript/jQuery的deferred对象详解/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1037,6 +1037,9 @@ d3.select(‘#demo1&apos;).on(&apos;click&apos;, function(){
 
 <!-- 不蒜子 -->
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_uv" style="display:none">
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</span>
 <!-- 不蒜子计数初始值纠正 -->
 <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
