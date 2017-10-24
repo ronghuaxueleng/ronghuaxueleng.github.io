@@ -118,6 +118,10 @@
   <link rel="canonical" href="http://ronghuaxueleng.github.io/page/2/"/>
 
   <title> 白云雅阁 </title>
+  <!-- start Mixpanel --><script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -254,8 +258,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/" itemprop="url">
-                  基础编程模式
+                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(3)：封装/" itemprop="url">
+                  封装
                 </a>
               
             
@@ -303,7 +307,7 @@
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/"class="leancloud_visitors" data-flag-title="基础编程模式"></span>
+            <span id="/2016/10/13/php设计模式/PHP设计模式(3)：封装/"class="leancloud_visitors" data-flag-title="封装"></span>
           
 
           
@@ -320,334 +324,44 @@
       
         
           
-          简介俗话说，“PHP是世界上最好的语言”，因为PHP什么都能干。但是在PHP编程中，你是否会遇到这样的困惑：明明是相同的需求，但是之前写的代码却并不能重用，稍微修改不满足需求，大改又会让页面变样。是的，由于PHP什么都能干，但是高度灵活性降低了代码的结构性。虽然可以利用三方框架来解决问题，但问题的根本在于缺乏设计模式。本系列文章将由浅入深的介绍各种设计模式。
-面向对象编程面向对象编程，Object-Oriented Programming(OOP)作为最基本的设计模式并不是什么新鲜的话题，但是大部分新手的PHP编程都是在写流水账，各种拼接字符串，所以这里还是要提一下。Object-Oriented Programming的概念这里就不说了，毕竟很多人都明白，但是如何在PHP中使用？假设你需要在页面上显示不同的用户类型，如电脑用户、手机用户等，那么你可以将“显示”这件事抽象为一个类，如：
+          
+原文地址：[PHP设计模式(三)：封装][1]
+
+简介面向对象编程中，一切都是对象，对一个对象的封装，也成了面向对象编程中必不可少的部分。和C/C++，Java，Python等语言一样，PHP也支持封装。
+封装/Encapsulation
+对事物的封装是指，将事物进行抽象后，提供抽象概念的实现的具体方法。
+
+听起来很拗口，还是举鲸鱼的例子。对于鲸鱼来说，需要吃东西这个行为，吃本身是一个抽象的概念，因为具体到怎么吃，是咀嚼和消化的过程，甚至如何咀嚼和消化也是不可见的。对外部而言，可见的只是吃这一个接口，如何吃、怎么吃，是被封装在了鲸鱼的实现中。甚至可以说，消化系统，被封装到了鲸鱼这个对象中，对外部不可见，仅仅鲸鱼自己可见。
+封装方法和别的程序设计语言一样，PHP也只是三种封装概念：Private，Protected，Public。
+私有/Private私有的概念是，仅仅对象内部可见，外部不可见，如：
 &lt;?php
-class ShowAgent {
-  private $agent;
+class Whale {
+  private $name;
   public function __construct() {
-    $this-&gt;agent = $_SERVER[&apos;HTTP_USER_AGENT&apos;];
-    echo $this-&gt;agent;
+    $this-&gt;name = &quot;Whale&quot;;
+  }
+  public function eat($food) {
+    chew($food);
+    digest($food);
+  }
+  private function chew($food) {
+    echo &quot;Chewing &quot; . $food . &quot;\n&quot;;
+  }
+  private function digest($food) {
+    echo &quot;Digest &quot; . $food . &quot;\n&quot;;
   }
 }
-$showAgent = new ShowAgent();
 ?&gt;
-调试技巧在很多PHP默认环境中，调试功能是关闭的。打开调试功能又需要配置php.ini文件，其实有一个简单的方法：
-&lt;?php
-ini_set(&quot;display_errors&quot;, &quot;1&quot;);
-ERROR_REPORTING(E_ALL);
-?&gt;
-将这段代码加入到你的代码中，甚至可以require或者include进去，方便调试。
-流水账编程这里列出流水账编程，并不是让你学习，而是指出何种编程不推荐使用：
-&lt;?php
-$total = &quot;Total number is &quot;;
-$number = &quot;6&quot;;
-$totalNumber = $total.$number;
-echo $totalNumber;
-?&gt;
-这段代码并没有错，但是以后再也无法重用了，对吧？每次遇到相同问题，你
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(5)：多态/" itemprop="url">
-                  多态
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
-              2016-10-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/13/php设计模式/PHP设计模式(5)：多态/"class="leancloud_visitors" data-flag-title="多态"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Introduction在[PHP设计模式(四)：继承][2]中我们介绍了继承，利用extends来进行程序设计的方法。在[PHP设计模式(二)：抽象类和接口][3]中我们介绍了接口，事实上也存在利用interface的程序设计方法，那就是多态。和C/C++，Java，Python等语言一样，PHP也支持多态。多态更多是是一种面向对象程序设计的概念，让同一类对象执行同一个接口，但却实现不同的逻辑功能。
-多态/Polymorphism还是用动物、鲸鱼和鲤鱼来举例：
-&lt;?php
-interface IEat {
-  function eatFish();
-  function eatMoss();
-}
-
-class Whale implements IEat {
-  public function eatFish() {
-    echo &quot;Whale eats fish.\n&quot;;
-  }
-  public function eatMoss() {
-    echo &quot;Whale doesn&apos;t eat fish\n&quot;;
-  }
-}
-
-class Carp implements IEat {
-  public function eatFish() {
-    echo &quot;Carp doesn&apos;t eat moss.\n&quot;;
-  }
-  public function eatMoss() {
-    echo &quot;Carp eats moss.\n&quot;;
-  }
-}
-
-$whale = new Whale();
-$whale-&gt;eatFish();
-$whale-&gt;eatMoss();
-$carp = new Carp();
-$carp-&gt;eatFish();
-$carp-&gt;eatMoss();
-?&gt;
-运行一下：
-$ php Inheritance.php
-Whale eats fish.
-Whale doesn&apos;t eat fish.
-Carp eats moss.
-Carp doesn&apos;t eat moss.
-注意PHP的函数定义不包含返回值，因此完全可以给不同的接口实现返回不同类型的数据。这一点和C/C++，Java
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(5)：多态/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/" itemprop="url">
-                  MVC
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
-              2016-10-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/"class="leancloud_visitors" data-flag-title="MVC"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-原文地址：[PHP设计模式(六)：MVC][1]
-
-Introduction20世纪80年代，计算机发展迅速，编程技术也日益分化。桌面应用编程，也逐渐出现了用户图形界面和程序逻辑分离的程序设计。到了90年代，web的出现更是让这种程序设计模式得以延续。这种设计模式便是MVC(Model-View-Control)，除了MVC，还有MVC的变种，如MVVM(Model-View-View-Model)等。
-MVC回到80年代的桌面应用编程，当时面向对象的编程设计模式（见PHP设计模式(一)：基础编程模式）兴起，程序员将桌面应用分割成两个大的对象：领域对象(domain objects)和可视对象(presentation objects)。领域对象是对现实事物的抽象模型，可视对象是对用户界面部分的抽象模型。后来人们发现，只有领域对象和可视对象是不够的，特别是在复杂的业务中。根据PHP设计模式(三)：封装中介绍的设计原则，在面向对象程序设计中，类和类之间的访问、交互和更新应该是通过Accessors和Mutators。那么如果操作领域对象呢？人们引入了控制器(controller)的对象，通过控制器来操作领域模型。到此，MVC模型逐渐稳定下来，用户通过可视对象操作控制器对象，控制器对象再去操作领域对象。
-MVC中的设计模式上面介绍的MVC属于抽象度比较高的设计模式，在实际编程中，需要遵守下面的设计模式。
-基于接口去编程基于接口去编程的好处就是分离设计和实现，这一点我们在PHP设计模式(二)：抽象类和接口已经介绍过了，下面我们举一个实际的例子来说明这个设计的好处。
+name是鲸鱼的私有属性，chew()和digest()是鲸鱼的私有方法，对于其他类来说，都是不可见的。对于现实来说，我们如果只是注重吃，并没有必要去关心鲸鱼是如何去吃的。
+保护/Protected保护的概念是，仅仅是自身类和继承类可见，这个关键字的用途主要是防止滥用类的派生，另外三方库编写的时候会用到，防止误用。
 &lt;?php
 abstract class Animal {
-  protected $name;
-  abstract protected function eatFish();
-  abstract protected function eatMoss();
-  public function eat() {
-    if ($this-&gt;eatFish()) {
-      echo $this-&gt;name . &quot; can eat fish.\n&quot;;
-    }
-    if ($this-&gt;eatMoss()) {
-      echo $this-&gt;n
+  private $name;
+ 
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/#more" rel="contents">
+            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(3)：封装/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -927,6 +641,296 @@ class WhaleFactory extends Factory {
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(8)：工厂模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(9)：原型设计模式/" itemprop="url">
+                  原型设计模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
+              2016-10-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/13/php设计模式/PHP设计模式(9)：原型设计模式/"class="leancloud_visitors" data-flag-title="原型设计模式"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          简介在[PHP设计模式(八)：工厂模式][2]中我们介绍了创建设计模式(Creationpatterns)中的工厂模式，下面我们将介绍另一种原型设计模式(Prototype Method)。在PHP中，原型设计模式依靠cloning复制对象来实现。通过cloning构造的对象，将大量节省新对象的构造时间。
+何时使用原型设计模式？简单来说，当你希望根据已有的对象来创建新对象时。为什么会有这种需求？想象一下，你在做细胞分裂的项目，每一个细胞都是一个对象，现在你有一个细胞类，每一个新的细胞都是由这个类生成的，不同的细胞只是内部的状态参数不同。当分裂到第N代的时候，已经和初代大不一样了，你是愿意使用第N代的副本修改一下呢？还是愿意从初代慢慢推演？
+ExamplePHP提供了内建的__clone()函数以及clone关键字，来实现对象的复制。下面给出一个例子：
+&lt;?php
+abstract class Cell {
+  public $id;
+  public $dna;
+  abstract function __clone();
+}
+
+class WhaleCell extends Cell {
+  public function __construct() {
+    $this-&gt;id = 1;
+    $this-&gt;dna = &quot;ATCG&quot;;
+  }
+  public function displayDNA() {
+    echo $this-&gt;dna . &quot;\n&quot;;
+  }
+  function __clone() {
+    $this-&gt;id = $this-&gt;id + 1;
+    if ($this-&gt;id % 3 == 0) {
+      $this-&gt;dna = $this-&gt;dna . &quot;AT&quot;;
+    }
+    if ($this-&gt;id % 5 == 0) {
+      $this-&gt;dna = $this-&gt;dna . &quot;CG&quot;;
+    }
+  }
+}
+
+$whaleCell = new WhaleCell();
+$whaleCell-&gt;displayDNA();
+$whale
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(9)：原型设计模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/" itemprop="url">
+                  MVC
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
+              2016-10-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/"class="leancloud_visitors" data-flag-title="MVC"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+原文地址：[PHP设计模式(六)：MVC][1]
+
+Introduction20世纪80年代，计算机发展迅速，编程技术也日益分化。桌面应用编程，也逐渐出现了用户图形界面和程序逻辑分离的程序设计。到了90年代，web的出现更是让这种程序设计模式得以延续。这种设计模式便是MVC(Model-View-Control)，除了MVC，还有MVC的变种，如MVVM(Model-View-View-Model)等。
+MVC回到80年代的桌面应用编程，当时面向对象的编程设计模式（见PHP设计模式(一)：基础编程模式）兴起，程序员将桌面应用分割成两个大的对象：领域对象(domain objects)和可视对象(presentation objects)。领域对象是对现实事物的抽象模型，可视对象是对用户界面部分的抽象模型。后来人们发现，只有领域对象和可视对象是不够的，特别是在复杂的业务中。根据PHP设计模式(三)：封装中介绍的设计原则，在面向对象程序设计中，类和类之间的访问、交互和更新应该是通过Accessors和Mutators。那么如果操作领域对象呢？人们引入了控制器(controller)的对象，通过控制器来操作领域模型。到此，MVC模型逐渐稳定下来，用户通过可视对象操作控制器对象，控制器对象再去操作领域对象。
+MVC中的设计模式上面介绍的MVC属于抽象度比较高的设计模式，在实际编程中，需要遵守下面的设计模式。
+基于接口去编程基于接口去编程的好处就是分离设计和实现，这一点我们在PHP设计模式(二)：抽象类和接口已经介绍过了，下面我们举一个实际的例子来说明这个设计的好处。
+&lt;?php
+abstract class Animal {
+  protected $name;
+  abstract protected function eatFish();
+  abstract protected function eatMoss();
+  public function eat() {
+    if ($this-&gt;eatFish()) {
+      echo $this-&gt;name . &quot; can eat fish.\n&quot;;
+    }
+    if ($this-&gt;eatMoss()) {
+      echo $this-&gt;n
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

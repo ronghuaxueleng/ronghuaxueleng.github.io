@@ -118,6 +118,10 @@
   <link rel="canonical" href="http://ronghuaxueleng.github.io/page/4/"/>
 
   <title> 白云雅阁 </title>
+  <!-- start Mixpanel --><script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -254,8 +258,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/2闭包/" itemprop="url">
-                  闭包
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/" itemprop="url">
+                  适配器模式
                 </a>
               
             
@@ -303,7 +307,7 @@
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/2闭包/"class="leancloud_visitors" data-flag-title="闭包"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/"class="leancloud_visitors" data-flag-title="适配器模式"></span>
           
 
           
@@ -321,49 +325,47 @@
         
           
           
-闭包是js中一个难懂又必须征服的概念，他的形成与变量作用域以及变量的生存周期密切相关。
 
-变量作用域和生存周期作用域，按字面理解，就是指变量的有效范围，超出这个范围就无法访问。在函数中，里面函数可以访问外面的变量，但是外面无法访问内部变量。举个简单例子：
-var a = 1;
-var fun1 = function() {
-    var b = 2;
-    var fun2 = function() {
-        var c = 3;
-        alert(b); //2
-        alert(c); //3
-    }
-    fun2();
-    alert(c); //c is not defined
-};
-fun1();
-生存周期：全局变量的生存周期是永久的，除非我们主动销毁，但是普通对于用var声明的局部变量，当退出函数不再使用时，就会被销毁。但是当你使用到闭包时，情况就不一样了
-var fun = function() {
-    var a = 1;
-    return function() {
-        a++;
-        alert(a);
+适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。
+
+适配器模式的应用适配模式是一种“亡羊补牢”的模式，没有人会在程序的设计之初就使用它，因为没有人可以完全预料到未来的事情，也许现在好好工作的接口未来就不再适用于新系统，那么我们可以使用适配器模式把旧的接口包装成新的接口，使他继续保持生命力。比如在json数据流行之前，很多cgi返回的都是XML格式的数据，如果今天仍然想用这些接口，显然我们可以创造一个XML-JSON适配器。
+比如有一段代码，我们向googleMap和baiduMap都发出显示请求时，他们分别以各自的方式在页面中展现了地图：
+var googleMap = {
+    show: function() {
+        console.log(&apos;开始渲染谷歌地图&apos;);
     }
 };
-var f = fun();
-f(); //2
-f(); //3
-f(); //4
-f(); //5
-解释：当执行var f = fun();时，f返回了一个匿名函数的引用，它可以访问到fun()被调用的生产环境，而局部变量a一直在这个环境中。既然局部变量能被外界访问，那它就有了不被销毁的理由，于是局部变量生命被延续了。
-再例如：
-var nodes = document.getElemmentByTagName(&apos;div&apos;); //此处他的长度为5
-for (var i = 0, len = nodes.length; i &lt; len; i++) {
-    nodes[i].onclick = function() {
-        alert(i);
+var baiduMap = {
+    show: function() {
+        console.log(&apos;开始渲染百度地图&apos;);
     }
 };
-以上代码无论点哪个div显示的都是5（div节点的onclick是异步触发的，当事件触发时，循环已经结束，此时i的值是5）解决方法：闭包大法好
-for (var i = 0, len = nodes.length; i &lt; len; i++) {
- 
+
+var renderMap = function(map) {
+    if (map.show.instanceof Function) {
+        map.show();
+    }
+};
+
+renderMap(googleMap); //开始渲染谷歌地图
+renderMap(baiduMap); //开始渲染百度地图
+这个程序能运行的关键之处在于googleMap和baiduMap提供了一致的show方法，但是第三方接口并不在我们的控制范围内，加入baiduMap提供的显示地图的方法不叫show，而叫display呢?
+此时我们可以通过增加baiduMapAdapter来解决问题：
+var googleMap = {
+    show: function() {
+        console.log(&apos;开始渲染谷歌地图&apos;);
+    }
+};
+var baiduMap = {
+    display: function() {
+        console.log(&apos;开始渲染百度地图&apos;);
+    }
+};
+var baid
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/2闭包/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -414,8 +416,8 @@ for (var i = 0, len = nodes.length; i &lt; len; i++) {
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/" itemprop="url">
-                  高阶函数
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/" itemprop="url">
+                  单例模式
                 </a>
               
             
@@ -463,7 +465,7 @@ for (var i = 0, len = nodes.length; i &lt; len; i++) {
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/"class="leancloud_visitors" data-flag-title="高阶函数"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/"class="leancloud_visitors" data-flag-title="单例模式"></span>
           
 
           
@@ -481,48 +483,49 @@ for (var i = 0, len = nodes.length; i &lt; len; i++) {
         
           
           
-高阶函数是至少满足下列条件之一的函数
-
-函数可以作为参数被传递
-函数可以作为返回值输出（js这么好的语言中的函数当然满足 ^^）_
-
-函数作为参数传递把函数当作参数传递，可以抽离出一部分容易变化的业务逻辑，把这部分业务逻辑放在函数中，可以分离业务代码中变与不变的部分。
-
-回调函数，ajax异步，callback
-
-var getUserInfo() = function(userId, callback) {
-    $.ajax(&apos;http://xxx.com/getUserInfo?&apos; + userId, function(data) {
-        if (typeof(callback === &apos;function&apos;) {
-            callback(data);
-        }
-    });
-}
-getUserInfo(13157, function(data) {
-    alert(data.user);
-})
-高阶函数实现AOPAOP（面向切面编程），把一些跟核心业务逻辑模块无关的功能抽离出来（通常包括日志统计，安全控制，异常处理等）
-Function.prototype.before = function(beforefn) {
-    var __self = this; //保存原函数的引用
-    return function() { //返回包含原函数和新函数的“代理”函数
-        beforefn.apply(this, arguments); //执行新函数，修正this
-        return __self.apply(this, arguments); //执行原函数
-    }
+用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。
+实现单例模式//1.实现单例模式
+var Singleton = function (name) {
+  this.name = name;
 };
-
-Function.prototype.after= function(afterfn) {
-    var __self = this; 
-    return function() { 
-        var ret = __self.apply(this, arguments);
-        afterfn.apply(this, arguments); 
-        return ret ;
-    }
+Singleton.prototype.getName = function() {
+  alert(this.name);
 };
+Singleton.getInstance = (function() {
+  var instance = null;
+  return function(name) {
+    if (!instance) {
+      instance = new Singleton(name);
+    }
+    return instance;
+  }
+})();
+var a = Singleton.getInstance(&apos;sven1&apos;);
+var b = Singleton.getInstance(&apos;sven2&apos;);
 
-var func = function()
+console.log(a === b); //true
+以上，我们通过Singleton.getInstance来获取Singleton类的唯一对象，虽然简单但是增加了这个类的“不透明性”，Singleton类的使用者必须知道这是一个单例类，跟以往通过new xxx的方法不同
+透明的单例模式有了以上的不足，我们现在就来解决
+//透明的单例模式 
+var CreateDiv = (function() {
+  var instance;
+  var CreateDiv = function(html) {
+    if (instance) {
+      return instance;
+    }
+    this.html = html;
+    this.init();
+    return instance = this;
+  };
+
+  CreateDiv.prototype.init = function() {
+    var div = document.createElement(&apos;div&apos;);
+    div.innerHTML = this.html;
+    document.b
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -735,6 +738,170 @@ var MyClass2 = function() {
             
               
                 
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/" itemprop="url">
+                  代理模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/"class="leancloud_visitors" data-flag-title="代理模式"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+代理模式是为一个对象提供一个代用品或占位符，以便控制对他的访问。代理模式的关键是，当客户不方便直接访问一个对象或者不满足需要的时候，提供一个对象来控制这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理后再把请求转交给本体对象。
+
+不使用代理：客户 → 本体使用代理：客户 → 代理 → 本体
+先来一个带点趣味性的例子，小明要给女神A送花，然后他不好意思，打算让B代送
+var Flower = function(){};
+var xiaoming = {
+    sendFlower: function( traget ) {
+      var flower = new Flower();
+      target.receveFlower( flower );
+    }
+};
+
+var A = {
+    receiveFlower: function( flower ) {
+      console.log(&apos;收到花&apos; + flower);
+  }
+};
+
+xiaoming.sendFlower(A);
+
+//引入代理B
+var B = {
+    receiverFlower: function( flower ) {
+      A.receiveFlower( flower );
+  }
+};
+此时，我们就简单的完成了一个代理模式
+接着，我们在原需求上做点改动，假设女神心情好的时候成功率会增大，小明跟女神不熟不知道她心情，而B跟女神比较熟可以去监听她心情的变化恰当时机送花，这样就不会造成不必要浪费了，于是代码如下：
+//代理B
+var B = {
+    receiverFlower: function( flower ) {
+      A.listenGoodMood(function() { //监听A的好心情
+        A.receiveFlower( flower );
+    })；
+  }
+};
+
+//女神A也要提供一个可被监听的方法（当然我们只是假设，毕竟女人我们是摸不透的）
+var A = {
+    receiveFlower: function( flower ) {
+      console.log(&apos;收到花&apos; + flower);
+  },
+  listenG
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/" itemprop="url">
                   策略模式的应用
                 </a>
@@ -847,162 +1014,6 @@ var Animate = function( dom ) {
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/" itemprop="url">
-                  策略模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/"class="leancloud_visitors" data-flag-title="策略模式"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-定义：定义一系列算法，把他们一个个封装起来，并且使他们可以相互替换。
-
-需求：绩效为S的人年终奖有4倍工资，绩效为A的人年终奖有3倍工资，绩效为B的人年终奖有2倍工资。
-var calculateBonus = function(performanceLevel, salary) {
-    if (performanceLevel === &apos;S&apos;) {
-        return salary * 4;
-    }
-    if (performanceLevel === &apos;A&apos;) {
-        return salary * 3;
-    }
-    if (performanceLevel === &apos;B&apos;) {
-        return salary * 2;
-    }
-};
-
-calculateBonus(&apos;B&apos;, 20000); //輸出：40000
-然而，calculateBonus函数比较庞大，包含了很多if语句，且缺乏弹性，如果增加新的绩效等级，复用性差，如果在程序的其他地方需要重用这些计算奖金的算法，我们的选择只有复制和粘贴。因此，我们要重构这段代码。
-var performanceS = function(salary) {
-    return salary * 4;
-}
-var performanceA = function(salary) {
-    return salary * 3;
-}
-var performanceB = function(salary) {
-    return salary * 2;
-}
-
-var calculateBonus = function(performanceLevel, salary) {
-    if (performanceLevel == &apos;S&apos;) {
-        return performanceS(salary);
-    }
-    if (performanceLevel == &apos;A&apos;) {
-        return performanceA(salary);
-    }
-    if (performanceLevel == &apos;B
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

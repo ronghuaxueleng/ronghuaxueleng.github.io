@@ -118,6 +118,10 @@
   <link rel="canonical" href="http://ronghuaxueleng.github.io/page/7/"/>
 
   <title> 白云雅阁 </title>
+  <!-- start Mixpanel --><script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -254,8 +258,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/" itemprop="url">
-                  组合模式
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/14享元模式/" itemprop="url">
+                  享元模式
                 </a>
               
             
@@ -303,7 +307,7 @@
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/"class="leancloud_visitors" data-flag-title="组合模式"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/14享元模式/"class="leancloud_visitors" data-flag-title="享元模式"></span>
           
 
           
@@ -320,58 +324,40 @@
       
         
           
-          组合模式
+          
 
-组合模式将对象组合成树形结构，以表示“部分-整体”的层次结构。除了用来表示树形结构之外，组合模式的另一个好处是通过对象的多态性表现，使得用户对单个对象和组合对象的使用具有一致性。
+享元模式的核心是运用共享技术来有效支持大量细粒度的对象。如果系统中因为创建了大量类似的对象而导致内存占用过高，享元模式就非常有用了。在JavaScript中，浏览器特别是移动端的浏览器分配的内存不算多，如何节省内存就成了一件非常有意义的事。
 
-请求在树中传递的过程在组合模式中，请求在树中传递的过程总是遵循一种逻辑。请求从树的最顶端的对象往下传递，如果当前处理请求的对象是叶对象，叶对象自身会对请求做相互相应的处理；如果当前处理请求对象是组合对象，组合对象则会遍历它下面的节点，将请求继续传递。总之，组合对象的请求是从上到下沿着树传递，直到树的尽头。作为客户，只要关心树最顶层的组合对象，客户只需要请求这个组合对象，请求便会向下延续。
-现在，假设一个需求，我们需要一个超级遥控器可以控制家里所有的电器，且拥有以下功能
-
-打开空调
-
-打开电视和音响
-
-关门，开电脑，登录QQ  
-
-
-依旧，废话不多说，show the code
-var MacroCommand = function() {
-  return {
-    commandsList : [],
-    add: function( command ) {
-      this.commandsList.push( command );
-    },
-    execute: function() {
-      for (var i = 0, command; command = this.commandsList[i++];) {
-        command.execute();
-      }
-    }
-  };
+初识假设有个内衣工厂，要50个男模50个女模，你可能会这么写程序：
+var Model = function(sex, underwear) {
+    this.sex = sex;
+    this.underwear = underwear;
+}
+Model.prototype.takePhoto = function() {
+    console.log(&apos;sex=&apos; + this.sex + &apos; underwear=&apos; + this.underwear );
+}
+for (var i = 1; i &lt;= 50; i++) {
+    var maleModel = new Model(&apos;male&apos;, &apos;underwear&apos; + i);
+    maleModel.takePhoto();
+}
+for (var j = 1; j &lt;= 50; j++) {
+    var femaleModel = new Model(&apos;female&apos;, &apos;underwear&apos; + j);
+    femaleModel.takePhoto();
+}
+要得到一张照片，每次都需要传入sex，underwear参数，根据现在的需求一共会产生100个对象。但是如果将来要生产10000种，那这个程序可能会因为存在太多对象提前崩溃。所以我们做一点改动
+var Model = function(sex) {
+    this.sex = sex;
+}
+Model.pototype.takePhoto = function() {
+    console.log(&apos;sex=&apos; + this.sex + &apos; underwear=&apos; + this.underwear );
 };
 
-var openAcCommand = {
-  execute: function() {
-    console.log(&apos;打开空调&apos;);
-  }
-};
-
-/*家里电视和音响是连接在一起的，所以可以用一个宏命令来组合打开电视和打开音响的命令*/
-var openTvCommand = {
-  execute: function() {
-    console.log(&apos;打开电视&apos;);
-  }
-};
-var openSoundCommand = {
-  execute: function() {
-    console.log(&apos;打开音响&apos;);
-  }
-};
-
-var macr
+//分别创建一个男模特对象和女模特对象
+var maleModel = new Model(&ap
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/14享元模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -724,8 +710,8 @@ document.body.click(); // 模拟用户点击
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/" itemprop="url">
-                  单例模式
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/" itemprop="url">
+                  策略模式
                 </a>
               
             
@@ -773,7 +759,7 @@ document.body.click(); // 模拟用户点击
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/"class="leancloud_visitors" data-flag-title="单例模式"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/"class="leancloud_visitors" data-flag-title="策略模式"></span>
           
 
           
@@ -791,49 +777,45 @@ document.body.click(); // 模拟用户点击
         
           
           
-用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。
-实现单例模式//1.实现单例模式
-var Singleton = function (name) {
-  this.name = name;
-};
-Singleton.prototype.getName = function() {
-  alert(this.name);
-};
-Singleton.getInstance = (function() {
-  var instance = null;
-  return function(name) {
-    if (!instance) {
-      instance = new Singleton(name);
-    }
-    return instance;
-  }
-})();
-var a = Singleton.getInstance(&apos;sven1&apos;);
-var b = Singleton.getInstance(&apos;sven2&apos;);
+定义：定义一系列算法，把他们一个个封装起来，并且使他们可以相互替换。
 
-console.log(a === b); //true
-以上，我们通过Singleton.getInstance来获取Singleton类的唯一对象，虽然简单但是增加了这个类的“不透明性”，Singleton类的使用者必须知道这是一个单例类，跟以往通过new xxx的方法不同
-透明的单例模式有了以上的不足，我们现在就来解决
-//透明的单例模式 
-var CreateDiv = (function() {
-  var instance;
-  var CreateDiv = function(html) {
-    if (instance) {
-      return instance;
+需求：绩效为S的人年终奖有4倍工资，绩效为A的人年终奖有3倍工资，绩效为B的人年终奖有2倍工资。
+var calculateBonus = function(performanceLevel, salary) {
+    if (performanceLevel === &apos;S&apos;) {
+        return salary * 4;
     }
-    this.html = html;
-    this.init();
-    return instance = this;
-  };
+    if (performanceLevel === &apos;A&apos;) {
+        return salary * 3;
+    }
+    if (performanceLevel === &apos;B&apos;) {
+        return salary * 2;
+    }
+};
 
-  CreateDiv.prototype.init = function() {
-    var div = document.createElement(&apos;div&apos;);
-    div.innerHTML = this.html;
-    document.b
+calculateBonus(&apos;B&apos;, 20000); //輸出：40000
+然而，calculateBonus函数比较庞大，包含了很多if语句，且缺乏弹性，如果增加新的绩效等级，复用性差，如果在程序的其他地方需要重用这些计算奖金的算法，我们的选择只有复制和粘贴。因此，我们要重构这段代码。
+var performanceS = function(salary) {
+    return salary * 4;
+}
+var performanceA = function(salary) {
+    return salary * 3;
+}
+var performanceB = function(salary) {
+    return salary * 2;
+}
+
+var calculateBonus = function(performanceLevel, salary) {
+    if (performanceLevel == &apos;S&apos;) {
+        return performanceS(salary);
+    }
+    if (performanceLevel == &apos;A&apos;) {
+        return performanceA(salary);
+    }
+    if (performanceLevel == &apos;B
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
