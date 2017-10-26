@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ronghuaxueleng.github.io/"/>
-  <updated>2017-10-25T07:33:43.637Z</updated>
+  <updated>2017-10-26T07:21:43.922Z</updated>
   <id>http://ronghuaxueleng.github.io/</id>
   
   <author>
@@ -16,302 +16,87 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="http://ronghuaxueleng.github.io/2017/10/25/attachments/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E4%BB%A5%E5%8F%8A%E4%B8%BB%E8%A6%81%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
-    <id>http://ronghuaxueleng.github.io/2017/10/25/attachments/前端学习路线以及主要知识点/</id>
-    <published>2017-10-25T07:33:43.637Z</published>
-    <updated>2017-10-25T07:33:43.637Z</updated>
+    <title>可视化埋点</title>
+    <link href="http://ronghuaxueleng.github.io/2017/10/25/%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%8B%E7%82%B9/"/>
+    <id>http://ronghuaxueleng.github.io/2017/10/25/可视化埋点/</id>
+    <published>2017-10-25T06:18:52.000Z</published>
+    <updated>2017-10-26T07:21:43.922Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="前端学习路径"><a href="#前端学习路径" class="headerlink" title="前端学习路径"></a>前端学习路径</h1><p>[TOC]</p>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ol>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank" rel="external">MDN web技术文档api</a></li>
-<li><a href="http://www.w3school.com.cn/index.html" target="_blank" rel="external">W3cschool</a></li>
-<li><a href="http://www.runoob.com/" target="_blank" rel="external">菜鸟教程</a></li>
-<li><a href="http://jquery.cuishifeng.cn/" target="_blank" rel="external">jquery api</a></li>
-<li><a href="http://www.css88.com/book/css/" target="_blank" rel="external">css api</a></li>
-<li><a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/" target="_blank" rel="external">廖雪峰的官网</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/javascript/" target="_blank" rel="external">阮一峰的官网</a></li>
-<li><a href="http://www.zhangxinxu.com/wordpress/category/css/" target="_blank" rel="external">张鑫旭的官网</a></li>
-</ol>
-<h2 id="html"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h3 id="html元素"><a href="#html元素" class="headerlink" title="html元素"></a>html元素</h3><h4 id="什么是html元素"><a href="#什么是html元素" class="headerlink" title="什么是html元素"></a>什么是html元素</h4><blockquote>
-<p>HTML 元素指的是从开始标签（start tag）到结束标签（end tag）的所有代码。<br>元素的内容是开始标签和结束标签之间的内容<br>元素的属性是包含在<font color="red"><strong>开始标签</strong></font>中用来设置标签特性的内容<br>自闭和标签：无需闭合标签的标签，由于自闭合标签不能添加标签内容，所以无需闭合标签，如input、br、hr等  </p>
-<h4 id="html元素类型"><a href="#html元素类型" class="headerlink" title="html元素类型"></a>html元素类型</h4><ul>
-<li>块级元素<br>块级元素从新的一行开始，并占据整行空间，块级元素可以包含块级元素以及行内元素  </li>
-</ul>
+    <content type="html"><![CDATA[<h3 id="埋点"><a href="#埋点" class="headerlink" title="埋点"></a>埋点</h3><blockquote>
+<p>所谓“埋点”，是数据采集领域（尤其是用户行为数据采集领域）的术语，指的是针对特定用户行为或事件进行捕获、处理和发送的相关技术及其实施过程</p>
 </blockquote>
-<p>常用的块级元素：<br>H、p、div、table、ul、ol、section等</p>
+<p><strong><em>埋点的技术实质</em></strong>，是先监听软件应用运行过程中的事件，当需要关注的事件发生时进行判断和捕获，然后获取必要的上下文信息，最后将信息整理后发送至服务器端。所监听的事件，通常由操作系统、浏览器、APP框架等平台提供，也可以在基础事件之上进行触发条件的自定义（如点击某一个特定按钮）。一般情况下，埋点可以通过监测分析工具提供的SDK来进行编程实现。<br><strong><em>埋点的业务意义显而易见</em></strong>，即帮助定义和获取分析人员真正需要的业务数据及其附带信息。在不同场景下，业务人员关注的信息和角度可能不同。典型的应用场景有面向数字营销领域的分析，以及面向产品运营领域的分析。前者注重来源渠道和广告效果，后者更在意产品本身流程和体验的优化。两者各有侧重，也可以有一些交叉。所以，对于不同的项目和分析目的，应当设计不同的埋点方案。</p>
+<p>近年来，<em>埋点的方法论上也出现了一些业界新趋势</em>，主要分为一下三种：</p>
 <ul>
-<li>行内元素<blockquote>
-<p>行内元素就是基本的语义级别元素，默认情况下，行内元素只能包含文本和其他行内元素</p>
-</blockquote>
-</li>
+<li><strong><em>代码埋点</em></strong> 在需要埋点的节点直接调用接口上传数据，代表方友盟。</li>
+<li><strong><em>可视化埋点</em></strong> 通过可视化工具配置采集节点，在前端自动解析配置并上报埋点数据，代表方案是已经开源的<a href="https://github.com/mixpanel" target="_blank" rel="external">Mixpanel</a>。</li>
+<li><strong><em>无埋点</em></strong> 并不是没有埋点，而是在前端采集所有数据并上报，然后在后端通过计算过滤出有用的数据，代表是国内的GrowingIO。</li>
 </ul>
-<p>常用的行内元素：<br>a、span、input等</p>
-<h4 id="webkit之dom树构建流程分析httpblogcsdnnetsauphyarticledetails50168801"><a href="#WebKit之DOM树构建流程分析：http-blog-csdn-net-sauphy-article-details-50168801" class="headerlink" title="WebKit之DOM树构建流程分析：http://blog.csdn.net/sauphy/article/details/50168801"></a>WebKit之DOM树构建流程分析：<a href="http://blog.csdn.net/sauphy/article/details/50168801" title="WebKit之DOM树构建流程分析" target="_blank" rel="external">http://blog.csdn.net/sauphy/article/details/50168801</a></h4><h4 id="一个网页的基本结构"><a href="#一个网页的基本结构" class="headerlink" title="一个网页的基本结构"></a>一个网页的基本结构</h4><pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;title&gt;&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div&gt;
-        &lt;h1&gt;这是一个标题H标签&lt;/h1&gt;
-        &lt;p&gt;这是一个段落标签&lt;/p&gt;
-        &lt;div&gt;
-            &lt;a href=&quot;#&quot;&gt;这是a标签&lt;/a&gt;
-        &lt;/div&gt;          
-    &lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><ul>
-<li><code>&lt;!DOCTYPE html&gt;</code>不是html标签，它用来告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。  </li>
-<li>所有html文件必须都要有一个<code>&lt;html&gt;</code>标签。  </li>
-<li><code>&lt;html&gt;</code>标签内包括两个部分，head和body</li>
-<li><code>&lt;head&gt;</code>元素用于包含整个文档的一般信息，比如文档的标题<code>&lt;title&gt;</code>元素用于包含标题，对整个文档的描述，文档的关键字等等。  </li>
-<li><code>&lt;body&gt;</code>元素包含文档的具体内容，我们的学习的html元素就是写在body标签内。<h2 id="css样式表"><a href="#CSS样式表" class="headerlink" title="CSS样式表"></a>CSS样式表</h2><blockquote>
-<p>css样式表是用来定义一段html代码如何在浏览器上显示</p>
-<h3 id="css样式表的定义位置"><a href="#CSS样式表的定义位置。" class="headerlink" title="CSS样式表的定义位置。"></a>CSS样式表的定义位置。</h3></blockquote>
-</li>
-</ul>
+<p>三种埋点的对比：</p>
+<table>
+<thead>
+<tr>
+<th>埋点方式</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码埋点</td>
+<td>技术实现难度低，数据实时性好</td>
+<td>开发效率低，难于维护，数据准确性依赖于埋点的正确性，APP端依赖于发版，不具备热更新能力；web端热更新能力差。</td>
+</tr>
+<tr>
+<td>可视化埋点</td>
+<td>开发效率高，易于维护</td>
+<td>技术实现较为复杂，目前好的可视化埋点产品都是收费的</td>
+</tr>
+<tr>
+<td>无埋点</td>
+<td>易于维护，数据全面</td>
+<td>牺牲部分实时性，技术实现较为复杂</td>
+</tr>
+</tbody>
+</table>
+<p>Mixpanel主要流程如下：</p>
 <ol>
-<li>外部文件引用<br> <code>&lt;link rel=&quot;stylesheet&quot; href=&quot;CSS/test.CSS&quot;&gt;</code></li>
-<li>内部样式表<blockquote>
-<p>将样式信息写在style标签内，直接放在head标签中  </p>
-</blockquote>
-</li>
+<li>设置要埋点的网址-&gt;生成token</li>
+<li>在宿主页面插入代码</li>
+<li>在mixpanel页面点击进入宿主页面(<font color="red">下面这种方式在单页面应用中可能存在问题</font>)<br>a：在宿主URL添加上一段查询hash代码<br>b：获取hash代码解析出state并保存到sessionStorage<br>c：删除宿主URL后的hash代码<br>d：初始化<br>e：判断是否是在编辑状态下</li>
 </ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="css">  </span></div><div class="line">        <span class="selector-tag">div</span>&#123;  </div><div class="line">                <span class="attribute">background</span>: red;  </div><div class="line">            &#125;  </div><div class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div></pre></td></tr></table></figure>
-<font color="red">标准情况下，style必须要放在head标签内，如果将style放在其他标签内其实也是生效的，如放在div标签内。</font><br>3.  内联样式表<br>&gt;将样式信息直接通过属性style写在开始标签内<br><br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> style=<span class="string">"color:red;"</span>&gt;<span class="number">123</span>&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure><br><br>#### 样式表的优先级（4的优先级最大）<br>1. 浏览器缺省设置（每个浏览器的缺省设置不同，一般情况下都会先将缺省样式进行重置）<br>##### <strong>reset.css</strong>  （以下代码未必会都用到，所以在使用的时候挑选自己需要的即可，也可自行百度reset.css）  #<br><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line">    <span class="comment">/* </span></div><div class="line">    html5doctor.com Reset Stylesheet</div><div class="line">    v1.4.1 </div><div class="line">    2010-03-01</div><div class="line">    Author: Richard Clark - http://richclarkdesign.com</div><div class="line">    */</div><div class="line">    </div><div class="line">    <span class="selector-tag">html</span>, <span class="selector-tag">body</span>, <span class="selector-tag">div</span>, <span class="selector-tag">span</span>, <span class="selector-tag">object</span>, <span class="selector-tag">iframe</span>,</div><div class="line">    <span class="selector-tag">h1</span>, <span class="selector-tag">h2</span>, <span class="selector-tag">h3</span>, <span class="selector-tag">h4</span>, <span class="selector-tag">h5</span>, <span class="selector-tag">h6</span>, <span class="selector-tag">p</span>, <span class="selector-tag">blockquote</span>, pre,</div><div class="line">    <span class="selector-tag">abbr</span>, <span class="selector-tag">address</span>, <span class="selector-tag">cite</span>, <span class="selector-tag">code</span>,</div><div class="line">    <span class="selector-tag">del</span>, <span class="selector-tag">dfn</span>, <span class="selector-tag">em</span>, <span class="selector-tag">img</span>, <span class="selector-tag">ins</span>, <span class="selector-tag">kbd</span>, <span class="selector-tag">q</span>, <span class="selector-tag">samp</span>,</div><div class="line">    small, <span class="selector-tag">strong</span>, sub, <span class="selector-tag">sup</span>, <span class="selector-tag">var</span>,</div><div class="line">    <span class="selector-tag">b</span>, <span class="selector-tag">i</span>,</div><div class="line">    <span class="selector-tag">dl</span>, <span class="selector-tag">dt</span>, <span class="selector-tag">dd</span>, <span class="selector-tag">ol</span>, <span class="selector-tag">ul</span>, <span class="selector-tag">li</span>,</div><div class="line">    <span class="selector-tag">fieldset</span>, <span class="selector-tag">form</span>, <span class="selector-tag">label</span>, <span class="selector-tag">legend</span>,</div><div class="line">    <span class="selector-tag">table</span>, <span class="selector-tag">caption</span>, <span class="selector-tag">tbody</span>, <span class="selector-tag">tfoot</span>, <span class="selector-tag">thead</span>, <span class="selector-tag">tr</span>, <span class="selector-tag">th</span>, <span class="selector-tag">td</span>,</div><div class="line">    <span class="selector-tag">article</span>, <span class="selector-tag">aside</span>, <span class="selector-tag">canvas</span>, <span class="selector-tag">details</span>, <span class="selector-tag">figcaption</span>, <span class="selector-tag">figure</span>, </div><div class="line">    <span class="selector-tag">footer</span>, <span class="selector-tag">header</span>, <span class="selector-tag">hgroup</span>, <span class="selector-tag">menu</span>, <span class="selector-tag">nav</span>, <span class="selector-tag">section</span>, <span class="selector-tag">summary</span>,</div><div class="line">    <span class="selector-tag">time</span>, <span class="selector-tag">mark</span>, <span class="selector-tag">audio</span>, <span class="selector-tag">video</span> &#123;</div><div class="line">        <span class="attribute">margin</span>:<span class="number">0</span>;</div><div class="line">        <span class="attribute">padding</span>:<span class="number">0</span>;</div><div class="line">        <span class="attribute">border</span>:<span class="number">0</span>;</div><div class="line">        <span class="attribute">outline</span>:<span class="number">0</span>;</div><div class="line">        <span class="attribute">font-size</span>:<span class="number">100%</span>;</div><div class="line">        <span class="attribute">vertical-align</span>:baseline;</div><div class="line">        <span class="attribute">background</span>:transparent;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="selector-tag">body</span> &#123;</div><div class="line">        <span class="attribute">line-height</span>:<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    :focus &#123;</div><div class="line">        <span class="attribute">outline</span>: <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="selector-tag">article</span>,<span class="selector-tag">aside</span>,<span class="selector-tag">canvas</span>,<span class="selector-tag">details</span>,<span class="selector-tag">figcaption</span>,<span class="selector-tag">figure</span>,</div><div class="line">    <span class="selector-tag">footer</span>,<span class="selector-tag">header</span>,<span class="selector-tag">hgroup</span>,<span class="selector-tag">menu</span>,<span class="selector-tag">nav</span>,<span class="selector-tag">section</span>,<span class="selector-tag">summary</span> &#123; </div><div class="line">        <span class="attribute">display</span>:block;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="selector-tag">nav</span> <span class="selector-tag">ul</span> &#123;</div><div class="line">        <span class="attribute">list-style</span>:none;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="selector-tag">blockquote</span>, <span class="selector-tag">q</span> &#123;</div><div class="line">        <span class="attribute">quotes</span>:none;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="selector-tag">blockquote</span>:before, <span class="selector-tag">blockquote</span>:after,</div><div class="line">    <span class="selector-tag">q</span>:before, <span class="selector-tag">q</span>:after &#123;</div><div class="line">        <span class="attribute">content</span>:<span class="string">''</span>;</div><div class="line">        <span class="attribute">content</span>:none;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="selector-tag">a</span> &#123;</div><div class="line">        <span class="attribute">margin</span>:<span class="number">0</span>;</div><div class="line">        <span class="attribute">padding</span>:<span class="number">0</span>;</div><div class="line">        <span class="attribute">border</span>:<span class="number">0</span>;</div><div class="line">        <span class="attribute">font-size</span>:<span class="number">100%</span>;</div><div class="line">        <span class="attribute">vertical-align</span>:baseline;</div><div class="line">        <span class="attribute">background</span>:transparent;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="selector-tag">ins</span> &#123;</div><div class="line">        <span class="attribute">background-color</span>:<span class="number">#ff9</span>;</div><div class="line">        <span class="attribute">color</span>:<span class="number">#000</span>;</div><div class="line">        <span class="attribute">text-decoration</span>:none;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="selector-tag">mark</span> &#123;</div><div class="line">        <span class="attribute">background-color</span>:<span class="number">#ff9</span>;</div><div class="line">        <span class="attribute">color</span>:<span class="number">#000</span>; </div><div class="line">        <span class="attribute">font-style</span>:italic;</div><div class="line">        <span class="attribute">font-weight</span>:bold;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="selector-tag">del</span> &#123;</div><div class="line">        <span class="attribute">text-decoration</span>: line-through;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="selector-tag">abbr</span>[title], <span class="selector-tag">dfn</span>[title] &#123;</div><div class="line">        <span class="attribute">border-bottom</span>:<span class="number">1px</span> dotted <span class="number">#000</span>;</div><div class="line">        <span class="attribute">cursor</span>:help;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="selector-tag">table</span> &#123;</div><div class="line">        <span class="attribute">border-collapse</span>:collapse;</div><div class="line">        <span class="attribute">border-spacing</span>:<span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    hr &#123;</div><div class="line">        <span class="attribute">display</span>:block;</div><div class="line">        <span class="attribute">height</span>:<span class="number">1px</span>;</div><div class="line">        <span class="attribute">border</span>:<span class="number">0</span>;   </div><div class="line">        <span class="attribute">border-top</span>:<span class="number">1px</span> solid <span class="number">#cccccc</span>;</div><div class="line">        <span class="attribute">margin</span>:<span class="number">1em</span> <span class="number">0</span>;</div><div class="line">        <span class="attribute">padding</span>:<span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="selector-tag">input</span>, select &#123;</div><div class="line">        <span class="attribute">vertical-align</span>:middle;</div><div class="line">&#125;</div></pre></td></tr></table></figure><br><br>2. 外部样式表<br>3. 内部样式表（位于 <head> 标签内部）<br>4. 内联样式（元素内部）<br><br>#### CSS重点知识点<br>##### 选择器<br>- 内联样式<br>对于内联样式来说，不存在选择器的问题，样式写在哪个标签上样式就针对哪个标签以及标签下的子标签:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"font-size:12px;"</span>&gt;</span>这个字体是12px</div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>p标签的字体也是12px<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure><br><br>- 内部样式表、外部样式表<br>想要设置一个标签的样式，首先要选择这个标签，例如要设置整个页面的背景色为红色，可设置：<code>body{background:red}</code><br>##### 那么如何选择其他的元素呢？<br>###### 元素的id：<br>&gt;元素的id就是一个元素的唯一标识符，一个html页面内，理论上一个id只能表示一个标签，可是对于css选择器来说，即使一个id被定义为多个元素了，这个样式对于多个id也是生效的，但是对于js选择器来说，如果id被重复使用了，js选择器选择的只是第一个元素。<code>&lt;p id=&quot;p1&quot;&gt;1&lt;/p&gt;</code><br><br>###### 元素的class:<br>&gt;元素的class就是表示一个元素所属的类，一个class可以被用于多个元素，没有限制，一般情况先，写css样式表的时候尽量用class而不是id。<code>&lt;p class=&quot;p1&quot;&gt;1&lt;/p&gt;&lt;p class=&quot;p1&quot;&gt;1&lt;/p&gt;</code><br><br>- 元素选择器：<br>    1. 标签选择器就是通过标签名选择一个元素，如p、a等<br>    2. id选择器 #div1<br>    3. class选择器 .class1<br>&gt;这三种选择器可以同时使用，为并且的关系如div.class1#div1就是选择一个class为class1并且id为div1的div标签。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">    <span class="selector-tag">p</span>&#123;<span class="attribute">font-size</span>:<span class="number">12px</span>&#125;<span class="comment">/*设置页面内所有p标签的font-size=12px*/</span></div><div class="line">    <span class="selector-id">#tag-p</span>&#123;<span class="attribute">font-size</span>:<span class="number">14px</span>;&#125;<span class="comment">/*设置页面内id为tag-p的元素的font-size=14px*/</span></div><div class="line">    <span class="selector-class">.class-p</span>&#123;<span class="attribute">font-size</span>:<span class="number">16px</span>;&#125;<span class="comment">/*设置页面内class为class-p元素的font-size=16px*/</span></div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure><br><br>- 关系选择器：<br>    1. 后代选择器：如:div p{}，也就是div内包含的所有p元素，后代也就是div的所有后代<br>    2. 子选择器：如:div&gt;p{}，代表div内第一层p元素，子就是孩子的意思。<br>    3. 相邻选择器：如：div+p{}，紧贴在div元素之后p元素<br>    4. 兄弟选择器：如：div~p{}，div元素后面的所有兄弟元素p，兄弟元素是指同级元素。<br>&gt;需要注意的是，兄弟元素是指同一个父元素下的元素，如：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'div1'</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>这个是前面的兄弟元素，选择不到<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"span1"</span>&gt;</span>123<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>这个是兄弟元素<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>这个是兄弟元素<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>这个不是.span1的兄弟元素<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure><br><br>- 属性选择器：根据元素属性选择元素，具体请参见css手册<br>    1. E[att]<br>    2. E[att=”val”]<br>    3. E[att~=”val”]<br>    4. E[att^=”val”]<br>    5. E[att$=”val”]<br>    6. E[att*=”val”]<br>    7. E[att|=”val”]<br>- 伪类选择器：<br>&gt;伪类对元素进行分类是基于特征(characteristics)而不是它们的名字、属性或者内容；原则上特征是不可以从文档树上推断得到的。<br><font color="green">伪类选择器有很多，以下只介绍几种比较重要的伪类选择器</font><br>1. a:hover{} 当鼠标放在a标签上时的样式<br>2. div:nth-child(n) <font color="red">n从1开始</font>，这个选择器一般要结合关系选择器一起用，如：<br>- div div:nth-child(1){}：表示div元素的后代元素div，并且这个div位于其后代元素的第一位：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span>&gt;我是<span class="keyword">div</span>的第一个后代元素,这个选择器会选择到我&lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;<span class="keyword">div</span>&gt;</div><div class="line">    &lt;p&gt;<span class="number">123</span>&lt;/p&gt;</div><div class="line">    &lt;<span class="keyword">div</span>&gt;我是<span class="keyword">div</span>的第一个为<span class="keyword">div</span>的后代元素，但是我<span class="keyword">div</span>元素下第二个后代元素，这个选择器选择不到我&lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;<span class="keyword">div</span>&gt;</div><div class="line">    &lt;h1&gt;</div><div class="line">        &lt;<span class="keyword">div</span>&gt;我是<span class="keyword">div</span>的后代选择器，但是这个<span class="keyword">div</span>的第一个后代选择器选择的是h1元素，所以这个选择器选择不到我&lt;/<span class="keyword">div</span>&gt;</div><div class="line">    &lt;/h1&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure><br><br>&gt;这个选择器比较绕：我们可以这样理解：div&gt;div p:nth-child(2),空格表示后代选择器，那么我们先定位到这个伪类选择器所属选择前面的选择器，也就是div&gt;div的所有后代元素，在div&gt;div的所有后代元素中，我们先找到第二个后代元素，如果第二个后代元素是p标签，那么这个p标签就是我们选择的标签，如果第二个不是p那么这个选择器不生效。<br>3. nth-of-type(n) 如果我们要选择的是特定类型的第n个选择器，用nth-of-type(n)<br>- 伪对象选择器<br>1. E:before,E:after 选择器在被选元素的内容前面/后面插入内容,这个元素在js选择器中不能被选取<br>&gt;伪元素选择器一般可用于给元素加图标，加编号等<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:before</span>&#123;</div><div class="line">    <span class="attribute">content</span>:<span class="string">""</span><span class="comment">/*必要属性，伪元素的内容，可以为空或者文字，或counter(item)计数器*/</span></div><div class="line">    <span class="comment">/* 其他属性和普通元素一样 */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><br><br>2. 其他伪对象选择器请自行查看文档<br><br>##### 选择器优先级<br>&gt;当有多个规则同时作用于一个html元素上时，究竟哪个规则来定义这个元素呢？<br><br>1. 在属性后面使用!important关键字，这个属性的优先级永远最高：{border:none !important}<br>2. 作为style属性写在元素内的样式&gt;页面内style样式表&gt;外部样式表<br>3. ID选择器&gt;类选择器&gt;标签选择器&gt;通配符选择器&gt;浏览器自定义或继承<br>也可通过<a href="http://www.cnblogs.com/wangfupeng1988/p/4285251.html" target="_blank" rel="external">特指度</a>计算选择器的优先级<br><br>##### 属性<br>&gt;介绍了css选择器后，就可以为所选元素添加属性了，由于css属性非常多，下面只介绍一些常用的比较难理解的属性。其他属性请自行查看<a href="http://www.css88.com/book/css/" target="_blank" rel="external">文档</a><br><br>1. 定位<br>    - position:static/relative/absolute/fixed,默认static（相当于没有定位）<br>relative：对象遵循常规流，当添加top/right/bottom/left的时候，元素参照常规流的位置进行偏移。<br>absolute：对象脱离常规流（不占用文档流位置），参照离自身最近的定位祖先根据top/right/bottom/left的值进行定位，如果没有定位祖先，则参照body的位置。<br>fixed：对象脱离常规流，但偏移定位是以窗口为参考。当出现滚动条时，对象不会随着滚动。<br><font color="red">需要注意的是，当position为absolute或fixed的时候，必须要写top或bottom和right或left的值，否则会出现意想不到的效果</font><br>    - z-index：默认auto，z-index的值越大，越渲染到上方。<br>这个属性针对定位元素，当不设置z-index的时候，元素的层叠顺序按照文档流的渲染顺讯，从上到下，从父到子。后渲染的在先渲染的元素上方。<br>2. 布局<br>    - display:inline/block/inline-block/none等<br>&gt;设置display的值可以改变一个元素的布局类型<br>none: 不显示，也不占据文档空间<br>inline：行内元素，行内元素不可以设置margin，padding，width，height的值<br>block：块级元素<br>inline-block：行内块元素，也就是这个元素不占据整行，但是又可以像block一样设置宽高等属性，inline-block有一个特点，如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure><br><br><font color="red">当设置li的display为inline-block时，li之间会有几个像素的间距，这是因为两个li之间有换行符或空格，如果不希望有间隙的话可以将两个li之间的空格和换行符删除掉，如下：</font><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;ul&gt;</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></div><div class="line">&lt;<span class="regexp">/ul&gt;</span></div></pre></td></tr></table></figure><br><br>&gt;display还有很多其他的布局类型，以上为比较常用的三种，其他类型可查阅文档。<br><br>    - visibility visible/hidden/collapse<br>&gt;对象可见性：设置一个对象是否可见，<font color="red">与display:none不同，display:none时，这个元素的宽和高都为0，当设置visibili:hidden时，虽然元素不显示，但是它依旧占据本该有的空间</font>  
+<p>下面是实现的简单流程图：</p>
+<div id="flowchart-0" class="flow-chart"></div>
 
-<pre><code>- float left/right/none
-</code></pre><blockquote>
-<p>浮动：当设置元素浮动时，浮动的元素会脱离正常的文档流，一般当我们需要将两个元素进行左右布局的时候，经常会使用浮动布局。<br><a href="http://www.zhangxinxu.com/wordpress/2010/01/css-float%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6%E3%80%81%E8%AF%A6%E8%A7%A3%E5%8F%8A%E6%8B%93%E5%B1%95%E4%B8%80/" title="CSS float浮动的深入研究、详解及拓展" target="_blank" rel="external">CSS float浮动的深入研究、详解及拓展</a></p>
-</blockquote>
-<pre><code>- overflow visible/auto/scroll/hidden  
-</code></pre><blockquote>
-<p>超出区域是否显示：<br>visible:显示<br>hidden:始终隐藏超出部分<br>auto:默认值，自动，当有内容超出元素区域的时候显示滚动条，不超时不显示<br>scroll:始终显示滚动条  </p>
-</blockquote>
-<pre><code>- overflow-x overflow-y  
-</code></pre><blockquote>
-<p>对x和y方向分别进行设置  </p>
-<font color="red"><a href="http://www.cnblogs.com/ysbpysbp/p/6135885.html?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">这里需要注意，如果同一个元素X,Y轴上，其中一个设置了visible，例外一个设置了scoll或者auto，这时候，visible属性自动转变为auto</a></font>
 
-</blockquote>
-<h5 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h5><p>[盒模型(<a href="http://www.jianshu.com/p/e06e5c07f741)],请参见这篇文章，我们需要了解的是margin/padding/width/height/border/box-sizing这几个属性的设置。" target="_blank" rel="external">http://www.jianshu.com/p/e06e5c07f741)],请参见这篇文章，我们需要了解的是margin/padding/width/height/border/box-sizing这几个属性的设置。</a>  </p>
-<h4 id="css的像素说明"><a href="#CSS的像素说明" class="headerlink" title="CSS的像素说明"></a>CSS的像素说明</h4><p><a href="http://www.cnblogs.com/koukouyifan/p/4066567.html" target="_blank" rel="external">一些关于Viewport与device-width的东西</a>  </p>
-<h3 id="如何将一个设计稿转成html静态文件"><a href="#如何将一个设计稿转成Html静态文件" class="headerlink" title="如何将一个设计稿转成Html静态文件"></a>如何将一个设计稿转成Html静态文件</h3><p>写起来太麻烦，我决定录个视频，应该会包括以下内容：  </p>
-<ol>
-<li>切图</li>
-<li>制作雪碧图</li>
-<li>photoshop的简单操作</li>
-</ol>
-<h2 id="javascript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><blockquote>
-<p>javascript的知识点非常多，它不像html一样，只了解基本用法，使用的时候查手册就可以了，js的基本知识一定要清楚，否则写代码的时候就无法下手了。 </p>
-<p><a href="http://www.jianshu.com/p/66f3aef3e131" target="_blank" rel="external">JavaScript 知识点整理</a><br><a href="http://www.cnblogs.com/souvenir/p/4969092.html" target="_blank" rel="external">关于函数参数传递</a><br><a href="http://www.jianshu.com/p/a8ce5341094c" target="_blank" rel="external">正则表达式</a></p>
-<p><a href="https://mehuo.github.io/2017/10/17/opener/" target="_blank" rel="external">window.opener关于两个页面间的数据交互</a> <font color="#ccc">by 亚楠</font>  </p>
-</blockquote>
-<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><blockquote>
-<p><a href="http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html" target="_blank" rel="external">Javascript的this用法</a><br><a href="https://segmentfault.com/a/1190000002640298" target="_blank" rel="external">JavaScript中的this陷阱的最全收集–没有之一</a></p>
-</blockquote>
-<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a><a href="http://www.runoob.com/regexp/regexp-syntax.html" target="_blank" rel="external">正则表达式</a></h3><h3 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h3><blockquote>
-<p><font color="red">定时器的内容在js高级程序设计中讲解的非常详细</font><br><a href="http://www.jb51.net/article/99174.htm" target="_blank" rel="external">JavaScript定时器实现的原理分析</a></p>
-</blockquote>
-<h3 id="窗口大小"><a href="#窗口大小" class="headerlink" title="窗口大小"></a>窗口大小</h3><blockquote>
-<p><a href="http://www.cnblogs.com/dolphinX/archive/2012/11/19/2777756.html" target="_blank" rel="external">JavaScript获取DOM元素位置和尺寸大小</a><br><a href="http://www.jianshu.com/p/187c0145248c" target="_blank" rel="external">JS &amp; jQuery 获取元素位置尺寸</a></p>
-</blockquote>
-<h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><blockquote>
-<p><a href="http://www.jianshu.com/p/496a223f9f26" target="_blank" rel="external">JavaScript中的事件处理机制</a><br><a href="http://www.jianshu.com/p/5dc94eb0a27e" target="_blank" rel="external">《JavaScript 闯关记》之事件</a><br><a href="http://www.w3school.com.cn/jsref/dom_obj_event.asp" target="_blank" rel="external">HTML DOM Event 对象各个事件详细信息</a></p>
-</blockquote>
-<h3 id="浏览器cookie"><a href="#浏览器cookie" class="headerlink" title="浏览器cookie"></a>浏览器cookie</h3><blockquote>
-<p><a href="http://blog.csdn.net/fangaoxin/article/details/6952954/" target="_blank" rel="external">Cookie/Session机制详解</a><br><a href="http://www.runoob.com/js/js-cookies.html" target="_blank" rel="external">JavaScript Cookie</a></p>
-</blockquote>
-<h3 id="httprequest和ajax请求"><a href="#HttpRequest和Ajax请求" class="headerlink" title="HttpRequest和Ajax请求"></a>HttpRequest和Ajax请求</h3><blockquote>
-<p><a href="http://www.cnblogs.com/li0803/archive/2008/11/03/1324746.html" target="_blank" rel="external">HTTP协议详解（真的很经典）</a><br><a href="http://www.cnblogs.com/TankXiao/archive/2012/02/13/2342672.html" target="_blank" rel="external">http协议详解</a><br><a href="http://www.ruanyifeng.com/blog/2016/08/http.html" target="_blank" rel="external">http协议入门</a></p>
-<p><a href="http://www.cnblogs.com/charling/p/3579704.html" target="_blank" rel="external">原生js–http请求</a><br><a href="http://jquery.cuishifeng.cn/jQuery.Ajax.html" target="_blank" rel="external">ajax</a></p>
-</blockquote>
-<h4 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a><a href="http://jiangsha.iteye.com/blog/1733864" target="_blank" rel="external">跨域</a></h4><h3 id="json和js对象"><a href="#JSON和js对象" class="headerlink" title="JSON和js对象"></a>JSON和js对象</h3><blockquote>
-<p><font color="red">JSON和js对象是不一样的，请注意</font><br><a href="http://www.cnblogs.com/leeyen/p/6806875.html" target="_blank" rel="external">Json 与 javascript 对象的区别</a><br><a href="http://www.zhufengpeixun.cn/jishuziliao/javaScriptzhuanti/2015-04-10/325.html" target="_blank" rel="external">JSON是什么？JSON和JS对象的区别和JSON的基本应用</a><br><a href="http://kb.cnblogs.com/page/139725/" target="_blank" rel="external">说说JSON和JSONP，也许你会豁然开朗</a></p>
-</blockquote>
-</head>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;前端学习路径&quot;&gt;&lt;a href=&quot;#前端学习路径&quot; class=&quot;headerlink&quot; title=&quot;前端学习路径&quot;&gt;&lt;/a&gt;前端学习路径&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h2 id=&quot;参考文档&quot;&gt;&lt;a href=&quot;#参考文档&quot; class=&quot;headerl
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>基础编程模式</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(1)%EF%BC%9A%E5%9F%BA%E7%A1%80%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/</id>
-    <published>2016-10-12T16:00:00.000Z</published>
-    <updated>2016-10-13T07:44:59.316Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>俗话说，“PHP是世界上最好的语言”，因为PHP什么都能干。但是在PHP编程中，你是否会遇到这样的困惑：明明是相同的需求，但是之前写的代码却并不能重用，稍微修改不满足需求，大改又会让页面变样。<br>是的，由于PHP什么都能干，但是高度灵活性降低了代码的结构性。虽然可以利用三方框架来解决问题，但问题的根本在于缺乏设计模式。<br>本系列文章将由浅入深的介绍各种设计模式。</p>
-<h2 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h2><p>面向对象编程，Object-Oriented Programming(OOP)作为最基本的设计模式并不是什么新鲜的话题，但是大部分新手的PHP编程都是在写流水账，各种拼接字符串，所以这里还是要提一下。<br><a href="https://en.wikipedia.org/wiki/Object-oriented_programming" target="_blank" rel="external">Object-Oriented Programming</a>的概念这里就不说了，毕竟很多人都明白，但是如何在PHP中使用？<br>假设你需要在页面上显示不同的用户类型，如电脑用户、手机用户等，那么你可以将“显示”这件事抽象为一个类，如：</p>
-<pre><code>&lt;?php
-class ShowAgent {
-  private $agent;
-  public function __construct() {
-    $this-&gt;agent = $_SERVER[&apos;HTTP_USER_AGENT&apos;];
-    echo $this-&gt;agent;
-  }
-}
-$showAgent = new ShowAgent();
-?&gt;
-</code></pre><h2 id="调试技巧"><a href="#调试技巧" class="headerlink" title="调试技巧"></a>调试技巧</h2><p>在很多PHP默认环境中，调试功能是关闭的。打开调试功能又需要配置php.ini文件，其实有一个简单的方法：</p>
-<pre><code>&lt;?php
-ini_set(&quot;display_errors&quot;, &quot;1&quot;);
-ERROR_REPORTING(E_ALL);
-?&gt;
-</code></pre><p>将这段代码加入到你的代码中，甚至可以require或者include进去，方便调试。</p>
-<h2 id="流水账编程"><a href="#流水账编程" class="headerlink" title="流水账编程"></a>流水账编程</h2><p>这里列出流水账编程，并不是让你学习，而是指出何种编程不推荐使用：</p>
-<pre><code>&lt;?php
-$total = &quot;Total number is &quot;;
-$number = &quot;6&quot;;
-$totalNumber = $total.$number;
-echo $totalNumber;
-?&gt;
-</code></pre><p>这段代码并没有错，但是以后再也无法重用了，对吧？每次遇到相同问题，你都需要反复拼接。</p>
-<h2 id="面向过程编程"><a href="#面向过程编程" class="headerlink" title="面向过程编程"></a>面向过程编程</h2><p>面向过程编程曾经很流行，缺点也是无法维护，例如：</p>
-<pre><code>&lt;?php
-function showTotal($total, $number) {
-  $totalNumber = $total.$number;
-  echo $totalNumber;
-}
-showTotal(&quot;Total number is&quot;, &quot;6&quot;);
-?&gt;
-</code></pre><p>这段代码同样没有错，但是时间久了，由于缺乏类的概念，showTotal在各种应用场景缺乏灵活性，你还是需要重写代码。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>转变编程的思维需要花费的时间是很长的，但是记住：算法提高程序运行的速度，而设计模式提高编程的速度。</p>
+<p>参考文档：<br><a href="http://help.zhugeio.com/hc/kb/article/1068533/" target="_blank" rel="external">诸葛IO的JS可视化埋点-使用指南</a><br><a href="http://help.zhugeio.com/hc/kb/article/1060006/" target="_blank" rel="external">诸葛IO的JS全埋点接入文档</a><br>[诸葛IO文档][4]</p>
+<p>  [4]: <a href="https://docs.zhugeio.com/quickstart/" target="_blank" rel="external">https://docs.zhugeio.com/quickstart/</a><script src="https://cdn.bootcss.com/raphael/2.2.7/raphael.min.js"></script><script src="https://cdn.bootcss.com/flowchart/1.7.0/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">start=>start: 加载JS
+cond=>condition: 判断sessionStorage是否存在指定key
+estep1=>operation: 加载editor.js
+estep2=>operation: 显示添加埋点的导航栏
+estep3=>operation: 点击添加按钮开始埋点
+estep4=>operation: 点击要埋点的元素
+estep5=>operation: 弹出配置对话框进行配置
+estep6=>operation: 点击保存配置完毕
+estep7=>operation: 点击退出按钮退出编辑
+nstep1=>operation: 从服务器获取埋点数据
+nstep2=>operation: 在页面找到对应的元素并绑定事件
+start->cond
+cond(yes)->estep1->estep2->estep3->estep4->estep5->estep6->estep7->estep3
+cond(no)->nstep1->nstep2</textarea><textarea id="flowchart-0-options" style="display: none">{"theme":"simple","scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;俗话说，“PHP是世界上最好的语言”，因为PHP什么都能干。但是在PHP编程中，你是否会遇到这样的困惑：明明是相同的需求，但是之前写的代码却
+      &lt;h3 id=&quot;埋点&quot;&gt;&lt;a href=&quot;#埋点&quot; class=&quot;headerlink&quot; title=&quot;埋点&quot;&gt;&lt;/a&gt;埋点&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;所谓“埋点”，是数据采集领域（尤其是用户行为数据采集领域）的术语，指的是针对特定用户行为或事件进行捕获、处理和发送
     
     </summary>
     
-      <category term="php" scheme="http://ronghuaxueleng.github.io/categories/php/"/>
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
     
     
-      <category term="php" scheme="http://ronghuaxueleng.github.io/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>抽象类和接口</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(2)%EF%BC%9A%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/</id>
-    <published>2016-10-12T16:00:00.000Z</published>
-    <updated>2016-10-13T07:48:50.518Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>对于编程来说，对事物的抽象是一个老生常谈的话题，抽象问题更利于面向对象编程以及程序设计模式。<br>和C/C++，Java，Python等语言一样，PHP也支持面向对象，但是又有略微区别，如PHP支持在接口中定义常量，但是不支持抽象变量。</p>
-<h2 id="抽象abstraction"><a href="#抽象-Abstraction" class="headerlink" title="抽象/Abstraction"></a>抽象/Abstraction</h2><blockquote>
-<p>对事物的抽象是指，区别两个不同事物之间的本质特征，这两个事物应该在某个视角上有明确的区分界限。</p>
-</blockquote>
-<p>如，鲸鱼和鲤鱼，这两个事物在动物的视角上，有明确的区分界限，属于不同的动物；但是在水生动物的视角上，他们属于同一种动物的抽象。<br>合理的对问题进行抽象，构造模型，将更容易通过编程来解决问题。<br>记住：抽象是编程解决问题的基础，越复杂的问题，越需要一开始就对问题进行抽象，而不是直接写代码。</p>
-<h2 id="抽象类abstract-class"><a href="#抽象类-Abstract-Class" class="headerlink" title="抽象类/Abstract Class"></a>抽象类/Abstract Class</h2><p>抽象类是一个编程概念，PHP中叫Abstract Classes。在设计模式中，抽象类不能够被实例化/初始化，但是可以依靠具体类的继承来实现。<br>有点抽象，对吧？用代码来解释：</p>
-<pre><code>&lt;?php
-abstract class Animal {
-  public $name;
-  abstract public function eat($food);
-}
-?&gt;
-</code></pre><p>定义了动物这个抽象类，动物的属性是名字name，然后有一个方法是吃食物eat food。<br>为什么动物是抽象类？因为动物这个物种并不是一个存在于自然界的东西，它是人类脑海里抽象出的东西。存在自然界的是鲸鱼和鲤鱼这样的确定性动物。<br>比如鲸鱼的概念，应该是属于动物，继承Animal类，我们定义鲸鱼这个类以及吃东西的方法：</p>
-<pre><code>&lt;?php
-class Whale extends Animal {
-  public function __construct() {
-    $this-&gt;name = &quot;Whale&quot;;
-  }
-  public function eat($food) {
-    echo $this-&gt;name . &quot; eat &quot; . $food . &quot;.\n&quot;;
-  }
-}
-?&gt;
-</code></pre><p>现在我们可以初始鲸鱼类，并且调用吃的方法了：</p>
-<pre><code>&lt;?php
-  $whale = new Whale();
-  $whale-&gt;eat(&quot;fish&quot;);
-?&gt;
-</code></pre><p>运行一下：</p>
-<pre><code>$ php Whale.php
-Whale eat fish.
-</code></pre><h2 id="接口interface"><a href="#接口-Interface" class="headerlink" title="接口/Interface"></a>接口/Interface</h2><p>PHP也支持面向过程编程概念中的接口，下面同样用鲸鱼的例子来讲述：</p>
-<pre><code>&lt;?php
-interface IAction {
-  public function eat($food);
-  public function swim();
-}
-?&gt;
-</code></pre><p>同样定义一个鲸鱼类，来实现上述接口：</p>
-<pre><code>&lt;?php
-class Whale implements IAction {
-  public function eat($food) {
-    echo &quot;Whale eat &quot; . $food . &quot;\n.&quot;;
-  }
-  public swim() {
-    echo &quot;Whale is swimming.\n&quot;;
-  }
-}
-?&gt;
-</code></pre><p>现在我们可以初始鲸鱼类，并且调用吃的方法了：</p>
-<pre><code>&lt;?php
-  $whale = new Whale();
-  $whale-&gt;eat(&quot;fish&quot;);
-?&gt;
-</code></pre><p>运行一下：</p>
-<pre><code>$ php Whale.php
-Whale eat fish.
-</code></pre><h2 id="抽象类vs接口"><a href="#抽象类vs接口" class="headerlink" title="抽象类vs接口"></a>抽象类vs接口</h2><p>上面的抽象类和接口的例子，看上去是不是类似？事实上，对于PHP编程来说，抽象类可以实现的功能，接口也可以实现。<br>抽象类的接口的区别，不在于编程实现，而在于程序设计模式的不同。<br>一般来讲，抽象用于不同的事物，而接口用于事物的行为。<br>如：水生生物是鲸鱼的抽象概念，但是水生生物并不是鲸鱼的行为，吃东西才是鲸鱼的行为。<br>对于大型项目来说，对象都是由基本的抽象类继承实现，而这些类的方法通常都由接口来定义。<br>此外，对于事物属性的更改，建议使用接口，而不是直接赋值或者别的方式，如：</p>
-<pre><code>&lt;?php
-interface IAction {
-  public function eat();
-}
-class Whale implements IAction {
-  public function eat() {
-    echo &quot;Whale eat fish.\n&quot;;
-  }
-}
-class Carp implements IAction {
-  public function eat() {
-    echo &quot;Carp eat moss.\n&quot;;
-  }
-}
-
-class Observer {
-  public function __construct() {
-    $whale = new Whale();
-    $carp = new Carp();
-    $this-&gt;observeEat($whale);
-    $this-&gt;observeEat($carp);
-  }
-  function observeEat(IAction $animal) {
-    $animal-&gt;eat();
-  }
-}
-$observer = new observer();
-?&gt;
-</code></pre><p>运行一下：</p>
-<pre><code>$ php Observer.php
-Whale eat fish.
-Carp eat moss.
-</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>好的设计模式是严格对问题进行抽象，虽然抽象类和接口对于编程实现来说是类似的，但是对于程序设计模式是不同的。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;对于编程来说，对事物的抽象是一个老生常谈的话题，抽象问题更利于面向对象编程以及程序设计模式。&lt;br&gt;和C/C++，Java，Python等语
-    
-    </summary>
-    
-      <category term="php" scheme="http://ronghuaxueleng.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://ronghuaxueleng.github.io/tags/php/"/>
+      <category term="埋点,可视化,Mixpanel" scheme="http://ronghuaxueleng.github.io/tags/%E5%9F%8B%E7%82%B9-%E5%8F%AF%E8%A7%86%E5%8C%96-Mixpanel/"/>
     
   </entry>
   
@@ -450,6 +235,226 @@ class Price {
   </entry>
   
   <entry>
+    <title>从 JavaScript 数组去重谈性能优化</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/13/javascript/%E4%BB%8E%20JavaScript%20%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E8%B0%88%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/13/javascript/从 JavaScript 数组去重谈性能优化/</id>
+    <published>2016-10-12T16:00:00.000Z</published>
+    <updated>2016-10-13T08:34:52.608Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h2><p>JavaScript 数组去重经常出现在前端招聘的笔试题里，比如：</p>
+<blockquote>
+<p>有数组 <code>var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, &#39;c&#39;, 1, &#39;&#39;, 1, 0]</code>，请用 JavaScript<br>实现去重函数 <code>unqiue</code>，使得 <code>unique(arr)</code> 返回 <code>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, 1, &#39;&#39;]</code></p>
+</blockquote>
+<p>作为笔试题，考点有二：</p>
+<ol>
+<li><p><strong>正确</strong>。别小看这个考点，考虑到 JavaScript 经常要在浏览器上运行，在千姿百态的各种浏览器环境下要保障一个函数的正确性可不是一件简单的事，不信你继续读完这篇博客。</p>
+</li>
+<li><p><strong>性能</strong>。虽然大部分情况下 JavaScript 语言本身（狭义范畴，不包含 DOM 等延拓）不会导致性能问题，但很不幸这是一道考题，因此面试官们还是会把性能作为一个考点。</p>
+</li>
+</ol>
+<p>在继续往下阅读之前，建议先实现一个自己认为最好的版本。</p>
+<h2 id="直觉方案"><a href="#直觉方案" class="headerlink" title="直觉方案"></a>直觉方案</h2><p>对于数组去重，只要写过程序的，立刻就能得到第一个解法：</p>
+<pre><code>function unique(arr) {
+  var ret = []
+
+  for (var i = 0; i &lt; arr.length; i++) {
+    var item = arr[i]
+    if (ret.indexOf(item) === -1) {
+      ret.push(item)
+    }
+  }
+
+  return ret
+}
+</code></pre><p>直觉往往很靠谱，在现代浏览器下，上面这个函数很正确，性能也不错。但前端最大的悲哀也是挑战之处在于，要支持各种运行环境。在 IE6-8 下，数组的<br><code>indexOf</code> 方法还不存在。直觉方案要稍微改造一下：</p>
+<pre><code>var indexOf = [].indexOf ?
+    function(arr, item) {
+      return arr.indexOf(item)
+    } :
+    function indexOf(arr, item) {
+      for (var i = 0; i &lt; arr.length; i++) {
+        if (arr[i] === item) {
+          return i
+        }
+      }
+      return -1
+    }
+
+function unique(arr) {
+  var ret = []
+
+  for (var i = 0; i &lt; arr.length; i++) {
+    var item = arr[i]
+    if (indexOf(ret, item) === -1) {
+      ret.push(item)
+    }
+  }
+
+  return ret
+}
+</code></pre><p>写到这一步，正确性已没问题，但性能上，两重循环会让面试官们看了不爽。</p>
+<h2 id="优化方案"><a href="#优化方案" class="headerlink" title="优化方案"></a>优化方案</h2><p>一谈到优化，往往就是八仙过海、百花齐放。但八仙往往不接地气，百花则很容易招来臭虫。数组去重的各种优化方案在此不一一讨论，下面只说最常用效果也很不错的一种。</p>
+<pre><code>function unique(arr) {
+  var ret = []
+  var hash = {}
+
+  for (var i = 0; i &lt; arr.length; i++) {
+    var item = arr[i]
+    var key = typeof(item) + item
+    if (hash[key] !== 1) {
+      ret.push(item)
+      hash[key] = 1
+    }
+  }
+
+  return ret
+}
+</code></pre><p>核心是构建了一个 <code>hash</code> 对象来替代 <code>indexOf</code>. 注意在 JavaScript 里，对象的键值只能是字符串，因此需要 <code>var key =
+typeof(item) + item</code> 来区分数值 <code>1</code> 和字符串 <code>&#39;1&#39;</code> 等情况。</p>
+<p>但优化真的很容易带来坑，比如上面的实现，对下面这种输入就无法判断：</p>
+<pre><code>unique([ new String(1), new Number(1) ])
+</code></pre><p>可以继续修改代码，做到性能和正确性都很好。但往往，这带来的结果并不好。</p>
+<h2 id="真实需求"><a href="#真实需求" class="headerlink" title="真实需求"></a>真实需求</h2><p>写到这里，这篇博客才算进入正题。程序员心中都会有一些梦想，比如写出又通用性能又好的普适函数。这种梦想是让程序员变得卓越的重要内驱力，但倘若不加以控制，也很容<br>易走入迷途。</p>
+<p>回到性能优化。这年头有各种各样优化，核心系统、数据库、网络、前端等等，所有这些优化，都必须回答下面这个问题：</p>
+<ol>
+<li><p><strong>当前有什么</strong>。在什么场景下进行优化，场景下有哪些具体限制。理清限制很重要，限制往往带来自由。</p>
+</li>
+<li><p><strong>究竟要什么</strong>。优化的目的是什么。是提高稳定性，还是增大吞吐量，抑或减少用户等待时间。在回答这个问题之前，优化都是徒劳。对这个问题的准确回答，能为优化带来具体可测量的参数，这样优化才有目标。</p>
+</li>
+<li><p><strong>可以放弃什么</strong>。鱼与熊掌不可兼得。优化的本质是在具体场景下的取舍、权衡。什么都不愿意放弃的话，优化往往会举步维艰。</p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;缘由&quot;&gt;&lt;a href=&quot;#缘由&quot; class=&quot;headerlink&quot; title=&quot;缘由&quot;&gt;&lt;/a&gt;缘由&lt;/h2&gt;&lt;p&gt;JavaScript 数组去重经常出现在前端招聘的笔试题里，比如：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;有数组 &lt;code&gt;var ar
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>抽象类和接口</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(2)%EF%BC%9A%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/</id>
+    <published>2016-10-12T16:00:00.000Z</published>
+    <updated>2016-10-13T07:48:50.518Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>对于编程来说，对事物的抽象是一个老生常谈的话题，抽象问题更利于面向对象编程以及程序设计模式。<br>和C/C++，Java，Python等语言一样，PHP也支持面向对象，但是又有略微区别，如PHP支持在接口中定义常量，但是不支持抽象变量。</p>
+<h2 id="抽象abstraction"><a href="#抽象-Abstraction" class="headerlink" title="抽象/Abstraction"></a>抽象/Abstraction</h2><blockquote>
+<p>对事物的抽象是指，区别两个不同事物之间的本质特征，这两个事物应该在某个视角上有明确的区分界限。</p>
+</blockquote>
+<p>如，鲸鱼和鲤鱼，这两个事物在动物的视角上，有明确的区分界限，属于不同的动物；但是在水生动物的视角上，他们属于同一种动物的抽象。<br>合理的对问题进行抽象，构造模型，将更容易通过编程来解决问题。<br>记住：抽象是编程解决问题的基础，越复杂的问题，越需要一开始就对问题进行抽象，而不是直接写代码。</p>
+<h2 id="抽象类abstract-class"><a href="#抽象类-Abstract-Class" class="headerlink" title="抽象类/Abstract Class"></a>抽象类/Abstract Class</h2><p>抽象类是一个编程概念，PHP中叫Abstract Classes。在设计模式中，抽象类不能够被实例化/初始化，但是可以依靠具体类的继承来实现。<br>有点抽象，对吧？用代码来解释：</p>
+<pre><code>&lt;?php
+abstract class Animal {
+  public $name;
+  abstract public function eat($food);
+}
+?&gt;
+</code></pre><p>定义了动物这个抽象类，动物的属性是名字name，然后有一个方法是吃食物eat food。<br>为什么动物是抽象类？因为动物这个物种并不是一个存在于自然界的东西，它是人类脑海里抽象出的东西。存在自然界的是鲸鱼和鲤鱼这样的确定性动物。<br>比如鲸鱼的概念，应该是属于动物，继承Animal类，我们定义鲸鱼这个类以及吃东西的方法：</p>
+<pre><code>&lt;?php
+class Whale extends Animal {
+  public function __construct() {
+    $this-&gt;name = &quot;Whale&quot;;
+  }
+  public function eat($food) {
+    echo $this-&gt;name . &quot; eat &quot; . $food . &quot;.\n&quot;;
+  }
+}
+?&gt;
+</code></pre><p>现在我们可以初始鲸鱼类，并且调用吃的方法了：</p>
+<pre><code>&lt;?php
+  $whale = new Whale();
+  $whale-&gt;eat(&quot;fish&quot;);
+?&gt;
+</code></pre><p>运行一下：</p>
+<pre><code>$ php Whale.php
+Whale eat fish.
+</code></pre><h2 id="接口interface"><a href="#接口-Interface" class="headerlink" title="接口/Interface"></a>接口/Interface</h2><p>PHP也支持面向过程编程概念中的接口，下面同样用鲸鱼的例子来讲述：</p>
+<pre><code>&lt;?php
+interface IAction {
+  public function eat($food);
+  public function swim();
+}
+?&gt;
+</code></pre><p>同样定义一个鲸鱼类，来实现上述接口：</p>
+<pre><code>&lt;?php
+class Whale implements IAction {
+  public function eat($food) {
+    echo &quot;Whale eat &quot; . $food . &quot;\n.&quot;;
+  }
+  public swim() {
+    echo &quot;Whale is swimming.\n&quot;;
+  }
+}
+?&gt;
+</code></pre><p>现在我们可以初始鲸鱼类，并且调用吃的方法了：</p>
+<pre><code>&lt;?php
+  $whale = new Whale();
+  $whale-&gt;eat(&quot;fish&quot;);
+?&gt;
+</code></pre><p>运行一下：</p>
+<pre><code>$ php Whale.php
+Whale eat fish.
+</code></pre><h2 id="抽象类vs接口"><a href="#抽象类vs接口" class="headerlink" title="抽象类vs接口"></a>抽象类vs接口</h2><p>上面的抽象类和接口的例子，看上去是不是类似？事实上，对于PHP编程来说，抽象类可以实现的功能，接口也可以实现。<br>抽象类的接口的区别，不在于编程实现，而在于程序设计模式的不同。<br>一般来讲，抽象用于不同的事物，而接口用于事物的行为。<br>如：水生生物是鲸鱼的抽象概念，但是水生生物并不是鲸鱼的行为，吃东西才是鲸鱼的行为。<br>对于大型项目来说，对象都是由基本的抽象类继承实现，而这些类的方法通常都由接口来定义。<br>此外，对于事物属性的更改，建议使用接口，而不是直接赋值或者别的方式，如：</p>
+<pre><code>&lt;?php
+interface IAction {
+  public function eat();
+}
+class Whale implements IAction {
+  public function eat() {
+    echo &quot;Whale eat fish.\n&quot;;
+  }
+}
+class Carp implements IAction {
+  public function eat() {
+    echo &quot;Carp eat moss.\n&quot;;
+  }
+}
+
+class Observer {
+  public function __construct() {
+    $whale = new Whale();
+    $carp = new Carp();
+    $this-&gt;observeEat($whale);
+    $this-&gt;observeEat($carp);
+  }
+  function observeEat(IAction $animal) {
+    $animal-&gt;eat();
+  }
+}
+$observer = new observer();
+?&gt;
+</code></pre><p>运行一下：</p>
+<pre><code>$ php Observer.php
+Whale eat fish.
+Carp eat moss.
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>好的设计模式是严格对问题进行抽象，虽然抽象类和接口对于编程实现来说是类似的，但是对于程序设计模式是不同的。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;对于编程来说，对事物的抽象是一个老生常谈的话题，抽象问题更利于面向对象编程以及程序设计模式。&lt;br&gt;和C/C++，Java，Python等语
+    
+    </summary>
+    
+      <category term="php" scheme="http://ronghuaxueleng.github.io/categories/php/"/>
+    
+    
+      <category term="php" scheme="http://ronghuaxueleng.github.io/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
     <title>适配器模式</title>
     <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(10)%EF%BC%9A%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
     <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(10)：适配器模式/</id>
@@ -573,6 +578,64 @@ class CarpAdapter implements Animal {
     <summary type="html">
     
       &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;在[PHP设计模式(七)：设计模式分类][2]中我们提到过结构设计模式(Structural&lt;br&gt;patterns)，结构设计模式专注于设
+    
+    </summary>
+    
+      <category term="php" scheme="http://ronghuaxueleng.github.io/categories/php/"/>
+    
+    
+      <category term="php" scheme="http://ronghuaxueleng.github.io/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基础编程模式</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(1)%EF%BC%9A%E5%9F%BA%E7%A1%80%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/</id>
+    <published>2016-10-12T16:00:00.000Z</published>
+    <updated>2016-10-13T07:44:59.316Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>俗话说，“PHP是世界上最好的语言”，因为PHP什么都能干。但是在PHP编程中，你是否会遇到这样的困惑：明明是相同的需求，但是之前写的代码却并不能重用，稍微修改不满足需求，大改又会让页面变样。<br>是的，由于PHP什么都能干，但是高度灵活性降低了代码的结构性。虽然可以利用三方框架来解决问题，但问题的根本在于缺乏设计模式。<br>本系列文章将由浅入深的介绍各种设计模式。</p>
+<h2 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h2><p>面向对象编程，Object-Oriented Programming(OOP)作为最基本的设计模式并不是什么新鲜的话题，但是大部分新手的PHP编程都是在写流水账，各种拼接字符串，所以这里还是要提一下。<br><a href="https://en.wikipedia.org/wiki/Object-oriented_programming" target="_blank" rel="external">Object-Oriented Programming</a>的概念这里就不说了，毕竟很多人都明白，但是如何在PHP中使用？<br>假设你需要在页面上显示不同的用户类型，如电脑用户、手机用户等，那么你可以将“显示”这件事抽象为一个类，如：</p>
+<pre><code>&lt;?php
+class ShowAgent {
+  private $agent;
+  public function __construct() {
+    $this-&gt;agent = $_SERVER[&apos;HTTP_USER_AGENT&apos;];
+    echo $this-&gt;agent;
+  }
+}
+$showAgent = new ShowAgent();
+?&gt;
+</code></pre><h2 id="调试技巧"><a href="#调试技巧" class="headerlink" title="调试技巧"></a>调试技巧</h2><p>在很多PHP默认环境中，调试功能是关闭的。打开调试功能又需要配置php.ini文件，其实有一个简单的方法：</p>
+<pre><code>&lt;?php
+ini_set(&quot;display_errors&quot;, &quot;1&quot;);
+ERROR_REPORTING(E_ALL);
+?&gt;
+</code></pre><p>将这段代码加入到你的代码中，甚至可以require或者include进去，方便调试。</p>
+<h2 id="流水账编程"><a href="#流水账编程" class="headerlink" title="流水账编程"></a>流水账编程</h2><p>这里列出流水账编程，并不是让你学习，而是指出何种编程不推荐使用：</p>
+<pre><code>&lt;?php
+$total = &quot;Total number is &quot;;
+$number = &quot;6&quot;;
+$totalNumber = $total.$number;
+echo $totalNumber;
+?&gt;
+</code></pre><p>这段代码并没有错，但是以后再也无法重用了，对吧？每次遇到相同问题，你都需要反复拼接。</p>
+<h2 id="面向过程编程"><a href="#面向过程编程" class="headerlink" title="面向过程编程"></a>面向过程编程</h2><p>面向过程编程曾经很流行，缺点也是无法维护，例如：</p>
+<pre><code>&lt;?php
+function showTotal($total, $number) {
+  $totalNumber = $total.$number;
+  echo $totalNumber;
+}
+showTotal(&quot;Total number is&quot;, &quot;6&quot;);
+?&gt;
+</code></pre><p>这段代码同样没有错，但是时间久了，由于缺乏类的概念，showTotal在各种应用场景缺乏灵活性，你还是需要重写代码。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>转变编程的思维需要花费的时间是很长的，但是记住：算法提高程序运行的速度，而设计模式提高编程的速度。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;俗话说，“PHP是世界上最好的语言”，因为PHP什么都能干。但是在PHP编程中，你是否会遇到这样的困惑：明明是相同的需求，但是之前写的代码却
     
     </summary>
     
@@ -1828,102 +1891,165 @@ ATCGATCG
   </entry>
   
   <entry>
-    <title>从 JavaScript 数组去重谈性能优化</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/13/javascript/%E4%BB%8E%20JavaScript%20%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E8%B0%88%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/13/javascript/从 JavaScript 数组去重谈性能优化/</id>
-    <published>2016-10-12T16:00:00.000Z</published>
-    <updated>2016-10-13T08:34:52.608Z</updated>
+    <title>迭代器模式</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/9%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/</id>
+    <published>2016-10-11T16:00:00.000Z</published>
+    <updated>2016-10-12T07:47:03.534Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h2><p>JavaScript 数组去重经常出现在前端招聘的笔试题里，比如：</p>
+    <content type="html"><![CDATA[<hr>
 <blockquote>
-<p>有数组 <code>var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, &#39;c&#39;, 1, &#39;&#39;, 1, 0]</code>，请用 JavaScript<br>实现去重函数 <code>unqiue</code>，使得 <code>unique(arr)</code> 返回 <code>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, 1, &#39;&#39;]</code></p>
+<p>迭代器模式是指提供一种方法，顺序访问一个聚合对象中的各个元素，而又不需要暴露该对象的内部表示。迭代器模式可以把迭代的过程从业务逻辑中分离出来，在使用迭代器模式之后，即使不关心内部构造，也可以按顺序访问其中的每个元素。</p>
 </blockquote>
-<p>作为笔试题，考点有二：</p>
-<ol>
-<li><p><strong>正确</strong>。别小看这个考点，考虑到 JavaScript 经常要在浏览器上运行，在千姿百态的各种浏览器环境下要保障一个函数的正确性可不是一件简单的事，不信你继续读完这篇博客。</p>
-</li>
-<li><p><strong>性能</strong>。虽然大部分情况下 JavaScript 语言本身（狭义范畴，不包含 DOM 等延拓）不会导致性能问题，但很不幸这是一道考题，因此面试官们还是会把性能作为一个考点。</p>
-</li>
-</ol>
-<p>在继续往下阅读之前，建议先实现一个自己认为最好的版本。</p>
-<h2 id="直觉方案"><a href="#直觉方案" class="headerlink" title="直觉方案"></a>直觉方案</h2><p>对于数组去重，只要写过程序的，立刻就能得到第一个解法：</p>
-<pre><code>function unique(arr) {
-  var ret = []
-
-  for (var i = 0; i &lt; arr.length; i++) {
-    var item = arr[i]
-    if (ret.indexOf(item) === -1) {
-      ret.push(item)
+<h3 id="jquery中的迭代器"><a href="#jQuery中的迭代器" class="headerlink" title="jQuery中的迭代器"></a>jQuery中的迭代器</h3><p>迭代器模式无非就是循环访问聚合对象中的各个元素。比如jQuery中的$.each函数，其中回调函数中的i为当前 索引，n为当前元素，代码如下</p>
+<pre><code>$.each([1, 2, 3], function(i, n) {
+    console.log(&apos;当前坐标：&apos; + i);
+    console.log(&apos;当前值：&apos; + n);
+});
+</code></pre><p>然而，作为一个合格的前端开发者，我们不应该只是会用，而更应该去研究他的实现，因此下面我们就来自己实现一个each函数</p>
+<pre><code>var each = function(ary, callback) {
+    for(var i = 0, l = ary.length; i &lt; l; i++) {
+        callback.call(ary[i], i, ary[i]); //把下标和元素当作参数传给callback函数
     }
-  }
-
-  return ret
-}
-</code></pre><p>直觉往往很靠谱，在现代浏览器下，上面这个函数很正确，性能也不错。但前端最大的悲哀也是挑战之处在于，要支持各种运行环境。在 IE6-8 下，数组的<br><code>indexOf</code> 方法还不存在。直觉方案要稍微改造一下：</p>
-<pre><code>var indexOf = [].indexOf ?
-    function(arr, item) {
-      return arr.indexOf(item)
-    } :
-    function indexOf(arr, item) {
-      for (var i = 0; i &lt; arr.length; i++) {
-        if (arr[i] === item) {
-          return i
+};
+each([1,2,3], function(i, n) {
+    alert([i,n]);
+});
+</code></pre><h3 id="内部迭代器和外部迭代器"><a href="#内部迭代器和外部迭代器" class="headerlink" title="内部迭代器和外部迭代器"></a>内部迭代器和外部迭代器</h3><p>像刚刚编写的each函数属于<strong>内部迭代器，each函数的内部已经定义好了迭代规则，它完全接手整个迭代过程，外部只需要一次初始调用.</strong><br>然而，如果你想同时迭代两个数组，例如：判断两个数组里的元素的值是否完全相等。<br>此时如果不去改写each函数本身的代码，就只能够增加一个compare函数然后对each的回调进行更改了。</p>
+<pre><code>var compare = function(ary1, ary2) {
+    if (ary1.length !== ary2.length) {
+        throw new Error(&apos;ary1和ary2不相等&apos;);
+    }
+    each(ary1, function(i ,n) {
+        if (n !== ary2[i]) {
+            throw new Error(&apos;ary1和ary2不相等&apos;);
         }
+    });
+    alert(&apos;ary1和ary2相等&apos;);
+};
+
+compare([1, 2, 3], [1, 2, 4]); //throw new Error(&apos;ary1和ary2不相等&apos;);
+</code></pre><p>代码看起来有点丑，所以要搬出外部迭代器。<br><strong>外部迭代器必须显示地请求迭代下一个元素，他增加了一些调用的复杂度，但也相对的增加了迭代器的灵活性，我们可以手工控制迭代的过程或者顺序</strong></p>
+<p>我们根据这个思想稍微改写一下compare函数</p>
+<pre><code>var Iterator = function(obj) {
+    var current = 0;
+    var next = function() {
+        current += 1;
+    };
+    var isDone = function() {
+        return current &gt;= obj.length;
+    };
+    var getCurrItem = function() {
+        return obj[current];
+    };
+
+    return {
+        next: next,
+        isDone: isDone,
+        getCurrItem: getCurrItem
+    }
+};
+var compare = function(iterator1 , iterator2) {
+    while (iterator1.isDone() &amp;&amp; !iterator2.isDone()) {
+        if (iterator1.getCurrItem() !== iterator2.getCurrItem()) {
+            throw new Error(&apos;不相等&apos;);
+        }
+        iterator1.next();
+        iterator2.next();
+    }
+    alert(&apos;相等&apos;);
+};
+var iterator1 = Iterator( [1, 2, 3] );
+var iterator2 = Iterator( [1, 2, 3] );
+compare(iterator1 , iterator2); //相等
+</code></pre><h3 id="迭代类数组和字面量变量"><a href="#迭代类数组和字面量变量" class="headerlink" title="迭代类数组和字面量变量"></a>迭代类数组和字面量变量</h3><pre><code>$.each = function(obj, callback) {
+  var value,
+      i = 0,
+      lenght = obj.length,
+      isArray = isArraylike(obj);
+  if (isArray) { //迭代类数组
+    for(; i &lt; length; i++) {
+      value = callback.call(obj[i], i, obj[i]);
+      if(value === false) {
+        break;
       }
-      return -1
     }
-
-function unique(arr) {
-  var ret = []
-
-  for (var i = 0; i &lt; arr.length; i++) {
-    var item = arr[i]
-    if (indexOf(ret, item) === -1) {
-      ret.push(item)
+  } else {
+    for (i in obj) { //迭代obj对象
+      value = callback.call(obj[i], i, obj[i]);
+      if (value === false) {
+        break;
+      }
+    } 
+  }
+  return obj;
+};
+</code></pre><h3 id="终止迭代器"><a href="#终止迭代器" class="headerlink" title="终止迭代器"></a>终止迭代器</h3><p>上面的each函数里面我们有一句</p>
+<pre><code>if (value === false) {
+       break;
+     }
+</code></pre><p>这里是如果回调函数的执行结果返回<code>false</code>，则提前终止循环，前面each函数的改写这里就不多阐述。</p>
+<h3 id="迭代器的应用举例"><a href="#迭代器的应用举例" class="headerlink" title="迭代器的应用举例"></a>迭代器的应用举例</h3><p>我们先看一种情况：不同的浏览器中上传文件的方式是不一样的，因为使用的浏览器上传控件进行上传进度快，可以暂停和续传，所以我们首先会优先使用控件上传。如果浏览器没有安装上传控件则用flash上传，如果flash也没安装那就只能用浏览器原生表单上传了。<br>通常我们会这么做：</p>
+<pre><code>var getUploadObj = function() {
+  try{
+    return new ActiveXObject(&apos;TXFTNActive.FTNUpload&apos;); //IE上传控件
+  } catch(e) {
+    if (supportFlash()) { //supportFlash函数未提供
+      var str = &apos;&lt;object type = &quot;application/x-shockwave-flash&quot;&gt;&lt;/object&gt;&apos;;
+      return $(str).appendTo($(&apos;body&apos;));
+    } else { //表单上传
+      var str = &apos;&lt;input name = &quot;file&quot; type =&quot;file&quot; /&gt;&apos;;
+      return $(str).appendTo($(&apos;body&apos;));
     }
   }
-
-  return ret
-}
-</code></pre><p>写到这一步，正确性已没问题，但性能上，两重循环会让面试官们看了不爽。</p>
-<h2 id="优化方案"><a href="#优化方案" class="headerlink" title="优化方案"></a>优化方案</h2><p>一谈到优化，往往就是八仙过海、百花齐放。但八仙往往不接地气，百花则很容易招来臭虫。数组去重的各种优化方案在此不一一讨论，下面只说最常用效果也很不错的一种。</p>
-<pre><code>function unique(arr) {
-  var ret = []
-  var hash = {}
-
-  for (var i = 0; i &lt; arr.length; i++) {
-    var item = arr[i]
-    var key = typeof(item) + item
-    if (hash[key] !== 1) {
-      ret.push(item)
-      hash[key] = 1
+};
+</code></pre><p>以上，为了得到一个upload对象，这里就充满了很多if条件分支，缺点显而易见。难以阅读，严重违反开闭原则，还有调试的时候我们需要来回切换不同的上传方式，每次改动都想当痛苦，如果要增加html5上传则又要添加分支….<br>这里我们可以把每种获取upload对象的方法都封装在各自的函数里，然后使用一个迭代器，迭代获取这些upload对象，直到获取到一个可用的为止。</p>
+<pre><code>var getActiveUploadObj = function() {
+    try{
+        return new ActiveXObject(&apos;TXFTNActive.FTNUpload&apos;); //IE上传控件
+    } catch(e) {
+        return false;
     }
-  }
+};
 
-  return ret
+var getFlashUploadObj = function() {
+    if (supportFlash()) { //supportFlash函数未提供
+        var str = &apos;&lt;object type = &quot;application/x-shockwave-flash&quot;&gt;&lt;/object&gt;&apos;;
+        return $(str).appendTo($(&apos;body&apos;));
+    }
+    return false;
+};
+
+var getFormUploadObj = function() {
+     var str = &apos;&lt;input name = &quot;file&quot; type =&quot;file&quot; /&gt;&apos;;
+     return $(str).appendTo($(&apos;body&apos;));
 }
-</code></pre><p>核心是构建了一个 <code>hash</code> 对象来替代 <code>indexOf</code>. 注意在 JavaScript 里，对象的键值只能是字符串，因此需要 <code>var key =
-typeof(item) + item</code> 来区分数值 <code>1</code> 和字符串 <code>&#39;1&#39;</code> 等情况。</p>
-<p>但优化真的很容易带来坑，比如上面的实现，对下面这种输入就无法判断：</p>
-<pre><code>unique([ new String(1), new Number(1) ])
-</code></pre><p>可以继续修改代码，做到性能和正确性都很好。但往往，这带来的结果并不好。</p>
-<h2 id="真实需求"><a href="#真实需求" class="headerlink" title="真实需求"></a>真实需求</h2><p>写到这里，这篇博客才算进入正题。程序员心中都会有一些梦想，比如写出又通用性能又好的普适函数。这种梦想是让程序员变得卓越的重要内驱力，但倘若不加以控制，也很容<br>易走入迷途。</p>
-<p>回到性能优化。这年头有各种各样优化，核心系统、数据库、网络、前端等等，所有这些优化，都必须回答下面这个问题：</p>
-<ol>
-<li><p><strong>当前有什么</strong>。在什么场景下进行优化，场景下有哪些具体限制。理清限制很重要，限制往往带来自由。</p>
+</code></pre><p>接着我们的迭代器只需要进行下面几步工作：</p>
+<ul>
+<li><p>提供一个可以被迭代的方法，使<code>getActiveUploadObj</code>,<code>getFlashUploadObj</code>,<code>getFormUploadObj</code>依照优先级被循环迭代。</p>
 </li>
-<li><p><strong>究竟要什么</strong>。优化的目的是什么。是提高稳定性，还是增大吞吐量，抑或减少用户等待时间。在回答这个问题之前，优化都是徒劳。对这个问题的准确回答，能为优化带来具体可测量的参数，这样优化才有目标。</p>
+<li><p>如果正在被迭代的函数返回一个对象，则表示找到了正确的upload对象，反之则让迭代器继续工作</p>
 </li>
-<li><p><strong>可以放弃什么</strong>。鱼与熊掌不可兼得。优化的本质是在具体场景下的取舍、权衡。什么都不愿意放弃的话，优化往往会举步维艰。</p>
-</li>
-</ol>
+</ul>
+<pre><code>var iteratorUploadObj = function() {
+    for (var i = 0, fn; fn = arguments[i++];) {
+        var uploadObj = fn();
+        if (uploadObj !== false) {
+            return uploadObj;
+        }
+    }
+};
+
+var uploadObj = iteratorUploadObj(getActiveUploadObj, getFlashUploadObj, getFormUploadObj);
+</code></pre><p>以后要加也就只需相应的调整参数顺序就好。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;缘由&quot;&gt;&lt;a href=&quot;#缘由&quot; class=&quot;headerlink&quot; title=&quot;缘由&quot;&gt;&lt;/a&gt;缘由&lt;/h2&gt;&lt;p&gt;JavaScript 数组去重经常出现在前端招聘的笔试题里，比如：&lt;/p&gt;
+      &lt;hr&gt;
 &lt;blockquote&gt;
-&lt;p&gt;有数组 &lt;code&gt;var ar
+&lt;p&gt;迭代器模式是指提供一种方法，顺序访问一个聚合对象中的各个元素，而又不需要暴露该对象的内部表示。迭代器模式可以把迭代的过程从业务逻辑中分离出来，在使用迭代器模式之后，即使不关心内部构造，也可以按顺序访问其中的每个元素。&lt;/p&gt;
+&lt;/bloc
     
     </summary>
     
@@ -1935,80 +2061,89 @@ typeof(item) + item</code> 来区分数值 <code>1</code> 和字符串 <code>&#3
   </entry>
   
   <entry>
-    <title>适配器模式</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/19%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/</id>
+    <title>this关键字</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/1this%E5%85%B3%E9%94%AE%E5%AD%97/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/1this关键字/</id>
     <published>2016-10-11T16:00:00.000Z</published>
-    <updated>2016-10-12T09:42:12.640Z</updated>
+    <updated>2016-10-12T09:50:39.586Z</updated>
     
     <content type="html"><![CDATA[<hr>
 <blockquote>
-<p>适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。</p>
-</blockquote>
-<h3 id="适配器模式的应用"><a href="#适配器模式的应用" class="headerlink" title="适配器模式的应用"></a>适配器模式的应用</h3><p>适配模式是一种“亡羊补牢”的模式，没有人会在程序的设计之初就使用它，因为没有人可以完全预料到未来的事情，也许现在好好工作的接口未来就不再适用于新系统，那么我们可以使用适配器模式把旧的接口包装成新的接口，使他继续保持生命力。<br>比如在json数据流行之前，很多cgi返回的都是XML格式的数据，如果今天仍然想用这些接口，显然我们可以创造一个XML-JSON适配器。</p>
-<p>比如有一段代码，我们向googleMap和baiduMap都发出显示请求时，他们分别以各自的方式在页面中展现了地图：</p>
-<pre><code>var googleMap = {
-    show: function() {
-        console.log(&apos;开始渲染谷歌地图&apos;);
-    }
-};
-var baiduMap = {
-    show: function() {
-        console.log(&apos;开始渲染百度地图&apos;);
-    }
-};
-
-var renderMap = function(map) {
-    if (map.show.instanceof Function) {
-        map.show();
-    }
-};
-
-renderMap(googleMap); //开始渲染谷歌地图
-renderMap(baiduMap); //开始渲染百度地图
-</code></pre><p>这个程序能运行的关键之处在于<code>googleMap</code>和<code>baiduMap</code>提供了一致的show方法，但是第三方接口并不在我们的控制范围内，加入<code>baiduMap</code>提供的显示地图的方法不叫<code>show</code>，而叫<code>display</code>呢?</p>
-<p>此时我们可以通过增加<code>baiduMapAdapter</code>来解决问题：</p>
-<pre><code>var googleMap = {
-    show: function() {
-        console.log(&apos;开始渲染谷歌地图&apos;);
-    }
-};
-var baiduMap = {
-    display: function() {
-        console.log(&apos;开始渲染百度地图&apos;);
-    }
-};
-var baiduAdapter = {
-    show: function() {
-        return baiduMap.display();
-    }
-};
-var renderMap = function(map) {
-    if (map.show.instanceof Function) {
-        map.show();
-    }
-};
-
-renderMap(googleMap); //开始渲染谷歌地图
-renderMap(baiduAdapter); //开始渲染百度地图
-</code></pre><h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>适配器模式是一对相对简单的模式，但是有一些模式跟适配器模式的结构非常相似，比如装饰者模式，代理模式和外观模式，这几种都属于“包装模式”，都是一个对象来包装另一个对象。我们现在就来做一些区分：</p>
+<p>this的指向大概可以分成四种：</p>
 <ul>
-<li><p>适配器模式主要用来解决两个已有接口之间的不匹配问题，它不需要考虑这些接口是怎样实现的，也不考虑它们讲来可能会如何演化。适配器模式不需要改变已有接口，就能够实现它们的协同作用。</p>
+<li>作为对象的方法调用</li>
+<li>作为普通函数调用</li>
+<li>构造器调用</li>
+<li>Function.prototype.call或Function.prototype.apply调用</li>
+</ul>
+</blockquote>
+<h3 id="1-作为对象的时候this指向该对象"><a href="#1-作为对象的时候，this指向该对象" class="headerlink" title="1. 作为对象的时候，this指向该对象"></a>1. 作为对象的时候，<strong>this指向该对象</strong></h3><pre><code>var obj = {
+    a: 1,
+    getA: function() {
+        alert(this === obj); //true;
+        alert(this.a); //1
+    }
+};
+obj.getA();
+</code></pre><h3 id="2-作为普通函数调用this总是指向全局对象在浏览器中就是window"><a href="#2-作为普通函数调用，this总是指向全局对象（在浏览器中就是window）" class="headerlink" title="2. 作为普通函数调用，this总是指向全局对象（在浏览器中就是window）"></a>2. 作为普通函数调用，<strong>this总是指向全局对象（在浏览器中就是window）</strong></h3><pre><code>window.name = &apos;globalName&apos;;
+var getName = function() {
+    return this.name;
+};
+console.log(getName()); //globalName
+</code></pre><p>再例如局部的callback，它作为普通函数调用时，callback内部的this指向了windows对象，解决方法则可以用一个变量保存this，例如</p>
+<pre><code>document.getElemmentById(&apos;div1&apos;).onclick = function() {
+    var that = this;
+    var callback = function() {
+        alert(that.id); //div1;
+    }
+    callback();
+}
+</code></pre><h3 id="3-构造器调用"><a href="#3-构造器调用" class="headerlink" title="3. 构造器调用"></a>3. 构造器调用</h3><p>当用<code>new</code>运算符调用函数时，该函数总会返回一个对象，通常情况this就是指向返回的这个对象，但如果构造器显示返回了一个object类的对象，那运算结果最终返回的是那个对象而不是this，例如</p>
+<pre><code>var MyClass1 = function() {
+    this.name = &apos;111&apos;;
+}
+var obj1 = new MyClass1();
+alert(obj1.name); //111
+
+var MyClass2 = function() {
+    this.name = &apos;111&apos;;
+    return { //显式的返回一个对象
+        name: &apos;222&apos;;
+    }
+}
+var obj2 = new MyClass2();
+alert(obj2.name); //222
+</code></pre><h3 id="4-functionprototypecall或functionprototypeapply可以动态的改变传入函数的this"><a href="#4-Function-prototype-call或Function-prototype-apply可以动态的改变传入函数的this" class="headerlink" title="4. Function.prototype.call或Function.prototype.apply可以动态的改变传入函数的this"></a>4. Function.prototype.call或Function.prototype.apply可以动态的改变传入函数的this</h3><ul>
+<li><p>两者区别：传入参数不同，apply接受两个参数，第一个为this指向，第二个为一个带下标的集合，这个集合可以为数组也可以为类数组；call传入的参数数量不固定，第一个也是代表this指向，第二个开始往后每个参数被依次传入函数。</p>
 </li>
-<li><p>装饰者模式和代理模式也不会改变原有对象的接口，但装饰者模式的作用是为了给对象增加功能。装饰者模式常常形成一条长的装饰链，而适配器模式通常只包装一次。代理模式是为了控制对象的访问，通常也只包装一次。</p>
-</li>
-<li><p>外观模式的作用和适配器比较像是，有人把外观模式看成一组对象的适配器，但外观模式最显著的特点是定义了一个新的接口。</p>
+<li><p>改变this例子</p>
 </li>
 </ul>
-]]></content>
+<pre><code>var obj1 = {
+    name: &apos;111&apos;;
+};
+var obj2 = {
+    name: &apos;222&apos;;
+};
+window.name = &apos;window&apos;;
+var getNmae = function() {
+    alert(this.name);
+}
+getName(); //window
+getName.call(obj1); //111
+getName.call(obj2); //222
+</code></pre>]]></content>
     
     <summary type="html">
     
       &lt;hr&gt;
 &lt;blockquote&gt;
-&lt;p&gt;适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;适配器模式的应用&quot;&gt;&lt;a href=&quot;#适配器模式的应
+&lt;p&gt;this的指向大概可以分成四种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;作为对象的方法调用&lt;/li&gt;
+&lt;li&gt;作为普通函数调用&lt;/li&gt;
+&lt;li&gt;构造器调用&lt;/li&gt;
+&lt;li&gt;Function.prototype.call或Function.prot
     
     </summary>
     
@@ -2313,6 +2448,91 @@ func();
   </entry>
   
   <entry>
+    <title>适配器模式</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/19%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/</id>
+    <published>2016-10-11T16:00:00.000Z</published>
+    <updated>2016-10-12T09:42:12.640Z</updated>
+    
+    <content type="html"><![CDATA[<hr>
+<blockquote>
+<p>适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。</p>
+</blockquote>
+<h3 id="适配器模式的应用"><a href="#适配器模式的应用" class="headerlink" title="适配器模式的应用"></a>适配器模式的应用</h3><p>适配模式是一种“亡羊补牢”的模式，没有人会在程序的设计之初就使用它，因为没有人可以完全预料到未来的事情，也许现在好好工作的接口未来就不再适用于新系统，那么我们可以使用适配器模式把旧的接口包装成新的接口，使他继续保持生命力。<br>比如在json数据流行之前，很多cgi返回的都是XML格式的数据，如果今天仍然想用这些接口，显然我们可以创造一个XML-JSON适配器。</p>
+<p>比如有一段代码，我们向googleMap和baiduMap都发出显示请求时，他们分别以各自的方式在页面中展现了地图：</p>
+<pre><code>var googleMap = {
+    show: function() {
+        console.log(&apos;开始渲染谷歌地图&apos;);
+    }
+};
+var baiduMap = {
+    show: function() {
+        console.log(&apos;开始渲染百度地图&apos;);
+    }
+};
+
+var renderMap = function(map) {
+    if (map.show.instanceof Function) {
+        map.show();
+    }
+};
+
+renderMap(googleMap); //开始渲染谷歌地图
+renderMap(baiduMap); //开始渲染百度地图
+</code></pre><p>这个程序能运行的关键之处在于<code>googleMap</code>和<code>baiduMap</code>提供了一致的show方法，但是第三方接口并不在我们的控制范围内，加入<code>baiduMap</code>提供的显示地图的方法不叫<code>show</code>，而叫<code>display</code>呢?</p>
+<p>此时我们可以通过增加<code>baiduMapAdapter</code>来解决问题：</p>
+<pre><code>var googleMap = {
+    show: function() {
+        console.log(&apos;开始渲染谷歌地图&apos;);
+    }
+};
+var baiduMap = {
+    display: function() {
+        console.log(&apos;开始渲染百度地图&apos;);
+    }
+};
+var baiduAdapter = {
+    show: function() {
+        return baiduMap.display();
+    }
+};
+var renderMap = function(map) {
+    if (map.show.instanceof Function) {
+        map.show();
+    }
+};
+
+renderMap(googleMap); //开始渲染谷歌地图
+renderMap(baiduAdapter); //开始渲染百度地图
+</code></pre><h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>适配器模式是一对相对简单的模式，但是有一些模式跟适配器模式的结构非常相似，比如装饰者模式，代理模式和外观模式，这几种都属于“包装模式”，都是一个对象来包装另一个对象。我们现在就来做一些区分：</p>
+<ul>
+<li><p>适配器模式主要用来解决两个已有接口之间的不匹配问题，它不需要考虑这些接口是怎样实现的，也不考虑它们讲来可能会如何演化。适配器模式不需要改变已有接口，就能够实现它们的协同作用。</p>
+</li>
+<li><p>装饰者模式和代理模式也不会改变原有对象的接口，但装饰者模式的作用是为了给对象增加功能。装饰者模式常常形成一条长的装饰链，而适配器模式通常只包装一次。代理模式是为了控制对象的访问，通常也只包装一次。</p>
+</li>
+<li><p>外观模式的作用和适配器比较像是，有人把外观模式看成一组对象的适配器，但外观模式最显著的特点是定义了一个新的接口。</p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;适配器模式的应用&quot;&gt;&lt;a href=&quot;#适配器模式的应
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
     <title>高阶函数</title>
     <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/3%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0/"/>
     <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/</id>
@@ -2430,365 +2650,100 @@ window.onresize = throttle(function() {
   </entry>
   
   <entry>
-    <title>设计原则和编程技巧</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/20%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99%E5%92%8C%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/</id>
+    <title>单例模式</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/4%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/4单例模式/</id>
     <published>2016-10-11T16:00:00.000Z</published>
-    <updated>2016-10-12T09:43:08.156Z</updated>
+    <updated>2016-10-12T07:04:54.943Z</updated>
     
     <content type="html"><![CDATA[<hr>
-<h3 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h3><p>就一个类而言，应该仅有一个引起它变化的原因。在JavaScript中，需要用到类的场景并不太多，单一职责原则（SRP）更多的是被运用在对象或者方法级别上。<br>总之，SRP原则体现为：一个对象（方法）只做一件事情。<br>例如：</p>
-<ul>
-<li><p>代理模式</p>
-</li>
-<li><p>迭代器模式</p>
-</li>
-<li><p>单例模式</p>
-</li>
-<li><p>装饰者模式<br>但是，并不是所有的职责都应该一一分离的，一方面如果随着需求的变化，有两个职责是同时变化的，那就不必分离他们。比如在ajax请求的时候，创建xhr对象和发送xhr请求几乎总是在一起的，那么创建xhr对象的职责和发送xhr对象的职责就没有必要分开。</p>
-</li>
-</ul>
-<p>另一方面，职责的变化轴线仅当它们确定会发生变化时才有意义，即使两个职责已经被耦合在一起但他们没有发生改变的征兆，那么也许没有必要主动分离他们，在代码需要重构的时候再分离也不迟。</p>
-<h3 id="最少知识原则"><a href="#最少知识原则" class="headerlink" title="最少知识原则"></a>最少知识原则</h3><p>最少知识原则（LKP）说的是一个软件实体应当尽可能少与其他实体发生相互作用。这里的软件的实体是一个广义的概念，不仅包括对象，还包括系统，类，模块，函数，变量等。<br>单一职责原则指导我们把对象划分成较小的粒度，这可以提高对象的可复用性。但越来越多的对象之间可能会产生错综复杂的联系，如果修改了其中一个对象，很可能会影响到跟它相互引用的其他对象。对象和对象耦合在一起，有可能会降低他们的复用性。在程序中，对象的“朋友”太多并不是一件好事。<br>最少知识原则要求我们在设计程序时，应当尽量减少对象之间的交互。如果两个对象之间不必彼此直接通信，那么两个对象就不要发生直接的相互联系。常见的做法是引入一个第三者对象，来承担这些对象之间的通信作用。如果一些对象需要向另一些对象发起请求，可以通过第三者对象来转发这些请求。<br>体现地方：</p>
-<ul>
-<li><p>中介者模式</p>
-</li>
-<li><p>外观模式</p>
-</li>
-</ul>
-<h3 id="开放-封闭原则"><a href="#开放-封闭原则" class="headerlink" title="开放-封闭原则"></a>开放-封闭原则</h3><p>在面向对象的程序设计中，开放-封闭原则（OCP）是最重要的一条原则。他的定义为：软件实体（类，模块，函数）等应该是可以拓展的，但是不可修改的。<br>举例：</p>
-<ul>
-<li><p>发布-订阅模式</p>
-</li>
-<li><p>模板方法模式</p>
-</li>
-<li><p>策略模式</p>
-</li>
-<li><p>代理模式</p>
-</li>
-<li><p>职责链模式</p>
-</li>
-</ul>
+<p>用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。</p>
+<h3 id="实现单例模式"><a href="#实现单例模式" class="headerlink" title="实现单例模式"></a>实现单例模式</h3><pre><code>//1.实现单例模式
+var Singleton = function (name) {
+  this.name = name;
+};
+Singleton.prototype.getName = function() {
+  alert(this.name);
+};
+Singleton.getInstance = (function() {
+  var instance = null;
+  return function(name) {
+    if (!instance) {
+      instance = new Singleton(name);
+    }
+    return instance;
+  }
+})();
+var a = Singleton.getInstance(&apos;sven1&apos;);
+var b = Singleton.getInstance(&apos;sven2&apos;);
+
+console.log(a === b); //true
+</code></pre><p>以上，我们通过<code>Singleton.getInstance</code>来获取<code>Singleton</code>类的唯一对象，虽然简单但是增加了这个类的“不透明性”，<code>Singleton</code>类的使用者必须知道这是一个单例类，跟以往通过<code>new xxx</code>的方法不同</p>
+<h3 id="透明的单例模式"><a href="#透明的单例模式" class="headerlink" title="透明的单例模式"></a>透明的单例模式</h3><p>有了以上的不足，我们现在就来解决</p>
+<pre><code>//透明的单例模式 
+var CreateDiv = (function() {
+  var instance;
+  var CreateDiv = function(html) {
+    if (instance) {
+      return instance;
+    }
+    this.html = html;
+    this.init();
+    return instance = this;
+  };
+
+  CreateDiv.prototype.init = function() {
+    var div = document.createElement(&apos;div&apos;);
+    div.innerHTML = this.html;
+    document.body.appendChild(div);
+  };
+
+  return CreateDiv;
+})();
+var aa = new CreateDiv(&apos;sven1&apos;);
+var bb = new CreateDiv(&apos;sven2&apos;);
+
+console.log(aa === bb);
+</code></pre><p>以上代码，CreateDiv做了创建对象和执行初始化init方法，且保证只有一个对象。<br>但是，假如有一天我们需要利用这个类，在页面中创建千千万万个div，即要让这个类从单例类变成一个普通的可以产生多个实例的类，那我们必须改写CreateDiv构造函数，把控制创建唯一的那一段去掉…这样好像有点太麻烦了</p>
+<h3 id="用代理实现单例模式"><a href="#用代理实现单例模式" class="headerlink" title="用代理实现单例模式"></a>用代理实现单例模式</h3><p>这里就可以引入代理类的方式，思想就是将负责管理的单例逻辑移到一个代理类中，这样CreateDiv就变成一个普通的类，代码此处省略…</p>
+<h3 id="javascript中的单例模式"><a href="#JavaScript中的单例模式" class="headerlink" title="JavaScript中的单例模式"></a>JavaScript中的单例模式</h3><p>前面几种单例模式的实现，更多是接近传统面向对象语言中的实现，单例从“类”中创建出来。<br>然而，js作为一个没有类的语言，生搬单例模式的概念并无意义。我们只要一个对象，为什么要创建一个类呢？我们只是要一个唯一的实例就好了..因此我们可以直接用<code>var a = {}</code>来创建对象字面量。</p>
+<h3 id="惰性单例"><a href="#惰性单例" class="headerlink" title="惰性单例"></a>惰性单例</h3><p>惰性单例：需要的时候才创建。<br>例如，以一个登录悬浮窗为例，我们可以在页面加载的时候创建好这个div窗口，然后点击登录按钮的时候开始显示，但是这样如果用户只是随便浏览下就白白浪费了一些dom节点。<br>还有一种方法，点击的时候再创建，关闭的时候销毁。但是如果用户频繁的进行注销等操作，我们就要频繁的创建和删除div，显然这也不合理。<br>所以，这时候惰性单例模式就出马了。</p>
+<pre><code>var createLoginLayer = (function() {
+    var div;
+    return function() {
+        if (!div) {
+            div = document.createElement(&apos;div&apos;);
+            //创建添加等dom操作...
+        }
+        return div;
+    }
+})();
+
+$(&quot;xxx&quot;).onclick = function() {
+    var loginLayer = createLoginLayer();
+    loginLayer.show();
+}
+</code></pre><h3 id="通用的惰性实例"><a href="#通用的惰性实例" class="headerlink" title="通用的惰性实例"></a>通用的惰性实例</h3><p>看起来好像没什么问题，然而，他还是违反了单一的原则，创建的对象逻辑都放在createLoginLayer内部，如果我们要创建别的东西例如iframe，就要几乎将这个函数照抄一遍了，因此我们应该把不变的部分隔离出来。</p>
+<pre><code>var getSingle = function(fn) {
+    var result;
+    return function() {
+        return result || (result = fn.apply(this, arguments));
+    }
+};
+
+var createLoginLayer = function() {
+    //创建登录框
+}  
+
+var createSingleLoginLayer = getSingle(createLoginLayer);
+</code></pre><p>于是，目的达成。<br>当然，单例模式用途远远不止于创建对象，比如我们在渲染完页面的时候，接下来要给这个列表绑定click事件，如果是ajax动态向列表里面加载数据，实际上只需要第一次渲染的时候绑定。如果不用jq的<code>$(&quot;&quot;).one(&#39;click&#39;, function(){})</code>的话，我们也可以用单例模式，做法类似。</p>
 ]]></content>
     
     <summary type="html">
     
       &lt;hr&gt;
-&lt;h3 id=&quot;单一职责原则&quot;&gt;&lt;a href=&quot;#单一职责原则&quot; class=&quot;headerlink&quot; title=&quot;单一职责原则&quot;&gt;&lt;/a&gt;单一职责原则&lt;/h3&gt;&lt;p&gt;就一个类而言，应该仅有一个引起它变化的原因。在JavaScript中，需要用到类的场景并不太多，单
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
-    
-    
-      <category term="javascript" scheme="http://ronghuaxueleng.github.io/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>策略模式</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/5%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/5策略模式/</id>
-    <published>2016-10-11T16:00:00.000Z</published>
-    <updated>2016-10-12T07:04:46.706Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>定义：定义一系列算法，把他们一个个封装起来，并且使他们可以相互替换。</p>
-</blockquote>
-<p>需求：绩效为S的人年终奖有4倍工资，绩效为A的人年终奖有3倍工资，绩效为B的人年终奖有2倍工资。</p>
-<pre><code>var calculateBonus = function(performanceLevel, salary) {
-    if (performanceLevel === &apos;S&apos;) {
-        return salary * 4;
-    }
-    if (performanceLevel === &apos;A&apos;) {
-        return salary * 3;
-    }
-    if (performanceLevel === &apos;B&apos;) {
-        return salary * 2;
-    }
-};
-
-calculateBonus(&apos;B&apos;, 20000); //輸出：40000
-</code></pre><p>然而，calculateBonus函数比较庞大，包含了很多if语句，且缺乏弹性，如果增加新的绩效等级，复用性差，如果在程序的其他地方需要重用这些计算奖金的算法，我们的选择只有复制和粘贴。因此，我们要重构这段代码。</p>
-<pre><code>var performanceS = function(salary) {
-    return salary * 4;
-}
-var performanceA = function(salary) {
-    return salary * 3;
-}
-var performanceB = function(salary) {
-    return salary * 2;
-}
-
-var calculateBonus = function(performanceLevel, salary) {
-    if (performanceLevel == &apos;S&apos;) {
-        return performanceS(salary);
-    }
-    if (performanceLevel == &apos;A&apos;) {
-        return performanceA(salary);
-    }
-    if (performanceLevel == &apos;B&apos;) {
-        return performanceB(salary);
-    }
-};
-
-calculateBonus(&apos;A&apos;, 10000);//輸出：30000
-</code></pre><p>我们的程序得到了一定的改善，但calculateBonus函数可能越来越庞大，依旧缺乏弹性。</p>
-<h3 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h3><p>这时候策略模式该出场了。</p>
-<p><strong>我们要将算法的使用与算法的实现分离开来</strong></p>
-<pre><code>//我们先把每种绩效的计算规则封装在对应的策略类里
-var porformanceS = function() {};
-porformanceS.prototype.calculate = function(salary) {
-    return salary * 4;
-};
-var porformanceA = function() {};
-porformanceA.prototype.calculate = function(salary) {
-    return salary * 3;
-};
-var porformanceB = function() {};
-porformanceB.prototype.calculate = function(salary) {
-    return salary * 2;
-};
-//接下来定义奖金类Bonus:
-var Bonus = function() {
-    this.salary = null;
-    this.strategy = null;
-};
-
-Bonus.prototype.setSalary = function(salary) {
-    this.salary = salary;
-}
-Bonus.prototype.setStrategy = function(strategy) {
-    this.strategy = strategy;
-}
-Bonus.prototype.getBonus = function() {
-    return this.strategy.calculate(this.salary);
-}
-
-//使用
-var Bonus = new Bonus();
-bonus.setSalary(1000);
-bonus.setStrategy(new performanceS());
-bonus.getBonus();
-</code></pre><h3 id="javascript版本"><a href="#JavaScript版本" class="headerlink" title="JavaScript版本"></a>JavaScript版本</h3><p>在JavaScript中，函数即对象，因此我们可以直接把strategy定义成函数:</p>
-<pre><code>var strategies = {
-    &quot;S&quot;: function ( salary ){
-        return salary * 4;
-    },
-    &quot;A&quot;: function ( salary ){
-        return salary * 3;
-    },
-    &quot;B&quot;: function ( salary ){
-        return salary * 2;
-    }
-};
-
-var calculateBonus = function(level,salary){
-    return strategies[level](salary);
-};
-
-console.log(calculateBonus(&apos;S&apos;, 2000); //80000
-console.log(calculateBonus(&apos;A&apos;, 1000); //30000
-</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;定义：定义一系列算法，把他们一个个封装起来，并且使他们可以相互替换。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;需求：绩效为S的人年终奖有4倍工资，绩效为A的人年终奖有3倍工资，绩效为B的人年终奖有2倍工资。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;var 
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
-    
-    
-      <category term="javascript" scheme="http://ronghuaxueleng.github.io/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>策略模式的应用</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/6%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%BA%94%E7%94%A8/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/</id>
-    <published>2016-10-11T16:00:00.000Z</published>
-    <updated>2016-10-12T07:11:36.568Z</updated>
-    
-    <content type="html"><![CDATA[<hr>
-<h3 id="用策略模式实现缓动动画"><a href="#用策略模式实现缓动动画" class="headerlink" title="用策略模式实现缓动动画"></a>用策略模式实现缓动动画</h3><p>需求：让小球以各种缓动效果在页面中运动<br>动画开始前需要记录的：</p>
-<ul>
-<li><p>小球所在原始位置</p>
-</li>
-<li><p>小球移动的目标位置</p>
-</li>
-<li><p>动画开始时的时间点</p>
-</li>
-<li><p>小球运动的时间点<br>之后，用<code>setInterval</code>创建一个定时器，定时器每19秒循环一次。</p>
-</li>
-</ul>
-<pre><code>//缓动算法，此算法移植于flash
-
-var tween = {
-    //t：动画已消耗的时间，b：小球原始位置，c：小球目标位置，d：动画持续时间
-    linear: function(t, b, c, d) {
-        return c*t/d + b;
-    },
-    reseIn: function(t, b, c, d) {
-        return c * (t /= d) * t + b;
-    },
-    strongEaseIn: function(t, b, c, d) {
-        return c * (t /= d) * t * t * t * t + b;
-    },
-    strongEaseOut: function(t, b, c, d) {
-        return c * (( t = t / d - 1) * t * t * t * t + 1) + b;
-    },
-    sineaseIn: function(t, b, c, d) {
-        return c * (t /= d) * t * t + b;
-    },
-    sineaseOur: function(t, b, c, d) {
-        return c * ((t = t / d - 1) * t * t + 1 ) + b;
-    }
-};
-</code></pre><p>接着Animation类</p>
-<pre><code>var Animate = function( dom ) {
-    this.dom = dom;              //进行运动的dom节点
-    this.startTime = 0;         //动画开始时间
-    this.startPos = 0;           //动画开始时候dom位置
-    this.endPos = 0;            //结束dom位置
-    this.propertyName = null;     //dom节点需要被改变的属性名
-    this.easing = null;    //缓动算法
-    this.duration = null;   //动画持续时间
-};
-</code></pre><p>Animate.prototype.start方法负责启动这个动画<br>Animate.prototype.step代表小球运动的每一帧要做的事情</p>
-<pre><code>Animate.prototype.start = function( propertyName, endPos, duration, easing) {
-    this.startTime = +new Date;  //动画启动时间
-    this.startPos = this.dom.getBoundingClientRect()[ propertyName ]; //dom节点初始位置
-    this.endPos = endPos;
-    this.duration = duration;
-    this.easing = tween[ easing ]; 
-
-    var self = this;
-    var timeId = setInterval(function() { //启动定时器，开始执行动画
-        if (self.step() === false) {
-            clearInterval(timeId);
-        }
-    }, 19);
-};
-
-
-Animate.prototype.step = function() {
-    var t = +new Date;
-    if (t &gt;= this.startTime + this.duration) {
-        this.update(this.endPos);
-        return false;
-    }
-    var pos = this.easing(t - this.startTime, this.startPos, this.endPos = this.startPos, this.duration);
-
-    this.update(pos);
-};
-
-Animate.prototype.update = function(pos) {
-    this.dom.style[this.propertyName] = pos + &apos;px&apos;;
-};
-</code></pre><p>最后，调用</p>
-<pre><code>var div = document.getElementById(&apos;div&apos;);
-var animate = new Animate(div);
-animate.start(&apos;left&apos;, 500, 1000, &apos;strongEaseOut&apos;);
-</code></pre><h3 id="表单验证"><a href="#表单验证" class="headerlink" title="表单验证"></a>表单验证</h3><p>需求：</p>
-<ul>
-<li><p>用户名不能为空</p>
-</li>
-<li><p>密码长度不能少于6位</p>
-</li>
-<li><p>手机号码符合格式</p>
-</li>
-</ul>
-<p>常规，我们可能这么写：</p>
-<pre><code>var registerForm = document.getElementById(&apos;registerForm&apos;);
-
-registerForm.onsubmit = function() {
-  if (registerForm.userName.value === &apos;&apos;) {
-    alert(&quot;用户名不能为空&quot;);
-    return false;
-  }
-  if (registerForm.password.value.length &lt; 6) {
-    alert(&quot;密码长度不能少于6位&quot;);
-    return false;
-  }
-  if (!/(^1[3|5|8][0-9]{9}$)/.test(registerForm.phoneNumber.value)) {
-    alert(&quot;手机号码格式不正确&quot;);
-    return false;
-  }
-}
-</code></pre><p>当然，这个也有函数庞大，缺乏弹性，复用性差等问题，所以，开始突出本文的重点，策略模式的应用</p>
-<pre><code>var strategies = {
-  isNonEmpty: function(value, errorMsg) {
-    if (value == &apos;&apos;) {
-      return errorMsg;
-    }
-  },
-  minLength: function(value, length, errorMsg) {
-    if (value.length &lt; length) {
-      return errorMsg;
-    }
-  },
-  isMobile: function(value, errorMsg) {
-    if (!/(^1[3|5|8][0-9]{9}$)/.test(value)) {
-      return errorMsg;
-    }
-  }
-};
-
-var Validator = function() {
-  this.cache = [];
-};
-
-Validator.prototype.add = function(dom, rule, errorMsg) {
-  var ary = rule.split(&apos;:&apos;);
-  this.cache.push(function() {
-    var strategy = ary.shift();
-    ary.unshift(dom.value);
-    ary.push(errorMsg);
-    return strategies[strategy].apply(dom, ary);
-  })
-};
-
-Validator.prototype.start = function() {
-  for (var i = 0; validataFunc; validataFunc = this.cache[i++]) {
-    var msg = validataFunc();
-    if (msg) {
-      return msg;
-    }
-  }
-}
-
-var registerForm = document.getElementById(&apos;registerForm&apos;);
-registerForm.onsubmit = function() {
-  var errorMsg = validataFunc();
-
-  if (errorMsg) {
-    alert(errorMsg);
-    return false;
-  }
-};
-
-var validataFunc = function() {
-  var validator = new Validator();
-
-  validator.add(registerForm.userName, &apos;isNonEmpty&apos;, &apos;用户名不能为空&apos;);
-  validator.add(registerForm.password, &apos;minLength:6&apos;, &apos;密码长度不能少于6位&apos;);
-  validator.add(registerForm.phoneNumber, &apos;isMobile&apos;, &apos;手机号码格式不正确&apos;);
-
-  var errorMsg = validator.start();
-  return errorMsg;
-}
-</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
-&lt;h3 id=&quot;用策略模式实现缓动动画&quot;&gt;&lt;a href=&quot;#用策略模式实现缓动动画&quot; class=&quot;headerlink&quot; title=&quot;用策略模式实现缓动动画&quot;&gt;&lt;/a&gt;用策略模式实现缓动动画&lt;/h3&gt;&lt;p&gt;需求：让小球以各种缓动效果在页面中运动&lt;br&gt;动画开始前需
+&lt;p&gt;用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。&lt;/p&gt;
+&lt;h3 id=&quot;实现单例模式&quot;&gt;&lt;a href=&quot;#实现单例模式&quot; class=&quot;headerlink&quot; title=&quot;实现单例模式&quot;&gt;&lt;/a&gt;实
     
     </summary>
     

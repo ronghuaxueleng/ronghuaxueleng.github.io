@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Javascript设计模式," />
+  <meta name="keywords" content="埋点,可视化,Mixpanel," />
 
 
 
@@ -86,19 +86,17 @@
 
 
 
-<meta name="description" content="前言在经典的面相对象语言编程中，Constructor是一种在内存已分配给该对象的情况下，用于初始化新创建对象的特殊方法。在Javascript中，几乎所有东西都是对象，我们通常最感兴趣的是object构造器。 object构造器用于创建特定类型的对象——准备好对象以备使用，同时接收构造器可以使用的参数，以在第一次创建对象时，设置成员属性和方法的值。">
-<meta name="keywords" content="Javascript设计模式">
+<meta name="description" content="埋点 所谓“埋点”，是数据采集领域（尤其是用户行为数据采集领域）的术语，指的是针对特定用户行为或事件进行捕获、处理和发送的相关技术及其实施过程  埋点的技术实质，是先监听软件应用运行过程中的事件，当需要关注的事件发生时进行判断和捕获，然后获取必要的上下文信息，最后将信息整理后发送至服务器端。所监听的事件，通常由操作系统、浏览器、APP框架等平台提供，也可以在基础事件之上进行触发条件的自定义（如点击">
+<meta name="keywords" content="埋点,可视化,Mixpanel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript Constructor(构造器)模式">
-<meta property="og:url" content="http://ronghuaxueleng.github.io/2016/09/10/javascript设计模式/JavaScript设计模式——Constructor构造器模式/index.html">
+<meta property="og:title" content="可视化埋点">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/2017/10/25/可视化埋点/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="前言在经典的面相对象语言编程中，Constructor是一种在内存已分配给该对象的情况下，用于初始化新创建对象的特殊方法。在Javascript中，几乎所有东西都是对象，我们通常最感兴趣的是object构造器。 object构造器用于创建特定类型的对象——准备好对象以备使用，同时接收构造器可以使用的参数，以在第一次创建对象时，设置成员属性和方法的值。">
-<meta property="og:image" content="http://img.blog.csdn.net/20151209234517042">
-<meta property="og:updated_time" content="2016-10-12T10:25:08.099Z">
+<meta property="og:description" content="埋点 所谓“埋点”，是数据采集领域（尤其是用户行为数据采集领域）的术语，指的是针对特定用户行为或事件进行捕获、处理和发送的相关技术及其实施过程  埋点的技术实质，是先监听软件应用运行过程中的事件，当需要关注的事件发生时进行判断和捕获，然后获取必要的上下文信息，最后将信息整理后发送至服务器端。所监听的事件，通常由操作系统、浏览器、APP框架等平台提供，也可以在基础事件之上进行触发条件的自定义（如点击">
+<meta property="og:updated_time" content="2017-10-26T07:21:43.922Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript Constructor(构造器)模式">
-<meta name="twitter:description" content="前言在经典的面相对象语言编程中，Constructor是一种在内存已分配给该对象的情况下，用于初始化新创建对象的特殊方法。在Javascript中，几乎所有东西都是对象，我们通常最感兴趣的是object构造器。 object构造器用于创建特定类型的对象——准备好对象以备使用，同时接收构造器可以使用的参数，以在第一次创建对象时，设置成员属性和方法的值。">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20151209234517042">
+<meta name="twitter:title" content="可视化埋点">
+<meta name="twitter:description" content="埋点 所谓“埋点”，是数据采集领域（尤其是用户行为数据采集领域）的术语，指的是针对特定用户行为或事件进行捕获、处理和发送的相关技术及其实施过程  埋点的技术实质，是先监听软件应用运行过程中的事件，当需要关注的事件发生时进行判断和捕获，然后获取必要的上下文信息，最后将信息整理后发送至服务器端。所监听的事件，通常由操作系统、浏览器、APP框架等平台提供，也可以在基础事件之上进行触发条件的自定义（如点击">
 
 
 
@@ -119,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://ronghuaxueleng.github.io/2016/09/10/javascript设计模式/JavaScript设计模式——Constructor构造器模式/"/>
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/2017/10/25/可视化埋点/"/>
 
-  <title> JavaScript Constructor(构造器)模式 | 白云雅阁 </title>
+  <title> 可视化埋点 | 白云雅阁 </title>
   <!-- start Mixpanel --><script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
 0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
 for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
@@ -259,7 +257,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
             
               
-                JavaScript Constructor(构造器)模式
+                可视化埋点
               
             
           </h1>
@@ -271,8 +269,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-10T00:00:00+08:00" content="2016-09-10">
-              2016-09-10
+            <time itemprop="dateCreated" datetime="2017-10-25T14:18:52+08:00" content="2017-10-25">
+              2017-10-25
             </time>
           </span>
 
@@ -306,7 +304,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/09/10/javascript设计模式/JavaScript设计模式——Constructor构造器模式/"class="leancloud_visitors" data-flag-title="JavaScript Constructor(构造器)模式"></span>
+            <span id="/2017/10/25/可视化埋点/"class="leancloud_visitors" data-flag-title="可视化埋点"></span>
           
 
           
@@ -321,27 +319,68 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在经典的面相对象语言编程中，Constructor是一种在内存已分配给该对象的情况下，用于初始化新创建对象的特殊方法。在Javascript中，几乎所有东西都是对象，我们通常最感兴趣的是object构造器。</p>
-<p>object构造器用于创建特定类型的对象——准备好对象以备使用，同时接收构造器可以使用的参数，以在第一次创建对象时，设置成员属性和方法的值。</p>
-<p><img src="http://img.blog.csdn.net/20151209234517042" alt="这里写图片描述"></p>
-<a id="more"></a>
-<h1 id="基本constructor"><a href="#基本Constructor" class="headerlink" title="基本Constructor"></a>基本Constructor</h1><p>Javascript虽然不支持类的概念，但它确实支持与对象一起用的特殊constructor函数，通过在构造器前面加new关键字，告诉Javascript像使用构造器一样实例化一个新对象，并且对象成员由该函数定义。</p>
-<p>在构造器内，this关键字引用新创建的对象。回顾对象创建，基本的构造器看起来可能是这样的：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">model,year,miles</span>)</span>&#123;</div><div class="line">	<span class="keyword">this</span>.model=model;</div><div class="line">	<span class="keyword">this</span>.year=year;</div><div class="line">	<span class="keyword">this</span>.miles=miles;</div><div class="line">	</div><div class="line">	<span class="keyword">this</span>.toString=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.model+<span class="string">"has done "</span>+<span class="keyword">this</span>.miles+<span class="string">"miles"</span>;</div><div class="line">	&#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> civic=<span class="keyword">new</span> Car(<span class="string">"Honda Civic"</span>,<span class="number">2009</span>,<span class="number">20000</span>);</div><div class="line"><span class="keyword">var</span> mondeo=<span class="keyword">new</span> Car(<span class="string">"Ford Mondeo"</span>,<span class="number">2010</span>,<span class="number">5000</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(civic.toString());</div><div class="line"><span class="built_in">console</span>.log(mondeo.toString());</div></pre></td></tr></table></figure>
-<blockquote>
-<p>分析：上面是一个简单的构造器模式版本，但它有2个问题。</p>
+        <h3 id="埋点"><a href="#埋点" class="headerlink" title="埋点"></a>埋点</h3><blockquote>
+<p>所谓“埋点”，是数据采集领域（尤其是用户行为数据采集领域）的术语，指的是针对特定用户行为或事件进行捕获、处理和发送的相关技术及其实施过程</p>
 </blockquote>
+<p><strong><em>埋点的技术实质</em></strong>，是先监听软件应用运行过程中的事件，当需要关注的事件发生时进行判断和捕获，然后获取必要的上下文信息，最后将信息整理后发送至服务器端。所监听的事件，通常由操作系统、浏览器、APP框架等平台提供，也可以在基础事件之上进行触发条件的自定义（如点击某一个特定按钮）。一般情况下，埋点可以通过监测分析工具提供的SDK来进行编程实现。<br><strong><em>埋点的业务意义显而易见</em></strong>，即帮助定义和获取分析人员真正需要的业务数据及其附带信息。在不同场景下，业务人员关注的信息和角度可能不同。典型的应用场景有面向数字营销领域的分析，以及面向产品运营领域的分析。前者注重来源渠道和广告效果，后者更在意产品本身流程和体验的优化。两者各有侧重，也可以有一些交叉。所以，对于不同的项目和分析目的，应当设计不同的埋点方案。</p>
+<p>近年来，<em>埋点的方法论上也出现了一些业界新趋势</em>，主要分为一下三种：</p>
+<ul>
+<li><strong><em>代码埋点</em></strong> 在需要埋点的节点直接调用接口上传数据，代表方友盟。</li>
+<li><strong><em>可视化埋点</em></strong> 通过可视化工具配置采集节点，在前端自动解析配置并上报埋点数据，代表方案是已经开源的<a href="https://github.com/mixpanel" target="_blank" rel="external">Mixpanel</a>。</li>
+<li><strong><em>无埋点</em></strong> 并不是没有埋点，而是在前端采集所有数据并上报，然后在后端通过计算过滤出有用的数据，代表是国内的GrowingIO。</li>
+</ul>
+<p>三种埋点的对比：</p>
+<table>
+<thead>
+<tr>
+<th>埋点方式</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码埋点</td>
+<td>技术实现难度低，数据实时性好</td>
+<td>开发效率低，难于维护，数据准确性依赖于埋点的正确性，APP端依赖于发版，不具备热更新能力；web端热更新能力差。</td>
+</tr>
+<tr>
+<td>可视化埋点</td>
+<td>开发效率高，易于维护</td>
+<td>技术实现较为复杂，目前好的可视化埋点产品都是收费的</td>
+</tr>
+<tr>
+<td>无埋点</td>
+<td>易于维护，数据全面</td>
+<td>牺牲部分实时性，技术实现较为复杂</td>
+</tr>
+</tbody>
+</table>
+<p>Mixpanel主要流程如下：</p>
 <ol>
-<li><p>它使得继承变得困难；</p>
-</li>
-<li><p>toString()这样的函数是为每个使用Car构造器创建的新对象而分别重新定义的，这不是最理想的构造方式，因为<strong>这种函数应该在所有Car类型实例之间共享</strong>。</p>
-</li>
+<li>设置要埋点的网址-&gt;生成token</li>
+<li>在宿主页面插入代码</li>
+<li>在mixpanel页面点击进入宿主页面(<font color="red">下面这种方式在单页面应用中可能存在问题</font>)<br>a：在宿主URL添加上一段查询hash代码<br>b：获取hash代码解析出state并保存到sessionStorage<br>c：删除宿主URL后的hash代码<br>d：初始化<br>e：判断是否是在编辑状态下</li>
 </ol>
-<h1 id="带原型的constructor"><a href="#带原型的Constructor" class="headerlink" title="带原型的Constructor"></a>带原型的Constructor</h1><p>Javascript的prototype属性相信大家都知道，调用Javascript构造器创建一个对象后，新对象就会具有构造器原型的所有属性。通过这种方式，可以创建多个Car对象，并访问相同的原型。如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Car</span>(<span class="params">model,year,miles</span>)</span>&#123;</div><div class="line">	<span class="keyword">this</span>.model=model;</div><div class="line">	<span class="keyword">this</span>.year=year;</div><div class="line">	<span class="keyword">this</span>.miles=miles;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*使用Object.prototype.newMethod而不是Object.prototype可以避免重新定义prototype对象*/</span></div><div class="line">Car.protoType.toString=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.model+<span class="string">"has done "</span>+<span class="keyword">this</span>.miles+<span class="string">"miles"</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> civic=<span class="keyword">new</span> Car(<span class="string">"Honda Civic"</span>,<span class="number">2009</span>,<span class="number">20000</span>);</div><div class="line"><span class="keyword">var</span> mondeo=<span class="keyword">new</span> Car(<span class="string">"Ford Mondeo"</span>,<span class="number">2010</span>,<span class="number">5000</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(civic.toString());</div><div class="line"><span class="built_in">console</span>.log(mondeo.toString());</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这样toString()的当以实例就能够在所有Car对象之间共享了^_^</p>
-</blockquote>
+<p>下面是实现的简单流程图：</p>
+<div id="flowchart-0" class="flow-chart"></div>
+
+
+<p>参考文档：<br><a href="http://help.zhugeio.com/hc/kb/article/1068533/" target="_blank" rel="external">诸葛IO的JS可视化埋点-使用指南</a><br><a href="http://help.zhugeio.com/hc/kb/article/1060006/" target="_blank" rel="external">诸葛IO的JS全埋点接入文档</a><br>[诸葛IO文档][4]</p>
+<p>  [4]: <a href="https://docs.zhugeio.com/quickstart/" target="_blank" rel="external">https://docs.zhugeio.com/quickstart/</a><script src="https://cdn.bootcss.com/raphael/2.2.7/raphael.min.js"></script><script src="https://cdn.bootcss.com/flowchart/1.7.0/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">start=>start: 加载JS
+cond=>condition: 判断sessionStorage是否存在指定key
+estep1=>operation: 加载editor.js
+estep2=>operation: 显示添加埋点的导航栏
+estep3=>operation: 点击添加按钮开始埋点
+estep4=>operation: 点击要埋点的元素
+estep5=>operation: 弹出配置对话框进行配置
+estep6=>operation: 点击保存配置完毕
+estep7=>operation: 点击退出按钮退出编辑
+nstep1=>operation: 从服务器获取埋点数据
+nstep2=>operation: 在页面找到对应的元素并绑定事件
+start->cond
+cond(yes)->estep1->estep2->estep3->estep4->estep5->estep6->estep7->estep3
+cond(no)->nstep1->nstep2</textarea><textarea id="flowchart-0-options" style="display: none">{"theme":"simple","scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script></p>
 
       
     </div>
@@ -385,7 +424,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
       
         <div class="post-tags">
           
-            <a href="/tags/Javascript设计模式/" rel="tag">#Javascript设计模式</a>
+            <a href="/tags/埋点-可视化-Mixpanel/" rel="tag">#埋点,可视化,Mixpanel</a>
           
         </div>
       
@@ -394,17 +433,13 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/10/javascript设计模式/JavaScript设计模式——Module模式/" rel="next" title="JavaScript Module模式">
-                <i class="fa fa-chevron-left"></i> JavaScript Module模式
+              <a href="/2016/10/13/php设计模式/PHP设计模式(3)：封装/" rel="next" title="封装">
+                <i class="fa fa-chevron-left"></i> 封装
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/10/javascript设计模式/Javascript设计模式——设计模式类别/" rel="prev" title="Javascript 设计模式类别">
-                Javascript 设计模式类别 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -536,7 +571,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本constructor"><span class="nav-number">2.</span> <span class="nav-text">基本Constructor</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#带原型的constructor"><span class="nav-number">3.</span> <span class="nav-text">带原型的Constructor</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#埋点"><span class="nav-number">1.</span> <span class="nav-text">埋点</span></a></li></ol></div>
             
           </div>
         </section>

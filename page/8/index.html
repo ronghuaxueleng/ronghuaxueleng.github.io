@@ -767,8 +767,8 @@ D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通
             
               
                 
-                <a class="post-title-link" href="/2016/09/19/sendEmail/" itemprop="url">
-                  使用sendMail发送邮件
+                <a class="post-title-link" href="/2016/09/19/javascript/12种不宜使用的Javascript语法/" itemprop="url">
+                  12种不宜使用的Javascript语法
                 </a>
               
             
@@ -795,8 +795,8 @@ D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/kindle/" itemprop="url" rel="index">
-                    <span itemprop="name">kindle</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
 
@@ -816,7 +816,7 @@ D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通
           
           
             阅读次数 &nbsp;
-            <span id="/2016/09/19/sendEmail/"class="leancloud_visitors" data-flag-title="使用sendMail发送邮件"></span>
+            <span id="/2016/09/19/javascript/12种不宜使用的Javascript语法/"class="leancloud_visitors" data-flag-title="12种不宜使用的Javascript语法"></span>
           
 
           
@@ -833,9 +833,11 @@ D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通
       
         
           <hr>
-<p>由于前不久买了个kindle，所以就一直琢磨怎么把它用好，发现亚马逊提供了一个推送服务，可以把书籍推送到绑定的kindle上，所以就在网上搜罗了一些kindle推送的网站，像<a href="http://www.kindlepush.com/main" target="_blank" rel="external">kindle推</a>、<a href="http://www.kancloud.cn/" target="_blank" rel="external">看云</a>等都是很好的平台，有的时候也想把本地书籍推送到kindle上阅读，方法当然也有很多，比如直接连接到电脑、通过邮箱发送邮件等，这些都是很好的办法，下面我就将介绍一种使用sendMail发送邮件的方法</p>
+<h3 id=""><a href="#" class="headerlink" title="=="></a>==</h3><p>Javascript有两组相等运算符，一组是==和!=，另一组是===和!==。前者只比较值的相等，后者除了值以外，还比较类型是否相同。</p>
+<p>请尽量不要使用前一组，永远只使用===和!==。因为==默认会进行类型转换，规则十分难记。如果你不相信的话，请回答下面五个判断式的值是true还是false<br>：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">　　<span class="literal">false</span> == <span class="string">'false'</span></div><div class="line"></div><div class="line">　　<span class="literal">false</span> == <span class="literal">undefined</span></div><div class="line"></div><div class="line">　　<span class="literal">false</span> == <span class="literal">null</span></div><div class="line"></div><div class="line">　　<span class="literal">null</span> == <span class="literal">undefined</span></div><div class="line"></div><div class="line">　　<span class="number">0</span> == <span class="string">''</span></div></pre></td></tr></table></figure></p>
+<p>前三个是false，后两个是true。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/19/sendEmail/#more" rel="contents">
+            <a class="btn" href="/2016/09/19/javascript/12种不宜使用的Javascript语法/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

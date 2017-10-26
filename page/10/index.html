@@ -258,8 +258,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/09/19/javascript/jQuery的deferred对象详解/" itemprop="url">
-                  jQuery的deferred对象详解
+                <a class="post-title-link" href="/2016/09/19/sendEmail/" itemprop="url">
+                  使用sendMail发送邮件
                 </a>
               
             
@@ -286,8 +286,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
+                  <a href="/categories/kindle/" itemprop="url" rel="index">
+                    <span itemprop="name">kindle</span>
                   </a>
                 </span>
 
@@ -307,7 +307,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/09/19/javascript/jQuery的deferred对象详解/"class="leancloud_visitors" data-flag-title="jQuery的deferred对象详解"></span>
+            <span id="/2016/09/19/sendEmail/"class="leancloud_visitors" data-flag-title="使用sendMail发送邮件"></span>
           
 
           
@@ -323,11 +323,10 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
 
       
         
-          <p><a href="http://jquery.com/" target="_blank" rel="external">jQuery</a>的开发速度很快，几乎每半年一个大版本，每两个月一个小版本。</p>
-<p>每个版本都会引入一些新功能。今天我想介绍的，就是从jQuery 1.5.0版本开始引入的一个新功能—-<a href="http://api.jquery.com/category/deferred-object/" target="_blank" rel="external">deferred对象</a>。</p>
-<p>这个功能很重要，未来将成为jQuery的核心方法，它彻底改变了如何在jQuery中使用ajax。为了实现它，jQuery的全部ajax代码都被改写了。但是，<br>它比较抽象，初学者很难掌握，网上的教程也不多。所以，我把自己的学习笔记整理出来了，希望对大家有用。</p>
+          <hr>
+<p>由于前不久买了个kindle，所以就一直琢磨怎么把它用好，发现亚马逊提供了一个推送服务，可以把书籍推送到绑定的kindle上，所以就在网上搜罗了一些kindle推送的网站，像<a href="http://www.kindlepush.com/main" target="_blank" rel="external">kindle推</a>、<a href="http://www.kancloud.cn/" target="_blank" rel="external">看云</a>等都是很好的平台，有的时候也想把本地书籍推送到kindle上阅读，方法当然也有很多，比如直接连接到电脑、通过邮箱发送邮件等，这些都是很好的办法，下面我就将介绍一种使用sendMail发送邮件的方法</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/19/javascript/jQuery的deferred对象详解/#more" rel="contents">
+            <a class="btn" href="/2016/09/19/sendEmail/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -378,8 +377,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/09/10/javascript设计模式/Javascript设计模式——设计模式类别/" itemprop="url">
-                  Javascript 设计模式类别
+                <a class="post-title-link" href="/2016/09/10/javascript设计模式/JavaScript设计模式——Singleton（单例）模式/" itemprop="url">
+                  JavaScript Singleton（单例）模式
                 </a>
               
             
@@ -427,7 +426,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/09/10/javascript设计模式/Javascript设计模式——设计模式类别/"class="leancloud_visitors" data-flag-title="Javascript 设计模式类别"></span>
+            <span id="/2016/09/10/javascript设计模式/JavaScript设计模式——Singleton（单例）模式/"class="leancloud_visitors" data-flag-title="JavaScript Singleton（单例）模式"></span>
           
 
           
@@ -443,11 +442,11 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
 
       
         
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>命名、抽象、标识是通用设计结构的主要方面，这些设计结构能被用于构造可复用的面向对象设计。设计模式确定所包含的类和实例、它们的角色、协作方式以及职责分配。</p>
-<p>每一种设计模式都重点关注一个特定的对象设计问题或者设计要点，描述何时使用它，在另一些约束条件下是否还能使用，以及使用的效果和利弊。由于我们最终要实现设计，设计模式还是提供了示例，代码来阐明其实现。</p>
-<p>虽然设计模式描述的是面向对象设计，但是他们都是基于实际的解决方案。这些设计方案的实现语言是主流面向对象的编程语言。</p>
+          <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>singleton模式是被熟知的原因是因为它限制了类的实例化次数只能一次。从经典意义上来说，singleton模式在该实例不存在的情况下，可以通过一个方法创建一个类来实现创建类的新实例；如果实例已经存在，它会简单返回该对象的引用。</p>
+<p>singleton不同于静态类(或对象)，因为我们可以推迟它们的初始化，这通常是因为它们需要一些信息，而这些信息在初始化期间可能无法获得、对于没有察觉到之前的引用的代码，它们不会提供方便检索的方法。这是因为它既不是对象，也不是由一个singleton返回的“类”；它是一个结构。</p>
+<p>思考一下<strong>闭包变量为何实际上并不是闭包</strong>，而提供闭包的函数作用域是闭包。在Javascript中，singleton充当共享资源命名空间，从全局命名空间中隔离出代码实现，从而为函数提供单一访问点。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/10/javascript设计模式/Javascript设计模式——设计模式类别/#more" rel="contents">
+            <a class="btn" href="/2016/09/10/javascript设计模式/JavaScript设计模式——Singleton（单例）模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -619,8 +618,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/09/10/javascript设计模式/JavaScript设计模式——Singleton（单例）模式/" itemprop="url">
-                  JavaScript Singleton（单例）模式
+                <a class="post-title-link" href="/2016/09/10/javascript设计模式/Javascript设计模式——设计模式类别/" itemprop="url">
+                  Javascript 设计模式类别
                 </a>
               
             
@@ -668,7 +667,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/09/10/javascript设计模式/JavaScript设计模式——Singleton（单例）模式/"class="leancloud_visitors" data-flag-title="JavaScript Singleton（单例）模式"></span>
+            <span id="/2016/09/10/javascript设计模式/Javascript设计模式——设计模式类别/"class="leancloud_visitors" data-flag-title="Javascript 设计模式类别"></span>
           
 
           
@@ -684,11 +683,11 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
 
       
         
-          <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>singleton模式是被熟知的原因是因为它限制了类的实例化次数只能一次。从经典意义上来说，singleton模式在该实例不存在的情况下，可以通过一个方法创建一个类来实现创建类的新实例；如果实例已经存在，它会简单返回该对象的引用。</p>
-<p>singleton不同于静态类(或对象)，因为我们可以推迟它们的初始化，这通常是因为它们需要一些信息，而这些信息在初始化期间可能无法获得、对于没有察觉到之前的引用的代码，它们不会提供方便检索的方法。这是因为它既不是对象，也不是由一个singleton返回的“类”；它是一个结构。</p>
-<p>思考一下<strong>闭包变量为何实际上并不是闭包</strong>，而提供闭包的函数作用域是闭包。在Javascript中，singleton充当共享资源命名空间，从全局命名空间中隔离出代码实现，从而为函数提供单一访问点。</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>命名、抽象、标识是通用设计结构的主要方面，这些设计结构能被用于构造可复用的面向对象设计。设计模式确定所包含的类和实例、它们的角色、协作方式以及职责分配。</p>
+<p>每一种设计模式都重点关注一个特定的对象设计问题或者设计要点，描述何时使用它，在另一些约束条件下是否还能使用，以及使用的效果和利弊。由于我们最终要实现设计，设计模式还是提供了示例，代码来阐明其实现。</p>
+<p>虽然设计模式描述的是面向对象设计，但是他们都是基于实际的解决方案。这些设计方案的实现语言是主流面向对象的编程语言。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/10/javascript设计模式/JavaScript设计模式——Singleton（单例）模式/#more" rel="contents">
+            <a class="btn" href="/2016/09/10/javascript设计模式/Javascript设计模式——设计模式类别/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -739,8 +738,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/09/10/javascript设计模式/JavaScript设计模式——认识设计模式/" itemprop="url">
-                  认识JavaScript设计模式
+                <a class="post-title-link" href="/2016/09/10/javascript设计模式/JavaScript设计模式——Constructor构造器模式/" itemprop="url">
+                  JavaScript Constructor(构造器)模式
                 </a>
               
             
@@ -788,7 +787,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/09/10/javascript设计模式/JavaScript设计模式——认识设计模式/"class="leancloud_visitors" data-flag-title="认识JavaScript设计模式"></span>
+            <span id="/2016/09/10/javascript设计模式/JavaScript设计模式——Constructor构造器模式/"class="leancloud_visitors" data-flag-title="JavaScript Constructor(构造器)模式"></span>
           
 
           
@@ -804,13 +803,11 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
 
       
         
-          <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>从来没有系统地研究过设计模式，之前领悟出来的JavaScript设计模式那纯粹是个人兴起之作，和主流的大家们整理的设计模式还是有不少差距的。这次有幸看到了一本很不错的书。作者归纳地真的很不错，赞叹之余，不忘摘录几段分享给大家。</p>
-<blockquote>
-<p>编写易于维护的代码，其中一个重要方面是能够找到代码中重复出现的主题并优化他们，这就是设计模式有价值的地方。</p>
-</blockquote>
-<h1 id="什么是模式"><a href="#什么是模式" class="headerlink" title="什么是模式"></a>什么是模式</h1><p>模式是一种可复用的解决方案，可用于解决软件设计中遇到的常见问题。</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在经典的面相对象语言编程中，Constructor是一种在内存已分配给该对象的情况下，用于初始化新创建对象的特殊方法。在Javascript中，几乎所有东西都是对象，我们通常最感兴趣的是object构造器。</p>
+<p>object构造器用于创建特定类型的对象——准备好对象以备使用，同时接收构造器可以使用的参数，以在第一次创建对象时，设置成员属性和方法的值。</p>
+<p><img src="http://img.blog.csdn.net/20151209234517042" alt="这里写图片描述"></p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/10/javascript设计模式/JavaScript设计模式——认识设计模式/#more" rel="contents">
+            <a class="btn" href="/2016/09/10/javascript设计模式/JavaScript设计模式——Constructor构造器模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
