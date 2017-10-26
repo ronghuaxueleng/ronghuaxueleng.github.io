@@ -96,6 +96,29 @@ leancloud_visitors:
   app_id: bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz
   app_key: 9kCQuNi7NFq5MdDBn9J1Xj1r
 
+#流程图 http://wewelove.github.io/fcoder/2017/09/06/markdown-flowchart/
+flowchart:
+  raphael: https://cdn.bootcss.com/raphael/2.2.7/raphael.min.js
+  flowchart: https://cdn.bootcss.com/flowchart/1.7.0/flowchart.min.js
+  options": 
+      scale: 1,
+      line-width: 2
+      line-length: 50
+      text-margin: 10
+      font-size: 12
+
+
+#时序图 http://wewelove.github.io/fcoder/2017/09/06/markdown-sequence/
+sequence:
+  webfont: https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js
+  raphael: https://cdn.bootcss.com/raphael/2.2.7/raphael.min.js
+  underscore: https://cdn.bootcss.com/underscore.js/1.8.3/underscore-min.js
+  sequence: https://cdn.bootcss.com/js-sequence-diagrams/1.0.6/sequence-diagram-min.js
+  css: # optional, the url for css, such as hand drawn theme 
+  options: 
+    theme: simple
+    css_class:
+
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
