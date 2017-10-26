@@ -258,6 +258,133 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
+                <a class="post-title-link" href="/2016/08/03/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记（三）：ECMAScript中的引用类型/" itemprop="url">
+                  《JavaScript高级程序设计》阅读笔记（三）：ECMAScript中的引用类型
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-03T00:00:00+08:00" content="2016-08-03">
+              2016-08-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/《JavaScript高级程序设计》阅读笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">《JavaScript高级程序设计》阅读笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/08/03/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记（三）：ECMAScript中的引用类型/"class="leancloud_visitors" data-flag-title="《JavaScript高级程序设计》阅读笔记（三）：ECMAScript中的引用类型"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+引用类型Object类12345678910111213141516ECMAScript中的所有类都是由Object类继承而来。Object类具有下列属性：Constructor：对创建对象的函数的引用（指针），对于Object类，该指针指向原始的Object()函数Prototype：对该对象的对象原型的引用。Object类还有几个方法：    1、PropertyIsEnumerable(property)：判断给定的属性是否可以用for...in语句进行枚举    2、ToString()：返回对象的原始字符串表示。    3、ValueOf()：返回最适合该对象的原始值。对于许多类，该方法返回的值都与toString()的返回值相同。上面列出的每种属性和方法都会被其他类覆盖。
+Boolen类在ECMAScript中很少使用Boolean对象，因为不易理解，如：
+12var oFalseObject = new Boolean(false);var bResult= oFalseObject &amp;&amp; true; //outpus true
+在这段代码中，用false值创建Boolean对象，然后用这个值与原始值true进行 AND 操作。在Boolean运算中，false和true进行AND 操作的结果是 false。不过，在这行代码中，计算的是oFalseObject，而不是它的值false。在Boolean表达式中，所有对象都会被自动转换为true，所以结果为true。参考下面的代码：
+123var oFalseObject = new Boolean(false);var bResult= oFalseObject &amp;&amp; true; //outpus truevar bResult2= oFalseObject.valueOf() &amp;&amp; true; //outpus false
+Number类123456789Number的toString()方法在上篇文章中有详细的介绍。Number有几个处理数值的专用方法：toFixed(参数)：返回的是具有指定位数小数的数字的字符串表示。参数范围为0—20toExponential(参数)：返回的是用科学计数法表示的数字的字符串形式。与toFixed()方法相似，to
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/03/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记（三）：ECMAScript中的引用类型/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/02/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记（二）：ECMAScript中的原始类型/" itemprop="url">
                   《JavaScript高级程序设计》阅读笔记（二）：ECMAScript中的原始类型
                 </a>
@@ -758,137 +885,6 @@ abstract　　boolean　　byte　　char　　class　　const　　debugger　
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/29/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记：函数表达式、闭包、私有变量 /" itemprop="url">
-                  《JavaScript高级程序设计》阅读笔记：函数表达式、闭包、私有变量
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-29T00:00:00+08:00" content="2016-07-29">
-              2016-07-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/《JavaScript高级程序设计》阅读笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">《JavaScript高级程序设计》阅读笔记</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/07/29/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记：函数表达式、闭包、私有变量 /"class="leancloud_visitors" data-flag-title="《JavaScript高级程序设计》阅读笔记：函数表达式、闭包、私有变量"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-定义函数有两种方式：函数声明和函数表达式。它们之间一个重要的区别是函数提升。1.函数声明会进行函数提升，所以函数调用在函数声明之前也不会报错：12345678test();function test()&#123;alert(1);&#125;
-2.函数表达式不会进行函数提升，函数调用在函数声明之前的话会报错：12345678test(); // test is not a functionvar test=function()&#123;alert(1);&#125;
-
-递归函数是通过在函数内部调用自身实现的。直接使用函数名进行递归调用123456789101112131415161718function f(num)&#123;  if(num==1)&#123;  return 1;  &#125;else&#123;  return num*f(num-1);  &#125;&#125;console.log(f(4));//24console.log(f(5));//120
-这种实现的缺点是，在函数内部直接写死了函数名称。如果进行如下设置就会报错：
-123456var test=f;f=null;console.log(test(3));//报错， f is not a function
-通过arguments.callee解决，arguments.callee是一个指向正在执行的函数的指针。这样就避免了上述问题。123456789101112131415161718192021222324function f(num)&#123;  if(num==1)&#123;  return 1;  &#125;else&#123;  return num*arguments.callee(num-1);  &#125;&#125;console.log(f(4));//24console.log(f(5));//120var test=f;f=null;console.log(test(3));//6
-不过这种方式还有一个缺点，就是在严格模式下会执行失败。
-添加”use strict”后执行会报错：
-12'caller', 'callee', and 'arguments' properties may not be accessed on strict mo
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/29/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记：函数表达式、闭包、私有变量 /#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -934,7 +930,7 @@ abstract　　boolean　　byte　　char　　class　　const　　debugger　
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">81</span>
+              <span class="site-state-item-count">82</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -951,7 +947,7 @@ abstract　　boolean　　byte　　char　　class　　const　　debugger　
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
