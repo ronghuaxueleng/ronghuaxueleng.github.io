@@ -258,6 +258,134 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
+                <a class="post-title-link" href="/2016/07/30/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记：面向对象之创建对象/" itemprop="url">
+                  《JavaScript高级程序设计》阅读笔记：面向对象之创建对象
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-30T00:00:00+08:00" content="2016-07-30">
+              2016-07-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/《JavaScript高级程序设计》阅读笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">《JavaScript高级程序设计》阅读笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/07/30/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记：面向对象之创建对象/"class="leancloud_visitors" data-flag-title="《JavaScript高级程序设计》阅读笔记：面向对象之创建对象"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+创建对象工厂模式工厂模式优点：有了封装的概念，解决了创建多个相似对象的问题
+缺点：没有解决对象识别问题,所有对象都仅是Object的实例
+12345678910111213141516function createPerson(name,age,job)&#123;    var o=new Object();    o.name=name;    o.age=age;    o.job=job;    o.sayName=function()&#123;        alert(this.name);    &#125;;    return o;&#125;var person1=createPerson("Jack",29,"Engineer");//检测对象类型alert(person1 instanceof Object) //truealert(person1 instanceof Person) //error Person is not defined
+构造函数模式构造函数模式相比工厂模式的优点就在于，构造函数模式可以将他的实例标示为特定类型
+123456789101112131415function Person(name,age,job)&#123;    this.name=name;    this.age=age;    this.job=job;    this.sayName=function()&#123;        alert(this.name);    &#125;;&#125;var person1=new Person("Jack",29,"Engineer");//检测对象类型alert(person1 instanceof Object) //truealert(person1 instanceof Person) //true
+构造函数也是函数，如果不通过new 操作符调用，和其他函数没有不同
+12345678910111213141516171819202122function Person(name,age,job)&#123;    this.name=name;    this.age=age;    this.job=job;    this.sayName=function()&#123;     
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/30/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记：面向对象之创建对象/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/29/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记：函数表达式、闭包、私有变量 /" itemprop="url">
                   《JavaScript高级程序设计》阅读笔记：函数表达式、闭包、私有变量
                 </a>
@@ -786,152 +914,6 @@ Usage:
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/11/25/build-first-blog/" itemprop="url">
-                  使用hexo搭建属于自己的博客
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-11-25T00:00:00+08:00" content="2015-11-25">
-              2015-11-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2015/11/25/build-first-blog/"class="leancloud_visitors" data-flag-title="使用hexo搭建属于自己的博客"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-在搭建这个博客期间参考了很多资料，因为不是所有的资料都能完整并且顺利搭建出来，经过我本人实践，整理出来这篇文章，希望可以帮助大家减少不必要的麻烦，不用再到处找搭建方法，本文的共分为一下几章：
-
-第一节： 什么是hexo第二节： 为什么要用hexo第三节： 谁使用hexo第四节： 怎样搭建hexo博客第五节： 如何更换自己的主题第六节： 如何发表文章
-
-
-第一节：什么是hexo hexo是一个基于Node.js的静态博客程序，可以方便的生成静态网页托管在github和Heroku上。作者是来自台湾的@tommy351。引用@tommy351的话，hexo：
-
-快速、简单且功能强大的 Node.js 博客框架。A fast, simple &amp; powerful blog framework, powered by Node.js.类似于jekyll、Octopress、Wordpress，我们可以用hexo创建自己的博客，托管到github或Heroku上，绑定自己的域名，用markdown写文章。本博客即使用hexo创建并托管在github上。
-
-类似于jekyll、Octopress、Wordpress，我们可以用hexo创建自己的博客，托管到github或Heroku上，绑定自己的域名，用markdown写文章。
-
-第二节：为什么要用hexo还是引用作者的话：
-
-不可思议的快速 ─ 只要一眨眼静态文件即生成完成支持 Markdown仅需一道指令即可部署到 GitHub Pages 和 Heroku已移植 Octopress 插件高扩展性、自订性兼容于 Windows, Mac &amp; Linux
-
-我在加几个自己体会到的优点：
-
-易用：不仅部署简单，平时使用中仅需要hexo new hexo generate hexo server hexo deploy四个命令。不像Jekyll需要很多繁琐的git命令。
-轻：文件少、小，易理解，方便自定义。
-用户多：虽然赶不上Jekyll和Octopress，但遇到什么问题都能搜索到答案，或者找到同样使用hexo的用户进行参考和咨询。
-简单：我本人不太爱倒腾这东西，但是当我看到本博客的模板后，在看完教程后，都停不下来，用了一晚上就搭起来了
-省时：不必浪费时间在你不关注的东西上，专心写你的博客
-
-
-第三节：谁使用h
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/11/25/build-first-blog/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -977,7 +959,7 @@ Usage:
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">82</span>
+              <span class="site-state-item-count">83</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

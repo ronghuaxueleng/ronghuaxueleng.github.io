@@ -258,6 +258,152 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/" itemprop="url">
+                  迭代器模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/"class="leancloud_visitors" data-flag-title="迭代器模式"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+
+迭代器模式是指提供一种方法，顺序访问一个聚合对象中的各个元素，而又不需要暴露该对象的内部表示。迭代器模式可以把迭代的过程从业务逻辑中分离出来，在使用迭代器模式之后，即使不关心内部构造，也可以按顺序访问其中的每个元素。
+
+jQuery中的迭代器迭代器模式无非就是循环访问聚合对象中的各个元素。比如jQuery中的$.each函数，其中回调函数中的i为当前 索引，n为当前元素，代码如下
+$.each([1, 2, 3], function(i, n) {
+    console.log(&apos;当前坐标：&apos; + i);
+    console.log(&apos;当前值：&apos; + n);
+});
+然而，作为一个合格的前端开发者，我们不应该只是会用，而更应该去研究他的实现，因此下面我们就来自己实现一个each函数
+var each = function(ary, callback) {
+    for(var i = 0, l = ary.length; i &lt; l; i++) {
+        callback.call(ary[i], i, ary[i]); //把下标和元素当作参数传给callback函数
+    }
+};
+each([1,2,3], function(i, n) {
+    alert([i,n]);
+});
+内部迭代器和外部迭代器像刚刚编写的each函数属于内部迭代器，each函数的内部已经定义好了迭代规则，它完全接手整个迭代过程，外部只需要一次初始调用.然而，如果你想同时迭代两个数组，例如：判断两个数组里的元素的值是否完全相等。此时如果不去改写each函数本身的代码，就只能够增加一个compare函数然后对each的回调进行更改了。
+var compare = function(ary1, ary2) {
+    if (ary1.length !== ary2.length) {
+        throw new Error(&apos;ary1和ary2不相等&apos;);
+    }
+    each(ary1, function(i ,n) {
+        if (n !== ary2[i]) {
+            throw new Error(&apos;ary1和ary2不相等&apo
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/25/api/html/Fullscreen API：全屏操作/" itemprop="url">
                   Fullscreen API：全屏操作
                 </a>
@@ -326,6 +472,132 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           <p>全屏API可以控制浏览器的全屏显示，让一个Element节点（以及子节点）占满用户的整个屏幕。目前各大浏览器的最新版本都支持这个API（包括IE11），但是使用的时候需要加上浏览器前缀。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/25/api/html/Fullscreen API：全屏操作/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/24/d3/D3.js 入门教程系列/" itemprop="url">
+                  D3.js 入门教程系列
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-24T00:00:00+08:00" content="2016-09-24">
+              2016-09-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/d3/" itemprop="url" rel="index">
+                    <span itemprop="name">d3</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/09/24/d3/D3.js 入门教程系列/"class="leancloud_visitors" data-flag-title="D3.js 入门教程系列"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          初识D3D3是指数据驱动文档（Data-Driven Documents），根据D3的官方定义：
+
+D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通过使用HTML、SVG和CSS把数据鲜活形象地展现出来。D3严格遵循Web标准，因而可以让你的程序轻松兼容现代主流浏览器并避免对特定框架的依赖。同时，它提供了强大的可视化组件，可以让使用者以数据驱动的方式去操作DOM。—-D3维基（2013年8月）
+
+从一个Hello Wordld示例来看看d3如何运行 点击查看在线DEMO123456789101112131415161718192021222324252627282930313233function render(data)&#123;    var demo = d3.select('body')        .selectAll('p')        .data(data, function (d) &#123;          return d;        &#125;);        demo.enter()        .append('p')        .style('width', 0+'px')        .style('background', '#eee');    demo.text(function (d) &#123;          return d;        &#125;)        .transition()        .duration(1000)        .style('width', function (d) &#123;          return d+'px';        &#125;);    demo.exit()        .transition()        .duration(1000)        .style('width', 0+'px')        .remove();&#125;render([100,300,500]);setTimeout(function()&#123;    render([300,500,1000]);&#125;,1000)
+通过链式风格的方式让整个运行步骤非常清晰，D3的API设计跟我
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/24/d3/D3.js 入门教程系列/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -522,132 +794,6 @@ d3.select(‘#demo1&apos;).on(&apos;click&apos;, function(){
             
               
                 
-                <a class="post-title-link" href="/2016/09/24/d3/D3.js 入门教程系列/" itemprop="url">
-                  D3.js 入门教程系列
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-24T00:00:00+08:00" content="2016-09-24">
-              2016-09-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/d3/" itemprop="url" rel="index">
-                    <span itemprop="name">d3</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/09/24/d3/D3.js 入门教程系列/"class="leancloud_visitors" data-flag-title="D3.js 入门教程系列"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          初识D3D3是指数据驱动文档（Data-Driven Documents），根据D3的官方定义：
-
-D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通过使用HTML、SVG和CSS把数据鲜活形象地展现出来。D3严格遵循Web标准，因而可以让你的程序轻松兼容现代主流浏览器并避免对特定框架的依赖。同时，它提供了强大的可视化组件，可以让使用者以数据驱动的方式去操作DOM。—-D3维基（2013年8月）
-
-从一个Hello Wordld示例来看看d3如何运行 点击查看在线DEMO123456789101112131415161718192021222324252627282930313233function render(data)&#123;    var demo = d3.select('body')        .selectAll('p')        .data(data, function (d) &#123;          return d;        &#125;);        demo.enter()        .append('p')        .style('width', 0+'px')        .style('background', '#eee');    demo.text(function (d) &#123;          return d;        &#125;)        .transition()        .duration(1000)        .style('width', function (d) &#123;          return d+'px';        &#125;);    demo.exit()        .transition()        .duration(1000)        .style('width', 0+'px')        .remove();&#125;render([100,300,500]);setTimeout(function()&#123;    render([300,500,1000]);&#125;,1000)
-通过链式风格的方式让整个运行步骤非常清晰，D3的API设计跟我
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/24/d3/D3.js 入门教程系列/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/09/19/javascript/Javascript异步编程的4种方法/" itemprop="url">
                   Javascript异步编程的4种方法
                 </a>
@@ -746,127 +892,6 @@ D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/19/javascript/12种不宜使用的Javascript语法/" itemprop="url">
-                  12种不宜使用的Javascript语法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-19T00:00:00+08:00" content="2016-09-19">
-              2016-09-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/09/19/javascript/12种不宜使用的Javascript语法/"class="leancloud_visitors" data-flag-title="12种不宜使用的Javascript语法"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <hr>
-<h3 id=""><a href="#" class="headerlink" title="=="></a>==</h3><p>Javascript有两组相等运算符，一组是==和!=，另一组是===和!==。前者只比较值的相等，后者除了值以外，还比较类型是否相同。</p>
-<p>请尽量不要使用前一组，永远只使用===和!==。因为==默认会进行类型转换，规则十分难记。如果你不相信的话，请回答下面五个判断式的值是true还是false<br>：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">　　<span class="literal">false</span> == <span class="string">'false'</span></div><div class="line"></div><div class="line">　　<span class="literal">false</span> == <span class="literal">undefined</span></div><div class="line"></div><div class="line">　　<span class="literal">false</span> == <span class="literal">null</span></div><div class="line"></div><div class="line">　　<span class="literal">null</span> == <span class="literal">undefined</span></div><div class="line"></div><div class="line">　　<span class="number">0</span> == <span class="string">''</span></div></pre></td></tr></table></figure></p>
-<p>前三个是false，后两个是true。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/19/javascript/12种不宜使用的Javascript语法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -912,7 +937,7 @@ D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">82</span>
+              <span class="site-state-item-count">83</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

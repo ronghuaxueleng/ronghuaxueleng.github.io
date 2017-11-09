@@ -258,6 +258,136 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
+                <a class="post-title-link" href="/2016/08/22/javascript/深入理解 JavaScript 中的 delete 操作符/" itemprop="url">
+                  深入理解 JavaScript 中的 delete 操作符
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-22T00:00:00+08:00" content="2016-08-22">
+              2016-08-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/08/22/javascript/深入理解 JavaScript 中的 delete 操作符/"class="leancloud_visitors" data-flag-title="深入理解 JavaScript 中的 delete 操作符"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>delete 操作符用于删除对象的属性。</p>
+<p>似乎很多同学（包括我）对 delete 操作符都是似是而非，为什么有的属性可以被删除，有的却不能被删除？为什么能够删除对象的属性却不能删除变量或函数？在 eval 和 <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Strict_mode" target="_blank" rel="external">严格模式</a>下，delete 操作符又有哪些特性？等等。。</p>
+<p>本文将从基本概念到 ECMPScript 内部原理来学习 delete 操作符。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p><strong>表达式</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> object.property    <span class="comment">// 点操作符方式，常用方式</span></div><div class="line"><span class="keyword">delete</span> object[<span class="string">'property'</span>] <span class="comment">// 字符串属性名方式</span></div></pre></td></tr></table></figure>
+<p><strong>参数</strong></p>
+<ul>
+<li>object - 对象名称，或者返回一个对象的表达式</li>
+<li>property - 将要删除的属性</li>
+</ul>
+<p><strong>返回值</strong></p>
+<p>delete 操作符返回 true 或 false。当被 delete 的对象的属性存在并且拥有 DontDelete (对象属性的一个内部属性，拥有该内部属性表明该属性不能被删除) 时返回 false（在<a href="https://developer.mozilla.org/en-US/docs/JavaScript/Strict_mode" target="_blank" rel="external">严格模式</a>下将抛出异常），否则返回 true。需要注意的是，对象属性不存在时也返回 true，<em>所以返回值并非完全等同于删除成功与否</em>。</p>
+<p><img src="http://bubkoo.qiniudn.com/delete-operator.jpg" alt=""></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/22/javascript/深入理解 JavaScript 中的 delete 操作符/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/21/angularJs/AngularJS中scope基于原型链的继承/" itemprop="url">
                   AngularJS中scope基于原型链的继承
                 </a>
@@ -711,134 +841,6 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/07/angularJs/ui-router/学习 ui-router - 组件/" itemprop="url">
-                  学习 ui-router - 组件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-07T00:00:00+08:00" content="2016-08-07">
-              2016-08-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/angularjs/" itemprop="url" rel="index">
-                    <span itemprop="name">angularjs</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/08/07/angularJs/ui-router/学习 ui-router - 组件/"class="leancloud_visitors" data-flag-title="学习 ui-router - 组件"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>参考原文：<a href="https://github.com/angular-ui/ui-router/wiki/The-Components" target="_blank" rel="external">https://github.com/angular-ui/ui-router/wiki/The-Components</a></p>
-<ul>
-<li><p><strong>$state / $stateProvider</strong>：管理状态定义、当前状态和状态转换。包含触发状态转换的事件和回调函数，异步解决目标状态的任何依赖项，更新<code>$location</code>到当前状态。由于状态包含关联的 url，通过$urlRouterProvider生成一个路由规则来执行转换的状态。</p>
-</li>
-<li><p><strong>ui-view</strong>指示器：渲染状态中定义的视图，是状态中定义的视图的一个占位符。</p>
-</li>
-<li><p><strong>$urlRouter / $urlRouterProvider</strong>：管理了一套路由规则列表来处理当<code>$location</code>发生变化时如何跳转。最低级的方式是，规则可以是任意函数，来检查<code>$location</code>，并在处理完成时候返回<code>true</code>。支持正则表达式规则和通过<code>$urlMatcherFactory</code>编译的<code>UrlMatcher</code>对象的 url 占位符规则。</p>
-</li>
-<li><p><strong>$urlMatcherFactory</strong>：将 url和占位符编译为<code>UrlMatcher</code>对象。除了<code>$routeProvider</code>支持的占位符语法之外，它还支持扩展语法，允许一个正则表达式指定占位符，并且能够提取命名参数和查询url的一部分。</p>
-</li>
-<li><p><strong>$templateFactory</strong> - 通过<code>$http</code> / <code>$templateCache</code>来加载模板，供状态配置中使用。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/07/angularJs/ui-router/学习 ui-router - 组件/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -884,7 +886,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">82</span>
+              <span class="site-state-item-count">83</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
