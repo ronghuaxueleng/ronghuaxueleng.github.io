@@ -103,7 +103,7 @@ flowchart:
   options": 
       scale: 1,
       line-width: 2
-      line-length: 50
+      line-length: 10
       text-margin: 10
       font-size: 12
 
