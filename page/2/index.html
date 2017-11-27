@@ -258,8 +258,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(5)：多态/" itemprop="url">
-                  多态
+                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(8)：工厂模式/" itemprop="url">
+                  工厂模式
                 </a>
               
             
@@ -307,7 +307,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/13/php设计模式/PHP设计模式(5)：多态/"class="leancloud_visitors" data-flag-title="多态"></span>
+            <span id="/2016/10/13/php设计模式/PHP设计模式(8)：工厂模式/"class="leancloud_visitors" data-flag-title="工厂模式"></span>
           
 
           
@@ -324,50 +324,39 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
       
         
           
-          Introduction在[PHP设计模式(四)：继承][2]中我们介绍了继承，利用extends来进行程序设计的方法。在[PHP设计模式(二)：抽象类和接口][3]中我们介绍了接口，事实上也存在利用interface的程序设计方法，那就是多态。和C/C++，Java，Python等语言一样，PHP也支持多态。多态更多是是一种面向对象程序设计的概念，让同一类对象执行同一个接口，但却实现不同的逻辑功能。
-多态/Polymorphism还是用动物、鲸鱼和鲤鱼来举例：
+          简介在[PHP设计模式(七)：设计模式分类][2]中我们提到过创建设计模式(Creationpatterns)，创建设计模式专注于设计对象(Object)和实例(Instance)的创建过程。创建设计模式包括下面五种设计模式：
+
+抽象工厂设计模式(Abstract Factory)
+
+生成器模式(Builder)
+
+工厂设计模式(Factory Method)
+
+原型设计模式(Prototype Method)
+
+单例设计模式(Singleton)
+
+
+当程序逐渐扩展的时候，需要更多的新对象，新对象的创建不应该依赖于创建者，换句话说，新对象的创建过程，不应该依赖调用创建函数的对象。为了减少冗余，增加拓展性，工厂模式就是一种创建新对象时使用的设计模式。
+工厂模式工厂模式，也是五种设计模式中唯一的类的设计模式(Class patterns)，即在类中就能实现的设计模式。听起来挺抽象？对比原型设计模式，这是一种对象设计模式(Object patterns)，通过对象的__clone()方法来实现的设计模式。在工厂模式中，新创建的对象/产品并不依赖于生产它的对象/工厂，新对象和调用者之间是低耦合状态。通常调用者和工厂交互，由工厂来生成新对象，新对象只和工厂有关。
+何时使用工厂模式？简单来说，当需求对类的个数不明确的时候，可以使用工厂模式，如：你需要创建一个在线博物馆，但你并不确切的知道究竟有多少文物，你不可能无限的增加新的文物类，同时对于损毁的文物，你不可能无限的去清理这些类。反过来说，如果你确切的知道类的总量，那么你就没有必要使用工程模式，直接通过继承的方式就能实现好的设计。
+Example还是使用我们惯用的鲸鱼和鲤鱼的例子，现在我们想实现一个海洋馆，目前我们并不确定究竟有多少海洋生物。先是一个抽象的工厂类：
 &lt;?php
-interface IEat {
-  function eatFish();
-  function eatMoss();
-}
-
-class Whale implements IEat {
-  public function eatFish() {
-    echo &quot;Whale eats fish.\n&quot;;
-  }
-  public function eatMoss() {
-    echo &quot;Whale doesn&apos;t eat fish\n&quot;;
+abstract class Factory {
+  protected abstract function create();
+  public function factoryStart() {
+    return $this-&gt;create();
   }
 }
-
-class Carp implements IEat {
-  public function eatFish() {
-    echo &quot;Carp doesn&apos;t eat moss.\n&quot;;
-  }
-  public function eatMoss() {
-    echo &quot;Carp eats moss.\n&quot;;
-  }
-}
-
-$whale = new Whale();
-$whale-&gt;eatFish();
-$whale-&gt;eatMoss();
-$carp = new Carp();
-$carp-&gt;eatFish();
-$carp-&gt;eatMoss();
 ?&gt;
-运行一下：
-$ php Inheritance.php
-Whale eats fish.
-Whale doesn&apos;t eat fish.
-Carp eats moss.
-Carp doesn&apos;t eat moss.
-注意PHP的函数定义不包含返回值，因此完全可以给不同的接口实现返回不同类型的数据。这一点和C/C++，Java
+然后是两个工厂：鲸鱼工厂和鲤鱼工厂
+&lt;?php
+class WhaleFactory extends Factory {
+  protected functio
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(5)：多态/#more" rel="contents">
+            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(8)：工厂模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -418,8 +407,8 @@ Carp doesn&apos;t eat moss.
             
               
                 
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/" itemprop="url">
-                  抽象类和接口
+                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(4)：继承/" itemprop="url">
+                  继承
                 </a>
               
             
@@ -467,7 +456,7 @@ Carp doesn&apos;t eat moss.
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/"class="leancloud_visitors" data-flag-title="抽象类和接口"></span>
+            <span id="/2016/10/13/php设计模式/PHP设计模式(4)：继承/"class="leancloud_visitors" data-flag-title="继承"></span>
           
 
           
@@ -484,37 +473,52 @@ Carp doesn&apos;t eat moss.
       
         
           
-          简介对于编程来说，对事物的抽象是一个老生常谈的话题，抽象问题更利于面向对象编程以及程序设计模式。和C/C++，Java，Python等语言一样，PHP也支持面向对象，但是又有略微区别，如PHP支持在接口中定义常量，但是不支持抽象变量。
-抽象/Abstraction
-对事物的抽象是指，区别两个不同事物之间的本质特征，这两个事物应该在某个视角上有明确的区分界限。
-
-如，鲸鱼和鲤鱼，这两个事物在动物的视角上，有明确的区分界限，属于不同的动物；但是在水生动物的视角上，他们属于同一种动物的抽象。合理的对问题进行抽象，构造模型，将更容易通过编程来解决问题。记住：抽象是编程解决问题的基础，越复杂的问题，越需要一开始就对问题进行抽象，而不是直接写代码。
-抽象类/Abstract Class抽象类是一个编程概念，PHP中叫Abstract Classes。在设计模式中，抽象类不能够被实例化/初始化，但是可以依靠具体类的继承来实现。有点抽象，对吧？用代码来解释：
+          简介在[PHP设计模式(二)：抽象类和接口][2]以及[PHP设计模式(三)：封装][3]中，我们已经见过继承，也就是extends关键字。和C/C++，Java，Python等语言一样，PHP也支持继承，而且和其他语言没有什么区别。
+继承/Inheritance还是用动物、鲸鱼和鲤鱼来举例：
 &lt;?php
 abstract class Animal {
-  public $name;
-  abstract public function eat($food);
+  protected $name;
+
+  protected function chew($food) {
+    echo $this-&gt;name . &quot; is chewing &quot; . $food . &quot;.\n&quot;;
+  }
+  protected function digest($food) {
+    echo $this-&gt;name . &quot; is digesting &quot; . $food . &quot;.\n&quot;;
+  }
 }
-?&gt;
-定义了动物这个抽象类，动物的属性是名字name，然后有一个方法是吃食物eat food。为什么动物是抽象类？因为动物这个物种并不是一个存在于自然界的东西，它是人类脑海里抽象出的东西。存在自然界的是鲸鱼和鲤鱼这样的确定性动物。比如鲸鱼的概念，应该是属于动物，继承Animal类，我们定义鲸鱼这个类以及吃东西的方法：
-&lt;?php
+
 class Whale extends Animal {
   public function __construct() {
     $this-&gt;name = &quot;Whale&quot;;
   }
   public function eat($food) {
-    echo $this-&gt;name . &quot; eat &quot; . $food . &quot;.\n&quot;;
+    $this-&gt;chew($food);
+    $this-&gt;digest($food);
   }
 }
+
+class Carp extends Animal {
+  public function __construct() {
+    $this-&gt;name = &quot;Carp&quot;;
+  }
+  public function eat($food) {
+    $this-&gt;chew($food);
+    $this-&gt;digest($food);
+  }
+}
+
+$whale = new Whale();
+$whale-&gt;eat(&quot;fish&quot;);
+$carp = new Carp();
+$carp-&gt;eat(&quot;moss&quot;);
 ?&gt;
-现在我们可以初始鲸鱼类，并且调用吃的方法了：
-&lt;?php
-  $whale = new Whale();
-  $whale-&gt;eat(&quot;fish&quot;
+运行一下：
+$ php Inheritance.php
+Whale is chewin
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/#more" rel="contents">
+            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(4)：继承/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -717,8 +721,8 @@ $whale
             
               
                 
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(4)：继承/" itemprop="url">
-                  继承
+                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(7)：设计模式分类/" itemprop="url">
+                  设计模式分类
                 </a>
               
             
@@ -766,7 +770,7 @@ $whale
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/13/php设计模式/PHP设计模式(4)：继承/"class="leancloud_visitors" data-flag-title="继承"></span>
+            <span id="/2016/10/13/php设计模式/PHP设计模式(7)：设计模式分类/"class="leancloud_visitors" data-flag-title="设计模式分类"></span>
           
 
           
@@ -783,52 +787,20 @@ $whale
       
         
           
-          简介在[PHP设计模式(二)：抽象类和接口][2]以及[PHP设计模式(三)：封装][3]中，我们已经见过继承，也就是extends关键字。和C/C++，Java，Python等语言一样，PHP也支持继承，而且和其他语言没有什么区别。
-继承/Inheritance还是用动物、鲸鱼和鲤鱼来举例：
-&lt;?php
-abstract class Animal {
-  protected $name;
+          简介根据目的和范围，设计模式可以分为五类。按照目的分为：创建设计模式，结构设计模式，以及行为设计模式。按照范围分为：类的设计模式，以及对象设计模式。下面分别介绍。
+创建设计模式创建设计模式(Creational patterns)，用于创建对象时的设计模式。更具体一点，初始化对象流程的设计模式。当程序日益复杂时，需要更加灵活地创建对象，同时减少创建时的依赖。而创建设计模式就是解决此问题的一类设计模式。
+结构设计模式结构设计模式(Structural patterns)，用于继承和接口时的设计模式。结构设计模式用于新类的函数方法设计，减少不必要的类定义，减少代码的冗余。
+行为设计模式行为设计模式(Behavioralpatterns)，用于方法实现以及对应算法的设计模式，同时也是最复杂的设计模式。行为设计模式不仅仅用于定义类的函数行为，同时也用于不同类之间的协议、通信。
+类的设计模式类的设计模式(Class patterns)，用于类的具体实现的设计模式。包含了如何设计和定义类，以及父类和子类的设计模式。
+对象设计模式对象设计模式(Object patterns)，用于对象的设计模式。与类的设计模式不同，对象设计模式主要用于运行期对象的状态改变、动态行为变更等。
+为什么会重构？重构通常是由于现有程序的框架不能很好的适应新需求，虽然可以通过硬编码(hardcode)或者绕过(bypass)的方式来解决一个新需求，但这并不是长久之计。当新需求越来越多时，现在程序会越来越冗余，导致最后的不可维护。
+架构和设计模式的区别相比架构(frameworks)，设计模式是一些抽象的组成架构的元素，且更为灵活通用。架构更适合解决具体问题，使用架构构建应用程序将更为快捷，不过相比设计模式，架构牺牲了灵活性。
+Summary本文介绍了设计模式的分类，后面我们将分别介绍各种设计模式。
 
-  protected function chew($food) {
-    echo $this-&gt;name . &quot; is chewing &quot; . $food . &quot;.\n&quot;;
-  }
-  protected function digest($food) {
-    echo $this-&gt;name . &quot; is digesting &quot; . $food . &quot;.\n&quot;;
-  }
-}
-
-class Whale extends Animal {
-  public function __construct() {
-    $this-&gt;name = &quot;Whale&quot;;
-  }
-  public function eat($food) {
-    $this-&gt;chew($food);
-    $this-&gt;digest($food);
-  }
-}
-
-class Carp extends Animal {
-  public function __construct() {
-    $this-&gt;name = &quot;Carp&quot;;
-  }
-  public function eat($food) {
-    $this-&gt;chew($food);
-    $this-&gt;digest($food);
-  }
-}
-
-$whale = new Whale();
-$whale-&gt;eat(&quot;fish&quot;);
-$carp = new Carp();
-$carp-&gt;eat(&quot;moss&quot;);
-?&gt;
-运行一下：
-$ php Inheritance.php
-Whale is chewin
-          ...
+          
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(4)：继承/#more" rel="contents">
+            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(7)：设计模式分类/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

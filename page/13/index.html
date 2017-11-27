@@ -258,8 +258,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/08/22/javascript/深入理解 JavaScript 中的 delete 操作符/" itemprop="url">
-                  深入理解 JavaScript 中的 delete 操作符
+                <a class="post-title-link" href="/2016/08/22/angularJs/用$scope还是用controller as/" itemprop="url">
+                  用$scope还是用controller as
                 </a>
               
             
@@ -286,8 +286,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
+                  <a href="/categories/angularjs/" itemprop="url" rel="index">
+                    <span itemprop="name">angularjs</span>
                   </a>
                 </span>
 
@@ -307,7 +307,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/08/22/javascript/深入理解 JavaScript 中的 delete 操作符/"class="leancloud_visitors" data-flag-title="深入理解 JavaScript 中的 delete 操作符"></span>
+            <span id="/2016/08/22/angularJs/用$scope还是用controller as/"class="leancloud_visitors" data-flag-title="用$scope还是用controller as"></span>
           
 
           
@@ -323,21 +323,14 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
 
       
         
-          <p>delete 操作符用于删除对象的属性。</p>
-<p>似乎很多同学（包括我）对 delete 操作符都是似是而非，为什么有的属性可以被删除，有的却不能被删除？为什么能够删除对象的属性却不能删除变量或函数？在 eval 和 <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Strict_mode" target="_blank" rel="external">严格模式</a>下，delete 操作符又有哪些特性？等等。。</p>
-<p>本文将从基本概念到 ECMPScript 内部原理来学习 delete 操作符。</p>
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p><strong>表达式</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">delete</span> object.property    <span class="comment">// 点操作符方式，常用方式</span></div><div class="line"><span class="keyword">delete</span> object[<span class="string">'property'</span>] <span class="comment">// 字符串属性名方式</span></div></pre></td></tr></table></figure>
-<p><strong>参数</strong></p>
+          <p>AngularJS中在处理controller时提供了两种语法。</p>
 <ul>
-<li>object - 对象名称，或者返回一个对象的表达式</li>
-<li>property - 将要删除的属性</li>
+<li>第一种是，在DOM中使用<code>ng-controller=&quot;TestController&quot;</code>，这样在定义controller时需要将model绑定到$scope上。</li>
+<li>另一种是，在DOM中使用<code>ng-controller=&quot;TestController as test&quot;</code>，这样其实是将model直接绑定到controller的实例上。</li>
 </ul>
-<p><strong>返回值</strong></p>
-<p>delete 操作符返回 true 或 false。当被 delete 的对象的属性存在并且拥有 DontDelete (对象属性的一个内部属性，拥有该内部属性表明该属性不能被删除) 时返回 false（在<a href="https://developer.mozilla.org/en-US/docs/JavaScript/Strict_mode" target="_blank" rel="external">严格模式</a>下将抛出异常），否则返回 true。需要注意的是，对象属性不存在时也返回 true，<em>所以返回值并非完全等同于删除成功与否</em>。</p>
-<p><img src="http://bubkoo.qiniudn.com/delete-operator.jpg" alt=""></p>
+<p>在AngularJS的官方Get Started以及各种文档中，多推荐第一种方式，导致很多人可能都不知道原来还有第二种方式，我也是最近看一篇文章时才注意到这个。那么这两种方式各有什么优劣势呢？在现实的开发中到底更推荐哪种方式呢？今天就来探究一下！</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/22/javascript/深入理解 JavaScript 中的 delete 操作符/#more" rel="contents">
+            <a class="btn" href="/2016/08/22/angularJs/用$scope还是用controller as/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

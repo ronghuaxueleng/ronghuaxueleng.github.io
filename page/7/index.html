@@ -258,154 +258,6 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/15职责链模式/" itemprop="url">
-                  职责链模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/15职责链模式/"class="leancloud_visitors" data-flag-title="职责链模式"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-
-使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系，将这些对象都练成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。
-
-如图所示：请求→A→B→C→D再来一个更形象的比喻，读书的时候假设你坐在前面，要在上课时告诉后排一些事情，这时候你可能会选择写一张小纸条，小纸条就会陆续的被向后传递。从上面的例子中，我们可以看到职责链的优点：请求发送者只需要知道链中的第一个节点，从而弱化了发送者和一组接收者之间的强联系。
-实际开发中的职责链模式需求：一个售卖手机的电商网站，交纳500定金和200定金和没交定金的有不同的优惠状况。我们刚开始可能会这么写：
-// orderType: 订单类型（普通用户或定金用户），1为500元定金用户，2为200，3为普通用户
-// pay：表示是否已支付定金，true或false
-// stock：表示当前用于普通购买的手机库存数量，已支付过定金的用户不受此限制。
-
-var order = function (orderType, pay, stock) {
-    if (orderType === 1) { //500元定金购买模式
-        if (pay === true) {
-            console.log(&apos;500元定金预定，已获得100元优惠券&apos;);
-        }else { //未支付定金，降级到普通购买模式
-            if (stock &gt; 0) {
-                console.log(&apos;普通购买，无优惠券&apos;);
-            } else {
-                console.log(&apos;库存不足&apos;);
-            }
-        }
-    }
-    else if (orderType === 2) {
-        if (pay === true) {
-            console.log(&apos;200元定金预定，已获得50元优惠券&apos;);
-        }else { //未支付定金，降级到普通购买模式
-            if (stock &gt; 0) {
-             
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/15职责链模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/14享元模式/" itemprop="url">
                   享元模式
                 </a>
@@ -556,8 +408,8 @@ var maleModel = new Model(&ap
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/" itemprop="url">
-                  模版方法
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/15职责链模式/" itemprop="url">
+                  职责链模式
                 </a>
               
             
@@ -605,7 +457,7 @@ var maleModel = new Model(&ap
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/"class="leancloud_visitors" data-flag-title="模版方法"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/15职责链模式/"class="leancloud_visitors" data-flag-title="职责链模式"></span>
           
 
           
@@ -624,61 +476,36 @@ var maleModel = new Model(&ap
           
           
 
-模版方法是一种只需要使用继承就可以实现的非常简单的模式。他由两部分组成，第一部分是抽象父类，第二部分是具体实现子类。通常在抽象父类中封装了子类的算法框架，包括实现一些共用方法以及封装子类所有方法的执行顺序。子类通过继承这个抽象类，也继承了整个算法结构，并且可以选择重写父类的方法。
+使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系，将这些对象都练成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。
 
-Coffee or Tea假设我们现在要泡一杯咖啡步骤如下：
+如图所示：请求→A→B→C→D再来一个更形象的比喻，读书的时候假设你坐在前面，要在上课时告诉后排一些事情，这时候你可能会选择写一张小纸条，小纸条就会陆续的被向后传递。从上面的例子中，我们可以看到职责链的优点：请求发送者只需要知道链中的第一个节点，从而弱化了发送者和一组接收者之间的强联系。
+实际开发中的职责链模式需求：一个售卖手机的电商网站，交纳500定金和200定金和没交定金的有不同的优惠状况。我们刚开始可能会这么写：
+// orderType: 订单类型（普通用户或定金用户），1为500元定金用户，2为200，3为普通用户
+// pay：表示是否已支付定金，true或false
+// stock：表示当前用于普通购买的手机库存数量，已支付过定金的用户不受此限制。
 
-把水煮沸
-用沸水冲泡咖啡
-把咖啡倒进杯子
-加糖和牛奶
-
-泡茶的步骤：
-
-把水煮沸
-用沸水浸泡茶叶
-把茶水倒进杯子
-加柠檬
-
-经过比较，我们可以发现泡茶和泡咖啡有以下共同点：
-
-原料不同。一个是茶一个是咖啡，但是我们都可以把它们抽象为“饮料”
-
-泡的方式不同。咖啡是冲泡，茶叶是浸泡，我们都可以抽象成“泡”。
-
-加入的调料不同。一个是糖和牛奶，一个是柠檬，我们把它们抽象成“调料”。
-
-
-所以经过抽象后，无论是泡咖啡还是泡茶我们都是要进行下列步骤：
-
-把水煮沸
-用沸水冲泡咖啡
-把饮料倒进杯子
-加调料现在用代码来表示这个抽象过程
-
-var Beverage = function()  {};
-Beverage.prototype.boilWater = function() {
-    console.log(&apos;把水煮沸&apos;);
-};
-Beverage.prototype.brew = function(){}; //空方法，应该由子类重写
-Beverage.prototype.pourInCup = function(){}; //空方法，应该由子类重写
-Beverage.prototype.addCondiments = function(){}; //空方法，应该由子类重写
-
-Beverage.prototype.init= function(){
-    this.boilWater();
-    this.brew();
-    this.pourInCup();
-    this.addCondiments();
-}; 
-接着就是创建Coffee子类和Tea子类
-var Coffee = function() {};
-Coffee.prototype = new Beverage();
-Coffee.prototype.brew = function() {
-    console.log(&apo
+var order = function (orderType, pay, stock) {
+    if (orderType === 1) { //500元定金购买模式
+        if (pay === true) {
+            console.log(&apos;500元定金预定，已获得100元优惠券&apos;);
+        }else { //未支付定金，降级到普通购买模式
+            if (stock &gt; 0) {
+                console.log(&apos;普通购买，无优惠券&apos;);
+            } else {
+                console.log(&apos;库存不足&apos;);
+            }
+        }
+    }
+    else if (orderType === 2) {
+        if (pay === true) {
+            console.log(&apos;200元定金预定，已获得50元优惠券&apos;);
+        }else { //未支付定金，降级到普通购买模式
+            if (stock &gt; 0) {
+             
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/15职责链模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -729,8 +556,8 @@ Coffee.prototype.brew = function() {
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/" itemprop="url">
-                  组合模式
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/" itemprop="url">
+                  状态模式
                 </a>
               
             
@@ -778,7 +605,7 @@ Coffee.prototype.brew = function() {
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/"class="leancloud_visitors" data-flag-title="组合模式"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/"class="leancloud_visitors" data-flag-title="状态模式"></span>
           
 
           
@@ -795,58 +622,49 @@ Coffee.prototype.brew = function() {
       
         
           
-          组合模式
+          
 
-组合模式将对象组合成树形结构，以表示“部分-整体”的层次结构。除了用来表示树形结构之外，组合模式的另一个好处是通过对象的多态性表现，使得用户对单个对象和组合对象的使用具有一致性。
+状态模式的关键是区分事物内部的状态，事物内部状态的改变往往会带来事物的行为改变。
 
-请求在树中传递的过程在组合模式中，请求在树中传递的过程总是遵循一种逻辑。请求从树的最顶端的对象往下传递，如果当前处理请求的对象是叶对象，叶对象自身会对请求做相互相应的处理；如果当前处理请求对象是组合对象，组合对象则会遍历它下面的节点，将请求继续传递。总之，组合对象的请求是从上到下沿着树传递，直到树的尽头。作为客户，只要关心树最顶层的组合对象，客户只需要请求这个组合对象，请求便会向下延续。
-现在，假设一个需求，我们需要一个超级遥控器可以控制家里所有的电器，且拥有以下功能
+电灯程序首先给一个不用状态模式的电灯程序例子：
+var Light = function() {
+  this.state = &apos;off&apos;; //电灯初始状态off
+  this.button = null; //电灯开关按钮
+};
 
-打开空调
+Light.prototype.init = function() {
+  var button = document.createElement(&apos;button&apos;),
+      self = this;
 
-打开电视和音响
-
-关门，开电脑，登录QQ  
-
-
-依旧，废话不多说，show the code
-var MacroCommand = function() {
-  return {
-    commandsList : [],
-    add: function( command ) {
-      this.commandsList.push( command );
-    },
-    execute: function() {
-      for (var i = 0, command; command = this.commandsList[i++];) {
-        command.execute();
-      }
-    }
+  button.innerHTML = &apos;开关&apos;;
+  this.button = document.body.appendChild(button);
+  this.button.onclick = function() {
+    self.buttonWasPressed();
   };
 };
 
-var openAcCommand = {
-  execute: function() {
-    console.log(&apos;打开空调&apos;);
+Light.prototype.buttonWasPressed = function() {
+  if (this.state === &apos;off&apos;) {
+    console.log(&apos;开灯&apos;);
+    this.state = &apos;on&apos;;
+  } else if (this.state === &apos;on&apos;) {
+    console.log(&apos;关灯&apos;);
+    this.state = &apos;off&apos;;
   }
 };
 
-/*家里电视和音响是连接在一起的，所以可以用一个宏命令来组合打开电视和打开音响的命令*/
-var openTvCommand = {
-  execute: function() {
-    console.log(&apos;打开电视&apos;);
-  }
+var light = new Light();
+light.init();
+这样子看起来非常完美。但是假如我们有三种光，甚至四种五种，只能在buttonWasPressed里面新增代码，这样就显得他很不稳定了。而且所有跟状态有关的行为，这里只是console，但是在实际应用中要处理的事情庞大得多…所以，我们用状态模式进行改写
+//OffLightState
+var OffLightState = function(light) {
+  this.light = light;
 };
-var openSoundCommand = {
-  execute: function() {
-    console.log(&apos;打开音响&apos;);
-  }
-};
-
-var macr
+OffLightState.prototype.buttonW
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -897,8 +715,8 @@ var macr
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/" itemprop="url">
-                  发布订阅模式
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/16中介者模式/" itemprop="url">
+                  中介者模式
                 </a>
               
             
@@ -946,7 +764,7 @@ var macr
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/"class="leancloud_visitors" data-flag-title="发布订阅模式"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/16中介者模式/"class="leancloud_visitors" data-flag-title="中介者模式"></span>
           
 
           
@@ -965,31 +783,193 @@ var macr
           
           
 
-发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。在JavaScript开发中，我们一般用事件模型来替代传统的发布—订阅模式。
+中介者模式的作用就是解除对象与对象之间的紧耦合关系。增加一个中介者对象后，所有的相关对象都可以通过中介者对象来通信，而不是相互引用，所以当一个对象发生改变时，只需要通知中介者对象即可。中介者模式使网状的多对多关系变成了相对简单的一对多关系。
 
+中介者模式的例子–购买商品假如我们正在编写一个手机购买的页面，在购买流程中，可以选择手机的颜色以及输入购买数量，同时页面中有两个展示区域，分别向用户展示选择好的颜色和数量。show the code：
+var colorSelect = document.getElemmentById(&apos;colorSelect&apos;),
+    numberInput= document.getElemmentById(&apos;numberInput&apos;),
+    colorInfo= document.getElemmentById(&apos;colorInfo&apos;),
+    numberInfo = document.getElemmentById(&apos;numberInfo &apos;),
+    nextBtn = document.getElemmentById(&apos;nextBtn &apos;);
 
-发布—订阅模式可以广泛应用于异步编程中，这是一种替代传递回调函数的方案。比如，我们可以订阅ajax 请求的error、succ 等事件。 或者如果想在动画的每一帧完成之后做一些事情，那我们可以订阅一个事件，然后在动画的每一帧完成之后发布这个事件。在异步编程中使用发布—订阅模式，我们就无需过多关注对象在异步运行期间的内部状态，而只需要订阅感兴趣的事件发生点。
-
-发布—订阅模式可以取代对象之间硬编码的通知机制，一个对象不用再显式地调用另外一个对象的某个接口。发布—订阅模式让两个对象松耦合地联系在一起，虽然不太清楚彼此的细节，但这不影响它们之间相互通信。当有新的订阅者出现时，发布者的代码不需要任何修改；同样发布者需要改变时，也不会影响到之前的订阅者。只要之前约定的事件名没有变化，就可以自由地改变它们。
-
-
-DOM 事件实际上，只要我们曾经在DOM节点上面绑定过事件函数，那我们就曾经使用过发布—订阅模式，例如
-document.body.addEventListener( &apos;click&apos;, function(){
-    alert(2);
-}, false );
-document.body.click(); // 模拟用户点击
-在这里需要监控用户点击document.body的动作，但是我们没办法预知用户将在什么时候点击。所以我们订阅document.body上的click事件，当body 节点被点击时，body节点便会向订阅者发布这个消息。当然我们还可以随意增加或者删除订阅者，增加任何订阅者都不会影响发布者代码的编写。
-自定义事件除了DOM 事件，我们还会经常实现一些自定义的事件，这种依靠自定义事件完成的发布—订阅模式可以用于任何JavaScript 代码中。步骤：
-
-指定好谁充当发布者（例如售楼处）
-
-然后给发布者添加一个缓存列表，用于存放回调函数以便通知订阅者（售楼处的花名册）
-
-最后发布消息的时候，发布者会遍历整个缓存列表，依次触发里面存放的订阅者回调函数（遍历花名册挨个发短信通知有空房）另外，我们还可以往回调函数里填入一些参数，订阅者
+var goods = { //手机库存
+    &quot;red&quot;: 3,
+    &quot;blue&quot;: 6
+};
+//选择颜色时候
+colorSelect.onchange = function() {
+    var color = this.value, //颜色
+        number = numberInput.value, //数量
+        stock = goods[color]; //该颜色手机对应的当前库存
+    colorInfo.innerHTML = color;
+    if (!color) {
+        nextBtn.disabled = true;
+        nextBtn.innerHTML = &apos;请选择手机颜色&apos;;
+        return;
+    }
+    if (((number - 0) | 0) !== number - 0) { //用户输入的
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/16中介者模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/" itemprop="url">
+                  适配器模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/"class="leancloud_visitors" data-flag-title="适配器模式"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+
+适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。
+
+适配器模式的应用适配模式是一种“亡羊补牢”的模式，没有人会在程序的设计之初就使用它，因为没有人可以完全预料到未来的事情，也许现在好好工作的接口未来就不再适用于新系统，那么我们可以使用适配器模式把旧的接口包装成新的接口，使他继续保持生命力。比如在json数据流行之前，很多cgi返回的都是XML格式的数据，如果今天仍然想用这些接口，显然我们可以创造一个XML-JSON适配器。
+比如有一段代码，我们向googleMap和baiduMap都发出显示请求时，他们分别以各自的方式在页面中展现了地图：
+var googleMap = {
+    show: function() {
+        console.log(&apos;开始渲染谷歌地图&apos;);
+    }
+};
+var baiduMap = {
+    show: function() {
+        console.log(&apos;开始渲染百度地图&apos;);
+    }
+};
+
+var renderMap = function(map) {
+    if (map.show.instanceof Function) {
+        map.show();
+    }
+};
+
+renderMap(googleMap); //开始渲染谷歌地图
+renderMap(baiduMap); //开始渲染百度地图
+这个程序能运行的关键之处在于googleMap和baiduMap提供了一致的show方法，但是第三方接口并不在我们的控制范围内，加入baiduMap提供的显示地图的方法不叫show，而叫display呢?
+此时我们可以通过增加baiduMapAdapter来解决问题：
+var googleMap = {
+    show: function() {
+        console.log(&apos;开始渲染谷歌地图&apos;);
+    }
+};
+var baiduMap = {
+    display: function() {
+        console.log(&apos;开始渲染百度地图&apos;);
+    }
+};
+var baid
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

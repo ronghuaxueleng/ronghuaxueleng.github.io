@@ -258,8 +258,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/09/19/javascript/如何判断Javascript对象是否存在/" itemprop="url">
-                  如何判断Javascript对象是否存在
+                <a class="post-title-link" href="/2016/09/19/javascript/Javascript 严格模式详解/" itemprop="url">
+                  Javascript 严格模式详解
                 </a>
               
             
@@ -307,7 +307,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/09/19/javascript/如何判断Javascript对象是否存在/"class="leancloud_visitors" data-flag-title="如何判断Javascript对象是否存在"></span>
+            <span id="/2016/09/19/javascript/Javascript 严格模式详解/"class="leancloud_visitors" data-flag-title="Javascript 严格模式详解"></span>
           
 
           
@@ -323,12 +323,21 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
 
       
         
-          <p>Javascript语言的设计不够严谨，很多地方一不小心就会出错。</p>
-<p>举例来说，请考虑以下情况。</p>
-<p>现在，我们要判断一个<strong>全局对象</strong>myObj是否存在，如果不存在，就对它进行声明。用自然语言描述的算法如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (myObj不存在)&#123;</div><div class="line">  声明myObj;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>你可能会觉得，写出这段代码很容易。但是实际上，它涉及的语法问题，远比我们想象的复杂。<a href="http://perfectionkills.com/unnecessarily-comprehensive-look-into-a" target="_blank" rel="external">Juriy Zaytsev</a>指出，判断一个Javascript对象是否存在，有超过50种写法。只有对Javascript语言的实现细节非常清楚，才可能分得清它们的区别。</p>
+          <hr>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>除了正常运行模式，ECMAscript 5添加了第二种运行模式：<a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Functions_and_function_scope/Strict_mode" target="_blank" rel="external">“严格模式”</a>（strict mode）。顾名思义，这种模式使得Javascript在更严格的条件下运行。</p>
+<p><img src="/img/javascript/bg2013011401.jpg" alt=""></p>
+<p>设立”严格模式”的目的，主要有以下几个：</p>
+<ul>
+<li>消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;</li>
+<li>消除代码运行的一些不安全之处，保证代码运行的安全；</li>
+<li>提高编译器效率，增加运行速度；</li>
+<li>为未来新版本的Javascript做好铺垫。</li>
+</ul>
+<p>“严格模式”体现了Javascript更合理、更安全、更严谨的发展方向，包括IE10在内的主流浏览器，都已经<a href="http://kangax.github.com/es5-compat-table" target="_blank" rel="external">支持</a>它，许多大项目已经开始全面拥抱它。</p>
+<p>另一方面，同样的代码，在”严格模式”中，可能会有不一样的运行结果；一些在”正常模式”下可以运行的语句，在”严格模式”下将不能运行。掌握这些内容，有助于更细致深入地理解Javascript，让你变成一个更好的程序员。</p>
+<p>本文将对”严格模式”做详细介绍。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/19/javascript/如何判断Javascript对象是否存在/#more" rel="contents">
+            <a class="btn" href="/2016/09/19/javascript/Javascript 严格模式详解/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -500,6 +509,127 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
+                <a class="post-title-link" href="/2016/09/19/javascript/Javascript定义类（class）的三种方法/" itemprop="url">
+                  Javascript定义类（class）的三种方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-19T00:00:00+08:00" content="2016-09-19">
+              2016-09-19
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/09/19/javascript/Javascript定义类（class）的三种方法/"class="leancloud_visitors" data-flag-title="Javascript定义类（class）的三种方法"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          将近20年前，Javascript诞生的时候，只是一种简单的网页脚本语言。如果你忘了填写用户名，它就跳出一个警告。
+
+如今，它变得几乎无所不能，从前端到后端，有着各种匪夷所思的用途。程序员用它完成越来越庞大的项目。
+Javascript代码的复杂度也直线上升。单个网页包含10000行Javascript代码，早就司空见惯。2010年，一个工程师透露，Gmail的代码长度是443000行！
+
+编写和维护如此复杂的代码，必须使用模块化策略。目前，业界的主流做法是采用”面向对象编程”。因此，Javascript如何实现面向对象编程，就成了一个热门课题。
+麻烦的是，Javascipt语法不支持”类”（class），导致传统的面向对象编程方法无法直接使用。程序员们做了很多探索，研究如何用Javascript模拟”类”。本文总结了Javascript定义”类”的三种方法，讨论了每种方法的特点，着重介绍了我眼中的最佳方法。
+==============================================
+Javascript定义类（class）的三种方法
+作者：阮一峰
+
+在面向对象编程中，类（class）是对象（object）的模板，定义了同一组对象（又称”实例”）共有的属性和方法。
+Javascript语言不支持”类”，但是可以用一些变通的方法，模拟出”类”。
+一、构造函数法
+这是经典方法，也是教科书必教的方法。它用构造函数模拟”类”，在其内部用this关键字指代实例对象。123function Cat() &#123;  this.name = "大毛";&#125;
+生成实例的时候，使用new关键字。12var cat1 = new Cat();alert(cat1.name); // 大毛
+类的属性和方法，还可以定义在构造函数的prototype对象之上。123Cat.prototype.makeSound = function()&#123;  alert("喵喵喵");&#125;
+关于这种方法的详细介绍，请看我写的系列文章《Javascript面向对象编程》，这里就不多说了。它的主要缺点是，比较复杂，用到了this和prototype，编写和阅读都很费力。
+二、Object.create()法
+为了解决”构造函数法”的缺点，更方便地生成对象，Javasc
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/19/javascript/Javascript定义类（class）的三种方法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/19/javascript/Javascript的this用法/" itemprop="url">
                   Javascript的this用法
                 </a>
@@ -620,8 +750,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/09/19/javascript/jQuery的deferred对象详解/" itemprop="url">
-                  jQuery的deferred对象详解
+                <a class="post-title-link" href="/2016/09/19/sendEmail/" itemprop="url">
+                  使用sendMail发送邮件
                 </a>
               
             
@@ -648,8 +778,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
+                  <a href="/categories/kindle/" itemprop="url" rel="index">
+                    <span itemprop="name">kindle</span>
                   </a>
                 </span>
 
@@ -669,7 +799,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/09/19/javascript/jQuery的deferred对象详解/"class="leancloud_visitors" data-flag-title="jQuery的deferred对象详解"></span>
+            <span id="/2016/09/19/sendEmail/"class="leancloud_visitors" data-flag-title="使用sendMail发送邮件"></span>
           
 
           
@@ -685,132 +815,10 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
 
       
         
-          <p><a href="http://jquery.com/" target="_blank" rel="external">jQuery</a>的开发速度很快，几乎每半年一个大版本，每两个月一个小版本。</p>
-<p>每个版本都会引入一些新功能。今天我想介绍的，就是从jQuery 1.5.0版本开始引入的一个新功能—-<a href="http://api.jquery.com/category/deferred-object/" target="_blank" rel="external">deferred对象</a>。</p>
-<p>这个功能很重要，未来将成为jQuery的核心方法，它彻底改变了如何在jQuery中使用ajax。为了实现它，jQuery的全部ajax代码都被改写了。但是，<br>它比较抽象，初学者很难掌握，网上的教程也不多。所以，我把自己的学习笔记整理出来了，希望对大家有用。</p>
+          <hr>
+<p>由于前不久买了个kindle，所以就一直琢磨怎么把它用好，发现亚马逊提供了一个推送服务，可以把书籍推送到绑定的kindle上，所以就在网上搜罗了一些kindle推送的网站，像<a href="http://www.kindlepush.com/main" target="_blank" rel="external">kindle推</a>、<a href="http://www.kancloud.cn/" target="_blank" rel="external">看云</a>等都是很好的平台，有的时候也想把本地书籍推送到kindle上阅读，方法当然也有很多，比如直接连接到电脑、通过邮箱发送邮件等，这些都是很好的办法，下面我就将介绍一种使用sendMail发送邮件的方法</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/19/javascript/jQuery的deferred对象详解/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/19/javascript/Javascript定义类（class）的三种方法/" itemprop="url">
-                  Javascript定义类（class）的三种方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-19T00:00:00+08:00" content="2016-09-19">
-              2016-09-19
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/09/19/javascript/Javascript定义类（class）的三种方法/"class="leancloud_visitors" data-flag-title="Javascript定义类（class）的三种方法"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          将近20年前，Javascript诞生的时候，只是一种简单的网页脚本语言。如果你忘了填写用户名，它就跳出一个警告。
-
-如今，它变得几乎无所不能，从前端到后端，有着各种匪夷所思的用途。程序员用它完成越来越庞大的项目。
-Javascript代码的复杂度也直线上升。单个网页包含10000行Javascript代码，早就司空见惯。2010年，一个工程师透露，Gmail的代码长度是443000行！
-
-编写和维护如此复杂的代码，必须使用模块化策略。目前，业界的主流做法是采用”面向对象编程”。因此，Javascript如何实现面向对象编程，就成了一个热门课题。
-麻烦的是，Javascipt语法不支持”类”（class），导致传统的面向对象编程方法无法直接使用。程序员们做了很多探索，研究如何用Javascript模拟”类”。本文总结了Javascript定义”类”的三种方法，讨论了每种方法的特点，着重介绍了我眼中的最佳方法。
-==============================================
-Javascript定义类（class）的三种方法
-作者：阮一峰
-
-在面向对象编程中，类（class）是对象（object）的模板，定义了同一组对象（又称”实例”）共有的属性和方法。
-Javascript语言不支持”类”，但是可以用一些变通的方法，模拟出”类”。
-一、构造函数法
-这是经典方法，也是教科书必教的方法。它用构造函数模拟”类”，在其内部用this关键字指代实例对象。123function Cat() &#123;  this.name = "大毛";&#125;
-生成实例的时候，使用new关键字。12var cat1 = new Cat();alert(cat1.name); // 大毛
-类的属性和方法，还可以定义在构造函数的prototype对象之上。123Cat.prototype.makeSound = function()&#123;  alert("喵喵喵");&#125;
-关于这种方法的详细介绍，请看我写的系列文章《Javascript面向对象编程》，这里就不多说了。它的主要缺点是，比较复杂，用到了this和prototype，编写和阅读都很费力。
-二、Object.create()法
-为了解决”构造函数法”的缺点，更方便地生成对象，Javasc
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/19/javascript/Javascript定义类（class）的三种方法/#more" rel="contents">
+            <a class="btn" href="/2016/09/19/sendEmail/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

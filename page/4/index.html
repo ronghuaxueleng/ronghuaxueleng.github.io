@@ -258,8 +258,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/" itemprop="url">
-                  代理模式
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/" itemprop="url">
+                  设计原则和编程技巧
                 </a>
               
             
@@ -307,7 +307,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/"class="leancloud_visitors" data-flag-title="代理模式"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/"class="leancloud_visitors" data-flag-title="设计原则和编程技巧"></span>
           
 
           
@@ -325,53 +325,43 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
         
           
           
-代理模式是为一个对象提供一个代用品或占位符，以便控制对他的访问。代理模式的关键是，当客户不方便直接访问一个对象或者不满足需要的时候，提供一个对象来控制这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理后再把请求转交给本体对象。
+单一职责原则就一个类而言，应该仅有一个引起它变化的原因。在JavaScript中，需要用到类的场景并不太多，单一职责原则（SRP）更多的是被运用在对象或者方法级别上。总之，SRP原则体现为：一个对象（方法）只做一件事情。例如：
 
-不使用代理：客户 → 本体使用代理：客户 → 代理 → 本体
-先来一个带点趣味性的例子，小明要给女神A送花，然后他不好意思，打算让B代送
-var Flower = function(){};
-var xiaoming = {
-    sendFlower: function( traget ) {
-      var flower = new Flower();
-      target.receveFlower( flower );
-    }
-};
+代理模式
 
-var A = {
-    receiveFlower: function( flower ) {
-      console.log(&apos;收到花&apos; + flower);
-  }
-};
+迭代器模式
 
-xiaoming.sendFlower(A);
+单例模式
 
-//引入代理B
-var B = {
-    receiverFlower: function( flower ) {
-      A.receiveFlower( flower );
-  }
-};
-此时，我们就简单的完成了一个代理模式
-接着，我们在原需求上做点改动，假设女神心情好的时候成功率会增大，小明跟女神不熟不知道她心情，而B跟女神比较熟可以去监听她心情的变化恰当时机送花，这样就不会造成不必要浪费了，于是代码如下：
-//代理B
-var B = {
-    receiverFlower: function( flower ) {
-      A.listenGoodMood(function() { //监听A的好心情
-        A.receiveFlower( flower );
-    })；
-  }
-};
+装饰者模式但是，并不是所有的职责都应该一一分离的，一方面如果随着需求的变化，有两个职责是同时变化的，那就不必分离他们。比如在ajax请求的时候，创建xhr对象和发送xhr请求几乎总是在一起的，那么创建xhr对象的职责和发送xhr对象的职责就没有必要分开。
 
-//女神A也要提供一个可被监听的方法（当然我们只是假设，毕竟女人我们是摸不透的）
-var A = {
-    receiveFlower: function( flower ) {
-      console.log(&apos;收到花&apos; + flower);
-  },
-  listenG
-          ...
+
+另一方面，职责的变化轴线仅当它们确定会发生变化时才有意义，即使两个职责已经被耦合在一起但他们没有发生改变的征兆，那么也许没有必要主动分离他们，在代码需要重构的时候再分离也不迟。
+最少知识原则最少知识原则（LKP）说的是一个软件实体应当尽可能少与其他实体发生相互作用。这里的软件的实体是一个广义的概念，不仅包括对象，还包括系统，类，模块，函数，变量等。单一职责原则指导我们把对象划分成较小的粒度，这可以提高对象的可复用性。但越来越多的对象之间可能会产生错综复杂的联系，如果修改了其中一个对象，很可能会影响到跟它相互引用的其他对象。对象和对象耦合在一起，有可能会降低他们的复用性。在程序中，对象的“朋友”太多并不是一件好事。最少知识原则要求我们在设计程序时，应当尽量减少对象之间的交互。如果两个对象之间不必彼此直接通信，那么两个对象就不要发生直接的相互联系。常见的做法是引入一个第三者对象，来承担这些对象之间的通信作用。如果一些对象需要向另一些对象发起请求，可以通过第三者对象来转发这些请求。体现地方：
+
+中介者模式
+
+外观模式
+
+
+开放-封闭原则在面向对象的程序设计中，开放-封闭原则（OCP）是最重要的一条原则。他的定义为：软件实体（类，模块，函数）等应该是可以拓展的，但是不可修改的。举例：
+
+发布-订阅模式
+
+模板方法模式
+
+策略模式
+
+代理模式
+
+职责链模式
+
+
+
+          
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -422,8 +412,8 @@ var A = {
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/" itemprop="url">
-                  代理模式的应用
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/1this关键字/" itemprop="url">
+                  this关键字
                 </a>
               
             
@@ -471,7 +461,7 @@ var A = {
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/"class="leancloud_visitors" data-flag-title="代理模式的应用"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/1this关键字/"class="leancloud_visitors" data-flag-title="this关键字"></span>
           
 
           
@@ -489,38 +479,51 @@ var A = {
         
           
           
-虚拟代理实现图片预加载图片预加载：图片过大或者网络不佳时，图片位置有段时间会是一片空白，常见的用一张loading占位，然后异步加载图片，等图片加载好了再把它填充到img节点里。
-var myImage = (function() {
-    var imgNode = document.createElement(&apos;img&apos;);
-    document.body.appendChild( imgNode );
-    return {
-        setSrc : function( src ) {
-            imgNode.src = src;
-        }
-    }
-})();
 
-var proxyImage = (function() {
-    var img = new Image;
-    img.onload = function() {//图片加载完成之后触发
-        myImage.setSrc(this.src);
+this的指向大概可以分成四种：
+
+作为对象的方法调用
+作为普通函数调用
+构造器调用
+Function.prototype.call或Function.prototype.apply调用
+
+
+1. 作为对象的时候，this指向该对象var obj = {
+    a: 1,
+    getA: function() {
+        alert(this === obj); //true;
+        alert(this.a); //1
     }
-    return {
-        setSrc: function(src) {
-            myImage.setSrc(&apos;loading.gif&apos;); //loading图片
-            img.src = src;
-        }
+};
+obj.getA();
+2. 作为普通函数调用，this总是指向全局对象（在浏览器中就是window）window.name = &apos;globalName&apos;;
+var getName = function() {
+    return this.name;
+};
+console.log(getName()); //globalName
+再例如局部的callback，它作为普通函数调用时，callback内部的this指向了windows对象，解决方法则可以用一个变量保存this，例如
+document.getElemmentById(&apos;div1&apos;).onclick = function() {
+    var that = this;
+    var callback = function() {
+        alert(that.id); //div1;
     }
-})();
-proxyImage.setSrc(&apos;xxxx&apos;);
-这里我们通过proxyImage间接地访问MyImage，proxyImage控制了客户对MyImage的访问，因此在此过程中加入一些额外的操作，比如在真正图片加在之前先把img的节点的src设置成一张本地的图片。
-虚拟代理合并http请求假设我有一堆选项(checkbox)，每次点击就会往服务器同步文件，手速快的一秒或许可以点中四五个，然而太过平凡的服务器请求开销略大。因此，我们决定设置一个代理函数，将两秒之内的数据传输收集到一起两秒再发送一次，对于实时性要求不是很高的系统两秒延迟不会有太大副作用但是对服务器的压力就是量级的减少。
-var synchronousFile = function(id) {
-    console.log(&apos;开始同步文件&apos; + 
+    callback();
+}
+3. 构造器调用当用new运算符调用函数时，该函数总会返回一个对象，通常情况this就是指向返回的这个对象，但如果构造器显示返回了一个object类的对象，那运算结果最终返回的是那个对象而不是this，例如
+var MyClass1 = function() {
+    this.name = &apos;111&apos;;
+}
+var obj1 = new MyClass1();
+alert(obj1.name); //111
+
+var MyClass2 = function() {
+    this.name = &apos;111&apos;;
+    return { //显式的返回一个对象
+        name: &apos;222&apos;;
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/1this关键字/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -571,8 +574,8 @@ var synchronousFile = function(id) {
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/" itemprop="url">
-                  策略模式的应用
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/17装饰者模式/" itemprop="url">
+                  装饰者模式
                 </a>
               
             
@@ -620,7 +623,7 @@ var synchronousFile = function(id) {
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/"class="leancloud_visitors" data-flag-title="策略模式的应用"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/17装饰者模式/"class="leancloud_visitors" data-flag-title="装饰者模式"></span>
           
 
           
@@ -638,51 +641,47 @@ var synchronousFile = function(id) {
         
           
           
-用策略模式实现缓动动画需求：让小球以各种缓动效果在页面中运动动画开始前需要记录的：
 
-小球所在原始位置
+装饰者模式：给对象动态地增加职责。跟继承相比，装饰者是一种更轻便灵活的做法，是一种“即用即付”的方式。
 
-小球移动的目标位置
-
-动画开始时的时间点
-
-小球运动的时间点之后，用setInterval创建一个定时器，定时器每19秒循环一次。
-
-
-//缓动算法，此算法移植于flash
-
-var tween = {
-    //t：动画已消耗的时间，b：小球原始位置，c：小球目标位置，d：动画持续时间
-    linear: function(t, b, c, d) {
-        return c*t/d + b;
-    },
-    reseIn: function(t, b, c, d) {
-        return c * (t /= d) * t + b;
-    },
-    strongEaseIn: function(t, b, c, d) {
-        return c * (t /= d) * t * t * t * t + b;
-    },
-    strongEaseOut: function(t, b, c, d) {
-        return c * (( t = t / d - 1) * t * t * t * t + 1) + b;
-    },
-    sineaseIn: function(t, b, c, d) {
-        return c * (t /= d) * t * t + b;
-    },
-    sineaseOur: function(t, b, c, d) {
-        return c * ((t = t / d - 1) * t * t + 1 ) + b;
+js的装饰者假设我们在编写一个飞机大战游戏，这个飞机可以升级，发射导弹，发射原子弹
+var plane = {
+    fire: function() {
+        console.log(&apos;发射普通子弹&apos;);
     }
 };
-接着Animation类
-var Animate = function( dom ) {
-    this.dom = dom;              //进行运动的dom节点
-    this.startTime = 0;         //动画开始时间
-    this.startPos = 0;           //动画开始时候dom位置
-    this.endPos = 0;            //结束dom位置
-    this.propertyName = null;     
+var missileDecorator = function() {
+    console.log(&apos;发射导弹&apos;);
+};
+var atomDecorator = function() {
+    console.log(&apos;发射原子弹&apos;);
+};
+var fire1 = plane.fire;
+plane.fire = function() {
+    fire1();
+    missileDecorator();
+};
+
+var fire2 = plane.fire;
+plane.fire = function() {
+    fire2();
+    atomDecorator();
+};
+plane.fire(); //&quot;发射普通子弹&quot;&quot;发射导弹&quot;&quot;发射原子弹&quot;
+用AOP装饰函数首先给出Function.prototype.before方法和Function.prototype.after方法
+Function.prototype.before = function (beforefn) {
+  var __self = this; //保存原函数的引用
+  return function() {  //返回包含了原函数和新函数的代理函数
+    beforefn.apply(this, arguments); //执行新函数，且保证this不被劫持，新函数接受的参数也会原封不动的传入原函数，新函数在原函数之前执行
+    return __self.apply(this, arguments); //执行原函数并返回原函数的执行结果，并保证this不被劫持
+  };
+};
+Function.prototype.after = function (afterfn) {
+  var __self 
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/17装饰者模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -893,8 +892,8 @@ for (var i = 0, len = nodes.length; i &lt; len; i++) {
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/" itemprop="url">
-                  单例模式
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/" itemprop="url">
+                  策略模式
                 </a>
               
             
@@ -942,7 +941,7 @@ for (var i = 0, len = nodes.length; i &lt; len; i++) {
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/"class="leancloud_visitors" data-flag-title="单例模式"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/"class="leancloud_visitors" data-flag-title="策略模式"></span>
           
 
           
@@ -960,49 +959,45 @@ for (var i = 0, len = nodes.length; i &lt; len; i++) {
         
           
           
-用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。
-实现单例模式//1.实现单例模式
-var Singleton = function (name) {
-  this.name = name;
-};
-Singleton.prototype.getName = function() {
-  alert(this.name);
-};
-Singleton.getInstance = (function() {
-  var instance = null;
-  return function(name) {
-    if (!instance) {
-      instance = new Singleton(name);
-    }
-    return instance;
-  }
-})();
-var a = Singleton.getInstance(&apos;sven1&apos;);
-var b = Singleton.getInstance(&apos;sven2&apos;);
+定义：定义一系列算法，把他们一个个封装起来，并且使他们可以相互替换。
 
-console.log(a === b); //true
-以上，我们通过Singleton.getInstance来获取Singleton类的唯一对象，虽然简单但是增加了这个类的“不透明性”，Singleton类的使用者必须知道这是一个单例类，跟以往通过new xxx的方法不同
-透明的单例模式有了以上的不足，我们现在就来解决
-//透明的单例模式 
-var CreateDiv = (function() {
-  var instance;
-  var CreateDiv = function(html) {
-    if (instance) {
-      return instance;
+需求：绩效为S的人年终奖有4倍工资，绩效为A的人年终奖有3倍工资，绩效为B的人年终奖有2倍工资。
+var calculateBonus = function(performanceLevel, salary) {
+    if (performanceLevel === &apos;S&apos;) {
+        return salary * 4;
     }
-    this.html = html;
-    this.init();
-    return instance = this;
-  };
+    if (performanceLevel === &apos;A&apos;) {
+        return salary * 3;
+    }
+    if (performanceLevel === &apos;B&apos;) {
+        return salary * 2;
+    }
+};
 
-  CreateDiv.prototype.init = function() {
-    var div = document.createElement(&apos;div&apos;);
-    div.innerHTML = this.html;
-    document.b
+calculateBonus(&apos;B&apos;, 20000); //輸出：40000
+然而，calculateBonus函数比较庞大，包含了很多if语句，且缺乏弹性，如果增加新的绩效等级，复用性差，如果在程序的其他地方需要重用这些计算奖金的算法，我们的选择只有复制和粘贴。因此，我们要重构这段代码。
+var performanceS = function(salary) {
+    return salary * 4;
+}
+var performanceA = function(salary) {
+    return salary * 3;
+}
+var performanceB = function(salary) {
+    return salary * 2;
+}
+
+var calculateBonus = function(performanceLevel, salary) {
+    if (performanceLevel == &apos;S&apos;) {
+        return performanceS(salary);
+    }
+    if (performanceLevel == &apos;A&apos;) {
+        return performanceA(salary);
+    }
+    if (performanceLevel == &apos;B
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
