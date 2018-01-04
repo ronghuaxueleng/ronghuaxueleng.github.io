@@ -258,8 +258,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/" itemprop="url">
-                  抽象类和接口
+                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/" itemprop="url">
+                  MVC
                 </a>
               
             
@@ -307,7 +307,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/"class="leancloud_visitors" data-flag-title="抽象类和接口"></span>
+            <span id="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/"class="leancloud_visitors" data-flag-title="MVC"></span>
           
 
           
@@ -324,348 +324,336 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
       
         
           
-          简介对于编程来说，对事物的抽象是一个老生常谈的话题，抽象问题更利于面向对象编程以及程序设计模式。和C/C++，Java，Python等语言一样，PHP也支持面向对象，但是又有略微区别，如PHP支持在接口中定义常量，但是不支持抽象变量。
-抽象/Abstraction
-对事物的抽象是指，区别两个不同事物之间的本质特征，这两个事物应该在某个视角上有明确的区分界限。
+          
+原文地址：[PHP设计模式(六)：MVC][1]
 
-如，鲸鱼和鲤鱼，这两个事物在动物的视角上，有明确的区分界限，属于不同的动物；但是在水生动物的视角上，他们属于同一种动物的抽象。合理的对问题进行抽象，构造模型，将更容易通过编程来解决问题。记住：抽象是编程解决问题的基础，越复杂的问题，越需要一开始就对问题进行抽象，而不是直接写代码。
-抽象类/Abstract Class抽象类是一个编程概念，PHP中叫Abstract Classes。在设计模式中，抽象类不能够被实例化/初始化，但是可以依靠具体类的继承来实现。有点抽象，对吧？用代码来解释：
+Introduction20世纪80年代，计算机发展迅速，编程技术也日益分化。桌面应用编程，也逐渐出现了用户图形界面和程序逻辑分离的程序设计。到了90年代，web的出现更是让这种程序设计模式得以延续。这种设计模式便是MVC(Model-View-Control)，除了MVC，还有MVC的变种，如MVVM(Model-View-View-Model)等。
+MVC回到80年代的桌面应用编程，当时面向对象的编程设计模式（见PHP设计模式(一)：基础编程模式）兴起，程序员将桌面应用分割成两个大的对象：领域对象(domain objects)和可视对象(presentation objects)。领域对象是对现实事物的抽象模型，可视对象是对用户界面部分的抽象模型。后来人们发现，只有领域对象和可视对象是不够的，特别是在复杂的业务中。根据PHP设计模式(三)：封装中介绍的设计原则，在面向对象程序设计中，类和类之间的访问、交互和更新应该是通过Accessors和Mutators。那么如果操作领域对象呢？人们引入了控制器(controller)的对象，通过控制器来操作领域模型。到此，MVC模型逐渐稳定下来，用户通过可视对象操作控制器对象，控制器对象再去操作领域对象。
+MVC中的设计模式上面介绍的MVC属于抽象度比较高的设计模式，在实际编程中，需要遵守下面的设计模式。
+基于接口去编程基于接口去编程的好处就是分离设计和实现，这一点我们在PHP设计模式(二)：抽象类和接口已经介绍过了，下面我们举一个实际的例子来说明这个设计的好处。
 &lt;?php
 abstract class Animal {
-  public $name;
-  abstract public function eat($food);
-}
-?&gt;
-定义了动物这个抽象类，动物的属性是名字name，然后有一个方法是吃食物eat food。为什么动物是抽象类？因为动物这个物种并不是一个存在于自然界的东西，它是人类脑海里抽象出的东西。存在自然界的是鲸鱼和鲤鱼这样的确定性动物。比如鲸鱼的概念，应该是属于动物，继承Animal类，我们定义鲸鱼这个类以及吃东西的方法：
+  protected $name;
+  abstract protected function eatFish();
+  abstract protected function eatMoss();
+  public function eat() {
+    if ($this-&gt;eatFish()) {
+      echo $this-&gt;name . &quot; can eat fish.\n&quot;;
+    }
+    if ($this-&gt;eatMoss()) {
+      echo $this-&gt;n
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/" itemprop="url">
+                  基础编程模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
+              2016-10-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/"class="leancloud_visitors" data-flag-title="基础编程模式"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          简介俗话说，“PHP是世界上最好的语言”，因为PHP什么都能干。但是在PHP编程中，你是否会遇到这样的困惑：明明是相同的需求，但是之前写的代码却并不能重用，稍微修改不满足需求，大改又会让页面变样。是的，由于PHP什么都能干，但是高度灵活性降低了代码的结构性。虽然可以利用三方框架来解决问题，但问题的根本在于缺乏设计模式。本系列文章将由浅入深的介绍各种设计模式。
+面向对象编程面向对象编程，Object-Oriented Programming(OOP)作为最基本的设计模式并不是什么新鲜的话题，但是大部分新手的PHP编程都是在写流水账，各种拼接字符串，所以这里还是要提一下。Object-Oriented Programming的概念这里就不说了，毕竟很多人都明白，但是如何在PHP中使用？假设你需要在页面上显示不同的用户类型，如电脑用户、手机用户等，那么你可以将“显示”这件事抽象为一个类，如：
 &lt;?php
+class ShowAgent {
+  private $agent;
+  public function __construct() {
+    $this-&gt;agent = $_SERVER[&apos;HTTP_USER_AGENT&apos;];
+    echo $this-&gt;agent;
+  }
+}
+$showAgent = new ShowAgent();
+?&gt;
+调试技巧在很多PHP默认环境中，调试功能是关闭的。打开调试功能又需要配置php.ini文件，其实有一个简单的方法：
+&lt;?php
+ini_set(&quot;display_errors&quot;, &quot;1&quot;);
+ERROR_REPORTING(E_ALL);
+?&gt;
+将这段代码加入到你的代码中，甚至可以require或者include进去，方便调试。
+流水账编程这里列出流水账编程，并不是让你学习，而是指出何种编程不推荐使用：
+&lt;?php
+$total = &quot;Total number is &quot;;
+$number = &quot;6&quot;;
+$totalNumber = $total.$number;
+echo $totalNumber;
+?&gt;
+这段代码并没有错，但是以后再也无法重用了，对吧？每次遇到相同问题，你
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(4)：继承/" itemprop="url">
+                  继承
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
+              2016-10-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/13/php设计模式/PHP设计模式(4)：继承/"class="leancloud_visitors" data-flag-title="继承"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          简介在[PHP设计模式(二)：抽象类和接口][2]以及[PHP设计模式(三)：封装][3]中，我们已经见过继承，也就是extends关键字。和C/C++，Java，Python等语言一样，PHP也支持继承，而且和其他语言没有什么区别。
+继承/Inheritance还是用动物、鲸鱼和鲤鱼来举例：
+&lt;?php
+abstract class Animal {
+  protected $name;
+
+  protected function chew($food) {
+    echo $this-&gt;name . &quot; is chewing &quot; . $food . &quot;.\n&quot;;
+  }
+  protected function digest($food) {
+    echo $this-&gt;name . &quot; is digesting &quot; . $food . &quot;.\n&quot;;
+  }
+}
+
 class Whale extends Animal {
   public function __construct() {
     $this-&gt;name = &quot;Whale&quot;;
   }
   public function eat($food) {
-    echo $this-&gt;name . &quot; eat &quot; . $food . &quot;.\n&quot;;
+    $this-&gt;chew($food);
+    $this-&gt;digest($food);
   }
 }
-?&gt;
-现在我们可以初始鲸鱼类，并且调用吃的方法了：
-&lt;?php
-  $whale = new Whale();
-  $whale-&gt;eat(&quot;fish&quot;
-          ...
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(3)：封装/" itemprop="url">
-                  封装
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
-              2016-10-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/13/php设计模式/PHP设计模式(3)：封装/"class="leancloud_visitors" data-flag-title="封装"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-原文地址：[PHP设计模式(三)：封装][1]
-
-简介面向对象编程中，一切都是对象，对一个对象的封装，也成了面向对象编程中必不可少的部分。和C/C++，Java，Python等语言一样，PHP也支持封装。
-封装/Encapsulation
-对事物的封装是指，将事物进行抽象后，提供抽象概念的实现的具体方法。
-
-听起来很拗口，还是举鲸鱼的例子。对于鲸鱼来说，需要吃东西这个行为，吃本身是一个抽象的概念，因为具体到怎么吃，是咀嚼和消化的过程，甚至如何咀嚼和消化也是不可见的。对外部而言，可见的只是吃这一个接口，如何吃、怎么吃，是被封装在了鲸鱼的实现中。甚至可以说，消化系统，被封装到了鲸鱼这个对象中，对外部不可见，仅仅鲸鱼自己可见。
-封装方法和别的程序设计语言一样，PHP也只是三种封装概念：Private，Protected，Public。
-私有/Private私有的概念是，仅仅对象内部可见，外部不可见，如：
-&lt;?php
-class Whale {
-  private $name;
+class Carp extends Animal {
   public function __construct() {
-    $this-&gt;name = &quot;Whale&quot;;
+    $this-&gt;name = &quot;Carp&quot;;
   }
   public function eat($food) {
-    chew($food);
-    digest($food);
-  }
-  private function chew($food) {
-    echo &quot;Chewing &quot; . $food . &quot;\n&quot;;
-  }
-  private function digest($food) {
-    echo &quot;Digest &quot; . $food . &quot;\n&quot;;
+    $this-&gt;chew($food);
+    $this-&gt;digest($food);
   }
 }
+
+$whale = new Whale();
+$whale-&gt;eat(&quot;fish&quot;);
+$carp = new Carp();
+$carp-&gt;eat(&quot;moss&quot;);
 ?&gt;
-name是鲸鱼的私有属性，chew()和digest()是鲸鱼的私有方法，对于其他类来说，都是不可见的。对于现实来说，我们如果只是注重吃，并没有必要去关心鲸鱼是如何去吃的。
-保护/Protected保护的概念是，仅仅是自身类和继承类可见，这个关键字的用途主要是防止滥用类的派生，另外三方库编写的时候会用到，防止误用。
-&lt;?php
-abstract class Animal {
-  private $name;
- 
+运行一下：
+$ php Inheritance.php
+Whale is chewin
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(3)：封装/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(10)：适配器模式/" itemprop="url">
-                  适配器模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
-              2016-10-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/13/php设计模式/PHP设计模式(10)：适配器模式/"class="leancloud_visitors" data-flag-title="适配器模式"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          简介在[PHP设计模式(七)：设计模式分类][2]中我们提到过结构设计模式(Structuralpatterns)，结构设计模式专注于设计对象(Object)和实例(Instance)的构建、组合过程。结构设计模式包括下面七种设计模式：
-
-适配器(Adapter)
-
-桥接(Bridge)
-
-合成(Composite)
-
-装饰(Decorator)
-
-外部(Facade)
-
-轻量(Flyweight)
-
-代理(Proxy)
-
-
-请无视拗口的中文翻译。结构设计模式着重于低耦合、高复用、高可维护性、高拓展性的设计原则。
-适配器模式适配器模式是一种利用适配器将现有的实现，适配到已有接口的设计模式，最常见的例子就是变压器，将已有的5V输入的电器，通过变压器，适配到220V的电源插座。适配器模式利用[PHP设计模式(四)：继承][3]中我们提到过的继承(inheritance)，以及[PHP设计模式(六)：MVC][4]中我们提到过的组件(composition)来进行模式设计。相比继承，组件可用性高，低耦合，冗余度低，因此推荐采用组件的模式来进行设计。
-何时使用适配器模式？简单来说，当你的实现和需要的接口，都无法修改的时候。例如，你需要给甲方已有的系统做标准的兼容，标准不可修改，甲方的系统也不可修改，这个时候你就需要适配器的设计模式了。对于web编程来说，将你现有的实现，和三方库结合起来，就需要使用适配器模式。
-使用继承的适配器模式简单来说，就是：
-&lt;?php
-class Adapter extends YourClass implements OtherInterface
-?&gt;
-还是用前面的鲸鱼和鲤鱼的例子来说明如何使用适配器，假设我们已经实现了鲸鱼类和鲤鱼类：
-&lt;?php
-class Whale {
-  public function __construct() {
-    $this-&gt;name = &quot;Whale&quot;;
-  }
-  public function eatFish() {
-    echo &quot;Whale eat fish.\n&quot;;
-  }
-}
-class Carp {
-  public function __construct() {
-    $this-&gt;name = &quot;Car
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(10)：适配器模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(4)：继承/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -870,8 +858,8 @@ var indexOf = [].indexOf ?
             
               
                 
-                <a class="post-title-link" href="/2016/10/13/javascript/44个 Javascript 变态题解析 (上)/" itemprop="url">
-                  44个 Javascript 变态题解析 (上)
+                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(3)：封装/" itemprop="url">
+                  封装
                 </a>
               
             
@@ -898,8 +886,8 @@ var indexOf = [].indexOf ?
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
                   </a>
                 </span>
 
@@ -919,7 +907,7 @@ var indexOf = [].indexOf ?
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/13/javascript/44个 Javascript 变态题解析 (上)/"class="leancloud_visitors" data-flag-title="44个 Javascript 变态题解析 (上)"></span>
+            <span id="/2016/10/13/php设计模式/PHP设计模式(3)：封装/"class="leancloud_visitors" data-flag-title="封装"></span>
           
 
           
@@ -936,55 +924,44 @@ var indexOf = [].indexOf ?
       
         
           
-          原题来自: javascript-puzzlers
-读者可以先去做一下感受感受. 当初笔者的成绩是 21/44…
-当初笔者做这套题的时候不仅怀疑智商, 连人生都开始怀疑了….
-不过, 对于基础知识的理解是深入编程的前提. 让我们一起来看看这些变态题到底变态不变态吧!
-第1题[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].map(parseInt)
-知识点:
+          
+原文地址：[PHP设计模式(三)：封装][1]
 
-Array/map
-Number/parseInt
-Global_Objects/parseInt
-JavaScript parseInt
+简介面向对象编程中，一切都是对象，对一个对象的封装，也成了面向对象编程中必不可少的部分。和C/C++，Java，Python等语言一样，PHP也支持封装。
+封装/Encapsulation
+对事物的封装是指，将事物进行抽象后，提供抽象概念的实现的具体方法。
 
-首先, map接受两个参数, 一个回调函数 callback, 一个回调函数的this值
-其中回调函数接受三个参数 currentValue, index, arrary;
-而题目中, map只传入了回调函数–parseInt.
-其次, parseInt 只接受两个两个参数 string, radix(基数).
-
-在没有指定基数，或者基数为 0 的情况下，JavaScript 作如下处理：
-
-&gt;
-
-
-如果字符串 string 以”0x”或者”0X”开头, 则基数是16 (16进制).
-
-如果字符串 string 以”0”开头, 基数是8（八进制）或者10（十进制），那么具体是哪个基数由实现环境决- 定。ECMAScript 5规定使用10，但是并不是所有的浏览器都遵循这个规定。因此，永远都要明确给出radix参数的值。
-
-如果字符串 string 以其它任何值开头，则基数是10 (十进制)。
-
-
-
-所以本题即问
-parseInt(&apos;1&apos;, 0);
-parseInt(&apos;2&apos;, 1);
-parseInt(&apos;3&apos;, 2);
-首先后两者参数不合法.
-所以答案是 [1, NaN, NaN]
-第2题[typeof null, null instanceof Object]
-两个知识点:
-
-Operators/typeof
-Operators/instanceof
-Operators/instanceof(中)
-
-typeof 返回一个表示类型的字符串.
-instanceof 运算符用来检测 constructor.prototype 是否存在于参数 object 的原型链上.
+听起来很拗口，还是举鲸鱼的例子。对于鲸鱼来说，需要吃东西这个行为，吃本身是一个抽象的概念，因为具体到怎么吃，是咀嚼和消化的过程，甚至如何咀嚼和消化也是不可见的。对外部而言，可见的只是吃这一个接口，如何吃、怎么吃，是被封装在了鲸鱼的实现中。甚至可以说，消化系统，被封装到了鲸鱼这个对象中，对外部不可见，仅仅鲸鱼自己可见。
+封装方法和别的程序设计语言一样，PHP也只是三种封装概念：Private，Protected，Public。
+私有/Private私有的概念是，仅仅对象内部可见，外部不可见，如：
+&lt;?php
+class Whale {
+  private $name;
+  public function __construct() {
+    $this-&gt;name = &quot;Whale&quot;;
+  }
+  public function eat($food) {
+    chew($food);
+    digest($food);
+  }
+  private function chew($food) {
+    echo &quot;Chewing &quot; . $food . &quot;\n&quot;;
+  }
+  private function digest($food) {
+    echo &quot;Digest &quot; . $food . &quot;\n&quot;;
+  }
+}
+?&gt;
+name是鲸鱼的私有属性，chew()和digest()是鲸鱼的私有方法，对于其他类来说，都是不可见的。对于现实来说，我们如果只是注重吃，并没有必要去关心鲸鱼是如何去吃的。
+保护/Protected保护的概念是，仅仅是自身类和继承类可见，这个关键字的用途主要是防止滥用类的派生，另外三方库编写的时候会用到，防止误用。
+&lt;?php
+abstract class Animal {
+  private $name;
+ 
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/javascript/44个 Javascript 变态题解析 (上)/#more" rel="contents">
+            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(3)：封装/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1131,7 +1108,7 @@ instanceof 运算符用来检测 constructor.prototype 是否存在于参数 obj
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1249,6 +1226,13 @@ instanceof 运算符用来检测 constructor.prototype 是否存在于参数 obj
 
 
   
+   
+     
+   
+  
+ 
+
+
 
 
 

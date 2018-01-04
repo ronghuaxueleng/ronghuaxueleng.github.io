@@ -544,144 +544,6 @@ Mixpanel主要流程如下：
             
               
                 
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/" itemprop="url">
-                  MVC
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
-              2016-10-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/"class="leancloud_visitors" data-flag-title="MVC"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-原文地址：[PHP设计模式(六)：MVC][1]
-
-Introduction20世纪80年代，计算机发展迅速，编程技术也日益分化。桌面应用编程，也逐渐出现了用户图形界面和程序逻辑分离的程序设计。到了90年代，web的出现更是让这种程序设计模式得以延续。这种设计模式便是MVC(Model-View-Control)，除了MVC，还有MVC的变种，如MVVM(Model-View-View-Model)等。
-MVC回到80年代的桌面应用编程，当时面向对象的编程设计模式（见PHP设计模式(一)：基础编程模式）兴起，程序员将桌面应用分割成两个大的对象：领域对象(domain objects)和可视对象(presentation objects)。领域对象是对现实事物的抽象模型，可视对象是对用户界面部分的抽象模型。后来人们发现，只有领域对象和可视对象是不够的，特别是在复杂的业务中。根据PHP设计模式(三)：封装中介绍的设计原则，在面向对象程序设计中，类和类之间的访问、交互和更新应该是通过Accessors和Mutators。那么如果操作领域对象呢？人们引入了控制器(controller)的对象，通过控制器来操作领域模型。到此，MVC模型逐渐稳定下来，用户通过可视对象操作控制器对象，控制器对象再去操作领域对象。
-MVC中的设计模式上面介绍的MVC属于抽象度比较高的设计模式，在实际编程中，需要遵守下面的设计模式。
-基于接口去编程基于接口去编程的好处就是分离设计和实现，这一点我们在PHP设计模式(二)：抽象类和接口已经介绍过了，下面我们举一个实际的例子来说明这个设计的好处。
-&lt;?php
-abstract class Animal {
-  protected $name;
-  abstract protected function eatFish();
-  abstract protected function eatMoss();
-  public function eat() {
-    if ($this-&gt;eatFish()) {
-      echo $this-&gt;name . &quot; can eat fish.\n&quot;;
-    }
-    if ($this-&gt;eatMoss()) {
-      echo $this-&gt;n
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(6)：MVC/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(5)：多态/" itemprop="url">
                   多态
                 </a>
@@ -842,8 +704,8 @@ Carp doesn&apos;t eat moss.
             
               
                 
-                <a class="post-title-link" href="/2016/10/13/javascript/44个 Javascript 变态题解析 (下)/" itemprop="url">
-                  44个 Javascript 变态题解析 (下)
+                <a class="post-title-link" href="/2016/10/13/javascript/44个 Javascript 变态题解析 (上)/" itemprop="url">
+                  44个 Javascript 变态题解析 (上)
                 </a>
               
             
@@ -891,7 +753,7 @@ Carp doesn&apos;t eat moss.
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/13/javascript/44个 Javascript 变态题解析 (下)/"class="leancloud_visitors" data-flag-title="44个 Javascript 变态题解析 (下)"></span>
+            <span id="/2016/10/13/javascript/44个 Javascript 变态题解析 (上)/"class="leancloud_visitors" data-flag-title="44个 Javascript 变态题解析 (上)"></span>
           
 
           
@@ -908,56 +770,207 @@ Carp doesn&apos;t eat moss.
       
         
           
-          承接上篇 44个 Javascript 变态题解析 (上)
-第23题[1 &lt; 2 &lt; 3, 3 &lt; 2 &lt; 1]
-这个题也还可以.
-这个题会让人误以为是 2 &gt; 1 &amp;&amp; 2 &lt; 3 其实不是的.
-这个题等价于
-1 &lt; 2 =&gt; true;
-true &lt; 3 =&gt;  1 &lt; 3 =&gt; true;
-3 &lt; 2 =&gt; false;
-false &lt; 1 =&gt; 0 &lt; 1 =&gt; true;
-答案是 [true, true]
-第24题// the most classic wtf
-2 == [[[2]]]
-这个题我是猜的. 我猜的 true, 至于为什么…..
-both objects get converted to strings and in both cases the resulting string
-is &quot;2&quot; 我不能信服…
-第25题3.toString()
-3..toString()
-3...toString()
-这个题也挺逗, 我做对了 :) 答案是 error, &#39;3&#39;, error
-你如果换一个写法就更费解了
-var a = 3;
-a.toString()
-这个答案就是 &#39;3&#39;;
-为啥呢?
-因为在 js 中 1.1, 1., .1 都是合法的数字. 那么在解析 3.toString 的时候这个 .到底是属于这个数字还是函数调用呢? 只能是数字, 因为3.合法啊!
-第26题(function(){
-  var x = y = 1;
-})();
-console.log(y);
-console.log(x);
-答案是 1, error
-y 被赋值到全局. x 是局部变量. 所以打印 x 的时候会报 ReferenceError
-第27题var a = /123/,
-    b = /123/;
-a == b
-a === b
-即使正则的字面量一致, 他们也不相等.
-答案 false, false
-第28题var a = [1, 2, 3],
-    b = [1, 2, 3],
-    c = [1, 2, 4]
-a ==  b
-a === b
-a &gt;   c
-a &lt;   c
+          原题来自: javascript-puzzlers
+读者可以先去做一下感受感受. 当初笔者的成绩是 21/44…
+当初笔者做这套题的时候不仅怀疑智商, 连人生都开始怀疑了….
+不过, 对于基础知识的理解是深入编程的前提. 让我们一起来看看这些变态题到底变态不变态吧!
+第1题[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].map(parseInt)
+知识点:
 
+Array/map
+Number/parseInt
+Global_Objects/parseInt
+JavaScript parseInt
+
+首先, map接受两个参数, 一个回调函数 callback, 一个回调函数的this值
+其中回调函数接受三个参数 currentValue, index, arrary;
+而题目中, map只传入了回调函数–parseInt.
+其次, parseInt 只接受两个两个参数 string, radix(基数).
+
+在没有指定基数，或者基数为 0 的情况下，JavaScript 作如下处理：
+
+&gt;
+
+
+如果字符串 string 以”0x”或者”0X”开头, 则基数是16 (16进制).
+
+如果字符串 string 以”0”开头, 基数是8（八进制）或者10（十进制），那么具体是哪个基数由实现环境决- 定。ECMAScript 5规定使用10，但是并不是所有的浏览器都遵循这个规定。因此，永远都要明确给出radix参数的值。
+
+如果字符串 string 以其它任何值开头，则基数是10 (十进制)。
+
+
+
+所以本题即问
+parseInt(&apos;1&apos;, 0);
+parseInt(&apos;2&apos;, 1);
+parseInt(&apos;3&apos;, 2);
+首先后两者参数不合法.
+所以答案是 [1, NaN, NaN]
+第2题[typeof null, null instanceof Object]
+两个知识点:
+
+Operators/typeof
+Operators/instanceof
+Operators/instanceof(中)
+
+typeof 返回一个表示类型的字符串.
+instanceof 运算符用来检测 constructor.prototype 是否存在于参数 object 的原型链上.
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/javascript/44个 Javascript 变态题解析 (下)/#more" rel="contents">
+            <a class="btn" href="/2016/10/13/javascript/44个 Javascript 变态题解析 (上)/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(9)：原型设计模式/" itemprop="url">
+                  原型设计模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
+              2016-10-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/13/php设计模式/PHP设计模式(9)：原型设计模式/"class="leancloud_visitors" data-flag-title="原型设计模式"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          简介在[PHP设计模式(八)：工厂模式][2]中我们介绍了创建设计模式(Creationpatterns)中的工厂模式，下面我们将介绍另一种原型设计模式(Prototype Method)。在PHP中，原型设计模式依靠cloning复制对象来实现。通过cloning构造的对象，将大量节省新对象的构造时间。
+何时使用原型设计模式？简单来说，当你希望根据已有的对象来创建新对象时。为什么会有这种需求？想象一下，你在做细胞分裂的项目，每一个细胞都是一个对象，现在你有一个细胞类，每一个新的细胞都是由这个类生成的，不同的细胞只是内部的状态参数不同。当分裂到第N代的时候，已经和初代大不一样了，你是愿意使用第N代的副本修改一下呢？还是愿意从初代慢慢推演？
+ExamplePHP提供了内建的__clone()函数以及clone关键字，来实现对象的复制。下面给出一个例子：
+&lt;?php
+abstract class Cell {
+  public $id;
+  public $dna;
+  abstract function __clone();
+}
+
+class WhaleCell extends Cell {
+  public function __construct() {
+    $this-&gt;id = 1;
+    $this-&gt;dna = &quot;ATCG&quot;;
+  }
+  public function displayDNA() {
+    echo $this-&gt;dna . &quot;\n&quot;;
+  }
+  function __clone() {
+    $this-&gt;id = $this-&gt;id + 1;
+    if ($this-&gt;id % 3 == 0) {
+      $this-&gt;dna = $this-&gt;dna . &quot;AT&quot;;
+    }
+    if ($this-&gt;id % 5 == 0) {
+      $this-&gt;dna = $this-&gt;dna . &quot;CG&quot;;
+    }
+  }
+}
+
+$whaleCell = new WhaleCell();
+$whaleCell-&gt;displayDNA();
+$whale
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(9)：原型设计模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1104,7 +1117,7 @@ a &lt;   c
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1222,6 +1235,13 @@ a &lt;   c
 
 
   
+   
+     
+   
+  
+ 
+
+
 
 
 

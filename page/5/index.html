@@ -418,6 +418,311 @@ var CreateDiv = (function() {
             
               
                 
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/1this关键字/" itemprop="url">
+                  this关键字
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/1this关键字/"class="leancloud_visitors" data-flag-title="this关键字"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+
+this的指向大概可以分成四种：
+
+作为对象的方法调用
+作为普通函数调用
+构造器调用
+Function.prototype.call或Function.prototype.apply调用
+
+
+1. 作为对象的时候，this指向该对象var obj = {
+    a: 1,
+    getA: function() {
+        alert(this === obj); //true;
+        alert(this.a); //1
+    }
+};
+obj.getA();
+2. 作为普通函数调用，this总是指向全局对象（在浏览器中就是window）window.name = &apos;globalName&apos;;
+var getName = function() {
+    return this.name;
+};
+console.log(getName()); //globalName
+再例如局部的callback，它作为普通函数调用时，callback内部的this指向了windows对象，解决方法则可以用一个变量保存this，例如
+document.getElemmentById(&apos;div1&apos;).onclick = function() {
+    var that = this;
+    var callback = function() {
+        alert(that.id); //div1;
+    }
+    callback();
+}
+3. 构造器调用当用new运算符调用函数时，该函数总会返回一个对象，通常情况this就是指向返回的这个对象，但如果构造器显示返回了一个object类的对象，那运算结果最终返回的是那个对象而不是this，例如
+var MyClass1 = function() {
+    this.name = &apos;111&apos;;
+}
+var obj1 = new MyClass1();
+alert(obj1.name); //111
+
+var MyClass2 = function() {
+    this.name = &apos;111&apos;;
+    return { //显式的返回一个对象
+        name: &apos;222&apos;;
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/1this关键字/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/" itemprop="url">
+                  发布订阅模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/"class="leancloud_visitors" data-flag-title="发布订阅模式"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+
+发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。在JavaScript开发中，我们一般用事件模型来替代传统的发布—订阅模式。
+
+
+发布—订阅模式可以广泛应用于异步编程中，这是一种替代传递回调函数的方案。比如，我们可以订阅ajax 请求的error、succ 等事件。 或者如果想在动画的每一帧完成之后做一些事情，那我们可以订阅一个事件，然后在动画的每一帧完成之后发布这个事件。在异步编程中使用发布—订阅模式，我们就无需过多关注对象在异步运行期间的内部状态，而只需要订阅感兴趣的事件发生点。
+
+发布—订阅模式可以取代对象之间硬编码的通知机制，一个对象不用再显式地调用另外一个对象的某个接口。发布—订阅模式让两个对象松耦合地联系在一起，虽然不太清楚彼此的细节，但这不影响它们之间相互通信。当有新的订阅者出现时，发布者的代码不需要任何修改；同样发布者需要改变时，也不会影响到之前的订阅者。只要之前约定的事件名没有变化，就可以自由地改变它们。
+
+
+DOM 事件实际上，只要我们曾经在DOM节点上面绑定过事件函数，那我们就曾经使用过发布—订阅模式，例如
+document.body.addEventListener( &apos;click&apos;, function(){
+    alert(2);
+}, false );
+document.body.click(); // 模拟用户点击
+在这里需要监控用户点击document.body的动作，但是我们没办法预知用户将在什么时候点击。所以我们订阅document.body上的click事件，当body 节点被点击时，body节点便会向订阅者发布这个消息。当然我们还可以随意增加或者删除订阅者，增加任何订阅者都不会影响发布者代码的编写。
+自定义事件除了DOM 事件，我们还会经常实现一些自定义的事件，这种依靠自定义事件完成的发布—订阅模式可以用于任何JavaScript 代码中。步骤：
+
+指定好谁充当发布者（例如售楼处）
+
+然后给发布者添加一个缓存列表，用于存放回调函数以便通知订阅者（售楼处的花名册）
+
+最后发布消息的时候，发布者会遍历整个缓存列表，依次触发里面存放的订阅者回调函数（遍历花名册挨个发短信通知有空房）另外，我们还可以往回调函数里填入一些参数，订阅者
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/" itemprop="url">
                   高阶函数
                 </a>
@@ -527,152 +832,6 @@ var func = function()
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/" itemprop="url">
-                  迭代器模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/"class="leancloud_visitors" data-flag-title="迭代器模式"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-
-迭代器模式是指提供一种方法，顺序访问一个聚合对象中的各个元素，而又不需要暴露该对象的内部表示。迭代器模式可以把迭代的过程从业务逻辑中分离出来，在使用迭代器模式之后，即使不关心内部构造，也可以按顺序访问其中的每个元素。
-
-jQuery中的迭代器迭代器模式无非就是循环访问聚合对象中的各个元素。比如jQuery中的$.each函数，其中回调函数中的i为当前 索引，n为当前元素，代码如下
-$.each([1, 2, 3], function(i, n) {
-    console.log(&apos;当前坐标：&apos; + i);
-    console.log(&apos;当前值：&apos; + n);
-});
-然而，作为一个合格的前端开发者，我们不应该只是会用，而更应该去研究他的实现，因此下面我们就来自己实现一个each函数
-var each = function(ary, callback) {
-    for(var i = 0, l = ary.length; i &lt; l; i++) {
-        callback.call(ary[i], i, ary[i]); //把下标和元素当作参数传给callback函数
-    }
-};
-each([1,2,3], function(i, n) {
-    alert([i,n]);
-});
-内部迭代器和外部迭代器像刚刚编写的each函数属于内部迭代器，each函数的内部已经定义好了迭代规则，它完全接手整个迭代过程，外部只需要一次初始调用.然而，如果你想同时迭代两个数组，例如：判断两个数组里的元素的值是否完全相等。此时如果不去改写each函数本身的代码，就只能够增加一个compare函数然后对each的回调进行更改了。
-var compare = function(ary1, ary2) {
-    if (ary1.length !== ary2.length) {
-        throw new Error(&apos;ary1和ary2不相等&apos;);
-    }
-    each(ary1, function(i ,n) {
-        if (n !== ary2[i]) {
-            throw new Error(&apos;ary1和ary2不相等&apo
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -861,168 +1020,6 @@ AddSubMenuCommand.prototype.execute = function() {
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/" itemprop="url">
-                  策略模式的应用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/"class="leancloud_visitors" data-flag-title="策略模式的应用"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-用策略模式实现缓动动画需求：让小球以各种缓动效果在页面中运动动画开始前需要记录的：
-
-小球所在原始位置
-
-小球移动的目标位置
-
-动画开始时的时间点
-
-小球运动的时间点之后，用setInterval创建一个定时器，定时器每19秒循环一次。
-
-
-//缓动算法，此算法移植于flash
-
-var tween = {
-    //t：动画已消耗的时间，b：小球原始位置，c：小球目标位置，d：动画持续时间
-    linear: function(t, b, c, d) {
-        return c*t/d + b;
-    },
-    reseIn: function(t, b, c, d) {
-        return c * (t /= d) * t + b;
-    },
-    strongEaseIn: function(t, b, c, d) {
-        return c * (t /= d) * t * t * t * t + b;
-    },
-    strongEaseOut: function(t, b, c, d) {
-        return c * (( t = t / d - 1) * t * t * t * t + 1) + b;
-    },
-    sineaseIn: function(t, b, c, d) {
-        return c * (t /= d) * t * t + b;
-    },
-    sineaseOur: function(t, b, c, d) {
-        return c * ((t = t / d - 1) * t * t + 1 ) + b;
-    }
-};
-接着Animation类
-var Animate = function( dom ) {
-    this.dom = dom;              //进行运动的dom节点
-    this.startTime = 0;         //动画开始时间
-    this.startPos = 0;           //动画开始时候dom位置
-    this.endPos = 0;            //结束dom位置
-    this.propertyName = null;     
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1140,7 +1137,7 @@ var Animate = function( dom ) {
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1258,6 +1255,13 @@ var Animate = function( dom ) {
 
 
   
+   
+     
+   
+  
+ 
+
+
 
 
 
