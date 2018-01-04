@@ -258,8 +258,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/" itemprop="url">
-                  单例模式
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/" itemprop="url">
+                  策略模式
                 </a>
               
             
@@ -307,7 +307,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/"class="leancloud_visitors" data-flag-title="单例模式"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/"class="leancloud_visitors" data-flag-title="策略模式"></span>
           
 
           
@@ -325,513 +325,45 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
         
           
           
-用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。
-实现单例模式//1.实现单例模式
-var Singleton = function (name) {
-  this.name = name;
-};
-Singleton.prototype.getName = function() {
-  alert(this.name);
-};
-Singleton.getInstance = (function() {
-  var instance = null;
-  return function(name) {
-    if (!instance) {
-      instance = new Singleton(name);
+定义：定义一系列算法，把他们一个个封装起来，并且使他们可以相互替换。
+
+需求：绩效为S的人年终奖有4倍工资，绩效为A的人年终奖有3倍工资，绩效为B的人年终奖有2倍工资。
+var calculateBonus = function(performanceLevel, salary) {
+    if (performanceLevel === &apos;S&apos;) {
+        return salary * 4;
     }
-    return instance;
-  }
-})();
-var a = Singleton.getInstance(&apos;sven1&apos;);
-var b = Singleton.getInstance(&apos;sven2&apos;);
-
-console.log(a === b); //true
-以上，我们通过Singleton.getInstance来获取Singleton类的唯一对象，虽然简单但是增加了这个类的“不透明性”，Singleton类的使用者必须知道这是一个单例类，跟以往通过new xxx的方法不同
-透明的单例模式有了以上的不足，我们现在就来解决
-//透明的单例模式 
-var CreateDiv = (function() {
-  var instance;
-  var CreateDiv = function(html) {
-    if (instance) {
-      return instance;
+    if (performanceLevel === &apos;A&apos;) {
+        return salary * 3;
     }
-    this.html = html;
-    this.init();
-    return instance = this;
-  };
-
-  CreateDiv.prototype.init = function() {
-    var div = document.createElement(&apos;div&apos;);
-    div.innerHTML = this.html;
-    document.b
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/1this关键字/" itemprop="url">
-                  this关键字
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/1this关键字/"class="leancloud_visitors" data-flag-title="this关键字"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-
-this的指向大概可以分成四种：
-
-作为对象的方法调用
-作为普通函数调用
-构造器调用
-Function.prototype.call或Function.prototype.apply调用
-
-
-1. 作为对象的时候，this指向该对象var obj = {
-    a: 1,
-    getA: function() {
-        alert(this === obj); //true;
-        alert(this.a); //1
+    if (performanceLevel === &apos;B&apos;) {
+        return salary * 2;
     }
 };
-obj.getA();
-2. 作为普通函数调用，this总是指向全局对象（在浏览器中就是window）window.name = &apos;globalName&apos;;
-var getName = function() {
-    return this.name;
-};
-console.log(getName()); //globalName
-再例如局部的callback，它作为普通函数调用时，callback内部的this指向了windows对象，解决方法则可以用一个变量保存this，例如
-document.getElemmentById(&apos;div1&apos;).onclick = function() {
-    var that = this;
-    var callback = function() {
-        alert(that.id); //div1;
-    }
-    callback();
+
+calculateBonus(&apos;B&apos;, 20000); //輸出：40000
+然而，calculateBonus函数比较庞大，包含了很多if语句，且缺乏弹性，如果增加新的绩效等级，复用性差，如果在程序的其他地方需要重用这些计算奖金的算法，我们的选择只有复制和粘贴。因此，我们要重构这段代码。
+var performanceS = function(salary) {
+    return salary * 4;
 }
-3. 构造器调用当用new运算符调用函数时，该函数总会返回一个对象，通常情况this就是指向返回的这个对象，但如果构造器显示返回了一个object类的对象，那运算结果最终返回的是那个对象而不是this，例如
-var MyClass1 = function() {
-    this.name = &apos;111&apos;;
+var performanceA = function(salary) {
+    return salary * 3;
 }
-var obj1 = new MyClass1();
-alert(obj1.name); //111
-
-var MyClass2 = function() {
-    this.name = &apos;111&apos;;
-    return { //显式的返回一个对象
-        name: &apos;222&apos;;
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/1this关键字/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/" itemprop="url">
-                  发布订阅模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/"class="leancloud_visitors" data-flag-title="发布订阅模式"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-
-发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。在JavaScript开发中，我们一般用事件模型来替代传统的发布—订阅模式。
-
-
-发布—订阅模式可以广泛应用于异步编程中，这是一种替代传递回调函数的方案。比如，我们可以订阅ajax 请求的error、succ 等事件。 或者如果想在动画的每一帧完成之后做一些事情，那我们可以订阅一个事件，然后在动画的每一帧完成之后发布这个事件。在异步编程中使用发布—订阅模式，我们就无需过多关注对象在异步运行期间的内部状态，而只需要订阅感兴趣的事件发生点。
-
-发布—订阅模式可以取代对象之间硬编码的通知机制，一个对象不用再显式地调用另外一个对象的某个接口。发布—订阅模式让两个对象松耦合地联系在一起，虽然不太清楚彼此的细节，但这不影响它们之间相互通信。当有新的订阅者出现时，发布者的代码不需要任何修改；同样发布者需要改变时，也不会影响到之前的订阅者。只要之前约定的事件名没有变化，就可以自由地改变它们。
-
-
-DOM 事件实际上，只要我们曾经在DOM节点上面绑定过事件函数，那我们就曾经使用过发布—订阅模式，例如
-document.body.addEventListener( &apos;click&apos;, function(){
-    alert(2);
-}, false );
-document.body.click(); // 模拟用户点击
-在这里需要监控用户点击document.body的动作，但是我们没办法预知用户将在什么时候点击。所以我们订阅document.body上的click事件，当body 节点被点击时，body节点便会向订阅者发布这个消息。当然我们还可以随意增加或者删除订阅者，增加任何订阅者都不会影响发布者代码的编写。
-自定义事件除了DOM 事件，我们还会经常实现一些自定义的事件，这种依靠自定义事件完成的发布—订阅模式可以用于任何JavaScript 代码中。步骤：
-
-指定好谁充当发布者（例如售楼处）
-
-然后给发布者添加一个缓存列表，用于存放回调函数以便通知订阅者（售楼处的花名册）
-
-最后发布消息的时候，发布者会遍历整个缓存列表，依次触发里面存放的订阅者回调函数（遍历花名册挨个发短信通知有空房）另外，我们还可以往回调函数里填入一些参数，订阅者
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/" itemprop="url">
-                  高阶函数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/"class="leancloud_visitors" data-flag-title="高阶函数"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-高阶函数是至少满足下列条件之一的函数
-
-函数可以作为参数被传递
-函数可以作为返回值输出（js这么好的语言中的函数当然满足 ^^）_
-
-函数作为参数传递把函数当作参数传递，可以抽离出一部分容易变化的业务逻辑，把这部分业务逻辑放在函数中，可以分离业务代码中变与不变的部分。
-
-回调函数，ajax异步，callback
-
-var getUserInfo() = function(userId, callback) {
-    $.ajax(&apos;http://xxx.com/getUserInfo?&apos; + userId, function(data) {
-        if (typeof(callback === &apos;function&apos;) {
-            callback(data);
-        }
-    });
+var performanceB = function(salary) {
+    return salary * 2;
 }
-getUserInfo(13157, function(data) {
-    alert(data.user);
-})
-高阶函数实现AOPAOP（面向切面编程），把一些跟核心业务逻辑模块无关的功能抽离出来（通常包括日志统计，安全控制，异常处理等）
-Function.prototype.before = function(beforefn) {
-    var __self = this; //保存原函数的引用
-    return function() { //返回包含原函数和新函数的“代理”函数
-        beforefn.apply(this, arguments); //执行新函数，修正this
-        return __self.apply(this, arguments); //执行原函数
-    }
-};
 
-Function.prototype.after= function(afterfn) {
-    var __self = this; 
-    return function() { 
-        var ret = __self.apply(this, arguments);
-        afterfn.apply(this, arguments); 
-        return ret ;
+var calculateBonus = function(performanceLevel, salary) {
+    if (performanceLevel == &apos;S&apos;) {
+        return performanceS(salary);
     }
-};
-
-var func = function()
+    if (performanceLevel == &apos;A&apos;) {
+        return performanceA(salary);
+    }
+    if (performanceLevel == &apos;B
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -882,8 +414,8 @@ var func = function()
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/11命令模式/" itemprop="url">
-                  命令模式
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/" itemprop="url">
+                  策略模式的应用
                 </a>
               
             
@@ -931,7 +463,7 @@ var func = function()
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/11命令模式/"class="leancloud_visitors" data-flag-title="命令模式"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/"class="leancloud_visitors" data-flag-title="策略模式的应用"></span>
           
 
           
@@ -949,48 +481,510 @@ var func = function()
         
           
           
-命令模式是最简单和优雅的模式之一，命令模式中的命令指的是一个执行某些特定事情的指令。命令模式最常见的应用场景是：有时候需要向某些对象发送请求，但是不知道请求的接收者是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送者和请求接收者能够消除彼此之间的耦合关系。
+用策略模式实现缓动动画需求：让小球以各种缓动效果在页面中运动动画开始前需要记录的：
 
-菜单程序假设要编写一个用户界面程序，该用户界面上至少有数十个button按钮，通过分析我们发现按下按钮之后会发生的一些事情是不变的，而具体会发生什么事情是可变的。通过command对象的帮助，将来我们可以轻易改变这种关联。废话不多说，上代码：
-//负责往按钮上面安装命令
-var setCommand = function( button, command ) {
-    button.onclick = function() { //执行的动作
-        command.execute();
-    }
-};
+小球所在原始位置
 
-//一些功能函数
-var MenuBar = {
-    refresh: function() {
-        console.log(&apos;刷新菜单栏目&apos;);
-    }
-};
-var SubMenu = {
-    add: function() {
-        console.log(&apos;增加子菜单&apos;);
+小球移动的目标位置
+
+动画开始时的时间点
+
+小球运动的时间点之后，用setInterval创建一个定时器，定时器每19秒循环一次。
+
+
+//缓动算法，此算法移植于flash
+
+var tween = {
+    //t：动画已消耗的时间，b：小球原始位置，c：小球目标位置，d：动画持续时间
+    linear: function(t, b, c, d) {
+        return c*t/d + b;
     },
-    del: function() {
-        console.log(&apos;删除子菜单&apos;);
+    reseIn: function(t, b, c, d) {
+        return c * (t /= d) * t + b;
+    },
+    strongEaseIn: function(t, b, c, d) {
+        return c * (t /= d) * t * t * t * t + b;
+    },
+    strongEaseOut: function(t, b, c, d) {
+        return c * (( t = t / d - 1) * t * t * t * t + 1) + b;
+    },
+    sineaseIn: function(t, b, c, d) {
+        return c * (t /= d) * t * t + b;
+    },
+    sineaseOur: function(t, b, c, d) {
+        return c * ((t = t / d - 1) * t * t + 1 ) + b;
     }
 };
-
-//封装
-var RefreshMenuBarCommand = function( receiver ) {
-    this.receiver = receiver;
-};
-RefreshMenuBarCommand.prototype.execute = function() {
-    this.receiver.refresh();
-};
-var AddSubMenuCommand = function( receiver ) {
-    this.receiver = receiver;
-};
-AddSubMenuCommand.prototype.execute = function() {
-    this.receiver.add();
-
+接着Animation类
+var Animate = function( dom ) {
+    this.dom = dom;              //进行运动的dom节点
+    this.startTime = 0;         //动画开始时间
+    this.startPos = 0;           //动画开始时候dom位置
+    this.endPos = 0;            //结束dom位置
+    this.propertyName = null;     
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/11命令模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/" itemprop="url">
+                  代理模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/"class="leancloud_visitors" data-flag-title="代理模式"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+代理模式是为一个对象提供一个代用品或占位符，以便控制对他的访问。代理模式的关键是，当客户不方便直接访问一个对象或者不满足需要的时候，提供一个对象来控制这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理后再把请求转交给本体对象。
+
+不使用代理：客户 → 本体使用代理：客户 → 代理 → 本体
+先来一个带点趣味性的例子，小明要给女神A送花，然后他不好意思，打算让B代送
+var Flower = function(){};
+var xiaoming = {
+    sendFlower: function( traget ) {
+      var flower = new Flower();
+      target.receveFlower( flower );
+    }
+};
+
+var A = {
+    receiveFlower: function( flower ) {
+      console.log(&apos;收到花&apos; + flower);
+  }
+};
+
+xiaoming.sendFlower(A);
+
+//引入代理B
+var B = {
+    receiverFlower: function( flower ) {
+      A.receiveFlower( flower );
+  }
+};
+此时，我们就简单的完成了一个代理模式
+接着，我们在原需求上做点改动，假设女神心情好的时候成功率会增大，小明跟女神不熟不知道她心情，而B跟女神比较熟可以去监听她心情的变化恰当时机送花，这样就不会造成不必要浪费了，于是代码如下：
+//代理B
+var B = {
+    receiverFlower: function( flower ) {
+      A.listenGoodMood(function() { //监听A的好心情
+        A.receiveFlower( flower );
+    })；
+  }
+};
+
+//女神A也要提供一个可被监听的方法（当然我们只是假设，毕竟女人我们是摸不透的）
+var A = {
+    receiveFlower: function( flower ) {
+      console.log(&apos;收到花&apos; + flower);
+  },
+  listenG
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/" itemprop="url">
+                  代理模式的应用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/"class="leancloud_visitors" data-flag-title="代理模式的应用"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+虚拟代理实现图片预加载图片预加载：图片过大或者网络不佳时，图片位置有段时间会是一片空白，常见的用一张loading占位，然后异步加载图片，等图片加载好了再把它填充到img节点里。
+var myImage = (function() {
+    var imgNode = document.createElement(&apos;img&apos;);
+    document.body.appendChild( imgNode );
+    return {
+        setSrc : function( src ) {
+            imgNode.src = src;
+        }
+    }
+})();
+
+var proxyImage = (function() {
+    var img = new Image;
+    img.onload = function() {//图片加载完成之后触发
+        myImage.setSrc(this.src);
+    }
+    return {
+        setSrc: function(src) {
+            myImage.setSrc(&apos;loading.gif&apos;); //loading图片
+            img.src = src;
+        }
+    }
+})();
+proxyImage.setSrc(&apos;xxxx&apos;);
+这里我们通过proxyImage间接地访问MyImage，proxyImage控制了客户对MyImage的访问，因此在此过程中加入一些额外的操作，比如在真正图片加在之前先把img的节点的src设置成一张本地的图片。
+虚拟代理合并http请求假设我有一堆选项(checkbox)，每次点击就会往服务器同步文件，手速快的一秒或许可以点中四五个，然而太过平凡的服务器请求开销略大。因此，我们决定设置一个代理函数，将两秒之内的数据传输收集到一起两秒再发送一次，对于实时性要求不是很高的系统两秒延迟不会有太大副作用但是对服务器的压力就是量级的减少。
+var synchronousFile = function(id) {
+    console.log(&apos;开始同步文件&apos; + 
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/" itemprop="url">
+                  迭代器模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/"class="leancloud_visitors" data-flag-title="迭代器模式"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+
+迭代器模式是指提供一种方法，顺序访问一个聚合对象中的各个元素，而又不需要暴露该对象的内部表示。迭代器模式可以把迭代的过程从业务逻辑中分离出来，在使用迭代器模式之后，即使不关心内部构造，也可以按顺序访问其中的每个元素。
+
+jQuery中的迭代器迭代器模式无非就是循环访问聚合对象中的各个元素。比如jQuery中的$.each函数，其中回调函数中的i为当前 索引，n为当前元素，代码如下
+$.each([1, 2, 3], function(i, n) {
+    console.log(&apos;当前坐标：&apos; + i);
+    console.log(&apos;当前值：&apos; + n);
+});
+然而，作为一个合格的前端开发者，我们不应该只是会用，而更应该去研究他的实现，因此下面我们就来自己实现一个each函数
+var each = function(ary, callback) {
+    for(var i = 0, l = ary.length; i &lt; l; i++) {
+        callback.call(ary[i], i, ary[i]); //把下标和元素当作参数传给callback函数
+    }
+};
+each([1,2,3], function(i, n) {
+    alert([i,n]);
+});
+内部迭代器和外部迭代器像刚刚编写的each函数属于内部迭代器，each函数的内部已经定义好了迭代规则，它完全接手整个迭代过程，外部只需要一次初始调用.然而，如果你想同时迭代两个数组，例如：判断两个数组里的元素的值是否完全相等。此时如果不去改写each函数本身的代码，就只能够增加一个compare函数然后对each的回调进行更改了。
+var compare = function(ary1, ary2) {
+    if (ary1.length !== ary2.length) {
+        throw new Error(&apos;ary1和ary2不相等&apos;);
+    }
+    each(ary1, function(i ,n) {
+        if (n !== ary2[i]) {
+            throw new Error(&apos;ary1和ary2不相等&apo
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

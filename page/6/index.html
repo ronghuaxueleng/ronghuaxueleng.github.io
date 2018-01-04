@@ -258,8 +258,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/" itemprop="url">
-                  代理模式
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/" itemprop="url">
+                  代码重构
                 </a>
               
             
@@ -307,7 +307,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/"class="leancloud_visitors" data-flag-title="代理模式"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/"class="leancloud_visitors" data-flag-title="代码重构"></span>
           
 
           
@@ -325,53 +325,55 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
         
           
           
-代理模式是为一个对象提供一个代用品或占位符，以便控制对他的访问。代理模式的关键是，当客户不方便直接访问一个对象或者不满足需要的时候，提供一个对象来控制这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理后再把请求转交给本体对象。
+一些重构的建议：
 
-不使用代理：客户 → 本体使用代理：客户 → 代理 → 本体
-先来一个带点趣味性的例子，小明要给女神A送花，然后他不好意思，打算让B代送
-var Flower = function(){};
-var xiaoming = {
-    sendFlower: function( traget ) {
-      var flower = new Flower();
-      target.receveFlower( flower );
-    }
+提炼函数
+
+避免出现超大函数
+
+独立出来的函数有助于代码复用
+
+独立出来的函数更容易被覆写
+
+独立出来的函数如果拥有一个良好的命名，
+
+它本身就起到了注释的作用。
+
+
+
+
+比如在一个负责取得用户信息的函数里面，我们还需要打印跟用户信息有关的log，那么打印log的语句就可以被封装在一个独立的函数里：
+var getUserInfo = function() {
+    ajax(&apos;http://xxx.com/userInfo&apos;, function(data) {
+        console.log(&apos;userId: &apos; + data.userId);
+        console.log(&apos;userName: &apos; + data.userName);
+        console.log(&apos;nickName: &apos; + data.nickName);
+    });
 };
-
-var A = {
-    receiveFlower: function( flower ) {
-      console.log(&apos;收到花&apos; + flower);
-  }
+可以改成：
+var getUserInfo = function() {
+    ajax(&apos;http://xxx.com/userInfo&apos;, function(data) {
+        printDetails(data);
+    });
 };
+var printDetails = function(data) {
+    console.log(&apos;userId: &apos; + data.userId);
+    console.log(&apos;userName: &apos; + data.userName);
+    console.log(&apos;nickName: &apos; + data.nickName);
+}
 
-xiaoming.sendFlower(A);
+合并重复的条件片段如果一个函数内有一些条件分支语句，而这些条件分支语句内部散步了一些重复的代码，那么就有必要进行合并去重工作。
 
-//引入代理B
-var B = {
-    receiverFlower: function( flower ) {
-      A.receiveFlower( flower );
-  }
-};
-此时，我们就简单的完成了一个代理模式
-接着，我们在原需求上做点改动，假设女神心情好的时候成功率会增大，小明跟女神不熟不知道她心情，而B跟女神比较熟可以去监听她心情的变化恰当时机送花，这样就不会造成不必要浪费了，于是代码如下：
-//代理B
-var B = {
-    receiverFlower: function( flower ) {
-      A.listenGoodMood(function() { //监听A的好心情
-        A.receiveFlower( flower );
-    })；
-  }
-};
-
-//女神A也要提供一个可被监听的方法（当然我们只是假设，毕竟女人我们是摸不透的）
-var A = {
-    receiveFlower: function( flower ) {
-      console.log(&apos;收到花&apos; + flower);
-  },
-  listenG
+//页面跳转
+var paging = function(currPage) {
+    if (currPage &lt;= 0) {
+        currPage = 0;
+        jump(currPage); //跳转
+    } else if (currPage 
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/7代理模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -422,8 +424,8 @@ var A = {
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/" itemprop="url">
-                  代理模式的应用
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/" itemprop="url">
+                  状态模式
                 </a>
               
             
@@ -471,7 +473,7 @@ var A = {
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/"class="leancloud_visitors" data-flag-title="代理模式的应用"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/"class="leancloud_visitors" data-flag-title="状态模式"></span>
           
 
           
@@ -489,362 +491,48 @@ var A = {
         
           
           
-虚拟代理实现图片预加载图片预加载：图片过大或者网络不佳时，图片位置有段时间会是一片空白，常见的用一张loading占位，然后异步加载图片，等图片加载好了再把它填充到img节点里。
-var myImage = (function() {
-    var imgNode = document.createElement(&apos;img&apos;);
-    document.body.appendChild( imgNode );
-    return {
-        setSrc : function( src ) {
-            imgNode.src = src;
-        }
-    }
-})();
 
-var proxyImage = (function() {
-    var img = new Image;
-    img.onload = function() {//图片加载完成之后触发
-        myImage.setSrc(this.src);
-    }
-    return {
-        setSrc: function(src) {
-            myImage.setSrc(&apos;loading.gif&apos;); //loading图片
-            img.src = src;
-        }
-    }
-})();
-proxyImage.setSrc(&apos;xxxx&apos;);
-这里我们通过proxyImage间接地访问MyImage，proxyImage控制了客户对MyImage的访问，因此在此过程中加入一些额外的操作，比如在真正图片加在之前先把img的节点的src设置成一张本地的图片。
-虚拟代理合并http请求假设我有一堆选项(checkbox)，每次点击就会往服务器同步文件，手速快的一秒或许可以点中四五个，然而太过平凡的服务器请求开销略大。因此，我们决定设置一个代理函数，将两秒之内的数据传输收集到一起两秒再发送一次，对于实时性要求不是很高的系统两秒延迟不会有太大副作用但是对服务器的压力就是量级的减少。
-var synchronousFile = function(id) {
-    console.log(&apos;开始同步文件&apos; + 
-          ...
+状态模式的关键是区分事物内部的状态，事物内部状态的改变往往会带来事物的行为改变。
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/" itemprop="url">
-                  策略模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/"class="leancloud_visitors" data-flag-title="策略模式"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-定义：定义一系列算法，把他们一个个封装起来，并且使他们可以相互替换。
-
-需求：绩效为S的人年终奖有4倍工资，绩效为A的人年终奖有3倍工资，绩效为B的人年终奖有2倍工资。
-var calculateBonus = function(performanceLevel, salary) {
-    if (performanceLevel === &apos;S&apos;) {
-        return salary * 4;
-    }
-    if (performanceLevel === &apos;A&apos;) {
-        return salary * 3;
-    }
-    if (performanceLevel === &apos;B&apos;) {
-        return salary * 2;
-    }
+电灯程序首先给一个不用状态模式的电灯程序例子：
+var Light = function() {
+  this.state = &apos;off&apos;; //电灯初始状态off
+  this.button = null; //电灯开关按钮
 };
 
-calculateBonus(&apos;B&apos;, 20000); //輸出：40000
-然而，calculateBonus函数比较庞大，包含了很多if语句，且缺乏弹性，如果增加新的绩效等级，复用性差，如果在程序的其他地方需要重用这些计算奖金的算法，我们的选择只有复制和粘贴。因此，我们要重构这段代码。
-var performanceS = function(salary) {
-    return salary * 4;
-}
-var performanceA = function(salary) {
-    return salary * 3;
-}
-var performanceB = function(salary) {
-    return salary * 2;
-}
+Light.prototype.init = function() {
+  var button = document.createElement(&apos;button&apos;),
+      self = this;
 
-var calculateBonus = function(performanceLevel, salary) {
-    if (performanceLevel == &apos;S&apos;) {
-        return performanceS(salary);
-    }
-    if (performanceLevel == &apos;A&apos;) {
-        return performanceA(salary);
-    }
-    if (performanceLevel == &apos;B
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/" itemprop="url">
-                  组合模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/"class="leancloud_visitors" data-flag-title="组合模式"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          组合模式
-
-组合模式将对象组合成树形结构，以表示“部分-整体”的层次结构。除了用来表示树形结构之外，组合模式的另一个好处是通过对象的多态性表现，使得用户对单个对象和组合对象的使用具有一致性。
-
-请求在树中传递的过程在组合模式中，请求在树中传递的过程总是遵循一种逻辑。请求从树的最顶端的对象往下传递，如果当前处理请求的对象是叶对象，叶对象自身会对请求做相互相应的处理；如果当前处理请求对象是组合对象，组合对象则会遍历它下面的节点，将请求继续传递。总之，组合对象的请求是从上到下沿着树传递，直到树的尽头。作为客户，只要关心树最顶层的组合对象，客户只需要请求这个组合对象，请求便会向下延续。
-现在，假设一个需求，我们需要一个超级遥控器可以控制家里所有的电器，且拥有以下功能
-
-打开空调
-
-打开电视和音响
-
-关门，开电脑，登录QQ  
-
-
-依旧，废话不多说，show the code
-var MacroCommand = function() {
-  return {
-    commandsList : [],
-    add: function( command ) {
-      this.commandsList.push( command );
-    },
-    execute: function() {
-      for (var i = 0, command; command = this.commandsList[i++];) {
-        command.execute();
-      }
-    }
+  button.innerHTML = &apos;开关&apos;;
+  this.button = document.body.appendChild(button);
+  this.button.onclick = function() {
+    self.buttonWasPressed();
   };
 };
 
-var openAcCommand = {
-  execute: function() {
-    console.log(&apos;打开空调&apos;);
+Light.prototype.buttonWasPressed = function() {
+  if (this.state === &apos;off&apos;) {
+    console.log(&apos;开灯&apos;);
+    this.state = &apos;on&apos;;
+  } else if (this.state === &apos;on&apos;) {
+    console.log(&apos;关灯&apos;);
+    this.state = &apos;off&apos;;
   }
 };
 
-/*家里电视和音响是连接在一起的，所以可以用一个宏命令来组合打开电视和打开音响的命令*/
-var openTvCommand = {
-  execute: function() {
-    console.log(&apos;打开电视&apos;);
-  }
+var light = new Light();
+light.init();
+这样子看起来非常完美。但是假如我们有三种光，甚至四种五种，只能在buttonWasPressed里面新增代码，这样就显得他很不稳定了。而且所有跟状态有关的行为，这里只是console，但是在实际应用中要处理的事情庞大得多…所以，我们用状态模式进行改写
+//OffLightState
+var OffLightState = function(light) {
+  this.light = light;
 };
-var openSoundCommand = {
-  execute: function() {
-    console.log(&apos;打开音响&apos;);
-  }
-};
-
-var macr
+OffLightState.prototype.buttonW
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -895,8 +583,8 @@ var macr
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/14享元模式/" itemprop="url">
-                  享元模式
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/17装饰者模式/" itemprop="url">
+                  装饰者模式
                 </a>
               
             
@@ -944,7 +632,7 @@ var macr
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/14享元模式/"class="leancloud_visitors" data-flag-title="享元模式"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/17装饰者模式/"class="leancloud_visitors" data-flag-title="装饰者模式"></span>
           
 
           
@@ -963,38 +651,341 @@ var macr
           
           
 
-享元模式的核心是运用共享技术来有效支持大量细粒度的对象。如果系统中因为创建了大量类似的对象而导致内存占用过高，享元模式就非常有用了。在JavaScript中，浏览器特别是移动端的浏览器分配的内存不算多，如何节省内存就成了一件非常有意义的事。
+装饰者模式：给对象动态地增加职责。跟继承相比，装饰者是一种更轻便灵活的做法，是一种“即用即付”的方式。
 
-初识假设有个内衣工厂，要50个男模50个女模，你可能会这么写程序：
-var Model = function(sex, underwear) {
-    this.sex = sex;
-    this.underwear = underwear;
-}
-Model.prototype.takePhoto = function() {
-    console.log(&apos;sex=&apos; + this.sex + &apos; underwear=&apos; + this.underwear );
-}
-for (var i = 1; i &lt;= 50; i++) {
-    var maleModel = new Model(&apos;male&apos;, &apos;underwear&apos; + i);
-    maleModel.takePhoto();
-}
-for (var j = 1; j &lt;= 50; j++) {
-    var femaleModel = new Model(&apos;female&apos;, &apos;underwear&apos; + j);
-    femaleModel.takePhoto();
-}
-要得到一张照片，每次都需要传入sex，underwear参数，根据现在的需求一共会产生100个对象。但是如果将来要生产10000种，那这个程序可能会因为存在太多对象提前崩溃。所以我们做一点改动
-var Model = function(sex) {
-    this.sex = sex;
-}
-Model.pototype.takePhoto = function() {
-    console.log(&apos;sex=&apos; + this.sex + &apos; underwear=&apos; + this.underwear );
+js的装饰者假设我们在编写一个飞机大战游戏，这个飞机可以升级，发射导弹，发射原子弹
+var plane = {
+    fire: function() {
+        console.log(&apos;发射普通子弹&apos;);
+    }
+};
+var missileDecorator = function() {
+    console.log(&apos;发射导弹&apos;);
+};
+var atomDecorator = function() {
+    console.log(&apos;发射原子弹&apos;);
+};
+var fire1 = plane.fire;
+plane.fire = function() {
+    fire1();
+    missileDecorator();
 };
 
-//分别创建一个男模特对象和女模特对象
-var maleModel = new Model(&ap
+var fire2 = plane.fire;
+plane.fire = function() {
+    fire2();
+    atomDecorator();
+};
+plane.fire(); //&quot;发射普通子弹&quot;&quot;发射导弹&quot;&quot;发射原子弹&quot;
+用AOP装饰函数首先给出Function.prototype.before方法和Function.prototype.after方法
+Function.prototype.before = function (beforefn) {
+  var __self = this; //保存原函数的引用
+  return function() {  //返回包含了原函数和新函数的代理函数
+    beforefn.apply(this, arguments); //执行新函数，且保证this不被劫持，新函数接受的参数也会原封不动的传入原函数，新函数在原函数之前执行
+    return __self.apply(this, arguments); //执行原函数并返回原函数的执行结果，并保证this不被劫持
+  };
+};
+Function.prototype.after = function (afterfn) {
+  var __self 
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/14享元模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/17装饰者模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/16中介者模式/" itemprop="url">
+                  中介者模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/16中介者模式/"class="leancloud_visitors" data-flag-title="中介者模式"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+
+中介者模式的作用就是解除对象与对象之间的紧耦合关系。增加一个中介者对象后，所有的相关对象都可以通过中介者对象来通信，而不是相互引用，所以当一个对象发生改变时，只需要通知中介者对象即可。中介者模式使网状的多对多关系变成了相对简单的一对多关系。
+
+中介者模式的例子–购买商品假如我们正在编写一个手机购买的页面，在购买流程中，可以选择手机的颜色以及输入购买数量，同时页面中有两个展示区域，分别向用户展示选择好的颜色和数量。show the code：
+var colorSelect = document.getElemmentById(&apos;colorSelect&apos;),
+    numberInput= document.getElemmentById(&apos;numberInput&apos;),
+    colorInfo= document.getElemmentById(&apos;colorInfo&apos;),
+    numberInfo = document.getElemmentById(&apos;numberInfo &apos;),
+    nextBtn = document.getElemmentById(&apos;nextBtn &apos;);
+
+var goods = { //手机库存
+    &quot;red&quot;: 3,
+    &quot;blue&quot;: 6
+};
+//选择颜色时候
+colorSelect.onchange = function() {
+    var color = this.value, //颜色
+        number = numberInput.value, //数量
+        stock = goods[color]; //该颜色手机对应的当前库存
+    colorInfo.innerHTML = color;
+    if (!color) {
+        nextBtn.disabled = true;
+        nextBtn.innerHTML = &apos;请选择手机颜色&apos;;
+        return;
+    }
+    if (((number - 0) | 0) !== number - 0) { //用户输入的
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/16中介者模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/15职责链模式/" itemprop="url">
+                  职责链模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/15职责链模式/"class="leancloud_visitors" data-flag-title="职责链模式"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+
+使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系，将这些对象都练成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。
+
+如图所示：请求→A→B→C→D再来一个更形象的比喻，读书的时候假设你坐在前面，要在上课时告诉后排一些事情，这时候你可能会选择写一张小纸条，小纸条就会陆续的被向后传递。从上面的例子中，我们可以看到职责链的优点：请求发送者只需要知道链中的第一个节点，从而弱化了发送者和一组接收者之间的强联系。
+实际开发中的职责链模式需求：一个售卖手机的电商网站，交纳500定金和200定金和没交定金的有不同的优惠状况。我们刚开始可能会这么写：
+// orderType: 订单类型（普通用户或定金用户），1为500元定金用户，2为200，3为普通用户
+// pay：表示是否已支付定金，true或false
+// stock：表示当前用于普通购买的手机库存数量，已支付过定金的用户不受此限制。
+
+var order = function (orderType, pay, stock) {
+    if (orderType === 1) { //500元定金购买模式
+        if (pay === true) {
+            console.log(&apos;500元定金预定，已获得100元优惠券&apos;);
+        }else { //未支付定金，降级到普通购买模式
+            if (stock &gt; 0) {
+                console.log(&apos;普通购买，无优惠券&apos;);
+            } else {
+                console.log(&apos;库存不足&apos;);
+            }
+        }
+    }
+    else if (orderType === 2) {
+        if (pay === true) {
+            console.log(&apos;200元定金预定，已获得50元优惠券&apos;);
+        }else { //未支付定金，降级到普通购买模式
+            if (stock &gt; 0) {
+             
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/15职责链模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

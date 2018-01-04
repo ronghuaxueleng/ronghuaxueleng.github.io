@@ -377,8 +377,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/09/19/javascript/jQuery的deferred对象详解/" itemprop="url">
-                  jQuery的deferred对象详解
+                <a class="post-title-link" href="/2016/09/19/javascript/如何判断Javascript对象是否存在/" itemprop="url">
+                  如何判断Javascript对象是否存在
                 </a>
               
             
@@ -426,7 +426,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/09/19/javascript/jQuery的deferred对象详解/"class="leancloud_visitors" data-flag-title="jQuery的deferred对象详解"></span>
+            <span id="/2016/09/19/javascript/如何判断Javascript对象是否存在/"class="leancloud_visitors" data-flag-title="如何判断Javascript对象是否存在"></span>
           
 
           
@@ -442,11 +442,12 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
 
       
         
-          <p><a href="http://jquery.com/" target="_blank" rel="external">jQuery</a>的开发速度很快，几乎每半年一个大版本，每两个月一个小版本。</p>
-<p>每个版本都会引入一些新功能。今天我想介绍的，就是从jQuery 1.5.0版本开始引入的一个新功能—-<a href="http://api.jquery.com/category/deferred-object/" target="_blank" rel="external">deferred对象</a>。</p>
-<p>这个功能很重要，未来将成为jQuery的核心方法，它彻底改变了如何在jQuery中使用ajax。为了实现它，jQuery的全部ajax代码都被改写了。但是，<br>它比较抽象，初学者很难掌握，网上的教程也不多。所以，我把自己的学习笔记整理出来了，希望对大家有用。</p>
+          <p>Javascript语言的设计不够严谨，很多地方一不小心就会出错。</p>
+<p>举例来说，请考虑以下情况。</p>
+<p>现在，我们要判断一个<strong>全局对象</strong>myObj是否存在，如果不存在，就对它进行声明。用自然语言描述的算法如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (myObj不存在)&#123;</div><div class="line">  声明myObj;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>你可能会觉得，写出这段代码很容易。但是实际上，它涉及的语法问题，远比我们想象的复杂。<a href="http://perfectionkills.com/unnecessarily-comprehensive-look-into-a" target="_blank" rel="external">Juriy Zaytsev</a>指出，判断一个Javascript对象是否存在，有超过50种写法。只有对Javascript语言的实现细节非常清楚，才可能分得清它们的区别。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/19/javascript/jQuery的deferred对象详解/#more" rel="contents">
+            <a class="btn" href="/2016/09/19/javascript/如何判断Javascript对象是否存在/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -497,8 +498,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/09/10/javascript设计模式/JavaScript设计模式——Constructor构造器模式/" itemprop="url">
-                  JavaScript Constructor(构造器)模式
+                <a class="post-title-link" href="/2016/09/10/javascript设计模式/Javascript设计模式——反模式/" itemprop="url">
+                  Javascript 反模式
                 </a>
               
             
@@ -546,7 +547,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/09/10/javascript设计模式/JavaScript设计模式——Constructor构造器模式/"class="leancloud_visitors" data-flag-title="JavaScript Constructor(构造器)模式"></span>
+            <span id="/2016/09/10/javascript设计模式/Javascript设计模式——反模式/"class="leancloud_visitors" data-flag-title="Javascript 反模式"></span>
           
 
           
@@ -562,11 +563,12 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
 
       
         
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在经典的面相对象语言编程中，Constructor是一种在内存已分配给该对象的情况下，用于初始化新创建对象的特殊方法。在Javascript中，几乎所有东西都是对象，我们通常最感兴趣的是object构造器。</p>
-<p>object构造器用于创建特定类型的对象——准备好对象以备使用，同时接收构造器可以使用的参数，以在第一次创建对象时，设置成员属性和方法的值。</p>
-<p><img src="http://img.blog.csdn.net/20151209234517042" alt="这里写图片描述"></p>
+          <h1 id="什么是反模式"><a href="#什么是反模式" class="headerlink" title="什么是反模式"></a>什么是反模式</h1><p>如果我们认为一种模式代表一种最佳实践，那么一种反模式就代表我们已经学到的教训。反模式这个术语是1995年由安德鲁·凯尼格在当年的11月C++报告中创造的，是受“四人组”所著《设计模式》一书的启发。在凯尼格的报告中，他提出反模式的两个概念：</p>
+<blockquote>
+<p><strong>描述一种针对某个特定问题的不良解决方案，该方案会导致糟糕的情况发生；</strong><br><strong>描述如何摆脱前述的糟糕情况以及如何创造好的解决方案</strong></p>
+</blockquote>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/10/javascript设计模式/JavaScript设计模式——Constructor构造器模式/#more" rel="contents">
+            <a class="btn" href="/2016/09/10/javascript设计模式/Javascript设计模式——反模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -617,8 +619,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/09/10/javascript设计模式/JavaScript设计模式——Singleton（单例）模式/" itemprop="url">
-                  JavaScript Singleton（单例）模式
+                <a class="post-title-link" href="/2016/09/10/javascript设计模式/JavaScript设计模式——Revealing-Module（揭示模块）模式/" itemprop="url">
+                  JavaScript Revealing Module（揭示模块）模式
                 </a>
               
             
@@ -666,7 +668,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/09/10/javascript设计模式/JavaScript设计模式——Singleton（单例）模式/"class="leancloud_visitors" data-flag-title="JavaScript Singleton（单例）模式"></span>
+            <span id="/2016/09/10/javascript设计模式/JavaScript设计模式——Revealing-Module（揭示模块）模式/"class="leancloud_visitors" data-flag-title="JavaScript Revealing Module（揭示模块）模式"></span>
           
 
           
@@ -682,11 +684,12 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
 
       
         
-          <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>singleton模式是被熟知的原因是因为它限制了类的实例化次数只能一次。从经典意义上来说，singleton模式在该实例不存在的情况下，可以通过一个方法创建一个类来实现创建类的新实例；如果实例已经存在，它会简单返回该对象的引用。</p>
-<p>singleton不同于静态类(或对象)，因为我们可以推迟它们的初始化，这通常是因为它们需要一些信息，而这些信息在初始化期间可能无法获得、对于没有察觉到之前的引用的代码，它们不会提供方便检索的方法。这是因为它既不是对象，也不是由一个singleton返回的“类”；它是一个结构。</p>
-<p>思考一下<strong>闭包变量为何实际上并不是闭包</strong>，而提供闭包的函数作用域是闭包。在Javascript中，singleton充当共享资源命名空间，从全局命名空间中隔离出代码实现，从而为函数提供单一访问点。</p>
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在对Module模式有个熟悉的了解之后，我们来认识一个稍有改进的版本——ChristianHeilmann的Revealing Module模式。</p>
+<h1 id="模式的由来"><a href="#模式的由来" class="headerlink" title="模式的由来"></a>模式的由来</h1><p>原来的Module模式可能无法实现这样的需求：<br>当我们从另一个方法调用一个公有方法或者访问公有变量时，必须要重复主对象的名称。而且使用Module时必须要切换到对象字面量表示法来让某种方法变成公有方法。</p>
+<p>我们需要的可能是这样的一个模式：<br>能够在私有范围内简单定义所有的函数和变量，并返回一个匿名对象，它拥有指向私有函数的指针，该函数是它希望展示为公有的方法。 </p>
+<p>有点拗口，还是上代码吧 (☆_☆)</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/10/javascript设计模式/JavaScript设计模式——Singleton（单例）模式/#more" rel="contents">
+            <a class="btn" href="/2016/09/10/javascript设计模式/JavaScript设计模式——Revealing-Module（揭示模块）模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -737,8 +740,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/09/10/javascript设计模式/Javascript设计模式——设计模式类别/" itemprop="url">
-                  Javascript 设计模式类别
+                <a class="post-title-link" href="/2016/09/10/javascript设计模式/JavaScript设计模式——Module模式/" itemprop="url">
+                  JavaScript Module模式
                 </a>
               
             
@@ -786,7 +789,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/09/10/javascript设计模式/Javascript设计模式——设计模式类别/"class="leancloud_visitors" data-flag-title="Javascript 设计模式类别"></span>
+            <span id="/2016/09/10/javascript设计模式/JavaScript设计模式——Module模式/"class="leancloud_visitors" data-flag-title="JavaScript Module模式"></span>
           
 
           
@@ -802,11 +805,12 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
 
       
         
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>命名、抽象、标识是通用设计结构的主要方面，这些设计结构能被用于构造可复用的面向对象设计。设计模式确定所包含的类和实例、它们的角色、协作方式以及职责分配。</p>
-<p>每一种设计模式都重点关注一个特定的对象设计问题或者设计要点，描述何时使用它，在另一些约束条件下是否还能使用，以及使用的效果和利弊。由于我们最终要实现设计，设计模式还是提供了示例，代码来阐明其实现。</p>
-<p>虽然设计模式描述的是面向对象设计，但是他们都是基于实际的解决方案。这些设计方案的实现语言是主流面向对象的编程语言。</p>
+          <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>Module模式最初被定义为一种在传统软件工程中为类提供私有和公有封装的方法。而在Javascript中，Module模式用于进一步模拟类的概念，通过这种方式，能够使一个单独的对象拥有公有/私有的方法和变量，从而屏蔽来自全局作用域的特殊部分。产生的结果是：函数名与在页面上其他脚本定义的函数冲突的可能性降低。</p>
+<blockquote>
+<p>应当注意的一点是：在Javascript没有private访问修饰符因此算不得真正的私有，而是通过函数作用域来模拟私有这个概念。在Module模式内由于闭包的存在，声明的变量和方法只在该模式内部可用，但在返回对象上定义的变量和方法是可以对外访问的。</p>
+</blockquote>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/10/javascript设计模式/Javascript设计模式——设计模式类别/#more" rel="contents">
+            <a class="btn" href="/2016/09/10/javascript设计模式/JavaScript设计模式——Module模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
