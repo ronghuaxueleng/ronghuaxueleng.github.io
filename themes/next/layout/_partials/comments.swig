@@ -16,6 +16,8 @@
           <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
+    {% elseif theme.laibili_uid %}
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjkzMy85NDk0"></div>
     {% endif %}
   </div>
 {% endif %}
