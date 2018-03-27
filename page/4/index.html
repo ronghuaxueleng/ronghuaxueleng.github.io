@@ -119,9 +119,9 @@
 
   <title> 白云雅阁 </title>
   <!-- start Mixpanel --><script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
-0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
 for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
-mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
+mixpanel.init("27c73634cbc4829e72a0313ba2090f16");</script><!-- end Mixpanel -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -258,8 +258,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/" itemprop="url">
-                  适配器模式
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/" itemprop="url">
+                  代理模式的应用
                 </a>
               
             
@@ -307,7 +307,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/"class="leancloud_visitors" data-flag-title="适配器模式"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/"class="leancloud_visitors" data-flag-title="代理模式的应用"></span>
           
 
           
@@ -325,47 +325,38 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
         
           
           
+虚拟代理实现图片预加载图片预加载：图片过大或者网络不佳时，图片位置有段时间会是一片空白，常见的用一张loading占位，然后异步加载图片，等图片加载好了再把它填充到img节点里。
+var myImage = (function() {
+    var imgNode = document.createElement(&apos;img&apos;);
+    document.body.appendChild( imgNode );
+    return {
+        setSrc : function( src ) {
+            imgNode.src = src;
+        }
+    }
+})();
 
-适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。
-
-适配器模式的应用适配模式是一种“亡羊补牢”的模式，没有人会在程序的设计之初就使用它，因为没有人可以完全预料到未来的事情，也许现在好好工作的接口未来就不再适用于新系统，那么我们可以使用适配器模式把旧的接口包装成新的接口，使他继续保持生命力。比如在json数据流行之前，很多cgi返回的都是XML格式的数据，如果今天仍然想用这些接口，显然我们可以创造一个XML-JSON适配器。
-比如有一段代码，我们向googleMap和baiduMap都发出显示请求时，他们分别以各自的方式在页面中展现了地图：
-var googleMap = {
-    show: function() {
-        console.log(&apos;开始渲染谷歌地图&apos;);
+var proxyImage = (function() {
+    var img = new Image;
+    img.onload = function() {//图片加载完成之后触发
+        myImage.setSrc(this.src);
     }
-};
-var baiduMap = {
-    show: function() {
-        console.log(&apos;开始渲染百度地图&apos;);
+    return {
+        setSrc: function(src) {
+            myImage.setSrc(&apos;loading.gif&apos;); //loading图片
+            img.src = src;
+        }
     }
-};
-
-var renderMap = function(map) {
-    if (map.show.instanceof Function) {
-        map.show();
-    }
-};
-
-renderMap(googleMap); //开始渲染谷歌地图
-renderMap(baiduMap); //开始渲染百度地图
-这个程序能运行的关键之处在于googleMap和baiduMap提供了一致的show方法，但是第三方接口并不在我们的控制范围内，加入baiduMap提供的显示地图的方法不叫show，而叫display呢?
-此时我们可以通过增加baiduMapAdapter来解决问题：
-var googleMap = {
-    show: function() {
-        console.log(&apos;开始渲染谷歌地图&apos;);
-    }
-};
-var baiduMap = {
-    display: function() {
-        console.log(&apos;开始渲染百度地图&apos;);
-    }
-};
-var baid
+})();
+proxyImage.setSrc(&apos;xxxx&apos;);
+这里我们通过proxyImage间接地访问MyImage，proxyImage控制了客户对MyImage的访问，因此在此过程中加入一些额外的操作，比如在真正图片加在之前先把img的节点的src设置成一张本地的图片。
+虚拟代理合并http请求假设我有一堆选项(checkbox)，每次点击就会往服务器同步文件，手速快的一秒或许可以点中四五个，然而太过平凡的服务器请求开销略大。因此，我们决定设置一个代理函数，将两秒之内的数据传输收集到一起两秒再发送一次，对于实时性要求不是很高的系统两秒延迟不会有太大副作用但是对服务器的压力就是量级的减少。
+var synchronousFile = function(id) {
+    console.log(&apos;开始同步文件&apos; + 
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -416,8 +407,8 @@ var baid
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/" itemprop="url">
-                  设计原则和编程技巧
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/" itemprop="url">
+                  状态模式
                 </a>
               
             
@@ -465,7 +456,7 @@ var baid
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/"class="leancloud_visitors" data-flag-title="设计原则和编程技巧"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/"class="leancloud_visitors" data-flag-title="状态模式"></span>
           
 
           
@@ -483,43 +474,48 @@ var baid
         
           
           
-单一职责原则就一个类而言，应该仅有一个引起它变化的原因。在JavaScript中，需要用到类的场景并不太多，单一职责原则（SRP）更多的是被运用在对象或者方法级别上。总之，SRP原则体现为：一个对象（方法）只做一件事情。例如：
 
-代理模式
+状态模式的关键是区分事物内部的状态，事物内部状态的改变往往会带来事物的行为改变。
 
-迭代器模式
+电灯程序首先给一个不用状态模式的电灯程序例子：
+var Light = function() {
+  this.state = &apos;off&apos;; //电灯初始状态off
+  this.button = null; //电灯开关按钮
+};
 
-单例模式
+Light.prototype.init = function() {
+  var button = document.createElement(&apos;button&apos;),
+      self = this;
 
-装饰者模式但是，并不是所有的职责都应该一一分离的，一方面如果随着需求的变化，有两个职责是同时变化的，那就不必分离他们。比如在ajax请求的时候，创建xhr对象和发送xhr请求几乎总是在一起的，那么创建xhr对象的职责和发送xhr对象的职责就没有必要分开。
+  button.innerHTML = &apos;开关&apos;;
+  this.button = document.body.appendChild(button);
+  this.button.onclick = function() {
+    self.buttonWasPressed();
+  };
+};
 
+Light.prototype.buttonWasPressed = function() {
+  if (this.state === &apos;off&apos;) {
+    console.log(&apos;开灯&apos;);
+    this.state = &apos;on&apos;;
+  } else if (this.state === &apos;on&apos;) {
+    console.log(&apos;关灯&apos;);
+    this.state = &apos;off&apos;;
+  }
+};
 
-另一方面，职责的变化轴线仅当它们确定会发生变化时才有意义，即使两个职责已经被耦合在一起但他们没有发生改变的征兆，那么也许没有必要主动分离他们，在代码需要重构的时候再分离也不迟。
-最少知识原则最少知识原则（LKP）说的是一个软件实体应当尽可能少与其他实体发生相互作用。这里的软件的实体是一个广义的概念，不仅包括对象，还包括系统，类，模块，函数，变量等。单一职责原则指导我们把对象划分成较小的粒度，这可以提高对象的可复用性。但越来越多的对象之间可能会产生错综复杂的联系，如果修改了其中一个对象，很可能会影响到跟它相互引用的其他对象。对象和对象耦合在一起，有可能会降低他们的复用性。在程序中，对象的“朋友”太多并不是一件好事。最少知识原则要求我们在设计程序时，应当尽量减少对象之间的交互。如果两个对象之间不必彼此直接通信，那么两个对象就不要发生直接的相互联系。常见的做法是引入一个第三者对象，来承担这些对象之间的通信作用。如果一些对象需要向另一些对象发起请求，可以通过第三者对象来转发这些请求。体现地方：
-
-中介者模式
-
-外观模式
-
-
-开放-封闭原则在面向对象的程序设计中，开放-封闭原则（OCP）是最重要的一条原则。他的定义为：软件实体（类，模块，函数）等应该是可以拓展的，但是不可修改的。举例：
-
-发布-订阅模式
-
-模板方法模式
-
-策略模式
-
-代理模式
-
-职责链模式
-
-
-
-          
+var light = new Light();
+light.init();
+这样子看起来非常完美。但是假如我们有三种光，甚至四种五种，只能在buttonWasPressed里面新增代码，这样就显得他很不稳定了。而且所有跟状态有关的行为，这里只是console，但是在实际应用中要处理的事情庞大得多…所以，我们用状态模式进行改写
+//OffLightState
+var OffLightState = function(light) {
+  this.light = light;
+};
+OffLightState.prototype.buttonW
+          ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -570,8 +566,8 @@ var baid
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/2闭包/" itemprop="url">
-                  闭包
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/" itemprop="url">
+                  代码重构
                 </a>
               
             
@@ -619,7 +615,7 @@ var baid
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/2闭包/"class="leancloud_visitors" data-flag-title="闭包"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/"class="leancloud_visitors" data-flag-title="代码重构"></span>
           
 
           
@@ -637,49 +633,55 @@ var baid
         
           
           
-闭包是js中一个难懂又必须征服的概念，他的形成与变量作用域以及变量的生存周期密切相关。
+一些重构的建议：
 
-变量作用域和生存周期作用域，按字面理解，就是指变量的有效范围，超出这个范围就无法访问。在函数中，里面函数可以访问外面的变量，但是外面无法访问内部变量。举个简单例子：
-var a = 1;
-var fun1 = function() {
-    var b = 2;
-    var fun2 = function() {
-        var c = 3;
-        alert(b); //2
-        alert(c); //3
-    }
-    fun2();
-    alert(c); //c is not defined
+提炼函数
+
+避免出现超大函数
+
+独立出来的函数有助于代码复用
+
+独立出来的函数更容易被覆写
+
+独立出来的函数如果拥有一个良好的命名，
+
+它本身就起到了注释的作用。
+
+
+
+
+比如在一个负责取得用户信息的函数里面，我们还需要打印跟用户信息有关的log，那么打印log的语句就可以被封装在一个独立的函数里：
+var getUserInfo = function() {
+    ajax(&apos;http://xxx.com/userInfo&apos;, function(data) {
+        console.log(&apos;userId: &apos; + data.userId);
+        console.log(&apos;userName: &apos; + data.userName);
+        console.log(&apos;nickName: &apos; + data.nickName);
+    });
 };
-fun1();
-生存周期：全局变量的生存周期是永久的，除非我们主动销毁，但是普通对于用var声明的局部变量，当退出函数不再使用时，就会被销毁。但是当你使用到闭包时，情况就不一样了
-var fun = function() {
-    var a = 1;
-    return function() {
-        a++;
-        alert(a);
-    }
+可以改成：
+var getUserInfo = function() {
+    ajax(&apos;http://xxx.com/userInfo&apos;, function(data) {
+        printDetails(data);
+    });
 };
-var f = fun();
-f(); //2
-f(); //3
-f(); //4
-f(); //5
-解释：当执行var f = fun();时，f返回了一个匿名函数的引用，它可以访问到fun()被调用的生产环境，而局部变量a一直在这个环境中。既然局部变量能被外界访问，那它就有了不被销毁的理由，于是局部变量生命被延续了。
-再例如：
-var nodes = document.getElemmentByTagName(&apos;div&apos;); //此处他的长度为5
-for (var i = 0, len = nodes.length; i &lt; len; i++) {
-    nodes[i].onclick = function() {
-        alert(i);
-    }
-};
-以上代码无论点哪个div显示的都是5（div节点的onclick是异步触发的，当事件触发时，循环已经结束，此时i的值是5）解决方法：闭包大法好
-for (var i = 0, len = nodes.length; i &lt; len; i++) {
- 
+var printDetails = function(data) {
+    console.log(&apos;userId: &apos; + data.userId);
+    console.log(&apos;userName: &apos; + data.userName);
+    console.log(&apos;nickName: &apos; + data.nickName);
+}
+
+合并重复的条件片段如果一个函数内有一些条件分支语句，而这些条件分支语句内部散步了一些重复的代码，那么就有必要进行合并去重工作。
+
+//页面跳转
+var paging = function(currPage) {
+    if (currPage &lt;= 0) {
+        currPage = 0;
+        jump(currPage); //跳转
+    } else if (currPage 
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/2闭包/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -892,8 +894,8 @@ var MyClass2 = function() {
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/" itemprop="url">
-                  单例模式
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/2闭包/" itemprop="url">
+                  闭包
                 </a>
               
             
@@ -941,7 +943,7 @@ var MyClass2 = function() {
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/"class="leancloud_visitors" data-flag-title="单例模式"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/2闭包/"class="leancloud_visitors" data-flag-title="闭包"></span>
           
 
           
@@ -959,49 +961,49 @@ var MyClass2 = function() {
         
           
           
-用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。
-实现单例模式//1.实现单例模式
-var Singleton = function (name) {
-  this.name = name;
-};
-Singleton.prototype.getName = function() {
-  alert(this.name);
-};
-Singleton.getInstance = (function() {
-  var instance = null;
-  return function(name) {
-    if (!instance) {
-      instance = new Singleton(name);
-    }
-    return instance;
-  }
-})();
-var a = Singleton.getInstance(&apos;sven1&apos;);
-var b = Singleton.getInstance(&apos;sven2&apos;);
+闭包是js中一个难懂又必须征服的概念，他的形成与变量作用域以及变量的生存周期密切相关。
 
-console.log(a === b); //true
-以上，我们通过Singleton.getInstance来获取Singleton类的唯一对象，虽然简单但是增加了这个类的“不透明性”，Singleton类的使用者必须知道这是一个单例类，跟以往通过new xxx的方法不同
-透明的单例模式有了以上的不足，我们现在就来解决
-//透明的单例模式 
-var CreateDiv = (function() {
-  var instance;
-  var CreateDiv = function(html) {
-    if (instance) {
-      return instance;
+变量作用域和生存周期作用域，按字面理解，就是指变量的有效范围，超出这个范围就无法访问。在函数中，里面函数可以访问外面的变量，但是外面无法访问内部变量。举个简单例子：
+var a = 1;
+var fun1 = function() {
+    var b = 2;
+    var fun2 = function() {
+        var c = 3;
+        alert(b); //2
+        alert(c); //3
     }
-    this.html = html;
-    this.init();
-    return instance = this;
-  };
-
-  CreateDiv.prototype.init = function() {
-    var div = document.createElement(&apos;div&apos;);
-    div.innerHTML = this.html;
-    document.b
+    fun2();
+    alert(c); //c is not defined
+};
+fun1();
+生存周期：全局变量的生存周期是永久的，除非我们主动销毁，但是普通对于用var声明的局部变量，当退出函数不再使用时，就会被销毁。但是当你使用到闭包时，情况就不一样了
+var fun = function() {
+    var a = 1;
+    return function() {
+        a++;
+        alert(a);
+    }
+};
+var f = fun();
+f(); //2
+f(); //3
+f(); //4
+f(); //5
+解释：当执行var f = fun();时，f返回了一个匿名函数的引用，它可以访问到fun()被调用的生产环境，而局部变量a一直在这个环境中。既然局部变量能被外界访问，那它就有了不被销毁的理由，于是局部变量生命被延续了。
+再例如：
+var nodes = document.getElemmentByTagName(&apos;div&apos;); //此处他的长度为5
+for (var i = 0, len = nodes.length; i &lt; len; i++) {
+    nodes[i].onclick = function() {
+        alert(i);
+    }
+};
+以上代码无论点哪个div显示的都是5（div节点的onclick是异步触发的，当事件触发时，循环已经结束，此时i的值是5）解决方法：闭包大法好
+for (var i = 0, len = nodes.length; i &lt; len; i++) {
+ 
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/2闭包/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

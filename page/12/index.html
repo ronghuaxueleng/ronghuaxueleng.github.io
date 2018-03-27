@@ -119,9 +119,9 @@
 
   <title> 白云雅阁 </title>
   <!-- start Mixpanel --><script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
-0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
 for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
-mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
+mixpanel.init("27c73634cbc4829e72a0313ba2090f16");</script><!-- end Mixpanel -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -258,124 +258,6 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/08/30/javascript/call和apply区别解析/" itemprop="url">
-                  call和apply区别解析
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-30T00:00:00+08:00" content="2016-08-30">
-              2016-08-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/08/30/javascript/call和apply区别解析/"class="leancloud_visitors" data-flag-title="call和apply区别解析"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>   很多前端工程师的人说自己精通Javascript语言，问他call()和apply()这两个方法有什么区别，结果往往是一问三不知。<br>    其实区分 apply和call就一句话：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">foo.call(<span class="keyword">this</span>,arg1,arg2,arg3)==foo.apply(thsi,<span class="built_in">arguments</span>)==<span class="keyword">this</span>.foo(arg1,arg2,arg3);</div></pre></td></tr></table></figure></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/30/javascript/call和apply区别解析/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/08/30/javascript/fetch和XMLHttpRequest讲解/" itemprop="url">
                   fetch和XMLHttpRequest讲解
                 </a>
@@ -445,6 +327,124 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
 <h1 id="两者比较"><a href="#两者比较" class="headerlink" title="两者比较"></a>两者比较</h1><p>比如，如果我们想要实现这样一个需求：请求一个URL地址，获取响应数据并将数据转换成JSON格式。使用<code>fetch</code>和<code>XMLHttpRequest</code>实现的方式是不同的。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/08/30/javascript/fetch和XMLHttpRequest讲解/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/30/javascript/理解Javascript的prototype/" itemprop="url">
+                  理解Javascript的prototype
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-30T00:00:00+08:00" content="2016-08-30">
+              2016-08-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/08/30/javascript/理解Javascript的prototype/"class="leancloud_visitors" data-flag-title="理解Javascript的prototype"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>废话不多说，请看下面3道题，把6个<code>console.log()</code>的答案写下来，然后对照着在<code>Console</code>控制台里敲一遍，校验一下结果。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/30/javascript/理解Javascript的prototype/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -744,8 +744,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/08/22/angularJs/用$scope还是用controller as/" itemprop="url">
-                  用$scope还是用controller as
+                <a class="post-title-link" href="/2016/08/22/css/说说 tabindex 的那些事儿/" itemprop="url">
+                  说说 tabindex 的那些事儿
                 </a>
               
             
@@ -772,8 +772,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/angularjs/" itemprop="url" rel="index">
-                    <span itemprop="name">angularjs</span>
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
                   </a>
                 </span>
 
@@ -793,7 +793,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/08/22/angularJs/用$scope还是用controller as/"class="leancloud_visitors" data-flag-title="用$scope还是用controller as"></span>
+            <span id="/2016/08/22/css/说说 tabindex 的那些事儿/"class="leancloud_visitors" data-flag-title="说说 tabindex 的那些事儿"></span>
           
 
           
@@ -809,14 +809,9 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
 
       
         
-          <p>AngularJS中在处理controller时提供了两种语法。</p>
-<ul>
-<li>第一种是，在DOM中使用<code>ng-controller=&quot;TestController&quot;</code>，这样在定义controller时需要将model绑定到$scope上。</li>
-<li>另一种是，在DOM中使用<code>ng-controller=&quot;TestController as test&quot;</code>，这样其实是将model直接绑定到controller的实例上。</li>
-</ul>
-<p>在AngularJS的官方Get Started以及各种文档中，多推荐第一种方式，导致很多人可能都不知道原来还有第二种方式，我也是最近看一篇文章时才注意到这个。那么这两种方式各有什么优劣势呢？在现实的开发中到底更推荐哪种方式呢？今天就来探究一下！</p>
+          <p><a href="http://www.w3.org/html/wg/drafts/html/master/editing.html#attr-tabindex" target="_blank" rel="external">tabindex</a> 属性用于管理键盘焦点，决定元素是否能被选中，以及按下 <code>tab</code> 键过程中被选中的顺序，使用得当能够极大的提高应用的易用性，然而，不恰当地使用时可以键盘用户对应用的可用性。到底如何使用？设置为 <code>0</code> 会有什么效果？设置为 <code>-1</code> 会有什么效果？本文将为你揭晓。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/22/angularJs/用$scope还是用controller as/#more" rel="contents">
+            <a class="btn" href="/2016/08/22/css/说说 tabindex 的那些事儿/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

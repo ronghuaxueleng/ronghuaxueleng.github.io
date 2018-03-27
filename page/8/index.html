@@ -119,9 +119,9 @@
 
   <title> 白云雅阁 </title>
   <!-- start Mixpanel --><script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
-0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
 for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
-mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
+mixpanel.init("27c73634cbc4829e72a0313ba2090f16");</script><!-- end Mixpanel -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -258,8 +258,8 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/" itemprop="url">
-                  高阶函数
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/" itemprop="url">
+                  策略模式的应用
                 </a>
               
             
@@ -307,7 +307,7 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/"class="leancloud_visitors" data-flag-title="高阶函数"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/"class="leancloud_visitors" data-flag-title="策略模式的应用"></span>
           
 
           
@@ -325,48 +325,51 @@ mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
         
           
           
-高阶函数是至少满足下列条件之一的函数
+用策略模式实现缓动动画需求：让小球以各种缓动效果在页面中运动动画开始前需要记录的：
 
-函数可以作为参数被传递
-函数可以作为返回值输出（js这么好的语言中的函数当然满足 ^^）_
+小球所在原始位置
 
-函数作为参数传递把函数当作参数传递，可以抽离出一部分容易变化的业务逻辑，把这部分业务逻辑放在函数中，可以分离业务代码中变与不变的部分。
+小球移动的目标位置
 
-回调函数，ajax异步，callback
+动画开始时的时间点
 
-var getUserInfo() = function(userId, callback) {
-    $.ajax(&apos;http://xxx.com/getUserInfo?&apos; + userId, function(data) {
-        if (typeof(callback === &apos;function&apos;) {
-            callback(data);
-        }
-    });
-}
-getUserInfo(13157, function(data) {
-    alert(data.user);
-})
-高阶函数实现AOPAOP（面向切面编程），把一些跟核心业务逻辑模块无关的功能抽离出来（通常包括日志统计，安全控制，异常处理等）
-Function.prototype.before = function(beforefn) {
-    var __self = this; //保存原函数的引用
-    return function() { //返回包含原函数和新函数的“代理”函数
-        beforefn.apply(this, arguments); //执行新函数，修正this
-        return __self.apply(this, arguments); //执行原函数
+小球运动的时间点之后，用setInterval创建一个定时器，定时器每19秒循环一次。
+
+
+//缓动算法，此算法移植于flash
+
+var tween = {
+    //t：动画已消耗的时间，b：小球原始位置，c：小球目标位置，d：动画持续时间
+    linear: function(t, b, c, d) {
+        return c*t/d + b;
+    },
+    reseIn: function(t, b, c, d) {
+        return c * (t /= d) * t + b;
+    },
+    strongEaseIn: function(t, b, c, d) {
+        return c * (t /= d) * t * t * t * t + b;
+    },
+    strongEaseOut: function(t, b, c, d) {
+        return c * (( t = t / d - 1) * t * t * t * t + 1) + b;
+    },
+    sineaseIn: function(t, b, c, d) {
+        return c * (t /= d) * t * t + b;
+    },
+    sineaseOur: function(t, b, c, d) {
+        return c * ((t = t / d - 1) * t * t + 1 ) + b;
     }
 };
-
-Function.prototype.after= function(afterfn) {
-    var __self = this; 
-    return function() { 
-        var ret = __self.apply(this, arguments);
-        afterfn.apply(this, arguments); 
-        return ret ;
-    }
-};
-
-var func = function()
+接着Animation类
+var Animate = function( dom ) {
+    this.dom = dom;              //进行运动的dom节点
+    this.startTime = 0;         //动画开始时间
+    this.startPos = 0;           //动画开始时候dom位置
+    this.endPos = 0;            //结束dom位置
+    this.propertyName = null;     
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -535,6 +538,132 @@ var func = function()
             
               
                 
+                <a class="post-title-link" href="/2016/09/24/d3/D3.js 入门教程系列/" itemprop="url">
+                  D3.js 入门教程系列
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-24T00:00:00+08:00" content="2016-09-24">
+              2016-09-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/d3/" itemprop="url" rel="index">
+                    <span itemprop="name">d3</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/09/24/d3/D3.js 入门教程系列/"class="leancloud_visitors" data-flag-title="D3.js 入门教程系列"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          初识D3D3是指数据驱动文档（Data-Driven Documents），根据D3的官方定义：
+
+D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通过使用HTML、SVG和CSS把数据鲜活形象地展现出来。D3严格遵循Web标准，因而可以让你的程序轻松兼容现代主流浏览器并避免对特定框架的依赖。同时，它提供了强大的可视化组件，可以让使用者以数据驱动的方式去操作DOM。—-D3维基（2013年8月）
+
+从一个Hello Wordld示例来看看d3如何运行 点击查看在线DEMO123456789101112131415161718192021222324252627282930313233function render(data)&#123;    var demo = d3.select('body')        .selectAll('p')        .data(data, function (d) &#123;          return d;        &#125;);        demo.enter()        .append('p')        .style('width', 0+'px')        .style('background', '#eee');    demo.text(function (d) &#123;          return d;        &#125;)        .transition()        .duration(1000)        .style('width', function (d) &#123;          return d+'px';        &#125;);    demo.exit()        .transition()        .duration(1000)        .style('width', 0+'px')        .remove();&#125;render([100,300,500]);setTimeout(function()&#123;    render([300,500,1000]);&#125;,1000)
+通过链式风格的方式让整个运行步骤非常清晰，D3的API设计跟我
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/24/d3/D3.js 入门教程系列/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/24/d3/D3.js 进阶教程系列/" itemprop="url">
                   D3.js 进阶教程系列
                 </a>
@@ -631,132 +760,6 @@ d3.select(‘#demo1&apos;).on(&apos;click&apos;, function(){
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/24/d3/D3.js 进阶教程系列/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/24/d3/D3.js 入门教程系列/" itemprop="url">
-                  D3.js 入门教程系列
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-24T00:00:00+08:00" content="2016-09-24">
-              2016-09-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/d3/" itemprop="url" rel="index">
-                    <span itemprop="name">d3</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/09/24/d3/D3.js 入门教程系列/"class="leancloud_visitors" data-flag-title="D3.js 入门教程系列"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          初识D3D3是指数据驱动文档（Data-Driven Documents），根据D3的官方定义：
-
-D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通过使用HTML、SVG和CSS把数据鲜活形象地展现出来。D3严格遵循Web标准，因而可以让你的程序轻松兼容现代主流浏览器并避免对特定框架的依赖。同时，它提供了强大的可视化组件，可以让使用者以数据驱动的方式去操作DOM。—-D3维基（2013年8月）
-
-从一个Hello Wordld示例来看看d3如何运行 点击查看在线DEMO123456789101112131415161718192021222324252627282930313233function render(data)&#123;    var demo = d3.select('body')        .selectAll('p')        .data(data, function (d) &#123;          return d;        &#125;);        demo.enter()        .append('p')        .style('width', 0+'px')        .style('background', '#eee');    demo.text(function (d) &#123;          return d;        &#125;)        .transition()        .duration(1000)        .style('width', function (d) &#123;          return d+'px';        &#125;);    demo.exit()        .transition()        .duration(1000)        .style('width', 0+'px')        .remove();&#125;render([100,300,500]);setTimeout(function()&#123;    render([300,500,1000]);&#125;,1000)
-通过链式风格的方式让整个运行步骤非常清晰，D3的API设计跟我
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/24/d3/D3.js 入门教程系列/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

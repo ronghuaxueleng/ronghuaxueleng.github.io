@@ -201,7 +201,7 @@ nstep1=>operation: 从服务器获取埋点数据
 nstep2=>operation: 在页面找到对应的元素并绑定事件
 start->cond
 cond(yes)->estep1->estep2->estep3->estep4->estep5->estep6->estep7->estep3
-cond(no)->nstep1->nstep2</textarea><textarea id="flowchart-0-options" style="display: none">{"theme":"simple","scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script></p>
+cond(no)->nstep1->nstep2</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12,"theme":"simple"}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script></p>
 ]]></content>
     
     <summary type="html">
@@ -215,6 +215,148 @@ cond(no)->nstep1->nstep2</textarea><textarea id="flowchart-0-options" style="dis
     
     
       <category term="埋点,可视化,Mixpanel" scheme="http://ronghuaxueleng.github.io/tags/%E5%9F%8B%E7%82%B9-%E5%8F%AF%E8%A7%86%E5%8C%96-Mixpanel/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>工厂模式</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(8)%EF%BC%9A%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(8)：工厂模式/</id>
+    <published>2016-10-12T16:00:00.000Z</published>
+    <updated>2016-10-13T07:57:48.471Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在[PHP设计模式(七)：设计模式分类][2]中我们提到过创建设计模式(Creation<br>patterns)，创建设计模式专注于设计对象(Object)和实例(Instance)的创建过程。<br>创建设计模式包括下面五种设计模式：</p>
+<ol>
+<li><p>抽象工厂设计模式(Abstract Factory)</p>
+</li>
+<li><p>生成器模式(Builder)</p>
+</li>
+<li><p>工厂设计模式(Factory Method)</p>
+</li>
+<li><p>原型设计模式(Prototype Method)</p>
+</li>
+<li><p>单例设计模式(Singleton)</p>
+</li>
+</ol>
+<p>当程序逐渐扩展的时候，需要更多的新对象，新对象的创建不应该依赖于创建者，换句话说，新对象的创建过程，不应该依赖调用创建函数的对象。为了减少冗余，增加拓展性，工厂模式就是一种创建新对象时使用的设计模式。</p>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>工厂模式，也是五种设计模式中唯一的类的设计模式(Class patterns)，即在类中就能实现的设计模式。<br>听起来挺抽象？对比原型设计模式，这是一种对象设计模式(Object patterns)，通过对象的__clone()方法来实现的设计模式。<br>在工厂模式中，新创建的对象/产品并不依赖于生产它的对象/工厂，新对象和调用者之间是低耦合状态。通常调用者和工厂交互，由工厂来生成新对象，新对象只和工厂有关。</p>
+<h2 id="何时使用工厂模式"><a href="#何时使用工厂模式？" class="headerlink" title="何时使用工厂模式？"></a>何时使用工厂模式？</h2><p>简单来说，当需求对类的个数不明确的时候，可以使用工厂模式，如：<br>你需要创建一个在线博物馆，但你并不确切的知道究竟有多少文物，你不可能无限的增加新的文物类，同时对于损毁的文物，你不可能无限的去清理这些类。<br>反过来说，如果你确切的知道类的总量，那么你就没有必要使用工程模式，直接通过继承的方式就能实现好的设计。</p>
+<h2 id="example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>还是使用我们惯用的鲸鱼和鲤鱼的例子，现在我们想实现一个海洋馆，目前我们并不确定究竟有多少海洋生物。<br>先是一个抽象的工厂类：</p>
+<pre><code>&lt;?php
+abstract class Factory {
+  protected abstract function create();
+  public function factoryStart() {
+    return $this-&gt;create();
+  }
+}
+?&gt;
+</code></pre><p>然后是两个工厂：鲸鱼工厂和鲤鱼工厂</p>
+<pre><code>&lt;?php
+class WhaleFactory extends Factory {
+  protected function create() {
+    $whale = new Whale();
+    return $whale-&gt;create();
+  }
+}
+class CarpFactory extends Factory {
+  protected function create() {
+    $carp = new Carp();
+    return $carp-&gt;create();
+  }
+}
+?&gt;
+</code></pre><p>然后是抽象的动物接口：</p>
+<pre><code>&lt;?php
+interface Animal {
+  public function create();
+}
+?&gt;
+</code></pre><p>然后是具体的动物类：鲸鱼类和鲤鱼类</p>
+<pre><code>&lt;?php
+class Whale implements Animal {
+  private $name;
+  public function create() {
+    $this-&gt;name = &quot;Whale&quot;;
+    return $this-&gt;name . &quot; is created.\n&quot;;
+  }
+}
+class Carp implements Animal {
+  private $name;
+  public function create() {
+    $this-&gt;name = &quot;Carp&quot;;
+    return $this-&gt;name . &quot; is created.\n&quot;;
+  }
+}
+?&gt;
+</code></pre><p>下面给出使用工厂创建鲸鱼和鲤鱼的代码：</p>
+<pre><code>&lt;?php
+$whaleFactory = new WhaleFactory();
+echo $whaleFactory-&gt;factoryStart();
+$carpFactory = new CarpFactory();
+echo $carpFactory-&gt;factoryStart();
+?&gt;
+</code></pre><p>运行一下：</p>
+<pre><code>Whale is created.
+Carp is created.
+</code></pre><p>到这里你是不是觉得，其实直接生成两个类就行了，何必搞这么复杂？别着急，好戏在后面。</p>
+<h2 id="修改类的方法"><a href="#修改类的方法" class="headerlink" title="修改类的方法"></a>修改类的方法</h2><p>由于Interface的限制，修改类的方法被限定在了create()方法中，因此可以避免偷懒的程序员新增加的不合理函数。<br>简单修改一下：</p>
+<pre><code>&lt;?php
+class Whale implements Animal {
+  private $name;
+  public function create() {
+    $this-&gt;name = &quot;Whale&quot;;
+    return $this-&gt;name . &quot; is created. Whale eats fish.\n&quot;;
+  }
+}
+class Carp implements Animal {
+  private $name;
+  public function create() {
+    $this-&gt;name = &quot;Carp&quot;;
+    return $this-&gt;name . &quot; is created. Carp eats moss.\n&quot;;
+  }
+}
+?&gt;
+</code></pre><p>由于对象是由工厂造出来的，外部不可能直接调用或者修改类的实现，类的修改被限定在了类的对外接口上。这样的架构易于扩展。</p>
+<h2 id="一个工厂"><a href="#一个工厂" class="headerlink" title="一个工厂"></a>一个工厂</h2><p>工厂模式的灵活，在于可以只拥有一个工厂，却能生产多个类/产品。<br>修改我们的抽象工厂，给create()方法增加animal接口：</p>
+<pre><code>&lt;?php
+abstract class Factory {
+  protected abstract function create(Animal $animal);
+  public function factoryStart($animal) {
+    return $this-&gt;create($animal);
+  }
+}
+?&gt;
+</code></pre><p>然后合并之前的鲸鱼工厂和鲤鱼工厂：</p>
+<pre><code>&lt;?php
+class AnimalFactory extends Factory {
+  protected function create(Animal $animal) {
+    return $animal-&gt;create();
+  }
+}
+?&gt;
+</code></pre><p>修改使用工厂创建鲸鱼和鲤鱼的代码：</p>
+<pre><code>&lt;?php
+$animalFactory = new AnimalFactory();
+echo $animalFactory-&gt;factoryStart(new Whale());
+echo $animalFactory-&gt;factoryStart(new Carp());
+?&gt;
+</code></pre><p>运行一下：</p>
+<pre><code>Whale is created. Whale eats fish.
+Carp is created. Carp eats moss.
+</code></pre><p>鲸鱼类和鲤鱼类源源不断的从一个工厂中被创建出来了。通过这种设计模式，类的创建过程统一通过一个接口来实现，接口外部并不需要关心类是如何被创建出来的，而接口内部实现也得到了很好的拓展性。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文介绍了工厂设计模式，使用这种设计模式，可以让你通过一个或多个工厂的接口，创建无数新类，调用任意类的方法。由于接口严格定义了新类/产品的形态，因此在维护和<br>拓展的时候，可以省去不少力气。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;在[PHP设计模式(七)：设计模式分类][2]中我们提到过创建设计模式(Creation&lt;br&gt;patterns)，创建设计模式专注于设计对
+    
+    </summary>
+    
+      <category term="php" scheme="http://ronghuaxueleng.github.io/categories/php/"/>
+    
+    
+      <category term="php" scheme="http://ronghuaxueleng.github.io/tags/php/"/>
     
   </entry>
   
@@ -296,129 +438,26 @@ Carp is digesting moss.
   </entry>
   
   <entry>
-    <title>封装</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(3)%EF%BC%9A%E5%B0%81%E8%A3%85/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(3)：封装/</id>
+    <title>设计模式分类</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(7)%EF%BC%9A%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(7)：设计模式分类/</id>
     <published>2016-10-12T16:00:00.000Z</published>
-    <updated>2016-10-13T07:54:07.415Z</updated>
+    <updated>2016-10-13T07:58:31.736Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
-<p>原文地址：[PHP设计模式(三)：封装][1]</p>
-</blockquote>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>面向对象编程中，一切都是对象，对一个对象的封装，也成了面向对象编程中必不可少的部分。<br>和C/C++，Java，Python等语言一样，PHP也支持封装。</p>
-<h2 id="封装encapsulation"><a href="#封装-Encapsulation" class="headerlink" title="封装/Encapsulation"></a>封装/Encapsulation</h2><blockquote>
-<p>对事物的封装是指，将事物进行抽象后，提供抽象概念的实现的具体方法。</p>
-</blockquote>
-<p>听起来很拗口，还是举鲸鱼的例子。<br>对于鲸鱼来说，需要吃东西这个行为，吃本身是一个抽象的概念，因为具体到怎么吃，是咀嚼和消化的过程，甚至如何咀嚼和消化也是不可见的。对外部而言，可见的只是吃这一个接口，如何吃、怎么吃，是被封装在了鲸鱼的实现中。甚至可以说，消化系统，被封装到了鲸鱼这个对象中，对外部不可见，仅仅鲸鱼自己可见。</p>
-<h2 id="封装方法"><a href="#封装方法" class="headerlink" title="封装方法"></a>封装方法</h2><p>和别的程序设计语言一样，PHP也只是三种封装概念：Private，Protected，Public。</p>
-<h3 id="私有private"><a href="#私有-Private" class="headerlink" title="私有/Private"></a>私有/Private</h3><p>私有的概念是，仅仅对象内部可见，外部不可见，如：</p>
-<pre><code>&lt;?php
-class Whale {
-  private $name;
-  public function __construct() {
-    $this-&gt;name = &quot;Whale&quot;;
-  }
-  public function eat($food) {
-    chew($food);
-    digest($food);
-  }
-  private function chew($food) {
-    echo &quot;Chewing &quot; . $food . &quot;\n&quot;;
-  }
-  private function digest($food) {
-    echo &quot;Digest &quot; . $food . &quot;\n&quot;;
-  }
-}
-?&gt;
-</code></pre><p>name是鲸鱼的私有属性，chew()和digest()是鲸鱼的私有方法，对于其他类来说，都是不可见的。对于现实来说，我们如果只是注重吃，并没有必要去关心鲸鱼是如何去吃的。</p>
-<h3 id="保护protected"><a href="#保护-Protected" class="headerlink" title="保护/Protected"></a>保护/Protected</h3><p>保护的概念是，仅仅是自身类和继承类可见，这个关键字的用途主要是防止滥用类的派生，另外三方库编写的时候会用到，防止误用。</p>
-<pre><code>&lt;?php
-abstract class Animal {
-  private $name;
-  abstract public function eat($food);
-  protected function chew($food) {
-    echo &quot;Chewing &quot; . $food . &quot;\n&quot;;
-  }
-  protected function digest($food) {
-    echo &quot;Digest &quot; . $food . &quot;\n&quot;;
-  }
-}
-
-class Whale extends Animal {
-  private $name;
-  public function __construct() {
-    $this-&gt;name = &quot;Whale&quot;;
-  }
-  public function eat($food) {
-    chew($food);
-    digest($food);
-  }
-}
-?&gt;
-</code></pre><p>鲸鱼类可以通过继承使用动物类的咀嚼和消化方法，但是别的继承鲸鱼类的类就不可以再使用动物类的咀嚼和消化方法了。保护更多是用于面向对象设计，而不是为了编程来实现某个需求。</p>
-<h3 id="公共public"><a href="#公共-Public" class="headerlink" title="公共/Public"></a>公共/Public</h3><p>公共的概念就是，任何类、任何事物都可以访问，没有任何限制，这里不再赘述。</p>
-<h2 id="getterssetters"><a href="#Getters-Setters" class="headerlink" title="Getters/Setters"></a>Getters/Setters</h2><p>Getters和Setters也叫Accessors和Mutators，在Java/C#等语言中常以get()/set()方法出现。<br>对于这两个东西的争议很大，考虑下面一个类：</p>
-<pre><code>&lt;?php
-class Price {
-  public $priceA;
-  public $priceB;
-  public $priceC;
-  ...
-}
-?&gt;
-</code></pre><p>如果不使用Getters/Setters，我们给Price类赋值和取值一般是这样：</p>
-<pre><code>&lt;?php
-  $price = new Price();
-  $price-&gt;priceA = 1;
-  $price-&gt;priceB = 2;
-  $price-&gt;priceC = 3;
-  ...
-  echo $price-&gt;priceA;
-  echo $price-&gt;priceB;
-  echo $price-&gt;priceC;
-  ...
-?&gt;
-</code></pre><p>但是如果使用了Getters/Setters，Price类将变成这样：</p>
-<pre><code>&lt;?php
-class Price {
-  private $priceA;
-  private $priceB;
-  private $priceC;
-  public function getPriceA() {
-    return $this-&gt;priceA;
-  }
-  public function setPriceA($price) {
-    $this-&gt;priceA = $price;
-  }
-  ...
-}
-?&gt;
-</code></pre><p>这时候赋值将变成这样：</p>
-<pre><code>&lt;?php
-  $price = new Price();
-  $price-&gt;setpriceA(1);
-  $price-&gt;setPriceB(2);
-  $price-&gt;setPriceC(3);
-  ...
-  echo $price-&gt;getPriceA();
-  echo $price-&gt;getPriceB();
-  echo $price-&gt;getPriceC();
-  ...
-?&gt;
-</code></pre><p>是不是感觉需要多敲很多代码？这也是很多程序员不愿意使用get/set的原因，造成了大量的看似无用冗余的代码。<br>为什么叫看似冗余和无用？因为Getters/Setters是编程设计方法，而不是编程实现方法。</p>
-<blockquote>
-<p>在面向对象程序设计中，类和类之间的访问、交互和更新应该是通过Accessors和Mutators，也就是Getters和Setters来实现。直接访问和<br>修改破坏了类的封装性。</p>
-</blockquote>
-<p>为什么采用这种设计方式？因为程序设计是对现实问题的抽象，而在编程的工程中程序员扮演的角色往往是上帝。<br>考虑这样一种场景：你朋友要求你改名，决定是否改名的人是你，而不是你朋友。在你的朋友的视觉（也就是你朋友的类），他不能直接去修改你的名字。<br>如果你直接采用非Getters/Setters的设计方法，事实上是程序员扮演的这个上帝修改了现实规则，允许你朋友能够随意更改你的姓名，显然这是不合理的。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>合理的封装对于好的程序设计是必不可少的，虽然什么都是Public也能解决编程问题，但是这不是用程序设计解决问题的思路。</p>
+    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>根据目的和范围，设计模式可以分为五类。按照目的分为：创建设计模式，结构设计模式，以及行为设计模式。按照范围分为：类的设计模式，以及对象设计模式。下面分别介绍<br>。</p>
+<h2 id="创建设计模式"><a href="#创建设计模式" class="headerlink" title="创建设计模式"></a>创建设计模式</h2><p>创建设计模式(Creational patterns)，用于创建对象时的设计模式。更具体一点，初始化对象流程的设计模式。当程序日益复杂时，需要更加灵活地创建对象，同时减少创建时的依赖。而创建设计模式就是解决此问题的一类设计模式。</p>
+<h2 id="结构设计模式"><a href="#结构设计模式" class="headerlink" title="结构设计模式"></a>结构设计模式</h2><p>结构设计模式(Structural patterns)，用于继承和接口时的设计模式。结构设计模式用于新类的函数方法设计，减少不必要的类定义，减少代码的冗余。</p>
+<h2 id="行为设计模式"><a href="#行为设计模式" class="headerlink" title="行为设计模式"></a>行为设计模式</h2><p>行为设计模式(Behavioral<br>patterns)，用于方法实现以及对应算法的设计模式，同时也是最复杂的设计模式。行为设计模式不仅仅用于定义类的函数行为，同时也用于不同类之间的协议、通信。</p>
+<h2 id="类的设计模式"><a href="#类的设计模式" class="headerlink" title="类的设计模式"></a>类的设计模式</h2><p>类的设计模式(Class patterns)，用于类的具体实现的设计模式。包含了如何设计和定义类，以及父类和子类的设计模式。</p>
+<h2 id="对象设计模式"><a href="#对象设计模式" class="headerlink" title="对象设计模式"></a>对象设计模式</h2><p>对象设计模式(Object patterns)，用于对象的设计模式。与类的设计模式不同，对象设计模式主要用于运行期对象的状态改变、动态行为变更等。</p>
+<h2 id="为什么会重构"><a href="#为什么会重构？" class="headerlink" title="为什么会重构？"></a>为什么会重构？</h2><p>重构通常是由于现有程序的框架不能很好的适应新需求，虽然可以通过硬编码(hardcode)或者绕过(bypass)的方式来解决一个新需求，但这并不是长久之计。<br>当新需求越来越多时，现在程序会越来越冗余，导致最后的不可维护。</p>
+<h2 id="架构和设计模式的区别"><a href="#架构和设计模式的区别" class="headerlink" title="架构和设计模式的区别"></a>架构和设计模式的区别</h2><p>相比架构(frameworks)，设计模式是一些抽象的组成架构的元素，且更为灵活通用。<br>架构更适合解决具体问题，使用架构构建应用程序将更为快捷，不过相比设计模式，架构牺牲了灵活性。</p>
+<h2 id="summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>本文介绍了设计模式的分类，后面我们将分别介绍各种设计模式。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;原文地址：[PHP设计模式(三)：封装][1]&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;面向对象编程中，一切都是
+      &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;根据目的和范围，设计模式可以分为五类。按照目的分为：创建设计模式，结构设计模式，以及行为设计模式。按照范围分为：类的设计模式，以及对象设计模
     
     </summary>
     
@@ -539,6 +578,113 @@ Carp eat moss.
     
     
       <category term="php" scheme="http://ronghuaxueleng.github.io/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>从 JavaScript 数组去重谈性能优化</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/13/javascript/%E4%BB%8E%20JavaScript%20%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E8%B0%88%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/13/javascript/从 JavaScript 数组去重谈性能优化/</id>
+    <published>2016-10-12T16:00:00.000Z</published>
+    <updated>2016-10-13T08:34:52.608Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h2><p>JavaScript 数组去重经常出现在前端招聘的笔试题里，比如：</p>
+<blockquote>
+<p>有数组 <code>var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, &#39;c&#39;, 1, &#39;&#39;, 1, 0]</code>，请用 JavaScript<br>实现去重函数 <code>unqiue</code>，使得 <code>unique(arr)</code> 返回 <code>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, 1, &#39;&#39;]</code></p>
+</blockquote>
+<p>作为笔试题，考点有二：</p>
+<ol>
+<li><p><strong>正确</strong>。别小看这个考点，考虑到 JavaScript 经常要在浏览器上运行，在千姿百态的各种浏览器环境下要保障一个函数的正确性可不是一件简单的事，不信你继续读完这篇博客。</p>
+</li>
+<li><p><strong>性能</strong>。虽然大部分情况下 JavaScript 语言本身（狭义范畴，不包含 DOM 等延拓）不会导致性能问题，但很不幸这是一道考题，因此面试官们还是会把性能作为一个考点。</p>
+</li>
+</ol>
+<p>在继续往下阅读之前，建议先实现一个自己认为最好的版本。</p>
+<h2 id="直觉方案"><a href="#直觉方案" class="headerlink" title="直觉方案"></a>直觉方案</h2><p>对于数组去重，只要写过程序的，立刻就能得到第一个解法：</p>
+<pre><code>function unique(arr) {
+  var ret = []
+
+  for (var i = 0; i &lt; arr.length; i++) {
+    var item = arr[i]
+    if (ret.indexOf(item) === -1) {
+      ret.push(item)
+    }
+  }
+
+  return ret
+}
+</code></pre><p>直觉往往很靠谱，在现代浏览器下，上面这个函数很正确，性能也不错。但前端最大的悲哀也是挑战之处在于，要支持各种运行环境。在 IE6-8 下，数组的<br><code>indexOf</code> 方法还不存在。直觉方案要稍微改造一下：</p>
+<pre><code>var indexOf = [].indexOf ?
+    function(arr, item) {
+      return arr.indexOf(item)
+    } :
+    function indexOf(arr, item) {
+      for (var i = 0; i &lt; arr.length; i++) {
+        if (arr[i] === item) {
+          return i
+        }
+      }
+      return -1
+    }
+
+function unique(arr) {
+  var ret = []
+
+  for (var i = 0; i &lt; arr.length; i++) {
+    var item = arr[i]
+    if (indexOf(ret, item) === -1) {
+      ret.push(item)
+    }
+  }
+
+  return ret
+}
+</code></pre><p>写到这一步，正确性已没问题，但性能上，两重循环会让面试官们看了不爽。</p>
+<h2 id="优化方案"><a href="#优化方案" class="headerlink" title="优化方案"></a>优化方案</h2><p>一谈到优化，往往就是八仙过海、百花齐放。但八仙往往不接地气，百花则很容易招来臭虫。数组去重的各种优化方案在此不一一讨论，下面只说最常用效果也很不错的一种。</p>
+<pre><code>function unique(arr) {
+  var ret = []
+  var hash = {}
+
+  for (var i = 0; i &lt; arr.length; i++) {
+    var item = arr[i]
+    var key = typeof(item) + item
+    if (hash[key] !== 1) {
+      ret.push(item)
+      hash[key] = 1
+    }
+  }
+
+  return ret
+}
+</code></pre><p>核心是构建了一个 <code>hash</code> 对象来替代 <code>indexOf</code>. 注意在 JavaScript 里，对象的键值只能是字符串，因此需要 <code>var key =
+typeof(item) + item</code> 来区分数值 <code>1</code> 和字符串 <code>&#39;1&#39;</code> 等情况。</p>
+<p>但优化真的很容易带来坑，比如上面的实现，对下面这种输入就无法判断：</p>
+<pre><code>unique([ new String(1), new Number(1) ])
+</code></pre><p>可以继续修改代码，做到性能和正确性都很好。但往往，这带来的结果并不好。</p>
+<h2 id="真实需求"><a href="#真实需求" class="headerlink" title="真实需求"></a>真实需求</h2><p>写到这里，这篇博客才算进入正题。程序员心中都会有一些梦想，比如写出又通用性能又好的普适函数。这种梦想是让程序员变得卓越的重要内驱力，但倘若不加以控制，也很容<br>易走入迷途。</p>
+<p>回到性能优化。这年头有各种各样优化，核心系统、数据库、网络、前端等等，所有这些优化，都必须回答下面这个问题：</p>
+<ol>
+<li><p><strong>当前有什么</strong>。在什么场景下进行优化，场景下有哪些具体限制。理清限制很重要，限制往往带来自由。</p>
+</li>
+<li><p><strong>究竟要什么</strong>。优化的目的是什么。是提高稳定性，还是增大吞吐量，抑或减少用户等待时间。在回答这个问题之前，优化都是徒劳。对这个问题的准确回答，能为优化带来具体可测量的参数，这样优化才有目标。</p>
+</li>
+<li><p><strong>可以放弃什么</strong>。鱼与熊掌不可兼得。优化的本质是在具体场景下的取舍、权衡。什么都不愿意放弃的话，优化往往会举步维艰。</p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;缘由&quot;&gt;&lt;a href=&quot;#缘由&quot; class=&quot;headerlink&quot; title=&quot;缘由&quot;&gt;&lt;/a&gt;缘由&lt;/h2&gt;&lt;p&gt;JavaScript 数组去重经常出现在前端招聘的笔试题里，比如：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;有数组 &lt;code&gt;var ar
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/tags/javascript/"/>
     
   </entry>
   
@@ -666,64 +812,6 @@ class CarpAdapter implements Animal {
     <summary type="html">
     
       &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;在[PHP设计模式(七)：设计模式分类][2]中我们提到过结构设计模式(Structural&lt;br&gt;patterns)，结构设计模式专注于设
-    
-    </summary>
-    
-      <category term="php" scheme="http://ronghuaxueleng.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://ronghuaxueleng.github.io/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>基础编程模式</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(1)%EF%BC%9A%E5%9F%BA%E7%A1%80%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/</id>
-    <published>2016-10-12T16:00:00.000Z</published>
-    <updated>2016-10-13T07:44:59.316Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>俗话说，“PHP是世界上最好的语言”，因为PHP什么都能干。但是在PHP编程中，你是否会遇到这样的困惑：明明是相同的需求，但是之前写的代码却并不能重用，稍微修改不满足需求，大改又会让页面变样。<br>是的，由于PHP什么都能干，但是高度灵活性降低了代码的结构性。虽然可以利用三方框架来解决问题，但问题的根本在于缺乏设计模式。<br>本系列文章将由浅入深的介绍各种设计模式。</p>
-<h2 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h2><p>面向对象编程，Object-Oriented Programming(OOP)作为最基本的设计模式并不是什么新鲜的话题，但是大部分新手的PHP编程都是在写流水账，各种拼接字符串，所以这里还是要提一下。<br><a href="https://en.wikipedia.org/wiki/Object-oriented_programming" target="_blank" rel="external">Object-Oriented Programming</a>的概念这里就不说了，毕竟很多人都明白，但是如何在PHP中使用？<br>假设你需要在页面上显示不同的用户类型，如电脑用户、手机用户等，那么你可以将“显示”这件事抽象为一个类，如：</p>
-<pre><code>&lt;?php
-class ShowAgent {
-  private $agent;
-  public function __construct() {
-    $this-&gt;agent = $_SERVER[&apos;HTTP_USER_AGENT&apos;];
-    echo $this-&gt;agent;
-  }
-}
-$showAgent = new ShowAgent();
-?&gt;
-</code></pre><h2 id="调试技巧"><a href="#调试技巧" class="headerlink" title="调试技巧"></a>调试技巧</h2><p>在很多PHP默认环境中，调试功能是关闭的。打开调试功能又需要配置php.ini文件，其实有一个简单的方法：</p>
-<pre><code>&lt;?php
-ini_set(&quot;display_errors&quot;, &quot;1&quot;);
-ERROR_REPORTING(E_ALL);
-?&gt;
-</code></pre><p>将这段代码加入到你的代码中，甚至可以require或者include进去，方便调试。</p>
-<h2 id="流水账编程"><a href="#流水账编程" class="headerlink" title="流水账编程"></a>流水账编程</h2><p>这里列出流水账编程，并不是让你学习，而是指出何种编程不推荐使用：</p>
-<pre><code>&lt;?php
-$total = &quot;Total number is &quot;;
-$number = &quot;6&quot;;
-$totalNumber = $total.$number;
-echo $totalNumber;
-?&gt;
-</code></pre><p>这段代码并没有错，但是以后再也无法重用了，对吧？每次遇到相同问题，你都需要反复拼接。</p>
-<h2 id="面向过程编程"><a href="#面向过程编程" class="headerlink" title="面向过程编程"></a>面向过程编程</h2><p>面向过程编程曾经很流行，缺点也是无法维护，例如：</p>
-<pre><code>&lt;?php
-function showTotal($total, $number) {
-  $totalNumber = $total.$number;
-  echo $totalNumber;
-}
-showTotal(&quot;Total number is&quot;, &quot;6&quot;);
-?&gt;
-</code></pre><p>这段代码同样没有错，但是时间久了，由于缺乏类的概念，showTotal在各种应用场景缺乏灵活性，你还是需要重写代码。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>转变编程的思维需要花费的时间是很长的，但是记住：算法提高程序运行的速度，而设计模式提高编程的速度。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;俗话说，“PHP是世界上最好的语言”，因为PHP什么都能干。但是在PHP编程中，你是否会遇到这样的困惑：明明是相同的需求，但是之前写的代码却
     
     </summary>
     
@@ -1422,69 +1510,6 @@ function bar(a) {
   </entry>
   
   <entry>
-    <title>多态</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(5)%EF%BC%9A%E5%A4%9A%E6%80%81/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(5)：多态/</id>
-    <published>2016-10-12T16:00:00.000Z</published>
-    <updated>2016-10-13T07:53:52.988Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>在[PHP设计模式(四)：继承][2]中我们介绍了继承，利用extends来进行程序设计的方法。<br>在[PHP设计模式(二)：抽象类和接口][3]中我们介绍了接口，事实上也存在利用interface的程序设计方法，那就是多态。<br>和C/C++，Java，Python等语言一样，PHP也支持多态。多态更多是是一种面向对象程序设计的概念，让同一类对象执行同一个接口，但却实现不同的逻辑功能<br>。</p>
-<h2 id="多态polymorphism"><a href="#多态-Polymorphism" class="headerlink" title="多态/Polymorphism"></a>多态/Polymorphism</h2><p>还是用动物、鲸鱼和鲤鱼来举例：</p>
-<pre><code>&lt;?php
-interface IEat {
-  function eatFish();
-  function eatMoss();
-}
-
-class Whale implements IEat {
-  public function eatFish() {
-    echo &quot;Whale eats fish.\n&quot;;
-  }
-  public function eatMoss() {
-    echo &quot;Whale doesn&apos;t eat fish\n&quot;;
-  }
-}
-
-class Carp implements IEat {
-  public function eatFish() {
-    echo &quot;Carp doesn&apos;t eat moss.\n&quot;;
-  }
-  public function eatMoss() {
-    echo &quot;Carp eats moss.\n&quot;;
-  }
-}
-
-$whale = new Whale();
-$whale-&gt;eatFish();
-$whale-&gt;eatMoss();
-$carp = new Carp();
-$carp-&gt;eatFish();
-$carp-&gt;eatMoss();
-?&gt;
-</code></pre><p>运行一下：</p>
-<pre><code>$ php Inheritance.php
-Whale eats fish.
-Whale doesn&apos;t eat fish.
-Carp eats moss.
-Carp doesn&apos;t eat moss.
-</code></pre><p>注意PHP的函数定义不包含返回值，因此完全可以给不同的接口实现返回不同类型的数据。这一点和C/C++，Java等语言是不同的。此外，返回不同类型的数据，甚至不返回结果，对程序设计来说，会额外增加维护成本，已经和使用接口的初衷不同了（接口为了封装实现，而不同的返回值事实上是需要调用者去理解实现的）。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>合理利用多态对接口进行不同的实现，简化你的编程模型，让代码易于维护。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;在[PHP设计模式(四)：继承][2]中我们介绍了继承，利用
-    
-    </summary>
-    
-      <category term="php" scheme="http://ronghuaxueleng.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://ronghuaxueleng.github.io/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
     <title>MVC</title>
     <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(6)%EF%BC%9AMVC/"/>
     <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(6)：MVC/</id>
@@ -1658,26 +1683,53 @@ Male
   </entry>
   
   <entry>
-    <title>设计模式分类</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(7)%EF%BC%9A%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%88%86%E7%B1%BB/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(7)：设计模式分类/</id>
+    <title>基础编程模式</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(1)%EF%BC%9A%E5%9F%BA%E7%A1%80%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/</id>
     <published>2016-10-12T16:00:00.000Z</published>
-    <updated>2016-10-13T07:58:31.736Z</updated>
+    <updated>2016-10-13T07:44:59.316Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>根据目的和范围，设计模式可以分为五类。按照目的分为：创建设计模式，结构设计模式，以及行为设计模式。按照范围分为：类的设计模式，以及对象设计模式。下面分别介绍<br>。</p>
-<h2 id="创建设计模式"><a href="#创建设计模式" class="headerlink" title="创建设计模式"></a>创建设计模式</h2><p>创建设计模式(Creational patterns)，用于创建对象时的设计模式。更具体一点，初始化对象流程的设计模式。当程序日益复杂时，需要更加灵活地创建对象，同时减少创建时的依赖。而创建设计模式就是解决此问题的一类设计模式。</p>
-<h2 id="结构设计模式"><a href="#结构设计模式" class="headerlink" title="结构设计模式"></a>结构设计模式</h2><p>结构设计模式(Structural patterns)，用于继承和接口时的设计模式。结构设计模式用于新类的函数方法设计，减少不必要的类定义，减少代码的冗余。</p>
-<h2 id="行为设计模式"><a href="#行为设计模式" class="headerlink" title="行为设计模式"></a>行为设计模式</h2><p>行为设计模式(Behavioral<br>patterns)，用于方法实现以及对应算法的设计模式，同时也是最复杂的设计模式。行为设计模式不仅仅用于定义类的函数行为，同时也用于不同类之间的协议、通信。</p>
-<h2 id="类的设计模式"><a href="#类的设计模式" class="headerlink" title="类的设计模式"></a>类的设计模式</h2><p>类的设计模式(Class patterns)，用于类的具体实现的设计模式。包含了如何设计和定义类，以及父类和子类的设计模式。</p>
-<h2 id="对象设计模式"><a href="#对象设计模式" class="headerlink" title="对象设计模式"></a>对象设计模式</h2><p>对象设计模式(Object patterns)，用于对象的设计模式。与类的设计模式不同，对象设计模式主要用于运行期对象的状态改变、动态行为变更等。</p>
-<h2 id="为什么会重构"><a href="#为什么会重构？" class="headerlink" title="为什么会重构？"></a>为什么会重构？</h2><p>重构通常是由于现有程序的框架不能很好的适应新需求，虽然可以通过硬编码(hardcode)或者绕过(bypass)的方式来解决一个新需求，但这并不是长久之计。<br>当新需求越来越多时，现在程序会越来越冗余，导致最后的不可维护。</p>
-<h2 id="架构和设计模式的区别"><a href="#架构和设计模式的区别" class="headerlink" title="架构和设计模式的区别"></a>架构和设计模式的区别</h2><p>相比架构(frameworks)，设计模式是一些抽象的组成架构的元素，且更为灵活通用。<br>架构更适合解决具体问题，使用架构构建应用程序将更为快捷，不过相比设计模式，架构牺牲了灵活性。</p>
-<h2 id="summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>本文介绍了设计模式的分类，后面我们将分别介绍各种设计模式。</p>
+    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>俗话说，“PHP是世界上最好的语言”，因为PHP什么都能干。但是在PHP编程中，你是否会遇到这样的困惑：明明是相同的需求，但是之前写的代码却并不能重用，稍微修改不满足需求，大改又会让页面变样。<br>是的，由于PHP什么都能干，但是高度灵活性降低了代码的结构性。虽然可以利用三方框架来解决问题，但问题的根本在于缺乏设计模式。<br>本系列文章将由浅入深的介绍各种设计模式。</p>
+<h2 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h2><p>面向对象编程，Object-Oriented Programming(OOP)作为最基本的设计模式并不是什么新鲜的话题，但是大部分新手的PHP编程都是在写流水账，各种拼接字符串，所以这里还是要提一下。<br><a href="https://en.wikipedia.org/wiki/Object-oriented_programming" target="_blank" rel="external">Object-Oriented Programming</a>的概念这里就不说了，毕竟很多人都明白，但是如何在PHP中使用？<br>假设你需要在页面上显示不同的用户类型，如电脑用户、手机用户等，那么你可以将“显示”这件事抽象为一个类，如：</p>
+<pre><code>&lt;?php
+class ShowAgent {
+  private $agent;
+  public function __construct() {
+    $this-&gt;agent = $_SERVER[&apos;HTTP_USER_AGENT&apos;];
+    echo $this-&gt;agent;
+  }
+}
+$showAgent = new ShowAgent();
+?&gt;
+</code></pre><h2 id="调试技巧"><a href="#调试技巧" class="headerlink" title="调试技巧"></a>调试技巧</h2><p>在很多PHP默认环境中，调试功能是关闭的。打开调试功能又需要配置php.ini文件，其实有一个简单的方法：</p>
+<pre><code>&lt;?php
+ini_set(&quot;display_errors&quot;, &quot;1&quot;);
+ERROR_REPORTING(E_ALL);
+?&gt;
+</code></pre><p>将这段代码加入到你的代码中，甚至可以require或者include进去，方便调试。</p>
+<h2 id="流水账编程"><a href="#流水账编程" class="headerlink" title="流水账编程"></a>流水账编程</h2><p>这里列出流水账编程，并不是让你学习，而是指出何种编程不推荐使用：</p>
+<pre><code>&lt;?php
+$total = &quot;Total number is &quot;;
+$number = &quot;6&quot;;
+$totalNumber = $total.$number;
+echo $totalNumber;
+?&gt;
+</code></pre><p>这段代码并没有错，但是以后再也无法重用了，对吧？每次遇到相同问题，你都需要反复拼接。</p>
+<h2 id="面向过程编程"><a href="#面向过程编程" class="headerlink" title="面向过程编程"></a>面向过程编程</h2><p>面向过程编程曾经很流行，缺点也是无法维护，例如：</p>
+<pre><code>&lt;?php
+function showTotal($total, $number) {
+  $totalNumber = $total.$number;
+  echo $totalNumber;
+}
+showTotal(&quot;Total number is&quot;, &quot;6&quot;);
+?&gt;
+</code></pre><p>这段代码同样没有错，但是时间久了，由于缺乏类的概念，showTotal在各种应用场景缺乏灵活性，你还是需要重写代码。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>转变编程的思维需要花费的时间是很长的，但是记住：算法提高程序运行的速度，而设计模式提高编程的速度。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;根据目的和范围，设计模式可以分为五类。按照目的分为：创建设计模式，结构设计模式，以及行为设计模式。按照范围分为：类的设计模式，以及对象设计模
+      &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;俗话说，“PHP是世界上最好的语言”，因为PHP什么都能干。但是在PHP编程中，你是否会遇到这样的困惑：明明是相同的需求，但是之前写的代码却
     
     </summary>
     
@@ -1689,137 +1741,192 @@ Male
   </entry>
   
   <entry>
-    <title>工厂模式</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(8)%EF%BC%9A%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(8)：工厂模式/</id>
+    <title>多态</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(5)%EF%BC%9A%E5%A4%9A%E6%80%81/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(5)：多态/</id>
     <published>2016-10-12T16:00:00.000Z</published>
-    <updated>2016-10-13T07:57:48.471Z</updated>
+    <updated>2016-10-13T07:53:52.988Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在[PHP设计模式(七)：设计模式分类][2]中我们提到过创建设计模式(Creation<br>patterns)，创建设计模式专注于设计对象(Object)和实例(Instance)的创建过程。<br>创建设计模式包括下面五种设计模式：</p>
-<ol>
-<li><p>抽象工厂设计模式(Abstract Factory)</p>
-</li>
-<li><p>生成器模式(Builder)</p>
-</li>
-<li><p>工厂设计模式(Factory Method)</p>
-</li>
-<li><p>原型设计模式(Prototype Method)</p>
-</li>
-<li><p>单例设计模式(Singleton)</p>
-</li>
-</ol>
-<p>当程序逐渐扩展的时候，需要更多的新对象，新对象的创建不应该依赖于创建者，换句话说，新对象的创建过程，不应该依赖调用创建函数的对象。为了减少冗余，增加拓展性，工厂模式就是一种创建新对象时使用的设计模式。</p>
-<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>工厂模式，也是五种设计模式中唯一的类的设计模式(Class patterns)，即在类中就能实现的设计模式。<br>听起来挺抽象？对比原型设计模式，这是一种对象设计模式(Object patterns)，通过对象的__clone()方法来实现的设计模式。<br>在工厂模式中，新创建的对象/产品并不依赖于生产它的对象/工厂，新对象和调用者之间是低耦合状态。通常调用者和工厂交互，由工厂来生成新对象，新对象只和工厂有关。</p>
-<h2 id="何时使用工厂模式"><a href="#何时使用工厂模式？" class="headerlink" title="何时使用工厂模式？"></a>何时使用工厂模式？</h2><p>简单来说，当需求对类的个数不明确的时候，可以使用工厂模式，如：<br>你需要创建一个在线博物馆，但你并不确切的知道究竟有多少文物，你不可能无限的增加新的文物类，同时对于损毁的文物，你不可能无限的去清理这些类。<br>反过来说，如果你确切的知道类的总量，那么你就没有必要使用工程模式，直接通过继承的方式就能实现好的设计。</p>
-<h2 id="example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>还是使用我们惯用的鲸鱼和鲤鱼的例子，现在我们想实现一个海洋馆，目前我们并不确定究竟有多少海洋生物。<br>先是一个抽象的工厂类：</p>
+    <content type="html"><![CDATA[<h2 id="introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>在[PHP设计模式(四)：继承][2]中我们介绍了继承，利用extends来进行程序设计的方法。<br>在[PHP设计模式(二)：抽象类和接口][3]中我们介绍了接口，事实上也存在利用interface的程序设计方法，那就是多态。<br>和C/C++，Java，Python等语言一样，PHP也支持多态。多态更多是是一种面向对象程序设计的概念，让同一类对象执行同一个接口，但却实现不同的逻辑功能<br>。</p>
+<h2 id="多态polymorphism"><a href="#多态-Polymorphism" class="headerlink" title="多态/Polymorphism"></a>多态/Polymorphism</h2><p>还是用动物、鲸鱼和鲤鱼来举例：</p>
 <pre><code>&lt;?php
-abstract class Factory {
-  protected abstract function create();
-  public function factoryStart() {
-    return $this-&gt;create();
+interface IEat {
+  function eatFish();
+  function eatMoss();
+}
+
+class Whale implements IEat {
+  public function eatFish() {
+    echo &quot;Whale eats fish.\n&quot;;
+  }
+  public function eatMoss() {
+    echo &quot;Whale doesn&apos;t eat fish\n&quot;;
   }
 }
-?&gt;
-</code></pre><p>然后是两个工厂：鲸鱼工厂和鲤鱼工厂</p>
-<pre><code>&lt;?php
-class WhaleFactory extends Factory {
-  protected function create() {
-    $whale = new Whale();
-    return $whale-&gt;create();
+
+class Carp implements IEat {
+  public function eatFish() {
+    echo &quot;Carp doesn&apos;t eat moss.\n&quot;;
+  }
+  public function eatMoss() {
+    echo &quot;Carp eats moss.\n&quot;;
   }
 }
-class CarpFactory extends Factory {
-  protected function create() {
-    $carp = new Carp();
-    return $carp-&gt;create();
-  }
-}
-?&gt;
-</code></pre><p>然后是抽象的动物接口：</p>
-<pre><code>&lt;?php
-interface Animal {
-  public function create();
-}
-?&gt;
-</code></pre><p>然后是具体的动物类：鲸鱼类和鲤鱼类</p>
-<pre><code>&lt;?php
-class Whale implements Animal {
-  private $name;
-  public function create() {
-    $this-&gt;name = &quot;Whale&quot;;
-    return $this-&gt;name . &quot; is created.\n&quot;;
-  }
-}
-class Carp implements Animal {
-  private $name;
-  public function create() {
-    $this-&gt;name = &quot;Carp&quot;;
-    return $this-&gt;name . &quot; is created.\n&quot;;
-  }
-}
-?&gt;
-</code></pre><p>下面给出使用工厂创建鲸鱼和鲤鱼的代码：</p>
-<pre><code>&lt;?php
-$whaleFactory = new WhaleFactory();
-echo $whaleFactory-&gt;factoryStart();
-$carpFactory = new CarpFactory();
-echo $carpFactory-&gt;factoryStart();
+
+$whale = new Whale();
+$whale-&gt;eatFish();
+$whale-&gt;eatMoss();
+$carp = new Carp();
+$carp-&gt;eatFish();
+$carp-&gt;eatMoss();
 ?&gt;
 </code></pre><p>运行一下：</p>
-<pre><code>Whale is created.
-Carp is created.
-</code></pre><p>到这里你是不是觉得，其实直接生成两个类就行了，何必搞这么复杂？别着急，好戏在后面。</p>
-<h2 id="修改类的方法"><a href="#修改类的方法" class="headerlink" title="修改类的方法"></a>修改类的方法</h2><p>由于Interface的限制，修改类的方法被限定在了create()方法中，因此可以避免偷懒的程序员新增加的不合理函数。<br>简单修改一下：</p>
-<pre><code>&lt;?php
-class Whale implements Animal {
-  private $name;
-  public function create() {
-    $this-&gt;name = &quot;Whale&quot;;
-    return $this-&gt;name . &quot; is created. Whale eats fish.\n&quot;;
-  }
-}
-class Carp implements Animal {
-  private $name;
-  public function create() {
-    $this-&gt;name = &quot;Carp&quot;;
-    return $this-&gt;name . &quot; is created. Carp eats moss.\n&quot;;
-  }
-}
-?&gt;
-</code></pre><p>由于对象是由工厂造出来的，外部不可能直接调用或者修改类的实现，类的修改被限定在了类的对外接口上。这样的架构易于扩展。</p>
-<h2 id="一个工厂"><a href="#一个工厂" class="headerlink" title="一个工厂"></a>一个工厂</h2><p>工厂模式的灵活，在于可以只拥有一个工厂，却能生产多个类/产品。<br>修改我们的抽象工厂，给create()方法增加animal接口：</p>
-<pre><code>&lt;?php
-abstract class Factory {
-  protected abstract function create(Animal $animal);
-  public function factoryStart($animal) {
-    return $this-&gt;create($animal);
-  }
-}
-?&gt;
-</code></pre><p>然后合并之前的鲸鱼工厂和鲤鱼工厂：</p>
-<pre><code>&lt;?php
-class AnimalFactory extends Factory {
-  protected function create(Animal $animal) {
-    return $animal-&gt;create();
-  }
-}
-?&gt;
-</code></pre><p>修改使用工厂创建鲸鱼和鲤鱼的代码：</p>
-<pre><code>&lt;?php
-$animalFactory = new AnimalFactory();
-echo $animalFactory-&gt;factoryStart(new Whale());
-echo $animalFactory-&gt;factoryStart(new Carp());
-?&gt;
-</code></pre><p>运行一下：</p>
-<pre><code>Whale is created. Whale eats fish.
-Carp is created. Carp eats moss.
-</code></pre><p>鲸鱼类和鲤鱼类源源不断的从一个工厂中被创建出来了。通过这种设计模式，类的创建过程统一通过一个接口来实现，接口外部并不需要关心类是如何被创建出来的，而接口内部实现也得到了很好的拓展性。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文介绍了工厂设计模式，使用这种设计模式，可以让你通过一个或多个工厂的接口，创建无数新类，调用任意类的方法。由于接口严格定义了新类/产品的形态，因此在维护和<br>拓展的时候，可以省去不少力气。</p>
+<pre><code>$ php Inheritance.php
+Whale eats fish.
+Whale doesn&apos;t eat fish.
+Carp eats moss.
+Carp doesn&apos;t eat moss.
+</code></pre><p>注意PHP的函数定义不包含返回值，因此完全可以给不同的接口实现返回不同类型的数据。这一点和C/C++，Java等语言是不同的。此外，返回不同类型的数据，甚至不返回结果，对程序设计来说，会额外增加维护成本，已经和使用接口的初衷不同了（接口为了封装实现，而不同的返回值事实上是需要调用者去理解实现的）。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>合理利用多态对接口进行不同的实现，简化你的编程模型，让代码易于维护。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;在[PHP设计模式(七)：设计模式分类][2]中我们提到过创建设计模式(Creation&lt;br&gt;patterns)，创建设计模式专注于设计对
+      &lt;h2 id=&quot;introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;在[PHP设计模式(四)：继承][2]中我们介绍了继承，利用
+    
+    </summary>
+    
+      <category term="php" scheme="http://ronghuaxueleng.github.io/categories/php/"/>
+    
+    
+      <category term="php" scheme="http://ronghuaxueleng.github.io/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>封装</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/13/php%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/PHP%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F(3)%EF%BC%9A%E5%B0%81%E8%A3%85/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/13/php设计模式/PHP设计模式(3)：封装/</id>
+    <published>2016-10-12T16:00:00.000Z</published>
+    <updated>2016-10-13T07:54:07.415Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>原文地址：[PHP设计模式(三)：封装][1]</p>
+</blockquote>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>面向对象编程中，一切都是对象，对一个对象的封装，也成了面向对象编程中必不可少的部分。<br>和C/C++，Java，Python等语言一样，PHP也支持封装。</p>
+<h2 id="封装encapsulation"><a href="#封装-Encapsulation" class="headerlink" title="封装/Encapsulation"></a>封装/Encapsulation</h2><blockquote>
+<p>对事物的封装是指，将事物进行抽象后，提供抽象概念的实现的具体方法。</p>
+</blockquote>
+<p>听起来很拗口，还是举鲸鱼的例子。<br>对于鲸鱼来说，需要吃东西这个行为，吃本身是一个抽象的概念，因为具体到怎么吃，是咀嚼和消化的过程，甚至如何咀嚼和消化也是不可见的。对外部而言，可见的只是吃这一个接口，如何吃、怎么吃，是被封装在了鲸鱼的实现中。甚至可以说，消化系统，被封装到了鲸鱼这个对象中，对外部不可见，仅仅鲸鱼自己可见。</p>
+<h2 id="封装方法"><a href="#封装方法" class="headerlink" title="封装方法"></a>封装方法</h2><p>和别的程序设计语言一样，PHP也只是三种封装概念：Private，Protected，Public。</p>
+<h3 id="私有private"><a href="#私有-Private" class="headerlink" title="私有/Private"></a>私有/Private</h3><p>私有的概念是，仅仅对象内部可见，外部不可见，如：</p>
+<pre><code>&lt;?php
+class Whale {
+  private $name;
+  public function __construct() {
+    $this-&gt;name = &quot;Whale&quot;;
+  }
+  public function eat($food) {
+    chew($food);
+    digest($food);
+  }
+  private function chew($food) {
+    echo &quot;Chewing &quot; . $food . &quot;\n&quot;;
+  }
+  private function digest($food) {
+    echo &quot;Digest &quot; . $food . &quot;\n&quot;;
+  }
+}
+?&gt;
+</code></pre><p>name是鲸鱼的私有属性，chew()和digest()是鲸鱼的私有方法，对于其他类来说，都是不可见的。对于现实来说，我们如果只是注重吃，并没有必要去关心鲸鱼是如何去吃的。</p>
+<h3 id="保护protected"><a href="#保护-Protected" class="headerlink" title="保护/Protected"></a>保护/Protected</h3><p>保护的概念是，仅仅是自身类和继承类可见，这个关键字的用途主要是防止滥用类的派生，另外三方库编写的时候会用到，防止误用。</p>
+<pre><code>&lt;?php
+abstract class Animal {
+  private $name;
+  abstract public function eat($food);
+  protected function chew($food) {
+    echo &quot;Chewing &quot; . $food . &quot;\n&quot;;
+  }
+  protected function digest($food) {
+    echo &quot;Digest &quot; . $food . &quot;\n&quot;;
+  }
+}
+
+class Whale extends Animal {
+  private $name;
+  public function __construct() {
+    $this-&gt;name = &quot;Whale&quot;;
+  }
+  public function eat($food) {
+    chew($food);
+    digest($food);
+  }
+}
+?&gt;
+</code></pre><p>鲸鱼类可以通过继承使用动物类的咀嚼和消化方法，但是别的继承鲸鱼类的类就不可以再使用动物类的咀嚼和消化方法了。保护更多是用于面向对象设计，而不是为了编程来实现某个需求。</p>
+<h3 id="公共public"><a href="#公共-Public" class="headerlink" title="公共/Public"></a>公共/Public</h3><p>公共的概念就是，任何类、任何事物都可以访问，没有任何限制，这里不再赘述。</p>
+<h2 id="getterssetters"><a href="#Getters-Setters" class="headerlink" title="Getters/Setters"></a>Getters/Setters</h2><p>Getters和Setters也叫Accessors和Mutators，在Java/C#等语言中常以get()/set()方法出现。<br>对于这两个东西的争议很大，考虑下面一个类：</p>
+<pre><code>&lt;?php
+class Price {
+  public $priceA;
+  public $priceB;
+  public $priceC;
+  ...
+}
+?&gt;
+</code></pre><p>如果不使用Getters/Setters，我们给Price类赋值和取值一般是这样：</p>
+<pre><code>&lt;?php
+  $price = new Price();
+  $price-&gt;priceA = 1;
+  $price-&gt;priceB = 2;
+  $price-&gt;priceC = 3;
+  ...
+  echo $price-&gt;priceA;
+  echo $price-&gt;priceB;
+  echo $price-&gt;priceC;
+  ...
+?&gt;
+</code></pre><p>但是如果使用了Getters/Setters，Price类将变成这样：</p>
+<pre><code>&lt;?php
+class Price {
+  private $priceA;
+  private $priceB;
+  private $priceC;
+  public function getPriceA() {
+    return $this-&gt;priceA;
+  }
+  public function setPriceA($price) {
+    $this-&gt;priceA = $price;
+  }
+  ...
+}
+?&gt;
+</code></pre><p>这时候赋值将变成这样：</p>
+<pre><code>&lt;?php
+  $price = new Price();
+  $price-&gt;setpriceA(1);
+  $price-&gt;setPriceB(2);
+  $price-&gt;setPriceC(3);
+  ...
+  echo $price-&gt;getPriceA();
+  echo $price-&gt;getPriceB();
+  echo $price-&gt;getPriceC();
+  ...
+?&gt;
+</code></pre><p>是不是感觉需要多敲很多代码？这也是很多程序员不愿意使用get/set的原因，造成了大量的看似无用冗余的代码。<br>为什么叫看似冗余和无用？因为Getters/Setters是编程设计方法，而不是编程实现方法。</p>
+<blockquote>
+<p>在面向对象程序设计中，类和类之间的访问、交互和更新应该是通过Accessors和Mutators，也就是Getters和Setters来实现。直接访问和<br>修改破坏了类的封装性。</p>
+</blockquote>
+<p>为什么采用这种设计方式？因为程序设计是对现实问题的抽象，而在编程的工程中程序员扮演的角色往往是上帝。<br>考虑这样一种场景：你朋友要求你改名，决定是否改名的人是你，而不是你朋友。在你的朋友的视觉（也就是你朋友的类），他不能直接去修改你的名字。<br>如果你直接采用非Getters/Setters的设计方法，事实上是程序员扮演的这个上帝修改了现实规则，允许你朋友能够随意更改你的姓名，显然这是不合理的。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>合理的封装对于好的程序设计是必不可少的，虽然什么都是Public也能解决编程问题，但是这不是用程序设计解决问题的思路。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;原文地址：[PHP设计模式(三)：封装][1]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;面向对象编程中，一切都是
     
     </summary>
     
@@ -1902,348 +2009,493 @@ ATCGATCG
   </entry>
   
   <entry>
-    <title>从 JavaScript 数组去重谈性能优化</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/13/javascript/%E4%BB%8E%20JavaScript%20%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E8%B0%88%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/13/javascript/从 JavaScript 数组去重谈性能优化/</id>
-    <published>2016-10-12T16:00:00.000Z</published>
-    <updated>2016-10-13T08:34:52.608Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h2><p>JavaScript 数组去重经常出现在前端招聘的笔试题里，比如：</p>
-<blockquote>
-<p>有数组 <code>var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, &#39;c&#39;, 1, &#39;&#39;, 1, 0]</code>，请用 JavaScript<br>实现去重函数 <code>unqiue</code>，使得 <code>unique(arr)</code> 返回 <code>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, 1, &#39;&#39;]</code></p>
-</blockquote>
-<p>作为笔试题，考点有二：</p>
-<ol>
-<li><p><strong>正确</strong>。别小看这个考点，考虑到 JavaScript 经常要在浏览器上运行，在千姿百态的各种浏览器环境下要保障一个函数的正确性可不是一件简单的事，不信你继续读完这篇博客。</p>
-</li>
-<li><p><strong>性能</strong>。虽然大部分情况下 JavaScript 语言本身（狭义范畴，不包含 DOM 等延拓）不会导致性能问题，但很不幸这是一道考题，因此面试官们还是会把性能作为一个考点。</p>
-</li>
-</ol>
-<p>在继续往下阅读之前，建议先实现一个自己认为最好的版本。</p>
-<h2 id="直觉方案"><a href="#直觉方案" class="headerlink" title="直觉方案"></a>直觉方案</h2><p>对于数组去重，只要写过程序的，立刻就能得到第一个解法：</p>
-<pre><code>function unique(arr) {
-  var ret = []
-
-  for (var i = 0; i &lt; arr.length; i++) {
-    var item = arr[i]
-    if (ret.indexOf(item) === -1) {
-      ret.push(item)
-    }
-  }
-
-  return ret
-}
-</code></pre><p>直觉往往很靠谱，在现代浏览器下，上面这个函数很正确，性能也不错。但前端最大的悲哀也是挑战之处在于，要支持各种运行环境。在 IE6-8 下，数组的<br><code>indexOf</code> 方法还不存在。直觉方案要稍微改造一下：</p>
-<pre><code>var indexOf = [].indexOf ?
-    function(arr, item) {
-      return arr.indexOf(item)
-    } :
-    function indexOf(arr, item) {
-      for (var i = 0; i &lt; arr.length; i++) {
-        if (arr[i] === item) {
-          return i
-        }
-      }
-      return -1
-    }
-
-function unique(arr) {
-  var ret = []
-
-  for (var i = 0; i &lt; arr.length; i++) {
-    var item = arr[i]
-    if (indexOf(ret, item) === -1) {
-      ret.push(item)
-    }
-  }
-
-  return ret
-}
-</code></pre><p>写到这一步，正确性已没问题，但性能上，两重循环会让面试官们看了不爽。</p>
-<h2 id="优化方案"><a href="#优化方案" class="headerlink" title="优化方案"></a>优化方案</h2><p>一谈到优化，往往就是八仙过海、百花齐放。但八仙往往不接地气，百花则很容易招来臭虫。数组去重的各种优化方案在此不一一讨论，下面只说最常用效果也很不错的一种。</p>
-<pre><code>function unique(arr) {
-  var ret = []
-  var hash = {}
-
-  for (var i = 0; i &lt; arr.length; i++) {
-    var item = arr[i]
-    var key = typeof(item) + item
-    if (hash[key] !== 1) {
-      ret.push(item)
-      hash[key] = 1
-    }
-  }
-
-  return ret
-}
-</code></pre><p>核心是构建了一个 <code>hash</code> 对象来替代 <code>indexOf</code>. 注意在 JavaScript 里，对象的键值只能是字符串，因此需要 <code>var key =
-typeof(item) + item</code> 来区分数值 <code>1</code> 和字符串 <code>&#39;1&#39;</code> 等情况。</p>
-<p>但优化真的很容易带来坑，比如上面的实现，对下面这种输入就无法判断：</p>
-<pre><code>unique([ new String(1), new Number(1) ])
-</code></pre><p>可以继续修改代码，做到性能和正确性都很好。但往往，这带来的结果并不好。</p>
-<h2 id="真实需求"><a href="#真实需求" class="headerlink" title="真实需求"></a>真实需求</h2><p>写到这里，这篇博客才算进入正题。程序员心中都会有一些梦想，比如写出又通用性能又好的普适函数。这种梦想是让程序员变得卓越的重要内驱力，但倘若不加以控制，也很容<br>易走入迷途。</p>
-<p>回到性能优化。这年头有各种各样优化，核心系统、数据库、网络、前端等等，所有这些优化，都必须回答下面这个问题：</p>
-<ol>
-<li><p><strong>当前有什么</strong>。在什么场景下进行优化，场景下有哪些具体限制。理清限制很重要，限制往往带来自由。</p>
-</li>
-<li><p><strong>究竟要什么</strong>。优化的目的是什么。是提高稳定性，还是增大吞吐量，抑或减少用户等待时间。在回答这个问题之前，优化都是徒劳。对这个问题的准确回答，能为优化带来具体可测量的参数，这样优化才有目标。</p>
-</li>
-<li><p><strong>可以放弃什么</strong>。鱼与熊掌不可兼得。优化的本质是在具体场景下的取舍、权衡。什么都不愿意放弃的话，优化往往会举步维艰。</p>
-</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;缘由&quot;&gt;&lt;a href=&quot;#缘由&quot; class=&quot;headerlink&quot; title=&quot;缘由&quot;&gt;&lt;/a&gt;缘由&lt;/h2&gt;&lt;p&gt;JavaScript 数组去重经常出现在前端招聘的笔试题里，比如：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;有数组 &lt;code&gt;var ar
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
-    
-    
-      <category term="javascript" scheme="http://ronghuaxueleng.github.io/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>适配器模式</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/19%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/</id>
+    <title>代理模式的应用</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/8%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%BA%94%E7%94%A8/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/</id>
     <published>2016-10-11T16:00:00.000Z</published>
-    <updated>2016-10-12T09:42:12.640Z</updated>
+    <updated>2016-10-12T07:34:37.881Z</updated>
     
     <content type="html"><![CDATA[<hr>
-<blockquote>
-<p>适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。</p>
-</blockquote>
-<h3 id="适配器模式的应用"><a href="#适配器模式的应用" class="headerlink" title="适配器模式的应用"></a>适配器模式的应用</h3><p>适配模式是一种“亡羊补牢”的模式，没有人会在程序的设计之初就使用它，因为没有人可以完全预料到未来的事情，也许现在好好工作的接口未来就不再适用于新系统，那么我们可以使用适配器模式把旧的接口包装成新的接口，使他继续保持生命力。<br>比如在json数据流行之前，很多cgi返回的都是XML格式的数据，如果今天仍然想用这些接口，显然我们可以创造一个XML-JSON适配器。</p>
-<p>比如有一段代码，我们向googleMap和baiduMap都发出显示请求时，他们分别以各自的方式在页面中展现了地图：</p>
-<pre><code>var googleMap = {
-    show: function() {
-        console.log(&apos;开始渲染谷歌地图&apos;);
-    }
-};
-var baiduMap = {
-    show: function() {
-        console.log(&apos;开始渲染百度地图&apos;);
-    }
-};
-
-var renderMap = function(map) {
-    if (map.show.instanceof Function) {
-        map.show();
-    }
-};
-
-renderMap(googleMap); //开始渲染谷歌地图
-renderMap(baiduMap); //开始渲染百度地图
-</code></pre><p>这个程序能运行的关键之处在于<code>googleMap</code>和<code>baiduMap</code>提供了一致的show方法，但是第三方接口并不在我们的控制范围内，加入<code>baiduMap</code>提供的显示地图的方法不叫<code>show</code>，而叫<code>display</code>呢?</p>
-<p>此时我们可以通过增加<code>baiduMapAdapter</code>来解决问题：</p>
-<pre><code>var googleMap = {
-    show: function() {
-        console.log(&apos;开始渲染谷歌地图&apos;);
-    }
-};
-var baiduMap = {
-    display: function() {
-        console.log(&apos;开始渲染百度地图&apos;);
-    }
-};
-var baiduAdapter = {
-    show: function() {
-        return baiduMap.display();
-    }
-};
-var renderMap = function(map) {
-    if (map.show.instanceof Function) {
-        map.show();
-    }
-};
-
-renderMap(googleMap); //开始渲染谷歌地图
-renderMap(baiduAdapter); //开始渲染百度地图
-</code></pre><h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>适配器模式是一对相对简单的模式，但是有一些模式跟适配器模式的结构非常相似，比如装饰者模式，代理模式和外观模式，这几种都属于“包装模式”，都是一个对象来包装另一个对象。我们现在就来做一些区分：</p>
-<ul>
-<li><p>适配器模式主要用来解决两个已有接口之间的不匹配问题，它不需要考虑这些接口是怎样实现的，也不考虑它们讲来可能会如何演化。适配器模式不需要改变已有接口，就能够实现它们的协同作用。</p>
-</li>
-<li><p>装饰者模式和代理模式也不会改变原有对象的接口，但装饰者模式的作用是为了给对象增加功能。装饰者模式常常形成一条长的装饰链，而适配器模式通常只包装一次。代理模式是为了控制对象的访问，通常也只包装一次。</p>
-</li>
-<li><p>外观模式的作用和适配器比较像是，有人把外观模式看成一组对象的适配器，但外观模式最显著的特点是定义了一个新的接口。</p>
-</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
-&lt;blockquote&gt;
-&lt;p&gt;适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;适配器模式的应用&quot;&gt;&lt;a href=&quot;#适配器模式的应
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
-    
-    
-      <category term="javascript" scheme="http://ronghuaxueleng.github.io/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>设计原则和编程技巧</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/20%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99%E5%92%8C%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/</id>
-    <published>2016-10-11T16:00:00.000Z</published>
-    <updated>2016-10-12T09:43:08.156Z</updated>
-    
-    <content type="html"><![CDATA[<hr>
-<h3 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h3><p>就一个类而言，应该仅有一个引起它变化的原因。在JavaScript中，需要用到类的场景并不太多，单一职责原则（SRP）更多的是被运用在对象或者方法级别上。<br>总之，SRP原则体现为：一个对象（方法）只做一件事情。<br>例如：</p>
-<ul>
-<li><p>代理模式</p>
-</li>
-<li><p>迭代器模式</p>
-</li>
-<li><p>单例模式</p>
-</li>
-<li><p>装饰者模式<br>但是，并不是所有的职责都应该一一分离的，一方面如果随着需求的变化，有两个职责是同时变化的，那就不必分离他们。比如在ajax请求的时候，创建xhr对象和发送xhr请求几乎总是在一起的，那么创建xhr对象的职责和发送xhr对象的职责就没有必要分开。</p>
-</li>
-</ul>
-<p>另一方面，职责的变化轴线仅当它们确定会发生变化时才有意义，即使两个职责已经被耦合在一起但他们没有发生改变的征兆，那么也许没有必要主动分离他们，在代码需要重构的时候再分离也不迟。</p>
-<h3 id="最少知识原则"><a href="#最少知识原则" class="headerlink" title="最少知识原则"></a>最少知识原则</h3><p>最少知识原则（LKP）说的是一个软件实体应当尽可能少与其他实体发生相互作用。这里的软件的实体是一个广义的概念，不仅包括对象，还包括系统，类，模块，函数，变量等。<br>单一职责原则指导我们把对象划分成较小的粒度，这可以提高对象的可复用性。但越来越多的对象之间可能会产生错综复杂的联系，如果修改了其中一个对象，很可能会影响到跟它相互引用的其他对象。对象和对象耦合在一起，有可能会降低他们的复用性。在程序中，对象的“朋友”太多并不是一件好事。<br>最少知识原则要求我们在设计程序时，应当尽量减少对象之间的交互。如果两个对象之间不必彼此直接通信，那么两个对象就不要发生直接的相互联系。常见的做法是引入一个第三者对象，来承担这些对象之间的通信作用。如果一些对象需要向另一些对象发起请求，可以通过第三者对象来转发这些请求。<br>体现地方：</p>
-<ul>
-<li><p>中介者模式</p>
-</li>
-<li><p>外观模式</p>
-</li>
-</ul>
-<h3 id="开放-封闭原则"><a href="#开放-封闭原则" class="headerlink" title="开放-封闭原则"></a>开放-封闭原则</h3><p>在面向对象的程序设计中，开放-封闭原则（OCP）是最重要的一条原则。他的定义为：软件实体（类，模块，函数）等应该是可以拓展的，但是不可修改的。<br>举例：</p>
-<ul>
-<li><p>发布-订阅模式</p>
-</li>
-<li><p>模板方法模式</p>
-</li>
-<li><p>策略模式</p>
-</li>
-<li><p>代理模式</p>
-</li>
-<li><p>职责链模式</p>
-</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
-&lt;h3 id=&quot;单一职责原则&quot;&gt;&lt;a href=&quot;#单一职责原则&quot; class=&quot;headerlink&quot; title=&quot;单一职责原则&quot;&gt;&lt;/a&gt;单一职责原则&lt;/h3&gt;&lt;p&gt;就一个类而言，应该仅有一个引起它变化的原因。在JavaScript中，需要用到类的场景并不太多，单
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
-    
-    
-      <category term="javascript" scheme="http://ronghuaxueleng.github.io/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>闭包</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/2%E9%97%AD%E5%8C%85/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/2闭包/</id>
-    <published>2016-10-11T16:00:00.000Z</published>
-    <updated>2016-10-12T06:26:36.705Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>闭包是js中一个难懂又必须征服的概念，他的形成与变量作用域以及变量的生存周期密切相关。</p>
-</blockquote>
-<h3 id="变量作用域和生存周期"><a href="#变量作用域和生存周期" class="headerlink" title="变量作用域和生存周期"></a>变量作用域和生存周期</h3><p>作用域，按字面理解，就是指变量的有效范围，超出这个范围就无法访问。<br>在函数中，里面函数可以访问外面的变量，但是外面无法访问内部变量。举个简单例子：</p>
-<pre><code>var a = 1;
-var fun1 = function() {
-    var b = 2;
-    var fun2 = function() {
-        var c = 3;
-        alert(b); //2
-        alert(c); //3
-    }
-    fun2();
-    alert(c); //c is not defined
-};
-fun1();
-</code></pre><p>生存周期：全局变量的生存周期是永久的，除非我们主动销毁，但是普通对于用var声明的局部变量，当退出函数不再使用时，就会被销毁。但是当你使用到闭包时，情况就不一样了</p>
-<pre><code>var fun = function() {
-    var a = 1;
-    return function() {
-        a++;
-        alert(a);
-    }
-};
-var f = fun();
-f(); //2
-f(); //3
-f(); //4
-f(); //5
-</code></pre><p>解释：当执行var f = fun();时，f返回了一个匿名函数的引用，它可以访问到fun()被调用的生产环境，而局部变量a一直在这个环境中。既然局部变量能<br>被外界访问，那它就有了不被销毁的理由，于是局部变量生命被延续了。</p>
-<p>再例如：</p>
-<pre><code>var nodes = document.getElemmentByTagName(&apos;div&apos;); //此处他的长度为5
-for (var i = 0, len = nodes.length; i &lt; len; i++) {
-    nodes[i].onclick = function() {
-        alert(i);
-    }
-};
-</code></pre><p>以上代码无论点哪个div显示的都是5（div节点的onclick是异步触发的，当事件触发时，循环已经结束，此时i的值是5）<br>解决方法：闭包大法好</p>
-<pre><code>for (var i = 0, len = nodes.length; i &lt; len; i++) {
-    (function(i) {
-        nodes[i].onclick = function() {
-            alert(i);
-        }
-    })(i)
-};
-</code></pre><p>通常，闭包可以有封装一些不需要暴露在全局的变量，延续局部变量寿命等等用途。</p>
-<h3 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h3><p>命令模式的意图是把请求封装为对象，从而分离请求的发起者和请求的接收者（执行者）之间的耦合关系。在命令执行之前可预先往命令对象中植入命令的接收者。</p>
-<pre><code>var TV = {
-    open: function() {
-        alert(&apos;open&apos;);
-    },
-    close: function() {
-        alert(&apos;close&apos;);
-    }
-};
-
-var createCommand = function(receiver) {
-    var execute= function() {
-        return receiver.open(); //执行命令打开电视
-    }
-
-    var undo= function() {
-        return receiver.close(); //执行命令关闭电视
-    }
-
+<h3 id="虚拟代理实现图片预加载"><a href="#虚拟代理实现图片预加载" class="headerlink" title="虚拟代理实现图片预加载"></a>虚拟代理实现图片预加载</h3><p>图片预加载：图片过大或者网络不佳时，图片位置有段时间会是一片空白，常见的用一张loading占位，然后异步加载图片，等图片加载好了再把它填充到img节点里。</p>
+<pre><code>var myImage = (function() {
+    var imgNode = document.createElement(&apos;img&apos;);
+    document.body.appendChild( imgNode );
     return {
-        execute: execute,
-        undo: undo
+        setSrc : function( src ) {
+            imgNode.src = src;
+        }
     }
+})();
+
+var proxyImage = (function() {
+    var img = new Image;
+    img.onload = function() {//图片加载完成之后触发
+        myImage.setSrc(this.src);
+    }
+    return {
+        setSrc: function(src) {
+            myImage.setSrc(&apos;loading.gif&apos;); //loading图片
+            img.src = src;
+        }
+    }
+})();
+proxyImage.setSrc(&apos;xxxx&apos;);
+</code></pre><p>这里我们通过proxyImage间接地访问MyImage，proxyImage控制了客户对MyImage的访问，因此在此过程中加入一些额外的操作，比如在真正图片加在之前先把img的节点的src设置成一张本地的图片。</p>
+<h3 id="虚拟代理合并http请求"><a href="#虚拟代理合并http请求" class="headerlink" title="虚拟代理合并http请求"></a>虚拟代理合并http请求</h3><p>假设我有一堆选项(checkbox)，每次点击就会往服务器同步文件，手速快的一秒或许可以点中四五个，然而太过平凡的服务器请求开销略大。<br>因此，我们决定设置一个代理函数，将两秒之内的数据传输收集到一起两秒再发送一次，对于实时性要求不是很高的系统两秒延迟不会有太大副作用但是对服务器的压力就是量级的减少。</p>
+<pre><code>var synchronousFile = function(id) {
+    console.log(&apos;开始同步文件&apos; + id);
 };
 
-var setComment = function(command) {
-    document.getElementById(&apos;execute&apos;).onclick = function() {
-        command.execute();
+var proxySynchronousFile = (function() {
+    var cache = [], //保存一段时间内需要同步的ID
+        timer;
+    return function(id) {
+        cache.push(id);
+        if (timer) { //保证不会覆盖已启动的定时器
+            return;
+        }
+        timer = setTimeout(function() {
+            synchronousFile(cache.join(&apos;,&apos;)); //两秒后向本体发送需要同步的ID集合
+            clearTimeout(timer);
+            timer = null;
+            cache.length = 0;
+        }, 2000);
     }
-    document.getElementById(&apos;undo&apos;).onclick = function() {
-        command.undo();
+})();
+
+var chechbox = document.getElementByTagName(&apos;input&apos;);
+for(var i = 0, c; c = checkbox[i++];) {
+    c.onclick = function() {
+        if(this.checked === true) {
+            proxySychronousFile(this.id);
+        }
+    }
+}
+</code></pre><h3 id="其他代理模式"><a href="#其他代理模式" class="headerlink" title="其他代理模式"></a>其他代理模式</h3><ul>
+<li><p>缓存代理：为一些开销大的运算结果提供暂时的存储，在下次运算时，如果传过来的参数跟之前的一直可以直接返回前面的存储运算结果</p>
+</li>
+<li><p>防火墙代理：控制网络资源的访问，保护主题不让“坏人”接近</p>
+</li>
+<li><p>远程代理：为一个对象在不同的地址空间提供局部代表</p>
+</li>
+<li><p>保护代理：用于对象应该有不同访问权限的情况</p>
+</li>
+<li><p>智能引用代理：取代了简单的指针，它在访问对象时执行了一些附加操作，比如计算一个对象被引用的次数</p>
+</li>
+<li><p>写时服饰代理：通常用于复制一个庞大对象时候的情况。写时复制代理延迟了复制的过程，当对象被真正修改时，才能对它进行复制操作。<br>…..</p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+&lt;h3 id=&quot;虚拟代理实现图片预加载&quot;&gt;&lt;a href=&quot;#虚拟代理实现图片预加载&quot; class=&quot;headerlink&quot; title=&quot;虚拟代理实现图片预加载&quot;&gt;&lt;/a&gt;虚拟代理实现图片预加载&lt;/h3&gt;&lt;p&gt;图片预加载：图片过大或者网络不佳时，图片位置有段时间会是一
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>状态模式</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/18%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/18状态模式/</id>
+    <published>2016-10-11T16:00:00.000Z</published>
+    <updated>2016-10-12T09:41:21.773Z</updated>
+    
+    <content type="html"><![CDATA[<hr>
+<blockquote>
+<p>状态模式的关键是区分事物内部的状态，事物内部状态的改变往往会带来事物的行为改变。</p>
+</blockquote>
+<h3 id="电灯程序"><a href="#电灯程序" class="headerlink" title="电灯程序"></a>电灯程序</h3><p>首先给一个不用状态模式的电灯程序例子：</p>
+<pre><code>var Light = function() {
+  this.state = &apos;off&apos;; //电灯初始状态off
+  this.button = null; //电灯开关按钮
+};
+
+Light.prototype.init = function() {
+  var button = document.createElement(&apos;button&apos;),
+      self = this;
+
+  button.innerHTML = &apos;开关&apos;;
+  this.button = document.body.appendChild(button);
+  this.button.onclick = function() {
+    self.buttonWasPressed();
+  };
+};
+
+Light.prototype.buttonWasPressed = function() {
+  if (this.state === &apos;off&apos;) {
+    console.log(&apos;开灯&apos;);
+    this.state = &apos;on&apos;;
+  } else if (this.state === &apos;on&apos;) {
+    console.log(&apos;关灯&apos;);
+    this.state = &apos;off&apos;;
+  }
+};
+
+var light = new Light();
+light.init();
+</code></pre><p>这样子看起来非常完美。但是假如我们有三种光，甚至四种五种，只能在<code>buttonWasPressed</code>里面新增代码，这样就显得他很不稳定了。而且所有跟状态有关的行为，这里只是console，但是在实际应用中要处理的事情庞大得多…<br>所以，我们用状态模式进行改写</p>
+<pre><code>//OffLightState
+var OffLightState = function(light) {
+  this.light = light;
+};
+OffLightState.prototype.buttonWasPressed = function() {
+  console.log(&apos;弱光&apos;); 
+  this.light.setState(this.light.weakLightState);
+};
+
+//WeakLightState
+var WeakLightState = function(light) {
+  this.light = light;
+};
+WeakLightState.prototype.buttonWasPressed = function() {
+  console.log(&apos;强光&apos;);
+  this.light.setState(this.light.strongLightState); 
+};
+
+//StrongLightState
+var StrongLightState = function(light) {
+  this.light = light;
+};
+StrongLightState.prototype.buttonWasPressed = function() {
+  console.log(&apos;关灯&apos;);
+  this.light.setState(this.light.OffLightState); 
+};
+
+var Light = function() {
+  this.offLightState = new OffLightState(this);
+  this.weakLightState = new WeakLightState(this);
+  this.strongLightState = new StrongLightState(this);
+};
+Light.prototype.init = function() {
+  var button = document.createElement(&apos;button&apos;),
+      self = this;
+  this.button = document.body.appendChild(button);
+  this.button.innerHTML = &apos;开关&apos;;
+
+  this.currState = this.offLightState; //设置当前状态
+  this.button.onclick = function() {
+    self.currState.buttonWasPressed();
+  };
+};
+</code></pre><p>这样子，就没有了一堆繁复的if语句，如果再要增加什么状态，只需要新增对应的代码，再改变状态类之间的切换规则就好了。</p>
+<h3 id="状态模式的优缺点"><a href="#状态模式的优缺点" class="headerlink" title="状态模式的优缺点"></a>状态模式的优缺点</h3><ul>
+<li><p>状态模式定义了状态与行为之间的关系，并将他们封装在一个类里。通过增加新的状态类，很容易增加新的状态和转换。</p>
+</li>
+<li><p>避免context无线膨胀</p>
+</li>
+<li><p>用对象代替字符串来记录当前状态使状态一目了然但是状态模式也会导致系统中定义许多的状态类，编写几十个状态类是一项枯燥的工作。虽然避开了不受欢迎的条件分支，但是也造成了逻辑分散的问题。</p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;状态模式的关键是区分事物内部的状态，事物内部状态的改变往往会带来事物的行为改变。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;电灯程序&quot;&gt;&lt;a href=&quot;#电灯程序&quot; class=&quot;headerlink&quot; title=&quot;电灯程序
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>代码重构</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/21%E4%BB%A3%E7%A0%81%E9%87%8D%E6%9E%84/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/21代码重构/</id>
+    <published>2016-10-11T16:00:00.000Z</published>
+    <updated>2016-10-12T09:44:23.006Z</updated>
+    
+    <content type="html"><![CDATA[<hr>
+<p>一些重构的建议：</p>
+<ol>
+<li><p>提炼函数</p>
+<ul>
+<li><p>避免出现超大函数</p>
+</li>
+<li><p>独立出来的函数有助于代码复用</p>
+</li>
+<li><p>独立出来的函数更容易被覆写</p>
+</li>
+<li><p>独立出来的函数如果拥有一个良好的命名，</p>
+</li>
+<li><p>它本身就起到了注释的作用。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>比如在一个负责取得用户信息的函数里面，我们还需要打印跟用户信息有关的log，那么打印log的语句就可以被封装在一个独立的函数里：</p>
+<pre><code>var getUserInfo = function() {
+    ajax(&apos;http://xxx.com/userInfo&apos;, function(data) {
+        console.log(&apos;userId: &apos; + data.userId);
+        console.log(&apos;userName: &apos; + data.userName);
+        console.log(&apos;nickName: &apos; + data.nickName);
+    });
+};
+</code></pre><p>可以改成：</p>
+<pre><code>var getUserInfo = function() {
+    ajax(&apos;http://xxx.com/userInfo&apos;, function(data) {
+        printDetails(data);
+    });
+};
+var printDetails = function(data) {
+    console.log(&apos;userId: &apos; + data.userId);
+    console.log(&apos;userName: &apos; + data.userName);
+    console.log(&apos;nickName: &apos; + data.nickName);
+}
+</code></pre><ol>
+<li>合并重复的条件片段<br>如果一个函数内有一些条件分支语句，而这些条件分支语句内部散步了一些重复的代码，那么就有必要进行合并去重工作。</li>
+</ol>
+<pre><code>//页面跳转
+var paging = function(currPage) {
+    if (currPage &lt;= 0) {
+        currPage = 0;
+        jump(currPage); //跳转
+    } else if (currPage &gt;= totalPage) {
+        currPage = totalPage;
+        jump(currPage); //跳转
+    } else {
+        jump(currPage); //跳转
+    }
+}
+</code></pre><p>改成</p>
+<pre><code>//页面跳转
+var paging = function(currPage) {
+    if (currPage &lt;= 0) {
+        currPage = 0;
+    } else if (currPage &gt;= totalPage) {
+        currPage = totalPage;
+    } 
+    jump(currPage); //跳转
+}
+</code></pre><ol>
+<li>把条件分支语句提炼成函数<br>在程序设计中，复杂的条件分支语句是导致程序难以阅读和理解的重要原因，而且容易导致一个庞大的函数，所以通常我们要进行一定的提炼。</li>
+</ol>
+<pre><code>//计算商品价格，如果处于夏季，全部商品八折出售
+var getPrice = function(price) {
+    var date = new Date();
+    if (date.getMonth() &gt;= 6 &amp;&amp; date.getMonth &lt;= 9) { //夏季
+        return price * 0.8;
+    }
+    return price;
+}
+</code></pre><p>改成</p>
+<pre><code>//计算商品价格，如果处于夏季，全部商品八折出售
+var getPrice = function(price) {
+
+    if (isSummer()) { //夏季
+        return price * 0.8;
+    }
+    return price;
+}
+var isSummer = function() {
+    var date = new Date();
+    return date.getMonth() &gt;= 6 &amp;&amp; date.getMonth &lt;= 9;
+}
+</code></pre><ol>
+<li>合理使用循环</li>
+</ol>
+<pre><code>var createXHR = function() {
+    var xhr;
+    try{
+        xhr = new ActiveXObject(&apos;MSXML2.XMLHttp.6.0&apos;);
+    } catch(e) {
+        try {
+            xhr = new ActiveXObject(&apos;MSXML2.XMLHttp.3.0&apos;);
+        } catch(e) {
+            xhr = new ActiveXObject(&apos;MSXML2.XMLHttp&apos;);
+        }
+    }
+    return xhr;
+};
+var xhr = createXHR();
+</code></pre><p>改成：</p>
+<pre><code>var createXHR = function() {
+    var versions = [&apos;MSXML2.XMLHttp.6.0&apos;, &apos;MSXML2.XMLHttp.3.0&apos;, &apos;MSXML2.XMLHttp&apos;];
+    for (var i = 0, version; version = versions[i++]; ) {
+        try {
+            return new ActiveObject(version);
+        } catch(e) {
+
+        }
     }
 };
-setCommand(createCommand(tv));
+var xhr = createXHR();
+</code></pre><ol>
+<li>提前让函数退出代替嵌套条件分支</li>
+</ol>
+<pre><code>var del = function(obj) {
+    var ret;
+    if (!obj.isReadOnly) { //不为只读的时候才可以删除
+        if (obj.isFolder) { //如果是文件夹
+            ret = deleteFolder(obj);
+        } else if (obj.isFile) { //如果是文件
+            ret = deleteFile(obj);
+        }
+    }
+    return ret;
+}
+</code></pre><p>改成：</p>
+<pre><code>var del = function(obj) {
+    if (obj.isReadOnly) { 
+        return;
+    }
+    if (obj.isFolder) { //如果是文件夹
+        return deleteFolder(obj);
+    } 
+    if (obj.isFile) { //如果是文件
+        return deleteFile(obj);
+    }
+}
+</code></pre><ol>
+<li>传递对象参数代替过长的参数列表<br>有时候一个函数可能接收多个参数，而参数的数量越多函数就越难理解和使用。这时我们可以把参数放入一个对象内，然后把对象传入。</li>
+</ol>
+<pre><code>var setUserInfo = function(id, name, address, sex, mobile, qq) {
+    console.log(&apos;id=&apos; + id);
+    console.log(&apos;name=&apos; + name);
+    console.log(&apos;address=&apos; + address);
+    console.log(&apos;sex=&apos; + sex);
+    console.log(&apos;mobile=&apos; + mobile);
+    console.log(&apos;qq=&apos; + qq);
+}
+setUserInfo(1234, cyseria, guangzhou, female, 188***, 52***);
+</code></pre><p>改成：</p>
+<pre><code>var setUserInfo = function(obj) {
+    console.log(&apos;id=&apos; + obj.id);
+    console.log(&apos;name=&apos; + obj.name);
+    console.log(&apos;address=&apos; + obj.address);
+    console.log(&apos;sex=&apos; + obj.sex);
+    console.log(&apos;mobile=&apos; + obj.mobile);
+    console.log(&apos;qq=&apos; + obj.qq);
+}
+setUserInfo({
+    id: 1234, 
+    name: cyseria, 
+    address: guangzhou, 
+    sex: female, 
+    mobile: 188***, 
+    qq: 52***
+});
+</code></pre><ol>
+<li><p>尽量减少参数数量<br>尽量减少一些没必要的不会使用或者可以求出的参数。这里不做过多阐述。</p>
+</li>
+<li><p>少用三目运算<br>有时候我们用三目运算会觉得它性能高，代码量少。但是在实际开发中，即使把一段代码循环一百万次，使用三目运算和<code>if,else</code>的时间开销依旧在同个级别中。同样，相比损失的代码可读性和可维护性，他能节省的代码量可以忽略不计。</p>
+</li>
+</ol>
+<p>至于例子，看看下面那个你就知道了：</p>
+<pre><code>if (!aup || bup) {
+    return a === doc ? -1 :
+        b === doc ? 1 : 
+        aup ? -1 : 
+        bup : -1 :
+        sortInput ? (indexOf.call(sortInput, a) - indexOf.call(sortInput, b)) : 
+        0;
+}
+</code></pre><p>当然，如果只是简单的一句，用一下也没什么所谓。</p>
+<ol>
+<li>合理使用链式调用<br>使用jq的对链式调用一定不陌生，在自己编写函数的时候也可以使用这点，返回自身。但是他也有一个坏处，调试的时候不方便。所以如果链条的结构稳定后期不易修改，那么使用他无可厚非，但是如果该链经常发生变化那么还是用普通的调用吧。</li>
+</ol>
+<pre><code>var User = {
+    id: null,
+    name: null,
+    setId: function(id) {
+        this.id = id;
+        return this;
+    },
+    setName: function(name) {
+        this.name= name;
+        return this;
+    }
+};
+console.log(User.setId(1234).setName(&apos;cyseria&apos;));
+</code></pre><ol>
+<li>分解大型类</li>
+</ol>
+<pre><code>var Spirit = function(name) {
+    this.name = name;
+};
+Spirit.prototype.attack = function(type) {
+    if (type === &apos;waveBoxing&apos;) {
+        console.log(this.name + &apos;:使用波动拳&apos;);
+    } else if (type === &apos;whirlKick&apos;) {
+        console.log(this.name + &apos;:使用旋风腿&apos;);
+    }
+};
+var Spirit = new Spirit(&apos;AAA&apos;);
+Spirit .attack(&apos;waveBoxing&apos;);
+Spirit .attack(&apos;whirlKick&apos;);
+</code></pre><p>改成：</p>
+<pre><code>var Attack = function(spirit) {
+    this.spirit = spirit;
+};
+Attack.prototype.start = function(type) {
+    return this.list[type].call(this);
+}
+Attack.prototype.list= function(type) {
+    waveBoxing: function() {
+        console.log(this.spirit.name + &apos;:使用波动拳&apos;);
+    },
+    whirlKick: function() {
+        console.log(this.spirit.name + &apos;:使用旋风腿&apos;);
+    }
+};
+var Spirit = function(name) {
+    this.name = name;
+    this.attackObj = new Attack(this);
+};
+Spirit.prototype.attack = function(type) {
+    this.attackObj.start(type);
+};
+
+var Spirit = new Spirit(&apos;AAA&apos;);
+Spirit .attack(&apos;waveBoxing&apos;);
+Spirit .attack(&apos;whirlKick&apos;);
+</code></pre><ol>
+<li>用return退出多重循环<br>假设在函数体内有一个两重循环语句，我们需要在内层循环中判断当达到某个临界条件时退出外层循环。</li>
+</ol>
+<pre><code>var print = function(i) {
+    console.log(i);
+};
+var func = function() {
+    for (var i = 0; i &lt; 10; i++) {
+        for (var j = 0; j &lt; 10; j++) {
+            if (i * j &gt; 30) {
+                return print(i);
+            }
+        }
+    }
+};
+func();
 </code></pre>]]></content>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;闭包是js中一个难懂又必须征服的概念，他的形成与变量作用域以及变量的生存周期密切相关。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;变量作用域和生存周期&quot;&gt;&lt;a href=&quot;#变量作用域和生存周期&quot; class=&quot;headerlink&quot; t
+      &lt;hr&gt;
+&lt;p&gt;一些重构的建议：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;提炼函数&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;避免出现超大函数&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;独立出来的函数有助于代码复用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;独立出来的函数更容易被覆写&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
     
     </summary>
     
@@ -2349,100 +2601,100 @@ getName.call(obj2); //222
   </entry>
   
   <entry>
-    <title>单例模式</title>
-    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/4%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/4单例模式/</id>
+    <title>闭包</title>
+    <link href="http://ronghuaxueleng.github.io/2016/10/12/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/2%E9%97%AD%E5%8C%85/"/>
+    <id>http://ronghuaxueleng.github.io/2016/10/12/JavaScript设计模式与开发实践/2闭包/</id>
     <published>2016-10-11T16:00:00.000Z</published>
-    <updated>2016-10-12T07:04:54.943Z</updated>
+    <updated>2016-10-12T06:26:36.705Z</updated>
     
-    <content type="html"><![CDATA[<hr>
-<p>用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。</p>
-<h3 id="实现单例模式"><a href="#实现单例模式" class="headerlink" title="实现单例模式"></a>实现单例模式</h3><pre><code>//1.实现单例模式
-var Singleton = function (name) {
-  this.name = name;
-};
-Singleton.prototype.getName = function() {
-  alert(this.name);
-};
-Singleton.getInstance = (function() {
-  var instance = null;
-  return function(name) {
-    if (!instance) {
-      instance = new Singleton(name);
+    <content type="html"><![CDATA[<blockquote>
+<p>闭包是js中一个难懂又必须征服的概念，他的形成与变量作用域以及变量的生存周期密切相关。</p>
+</blockquote>
+<h3 id="变量作用域和生存周期"><a href="#变量作用域和生存周期" class="headerlink" title="变量作用域和生存周期"></a>变量作用域和生存周期</h3><p>作用域，按字面理解，就是指变量的有效范围，超出这个范围就无法访问。<br>在函数中，里面函数可以访问外面的变量，但是外面无法访问内部变量。举个简单例子：</p>
+<pre><code>var a = 1;
+var fun1 = function() {
+    var b = 2;
+    var fun2 = function() {
+        var c = 3;
+        alert(b); //2
+        alert(c); //3
     }
-    return instance;
-  }
-})();
-var a = Singleton.getInstance(&apos;sven1&apos;);
-var b = Singleton.getInstance(&apos;sven2&apos;);
-
-console.log(a === b); //true
-</code></pre><p>以上，我们通过<code>Singleton.getInstance</code>来获取<code>Singleton</code>类的唯一对象，虽然简单但是增加了这个类的“不透明性”，<code>Singleton</code>类的使用者必须知道这是一个单例类，跟以往通过<code>new xxx</code>的方法不同</p>
-<h3 id="透明的单例模式"><a href="#透明的单例模式" class="headerlink" title="透明的单例模式"></a>透明的单例模式</h3><p>有了以上的不足，我们现在就来解决</p>
-<pre><code>//透明的单例模式 
-var CreateDiv = (function() {
-  var instance;
-  var CreateDiv = function(html) {
-    if (instance) {
-      return instance;
-    }
-    this.html = html;
-    this.init();
-    return instance = this;
-  };
-
-  CreateDiv.prototype.init = function() {
-    var div = document.createElement(&apos;div&apos;);
-    div.innerHTML = this.html;
-    document.body.appendChild(div);
-  };
-
-  return CreateDiv;
-})();
-var aa = new CreateDiv(&apos;sven1&apos;);
-var bb = new CreateDiv(&apos;sven2&apos;);
-
-console.log(aa === bb);
-</code></pre><p>以上代码，CreateDiv做了创建对象和执行初始化init方法，且保证只有一个对象。<br>但是，假如有一天我们需要利用这个类，在页面中创建千千万万个div，即要让这个类从单例类变成一个普通的可以产生多个实例的类，那我们必须改写CreateDiv构造函数，把控制创建唯一的那一段去掉…这样好像有点太麻烦了</p>
-<h3 id="用代理实现单例模式"><a href="#用代理实现单例模式" class="headerlink" title="用代理实现单例模式"></a>用代理实现单例模式</h3><p>这里就可以引入代理类的方式，思想就是将负责管理的单例逻辑移到一个代理类中，这样CreateDiv就变成一个普通的类，代码此处省略…</p>
-<h3 id="javascript中的单例模式"><a href="#JavaScript中的单例模式" class="headerlink" title="JavaScript中的单例模式"></a>JavaScript中的单例模式</h3><p>前面几种单例模式的实现，更多是接近传统面向对象语言中的实现，单例从“类”中创建出来。<br>然而，js作为一个没有类的语言，生搬单例模式的概念并无意义。我们只要一个对象，为什么要创建一个类呢？我们只是要一个唯一的实例就好了..因此我们可以直接用<code>var a = {}</code>来创建对象字面量。</p>
-<h3 id="惰性单例"><a href="#惰性单例" class="headerlink" title="惰性单例"></a>惰性单例</h3><p>惰性单例：需要的时候才创建。<br>例如，以一个登录悬浮窗为例，我们可以在页面加载的时候创建好这个div窗口，然后点击登录按钮的时候开始显示，但是这样如果用户只是随便浏览下就白白浪费了一些dom节点。<br>还有一种方法，点击的时候再创建，关闭的时候销毁。但是如果用户频繁的进行注销等操作，我们就要频繁的创建和删除div，显然这也不合理。<br>所以，这时候惰性单例模式就出马了。</p>
-<pre><code>var createLoginLayer = (function() {
-    var div;
+    fun2();
+    alert(c); //c is not defined
+};
+fun1();
+</code></pre><p>生存周期：全局变量的生存周期是永久的，除非我们主动销毁，但是普通对于用var声明的局部变量，当退出函数不再使用时，就会被销毁。但是当你使用到闭包时，情况就不一样了</p>
+<pre><code>var fun = function() {
+    var a = 1;
     return function() {
-        if (!div) {
-            div = document.createElement(&apos;div&apos;);
-            //创建添加等dom操作...
+        a++;
+        alert(a);
+    }
+};
+var f = fun();
+f(); //2
+f(); //3
+f(); //4
+f(); //5
+</code></pre><p>解释：当执行var f = fun();时，f返回了一个匿名函数的引用，它可以访问到fun()被调用的生产环境，而局部变量a一直在这个环境中。既然局部变量能<br>被外界访问，那它就有了不被销毁的理由，于是局部变量生命被延续了。</p>
+<p>再例如：</p>
+<pre><code>var nodes = document.getElemmentByTagName(&apos;div&apos;); //此处他的长度为5
+for (var i = 0, len = nodes.length; i &lt; len; i++) {
+    nodes[i].onclick = function() {
+        alert(i);
+    }
+};
+</code></pre><p>以上代码无论点哪个div显示的都是5（div节点的onclick是异步触发的，当事件触发时，循环已经结束，此时i的值是5）<br>解决方法：闭包大法好</p>
+<pre><code>for (var i = 0, len = nodes.length; i &lt; len; i++) {
+    (function(i) {
+        nodes[i].onclick = function() {
+            alert(i);
         }
-        return div;
-    }
-})();
-
-$(&quot;xxx&quot;).onclick = function() {
-    var loginLayer = createLoginLayer();
-    loginLayer.show();
-}
-</code></pre><h3 id="通用的惰性实例"><a href="#通用的惰性实例" class="headerlink" title="通用的惰性实例"></a>通用的惰性实例</h3><p>看起来好像没什么问题，然而，他还是违反了单一的原则，创建的对象逻辑都放在createLoginLayer内部，如果我们要创建别的东西例如iframe，就要几乎将这个函数照抄一遍了，因此我们应该把不变的部分隔离出来。</p>
-<pre><code>var getSingle = function(fn) {
-    var result;
-    return function() {
-        return result || (result = fn.apply(this, arguments));
+    })(i)
+};
+</code></pre><p>通常，闭包可以有封装一些不需要暴露在全局的变量，延续局部变量寿命等等用途。</p>
+<h3 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h3><p>命令模式的意图是把请求封装为对象，从而分离请求的发起者和请求的接收者（执行者）之间的耦合关系。在命令执行之前可预先往命令对象中植入命令的接收者。</p>
+<pre><code>var TV = {
+    open: function() {
+        alert(&apos;open&apos;);
+    },
+    close: function() {
+        alert(&apos;close&apos;);
     }
 };
 
-var createLoginLayer = function() {
-    //创建登录框
-}  
+var createCommand = function(receiver) {
+    var execute= function() {
+        return receiver.open(); //执行命令打开电视
+    }
 
-var createSingleLoginLayer = getSingle(createLoginLayer);
-</code></pre><p>于是，目的达成。<br>当然，单例模式用途远远不止于创建对象，比如我们在渲染完页面的时候，接下来要给这个列表绑定click事件，如果是ajax动态向列表里面加载数据，实际上只需要第一次渲染的时候绑定。如果不用jq的<code>$(&quot;&quot;).one(&#39;click&#39;, function(){})</code>的话，我们也可以用单例模式，做法类似。</p>
-]]></content>
+    var undo= function() {
+        return receiver.close(); //执行命令关闭电视
+    }
+
+    return {
+        execute: execute,
+        undo: undo
+    }
+};
+
+var setComment = function(command) {
+    document.getElementById(&apos;execute&apos;).onclick = function() {
+        command.execute();
+    }
+    document.getElementById(&apos;undo&apos;).onclick = function() {
+        command.undo();
+    }
+};
+setCommand(createCommand(tv));
+</code></pre>]]></content>
     
     <summary type="html">
     
-      &lt;hr&gt;
-&lt;p&gt;用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。&lt;/p&gt;
-&lt;h3 id=&quot;实现单例模式&quot;&gt;&lt;a href=&quot;#实现单例模式&quot; class=&quot;headerlink&quot; title=&quot;实现单例模式&quot;&gt;&lt;/a&gt;实
+      &lt;blockquote&gt;
+&lt;p&gt;闭包是js中一个难懂又必须征服的概念，他的形成与变量作用域以及变量的生存周期密切相关。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;变量作用域和生存周期&quot;&gt;&lt;a href=&quot;#变量作用域和生存周期&quot; class=&quot;headerlink&quot; t
     
     </summary>
     

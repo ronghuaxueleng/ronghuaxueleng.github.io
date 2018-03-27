@@ -119,9 +119,9 @@
 
   <title> 白云雅阁 </title>
   <!-- start Mixpanel --><script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
-0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
 for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
-mixpanel.init("16c569e7c921f690916c41f5c09a1930");</script><!-- end Mixpanel -->
+mixpanel.init("27c73634cbc4829e72a0313ba2090f16");</script><!-- end Mixpanel -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -544,6 +544,155 @@ Mixpanel主要流程如下：
             
               
                 
+                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(8)：工厂模式/" itemprop="url">
+                  工厂模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
+              2016-10-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/13/php设计模式/PHP设计模式(8)：工厂模式/"class="leancloud_visitors" data-flag-title="工厂模式"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          简介在[PHP设计模式(七)：设计模式分类][2]中我们提到过创建设计模式(Creationpatterns)，创建设计模式专注于设计对象(Object)和实例(Instance)的创建过程。创建设计模式包括下面五种设计模式：
+
+抽象工厂设计模式(Abstract Factory)
+
+生成器模式(Builder)
+
+工厂设计模式(Factory Method)
+
+原型设计模式(Prototype Method)
+
+单例设计模式(Singleton)
+
+
+当程序逐渐扩展的时候，需要更多的新对象，新对象的创建不应该依赖于创建者，换句话说，新对象的创建过程，不应该依赖调用创建函数的对象。为了减少冗余，增加拓展性，工厂模式就是一种创建新对象时使用的设计模式。
+工厂模式工厂模式，也是五种设计模式中唯一的类的设计模式(Class patterns)，即在类中就能实现的设计模式。听起来挺抽象？对比原型设计模式，这是一种对象设计模式(Object patterns)，通过对象的__clone()方法来实现的设计模式。在工厂模式中，新创建的对象/产品并不依赖于生产它的对象/工厂，新对象和调用者之间是低耦合状态。通常调用者和工厂交互，由工厂来生成新对象，新对象只和工厂有关。
+何时使用工厂模式？简单来说，当需求对类的个数不明确的时候，可以使用工厂模式，如：你需要创建一个在线博物馆，但你并不确切的知道究竟有多少文物，你不可能无限的增加新的文物类，同时对于损毁的文物，你不可能无限的去清理这些类。反过来说，如果你确切的知道类的总量，那么你就没有必要使用工程模式，直接通过继承的方式就能实现好的设计。
+Example还是使用我们惯用的鲸鱼和鲤鱼的例子，现在我们想实现一个海洋馆，目前我们并不确定究竟有多少海洋生物。先是一个抽象的工厂类：
+&lt;?php
+abstract class Factory {
+  protected abstract function create();
+  public function factoryStart() {
+    return $this-&gt;create();
+  }
+}
+?&gt;
+然后是两个工厂：鲸鱼工厂和鲤鱼工厂
+&lt;?php
+class WhaleFactory extends Factory {
+  protected functio
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(8)：工厂模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(4)：继承/" itemprop="url">
                   继承
                 </a>
@@ -706,8 +855,8 @@ Whale is chewin
             
               
                 
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(3)：封装/" itemprop="url">
-                  封装
+                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(7)：设计模式分类/" itemprop="url">
+                  设计模式分类
                 </a>
               
             
@@ -755,7 +904,7 @@ Whale is chewin
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/13/php设计模式/PHP设计模式(3)：封装/"class="leancloud_visitors" data-flag-title="封装"></span>
+            <span id="/2016/10/13/php设计模式/PHP设计模式(7)：设计模式分类/"class="leancloud_visitors" data-flag-title="设计模式分类"></span>
           
 
           
@@ -772,191 +921,20 @@ Whale is chewin
       
         
           
+          简介根据目的和范围，设计模式可以分为五类。按照目的分为：创建设计模式，结构设计模式，以及行为设计模式。按照范围分为：类的设计模式，以及对象设计模式。下面分别介绍。
+创建设计模式创建设计模式(Creational patterns)，用于创建对象时的设计模式。更具体一点，初始化对象流程的设计模式。当程序日益复杂时，需要更加灵活地创建对象，同时减少创建时的依赖。而创建设计模式就是解决此问题的一类设计模式。
+结构设计模式结构设计模式(Structural patterns)，用于继承和接口时的设计模式。结构设计模式用于新类的函数方法设计，减少不必要的类定义，减少代码的冗余。
+行为设计模式行为设计模式(Behavioralpatterns)，用于方法实现以及对应算法的设计模式，同时也是最复杂的设计模式。行为设计模式不仅仅用于定义类的函数行为，同时也用于不同类之间的协议、通信。
+类的设计模式类的设计模式(Class patterns)，用于类的具体实现的设计模式。包含了如何设计和定义类，以及父类和子类的设计模式。
+对象设计模式对象设计模式(Object patterns)，用于对象的设计模式。与类的设计模式不同，对象设计模式主要用于运行期对象的状态改变、动态行为变更等。
+为什么会重构？重构通常是由于现有程序的框架不能很好的适应新需求，虽然可以通过硬编码(hardcode)或者绕过(bypass)的方式来解决一个新需求，但这并不是长久之计。当新需求越来越多时，现在程序会越来越冗余，导致最后的不可维护。
+架构和设计模式的区别相比架构(frameworks)，设计模式是一些抽象的组成架构的元素，且更为灵活通用。架构更适合解决具体问题，使用架构构建应用程序将更为快捷，不过相比设计模式，架构牺牲了灵活性。
+Summary本文介绍了设计模式的分类，后面我们将分别介绍各种设计模式。
+
           
-原文地址：[PHP设计模式(三)：封装][1]
-
-简介面向对象编程中，一切都是对象，对一个对象的封装，也成了面向对象编程中必不可少的部分。和C/C++，Java，Python等语言一样，PHP也支持封装。
-封装/Encapsulation
-对事物的封装是指，将事物进行抽象后，提供抽象概念的实现的具体方法。
-
-听起来很拗口，还是举鲸鱼的例子。对于鲸鱼来说，需要吃东西这个行为，吃本身是一个抽象的概念，因为具体到怎么吃，是咀嚼和消化的过程，甚至如何咀嚼和消化也是不可见的。对外部而言，可见的只是吃这一个接口，如何吃、怎么吃，是被封装在了鲸鱼的实现中。甚至可以说，消化系统，被封装到了鲸鱼这个对象中，对外部不可见，仅仅鲸鱼自己可见。
-封装方法和别的程序设计语言一样，PHP也只是三种封装概念：Private，Protected，Public。
-私有/Private私有的概念是，仅仅对象内部可见，外部不可见，如：
-&lt;?php
-class Whale {
-  private $name;
-  public function __construct() {
-    $this-&gt;name = &quot;Whale&quot;;
-  }
-  public function eat($food) {
-    chew($food);
-    digest($food);
-  }
-  private function chew($food) {
-    echo &quot;Chewing &quot; . $food . &quot;\n&quot;;
-  }
-  private function digest($food) {
-    echo &quot;Digest &quot; . $food . &quot;\n&quot;;
-  }
-}
-?&gt;
-name是鲸鱼的私有属性，chew()和digest()是鲸鱼的私有方法，对于其他类来说，都是不可见的。对于现实来说，我们如果只是注重吃，并没有必要去关心鲸鱼是如何去吃的。
-保护/Protected保护的概念是，仅仅是自身类和继承类可见，这个关键字的用途主要是防止滥用类的派生，另外三方库编写的时候会用到，防止误用。
-&lt;?php
-abstract class Animal {
-  private $name;
- 
-          ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(3)：封装/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/" itemprop="url">
-                  抽象类和接口
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
-              2016-10-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/"class="leancloud_visitors" data-flag-title="抽象类和接口"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          简介对于编程来说，对事物的抽象是一个老生常谈的话题，抽象问题更利于面向对象编程以及程序设计模式。和C/C++，Java，Python等语言一样，PHP也支持面向对象，但是又有略微区别，如PHP支持在接口中定义常量，但是不支持抽象变量。
-抽象/Abstraction
-对事物的抽象是指，区别两个不同事物之间的本质特征，这两个事物应该在某个视角上有明确的区分界限。
-
-如，鲸鱼和鲤鱼，这两个事物在动物的视角上，有明确的区分界限，属于不同的动物；但是在水生动物的视角上，他们属于同一种动物的抽象。合理的对问题进行抽象，构造模型，将更容易通过编程来解决问题。记住：抽象是编程解决问题的基础，越复杂的问题，越需要一开始就对问题进行抽象，而不是直接写代码。
-抽象类/Abstract Class抽象类是一个编程概念，PHP中叫Abstract Classes。在设计模式中，抽象类不能够被实例化/初始化，但是可以依靠具体类的继承来实现。有点抽象，对吧？用代码来解释：
-&lt;?php
-abstract class Animal {
-  public $name;
-  abstract public function eat($food);
-}
-?&gt;
-定义了动物这个抽象类，动物的属性是名字name，然后有一个方法是吃食物eat food。为什么动物是抽象类？因为动物这个物种并不是一个存在于自然界的东西，它是人类脑海里抽象出的东西。存在自然界的是鲸鱼和鲤鱼这样的确定性动物。比如鲸鱼的概念，应该是属于动物，继承Animal类，我们定义鲸鱼这个类以及吃东西的方法：
-&lt;?php
-class Whale extends Animal {
-  public function __construct() {
-    $this-&gt;name = &quot;Whale&quot;;
-  }
-  public function eat($food) {
-    echo $this-&gt;name . &quot; eat &quot; . $food . &quot;.\n&quot;;
-  }
-}
-?&gt;
-现在我们可以初始鲸鱼类，并且调用吃的方法了：
-&lt;?php
-  $whale = new Whale();
-  $whale-&gt;eat(&quot;fish&quot;
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/#more" rel="contents">
+            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(7)：设计模式分类/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
