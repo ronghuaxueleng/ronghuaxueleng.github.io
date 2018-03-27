@@ -258,155 +258,6 @@ mixpanel.init("27c73634cbc4829e72a0313ba2090f16");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/" itemprop="url">
-                  代理模式的应用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/"class="leancloud_visitors" data-flag-title="代理模式的应用"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-虚拟代理实现图片预加载图片预加载：图片过大或者网络不佳时，图片位置有段时间会是一片空白，常见的用一张loading占位，然后异步加载图片，等图片加载好了再把它填充到img节点里。
-var myImage = (function() {
-    var imgNode = document.createElement(&apos;img&apos;);
-    document.body.appendChild( imgNode );
-    return {
-        setSrc : function( src ) {
-            imgNode.src = src;
-        }
-    }
-})();
-
-var proxyImage = (function() {
-    var img = new Image;
-    img.onload = function() {//图片加载完成之后触发
-        myImage.setSrc(this.src);
-    }
-    return {
-        setSrc: function(src) {
-            myImage.setSrc(&apos;loading.gif&apos;); //loading图片
-            img.src = src;
-        }
-    }
-})();
-proxyImage.setSrc(&apos;xxxx&apos;);
-这里我们通过proxyImage间接地访问MyImage，proxyImage控制了客户对MyImage的访问，因此在此过程中加入一些额外的操作，比如在真正图片加在之前先把img的节点的src设置成一张本地的图片。
-虚拟代理合并http请求假设我有一堆选项(checkbox)，每次点击就会往服务器同步文件，手速快的一秒或许可以点中四五个，然而太过平凡的服务器请求开销略大。因此，我们决定设置一个代理函数，将两秒之内的数据传输收集到一起两秒再发送一次，对于实时性要求不是很高的系统两秒延迟不会有太大副作用但是对服务器的压力就是量级的减少。
-var synchronousFile = function(id) {
-    console.log(&apos;开始同步文件&apos; + 
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/" itemprop="url">
                   状态模式
                 </a>
@@ -516,172 +367,6 @@ OffLightState.prototype.buttonW
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/" itemprop="url">
-                  代码重构
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/"class="leancloud_visitors" data-flag-title="代码重构"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-一些重构的建议：
-
-提炼函数
-
-避免出现超大函数
-
-独立出来的函数有助于代码复用
-
-独立出来的函数更容易被覆写
-
-独立出来的函数如果拥有一个良好的命名，
-
-它本身就起到了注释的作用。
-
-
-
-
-比如在一个负责取得用户信息的函数里面，我们还需要打印跟用户信息有关的log，那么打印log的语句就可以被封装在一个独立的函数里：
-var getUserInfo = function() {
-    ajax(&apos;http://xxx.com/userInfo&apos;, function(data) {
-        console.log(&apos;userId: &apos; + data.userId);
-        console.log(&apos;userName: &apos; + data.userName);
-        console.log(&apos;nickName: &apos; + data.nickName);
-    });
-};
-可以改成：
-var getUserInfo = function() {
-    ajax(&apos;http://xxx.com/userInfo&apos;, function(data) {
-        printDetails(data);
-    });
-};
-var printDetails = function(data) {
-    console.log(&apos;userId: &apos; + data.userId);
-    console.log(&apos;userName: &apos; + data.userName);
-    console.log(&apos;nickName: &apos; + data.nickName);
-}
-
-合并重复的条件片段如果一个函数内有一些条件分支语句，而这些条件分支语句内部散步了一些重复的代码，那么就有必要进行合并去重工作。
-
-//页面跳转
-var paging = function(currPage) {
-    if (currPage &lt;= 0) {
-        currPage = 0;
-        jump(currPage); //跳转
-    } else if (currPage 
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -894,8 +579,8 @@ var MyClass2 = function() {
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/2闭包/" itemprop="url">
-                  闭包
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/" itemprop="url">
+                  高阶函数
                 </a>
               
             
@@ -943,7 +628,7 @@ var MyClass2 = function() {
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/2闭包/"class="leancloud_visitors" data-flag-title="闭包"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/"class="leancloud_visitors" data-flag-title="高阶函数"></span>
           
 
           
@@ -961,49 +646,364 @@ var MyClass2 = function() {
         
           
           
-闭包是js中一个难懂又必须征服的概念，他的形成与变量作用域以及变量的生存周期密切相关。
+高阶函数是至少满足下列条件之一的函数
 
-变量作用域和生存周期作用域，按字面理解，就是指变量的有效范围，超出这个范围就无法访问。在函数中，里面函数可以访问外面的变量，但是外面无法访问内部变量。举个简单例子：
-var a = 1;
-var fun1 = function() {
-    var b = 2;
-    var fun2 = function() {
-        var c = 3;
-        alert(b); //2
-        alert(c); //3
-    }
-    fun2();
-    alert(c); //c is not defined
-};
-fun1();
-生存周期：全局变量的生存周期是永久的，除非我们主动销毁，但是普通对于用var声明的局部变量，当退出函数不再使用时，就会被销毁。但是当你使用到闭包时，情况就不一样了
-var fun = function() {
-    var a = 1;
-    return function() {
-        a++;
-        alert(a);
-    }
-};
-var f = fun();
-f(); //2
-f(); //3
-f(); //4
-f(); //5
-解释：当执行var f = fun();时，f返回了一个匿名函数的引用，它可以访问到fun()被调用的生产环境，而局部变量a一直在这个环境中。既然局部变量能被外界访问，那它就有了不被销毁的理由，于是局部变量生命被延续了。
-再例如：
-var nodes = document.getElemmentByTagName(&apos;div&apos;); //此处他的长度为5
-for (var i = 0, len = nodes.length; i &lt; len; i++) {
-    nodes[i].onclick = function() {
-        alert(i);
+函数可以作为参数被传递
+函数可以作为返回值输出（js这么好的语言中的函数当然满足 ^^）_
+
+函数作为参数传递把函数当作参数传递，可以抽离出一部分容易变化的业务逻辑，把这部分业务逻辑放在函数中，可以分离业务代码中变与不变的部分。
+
+回调函数，ajax异步，callback
+
+var getUserInfo() = function(userId, callback) {
+    $.ajax(&apos;http://xxx.com/getUserInfo?&apos; + userId, function(data) {
+        if (typeof(callback === &apos;function&apos;) {
+            callback(data);
+        }
+    });
+}
+getUserInfo(13157, function(data) {
+    alert(data.user);
+})
+高阶函数实现AOPAOP（面向切面编程），把一些跟核心业务逻辑模块无关的功能抽离出来（通常包括日志统计，安全控制，异常处理等）
+Function.prototype.before = function(beforefn) {
+    var __self = this; //保存原函数的引用
+    return function() { //返回包含原函数和新函数的“代理”函数
+        beforefn.apply(this, arguments); //执行新函数，修正this
+        return __self.apply(this, arguments); //执行原函数
     }
 };
-以上代码无论点哪个div显示的都是5（div节点的onclick是异步触发的，当事件触发时，循环已经结束，此时i的值是5）解决方法：闭包大法好
-for (var i = 0, len = nodes.length; i &lt; len; i++) {
- 
+
+Function.prototype.after= function(afterfn) {
+    var __self = this; 
+    return function() { 
+        var ret = __self.apply(this, arguments);
+        afterfn.apply(this, arguments); 
+        return ret ;
+    }
+};
+
+var func = function()
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/2闭包/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/" itemprop="url">
+                  单例模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/"class="leancloud_visitors" data-flag-title="单例模式"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。
+实现单例模式//1.实现单例模式
+var Singleton = function (name) {
+  this.name = name;
+};
+Singleton.prototype.getName = function() {
+  alert(this.name);
+};
+Singleton.getInstance = (function() {
+  var instance = null;
+  return function(name) {
+    if (!instance) {
+      instance = new Singleton(name);
+    }
+    return instance;
+  }
+})();
+var a = Singleton.getInstance(&apos;sven1&apos;);
+var b = Singleton.getInstance(&apos;sven2&apos;);
+
+console.log(a === b); //true
+以上，我们通过Singleton.getInstance来获取Singleton类的唯一对象，虽然简单但是增加了这个类的“不透明性”，Singleton类的使用者必须知道这是一个单例类，跟以往通过new xxx的方法不同
+透明的单例模式有了以上的不足，我们现在就来解决
+//透明的单例模式 
+var CreateDiv = (function() {
+  var instance;
+  var CreateDiv = function(html) {
+    if (instance) {
+      return instance;
+    }
+    this.html = html;
+    this.init();
+    return instance = this;
+  };
+
+  CreateDiv.prototype.init = function() {
+    var div = document.createElement(&apos;div&apos;);
+    div.innerHTML = this.html;
+    document.b
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/" itemprop="url">
+                  策略模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/"class="leancloud_visitors" data-flag-title="策略模式"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+定义：定义一系列算法，把他们一个个封装起来，并且使他们可以相互替换。
+
+需求：绩效为S的人年终奖有4倍工资，绩效为A的人年终奖有3倍工资，绩效为B的人年终奖有2倍工资。
+var calculateBonus = function(performanceLevel, salary) {
+    if (performanceLevel === &apos;S&apos;) {
+        return salary * 4;
+    }
+    if (performanceLevel === &apos;A&apos;) {
+        return salary * 3;
+    }
+    if (performanceLevel === &apos;B&apos;) {
+        return salary * 2;
+    }
+};
+
+calculateBonus(&apos;B&apos;, 20000); //輸出：40000
+然而，calculateBonus函数比较庞大，包含了很多if语句，且缺乏弹性，如果增加新的绩效等级，复用性差，如果在程序的其他地方需要重用这些计算奖金的算法，我们的选择只有复制和粘贴。因此，我们要重构这段代码。
+var performanceS = function(salary) {
+    return salary * 4;
+}
+var performanceA = function(salary) {
+    return salary * 3;
+}
+var performanceB = function(salary) {
+    return salary * 2;
+}
+
+var calculateBonus = function(performanceLevel, salary) {
+    if (performanceLevel == &apos;S&apos;) {
+        return performanceS(salary);
+    }
+    if (performanceLevel == &apos;A&apos;) {
+        return performanceA(salary);
+    }
+    if (performanceLevel == &apos;B
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

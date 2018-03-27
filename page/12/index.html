@@ -258,8 +258,8 @@ mixpanel.init("27c73634cbc4829e72a0313ba2090f16");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/08/30/javascript/fetch和XMLHttpRequest讲解/" itemprop="url">
-                  fetch和XMLHttpRequest讲解
+                <a class="post-title-link" href="/2016/08/30/javascript/call和apply区别解析/" itemprop="url">
+                  call和apply区别解析
                 </a>
               
             
@@ -307,7 +307,7 @@ mixpanel.init("27c73634cbc4829e72a0313ba2090f16");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/08/30/javascript/fetch和XMLHttpRequest讲解/"class="leancloud_visitors" data-flag-title="fetch和XMLHttpRequest讲解"></span>
+            <span id="/2016/08/30/javascript/call和apply区别解析/"class="leancloud_visitors" data-flag-title="call和apply区别解析"></span>
           
 
           
@@ -323,10 +323,9 @@ mixpanel.init("27c73634cbc4829e72a0313ba2090f16");</script><!-- end Mixpanel -->
 
       
         
-          <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p><code>fetch</code> 同 <code>XMLHttpRequest</code> 非常类似，都是用来做网络请求。但是同复杂的<code>XMLHttpRequest</code>的API相比，<code>fetch</code>使用了<code>Promise</code>，这让它使用起来更加简洁，从而避免陷入”回调地狱”。</p>
-<h1 id="两者比较"><a href="#两者比较" class="headerlink" title="两者比较"></a>两者比较</h1><p>比如，如果我们想要实现这样一个需求：请求一个URL地址，获取响应数据并将数据转换成JSON格式。使用<code>fetch</code>和<code>XMLHttpRequest</code>实现的方式是不同的。</p>
+          <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>   很多前端工程师的人说自己精通Javascript语言，问他call()和apply()这两个方法有什么区别，结果往往是一问三不知。<br>    其实区分 apply和call就一句话：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">foo.call(<span class="keyword">this</span>,arg1,arg2,arg3)==foo.apply(thsi,<span class="built_in">arguments</span>)==<span class="keyword">this</span>.foo(arg1,arg2,arg3);</div></pre></td></tr></table></figure></p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/30/javascript/fetch和XMLHttpRequest讲解/#more" rel="contents">
+            <a class="btn" href="/2016/08/30/javascript/call和apply区别解析/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

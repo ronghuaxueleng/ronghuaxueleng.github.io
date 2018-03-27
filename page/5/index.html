@@ -258,8 +258,8 @@ mixpanel.init("27c73634cbc4829e72a0313ba2090f16");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/" itemprop="url">
-                  高阶函数
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/" itemprop="url">
+                  策略模式的应用
                 </a>
               
             
@@ -307,7 +307,7 @@ mixpanel.init("27c73634cbc4829e72a0313ba2090f16");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/"class="leancloud_visitors" data-flag-title="高阶函数"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/"class="leancloud_visitors" data-flag-title="策略模式的应用"></span>
           
 
           
@@ -325,204 +325,51 @@ mixpanel.init("27c73634cbc4829e72a0313ba2090f16");</script><!-- end Mixpanel -->
         
           
           
-高阶函数是至少满足下列条件之一的函数
+用策略模式实现缓动动画需求：让小球以各种缓动效果在页面中运动动画开始前需要记录的：
 
-函数可以作为参数被传递
-函数可以作为返回值输出（js这么好的语言中的函数当然满足 ^^）_
+小球所在原始位置
 
-函数作为参数传递把函数当作参数传递，可以抽离出一部分容易变化的业务逻辑，把这部分业务逻辑放在函数中，可以分离业务代码中变与不变的部分。
+小球移动的目标位置
 
-回调函数，ajax异步，callback
+动画开始时的时间点
 
-var getUserInfo() = function(userId, callback) {
-    $.ajax(&apos;http://xxx.com/getUserInfo?&apos; + userId, function(data) {
-        if (typeof(callback === &apos;function&apos;) {
-            callback(data);
-        }
-    });
-}
-getUserInfo(13157, function(data) {
-    alert(data.user);
-})
-高阶函数实现AOPAOP（面向切面编程），把一些跟核心业务逻辑模块无关的功能抽离出来（通常包括日志统计，安全控制，异常处理等）
-Function.prototype.before = function(beforefn) {
-    var __self = this; //保存原函数的引用
-    return function() { //返回包含原函数和新函数的“代理”函数
-        beforefn.apply(this, arguments); //执行新函数，修正this
-        return __self.apply(this, arguments); //执行原函数
+小球运动的时间点之后，用setInterval创建一个定时器，定时器每19秒循环一次。
+
+
+//缓动算法，此算法移植于flash
+
+var tween = {
+    //t：动画已消耗的时间，b：小球原始位置，c：小球目标位置，d：动画持续时间
+    linear: function(t, b, c, d) {
+        return c*t/d + b;
+    },
+    reseIn: function(t, b, c, d) {
+        return c * (t /= d) * t + b;
+    },
+    strongEaseIn: function(t, b, c, d) {
+        return c * (t /= d) * t * t * t * t + b;
+    },
+    strongEaseOut: function(t, b, c, d) {
+        return c * (( t = t / d - 1) * t * t * t * t + 1) + b;
+    },
+    sineaseIn: function(t, b, c, d) {
+        return c * (t /= d) * t * t + b;
+    },
+    sineaseOur: function(t, b, c, d) {
+        return c * ((t = t / d - 1) * t * t + 1 ) + b;
     }
 };
-
-Function.prototype.after= function(afterfn) {
-    var __self = this; 
-    return function() { 
-        var ret = __self.apply(this, arguments);
-        afterfn.apply(this, arguments); 
-        return ret ;
-    }
-};
-
-var func = function()
+接着Animation类
+var Animate = function( dom ) {
+    this.dom = dom;              //进行运动的dom节点
+    this.startTime = 0;         //动画开始时间
+    this.startPos = 0;           //动画开始时候dom位置
+    this.endPos = 0;            //结束dom位置
+    this.propertyName = null;     
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/" itemprop="url">
-                  策略模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/"class="leancloud_visitors" data-flag-title="策略模式"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-定义：定义一系列算法，把他们一个个封装起来，并且使他们可以相互替换。
-
-需求：绩效为S的人年终奖有4倍工资，绩效为A的人年终奖有3倍工资，绩效为B的人年终奖有2倍工资。
-var calculateBonus = function(performanceLevel, salary) {
-    if (performanceLevel === &apos;S&apos;) {
-        return salary * 4;
-    }
-    if (performanceLevel === &apos;A&apos;) {
-        return salary * 3;
-    }
-    if (performanceLevel === &apos;B&apos;) {
-        return salary * 2;
-    }
-};
-
-calculateBonus(&apos;B&apos;, 20000); //輸出：40000
-然而，calculateBonus函数比较庞大，包含了很多if语句，且缺乏弹性，如果增加新的绩效等级，复用性差，如果在程序的其他地方需要重用这些计算奖金的算法，我们的选择只有复制和粘贴。因此，我们要重构这段代码。
-var performanceS = function(salary) {
-    return salary * 4;
-}
-var performanceA = function(salary) {
-    return salary * 3;
-}
-var performanceB = function(salary) {
-    return salary * 2;
-}
-
-var calculateBonus = function(performanceLevel, salary) {
-    if (performanceLevel == &apos;S&apos;) {
-        return performanceS(salary);
-    }
-    if (performanceLevel == &apos;A&apos;) {
-        return performanceA(salary);
-    }
-    if (performanceLevel == &apos;B
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/5策略模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/6策略模式的应用/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -737,8 +584,8 @@ var A = {
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/" itemprop="url">
-                  单例模式
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/" itemprop="url">
+                  代理模式的应用
                 </a>
               
             
@@ -786,7 +633,7 @@ var A = {
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/"class="leancloud_visitors" data-flag-title="单例模式"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/"class="leancloud_visitors" data-flag-title="代理模式的应用"></span>
           
 
           
@@ -804,49 +651,38 @@ var A = {
         
           
           
-用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。
-实现单例模式//1.实现单例模式
-var Singleton = function (name) {
-  this.name = name;
-};
-Singleton.prototype.getName = function() {
-  alert(this.name);
-};
-Singleton.getInstance = (function() {
-  var instance = null;
-  return function(name) {
-    if (!instance) {
-      instance = new Singleton(name);
+虚拟代理实现图片预加载图片预加载：图片过大或者网络不佳时，图片位置有段时间会是一片空白，常见的用一张loading占位，然后异步加载图片，等图片加载好了再把它填充到img节点里。
+var myImage = (function() {
+    var imgNode = document.createElement(&apos;img&apos;);
+    document.body.appendChild( imgNode );
+    return {
+        setSrc : function( src ) {
+            imgNode.src = src;
+        }
     }
-    return instance;
-  }
 })();
-var a = Singleton.getInstance(&apos;sven1&apos;);
-var b = Singleton.getInstance(&apos;sven2&apos;);
 
-console.log(a === b); //true
-以上，我们通过Singleton.getInstance来获取Singleton类的唯一对象，虽然简单但是增加了这个类的“不透明性”，Singleton类的使用者必须知道这是一个单例类，跟以往通过new xxx的方法不同
-透明的单例模式有了以上的不足，我们现在就来解决
-//透明的单例模式 
-var CreateDiv = (function() {
-  var instance;
-  var CreateDiv = function(html) {
-    if (instance) {
-      return instance;
+var proxyImage = (function() {
+    var img = new Image;
+    img.onload = function() {//图片加载完成之后触发
+        myImage.setSrc(this.src);
     }
-    this.html = html;
-    this.init();
-    return instance = this;
-  };
-
-  CreateDiv.prototype.init = function() {
-    var div = document.createElement(&apos;div&apos;);
-    div.innerHTML = this.html;
-    document.b
+    return {
+        setSrc: function(src) {
+            myImage.setSrc(&apos;loading.gif&apos;); //loading图片
+            img.src = src;
+        }
+    }
+})();
+proxyImage.setSrc(&apos;xxxx&apos;);
+这里我们通过proxyImage间接地访问MyImage，proxyImage控制了客户对MyImage的访问，因此在此过程中加入一些额外的操作，比如在真正图片加在之前先把img的节点的src设置成一张本地的图片。
+虚拟代理合并http请求假设我有一堆选项(checkbox)，每次点击就会往服务器同步文件，手速快的一秒或许可以点中四五个，然而太过平凡的服务器请求开销略大。因此，我们决定设置一个代理函数，将两秒之内的数据传输收集到一起两秒再发送一次，对于实时性要求不是很高的系统两秒延迟不会有太大副作用但是对服务器的压力就是量级的减少。
+var synchronousFile = function(id) {
+    console.log(&apos;开始同步文件&apos; + 
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/4单例模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/8代理模式的应用/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -897,8 +733,8 @@ var CreateDiv = (function() {
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/" itemprop="url">
-                  设计原则和编程技巧
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/" itemprop="url">
+                  迭代器模式
                 </a>
               
             
@@ -946,7 +782,7 @@ var CreateDiv = (function() {
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/"class="leancloud_visitors" data-flag-title="设计原则和编程技巧"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/"class="leancloud_visitors" data-flag-title="迭代器模式"></span>
           
 
           
@@ -964,43 +800,178 @@ var CreateDiv = (function() {
         
           
           
-单一职责原则就一个类而言，应该仅有一个引起它变化的原因。在JavaScript中，需要用到类的场景并不太多，单一职责原则（SRP）更多的是被运用在对象或者方法级别上。总之，SRP原则体现为：一个对象（方法）只做一件事情。例如：
 
-代理模式
+迭代器模式是指提供一种方法，顺序访问一个聚合对象中的各个元素，而又不需要暴露该对象的内部表示。迭代器模式可以把迭代的过程从业务逻辑中分离出来，在使用迭代器模式之后，即使不关心内部构造，也可以按顺序访问其中的每个元素。
 
-迭代器模式
+jQuery中的迭代器迭代器模式无非就是循环访问聚合对象中的各个元素。比如jQuery中的$.each函数，其中回调函数中的i为当前 索引，n为当前元素，代码如下
+$.each([1, 2, 3], function(i, n) {
+    console.log(&apos;当前坐标：&apos; + i);
+    console.log(&apos;当前值：&apos; + n);
+});
+然而，作为一个合格的前端开发者，我们不应该只是会用，而更应该去研究他的实现，因此下面我们就来自己实现一个each函数
+var each = function(ary, callback) {
+    for(var i = 0, l = ary.length; i &lt; l; i++) {
+        callback.call(ary[i], i, ary[i]); //把下标和元素当作参数传给callback函数
+    }
+};
+each([1,2,3], function(i, n) {
+    alert([i,n]);
+});
+内部迭代器和外部迭代器像刚刚编写的each函数属于内部迭代器，each函数的内部已经定义好了迭代规则，它完全接手整个迭代过程，外部只需要一次初始调用.然而，如果你想同时迭代两个数组，例如：判断两个数组里的元素的值是否完全相等。此时如果不去改写each函数本身的代码，就只能够增加一个compare函数然后对each的回调进行更改了。
+var compare = function(ary1, ary2) {
+    if (ary1.length !== ary2.length) {
+        throw new Error(&apos;ary1和ary2不相等&apos;);
+    }
+    each(ary1, function(i ,n) {
+        if (n !== ary2[i]) {
+            throw new Error(&apos;ary1和ary2不相等&apo
+          ...
 
-单例模式
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/9迭代器模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
 
-装饰者模式但是，并不是所有的职责都应该一一分离的，一方面如果随着需求的变化，有两个职责是同时变化的，那就不必分离他们。比如在ajax请求的时候，创建xhr对象和发送xhr请求几乎总是在一起的，那么创建xhr对象的职责和发送xhr对象的职责就没有必要分开。
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
 
 
-另一方面，职责的变化轴线仅当它们确定会发生变化时才有意义，即使两个职责已经被耦合在一起但他们没有发生改变的征兆，那么也许没有必要主动分离他们，在代码需要重构的时候再分离也不迟。
-最少知识原则最少知识原则（LKP）说的是一个软件实体应当尽可能少与其他实体发生相互作用。这里的软件的实体是一个广义的概念，不仅包括对象，还包括系统，类，模块，函数，变量等。单一职责原则指导我们把对象划分成较小的粒度，这可以提高对象的可复用性。但越来越多的对象之间可能会产生错综复杂的联系，如果修改了其中一个对象，很可能会影响到跟它相互引用的其他对象。对象和对象耦合在一起，有可能会降低他们的复用性。在程序中，对象的“朋友”太多并不是一件好事。最少知识原则要求我们在设计程序时，应当尽量减少对象之间的交互。如果两个对象之间不必彼此直接通信，那么两个对象就不要发生直接的相互联系。常见的做法是引入一个第三者对象，来承担这些对象之间的通信作用。如果一些对象需要向另一些对象发起请求，可以通过第三者对象来转发这些请求。体现地方：
+    
+      
 
-中介者模式
+  
+  
 
-外观模式
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
-开放-封闭原则在面向对象的程序设计中，开放-封闭原则（OCP）是最重要的一条原则。他的定义为：软件实体（类，模块，函数）等应该是可以拓展的，但是不可修改的。举例：
+    
+      <header class="post-header">
 
-发布-订阅模式
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/" itemprop="url">
+                  发布订阅模式
+                </a>
+              
+            
+          </h1>
+        
 
-模板方法模式
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
 
-策略模式
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
 
-代理模式
+                
+                
 
-职责链模式
+              
+            </span>
+          
 
-
+          
+            
+          
 
           
 
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/"class="leancloud_visitors" data-flag-title="发布订阅模式"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+
+发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。在JavaScript开发中，我们一般用事件模型来替代传统的发布—订阅模式。
+
+
+发布—订阅模式可以广泛应用于异步编程中，这是一种替代传递回调函数的方案。比如，我们可以订阅ajax 请求的error、succ 等事件。 或者如果想在动画的每一帧完成之后做一些事情，那我们可以订阅一个事件，然后在动画的每一帧完成之后发布这个事件。在异步编程中使用发布—订阅模式，我们就无需过多关注对象在异步运行期间的内部状态，而只需要订阅感兴趣的事件发生点。
+
+发布—订阅模式可以取代对象之间硬编码的通知机制，一个对象不用再显式地调用另外一个对象的某个接口。发布—订阅模式让两个对象松耦合地联系在一起，虽然不太清楚彼此的细节，但这不影响它们之间相互通信。当有新的订阅者出现时，发布者的代码不需要任何修改；同样发布者需要改变时，也不会影响到之前的订阅者。只要之前约定的事件名没有变化，就可以自由地改变它们。
+
+
+DOM 事件实际上，只要我们曾经在DOM节点上面绑定过事件函数，那我们就曾经使用过发布—订阅模式，例如
+document.body.addEventListener( &apos;click&apos;, function(){
+    alert(2);
+}, false );
+document.body.click(); // 模拟用户点击
+在这里需要监控用户点击document.body的动作，但是我们没办法预知用户将在什么时候点击。所以我们订阅document.body上的click事件，当body 节点被点击时，body节点便会向订阅者发布这个消息。当然我们还可以随意增加或者删除订阅者，增加任何订阅者都不会影响发布者代码的编写。
+自定义事件除了DOM 事件，我们还会经常实现一些自定义的事件，这种依靠自定义事件完成的发布—订阅模式可以用于任何JavaScript 代码中。步骤：
+
+指定好谁充当发布者（例如售楼处）
+
+然后给发布者添加一个缓存列表，用于存放回调函数以便通知订阅者（售楼处的花名册）
+
+最后发布消息的时候，发布者会遍历整个缓存列表，依次触发里面存放的订阅者回调函数（遍历花名册挨个发短信通知有空房）另外，我们还可以往回调函数里填入一些参数，订阅者
+          ...
+
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

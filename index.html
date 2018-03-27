@@ -544,8 +544,8 @@ Mixpanel主要流程如下：
             
               
                 
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(8)：工厂模式/" itemprop="url">
-                  工厂模式
+                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(9)：原型设计模式/" itemprop="url">
+                  原型设计模式
                 </a>
               
             
@@ -593,7 +593,7 @@ Mixpanel主要流程如下：
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/13/php设计模式/PHP设计模式(8)：工厂模式/"class="leancloud_visitors" data-flag-title="工厂模式"></span>
+            <span id="/2016/10/13/php设计模式/PHP设计模式(9)：原型设计模式/"class="leancloud_visitors" data-flag-title="原型设计模式"></span>
           
 
           
@@ -610,39 +610,42 @@ Mixpanel主要流程如下：
       
         
           
-          简介在[PHP设计模式(七)：设计模式分类][2]中我们提到过创建设计模式(Creationpatterns)，创建设计模式专注于设计对象(Object)和实例(Instance)的创建过程。创建设计模式包括下面五种设计模式：
-
-抽象工厂设计模式(Abstract Factory)
-
-生成器模式(Builder)
-
-工厂设计模式(Factory Method)
-
-原型设计模式(Prototype Method)
-
-单例设计模式(Singleton)
-
-
-当程序逐渐扩展的时候，需要更多的新对象，新对象的创建不应该依赖于创建者，换句话说，新对象的创建过程，不应该依赖调用创建函数的对象。为了减少冗余，增加拓展性，工厂模式就是一种创建新对象时使用的设计模式。
-工厂模式工厂模式，也是五种设计模式中唯一的类的设计模式(Class patterns)，即在类中就能实现的设计模式。听起来挺抽象？对比原型设计模式，这是一种对象设计模式(Object patterns)，通过对象的__clone()方法来实现的设计模式。在工厂模式中，新创建的对象/产品并不依赖于生产它的对象/工厂，新对象和调用者之间是低耦合状态。通常调用者和工厂交互，由工厂来生成新对象，新对象只和工厂有关。
-何时使用工厂模式？简单来说，当需求对类的个数不明确的时候，可以使用工厂模式，如：你需要创建一个在线博物馆，但你并不确切的知道究竟有多少文物，你不可能无限的增加新的文物类，同时对于损毁的文物，你不可能无限的去清理这些类。反过来说，如果你确切的知道类的总量，那么你就没有必要使用工程模式，直接通过继承的方式就能实现好的设计。
-Example还是使用我们惯用的鲸鱼和鲤鱼的例子，现在我们想实现一个海洋馆，目前我们并不确定究竟有多少海洋生物。先是一个抽象的工厂类：
+          简介在[PHP设计模式(八)：工厂模式][2]中我们介绍了创建设计模式(Creationpatterns)中的工厂模式，下面我们将介绍另一种原型设计模式(Prototype Method)。在PHP中，原型设计模式依靠cloning复制对象来实现。通过cloning构造的对象，将大量节省新对象的构造时间。
+何时使用原型设计模式？简单来说，当你希望根据已有的对象来创建新对象时。为什么会有这种需求？想象一下，你在做细胞分裂的项目，每一个细胞都是一个对象，现在你有一个细胞类，每一个新的细胞都是由这个类生成的，不同的细胞只是内部的状态参数不同。当分裂到第N代的时候，已经和初代大不一样了，你是愿意使用第N代的副本修改一下呢？还是愿意从初代慢慢推演？
+ExamplePHP提供了内建的__clone()函数以及clone关键字，来实现对象的复制。下面给出一个例子：
 &lt;?php
-abstract class Factory {
-  protected abstract function create();
-  public function factoryStart() {
-    return $this-&gt;create();
+abstract class Cell {
+  public $id;
+  public $dna;
+  abstract function __clone();
+}
+
+class WhaleCell extends Cell {
+  public function __construct() {
+    $this-&gt;id = 1;
+    $this-&gt;dna = &quot;ATCG&quot;;
+  }
+  public function displayDNA() {
+    echo $this-&gt;dna . &quot;\n&quot;;
+  }
+  function __clone() {
+    $this-&gt;id = $this-&gt;id + 1;
+    if ($this-&gt;id % 3 == 0) {
+      $this-&gt;dna = $this-&gt;dna . &quot;AT&quot;;
+    }
+    if ($this-&gt;id % 5 == 0) {
+      $this-&gt;dna = $this-&gt;dna . &quot;CG&quot;;
+    }
   }
 }
-?&gt;
-然后是两个工厂：鲸鱼工厂和鲤鱼工厂
-&lt;?php
-class WhaleFactory extends Factory {
-  protected functio
+
+$whaleCell = new WhaleCell();
+$whaleCell-&gt;displayDNA();
+$whale
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(8)：工厂模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(9)：原型设计模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -693,8 +696,162 @@ class WhaleFactory extends Factory {
             
               
                 
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(4)：继承/" itemprop="url">
-                  继承
+                <a class="post-title-link" href="/2016/10/13/javascript/从 JavaScript 数组去重谈性能优化/" itemprop="url">
+                  从 JavaScript 数组去重谈性能优化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
+              2016-10-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/13/javascript/从 JavaScript 数组去重谈性能优化/"class="leancloud_visitors" data-flag-title="从 JavaScript 数组去重谈性能优化"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          缘由JavaScript 数组去重经常出现在前端招聘的笔试题里，比如：
+
+有数组 var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, &#39;c&#39;, 1, &#39;&#39;, 1, 0]，请用 JavaScript实现去重函数 unqiue，使得 unique(arr) 返回 [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, 1, &#39;&#39;]
+
+作为笔试题，考点有二：
+
+正确。别小看这个考点，考虑到 JavaScript 经常要在浏览器上运行，在千姿百态的各种浏览器环境下要保障一个函数的正确性可不是一件简单的事，不信你继续读完这篇博客。
+
+性能。虽然大部分情况下 JavaScript 语言本身（狭义范畴，不包含 DOM 等延拓）不会导致性能问题，但很不幸这是一道考题，因此面试官们还是会把性能作为一个考点。
+
+
+在继续往下阅读之前，建议先实现一个自己认为最好的版本。
+直觉方案对于数组去重，只要写过程序的，立刻就能得到第一个解法：
+function unique(arr) {
+  var ret = []
+
+  for (var i = 0; i &lt; arr.length; i++) {
+    var item = arr[i]
+    if (ret.indexOf(item) === -1) {
+      ret.push(item)
+    }
+  }
+
+  return ret
+}
+直觉往往很靠谱，在现代浏览器下，上面这个函数很正确，性能也不错。但前端最大的悲哀也是挑战之处在于，要支持各种运行环境。在 IE6-8 下，数组的indexOf 方法还不存在。直觉方案要稍微改造一下：
+var indexOf = [].indexOf ?
+    function(arr, item) {
+      return arr.indexOf(item)
+    } :
+    function indexOf(arr, item) {
+      for (var i = 0; i &lt; arr.length; i++) {
+        if (arr[i] === item) {
+   
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/13/javascript/从 JavaScript 数组去重谈性能优化/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/" itemprop="url">
+                  抽象类和接口
                 </a>
               
             
@@ -742,7 +899,7 @@ class WhaleFactory extends Factory {
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/13/php设计模式/PHP设计模式(4)：继承/"class="leancloud_visitors" data-flag-title="继承"></span>
+            <span id="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/"class="leancloud_visitors" data-flag-title="抽象类和接口"></span>
           
 
           
@@ -759,182 +916,37 @@ class WhaleFactory extends Factory {
       
         
           
-          简介在[PHP设计模式(二)：抽象类和接口][2]以及[PHP设计模式(三)：封装][3]中，我们已经见过继承，也就是extends关键字。和C/C++，Java，Python等语言一样，PHP也支持继承，而且和其他语言没有什么区别。
-继承/Inheritance还是用动物、鲸鱼和鲤鱼来举例：
+          简介对于编程来说，对事物的抽象是一个老生常谈的话题，抽象问题更利于面向对象编程以及程序设计模式。和C/C++，Java，Python等语言一样，PHP也支持面向对象，但是又有略微区别，如PHP支持在接口中定义常量，但是不支持抽象变量。
+抽象/Abstraction
+对事物的抽象是指，区别两个不同事物之间的本质特征，这两个事物应该在某个视角上有明确的区分界限。
+
+如，鲸鱼和鲤鱼，这两个事物在动物的视角上，有明确的区分界限，属于不同的动物；但是在水生动物的视角上，他们属于同一种动物的抽象。合理的对问题进行抽象，构造模型，将更容易通过编程来解决问题。记住：抽象是编程解决问题的基础，越复杂的问题，越需要一开始就对问题进行抽象，而不是直接写代码。
+抽象类/Abstract Class抽象类是一个编程概念，PHP中叫Abstract Classes。在设计模式中，抽象类不能够被实例化/初始化，但是可以依靠具体类的继承来实现。有点抽象，对吧？用代码来解释：
 &lt;?php
 abstract class Animal {
-  protected $name;
-
-  protected function chew($food) {
-    echo $this-&gt;name . &quot; is chewing &quot; . $food . &quot;.\n&quot;;
-  }
-  protected function digest($food) {
-    echo $this-&gt;name . &quot; is digesting &quot; . $food . &quot;.\n&quot;;
-  }
+  public $name;
+  abstract public function eat($food);
 }
-
+?&gt;
+定义了动物这个抽象类，动物的属性是名字name，然后有一个方法是吃食物eat food。为什么动物是抽象类？因为动物这个物种并不是一个存在于自然界的东西，它是人类脑海里抽象出的东西。存在自然界的是鲸鱼和鲤鱼这样的确定性动物。比如鲸鱼的概念，应该是属于动物，继承Animal类，我们定义鲸鱼这个类以及吃东西的方法：
+&lt;?php
 class Whale extends Animal {
   public function __construct() {
     $this-&gt;name = &quot;Whale&quot;;
   }
   public function eat($food) {
-    $this-&gt;chew($food);
-    $this-&gt;digest($food);
+    echo $this-&gt;name . &quot; eat &quot; . $food . &quot;.\n&quot;;
   }
 }
-
-class Carp extends Animal {
-  public function __construct() {
-    $this-&gt;name = &quot;Carp&quot;;
-  }
-  public function eat($food) {
-    $this-&gt;chew($food);
-    $this-&gt;digest($food);
-  }
-}
-
-$whale = new Whale();
-$whale-&gt;eat(&quot;fish&quot;);
-$carp = new Carp();
-$carp-&gt;eat(&quot;moss&quot;);
 ?&gt;
-运行一下：
-$ php Inheritance.php
-Whale is chewin
+现在我们可以初始鲸鱼类，并且调用吃的方法了：
+&lt;?php
+  $whale = new Whale();
+  $whale-&gt;eat(&quot;fish&quot;
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(4)：继承/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(7)：设计模式分类/" itemprop="url">
-                  设计模式分类
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
-              2016-10-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/13/php设计模式/PHP设计模式(7)：设计模式分类/"class="leancloud_visitors" data-flag-title="设计模式分类"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          简介根据目的和范围，设计模式可以分为五类。按照目的分为：创建设计模式，结构设计模式，以及行为设计模式。按照范围分为：类的设计模式，以及对象设计模式。下面分别介绍。
-创建设计模式创建设计模式(Creational patterns)，用于创建对象时的设计模式。更具体一点，初始化对象流程的设计模式。当程序日益复杂时，需要更加灵活地创建对象，同时减少创建时的依赖。而创建设计模式就是解决此问题的一类设计模式。
-结构设计模式结构设计模式(Structural patterns)，用于继承和接口时的设计模式。结构设计模式用于新类的函数方法设计，减少不必要的类定义，减少代码的冗余。
-行为设计模式行为设计模式(Behavioralpatterns)，用于方法实现以及对应算法的设计模式，同时也是最复杂的设计模式。行为设计模式不仅仅用于定义类的函数行为，同时也用于不同类之间的协议、通信。
-类的设计模式类的设计模式(Class patterns)，用于类的具体实现的设计模式。包含了如何设计和定义类，以及父类和子类的设计模式。
-对象设计模式对象设计模式(Object patterns)，用于对象的设计模式。与类的设计模式不同，对象设计模式主要用于运行期对象的状态改变、动态行为变更等。
-为什么会重构？重构通常是由于现有程序的框架不能很好的适应新需求，虽然可以通过硬编码(hardcode)或者绕过(bypass)的方式来解决一个新需求，但这并不是长久之计。当新需求越来越多时，现在程序会越来越冗余，导致最后的不可维护。
-架构和设计模式的区别相比架构(frameworks)，设计模式是一些抽象的组成架构的元素，且更为灵活通用。架构更适合解决具体问题，使用架构构建应用程序将更为快捷，不过相比设计模式，架构牺牲了灵活性。
-Summary本文介绍了设计模式的分类，后面我们将分别介绍各种设计模式。
-
-          
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(7)：设计模式分类/#more" rel="contents">
+            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(2)：抽象类和接口/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
