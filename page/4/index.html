@@ -254,172 +254,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/" itemprop="url">
-                  代码重构
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/"class="leancloud_visitors" data-flag-title="代码重构"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-一些重构的建议：
-
-提炼函数
-
-避免出现超大函数
-
-独立出来的函数有助于代码复用
-
-独立出来的函数更容易被覆写
-
-独立出来的函数如果拥有一个良好的命名，
-
-它本身就起到了注释的作用。
-
-
-
-
-比如在一个负责取得用户信息的函数里面，我们还需要打印跟用户信息有关的log，那么打印log的语句就可以被封装在一个独立的函数里：
-var getUserInfo = function() {
-    ajax(&apos;http://xxx.com/userInfo&apos;, function(data) {
-        console.log(&apos;userId: &apos; + data.userId);
-        console.log(&apos;userName: &apos; + data.userName);
-        console.log(&apos;nickName: &apos; + data.nickName);
-    });
-};
-可以改成：
-var getUserInfo = function() {
-    ajax(&apos;http://xxx.com/userInfo&apos;, function(data) {
-        printDetails(data);
-    });
-};
-var printDetails = function(data) {
-    console.log(&apos;userId: &apos; + data.userId);
-    console.log(&apos;userName: &apos; + data.userName);
-    console.log(&apos;nickName: &apos; + data.nickName);
-}
-
-合并重复的条件片段如果一个函数内有一些条件分支语句，而这些条件分支语句内部散步了一些重复的代码，那么就有必要进行合并去重工作。
-
-//页面跳转
-var paging = function(currPage) {
-    if (currPage &lt;= 0) {
-        currPage = 0;
-        jump(currPage); //跳转
-    } else if (currPage 
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/1this关键字/" itemprop="url">
                   this关键字
                 </a>
@@ -532,6 +366,160 @@ var MyClass2 = function() {
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/1this关键字/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/" itemprop="url">
+                  设计原则和编程技巧
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/"class="leancloud_visitors" data-flag-title="设计原则和编程技巧"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+单一职责原则就一个类而言，应该仅有一个引起它变化的原因。在JavaScript中，需要用到类的场景并不太多，单一职责原则（SRP）更多的是被运用在对象或者方法级别上。总之，SRP原则体现为：一个对象（方法）只做一件事情。例如：
+
+代理模式
+
+迭代器模式
+
+单例模式
+
+装饰者模式但是，并不是所有的职责都应该一一分离的，一方面如果随着需求的变化，有两个职责是同时变化的，那就不必分离他们。比如在ajax请求的时候，创建xhr对象和发送xhr请求几乎总是在一起的，那么创建xhr对象的职责和发送xhr对象的职责就没有必要分开。
+
+
+另一方面，职责的变化轴线仅当它们确定会发生变化时才有意义，即使两个职责已经被耦合在一起但他们没有发生改变的征兆，那么也许没有必要主动分离他们，在代码需要重构的时候再分离也不迟。
+最少知识原则最少知识原则（LKP）说的是一个软件实体应当尽可能少与其他实体发生相互作用。这里的软件的实体是一个广义的概念，不仅包括对象，还包括系统，类，模块，函数，变量等。单一职责原则指导我们把对象划分成较小的粒度，这可以提高对象的可复用性。但越来越多的对象之间可能会产生错综复杂的联系，如果修改了其中一个对象，很可能会影响到跟它相互引用的其他对象。对象和对象耦合在一起，有可能会降低他们的复用性。在程序中，对象的“朋友”太多并不是一件好事。最少知识原则要求我们在设计程序时，应当尽量减少对象之间的交互。如果两个对象之间不必彼此直接通信，那么两个对象就不要发生直接的相互联系。常见的做法是引入一个第三者对象，来承担这些对象之间的通信作用。如果一些对象需要向另一些对象发起请求，可以通过第三者对象来转发这些请求。体现地方：
+
+中介者模式
+
+外观模式
+
+
+开放-封闭原则在面向对象的程序设计中，开放-封闭原则（OCP）是最重要的一条原则。他的定义为：软件实体（类，模块，函数）等应该是可以拓展的，但是不可修改的。举例：
+
+发布-订阅模式
+
+模板方法模式
+
+策略模式
+
+代理模式
+
+职责链模式
+
+
+
+          
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -742,8 +730,8 @@ for (var i = 0, len = nodes.length; i &lt; len; i++) {
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/" itemprop="url">
-                  发布订阅模式
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/" itemprop="url">
+                  高阶函数
                 </a>
               
             
@@ -791,7 +779,7 @@ for (var i = 0, len = nodes.length; i &lt; len; i++) {
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/"class="leancloud_visitors" data-flag-title="发布订阅模式"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/"class="leancloud_visitors" data-flag-title="高阶函数"></span>
           
 
           
@@ -809,32 +797,48 @@ for (var i = 0, len = nodes.length; i &lt; len; i++) {
         
           
           
+高阶函数是至少满足下列条件之一的函数
 
-发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。在JavaScript开发中，我们一般用事件模型来替代传统的发布—订阅模式。
+函数可以作为参数被传递
+函数可以作为返回值输出（js这么好的语言中的函数当然满足 ^^）_
 
+函数作为参数传递把函数当作参数传递，可以抽离出一部分容易变化的业务逻辑，把这部分业务逻辑放在函数中，可以分离业务代码中变与不变的部分。
 
-发布—订阅模式可以广泛应用于异步编程中，这是一种替代传递回调函数的方案。比如，我们可以订阅ajax 请求的error、succ 等事件。 或者如果想在动画的每一帧完成之后做一些事情，那我们可以订阅一个事件，然后在动画的每一帧完成之后发布这个事件。在异步编程中使用发布—订阅模式，我们就无需过多关注对象在异步运行期间的内部状态，而只需要订阅感兴趣的事件发生点。
+回调函数，ajax异步，callback
 
-发布—订阅模式可以取代对象之间硬编码的通知机制，一个对象不用再显式地调用另外一个对象的某个接口。发布—订阅模式让两个对象松耦合地联系在一起，虽然不太清楚彼此的细节，但这不影响它们之间相互通信。当有新的订阅者出现时，发布者的代码不需要任何修改；同样发布者需要改变时，也不会影响到之前的订阅者。只要之前约定的事件名没有变化，就可以自由地改变它们。
+var getUserInfo() = function(userId, callback) {
+    $.ajax(&apos;http://xxx.com/getUserInfo?&apos; + userId, function(data) {
+        if (typeof(callback === &apos;function&apos;) {
+            callback(data);
+        }
+    });
+}
+getUserInfo(13157, function(data) {
+    alert(data.user);
+})
+高阶函数实现AOPAOP（面向切面编程），把一些跟核心业务逻辑模块无关的功能抽离出来（通常包括日志统计，安全控制，异常处理等）
+Function.prototype.before = function(beforefn) {
+    var __self = this; //保存原函数的引用
+    return function() { //返回包含原函数和新函数的“代理”函数
+        beforefn.apply(this, arguments); //执行新函数，修正this
+        return __self.apply(this, arguments); //执行原函数
+    }
+};
 
+Function.prototype.after= function(afterfn) {
+    var __self = this; 
+    return function() { 
+        var ret = __self.apply(this, arguments);
+        afterfn.apply(this, arguments); 
+        return ret ;
+    }
+};
 
-DOM 事件实际上，只要我们曾经在DOM节点上面绑定过事件函数，那我们就曾经使用过发布—订阅模式，例如
-document.body.addEventListener( &apos;click&apos;, function(){
-    alert(2);
-}, false );
-document.body.click(); // 模拟用户点击
-在这里需要监控用户点击document.body的动作，但是我们没办法预知用户将在什么时候点击。所以我们订阅document.body上的click事件，当body 节点被点击时，body节点便会向订阅者发布这个消息。当然我们还可以随意增加或者删除订阅者，增加任何订阅者都不会影响发布者代码的编写。
-自定义事件除了DOM 事件，我们还会经常实现一些自定义的事件，这种依靠自定义事件完成的发布—订阅模式可以用于任何JavaScript 代码中。步骤：
-
-指定好谁充当发布者（例如售楼处）
-
-然后给发布者添加一个缓存列表，用于存放回调函数以便通知订阅者（售楼处的花名册）
-
-最后发布消息的时候，发布者会遍历整个缓存列表，依次触发里面存放的订阅者回调函数（遍历花名册挨个发短信通知有空房）另外，我们还可以往回调函数里填入一些参数，订阅者
+var func = function()
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1160,7 +1164,7 @@ var CreateDiv = (function() {
 </div>
 
 <!-- 不蒜子 -->
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <span id="busuanzi_container_site_pv" style="display:none">
   本站总访问量<span id="busuanzi_value_site_pv"></span>人次
 </span>

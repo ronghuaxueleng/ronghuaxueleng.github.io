@@ -254,8 +254,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/" itemprop="url">
-                  高阶函数
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/" itemprop="url">
+                  适配器模式
                 </a>
               
             
@@ -303,7 +303,7 @@
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/"class="leancloud_visitors" data-flag-title="高阶函数"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/"class="leancloud_visitors" data-flag-title="适配器模式"></span>
           
 
           
@@ -321,48 +321,47 @@
         
           
           
-高阶函数是至少满足下列条件之一的函数
 
-函数可以作为参数被传递
-函数可以作为返回值输出（js这么好的语言中的函数当然满足 ^^）_
+适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。
 
-函数作为参数传递把函数当作参数传递，可以抽离出一部分容易变化的业务逻辑，把这部分业务逻辑放在函数中，可以分离业务代码中变与不变的部分。
-
-回调函数，ajax异步，callback
-
-var getUserInfo() = function(userId, callback) {
-    $.ajax(&apos;http://xxx.com/getUserInfo?&apos; + userId, function(data) {
-        if (typeof(callback === &apos;function&apos;) {
-            callback(data);
-        }
-    });
-}
-getUserInfo(13157, function(data) {
-    alert(data.user);
-})
-高阶函数实现AOPAOP（面向切面编程），把一些跟核心业务逻辑模块无关的功能抽离出来（通常包括日志统计，安全控制，异常处理等）
-Function.prototype.before = function(beforefn) {
-    var __self = this; //保存原函数的引用
-    return function() { //返回包含原函数和新函数的“代理”函数
-        beforefn.apply(this, arguments); //执行新函数，修正this
-        return __self.apply(this, arguments); //执行原函数
+适配器模式的应用适配模式是一种“亡羊补牢”的模式，没有人会在程序的设计之初就使用它，因为没有人可以完全预料到未来的事情，也许现在好好工作的接口未来就不再适用于新系统，那么我们可以使用适配器模式把旧的接口包装成新的接口，使他继续保持生命力。比如在json数据流行之前，很多cgi返回的都是XML格式的数据，如果今天仍然想用这些接口，显然我们可以创造一个XML-JSON适配器。
+比如有一段代码，我们向googleMap和baiduMap都发出显示请求时，他们分别以各自的方式在页面中展现了地图：
+var googleMap = {
+    show: function() {
+        console.log(&apos;开始渲染谷歌地图&apos;);
+    }
+};
+var baiduMap = {
+    show: function() {
+        console.log(&apos;开始渲染百度地图&apos;);
     }
 };
 
-Function.prototype.after= function(afterfn) {
-    var __self = this; 
-    return function() { 
-        var ret = __self.apply(this, arguments);
-        afterfn.apply(this, arguments); 
-        return ret ;
+var renderMap = function(map) {
+    if (map.show.instanceof Function) {
+        map.show();
     }
 };
 
-var func = function()
+renderMap(googleMap); //开始渲染谷歌地图
+renderMap(baiduMap); //开始渲染百度地图
+这个程序能运行的关键之处在于googleMap和baiduMap提供了一致的show方法，但是第三方接口并不在我们的控制范围内，加入baiduMap提供的显示地图的方法不叫show，而叫display呢?
+此时我们可以通过增加baiduMapAdapter来解决问题：
+var googleMap = {
+    show: function() {
+        console.log(&apos;开始渲染谷歌地图&apos;);
+    }
+};
+var baiduMap = {
+    display: function() {
+        console.log(&apos;开始渲染百度地图&apos;);
+    }
+};
+var baid
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/3高阶函数/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/19适配器模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -531,132 +530,6 @@ var func = function()
             
               
                 
-                <a class="post-title-link" href="/2016/09/24/d3/D3.js 入门教程系列/" itemprop="url">
-                  D3.js 入门教程系列
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-24T00:00:00+08:00" content="2016-09-24">
-              2016-09-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/d3/" itemprop="url" rel="index">
-                    <span itemprop="name">d3</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/09/24/d3/D3.js 入门教程系列/"class="leancloud_visitors" data-flag-title="D3.js 入门教程系列"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          初识D3D3是指数据驱动文档（Data-Driven Documents），根据D3的官方定义：
-
-D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通过使用HTML、SVG和CSS把数据鲜活形象地展现出来。D3严格遵循Web标准，因而可以让你的程序轻松兼容现代主流浏览器并避免对特定框架的依赖。同时，它提供了强大的可视化组件，可以让使用者以数据驱动的方式去操作DOM。—-D3维基（2013年8月）
-
-从一个Hello Wordld示例来看看d3如何运行 点击查看在线DEMO123456789101112131415161718192021222324252627282930313233function render(data)&#123;    var demo = d3.select('body')        .selectAll('p')        .data(data, function (d) &#123;          return d;        &#125;);        demo.enter()        .append('p')        .style('width', 0+'px')        .style('background', '#eee');    demo.text(function (d) &#123;          return d;        &#125;)        .transition()        .duration(1000)        .style('width', function (d) &#123;          return d+'px';        &#125;);    demo.exit()        .transition()        .duration(1000)        .style('width', 0+'px')        .remove();&#125;render([100,300,500]);setTimeout(function()&#123;    render([300,500,1000]);&#125;,1000)
-通过链式风格的方式让整个运行步骤非常清晰，D3的API设计跟我
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/24/d3/D3.js 入门教程系列/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/09/24/d3/D3.js 进阶教程系列/" itemprop="url">
                   D3.js 进阶教程系列
                 </a>
@@ -753,6 +626,132 @@ d3.select(‘#demo1&apos;).on(&apos;click&apos;, function(){
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/24/d3/D3.js 进阶教程系列/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/24/d3/D3.js 入门教程系列/" itemprop="url">
+                  D3.js 入门教程系列
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-24T00:00:00+08:00" content="2016-09-24">
+              2016-09-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/d3/" itemprop="url" rel="index">
+                    <span itemprop="name">d3</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/09/24/d3/D3.js 入门教程系列/"class="leancloud_visitors" data-flag-title="D3.js 入门教程系列"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          初识D3D3是指数据驱动文档（Data-Driven Documents），根据D3的官方定义：
+
+D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通过使用HTML、SVG和CSS把数据鲜活形象地展现出来。D3严格遵循Web标准，因而可以让你的程序轻松兼容现代主流浏览器并避免对特定框架的依赖。同时，它提供了强大的可视化组件，可以让使用者以数据驱动的方式去操作DOM。—-D3维基（2013年8月）
+
+从一个Hello Wordld示例来看看d3如何运行 点击查看在线DEMO123456789101112131415161718192021222324252627282930313233function render(data)&#123;    var demo = d3.select('body')        .selectAll('p')        .data(data, function (d) &#123;          return d;        &#125;);        demo.enter()        .append('p')        .style('width', 0+'px')        .style('background', '#eee');    demo.text(function (d) &#123;          return d;        &#125;)        .transition()        .duration(1000)        .style('width', function (d) &#123;          return d+'px';        &#125;);    demo.exit()        .transition()        .duration(1000)        .style('width', 0+'px')        .remove();&#125;render([100,300,500]);setTimeout(function()&#123;    render([300,500,1000]);&#125;,1000)
+通过链式风格的方式让整个运行步骤非常清晰，D3的API设计跟我
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/24/d3/D3.js 入门教程系列/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1037,7 +1036,7 @@ d3.select(‘#demo1&apos;).on(&apos;click&apos;, function(){
 </div>
 
 <!-- 不蒜子 -->
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <span id="busuanzi_container_site_pv" style="display:none">
   本站总访问量<span id="busuanzi_value_site_pv"></span>人次
 </span>
