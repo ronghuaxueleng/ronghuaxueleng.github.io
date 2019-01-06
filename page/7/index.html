@@ -118,10 +118,6 @@
   <link rel="canonical" href="http://ronghuaxueleng.github.io/page/7/"/>
 
   <title> 白云雅阁 </title>
-  <!-- start Mixpanel --><script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
-0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
-for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
-mixpanel.init("27c73634cbc4829e72a0313ba2090f16");</script><!-- end Mixpanel -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -258,8 +254,8 @@ mixpanel.init("27c73634cbc4829e72a0313ba2090f16");</script><!-- end Mixpanel -->
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/2闭包/" itemprop="url">
-                  闭包
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/14享元模式/" itemprop="url">
+                  享元模式
                 </a>
               
             
@@ -307,7 +303,7 @@ mixpanel.init("27c73634cbc4829e72a0313ba2090f16");</script><!-- end Mixpanel -->
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/2闭包/"class="leancloud_visitors" data-flag-title="闭包"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/14享元模式/"class="leancloud_visitors" data-flag-title="享元模式"></span>
           
 
           
@@ -325,49 +321,39 @@ mixpanel.init("27c73634cbc4829e72a0313ba2090f16");</script><!-- end Mixpanel -->
         
           
           
-闭包是js中一个难懂又必须征服的概念，他的形成与变量作用域以及变量的生存周期密切相关。
 
-变量作用域和生存周期作用域，按字面理解，就是指变量的有效范围，超出这个范围就无法访问。在函数中，里面函数可以访问外面的变量，但是外面无法访问内部变量。举个简单例子：
-var a = 1;
-var fun1 = function() {
-    var b = 2;
-    var fun2 = function() {
-        var c = 3;
-        alert(b); //2
-        alert(c); //3
-    }
-    fun2();
-    alert(c); //c is not defined
+享元模式的核心是运用共享技术来有效支持大量细粒度的对象。如果系统中因为创建了大量类似的对象而导致内存占用过高，享元模式就非常有用了。在JavaScript中，浏览器特别是移动端的浏览器分配的内存不算多，如何节省内存就成了一件非常有意义的事。
+
+初识假设有个内衣工厂，要50个男模50个女模，你可能会这么写程序：
+var Model = function(sex, underwear) {
+    this.sex = sex;
+    this.underwear = underwear;
+}
+Model.prototype.takePhoto = function() {
+    console.log(&apos;sex=&apos; + this.sex + &apos; underwear=&apos; + this.underwear );
+}
+for (var i = 1; i &lt;= 50; i++) {
+    var maleModel = new Model(&apos;male&apos;, &apos;underwear&apos; + i);
+    maleModel.takePhoto();
+}
+for (var j = 1; j &lt;= 50; j++) {
+    var femaleModel = new Model(&apos;female&apos;, &apos;underwear&apos; + j);
+    femaleModel.takePhoto();
+}
+要得到一张照片，每次都需要传入sex，underwear参数，根据现在的需求一共会产生100个对象。但是如果将来要生产10000种，那这个程序可能会因为存在太多对象提前崩溃。所以我们做一点改动
+var Model = function(sex) {
+    this.sex = sex;
+}
+Model.pototype.takePhoto = function() {
+    console.log(&apos;sex=&apos; + this.sex + &apos; underwear=&apos; + this.underwear );
 };
-fun1();
-生存周期：全局变量的生存周期是永久的，除非我们主动销毁，但是普通对于用var声明的局部变量，当退出函数不再使用时，就会被销毁。但是当你使用到闭包时，情况就不一样了
-var fun = function() {
-    var a = 1;
-    return function() {
-        a++;
-        alert(a);
-    }
-};
-var f = fun();
-f(); //2
-f(); //3
-f(); //4
-f(); //5
-解释：当执行var f = fun();时，f返回了一个匿名函数的引用，它可以访问到fun()被调用的生产环境，而局部变量a一直在这个环境中。既然局部变量能被外界访问，那它就有了不被销毁的理由，于是局部变量生命被延续了。
-再例如：
-var nodes = document.getElemmentByTagName(&apos;div&apos;); //此处他的长度为5
-for (var i = 0, len = nodes.length; i &lt; len; i++) {
-    nodes[i].onclick = function() {
-        alert(i);
-    }
-};
-以上代码无论点哪个div显示的都是5（div节点的onclick是异步触发的，当事件触发时，循环已经结束，此时i的值是5）解决方法：闭包大法好
-for (var i = 0, len = nodes.length; i &lt; len; i++) {
- 
+
+//分别创建一个男模特对象和女模特对象
+var maleModel = new Model(&ap
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/2闭包/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/14享元模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -418,8 +404,8 @@ for (var i = 0, len = nodes.length; i &lt; len; i++) {
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/" itemprop="url">
-                  设计原则和编程技巧
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/15职责链模式/" itemprop="url">
+                  职责链模式
                 </a>
               
             
@@ -467,7 +453,7 @@ for (var i = 0, len = nodes.length; i &lt; len; i++) {
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/"class="leancloud_visitors" data-flag-title="设计原则和编程技巧"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/15职责链模式/"class="leancloud_visitors" data-flag-title="职责链模式"></span>
           
 
           
@@ -485,43 +471,210 @@ for (var i = 0, len = nodes.length; i &lt; len; i++) {
         
           
           
-单一职责原则就一个类而言，应该仅有一个引起它变化的原因。在JavaScript中，需要用到类的场景并不太多，单一职责原则（SRP）更多的是被运用在对象或者方法级别上。总之，SRP原则体现为：一个对象（方法）只做一件事情。例如：
 
-代理模式
+使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系，将这些对象都练成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。
 
-迭代器模式
+如图所示：请求→A→B→C→D再来一个更形象的比喻，读书的时候假设你坐在前面，要在上课时告诉后排一些事情，这时候你可能会选择写一张小纸条，小纸条就会陆续的被向后传递。从上面的例子中，我们可以看到职责链的优点：请求发送者只需要知道链中的第一个节点，从而弱化了发送者和一组接收者之间的强联系。
+实际开发中的职责链模式需求：一个售卖手机的电商网站，交纳500定金和200定金和没交定金的有不同的优惠状况。我们刚开始可能会这么写：
+// orderType: 订单类型（普通用户或定金用户），1为500元定金用户，2为200，3为普通用户
+// pay：表示是否已支付定金，true或false
+// stock：表示当前用于普通购买的手机库存数量，已支付过定金的用户不受此限制。
 
-单例模式
+var order = function (orderType, pay, stock) {
+    if (orderType === 1) { //500元定金购买模式
+        if (pay === true) {
+            console.log(&apos;500元定金预定，已获得100元优惠券&apos;);
+        }else { //未支付定金，降级到普通购买模式
+            if (stock &gt; 0) {
+                console.log(&apos;普通购买，无优惠券&apos;);
+            } else {
+                console.log(&apos;库存不足&apos;);
+            }
+        }
+    }
+    else if (orderType === 2) {
+        if (pay === true) {
+            console.log(&apos;200元定金预定，已获得50元优惠券&apos;);
+        }else { //未支付定金，降级到普通购买模式
+            if (stock &gt; 0) {
+             
+          ...
 
-装饰者模式但是，并不是所有的职责都应该一一分离的，一方面如果随着需求的变化，有两个职责是同时变化的，那就不必分离他们。比如在ajax请求的时候，创建xhr对象和发送xhr请求几乎总是在一起的，那么创建xhr对象的职责和发送xhr对象的职责就没有必要分开。
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/15职责链模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
 
 
-另一方面，职责的变化轴线仅当它们确定会发生变化时才有意义，即使两个职责已经被耦合在一起但他们没有发生改变的征兆，那么也许没有必要主动分离他们，在代码需要重构的时候再分离也不迟。
-最少知识原则最少知识原则（LKP）说的是一个软件实体应当尽可能少与其他实体发生相互作用。这里的软件的实体是一个广义的概念，不仅包括对象，还包括系统，类，模块，函数，变量等。单一职责原则指导我们把对象划分成较小的粒度，这可以提高对象的可复用性。但越来越多的对象之间可能会产生错综复杂的联系，如果修改了其中一个对象，很可能会影响到跟它相互引用的其他对象。对象和对象耦合在一起，有可能会降低他们的复用性。在程序中，对象的“朋友”太多并不是一件好事。最少知识原则要求我们在设计程序时，应当尽量减少对象之间的交互。如果两个对象之间不必彼此直接通信，那么两个对象就不要发生直接的相互联系。常见的做法是引入一个第三者对象，来承担这些对象之间的通信作用。如果一些对象需要向另一些对象发起请求，可以通过第三者对象来转发这些请求。体现地方：
+    
+      
 
-中介者模式
+  
+  
 
-外观模式
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
-开放-封闭原则在面向对象的程序设计中，开放-封闭原则（OCP）是最重要的一条原则。他的定义为：软件实体（类，模块，函数）等应该是可以拓展的，但是不可修改的。举例：
+    
+      <header class="post-header">
 
-发布-订阅模式
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/" itemprop="url">
+                  模版方法
+                </a>
+              
+            
+          </h1>
+        
 
-模板方法模式
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
+              2016-10-12
+            </time>
+          </span>
 
-策略模式
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
 
-代理模式
+                
+                
 
-职责链模式
+              
+            </span>
+          
 
-
+          
+            
+          
 
           
 
+          
+          
+            阅读次数 &nbsp;
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/"class="leancloud_visitors" data-flag-title="模版方法"></span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+
+模版方法是一种只需要使用继承就可以实现的非常简单的模式。他由两部分组成，第一部分是抽象父类，第二部分是具体实现子类。通常在抽象父类中封装了子类的算法框架，包括实现一些共用方法以及封装子类所有方法的执行顺序。子类通过继承这个抽象类，也继承了整个算法结构，并且可以选择重写父类的方法。
+
+Coffee or Tea假设我们现在要泡一杯咖啡步骤如下：
+
+把水煮沸
+用沸水冲泡咖啡
+把咖啡倒进杯子
+加糖和牛奶
+
+泡茶的步骤：
+
+把水煮沸
+用沸水浸泡茶叶
+把茶水倒进杯子
+加柠檬
+
+经过比较，我们可以发现泡茶和泡咖啡有以下共同点：
+
+原料不同。一个是茶一个是咖啡，但是我们都可以把它们抽象为“饮料”
+
+泡的方式不同。咖啡是冲泡，茶叶是浸泡，我们都可以抽象成“泡”。
+
+加入的调料不同。一个是糖和牛奶，一个是柠檬，我们把它们抽象成“调料”。
+
+
+所以经过抽象后，无论是泡咖啡还是泡茶我们都是要进行下列步骤：
+
+把水煮沸
+用沸水冲泡咖啡
+把饮料倒进杯子
+加调料现在用代码来表示这个抽象过程
+
+var Beverage = function()  {};
+Beverage.prototype.boilWater = function() {
+    console.log(&apos;把水煮沸&apos;);
+};
+Beverage.prototype.brew = function(){}; //空方法，应该由子类重写
+Beverage.prototype.pourInCup = function(){}; //空方法，应该由子类重写
+Beverage.prototype.addCondiments = function(){}; //空方法，应该由子类重写
+
+Beverage.prototype.init= function(){
+    this.boilWater();
+    this.brew();
+    this.pourInCup();
+    this.addCondiments();
+}; 
+接着就是创建Coffee子类和Tea子类
+var Coffee = function() {};
+Coffee.prototype = new Beverage();
+Coffee.prototype.brew = function() {
+    console.log(&apo
+          ...
+
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/20设计原则和编程技巧/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -731,8 +884,8 @@ AddSubMenuCommand.prototype.execute = function() {
             
               
                 
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/14享元模式/" itemprop="url">
-                  享元模式
+                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/" itemprop="url">
+                  组合模式
                 </a>
               
             
@@ -780,7 +933,7 @@ AddSubMenuCommand.prototype.execute = function() {
           
           
             阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/14享元模式/"class="leancloud_visitors" data-flag-title="享元模式"></span>
+            <span id="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/"class="leancloud_visitors" data-flag-title="组合模式"></span>
           
 
           
@@ -797,213 +950,58 @@ AddSubMenuCommand.prototype.execute = function() {
       
         
           
-          
+          组合模式
 
-享元模式的核心是运用共享技术来有效支持大量细粒度的对象。如果系统中因为创建了大量类似的对象而导致内存占用过高，享元模式就非常有用了。在JavaScript中，浏览器特别是移动端的浏览器分配的内存不算多，如何节省内存就成了一件非常有意义的事。
+组合模式将对象组合成树形结构，以表示“部分-整体”的层次结构。除了用来表示树形结构之外，组合模式的另一个好处是通过对象的多态性表现，使得用户对单个对象和组合对象的使用具有一致性。
 
-初识假设有个内衣工厂，要50个男模50个女模，你可能会这么写程序：
-var Model = function(sex, underwear) {
-    this.sex = sex;
-    this.underwear = underwear;
-}
-Model.prototype.takePhoto = function() {
-    console.log(&apos;sex=&apos; + this.sex + &apos; underwear=&apos; + this.underwear );
-}
-for (var i = 1; i &lt;= 50; i++) {
-    var maleModel = new Model(&apos;male&apos;, &apos;underwear&apos; + i);
-    maleModel.takePhoto();
-}
-for (var j = 1; j &lt;= 50; j++) {
-    var femaleModel = new Model(&apos;female&apos;, &apos;underwear&apos; + j);
-    femaleModel.takePhoto();
-}
-要得到一张照片，每次都需要传入sex，underwear参数，根据现在的需求一共会产生100个对象。但是如果将来要生产10000种，那这个程序可能会因为存在太多对象提前崩溃。所以我们做一点改动
-var Model = function(sex) {
-    this.sex = sex;
-}
-Model.pototype.takePhoto = function() {
-    console.log(&apos;sex=&apos; + this.sex + &apos; underwear=&apos; + this.underwear );
+请求在树中传递的过程在组合模式中，请求在树中传递的过程总是遵循一种逻辑。请求从树的最顶端的对象往下传递，如果当前处理请求的对象是叶对象，叶对象自身会对请求做相互相应的处理；如果当前处理请求对象是组合对象，组合对象则会遍历它下面的节点，将请求继续传递。总之，组合对象的请求是从上到下沿着树传递，直到树的尽头。作为客户，只要关心树最顶层的组合对象，客户只需要请求这个组合对象，请求便会向下延续。
+现在，假设一个需求，我们需要一个超级遥控器可以控制家里所有的电器，且拥有以下功能
+
+打开空调
+
+打开电视和音响
+
+关门，开电脑，登录QQ  
+
+
+依旧，废话不多说，show the code
+var MacroCommand = function() {
+  return {
+    commandsList : [],
+    add: function( command ) {
+      this.commandsList.push( command );
+    },
+    execute: function() {
+      for (var i = 0, command; command = this.commandsList[i++];) {
+        command.execute();
+      }
+    }
+  };
 };
 
-//分别创建一个男模特对象和女模特对象
-var maleModel = new Model(&ap
+var openAcCommand = {
+  execute: function() {
+    console.log(&apos;打开空调&apos;);
+  }
+};
+
+/*家里电视和音响是连接在一起的，所以可以用一个宏命令来组合打开电视和打开音响的命令*/
+var openTvCommand = {
+  execute: function() {
+    console.log(&apos;打开电视&apos;);
+  }
+};
+var openSoundCommand = {
+  execute: function() {
+    console.log(&apos;打开音响&apos;);
+  }
+};
+
+var macr
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/14享元模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/" itemprop="url">
-                  模版方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/"class="leancloud_visitors" data-flag-title="模版方法"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-
-模版方法是一种只需要使用继承就可以实现的非常简单的模式。他由两部分组成，第一部分是抽象父类，第二部分是具体实现子类。通常在抽象父类中封装了子类的算法框架，包括实现一些共用方法以及封装子类所有方法的执行顺序。子类通过继承这个抽象类，也继承了整个算法结构，并且可以选择重写父类的方法。
-
-Coffee or Tea假设我们现在要泡一杯咖啡步骤如下：
-
-把水煮沸
-用沸水冲泡咖啡
-把咖啡倒进杯子
-加糖和牛奶
-
-泡茶的步骤：
-
-把水煮沸
-用沸水浸泡茶叶
-把茶水倒进杯子
-加柠檬
-
-经过比较，我们可以发现泡茶和泡咖啡有以下共同点：
-
-原料不同。一个是茶一个是咖啡，但是我们都可以把它们抽象为“饮料”
-
-泡的方式不同。咖啡是冲泡，茶叶是浸泡，我们都可以抽象成“泡”。
-
-加入的调料不同。一个是糖和牛奶，一个是柠檬，我们把它们抽象成“调料”。
-
-
-所以经过抽象后，无论是泡咖啡还是泡茶我们都是要进行下列步骤：
-
-把水煮沸
-用沸水冲泡咖啡
-把饮料倒进杯子
-加调料现在用代码来表示这个抽象过程
-
-var Beverage = function()  {};
-Beverage.prototype.boilWater = function() {
-    console.log(&apos;把水煮沸&apos;);
-};
-Beverage.prototype.brew = function(){}; //空方法，应该由子类重写
-Beverage.prototype.pourInCup = function(){}; //空方法，应该由子类重写
-Beverage.prototype.addCondiments = function(){}; //空方法，应该由子类重写
-
-Beverage.prototype.init= function(){
-    this.boilWater();
-    this.brew();
-    this.pourInCup();
-    this.addCondiments();
-}; 
-接着就是创建Coffee子类和Tea子类
-var Coffee = function() {};
-Coffee.prototype = new Beverage();
-Coffee.prototype.brew = function() {
-    console.log(&apo
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/#more" rel="contents">
+            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1150,7 +1148,7 @@ Coffee.prototype.brew = function() {
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
