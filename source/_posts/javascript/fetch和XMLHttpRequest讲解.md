@@ -1,9 +1,10 @@
 ---
-title: fetch和XMLHttpRequest讲解 
-tags: javascript 
+title: fetch和XMLHttpRequest讲解
+tags: javascript
 categories: javascript
-date: 2016-08-30
-modifiedOn: 2016-08-30
+abbrlink: 79c585a2
+date: 2016-08-30 00:00:00
+modifiedOn: 2016-08-30 00:00:00
 ---
 
 # 写在前面 

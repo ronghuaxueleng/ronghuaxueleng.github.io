@@ -1,7 +1,8 @@
 ---
 title: NPM安装及优化步骤--详细版
-category: 环境,npm
-tags: tool,npm,安装,优化
+category: '环境,npm'
+tags: 'tool,npm,安装,优化'
+abbrlink: 5b6e6c1a
 date: 2015-12-15 19:12:59
 modifiedOn: 2015-12-15 19:12:59
 ---

@@ -1,10 +1,11 @@
 ---
 title: 常用gulp插件介绍
-category: 自动管理,gulp
+category: '自动管理,gulp'
 tags: javascript
-date: 2016-08-09
-modifiedOn: 2016-08-19
 toc: true
+abbrlink: 47a159b2
+date: 2016-08-09 00:00:00
+modifiedOn: 2016-08-19 00:00:00
 ---
 
 这里介绍一些gulp比较常用的插件，包括util工具类、stream相关、inject相关、Angular相关、压缩工具类、server相关、特定语言相关等。

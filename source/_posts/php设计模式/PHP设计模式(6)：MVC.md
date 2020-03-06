@@ -2,8 +2,9 @@
 title: MVC
 tag: php
 category: php
-date: 2016-10-13
-modifiedOn: 2016-10-13
+abbrlink: 84372d79
+date: 2016-10-13 00:00:00
+modifiedOn: 2016-10-13 00:00:00
 ---
 > 原文地址：[PHP设计模式(六)：MVC][1]
 

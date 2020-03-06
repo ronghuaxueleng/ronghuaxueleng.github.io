@@ -1,10 +1,11 @@
 ---
 title: AngularJS中scope基于原型链的继承
 categories: angularjs
-tags: AngularJS, scope, dirctive, ng-repeat, Javascript继承
-date: 2016-08-21
-modifiedOn: 2016-08-21
+tags: 'AngularJS, scope, dirctive, ng-repeat, Javascript继承'
 toc: true
+abbrlink: 4b8d5efc
+date: 2016-08-21 00:00:00
+modifiedOn: 2016-08-21 00:00:00
 ---
 
 相信大家写过AngularJS的都会发现，很多人在处理表单的数据绑定时，都习惯性的把ng-model绑定在$scope的一个对象属性上，而不是直接绑定在scope上。比如说使用`<input name="name" ng-model="data.name" />`而不是`<input name="name" ng-model="name" />`。这是为什么呢？这样在controller里面岂不是写起来更复杂吗？每次访问的时候都要多“点”一下，为什么不直接绑在$scope上呢？其实这样写自然是有它的好处的，而且这种写法也是推荐的最佳实践，尤其是在处理嵌套scope的情形下，这样写是很有必要的。为了弄清楚这么写的原因，我们需要深入的研究一下AngularJS里scope的继承。

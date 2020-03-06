@@ -2,9 +2,10 @@
 title: 学习 ui-router - 路由控制
 category: angularjs
 tags: angularjs
-date: 2016-08-06
-modifiedOn: 2016-08-06
 toc: true
+abbrlink: a0250973
+date: 2016-08-06 00:00:00
+modifiedOn: 2016-08-06 00:00:00
 ---
 参考原文：https://github.com/angular-ui/ui-router/wiki/URL-Routing
 

@@ -2,9 +2,10 @@
 title: 学习 ui-router - 组件
 category: angularjs
 tags: angularjs
-date: 2016-08-07
-modifiedOn: 2016-08-07
 toc: true
+abbrlink: 828c261b
+date: 2016-08-07 00:00:00
+modifiedOn: 2016-08-07 00:00:00
 ---
 参考原文：https://github.com/angular-ui/ui-router/wiki/The-Components
 

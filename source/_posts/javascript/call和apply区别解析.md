@@ -2,9 +2,9 @@
 title: call和apply区别解析
 categories: javascript
 tags: javascript
-date: 2016-08-30
-modifiedOn: 2016-08-30
-
+abbrlink: 8e049f8a
+date: 2016-08-30 00:00:00
+modifiedOn: 2016-08-30 00:00:00
 ---
 
 

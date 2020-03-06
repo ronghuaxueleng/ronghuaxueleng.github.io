@@ -2,8 +2,9 @@
 title: jQuery性能优化常用策略
 category: jQuery
 tags: jQuery
-date: 2015-08-26
-modifiedOn: 2015-08-26
+abbrlink: 7dbb5353
+date: 2015-08-26 00:00:00
+modifiedOn: 2015-08-26 00:00:00
 ---
 
 

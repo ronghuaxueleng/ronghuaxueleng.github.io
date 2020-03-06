@@ -2,9 +2,10 @@
 title: 学习 ui-router - 管理状态
 category: angularjs
 tags: angularjs
-date: 2016-08-03 17:30:30
-modifiedOn: 2016-08-03
 toc: true
+abbrlink: 54161d18
+date: 2016-08-03 17:30:30
+modifiedOn: 2016-08-03 00:00:00
 ---
 参考原文：https://github.com/angular-ui/ui-router/wiki
 

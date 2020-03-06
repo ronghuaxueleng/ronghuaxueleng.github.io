@@ -1,10 +1,11 @@
 ---
-title: Angular-UI-Router 学习笔记 
+title: Angular-UI-Router 学习笔记
 category: angularjs
 tags: angularjs
-date: 2016-08-03
-modifiedOn: 2016-08-03
 toc: true
+abbrlink: 204a45e
+date: 2016-08-03 00:00:00
+modifiedOn: 2016-08-03 00:00:00
 ---
 
 ----------

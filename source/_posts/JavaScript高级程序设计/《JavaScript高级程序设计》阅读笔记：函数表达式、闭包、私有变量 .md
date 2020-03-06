@@ -1,10 +1,11 @@
 ---
-title: 《JavaScript高级程序设计》阅读笔记：函数表达式、闭包、私有变量 
+title: 《JavaScript高级程序设计》阅读笔记：函数表达式、闭包、私有变量
 category: 《JavaScript高级程序设计》阅读笔记
 tags: javascript
-date: 2016-07-29
-modifiedOn: 2016-07-29
 toc: true
+abbrlink: 4bbe7293
+date: 2016-07-29 00:00:00
+modifiedOn: 2016-07-29 00:00:00
 ---
 
 ----------

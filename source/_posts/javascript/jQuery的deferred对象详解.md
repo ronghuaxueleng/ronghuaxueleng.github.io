@@ -2,8 +2,9 @@
 title: jQuery的deferred对象详解
 categories: javascript
 tags: javascript
-date: 2016-09-19
-modifiedOn: 2016-09-19
+abbrlink: d841583b
+date: 2016-09-19 00:00:00
+modifiedOn: 2016-09-19 00:00:00
 ---
 [jQuery][1]的开发速度很快，几乎每半年一个大版本，每两个月一个小版本。
 

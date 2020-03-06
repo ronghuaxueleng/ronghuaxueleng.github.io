@@ -1,10 +1,11 @@
 ---
 title: AngularJS中controller和service的继承与扩展
 categories: angularjs
-tags: AngularJS, controller, service, 继承, 扩展, decorator, $provide, $delegate
-date: 2016-08-23
-modifiedOn: 2016-08-23
+tags: 'AngularJS, controller, service, 继承, 扩展, decorator, $provide, $delegate'
 toc: true
+abbrlink: 1a4f4112
+date: 2016-08-23 00:00:00
+modifiedOn: 2016-08-23 00:00:00
 ---
 
  所谓继承，比较熟悉，这里就是指定义一个**新的**controller/service（不同名），继承原来的controller/service，然后在其基础上重写一些功能。

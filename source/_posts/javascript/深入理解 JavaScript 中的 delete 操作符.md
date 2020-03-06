@@ -2,8 +2,9 @@
 title: 深入理解 JavaScript 中的 delete 操作符
 categories: javascript
 tags: javascript
-date: 2016-08-22
-modifiedOn: 2016-08-22
+abbrlink: a6039e7e
+date: 2016-08-22 00:00:00
+modifiedOn: 2016-08-22 00:00:00
 keywords:
 ---
 delete 操作符用于删除对象的属性。

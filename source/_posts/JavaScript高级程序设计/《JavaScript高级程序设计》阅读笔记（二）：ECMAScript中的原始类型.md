@@ -2,9 +2,10 @@
 title: 《JavaScript高级程序设计》阅读笔记（二）：ECMAScript中的原始类型
 category: 《JavaScript高级程序设计》阅读笔记
 tags: javascript
-date: 2016-08-02
-modifiedOn: 2016-08-02
 toc: true
+abbrlink: bcee9cbd
+date: 2016-08-02 00:00:00
+modifiedOn: 2016-08-02 00:00:00
 ---
 
 ----------

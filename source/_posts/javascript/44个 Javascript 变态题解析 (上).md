@@ -2,8 +2,9 @@
 title: 44个 Javascript 变态题解析 (上)
 tag: javascript
 category: javascript
-date: 2016-10-13
-modifiedOn: 2016-10-13
+abbrlink: bb77ad22
+date: 2016-10-13 00:00:00
+modifiedOn: 2016-10-13 00:00:00
 ---
 原题来自: [javascript-puzzlers][1]
 

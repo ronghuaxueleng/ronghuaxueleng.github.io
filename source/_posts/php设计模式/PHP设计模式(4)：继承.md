@@ -2,8 +2,9 @@
 title: 继承
 tag: php
 category: php
-date: 2016-10-13
-modifiedOn: 2016-10-13
+abbrlink: 11d8b32d
+date: 2016-10-13 00:00:00
+modifiedOn: 2016-10-13 00:00:00
 ---
 
 ## 简介

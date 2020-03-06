@@ -2,9 +2,10 @@
 title: 学习 ui-router 系列文章索引
 category: angularjs
 tags: angularjs
-date: 2016-08-03 17:00:00
-modifiedOn: 2016-08-03
 toc: true
+abbrlink: af5e7c72
+date: 2016-08-03 17:00:00
+modifiedOn: 2016-08-03 00:00:00
 ---
 
 [Angular-Ui](http://angular-ui.github.io/) 对于 [AngularJS](http://angularjs.org/) 开发者来说是一个非常重要的工具，其中 [UI-Router](https://github.com/angular-ui/ui-router) 又是重中之重。[UI-Router](https://github.com/angular-ui/ui-router) 插件提供了“嵌套作用域等规则”等有用的特性，对于复杂项目开发非常实用，最近在项目中开始使用 [UI-Router](https://github.com/angular-ui/ui-router) ，于是决定好好把它学习一遍，这些文章都来源于 [UI-Router 的 github](https://github.com/angular-ui/ui-router/wiki)，下面是这次学习内容

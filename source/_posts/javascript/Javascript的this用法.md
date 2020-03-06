@@ -2,8 +2,9 @@
 title: Javascript的this用法
 categories: javascript
 tags: javascript
-date: 2016-09-19
-modifiedOn: 2016-09-19
+abbrlink: f12aca3e
+date: 2016-09-19 00:00:00
+modifiedOn: 2016-09-19 00:00:00
 ---
 this是Javascript语言的一个关键字。
 

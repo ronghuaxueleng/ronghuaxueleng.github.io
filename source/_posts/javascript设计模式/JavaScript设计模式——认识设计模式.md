@@ -1,8 +1,9 @@
 ---
 title: 认识JavaScript设计模式
 category: javascript
-date: 2016-09-10
 tags: Javascript设计模式
+abbrlink: 22a2a88c
+date: 2016-09-10 00:00:00
 ---
 
 

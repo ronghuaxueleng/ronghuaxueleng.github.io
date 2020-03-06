@@ -2,9 +2,10 @@
 title: 使用sendMail发送邮件
 category: kindle
 tags: kindle
-date: 2016-09-19
-modifiedOn: 2016-09-19
 toc: true
+abbrlink: '48608651'
+date: 2016-09-19 00:00:00
+modifiedOn: 2016-09-19 00:00:00
 ---
 
 ------

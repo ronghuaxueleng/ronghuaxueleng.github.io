@@ -2,8 +2,9 @@
 title: 12种不宜使用的Javascript语法
 categories: javascript
 tags: javascript
-date: 2016-09-19
-modifiedOn: 2016-09-19
+abbrlink: 822a6e74
+date: 2016-09-19 00:00:00
+modifiedOn: 2016-09-19 00:00:00
 ---
 
 ------------

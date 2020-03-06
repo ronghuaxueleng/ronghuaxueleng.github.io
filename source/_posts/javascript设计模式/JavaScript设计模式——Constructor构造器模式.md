@@ -1,8 +1,9 @@
 ---
-title: JavaScript Constructor(构造器)模式 
+title: JavaScript Constructor(构造器)模式
 category: javascript
-date: 2016-09-10
 tags: Javascript设计模式
+abbrlink: a47d18ae
+date: 2016-09-10 00:00:00
 ---
 
 

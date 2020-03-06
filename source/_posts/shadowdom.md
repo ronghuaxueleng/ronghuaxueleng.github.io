@@ -2,8 +2,9 @@
 title: Shadow DOM
 tag: javascript
 category: javascript
-date: 2017-11-09
-modifiedOn: 2017-11-09
+abbrlink: 2fd7dbc7
+date: 2017-11-09 00:00:00
+modifiedOn: 2017-11-09 00:00:00
 ---
 
 ![](http://7vikhl.com1.z0.glb.clouddn.com/shadow-dom.png)

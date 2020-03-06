@@ -2,9 +2,10 @@
 title: 学习 ui-router - 状态嵌套和视图嵌套
 category: angularjs
 tags: angularjs
-date: 2016-08-04
-modifiedOn: 2016-08-04
 toc: true
+abbrlink: fa7f8f37
+date: 2016-08-04 00:00:00
+modifiedOn: 2016-08-04 00:00:00
 ---
 参考原文：https://github.com/angular-ui/ui-router/wiki/Nested-States-%26-Nested-Views
 ## 状态嵌套的方法 ##

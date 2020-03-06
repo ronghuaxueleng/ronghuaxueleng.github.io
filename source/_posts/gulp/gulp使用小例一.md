@@ -1,9 +1,10 @@
 ---
 title: gulp使用小例一
-category: 自动管理,gulp
+category: '自动管理,gulp'
 tags: javascript
-date: 2016-08-10
-modifiedOn: 2016-08-10
+abbrlink: 363a1c71
+date: 2016-08-10 00:00:00
+modifiedOn: 2016-08-10 00:00:00
 ---
 
 ----------

@@ -1,10 +1,11 @@
 ---
-title: 《JavaScript高级程序设计》阅读笔记：面向对象之创建对象 
+title: 《JavaScript高级程序设计》阅读笔记：面向对象之创建对象
 category: 《JavaScript高级程序设计》阅读笔记
 tags: javascript
-date: 2016-07-30
-modifiedOn: 2016-07-30
 toc: true
+abbrlink: 9c7a7c8f
+date: 2016-07-30 00:00:00
+modifiedOn: 2016-07-30 00:00:00
 ---
 
 ----------

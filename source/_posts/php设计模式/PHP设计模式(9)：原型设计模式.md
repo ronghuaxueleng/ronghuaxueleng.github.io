@@ -2,8 +2,9 @@
 title: 原型设计模式
 tag: php
 category: php
-date: 2016-10-13
-modifiedOn: 2016-10-13
+abbrlink: 1e857e9f
+date: 2016-10-13 00:00:00
+modifiedOn: 2016-10-13 00:00:00
 ---
 
 ## 简介

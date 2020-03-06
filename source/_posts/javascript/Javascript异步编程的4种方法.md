@@ -2,6 +2,7 @@
 title: Javascript异步编程的4种方法
 categories: javascript
 tags: javascript
+abbrlink: 12aa7932
 date: 2016-09-19 12:05:38
 modifiedOn: 2016-09-19 12:05:38
 ---

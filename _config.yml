@@ -3,21 +3,78 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
+# 网站标题
 title: 白云雅阁
-subtitle: 读懂别人的故事，写好自己的人生
-description: caoqiang's blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs
+# 网站副标题
+subtitle: 一切都是最好的安排
+# 描述，介绍网站的
+description: caoqiang's blog | java |前端 | PHP |nodeJs | python
+# 网站的关键字
+keywords: java 前端 php nodejs python javascript css html
+# 博主姓名
 author: 曹强
 email: caoqianghappy@126.com
-avatar: /img/avatar.jpg
-language: zh-Hans
-timezone:
+# 语言：zh-CN 是简体中文
+language: zh-CN
+# 时区
+timezone: UTC
+
+avatar:
+  url: /img/avatar.jpg # 设置头像资源的位置
+  rounded: true # 开启圆形头像
+  opacity: 1 # 不透明的比例：0就是完全透明
+  rotated: false # 不开启旋转
+
+symbols_count_time:
+  #文章内是否显示
+  symbols: true
+  time: true
+  # 网页底部是否显示
+  total_symbols: true
+  total_time: true
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://ronghuaxueleng.github.io/
 root: /
-permalink: :year/:month/:day/:title/
+# 永久链接设置
+permalink: archives/:abbrlink.html
+abbrlink:
+  alg: crc32 # 算法：crc16(default) and crc32
+  rep: hex # 进制：dec(default) and hex
 permalink_defaults:
+
+# 外部链接优化
+# nofollow:
+#   enable: true
+#   field: site
+#   exclude:
+#     - "exclude1.com"
+#     - "exclude2.com"
+
+# 通用站点地图
+sitemap:
+  path: sitemap.xml
+
+# 本地搜索
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 100
+
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: " "
+  order_by: -date
+  icon: icon.png
+  autodiscovery: true
+  template:
 
 # Directory
 source_dir: source
@@ -36,13 +93,13 @@ titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: true
+  auto_detect: false
   tab_replace:
 
 # Category & Tag
@@ -89,24 +146,30 @@ pagination_dir: page
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
 ##theme: yilia
-theme: next
+theme: next-7.7.2
 
-leancloud_visitors:
-  enable: true
-  app_id: bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz
-  app_key: 9kCQuNi7NFq5MdDBn9J1Xj1r
+moon_menu:
+  back2top:
+    enable: true
+    icon: fa fa-chevron-up
+    func: back2top
+    order: -1
+  back2bottom:
+    enable: true
+    icon: fa fa-chevron-down
+    func: back2bottom
+    order: -2
 
 #流程图 http://wewelove.github.io/fcoder/2017/09/06/markdown-flowchart/
 flowchart:
   raphael: https://cdn.bootcss.com/raphael/2.2.7/raphael.min.js
   flowchart: https://cdn.bootcss.com/flowchart/1.7.0/flowchart.min.js
-  options": 
-      scale: 1,
-      line-width: 2
-      line-length: 10
-      text-margin: 10
-      font-size: 12
-
+  options":
+    scale: 1,
+    line-width: 2
+    line-length: 10
+    text-margin: 10
+    font-size: 12
 
 #时序图 http://wewelove.github.io/fcoder/2017/09/06/markdown-sequence/
 sequence:
@@ -114,10 +177,15 @@ sequence:
   raphael: https://cdn.bootcss.com/raphael/2.2.7/raphael.min.js
   underscore: https://cdn.bootcss.com/underscore.js/1.8.3/underscore-min.js
   sequence: https://cdn.bootcss.com/js-sequence-diagrams/1.0.6/sequence-diagram-min.js
-  css: # optional, the url for css, such as hand drawn theme 
-  options: 
+  css: # optional, the url for css, such as hand drawn theme
+  options:
     theme: simple
     css_class:
+
+leancloud_visitors:
+  enable: true
+  app_id: bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz
+  app_key: 9kCQuNi7NFq5MdDBn9J1Xj1r
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html

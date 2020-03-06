@@ -1,10 +1,11 @@
 ---
 title: 用$scope还是用controller as
 categories: angularjs
-tags: angularJS, scope, controller
-date: 2016-08-22
-modifiedOn: 2016-08-22
+tags: 'angularJS, scope, controller'
 toc: true
+abbrlink: fbf791f5
+date: 2016-08-22 00:00:00
+modifiedOn: 2016-08-22 00:00:00
 ---
 
 AngularJS中在处理controller时提供了两种语法。

@@ -1,8 +1,9 @@
 ---
 title: Javascript 反模式
 category: javascript
-date: 2016-09-10
 tags: Javascript设计模式
+abbrlink: 1cdffe3d
+date: 2016-09-10 00:00:00
 ---
 
 

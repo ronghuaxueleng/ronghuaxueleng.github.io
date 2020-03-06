@@ -2,8 +2,9 @@
 title: jQuery技巧
 category: jQuery
 tags: jQuery
-date: 2015-08-25
-modifiedOn: 2015-08-25
+abbrlink: b9c3328
+date: 2015-08-25 00:00:00
+modifiedOn: 2015-08-25 00:00:00
 ---
 
 ##### 禁用页面的右击菜单

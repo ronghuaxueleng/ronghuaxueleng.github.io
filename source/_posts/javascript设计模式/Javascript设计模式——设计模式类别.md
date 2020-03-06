@@ -1,8 +1,9 @@
 ---
-title: Javascript 设计模式类别 
+title: Javascript 设计模式类别
 category: javascript
-date: 2016-09-10
 tags: Javascript设计模式
+abbrlink: 2ba7627f
+date: 2016-09-10 00:00:00
 ---
 
 

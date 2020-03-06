@@ -1,7 +1,8 @@
 ---
 title: Javascript定义类（class）的三种方法
-date: 2016-09-19
-modifiedOn: 2016-09-19
+abbrlink: b4e77896
+date: 2016-09-19 00:00:00
+modifiedOn: 2016-09-19 00:00:00
 ---
 将近20年前，[Javascript诞生][1]的时候，只是一种简单的网页脚本语言。如果你忘了填写用户名，它就跳出一个警告。
 

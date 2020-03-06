@@ -2,9 +2,10 @@
 title: 《JavaScript高级程序设计》阅读笔记（一）：ECMAScript基础
 category: 《JavaScript高级程序设计》阅读笔记
 tags: javascript
-date: 2016-08-01
-modifiedOn: 2016-08-01
 toc: true
+abbrlink: 455abdec
+date: 2016-08-01 00:00:00
+modifiedOn: 2016-08-01 00:00:00
 ---
 
 ---------

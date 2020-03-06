@@ -1,9 +1,10 @@
 ---
 title: 使用hexo搭建属于自己的博客
 category: hexo
-tags: hexo,博客,blog,搭建
-date: 2015-11-25
-modifiedOn: 2015-11-25
+tags: 'hexo,博客,blog,搭建'
+abbrlink: f94f1ed0
+date: 2015-11-25 00:00:00
+modifiedOn: 2015-11-25 00:00:00
 ---
 
 ------

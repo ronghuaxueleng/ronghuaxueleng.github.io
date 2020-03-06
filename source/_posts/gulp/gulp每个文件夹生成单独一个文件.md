@@ -1,9 +1,10 @@
 ---
 title: 每个文件夹生成单独一个文件
-category: 自动管理,gulp
+category: '自动管理,gulp'
 tags: javascript
-date: 2016-08-11
-modifiedOn: 2016-08-11
+abbrlink: 57fe766d
+date: 2016-08-11 00:00:00
+modifiedOn: 2016-08-11 00:00:00
 ---
 
 ----------

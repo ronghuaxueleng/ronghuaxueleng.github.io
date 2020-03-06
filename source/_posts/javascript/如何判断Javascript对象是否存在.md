@@ -2,8 +2,9 @@
 title: 如何判断Javascript对象是否存在
 categories: javascript
 tags: javascript
-date: 2016-09-19
-modifiedOn: 2016-09-19
+abbrlink: 2f961800
+date: 2016-09-19 00:00:00
+modifiedOn: 2016-09-19 00:00:00
 ---
 Javascript语言的设计不够严谨，很多地方一不小心就会出错。
 

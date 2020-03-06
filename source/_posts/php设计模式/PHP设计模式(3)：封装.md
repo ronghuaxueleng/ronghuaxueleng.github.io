@@ -2,8 +2,9 @@
 title: 封装
 tag: php
 category: php
-date: 2016-10-13
-modifiedOn: 2016-10-13
+abbrlink: d60eb45
+date: 2016-10-13 00:00:00
+modifiedOn: 2016-10-13 00:00:00
 ---
 > 原文地址：[PHP设计模式(三)：封装][1]
 

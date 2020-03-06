@@ -2,9 +2,10 @@
 title: 学习 ui-router - 多个命名的视图
 category: angularjs
 tags: angularjs
-date: 2016-08-05
-modifiedOn: 2016-08-05
 toc: true
+abbrlink: e3ced589
+date: 2016-08-05 00:00:00
+modifiedOn: 2016-08-05 00:00:00
 ---
 参考原文：https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views
 

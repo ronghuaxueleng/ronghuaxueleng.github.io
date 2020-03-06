@@ -2,8 +2,9 @@
 title: 适配器模式
 tag: php
 category: php
-date: 2016-10-13
-modifiedOn: 2016-10-13
+abbrlink: f5c535ea
+date: 2016-10-13 00:00:00
+modifiedOn: 2016-10-13 00:00:00
 ---
 
 ## 简介

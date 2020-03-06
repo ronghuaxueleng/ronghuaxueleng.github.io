@@ -2,8 +2,9 @@
 title: Fullscreen API：全屏操作
 tag: api
 category: htmlapi
-date: 2016-09-25
-modifiedOn: 2016-09-25
+abbrlink: 77cd0e45
+date: 2016-09-25 00:00:00
+modifiedOn: 2016-09-25 00:00:00
 ---
 
 全屏API可以控制浏览器的全屏显示，让一个Element节点（以及子节点）占满用户的整个屏幕。目前各大浏览器的最新版本都支持这个API（包括IE11），但是使用的时候需要加上浏览器前缀。

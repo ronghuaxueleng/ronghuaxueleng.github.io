@@ -1,9 +1,10 @@
 ---
 title: 理解Javascript的prototype
-tags: javascript 
+tags: javascript
 categories: javascript
-date: 2016-08-30
-modifiedOn: 2016-08-30
+abbrlink: dbff372f
+date: 2016-08-30 00:00:00
+modifiedOn: 2016-08-30 00:00:00
 ---
 
 # 写在前面

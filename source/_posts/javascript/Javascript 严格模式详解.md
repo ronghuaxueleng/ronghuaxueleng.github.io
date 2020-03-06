@@ -2,8 +2,9 @@
 title: Javascript 严格模式详解
 categories: javascript
 tags: javascript
-date: 2016-09-19
-modifiedOn: 2016-09-19
+abbrlink: 76ee9c0a
+date: 2016-09-19 00:00:00
+modifiedOn: 2016-09-19 00:00:00
 ---
 
 --------------

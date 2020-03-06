@@ -2,8 +2,9 @@
 title: 设计模式分类
 tag: php
 category: php
-date: 2016-10-13
-modifiedOn: 2016-10-13
+abbrlink: ce7fb64a
+date: 2016-10-13 00:00:00
+modifiedOn: 2016-10-13 00:00:00
 ---
 
 ## 简介
