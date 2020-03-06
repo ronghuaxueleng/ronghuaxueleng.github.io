@@ -176,7 +176,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/75f5b5c3.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/513e5894.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -190,7 +190,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/75f5b5c3.html" class="post-title-link" itemprop="url">this关键字</a>
+            <a href="/archives/513e5894.html" class="post-title-link" itemprop="url">代码重构</a>
         </h1>
 
         <div class="post-meta">
@@ -222,7 +222,7 @@
             </span>
 
           
-            <span id="/archives/75f5b5c3.html" class="post-meta-item leancloud_visitors" data-flag-title="this关键字" title="阅读次数">
+            <span id="/archives/513e5894.html" class="post-meta-item leancloud_visitors" data-flag-title="代码重构" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -234,7 +234,386 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
+              <span>4.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<p>一些重构的建议：</p>
+<ol>
+<li>提炼函数</li>
+</ol>
+<pre><code>* 避免出现超大函数
+
+* 独立出来的函数有助于代码复用
+
+* 独立出来的函数更容易被覆写
+
+* 独立出来的函数如果拥有一个良好的命名，
+
+* 它本身就起到了注释的作用。
+</code></pre>
+<p>比如在一个负责取得用户信息的函数里面，我们还需要打印跟用户信息有关的log，那么打印log的语句就可以被封装在一个独立的函数里：</p>
+<pre><code>var getUserInfo = function() {
+    ajax('http://xxx.com/userInfo', function(data) {
+        console.log('userId: ' + data.userId);
+        console.log('userName: ' + data.userName);
+        console.log('nickName: ' + data.nickName);
+    });
+};
+</code></pre>
+<p>可以改成：</p>
+<pre><code>var getUserInfo = function() {
+    ajax('http://xxx.com/userInfo', function(data) {
+        printDetails(data);
+    });
+};
+var printDetails = function(data) {
+    console.log('userId: ' + data.userId);
+    console.log('userName: ' + data.userName);
+    console.log('nickName: ' + data.nickName);
+}
+</code></pre>
+<ol>
+<li>合并重复的条件片段<br>
+如果一个函数内有一些条件分支语句，而这些条件分支语句内部散步了一些重复的代码，那么就有必要进行合并去重工作。</li>
+</ol>
+<pre><code>//页面跳转
+var paging = function(currPage) {
+    if (currPage &lt;= 0) {
+        currPage = 0;
+        jump(currPage); //跳转
+    } else if (currPage &gt;= totalPage) {
+        currPage = totalPage;
+        jump(currPage); //跳转
+    } else {
+        jump(currPage); //跳转
+    }
+}
+</code></pre>
+<p>改成</p>
+<pre><code>//页面跳转
+var paging = function(currPage) {
+    if (currPage &lt;= 0) {
+        currPage = 0;
+    } else if (currPage &gt;= totalPage) {
+        currPage = totalPage;
+    } 
+    jump(currPage); //跳转
+}
+</code></pre>
+<ol>
+<li>把条件分支语句提炼成函数<br>
+在程序设计中，复杂的条件分支语句是导致程序难以阅读和理解的重要原因，而且容易导致一个庞大的函数，所以通常我们要进行一定的提炼。</li>
+</ol>
+<pre><code>//计算商品价格，如果处于夏季，全部商品八折出售
+var getPrice = function(price) {
+    var date = new Date();
+    if (date.getMonth() &gt;= 6 &amp;&amp; date.getMonth &lt;= 9) { //夏季
+        return price * 0.8;
+    }
+    return price;
+}
+</code></pre>
+<p>改成</p>
+<pre><code>//计算商品价格，如果处于夏季，全部商品八折出售
+var getPrice = function(price) {
+    
+    if (isSummer()) { //夏季
+        return price * 0.8;
+    }
+    return price;
+}
+var isSummer = function() {
+    var date = new Date();
+    return date.getMonth() &gt;= 6 &amp;&amp; date.getMonth &lt;= 9;
+}
+</code></pre>
+<ol>
+<li>合理使用循环</li>
+</ol>
+<pre><code>var createXHR = function() {
+    var xhr;
+    try{
+        xhr = new ActiveXObject('MSXML2.XMLHttp.6.0');
+    } catch(e) {
+        try {
+            xhr = new ActiveXObject('MSXML2.XMLHttp.3.0');
+        } catch(e) {
+            xhr = new ActiveXObject('MSXML2.XMLHttp');
+        }
+    }
+    return xhr;
+};
+var xhr = createXHR();
+</code></pre>
+<p>改成：</p>
+<pre><code>var createXHR = function() {
+    var versions = ['MSXML2.XMLHttp.6.0', 'MSXML2.XMLHttp.3.0', 'MSXML2.XMLHttp'];
+    for (var i = 0, version; version = versions[i++]; ) {
+        try {
+            return new ActiveObject(version);
+        } catch(e) {
+            
+        }
+    }
+};
+var xhr = createXHR();
+</code></pre>
+<ol>
+<li>提前让函数退出代替嵌套条件分支</li>
+</ol>
+<pre><code>var del = function(obj) {
+    var ret;
+    if (!obj.isReadOnly) { //不为只读的时候才可以删除
+        if (obj.isFolder) { //如果是文件夹
+            ret = deleteFolder(obj);
+        } else if (obj.isFile) { //如果是文件
+            ret = deleteFile(obj);
+        }
+    }
+    return ret;
+}
+</code></pre>
+<p>改成：</p>
+<pre><code>var del = function(obj) {
+    if (obj.isReadOnly) { 
+        return;
+    }
+    if (obj.isFolder) { //如果是文件夹
+        return deleteFolder(obj);
+    } 
+    if (obj.isFile) { //如果是文件
+        return deleteFile(obj);
+    }
+}
+</code></pre>
+<ol>
+<li>传递对象参数代替过长的参数列表<br>
+有时候一个函数可能接收多个参数，而参数的数量越多函数就越难理解和使用。这时我们可以把参数放入一个对象内，然后把对象传入。</li>
+</ol>
+<pre><code>var setUserInfo = function(id, name, address, sex, mobile, qq) {
+    console.log('id=' + id);
+    console.log('name=' + name);
+    console.log('address=' + address);
+    console.log('sex=' + sex);
+    console.log('mobile=' + mobile);
+    console.log('qq=' + qq);
+}
+setUserInfo(1234, cyseria, guangzhou, female, 188***, 52***);
+</code></pre>
+<p>改成：</p>
+<pre><code>var setUserInfo = function(obj) {
+    console.log('id=' + obj.id);
+    console.log('name=' + obj.name);
+    console.log('address=' + obj.address);
+    console.log('sex=' + obj.sex);
+    console.log('mobile=' + obj.mobile);
+    console.log('qq=' + obj.qq);
+}
+setUserInfo({
+    id: 1234, 
+    name: cyseria, 
+    address: guangzhou, 
+    sex: female, 
+    mobile: 188***, 
+    qq: 52***
+});
+</code></pre>
+<ol>
+<li>
+<p>尽量减少参数数量<br>
+尽量减少一些没必要的不会使用或者可以求出的参数。这里不做过多阐述。</p>
+</li>
+<li>
+<p>少用三目运算<br>
+有时候我们用三目运算会觉得它性能高，代码量少。但是在实际开发中，即使把一段代码循环一百万次，使用三目运算和<code>if,else</code>的时间开销依旧在同个级别中。同样，相比损失的代码可读性和可维护性，他能节省的代码量可以忽略不计。</p>
+</li>
+</ol>
+<p>至于例子，看看下面那个你就知道了：</p>
+<pre><code>if (!aup || bup) {
+    return a === doc ? -1 :
+        b === doc ? 1 : 
+        aup ? -1 : 
+        bup : -1 :
+        sortInput ? (indexOf.call(sortInput, a) - indexOf.call(sortInput, b)) : 
+        0;
+}
+</code></pre>
+<p>当然，如果只是简单的一句，用一下也没什么所谓。</p>
+<ol>
+<li>合理使用链式调用<br>
+使用jq的对链式调用一定不陌生，在自己编写函数的时候也可以使用这点，返回自身。但是他也有一个坏处，调试的时候不方便。所以如果链条的结构稳定后期不易修改，那么使用他无可厚非，但是如果该链经常发生变化那么还是用普通的调用吧。</li>
+</ol>
+<pre><code>var User = {
+    id: null,
+    name: null,
+    setId: function(id) {
+        this.id = id;
+        return this;
+    },
+    setName: function(name) {
+        this.name= name;
+        return this;
+    }
+};
+console.log(User.setId(1234).setName('cyseria'));
+</code></pre>
+<ol>
+<li>分解大型类</li>
+</ol>
+<pre><code>var Spirit = function(name) {
+    this.name = name;
+};
+Spirit.prototype.attack = function(type) {
+    if (type === 'waveBoxing') {
+        console.log(this.name + ':使用波动拳');
+    } else if (type === 'whirlKick') {
+        console.log(this.name + ':使用旋风腿');
+    }
+};
+var Spirit = new Spirit('AAA');
+Spirit .attack('waveBoxing');
+Spirit .attack('whirlKick');
+</code></pre>
+<p>改成：</p>
+<pre><code>var Attack = function(spirit) {
+    this.spirit = spirit;
+};
+Attack.prototype.start = function(type) {
+    return this.list[type].call(this);
+}
+Attack.prototype.list= function(type) {
+    waveBoxing: function() {
+        console.log(this.spirit.name + ':使用波动拳');
+    },
+    whirlKick: function() {
+        console.log(this.spirit.name + ':使用旋风腿');
+    }
+};
+var Spirit = function(name) {
+    this.name = name;
+    this.attackObj = new Attack(this);
+};
+Spirit.prototype.attack = function(type) {
+    this.attackObj.start(type);
+};
+
+var Spirit = new Spirit('AAA');
+Spirit .attack('waveBoxing');
+Spirit .attack('whirlKick');
+</code></pre>
+<ol>
+<li>用return退出多重循环<br>
+假设在函数体内有一个两重循环语句，我们需要在内层循环中判断当达到某个临界条件时退出外层循环。</li>
+</ol>
+<pre><code>var print = function(i) {
+    console.log(i);
+};
+var func = function() {
+    for (var i = 0; i &lt; 10; i++) {
+        for (var j = 0; j &lt; 10; j++) {
+            if (i * j &gt; 30) {
+                return print(i);
+            }
+        }
+    }
+};
+func();
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/f9636392.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/f9636392.html" class="post-title-link" itemprop="url">闭包</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/f9636392.html" class="post-meta-item leancloud_visitors" data-flag-title="闭包" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -253,81 +632,96 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <hr>
-<blockquote>
-<p>this的指向大概可以分成四种：</p>
-<ul>
-<li>作为对象的方法调用</li>
-<li>作为普通函数调用</li>
-<li>构造器调用</li>
-<li>Function.prototype.call或Function.prototype.apply调用</li>
-</ul>
+          <blockquote>
+<p>闭包是js中一个难懂又必须征服的概念，他的形成与变量作用域以及变量的生存周期密切相关。</p>
 </blockquote>
-<h3 id="1-作为对象的时候，this指向该对象">1. 作为对象的时候，<strong>this指向该对象</strong></h3>
-<pre><code>var obj = {
-    a: 1,
-    getA: function() {
-        alert(this === obj); //true;
-        alert(this.a); //1
+<h3 id="变量作用域和生存周期">变量作用域和生存周期</h3>
+<p>作用域，按字面理解，就是指变量的有效范围，超出这个范围就无法访问。<br>
+在函数中，里面函数可以访问外面的变量，但是外面无法访问内部变量。举个简单例子：</p>
+<pre><code>var a = 1;
+var fun1 = function() {
+    var b = 2;
+    var fun2 = function() {
+        var c = 3;
+        alert(b); //2
+        alert(c); //3
+    }
+    fun2();
+    alert(c); //c is not defined
+};
+fun1();
+</code></pre>
+<p>生存周期：全局变量的生存周期是永久的，除非我们主动销毁，但是普通对于用var声明的局部变量，当退出函数不再使用时，就会被销毁。但是当你使用到闭包时，情况就不一样了</p>
+<pre><code>var fun = function() {
+    var a = 1;
+    return function() {
+        a++;
+        alert(a);
     }
 };
-obj.getA();
+var f = fun();
+f(); //2
+f(); //3
+f(); //4
+f(); //5
 </code></pre>
-<h3 id="2-作为普通函数调用，this总是指向全局对象（在浏览器中就是window）">2. 作为普通函数调用，<strong>this总是指向全局对象（在浏览器中就是window）</strong></h3>
-<pre><code>window.name = 'globalName';
-var getName = function() {
-    return this.name;
-};
-console.log(getName()); //globalName
-</code></pre>
-<p>再例如局部的callback，它作为普通函数调用时，callback内部的this指向了windows对象，解决方法则可以用一个变量保存this，例如</p>
-<pre><code>document.getElemmentById('div1').onclick = function() {
-    var that = this;
-    var callback = function() {
-        alert(that.id); //div1;
+<p>解释：当执行var f = fun();时，f返回了一个匿名函数的引用，它可以访问到fun()被调用的生产环境，而局部变量a一直在这个环境中。既然局部变量能<br>
+被外界访问，那它就有了不被销毁的理由，于是局部变量生命被延续了。</p>
+<p>再例如：</p>
+<pre><code>var nodes = document.getElemmentByTagName('div'); //此处他的长度为5
+for (var i = 0, len = nodes.length; i &lt; len; i++) {
+    nodes[i].onclick = function() {
+        alert(i);
     }
-    callback();
-}
+};
 </code></pre>
-<h3 id="3-构造器调用">3. 构造器调用</h3>
-<p>当用<code>new</code>运算符调用函数时，该函数总会返回一个对象，通常情况this就是指向返回的这个对象，但如果构造器显示返回了一个object类的对象，那运算结果最终返回的是那个对象而不是this，例如</p>
-<pre><code>var MyClass1 = function() {
-    this.name = '111';
-}
-var obj1 = new MyClass1();
-alert(obj1.name); //111
+<p>以上代码无论点哪个div显示的都是5（div节点的onclick是异步触发的，当事件触发时，循环已经结束，此时i的值是5）<br>
+解决方法：闭包大法好</p>
+<pre><code>for (var i = 0, len = nodes.length; i &lt; len; i++) {
+    (function(i) {
+        nodes[i].onclick = function() {
+            alert(i);
+        }
+    })(i)
+};
+</code></pre>
+<p>通常，闭包可以有封装一些不需要暴露在全局的变量，延续局部变量寿命等等用途。</p>
+<h3 id="命令模式">命令模式</h3>
+<p>命令模式的意图是把请求封装为对象，从而分离请求的发起者和请求的接收者（执行者）之间的耦合关系。在命令执行之前可预先往命令对象中植入命令的接收者。</p>
+<pre><code>var TV = {
+    open: function() {
+        alert('open');
+    },
+    close: function() {
+        alert('close');
+    }
+};
 
-var MyClass2 = function() {
-    this.name = '111';
-    return { //显式的返回一个对象
-        name: '222';
+var createCommand = function(receiver) {
+    var execute= function() {
+        return receiver.open(); //执行命令打开电视
     }
-}
-var obj2 = new MyClass2();
-alert(obj2.name); //222
+
+    var undo= function() {
+        return receiver.close(); //执行命令关闭电视
+    }
+
+    return {
+        execute: execute,
+        undo: undo
+    }
+};
+
+var setComment = function(command) {
+    document.getElementById('execute').onclick = function() {
+        command.execute();
+    }
+    document.getElementById('undo').onclick = function() {
+        command.undo();
+    }
+};
+setCommand(createCommand(tv));
 </code></pre>
-<h3 id="4-Function-prototype-call或Function-prototype-apply可以动态的改变传入函数的this">4. Function.prototype.call或Function.prototype.apply可以动态的改变传入函数的this</h3>
-<ul>
-<li>
-<p>两者区别：传入参数不同，apply接受两个参数，第一个为this指向，第二个为一个带下标的集合，这个集合可以为数组也可以为类数组；call传入的参数数量不固定，第一个也是代表this指向，第二个开始往后每个参数被依次传入函数。</p>
-</li>
-<li>
-<p>改变this例子</p>
-<p>var obj1 = {<br>
-name: ‘111’;<br>
-};<br>
-var obj2 = {<br>
-name: ‘222’;<br>
-};<br>
-<a href="http://window.name" target="_blank" rel="noopener">window.name</a> = ‘window’;<br>
-var getNmae = function() {<br>
-alert(<a href="http://this.name" target="_blank" rel="noopener">this.name</a>);<br>
-}<br>
-getName(); //window<br>
-getName.call(obj1); //111<br>
-getName.call(obj2); //222</p>
-</li>
-</ul>
 
       
     </div>
@@ -497,7 +891,7 @@ getName.call(obj2); //222</p>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/f1601c3e.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/75f5b5c3.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -511,7 +905,7 @@ getName.call(obj2); //222</p>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/f1601c3e.html" class="post-title-link" itemprop="url">单例模式</a>
+            <a href="/archives/75f5b5c3.html" class="post-title-link" itemprop="url">this关键字</a>
         </h1>
 
         <div class="post-meta">
@@ -543,7 +937,7 @@ getName.call(obj2); //222</p>
             </span>
 
           
-            <span id="/archives/f1601c3e.html" class="post-meta-item leancloud_visitors" data-flag-title="单例模式" title="阅读次数">
+            <span id="/archives/75f5b5c3.html" class="post-meta-item leancloud_visitors" data-flag-title="this关键字" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -555,14 +949,14 @@ getName.call(obj2); //222</p>
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.2k</span>
+              <span>1.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -575,102 +969,80 @@ getName.call(obj2); //222</p>
 
       
           <hr>
-<p>用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。</p>
-<h3 id="实现单例模式">实现单例模式</h3>
-<pre><code>//1.实现单例模式
-var Singleton = function (name) {
-  this.name = name;
+<blockquote>
+<p>this的指向大概可以分成四种：</p>
+<ul>
+<li>作为对象的方法调用</li>
+<li>作为普通函数调用</li>
+<li>构造器调用</li>
+<li>Function.prototype.call或Function.prototype.apply调用</li>
+</ul>
+</blockquote>
+<h3 id="1-作为对象的时候，this指向该对象">1. 作为对象的时候，<strong>this指向该对象</strong></h3>
+<pre><code>var obj = {
+    a: 1,
+    getA: function() {
+        alert(this === obj); //true;
+        alert(this.a); //1
+    }
 };
-Singleton.prototype.getName = function() {
-  alert(this.name);
+obj.getA();
+</code></pre>
+<h3 id="2-作为普通函数调用，this总是指向全局对象（在浏览器中就是window）">2. 作为普通函数调用，<strong>this总是指向全局对象（在浏览器中就是window）</strong></h3>
+<pre><code>window.name = 'globalName';
+var getName = function() {
+    return this.name;
 };
-Singleton.getInstance = (function() {
-  var instance = null;
-  return function(name) {
-    if (!instance) {
-      instance = new Singleton(name);
-    }
-    return instance;
-  }
-})();
-var a = Singleton.getInstance('sven1');
-var b = Singleton.getInstance('sven2');
-
-console.log(a === b); //true
+console.log(getName()); //globalName
 </code></pre>
-<p>以上，我们通过<code>Singleton.getInstance</code>来获取<code>Singleton</code>类的唯一对象，虽然简单但是增加了这个类的“不透明性”，<code>Singleton</code>类的使用者必须知道这是一个单例类，跟以往通过<code>new xxx</code>的方法不同</p>
-<h3 id="透明的单例模式">透明的单例模式</h3>
-<p>有了以上的不足，我们现在就来解决</p>
-<pre><code>//透明的单例模式 
-var CreateDiv = (function() {
-  var instance;
-  var CreateDiv = function(html) {
-    if (instance) {
-      return instance;
+<p>再例如局部的callback，它作为普通函数调用时，callback内部的this指向了windows对象，解决方法则可以用一个变量保存this，例如</p>
+<pre><code>document.getElemmentById('div1').onclick = function() {
+    var that = this;
+    var callback = function() {
+        alert(that.id); //div1;
     }
-    this.html = html;
-    this.init();
-    return instance = this;
-  };
-  
-  CreateDiv.prototype.init = function() {
-    var div = document.createElement('div');
-    div.innerHTML = this.html;
-    document.body.appendChild(div);
-  };
-  
-  return CreateDiv;
-})();
-var aa = new CreateDiv('sven1');
-var bb = new CreateDiv('sven2');
-
-console.log(aa === bb);
-</code></pre>
-<p>以上代码，CreateDiv做了创建对象和执行初始化init方法，且保证只有一个对象。<br>
-但是，假如有一天我们需要利用这个类，在页面中创建千千万万个div，即要让这个类从单例类变成一个普通的可以产生多个实例的类，那我们必须改写CreateDiv构造函数，把控制创建唯一的那一段去掉…这样好像有点太麻烦了</p>
-<h3 id="用代理实现单例模式">用代理实现单例模式</h3>
-<p>这里就可以引入代理类的方式，思想就是将负责管理的单例逻辑移到一个代理类中，这样CreateDiv就变成一个普通的类，代码此处省略…</p>
-<h3 id="JavaScript中的单例模式">JavaScript中的单例模式</h3>
-<p>前面几种单例模式的实现，更多是接近传统面向对象语言中的实现，单例从“类”中创建出来。<br>
-然而，js作为一个没有类的语言，生搬单例模式的概念并无意义。我们只要一个对象，为什么要创建一个类呢？我们只是要一个唯一的实例就好了…因此我们可以直接用<code>var a = {}</code>来创建对象字面量。</p>
-<h3 id="惰性单例">惰性单例</h3>
-<p>惰性单例：需要的时候才创建。<br>
-例如，以一个登录悬浮窗为例，我们可以在页面加载的时候创建好这个div窗口，然后点击登录按钮的时候开始显示，但是这样如果用户只是随便浏览下就白白浪费了一些dom节点。<br>
-还有一种方法，点击的时候再创建，关闭的时候销毁。但是如果用户频繁的进行注销等操作，我们就要频繁的创建和删除div，显然这也不合理。<br>
-所以，这时候惰性单例模式就出马了。</p>
-<pre><code>var createLoginLayer = (function() {
-    var div;
-    return function() {
-        if (!div) {
-            div = document.createElement('div');
-            //创建添加等dom操作...
-        }
-        return div;
-    }
-})();
-
-$(&quot;xxx&quot;).onclick = function() {
-    var loginLayer = createLoginLayer();
-    loginLayer.show();
+    callback();
 }
 </code></pre>
-<h3 id="通用的惰性实例">通用的惰性实例</h3>
-<p>看起来好像没什么问题，然而，他还是违反了单一的原则，创建的对象逻辑都放在createLoginLayer内部，如果我们要创建别的东西例如iframe，就要几乎将这个函数照抄一遍了，因此我们应该把不变的部分隔离出来。</p>
-<pre><code>var getSingle = function(fn) {
-    var result;
-    return function() {
-        return result || (result = fn.apply(this, arguments));
+<h3 id="3-构造器调用">3. 构造器调用</h3>
+<p>当用<code>new</code>运算符调用函数时，该函数总会返回一个对象，通常情况this就是指向返回的这个对象，但如果构造器显示返回了一个object类的对象，那运算结果最终返回的是那个对象而不是this，例如</p>
+<pre><code>var MyClass1 = function() {
+    this.name = '111';
+}
+var obj1 = new MyClass1();
+alert(obj1.name); //111
+
+var MyClass2 = function() {
+    this.name = '111';
+    return { //显式的返回一个对象
+        name: '222';
     }
-};
-
-var createLoginLayer = function() {
-    //创建登录框
-}  
-
-var createSingleLoginLayer = getSingle(createLoginLayer);
+}
+var obj2 = new MyClass2();
+alert(obj2.name); //222
 </code></pre>
-<p>于是，目的达成。<br>
-当然，单例模式用途远远不止于创建对象，比如我们在渲染完页面的时候，接下来要给这个列表绑定click事件，如果是ajax动态向列表里面加载数据，实际上只需要第一次渲染的时候绑定。如果不用jq的<code>$(&quot;&quot;).one('click', function(){})</code>的话，我们也可以用单例模式，做法类似。</p>
+<h3 id="4-Function-prototype-call或Function-prototype-apply可以动态的改变传入函数的this">4. Function.prototype.call或Function.prototype.apply可以动态的改变传入函数的this</h3>
+<ul>
+<li>
+<p>两者区别：传入参数不同，apply接受两个参数，第一个为this指向，第二个为一个带下标的集合，这个集合可以为数组也可以为类数组；call传入的参数数量不固定，第一个也是代表this指向，第二个开始往后每个参数被依次传入函数。</p>
+</li>
+<li>
+<p>改变this例子</p>
+<p>var obj1 = {<br>
+name: ‘111’;<br>
+};<br>
+var obj2 = {<br>
+name: ‘222’;<br>
+};<br>
+<a href="http://window.name" target="_blank" rel="noopener">window.name</a> = ‘window’;<br>
+var getNmae = function() {<br>
+alert(<a href="http://this.name" target="_blank" rel="noopener">this.name</a>);<br>
+}<br>
+getName(); //window<br>
+getName.call(obj1); //111<br>
+getName.call(obj2); //222</p>
+</li>
+</ul>
 
       
     </div>
@@ -883,192 +1255,6 @@ window.onresize = throttle(function() {
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/f9636392.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/img/avatar.jpg">
-      <meta itemprop="name" content="曹强">
-      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白云雅阁">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/archives/f9636392.html" class="post-title-link" itemprop="url">闭包</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/archives/f9636392.html" class="post-meta-item leancloud_visitors" data-flag-title="闭包" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>闭包是js中一个难懂又必须征服的概念，他的形成与变量作用域以及变量的生存周期密切相关。</p>
-</blockquote>
-<h3 id="变量作用域和生存周期">变量作用域和生存周期</h3>
-<p>作用域，按字面理解，就是指变量的有效范围，超出这个范围就无法访问。<br>
-在函数中，里面函数可以访问外面的变量，但是外面无法访问内部变量。举个简单例子：</p>
-<pre><code>var a = 1;
-var fun1 = function() {
-    var b = 2;
-    var fun2 = function() {
-        var c = 3;
-        alert(b); //2
-        alert(c); //3
-    }
-    fun2();
-    alert(c); //c is not defined
-};
-fun1();
-</code></pre>
-<p>生存周期：全局变量的生存周期是永久的，除非我们主动销毁，但是普通对于用var声明的局部变量，当退出函数不再使用时，就会被销毁。但是当你使用到闭包时，情况就不一样了</p>
-<pre><code>var fun = function() {
-    var a = 1;
-    return function() {
-        a++;
-        alert(a);
-    }
-};
-var f = fun();
-f(); //2
-f(); //3
-f(); //4
-f(); //5
-</code></pre>
-<p>解释：当执行var f = fun();时，f返回了一个匿名函数的引用，它可以访问到fun()被调用的生产环境，而局部变量a一直在这个环境中。既然局部变量能<br>
-被外界访问，那它就有了不被销毁的理由，于是局部变量生命被延续了。</p>
-<p>再例如：</p>
-<pre><code>var nodes = document.getElemmentByTagName('div'); //此处他的长度为5
-for (var i = 0, len = nodes.length; i &lt; len; i++) {
-    nodes[i].onclick = function() {
-        alert(i);
-    }
-};
-</code></pre>
-<p>以上代码无论点哪个div显示的都是5（div节点的onclick是异步触发的，当事件触发时，循环已经结束，此时i的值是5）<br>
-解决方法：闭包大法好</p>
-<pre><code>for (var i = 0, len = nodes.length; i &lt; len; i++) {
-    (function(i) {
-        nodes[i].onclick = function() {
-            alert(i);
-        }
-    })(i)
-};
-</code></pre>
-<p>通常，闭包可以有封装一些不需要暴露在全局的变量，延续局部变量寿命等等用途。</p>
-<h3 id="命令模式">命令模式</h3>
-<p>命令模式的意图是把请求封装为对象，从而分离请求的发起者和请求的接收者（执行者）之间的耦合关系。在命令执行之前可预先往命令对象中植入命令的接收者。</p>
-<pre><code>var TV = {
-    open: function() {
-        alert('open');
-    },
-    close: function() {
-        alert('close');
-    }
-};
-
-var createCommand = function(receiver) {
-    var execute= function() {
-        return receiver.open(); //执行命令打开电视
-    }
-
-    var undo= function() {
-        return receiver.close(); //执行命令关闭电视
-    }
-
-    return {
-        execute: execute,
-        undo: undo
-    }
-};
-
-var setComment = function(command) {
-    document.getElementById('execute').onclick = function() {
-        command.execute();
-    }
-    document.getElementById('undo').onclick = function() {
-        command.undo();
-    }
-};
-setCommand(createCommand(tv));
-</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1178,11 +1364,11 @@ setCommand(createCommand(tv));
           </li>
         
           <li>
-            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
           </li>
         
           <li>
-            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
           </li>
         
           <li>
@@ -1666,12 +1852,12 @@ if(canvas.getContext){
   </script>
 
 
-  <script async src="/blog/js/cursor/fireworks.js"></script>
+  <script async src="/js/cursor/fireworks.js"></script>
 
 
 
 
-  <script src="/blog/js/activate-power-mode.min.js"></script>
+  <script src="/js/activate-power-mode.min.js"></script>
   <script>
     POWERMODE.colorful = true;
     POWERMODE.shake = false;
@@ -1680,7 +1866,7 @@ if(canvas.getContext){
 
 
 
-<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
+<script type="text/javascript" src="/js/fold_action.js"></script><div class="moon-menu">
   <div class="moon-menu-items">
     
     <div class="moon-menu-item" onclick="back2bottom()">

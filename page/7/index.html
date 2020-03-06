@@ -176,7 +176,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/513e5894.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/f1601c3e.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -190,7 +190,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/513e5894.html" class="post-title-link" itemprop="url">代码重构</a>
+            <a href="/archives/f1601c3e.html" class="post-title-link" itemprop="url">单例模式</a>
         </h1>
 
         <div class="post-meta">
@@ -222,7 +222,7 @@
             </span>
 
           
-            <span id="/archives/513e5894.html" class="post-meta-item leancloud_visitors" data-flag-title="代码重构" title="阅读次数">
+            <span id="/archives/f1601c3e.html" class="post-meta-item leancloud_visitors" data-flag-title="单例模式" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -234,14 +234,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.4k</span>
+              <span>2.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -254,288 +254,262 @@
 
       
           <hr>
-<p>一些重构的建议：</p>
-<ol>
-<li>提炼函数</li>
-</ol>
-<pre><code>* 避免出现超大函数
-
-* 独立出来的函数有助于代码复用
-
-* 独立出来的函数更容易被覆写
-
-* 独立出来的函数如果拥有一个良好的命名，
-
-* 它本身就起到了注释的作用。
-</code></pre>
-<p>比如在一个负责取得用户信息的函数里面，我们还需要打印跟用户信息有关的log，那么打印log的语句就可以被封装在一个独立的函数里：</p>
-<pre><code>var getUserInfo = function() {
-    ajax('http://xxx.com/userInfo', function(data) {
-        console.log('userId: ' + data.userId);
-        console.log('userName: ' + data.userName);
-        console.log('nickName: ' + data.nickName);
-    });
+<p>用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。</p>
+<h3 id="实现单例模式">实现单例模式</h3>
+<pre><code>//1.实现单例模式
+var Singleton = function (name) {
+  this.name = name;
 };
-</code></pre>
-<p>可以改成：</p>
-<pre><code>var getUserInfo = function() {
-    ajax('http://xxx.com/userInfo', function(data) {
-        printDetails(data);
-    });
+Singleton.prototype.getName = function() {
+  alert(this.name);
 };
-var printDetails = function(data) {
-    console.log('userId: ' + data.userId);
-    console.log('userName: ' + data.userName);
-    console.log('nickName: ' + data.nickName);
-}
-</code></pre>
-<ol>
-<li>合并重复的条件片段<br>
-如果一个函数内有一些条件分支语句，而这些条件分支语句内部散步了一些重复的代码，那么就有必要进行合并去重工作。</li>
-</ol>
-<pre><code>//页面跳转
-var paging = function(currPage) {
-    if (currPage &lt;= 0) {
-        currPage = 0;
-        jump(currPage); //跳转
-    } else if (currPage &gt;= totalPage) {
-        currPage = totalPage;
-        jump(currPage); //跳转
-    } else {
-        jump(currPage); //跳转
+Singleton.getInstance = (function() {
+  var instance = null;
+  return function(name) {
+    if (!instance) {
+      instance = new Singleton(name);
     }
-}
+    return instance;
+  }
+})();
+var a = Singleton.getInstance('sven1');
+var b = Singleton.getInstance('sven2');
+
+console.log(a === b); //true
 </code></pre>
-<p>改成</p>
-<pre><code>//页面跳转
-var paging = function(currPage) {
-    if (currPage &lt;= 0) {
-        currPage = 0;
-    } else if (currPage &gt;= totalPage) {
-        currPage = totalPage;
-    } 
-    jump(currPage); //跳转
-}
-</code></pre>
-<ol>
-<li>把条件分支语句提炼成函数<br>
-在程序设计中，复杂的条件分支语句是导致程序难以阅读和理解的重要原因，而且容易导致一个庞大的函数，所以通常我们要进行一定的提炼。</li>
-</ol>
-<pre><code>//计算商品价格，如果处于夏季，全部商品八折出售
-var getPrice = function(price) {
-    var date = new Date();
-    if (date.getMonth() &gt;= 6 &amp;&amp; date.getMonth &lt;= 9) { //夏季
-        return price * 0.8;
+<p>以上，我们通过<code>Singleton.getInstance</code>来获取<code>Singleton</code>类的唯一对象，虽然简单但是增加了这个类的“不透明性”，<code>Singleton</code>类的使用者必须知道这是一个单例类，跟以往通过<code>new xxx</code>的方法不同</p>
+<h3 id="透明的单例模式">透明的单例模式</h3>
+<p>有了以上的不足，我们现在就来解决</p>
+<pre><code>//透明的单例模式 
+var CreateDiv = (function() {
+  var instance;
+  var CreateDiv = function(html) {
+    if (instance) {
+      return instance;
     }
-    return price;
+    this.html = html;
+    this.init();
+    return instance = this;
+  };
+  
+  CreateDiv.prototype.init = function() {
+    var div = document.createElement('div');
+    div.innerHTML = this.html;
+    document.body.appendChild(div);
+  };
+  
+  return CreateDiv;
+})();
+var aa = new CreateDiv('sven1');
+var bb = new CreateDiv('sven2');
+
+console.log(aa === bb);
+</code></pre>
+<p>以上代码，CreateDiv做了创建对象和执行初始化init方法，且保证只有一个对象。<br>
+但是，假如有一天我们需要利用这个类，在页面中创建千千万万个div，即要让这个类从单例类变成一个普通的可以产生多个实例的类，那我们必须改写CreateDiv构造函数，把控制创建唯一的那一段去掉…这样好像有点太麻烦了</p>
+<h3 id="用代理实现单例模式">用代理实现单例模式</h3>
+<p>这里就可以引入代理类的方式，思想就是将负责管理的单例逻辑移到一个代理类中，这样CreateDiv就变成一个普通的类，代码此处省略…</p>
+<h3 id="JavaScript中的单例模式">JavaScript中的单例模式</h3>
+<p>前面几种单例模式的实现，更多是接近传统面向对象语言中的实现，单例从“类”中创建出来。<br>
+然而，js作为一个没有类的语言，生搬单例模式的概念并无意义。我们只要一个对象，为什么要创建一个类呢？我们只是要一个唯一的实例就好了…因此我们可以直接用<code>var a = {}</code>来创建对象字面量。</p>
+<h3 id="惰性单例">惰性单例</h3>
+<p>惰性单例：需要的时候才创建。<br>
+例如，以一个登录悬浮窗为例，我们可以在页面加载的时候创建好这个div窗口，然后点击登录按钮的时候开始显示，但是这样如果用户只是随便浏览下就白白浪费了一些dom节点。<br>
+还有一种方法，点击的时候再创建，关闭的时候销毁。但是如果用户频繁的进行注销等操作，我们就要频繁的创建和删除div，显然这也不合理。<br>
+所以，这时候惰性单例模式就出马了。</p>
+<pre><code>var createLoginLayer = (function() {
+    var div;
+    return function() {
+        if (!div) {
+            div = document.createElement('div');
+            //创建添加等dom操作...
+        }
+        return div;
+    }
+})();
+
+$(&quot;xxx&quot;).onclick = function() {
+    var loginLayer = createLoginLayer();
+    loginLayer.show();
 }
 </code></pre>
-<p>改成</p>
-<pre><code>//计算商品价格，如果处于夏季，全部商品八折出售
-var getPrice = function(price) {
+<h3 id="通用的惰性实例">通用的惰性实例</h3>
+<p>看起来好像没什么问题，然而，他还是违反了单一的原则，创建的对象逻辑都放在createLoginLayer内部，如果我们要创建别的东西例如iframe，就要几乎将这个函数照抄一遍了，因此我们应该把不变的部分隔离出来。</p>
+<pre><code>var getSingle = function(fn) {
+    var result;
+    return function() {
+        return result || (result = fn.apply(this, arguments));
+    }
+};
+
+var createLoginLayer = function() {
+    //创建登录框
+}  
+
+var createSingleLoginLayer = getSingle(createLoginLayer);
+</code></pre>
+<p>于是，目的达成。<br>
+当然，单例模式用途远远不止于创建对象，比如我们在渲染完页面的时候，接下来要给这个列表绑定click事件，如果是ajax动态向列表里面加载数据，实际上只需要第一次渲染的时候绑定。如果不用jq的<code>$(&quot;&quot;).one('click', function(){})</code>的话，我们也可以用单例模式，做法类似。</p>
+
+      
+    </div>
+
     
-    if (isSummer()) { //夏季
-        return price * 0.8;
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/7b510e10.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/7b510e10.html" class="post-title-link" itemprop="url">代理模式</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/7b510e10.html" class="post-meta-item leancloud_visitors" data-flag-title="代理模式" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>代理模式是为一个对象提供一个代用品或占位符，以便控制对他的访问。代理模式的关键是，当客户不方便直接访问一个对象或者不满足需要的时候，提供一个对象来控制这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理后再把请求转交给本体对象。</p>
+</blockquote>
+<p>不使用代理：客户 → 本体<br>
+使用代理：客户 → 代理 → 本体</p>
+<p>先来一个带点趣味性的例子，小明要给女神A送花，然后他不好意思，打算让B代送</p>
+<pre><code>var Flower = function(){};
+var xiaoming = {
+    sendFlower: function( traget ) {
+      var flower = new Flower();
+      target.receveFlower( flower );
     }
-    return price;
-}
-var isSummer = function() {
-    var date = new Date();
-    return date.getMonth() &gt;= 6 &amp;&amp; date.getMonth &lt;= 9;
-}
-</code></pre>
-<ol>
-<li>合理使用循环</li>
-</ol>
-<pre><code>var createXHR = function() {
-    var xhr;
-    try{
-        xhr = new ActiveXObject('MSXML2.XMLHttp.6.0');
-    } catch(e) {
-        try {
-            xhr = new ActiveXObject('MSXML2.XMLHttp.3.0');
-        } catch(e) {
-            xhr = new ActiveXObject('MSXML2.XMLHttp');
-        }
-    }
-    return xhr;
-};
-var xhr = createXHR();
-</code></pre>
-<p>改成：</p>
-<pre><code>var createXHR = function() {
-    var versions = ['MSXML2.XMLHttp.6.0', 'MSXML2.XMLHttp.3.0', 'MSXML2.XMLHttp'];
-    for (var i = 0, version; version = versions[i++]; ) {
-        try {
-            return new ActiveObject(version);
-        } catch(e) {
-            
-        }
-    }
-};
-var xhr = createXHR();
-</code></pre>
-<ol>
-<li>提前让函数退出代替嵌套条件分支</li>
-</ol>
-<pre><code>var del = function(obj) {
-    var ret;
-    if (!obj.isReadOnly) { //不为只读的时候才可以删除
-        if (obj.isFolder) { //如果是文件夹
-            ret = deleteFolder(obj);
-        } else if (obj.isFile) { //如果是文件
-            ret = deleteFile(obj);
-        }
-    }
-    return ret;
-}
-</code></pre>
-<p>改成：</p>
-<pre><code>var del = function(obj) {
-    if (obj.isReadOnly) { 
-        return;
-    }
-    if (obj.isFolder) { //如果是文件夹
-        return deleteFolder(obj);
-    } 
-    if (obj.isFile) { //如果是文件
-        return deleteFile(obj);
-    }
-}
-</code></pre>
-<ol>
-<li>传递对象参数代替过长的参数列表<br>
-有时候一个函数可能接收多个参数，而参数的数量越多函数就越难理解和使用。这时我们可以把参数放入一个对象内，然后把对象传入。</li>
-</ol>
-<pre><code>var setUserInfo = function(id, name, address, sex, mobile, qq) {
-    console.log('id=' + id);
-    console.log('name=' + name);
-    console.log('address=' + address);
-    console.log('sex=' + sex);
-    console.log('mobile=' + mobile);
-    console.log('qq=' + qq);
-}
-setUserInfo(1234, cyseria, guangzhou, female, 188***, 52***);
-</code></pre>
-<p>改成：</p>
-<pre><code>var setUserInfo = function(obj) {
-    console.log('id=' + obj.id);
-    console.log('name=' + obj.name);
-    console.log('address=' + obj.address);
-    console.log('sex=' + obj.sex);
-    console.log('mobile=' + obj.mobile);
-    console.log('qq=' + obj.qq);
-}
-setUserInfo({
-    id: 1234, 
-    name: cyseria, 
-    address: guangzhou, 
-    sex: female, 
-    mobile: 188***, 
-    qq: 52***
-});
-</code></pre>
-<ol>
-<li>
-<p>尽量减少参数数量<br>
-尽量减少一些没必要的不会使用或者可以求出的参数。这里不做过多阐述。</p>
-</li>
-<li>
-<p>少用三目运算<br>
-有时候我们用三目运算会觉得它性能高，代码量少。但是在实际开发中，即使把一段代码循环一百万次，使用三目运算和<code>if,else</code>的时间开销依旧在同个级别中。同样，相比损失的代码可读性和可维护性，他能节省的代码量可以忽略不计。</p>
-</li>
-</ol>
-<p>至于例子，看看下面那个你就知道了：</p>
-<pre><code>if (!aup || bup) {
-    return a === doc ? -1 :
-        b === doc ? 1 : 
-        aup ? -1 : 
-        bup : -1 :
-        sortInput ? (indexOf.call(sortInput, a) - indexOf.call(sortInput, b)) : 
-        0;
-}
-</code></pre>
-<p>当然，如果只是简单的一句，用一下也没什么所谓。</p>
-<ol>
-<li>合理使用链式调用<br>
-使用jq的对链式调用一定不陌生，在自己编写函数的时候也可以使用这点，返回自身。但是他也有一个坏处，调试的时候不方便。所以如果链条的结构稳定后期不易修改，那么使用他无可厚非，但是如果该链经常发生变化那么还是用普通的调用吧。</li>
-</ol>
-<pre><code>var User = {
-    id: null,
-    name: null,
-    setId: function(id) {
-        this.id = id;
-        return this;
-    },
-    setName: function(name) {
-        this.name= name;
-        return this;
-    }
-};
-console.log(User.setId(1234).setName('cyseria'));
-</code></pre>
-<ol>
-<li>分解大型类</li>
-</ol>
-<pre><code>var Spirit = function(name) {
-    this.name = name;
-};
-Spirit.prototype.attack = function(type) {
-    if (type === 'waveBoxing') {
-        console.log(this.name + ':使用波动拳');
-    } else if (type === 'whirlKick') {
-        console.log(this.name + ':使用旋风腿');
-    }
-};
-var Spirit = new Spirit('AAA');
-Spirit .attack('waveBoxing');
-Spirit .attack('whirlKick');
-</code></pre>
-<p>改成：</p>
-<pre><code>var Attack = function(spirit) {
-    this.spirit = spirit;
-};
-Attack.prototype.start = function(type) {
-    return this.list[type].call(this);
-}
-Attack.prototype.list= function(type) {
-    waveBoxing: function() {
-        console.log(this.spirit.name + ':使用波动拳');
-    },
-    whirlKick: function() {
-        console.log(this.spirit.name + ':使用旋风腿');
-    }
-};
-var Spirit = function(name) {
-    this.name = name;
-    this.attackObj = new Attack(this);
-};
-Spirit.prototype.attack = function(type) {
-    this.attackObj.start(type);
 };
 
-var Spirit = new Spirit('AAA');
-Spirit .attack('waveBoxing');
-Spirit .attack('whirlKick');
-</code></pre>
-<ol>
-<li>用return退出多重循环<br>
-假设在函数体内有一个两重循环语句，我们需要在内层循环中判断当达到某个临界条件时退出外层循环。</li>
-</ol>
-<pre><code>var print = function(i) {
-    console.log(i);
+var A = {
+    receiveFlower: function( flower ) {
+      console.log('收到花' + flower);
+  }
 };
-var func = function() {
-    for (var i = 0; i &lt; 10; i++) {
-        for (var j = 0; j &lt; 10; j++) {
-            if (i * j &gt; 30) {
-                return print(i);
-            }
-        }
-    }
+
+xiaoming.sendFlower(A);
+
+//引入代理B
+var B = {
+    receiverFlower: function( flower ) {
+      A.receiveFlower( flower );
+  }
 };
-func();
 </code></pre>
+<p>此时，我们就简单的完成了一个代理模式</p>
+<p>接着，我们在原需求上做点改动，假设女神心情好的时候成功率会增大，小明跟女神不熟不知道她心情，而B跟女神比较熟可以去监听她心情的变化恰当时机送花，这样就不会造成不必要浪费了，于是代码如下：</p>
+<pre><code>//代理B
+var B = {
+    receiverFlower: function( flower ) {
+      A.listenGoodMood(function() { //监听A的好心情
+        A.receiveFlower( flower );
+    })；
+  }
+};
+
+//女神A也要提供一个可被监听的方法（当然我们只是假设，毕竟女人我们是摸不透的）
+var A = {
+    receiveFlower: function( flower ) {
+      console.log('收到花' + flower);
+  },
+  listenGoodMood: function( fn ) {
+      setTimeout(function() { //假设A的心情十秒之后会变好
+        fn();
+    }, 10000);
+  }
+};
+</code></pre>
+<p>再假设买花是一个代价昂贵的操作（说不定会被别人误会什么的，而且花放太久也会谢），所以我们当需要的时候再去做这事才比较划算，就是在A心情好的时候再去new一个花出来。</p>
+<pre><code>//引入代理B
+var B = {
+    receiverFlower: function( flower ) {
+      A.listenGoodMood(function() { //监听A的好心情
+        var Flower = function(){};
+      A.receiveFlower( flower );
+    })；
+  }
+};
+</code></pre>
+<p>此外，代理B可以帮助A做一些过滤请求，比如把一些年纪太大的，没有宝马的送花者都过滤掉，这种请求就可以直接在代理B中被拒绝掉，这种代理方式叫<strong>保护代理</strong></p>
 
       
     </div>
@@ -735,185 +709,6 @@ var calculateBonus = function(level,salary){
 console.log(calculateBonus('S', 2000); //80000
 console.log(calculateBonus('A', 1000); //30000
 </code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/681b9f80.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/img/avatar.jpg">
-      <meta itemprop="name" content="曹强">
-      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白云雅阁">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/archives/681b9f80.html" class="post-title-link" itemprop="url">代理模式的应用</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/archives/681b9f80.html" class="post-meta-item leancloud_visitors" data-flag-title="代理模式的应用" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<h3 id="虚拟代理实现图片预加载">虚拟代理实现图片预加载</h3>
-<p>图片预加载：图片过大或者网络不佳时，图片位置有段时间会是一片空白，常见的用一张loading占位，然后异步加载图片，等图片加载好了再把它填充到img节点里。</p>
-<pre><code>var myImage = (function() {
-    var imgNode = document.createElement('img');
-    document.body.appendChild( imgNode );
-    return {
-        setSrc : function( src ) {
-            imgNode.src = src;
-        }
-    }
-})();
-
-var proxyImage = (function() {
-    var img = new Image;
-    img.onload = function() {//图片加载完成之后触发
-        myImage.setSrc(this.src);
-    }
-    return {
-        setSrc: function(src) {
-            myImage.setSrc('loading.gif'); //loading图片
-            img.src = src;
-        }
-    }
-})();
-proxyImage.setSrc('xxxx');
-</code></pre>
-<p>这里我们通过proxyImage间接地访问MyImage，proxyImage控制了客户对MyImage的访问，因此在此过程中加入一些额外的操作，比如在真正图片加在之前先把img的节点的src设置成一张本地的图片。</p>
-<h3 id="虚拟代理合并http请求">虚拟代理合并http请求</h3>
-<p>假设我有一堆选项(checkbox)，每次点击就会往服务器同步文件，手速快的一秒或许可以点中四五个，然而太过平凡的服务器请求开销略大。<br>
-因此，我们决定设置一个代理函数，将两秒之内的数据传输收集到一起两秒再发送一次，对于实时性要求不是很高的系统两秒延迟不会有太大副作用但是对服务器的压力就是量级的减少。</p>
-<pre><code>var synchronousFile = function(id) {
-    console.log('开始同步文件' + id);
-};
-
-var proxySynchronousFile = (function() {
-    var cache = [], //保存一段时间内需要同步的ID
-        timer;
-    return function(id) {
-        cache.push(id);
-        if (timer) { //保证不会覆盖已启动的定时器
-            return;
-        }
-        timer = setTimeout(function() {
-            synchronousFile(cache.join(',')); //两秒后向本体发送需要同步的ID集合
-            clearTimeout(timer);
-            timer = null;
-            cache.length = 0;
-        }, 2000);
-    }
-})();
-
-var chechbox = document.getElementByTagName('input');
-for(var i = 0, c; c = checkbox[i++];) {
-    c.onclick = function() {
-        if(this.checked === true) {
-            proxySychronousFile(this.id);
-        }
-    }
-}
-</code></pre>
-<h3 id="其他代理模式">其他代理模式</h3>
-<ul>
-<li>
-<p>缓存代理：为一些开销大的运算结果提供暂时的存储，在下次运算时，如果传过来的参数跟之前的一直可以直接返回前面的存储运算结果</p>
-</li>
-<li>
-<p>防火墙代理：控制网络资源的访问，保护主题不让“坏人”接近</p>
-</li>
-<li>
-<p>远程代理：为一个对象在不同的地址空间提供局部代表</p>
-</li>
-<li>
-<p>保护代理：用于对象应该有不同访问权限的情况</p>
-</li>
-<li>
-<p>智能引用代理：取代了简单的指针，它在访问对象时执行了一些附加操作，比如计算一个对象被引用的次数</p>
-</li>
-<li>
-<p>写时服饰代理：通常用于复制一个庞大对象时候的情况。写时复制代理延迟了复制的过程，当对象被真正修改时，才能对它进行复制操作。<br>
-…</p>
-</li>
-</ul>
 
       
     </div>
@@ -1213,7 +1008,7 @@ var validataFunc = function() {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/7b510e10.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/681b9f80.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -1227,7 +1022,7 @@ var validataFunc = function() {
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/7b510e10.html" class="post-title-link" itemprop="url">代理模式</a>
+            <a href="/archives/681b9f80.html" class="post-title-link" itemprop="url">代理模式的应用</a>
         </h1>
 
         <div class="post-meta">
@@ -1259,7 +1054,7 @@ var validataFunc = function() {
             </span>
 
           
-            <span id="/archives/7b510e10.html" class="post-meta-item leancloud_visitors" data-flag-title="代理模式" title="阅读次数">
+            <span id="/archives/681b9f80.html" class="post-meta-item leancloud_visitors" data-flag-title="代理模式的应用" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1271,7 +1066,7 @@ var validataFunc = function() {
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
+              <span>1.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1290,70 +1085,89 @@ var validataFunc = function() {
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
-<p>代理模式是为一个对象提供一个代用品或占位符，以便控制对他的访问。代理模式的关键是，当客户不方便直接访问一个对象或者不满足需要的时候，提供一个对象来控制这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理后再把请求转交给本体对象。</p>
-</blockquote>
-<p>不使用代理：客户 → 本体<br>
-使用代理：客户 → 代理 → 本体</p>
-<p>先来一个带点趣味性的例子，小明要给女神A送花，然后他不好意思，打算让B代送</p>
-<pre><code>var Flower = function(){};
-var xiaoming = {
-    sendFlower: function( traget ) {
-      var flower = new Flower();
-      target.receveFlower( flower );
+          <hr>
+<h3 id="虚拟代理实现图片预加载">虚拟代理实现图片预加载</h3>
+<p>图片预加载：图片过大或者网络不佳时，图片位置有段时间会是一片空白，常见的用一张loading占位，然后异步加载图片，等图片加载好了再把它填充到img节点里。</p>
+<pre><code>var myImage = (function() {
+    var imgNode = document.createElement('img');
+    document.body.appendChild( imgNode );
+    return {
+        setSrc : function( src ) {
+            imgNode.src = src;
+        }
     }
-};
+})();
 
-var A = {
-    receiveFlower: function( flower ) {
-      console.log('收到花' + flower);
-  }
-};
-
-xiaoming.sendFlower(A);
-
-//引入代理B
-var B = {
-    receiverFlower: function( flower ) {
-      A.receiveFlower( flower );
-  }
-};
+var proxyImage = (function() {
+    var img = new Image;
+    img.onload = function() {//图片加载完成之后触发
+        myImage.setSrc(this.src);
+    }
+    return {
+        setSrc: function(src) {
+            myImage.setSrc('loading.gif'); //loading图片
+            img.src = src;
+        }
+    }
+})();
+proxyImage.setSrc('xxxx');
 </code></pre>
-<p>此时，我们就简单的完成了一个代理模式</p>
-<p>接着，我们在原需求上做点改动，假设女神心情好的时候成功率会增大，小明跟女神不熟不知道她心情，而B跟女神比较熟可以去监听她心情的变化恰当时机送花，这样就不会造成不必要浪费了，于是代码如下：</p>
-<pre><code>//代理B
-var B = {
-    receiverFlower: function( flower ) {
-      A.listenGoodMood(function() { //监听A的好心情
-        A.receiveFlower( flower );
-    })；
-  }
+<p>这里我们通过proxyImage间接地访问MyImage，proxyImage控制了客户对MyImage的访问，因此在此过程中加入一些额外的操作，比如在真正图片加在之前先把img的节点的src设置成一张本地的图片。</p>
+<h3 id="虚拟代理合并http请求">虚拟代理合并http请求</h3>
+<p>假设我有一堆选项(checkbox)，每次点击就会往服务器同步文件，手速快的一秒或许可以点中四五个，然而太过平凡的服务器请求开销略大。<br>
+因此，我们决定设置一个代理函数，将两秒之内的数据传输收集到一起两秒再发送一次，对于实时性要求不是很高的系统两秒延迟不会有太大副作用但是对服务器的压力就是量级的减少。</p>
+<pre><code>var synchronousFile = function(id) {
+    console.log('开始同步文件' + id);
 };
 
-//女神A也要提供一个可被监听的方法（当然我们只是假设，毕竟女人我们是摸不透的）
-var A = {
-    receiveFlower: function( flower ) {
-      console.log('收到花' + flower);
-  },
-  listenGoodMood: function( fn ) {
-      setTimeout(function() { //假设A的心情十秒之后会变好
-        fn();
-    }, 10000);
-  }
-};
+var proxySynchronousFile = (function() {
+    var cache = [], //保存一段时间内需要同步的ID
+        timer;
+    return function(id) {
+        cache.push(id);
+        if (timer) { //保证不会覆盖已启动的定时器
+            return;
+        }
+        timer = setTimeout(function() {
+            synchronousFile(cache.join(',')); //两秒后向本体发送需要同步的ID集合
+            clearTimeout(timer);
+            timer = null;
+            cache.length = 0;
+        }, 2000);
+    }
+})();
+
+var chechbox = document.getElementByTagName('input');
+for(var i = 0, c; c = checkbox[i++];) {
+    c.onclick = function() {
+        if(this.checked === true) {
+            proxySychronousFile(this.id);
+        }
+    }
+}
 </code></pre>
-<p>再假设买花是一个代价昂贵的操作（说不定会被别人误会什么的，而且花放太久也会谢），所以我们当需要的时候再去做这事才比较划算，就是在A心情好的时候再去new一个花出来。</p>
-<pre><code>//引入代理B
-var B = {
-    receiverFlower: function( flower ) {
-      A.listenGoodMood(function() { //监听A的好心情
-        var Flower = function(){};
-      A.receiveFlower( flower );
-    })；
-  }
-};
-</code></pre>
-<p>此外，代理B可以帮助A做一些过滤请求，比如把一些年纪太大的，没有宝马的送花者都过滤掉，这种请求就可以直接在代理B中被拒绝掉，这种代理方式叫<strong>保护代理</strong></p>
+<h3 id="其他代理模式">其他代理模式</h3>
+<ul>
+<li>
+<p>缓存代理：为一些开销大的运算结果提供暂时的存储，在下次运算时，如果传过来的参数跟之前的一直可以直接返回前面的存储运算结果</p>
+</li>
+<li>
+<p>防火墙代理：控制网络资源的访问，保护主题不让“坏人”接近</p>
+</li>
+<li>
+<p>远程代理：为一个对象在不同的地址空间提供局部代表</p>
+</li>
+<li>
+<p>保护代理：用于对象应该有不同访问权限的情况</p>
+</li>
+<li>
+<p>智能引用代理：取代了简单的指针，它在访问对象时执行了一些附加操作，比如计算一个对象被引用的次数</p>
+</li>
+<li>
+<p>写时服饰代理：通常用于复制一个庞大对象时候的情况。写时复制代理延迟了复制的过程，当对象被真正修改时，才能对它进行复制操作。<br>
+…</p>
+</li>
+</ul>
 
       
     </div>
@@ -1478,11 +1292,11 @@ var B = {
           </li>
         
           <li>
-            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
           </li>
         
           <li>
-            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
           </li>
         
           <li>
@@ -1966,12 +1780,12 @@ if(canvas.getContext){
   </script>
 
 
-  <script async src="/blog/js/cursor/fireworks.js"></script>
+  <script async src="/js/cursor/fireworks.js"></script>
 
 
 
 
-  <script src="/blog/js/activate-power-mode.min.js"></script>
+  <script src="/js/activate-power-mode.min.js"></script>
   <script>
     POWERMODE.colorful = true;
     POWERMODE.shake = false;
@@ -1980,7 +1794,7 @@ if(canvas.getContext){
 
 
 
-<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
+<script type="text/javascript" src="/js/fold_action.js"></script><div class="moon-menu">
   <div class="moon-menu-items">
     
     <div class="moon-menu-item" onclick="back2bottom()">

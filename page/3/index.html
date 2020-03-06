@@ -176,7 +176,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/11d8b32d.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/ac4294eb.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -190,7 +190,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/11d8b32d.html" class="post-title-link" itemprop="url">继承</a>
+            <a href="/archives/ac4294eb.html" class="post-title-link" itemprop="url">多态</a>
         </h1>
 
         <div class="post-meta">
@@ -222,7 +222,7 @@
             </span>
 
           
-            <span id="/archives/11d8b32d.html" class="post-meta-item leancloud_visitors" data-flag-title="继承" title="阅读次数">
+            <span id="/archives/ac4294eb.html" class="post-meta-item leancloud_visitors" data-flag-title="多态" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -234,7 +234,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
+              <span>979</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -253,320 +253,55 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="简介">简介</h2>
-<p>在[PHP设计模式(二)：抽象类和接口][2]以及[PHP设计模式(三)：封装][3]中，我们已经见过继承，也就是extends关键字。<br>
-和C/C++，Java，Python等语言一样，PHP也支持继承，而且和其他语言没有什么区别。</p>
-<h2 id="继承-Inheritance">继承/Inheritance</h2>
+          <h2 id="Introduction">Introduction</h2>
+<p>在[PHP设计模式(四)：继承][2]中我们介绍了继承，利用extends来进行程序设计的方法。<br>
+在[PHP设计模式(二)：抽象类和接口][3]中我们介绍了接口，事实上也存在利用interface的程序设计方法，那就是多态。<br>
+和C/C++，Java，Python等语言一样，PHP也支持多态。多态更多是是一种面向对象程序设计的概念，让同一类对象执行同一个接口，但却实现不同的逻辑功能<br>
+。</p>
+<h2 id="多态-Polymorphism">多态/Polymorphism</h2>
 <p>还是用动物、鲸鱼和鲤鱼来举例：</p>
 <pre><code>&lt;?php
-abstract class Animal {
-  protected $name;
+interface IEat {
+  function eatFish();
+  function eatMoss();
+}
 
-  protected function chew($food) {
-    echo $this-&gt;name . &quot; is chewing &quot; . $food . &quot;.\n&quot;;
+class Whale implements IEat {
+  public function eatFish() {
+    echo &quot;Whale eats fish.\n&quot;;
   }
-  protected function digest($food) {
-    echo $this-&gt;name . &quot; is digesting &quot; . $food . &quot;.\n&quot;;
+  public function eatMoss() {
+    echo &quot;Whale doesn't eat fish\n&quot;;
   }
 }
 
-class Whale extends Animal {
-  public function __construct() {
-    $this-&gt;name = &quot;Whale&quot;;
+class Carp implements IEat {
+  public function eatFish() {
+    echo &quot;Carp doesn't eat moss.\n&quot;;
   }
-  public function eat($food) {
-    $this-&gt;chew($food);
-    $this-&gt;digest($food);
-  }
-}
-
-class Carp extends Animal {
-  public function __construct() {
-    $this-&gt;name = &quot;Carp&quot;;
-  }
-  public function eat($food) {
-    $this-&gt;chew($food);
-    $this-&gt;digest($food);
+  public function eatMoss() {
+    echo &quot;Carp eats moss.\n&quot;;
   }
 }
 
 $whale = new Whale();
-$whale-&gt;eat(&quot;fish&quot;);
+$whale-&gt;eatFish();
+$whale-&gt;eatMoss();
 $carp = new Carp();
-$carp-&gt;eat(&quot;moss&quot;);
+$carp-&gt;eatFish();
+$carp-&gt;eatMoss();
 ?&gt;
 </code></pre>
 <p>运行一下：</p>
 <pre><code>$ php Inheritance.php
-Whale is chewing fish.
-Whale is digesting fish.
-Carp is chewing moss.
-Carp is digesting moss.
+Whale eats fish.
+Whale doesn't eat fish.
+Carp eats moss.
+Carp doesn't eat moss.
 </code></pre>
-<p>注意$this在Animal类、Whale类、Carp类中的用法。<br>
-上面的代码看似常见，实则暗含玄机。对于一个好的程序设计，需要：</p>
-<ol>
-<li>
-<p>类和类之间应该是低耦合的。</p>
-</li>
-<li>
-<p>继承通常是继承自抽象类，而不是具体类。</p>
-</li>
-<li>
-<p>通常直接继承抽象类的具体类只有一层，在抽象类中用protected来限定。</p>
-</li>
-</ol>
+<p>注意PHP的函数定义不包含返回值，因此完全可以给不同的接口实现返回不同类型的数据。这一点和C/C++，Java等语言是不同的。此外，返回不同类型的数据，甚至不返回结果，对程序设计来说，会额外增加维护成本，已经和使用接口的初衷不同了（接口为了封装实现，而不同的返回值事实上是需要调用者去理解实现的）。</p>
 <h2 id="总结">总结</h2>
-<p>合理的继承对于好的程序设计同样是必不可少的，结合abstract和protected，能让你编写出结构清晰的代码。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/54788f73.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/img/avatar.jpg">
-      <meta itemprop="name" content="曹强">
-      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白云雅阁">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/archives/54788f73.html" class="post-title-link" itemprop="url">工厂模式</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-10-13 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-13T00:00:00Z">2016-10-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-06 11:58:28" itemprop="dateModified" datetime="2020-03-06T11:58:28Z">2020-03-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/archives/54788f73.html" class="post-meta-item leancloud_visitors" data-flag-title="工厂模式" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="简介">简介</h2>
-<p>在[PHP设计模式(七)：设计模式分类][2]中我们提到过创建设计模式(Creation<br>
-patterns)，创建设计模式专注于设计对象(Object)和实例(Instance)的创建过程。<br>
-创建设计模式包括下面五种设计模式：</p>
-<ol>
-<li>
-<p>抽象工厂设计模式(Abstract Factory)</p>
-</li>
-<li>
-<p>生成器模式(Builder)</p>
-</li>
-<li>
-<p>工厂设计模式(Factory Method)</p>
-</li>
-<li>
-<p>原型设计模式(Prototype Method)</p>
-</li>
-<li>
-<p>单例设计模式(Singleton)</p>
-</li>
-</ol>
-<p>当程序逐渐扩展的时候，需要更多的新对象，新对象的创建不应该依赖于创建者，换句话说，新对象的创建过程，不应该依赖调用创建函数的对象。为了减少冗余，增加拓展性，工厂模式就是一种创建新对象时使用的设计模式。</p>
-<h2 id="工厂模式">工厂模式</h2>
-<p>工厂模式，也是五种设计模式中唯一的类的设计模式(Class patterns)，即在类中就能实现的设计模式。<br>
-听起来挺抽象？对比原型设计模式，这是一种对象设计模式(Object patterns)，通过对象的__clone()方法来实现的设计模式。<br>
-在工厂模式中，新创建的对象/产品并不依赖于生产它的对象/工厂，新对象和调用者之间是低耦合状态。通常调用者和工厂交互，由工厂来生成新对象，新对象只和工厂有关。</p>
-<h2 id="何时使用工厂模式？">何时使用工厂模式？</h2>
-<p>简单来说，当需求对类的个数不明确的时候，可以使用工厂模式，如：<br>
-你需要创建一个在线博物馆，但你并不确切的知道究竟有多少文物，你不可能无限的增加新的文物类，同时对于损毁的文物，你不可能无限的去清理这些类。<br>
-反过来说，如果你确切的知道类的总量，那么你就没有必要使用工程模式，直接通过继承的方式就能实现好的设计。</p>
-<h2 id="Example">Example</h2>
-<p>还是使用我们惯用的鲸鱼和鲤鱼的例子，现在我们想实现一个海洋馆，目前我们并不确定究竟有多少海洋生物。<br>
-先是一个抽象的工厂类：</p>
-<pre><code>&lt;?php
-abstract class Factory {
-  protected abstract function create();
-  public function factoryStart() {
-    return $this-&gt;create();
-  }
-}
-?&gt;
-</code></pre>
-<p>然后是两个工厂：鲸鱼工厂和鲤鱼工厂</p>
-<pre><code>&lt;?php
-class WhaleFactory extends Factory {
-  protected function create() {
-    $whale = new Whale();
-    return $whale-&gt;create();
-  }
-}
-class CarpFactory extends Factory {
-  protected function create() {
-    $carp = new Carp();
-    return $carp-&gt;create();
-  }
-}
-?&gt;
-</code></pre>
-<p>然后是抽象的动物接口：</p>
-<pre><code>&lt;?php
-interface Animal {
-  public function create();
-}
-?&gt;
-</code></pre>
-<p>然后是具体的动物类：鲸鱼类和鲤鱼类</p>
-<pre><code>&lt;?php
-class Whale implements Animal {
-  private $name;
-  public function create() {
-    $this-&gt;name = &quot;Whale&quot;;
-    return $this-&gt;name . &quot; is created.\n&quot;;
-  }
-}
-class Carp implements Animal {
-  private $name;
-  public function create() {
-    $this-&gt;name = &quot;Carp&quot;;
-    return $this-&gt;name . &quot; is created.\n&quot;;
-  }
-}
-?&gt;
-</code></pre>
-<p>下面给出使用工厂创建鲸鱼和鲤鱼的代码：</p>
-<pre><code>&lt;?php
-$whaleFactory = new WhaleFactory();
-echo $whaleFactory-&gt;factoryStart();
-$carpFactory = new CarpFactory();
-echo $carpFactory-&gt;factoryStart();
-?&gt;
-</code></pre>
-<p>运行一下：</p>
-<pre><code>Whale is created.
-Carp is created.
-</code></pre>
-<p>到这里你是不是觉得，其实直接生成两个类就行了，何必搞这么复杂？别着急，好戏在后面。</p>
-<h2 id="修改类的方法">修改类的方法</h2>
-<p>由于Interface的限制，修改类的方法被限定在了create()方法中，因此可以避免偷懒的程序员新增加的不合理函数。<br>
-简单修改一下：</p>
-<pre><code>&lt;?php
-class Whale implements Animal {
-  private $name;
-  public function create() {
-    $this-&gt;name = &quot;Whale&quot;;
-    return $this-&gt;name . &quot; is created. Whale eats fish.\n&quot;;
-  }
-}
-class Carp implements Animal {
-  private $name;
-  public function create() {
-    $this-&gt;name = &quot;Carp&quot;;
-    return $this-&gt;name . &quot; is created. Carp eats moss.\n&quot;;
-  }
-}
-?&gt;
-</code></pre>
-<p>由于对象是由工厂造出来的，外部不可能直接调用或者修改类的实现，类的修改被限定在了类的对外接口上。这样的架构易于扩展。</p>
-<h2 id="一个工厂">一个工厂</h2>
-<p>工厂模式的灵活，在于可以只拥有一个工厂，却能生产多个类/产品。<br>
-修改我们的抽象工厂，给create()方法增加animal接口：</p>
-<pre><code>&lt;?php
-abstract class Factory {
-  protected abstract function create(Animal $animal);
-  public function factoryStart($animal) {
-    return $this-&gt;create($animal);
-  }
-}
-?&gt;
-</code></pre>
-<p>然后合并之前的鲸鱼工厂和鲤鱼工厂：</p>
-<pre><code>&lt;?php
-class AnimalFactory extends Factory {
-  protected function create(Animal $animal) {
-    return $animal-&gt;create();
-  }
-}
-?&gt;
-</code></pre>
-<p>修改使用工厂创建鲸鱼和鲤鱼的代码：</p>
-<pre><code>&lt;?php
-$animalFactory = new AnimalFactory();
-echo $animalFactory-&gt;factoryStart(new Whale());
-echo $animalFactory-&gt;factoryStart(new Carp());
-?&gt;
-</code></pre>
-<p>运行一下：</p>
-<pre><code>Whale is created. Whale eats fish.
-Carp is created. Carp eats moss.
-</code></pre>
-<p>鲸鱼类和鲤鱼类源源不断的从一个工厂中被创建出来了。通过这种设计模式，类的创建过程统一通过一个接口来实现，接口外部并不需要关心类是如何被创建出来的，而接口内部实现也得到了很好的拓展性。</p>
-<h2 id="总结">总结</h2>
-<p>本文介绍了工厂设计模式，使用这种设计模式，可以让你通过一个或多个工厂的接口，创建无数新类，调用任意类的方法。由于接口严格定义了新类/产品的形态，因此在维护和<br>
-拓展的时候，可以省去不少力气。</p>
+<p>合理利用多态对接口进行不同的实现，简化你的编程模型，让代码易于维护。</p>
 
       
     </div>
@@ -1122,6 +857,255 @@ ATCGATCG
   
   
 
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/54788f73.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/54788f73.html" class="post-title-link" itemprop="url">工厂模式</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-13 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-13T00:00:00Z">2016-10-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:28" itemprop="dateModified" datetime="2020-03-06T11:58:28Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/54788f73.html" class="post-meta-item leancloud_visitors" data-flag-title="工厂模式" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="简介">简介</h2>
+<p>在[PHP设计模式(七)：设计模式分类][2]中我们提到过创建设计模式(Creation<br>
+patterns)，创建设计模式专注于设计对象(Object)和实例(Instance)的创建过程。<br>
+创建设计模式包括下面五种设计模式：</p>
+<ol>
+<li>
+<p>抽象工厂设计模式(Abstract Factory)</p>
+</li>
+<li>
+<p>生成器模式(Builder)</p>
+</li>
+<li>
+<p>工厂设计模式(Factory Method)</p>
+</li>
+<li>
+<p>原型设计模式(Prototype Method)</p>
+</li>
+<li>
+<p>单例设计模式(Singleton)</p>
+</li>
+</ol>
+<p>当程序逐渐扩展的时候，需要更多的新对象，新对象的创建不应该依赖于创建者，换句话说，新对象的创建过程，不应该依赖调用创建函数的对象。为了减少冗余，增加拓展性，工厂模式就是一种创建新对象时使用的设计模式。</p>
+<h2 id="工厂模式">工厂模式</h2>
+<p>工厂模式，也是五种设计模式中唯一的类的设计模式(Class patterns)，即在类中就能实现的设计模式。<br>
+听起来挺抽象？对比原型设计模式，这是一种对象设计模式(Object patterns)，通过对象的__clone()方法来实现的设计模式。<br>
+在工厂模式中，新创建的对象/产品并不依赖于生产它的对象/工厂，新对象和调用者之间是低耦合状态。通常调用者和工厂交互，由工厂来生成新对象，新对象只和工厂有关。</p>
+<h2 id="何时使用工厂模式？">何时使用工厂模式？</h2>
+<p>简单来说，当需求对类的个数不明确的时候，可以使用工厂模式，如：<br>
+你需要创建一个在线博物馆，但你并不确切的知道究竟有多少文物，你不可能无限的增加新的文物类，同时对于损毁的文物，你不可能无限的去清理这些类。<br>
+反过来说，如果你确切的知道类的总量，那么你就没有必要使用工程模式，直接通过继承的方式就能实现好的设计。</p>
+<h2 id="Example">Example</h2>
+<p>还是使用我们惯用的鲸鱼和鲤鱼的例子，现在我们想实现一个海洋馆，目前我们并不确定究竟有多少海洋生物。<br>
+先是一个抽象的工厂类：</p>
+<pre><code>&lt;?php
+abstract class Factory {
+  protected abstract function create();
+  public function factoryStart() {
+    return $this-&gt;create();
+  }
+}
+?&gt;
+</code></pre>
+<p>然后是两个工厂：鲸鱼工厂和鲤鱼工厂</p>
+<pre><code>&lt;?php
+class WhaleFactory extends Factory {
+  protected function create() {
+    $whale = new Whale();
+    return $whale-&gt;create();
+  }
+}
+class CarpFactory extends Factory {
+  protected function create() {
+    $carp = new Carp();
+    return $carp-&gt;create();
+  }
+}
+?&gt;
+</code></pre>
+<p>然后是抽象的动物接口：</p>
+<pre><code>&lt;?php
+interface Animal {
+  public function create();
+}
+?&gt;
+</code></pre>
+<p>然后是具体的动物类：鲸鱼类和鲤鱼类</p>
+<pre><code>&lt;?php
+class Whale implements Animal {
+  private $name;
+  public function create() {
+    $this-&gt;name = &quot;Whale&quot;;
+    return $this-&gt;name . &quot; is created.\n&quot;;
+  }
+}
+class Carp implements Animal {
+  private $name;
+  public function create() {
+    $this-&gt;name = &quot;Carp&quot;;
+    return $this-&gt;name . &quot; is created.\n&quot;;
+  }
+}
+?&gt;
+</code></pre>
+<p>下面给出使用工厂创建鲸鱼和鲤鱼的代码：</p>
+<pre><code>&lt;?php
+$whaleFactory = new WhaleFactory();
+echo $whaleFactory-&gt;factoryStart();
+$carpFactory = new CarpFactory();
+echo $carpFactory-&gt;factoryStart();
+?&gt;
+</code></pre>
+<p>运行一下：</p>
+<pre><code>Whale is created.
+Carp is created.
+</code></pre>
+<p>到这里你是不是觉得，其实直接生成两个类就行了，何必搞这么复杂？别着急，好戏在后面。</p>
+<h2 id="修改类的方法">修改类的方法</h2>
+<p>由于Interface的限制，修改类的方法被限定在了create()方法中，因此可以避免偷懒的程序员新增加的不合理函数。<br>
+简单修改一下：</p>
+<pre><code>&lt;?php
+class Whale implements Animal {
+  private $name;
+  public function create() {
+    $this-&gt;name = &quot;Whale&quot;;
+    return $this-&gt;name . &quot; is created. Whale eats fish.\n&quot;;
+  }
+}
+class Carp implements Animal {
+  private $name;
+  public function create() {
+    $this-&gt;name = &quot;Carp&quot;;
+    return $this-&gt;name . &quot; is created. Carp eats moss.\n&quot;;
+  }
+}
+?&gt;
+</code></pre>
+<p>由于对象是由工厂造出来的，外部不可能直接调用或者修改类的实现，类的修改被限定在了类的对外接口上。这样的架构易于扩展。</p>
+<h2 id="一个工厂">一个工厂</h2>
+<p>工厂模式的灵活，在于可以只拥有一个工厂，却能生产多个类/产品。<br>
+修改我们的抽象工厂，给create()方法增加animal接口：</p>
+<pre><code>&lt;?php
+abstract class Factory {
+  protected abstract function create(Animal $animal);
+  public function factoryStart($animal) {
+    return $this-&gt;create($animal);
+  }
+}
+?&gt;
+</code></pre>
+<p>然后合并之前的鲸鱼工厂和鲤鱼工厂：</p>
+<pre><code>&lt;?php
+class AnimalFactory extends Factory {
+  protected function create(Animal $animal) {
+    return $animal-&gt;create();
+  }
+}
+?&gt;
+</code></pre>
+<p>修改使用工厂创建鲸鱼和鲤鱼的代码：</p>
+<pre><code>&lt;?php
+$animalFactory = new AnimalFactory();
+echo $animalFactory-&gt;factoryStart(new Whale());
+echo $animalFactory-&gt;factoryStart(new Carp());
+?&gt;
+</code></pre>
+<p>运行一下：</p>
+<pre><code>Whale is created. Whale eats fish.
+Carp is created. Carp eats moss.
+</code></pre>
+<p>鲸鱼类和鲤鱼类源源不断的从一个工厂中被创建出来了。通过这种设计模式，类的创建过程统一通过一个接口来实现，接口外部并不需要关心类是如何被创建出来的，而接口内部实现也得到了很好的拓展性。</p>
+<h2 id="总结">总结</h2>
+<p>本文介绍了工厂设计模式，使用这种设计模式，可以让你通过一个或多个工厂的接口，创建无数新类，调用任意类的方法。由于接口严格定义了新类/产品的形态，因此在维护和<br>
+拓展的时候，可以省去不少力气。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
   </div>
 
   
@@ -1231,11 +1215,11 @@ ATCGATCG
           </li>
         
           <li>
-            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
           </li>
         
           <li>
-            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
           </li>
         
           <li>
@@ -1719,12 +1703,12 @@ if(canvas.getContext){
   </script>
 
 
-  <script async src="/blog/js/cursor/fireworks.js"></script>
+  <script async src="/js/cursor/fireworks.js"></script>
 
 
 
 
-  <script src="/blog/js/activate-power-mode.min.js"></script>
+  <script src="/js/activate-power-mode.min.js"></script>
   <script>
     POWERMODE.colorful = true;
     POWERMODE.shake = false;
@@ -1733,7 +1717,7 @@ if(canvas.getContext){
 
 
 
-<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
+<script type="text/javascript" src="/js/fold_action.js"></script><div class="moon-menu">
   <div class="moon-menu-items">
     
     <div class="moon-menu-item" onclick="back2bottom()">
