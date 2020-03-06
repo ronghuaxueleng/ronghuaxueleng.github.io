@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://ronghuaxueleng.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="原文地址：[PHP设计模式(六)：MVC][1]  Introduction 20世纪80年代，计算机发展迅速，编程技术也日益分化。桌面应用编程，也逐渐出现了用户图形界面和程序逻辑分离的程序设计。到了90年代，web的出现更是让这种程序设计模式得以延续。 这种设计模式便是MVC(Model-View-Control)，除了MVC，还有MVC的变种，如MVVM(Model-View-View-Mo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MVC">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/84372d79.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="原文地址：[PHP设计模式(六)：MVC][1]  Introduction 20世纪80年代，计算机发展迅速，编程技术也日益分化。桌面应用编程，也逐渐出现了用户图形界面和程序逻辑分离的程序设计。到了90年代，web的出现更是让这种程序设计模式得以延续。 这种设计模式便是MVC(Model-View-Control)，除了MVC，还有MVC的变种，如MVVM(Model-View-View-Mo">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-13T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-06T11:58:28.047Z">
+<meta property="article:author" content="曹强">
+<meta property="article:tag" content="php">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://ronghuaxueleng.github.io/archives/84372d79.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>MVC | 白云雅阁</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">白云雅阁</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一切都是最好的安排</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/84372d79.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MVC
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-13 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-13T00:00:00Z">2016-10-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:28" itemprop="dateModified" datetime="2020-03-06T11:58:28Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/84372d79.html" class="post-meta-item leancloud_visitors" data-flag-title="MVC" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>原文地址：[PHP设计模式(六)：MVC][1]</p>
+</blockquote>
+<h2 id="Introduction">Introduction</h2>
+<p>20世纪80年代，计算机发展迅速，编程技术也日益分化。桌面应用编程，也逐渐出现了用户图形界面和程序逻辑分离的程序设计。到了90年代，web的出现更是让这种程序设计模式得以延续。<br>
+这种设计模式便是<a href="https://en.wikipedia.org/wiki/Model-view-controller" target="_blank" rel="noopener">MVC(Model-View-Control)</a>，除了MVC，还有MVC的变种，如<a href="https://en.wikipedia.org/wiki/Model-view-viewmodel" target="_blank" rel="noopener">MVVM(Model-View-View-Model)</a>等。</p>
+<h2 id="MVC">MVC</h2>
+<p>回到80年代的桌面应用编程，当时面向对象的编程设计模式（见<a href="http://csprojectedu.com/2016/02/22/PHPDesignPatterns-1/" target="_blank" rel="noopener">PHP设计模式(一)：基础编程模式</a>）兴起，程序员将桌面应用分割成两个大的对象：领域对象(domain objects)和可视对象(presentation objects)。领域对象是对现实事物的抽象模型，可视对象是对用户界面部分的抽象模型。<br>
+后来人们发现，只有领域对象和可视对象是不够的，特别是在复杂的业务中。根据<a href="http://csprojectedu.com/2016/02/26/PHPDesignPatterns-3/" target="_blank" rel="noopener">PHP设计模式(三)：封装</a>中介绍的设计原则，在面向对象程序设计中，类和类之间的访问、交互和更新应该是通过Accessors和Mutators。<br>
+那么如果操作领域对象呢？人们引入了控制器(controller)的对象，通过控制器来操作领域模型。<br>
+到此，MVC模型逐渐稳定下来，用户通过可视对象操作控制器对象，控制器对象再去操作领域对象。</p>
+<h2 id="MVC中的设计模式">MVC中的设计模式</h2>
+<p>上面介绍的MVC属于抽象度比较高的设计模式，在实际编程中，需要遵守下面的设计模式。</p>
+<h3 id="基于接口去编程">基于接口去编程</h3>
+<p>基于接口去编程的好处就是分离设计和实现，这一点我们在<a href="http://csprojectedu.com/2016/02/24/PHPDesignPatterns-2/" target="_blank" rel="noopener">PHP设计模式(二)：抽象类和接口</a>已经介绍过了，下面我们举一个实际的例子来说明这个设计的好处。</p>
+<pre><code>&lt;?php
+abstract class Animal {
+  protected $name;
+  abstract protected function eatFish();
+  abstract protected function eatMoss();
+  public function eat() {
+    if ($this-&gt;eatFish()) {
+      echo $this-&gt;name . &quot; can eat fish.\n&quot;;
+    }
+    if ($this-&gt;eatMoss()) {
+      echo $this-&gt;name . &quot; can eat moss.\n&quot;;
+    }
+  }
+}
+?&gt;
+</code></pre>
+<p>我们创建一个鲸鱼类：</p>
+<pre><code>&lt;?php
+include_once('Animal.php');
+class Whale extends Animal {
+  public function __construct() {
+    $this-&gt;name = &quot;Whale&quot;;
+  }
+  public function eatFish() {
+    return TRUE;
+  }
+  public function eatMoss() {
+    return FALSE;
+  }
+}
+
+$whale = new Whale();
+$whale-&gt;eat();
+?&gt;
+</code></pre>
+<p>运行一下：</p>
+<pre><code>$ php Whale.php
+Whale eats fish.
+</code></pre>
+<p>看上去没什么问题，对吧？我们创建一个鲤鱼类：</p>
+<pre><code>&lt;?php
+include_once('Animal.php');
+class Carp extends Animal {
+  public function __construct() {
+    $this-&gt;name = &quot;Carp&quot;;
+  }
+  public function eatMoss() {
+    return TRUE;
+  }
+}
+
+$carp = new Carp();
+$carp-&gt;eat();
+?&gt;
+</code></pre>
+<p>运行一下：</p>
+<pre><code>$ php Carp.php
+PHP Fatal error: Class Carp contains 1 abstract method and must therefore be
+declared abstract or implement the remaining method (Animal::eatFish) in
+Carp.php on line 9
+</code></pre>
+<p>报错了，对吧？因为我们实现Carp.php的时候故意没有去实现eatFish接口，基于接口的编程设计模式可以在开发期就发现这种逻辑错误。</p>
+<h3 id="使用组件而不是继承">使用组件而不是继承</h3>
+<p>将一个对象拆成更小的对象，这些小的对象成为组件(composition)。尽量使用组件而不是继承的设计模式的意义在于，多种继承之下，子类可能会拥有大量毫无意义的未实现方法。而通过组件的方式，子类可以选择需要的组件。<br>
+下面给出一个例子：</p>
+<pre><code>&lt;?php
+abstract class Animal {
+  protected $name;
+  abstract protected function eatFish();
+  abstract protected function eatMoss();
+  public function eat() {
+    if ($this-&gt;eatFish()) {
+      echo $this-&gt;name . &quot; can eat fish.\n&quot;;
+    }
+    if ($this-&gt;eatMoss()) {
+      echo $this-&gt;name . &quot; can eat moss.\n&quot;;
+    }
+  }
+}
+
+class Whale extends Animal {
+  protected function __construct() {
+    $this-&gt;name = &quot;Whale&quot;;
+  }
+  protected function eatFish() {
+    return TRUE;
+  }
+  protected function eatMoss() {
+    return FALSE;
+  }
+}
+
+class BullWhale extends Whale {
+  public function __construct() {
+    $this-&gt;name = &quot;Bull Whale&quot;;
+  }
+  public function getGender() {
+    return &quot;Male&quot;;
+  }
+}
+?&gt;
+</code></pre>
+<p>这里的BullWhale其实非常冗余，实际的业务模型可能并不需要这么复杂，这就是多重继承的恶果。<br>
+而组件则不同，通过将行为拆分成不同的部分，又最终子类决定使用哪些组件。<br>
+下面给出一个例子：</p>
+<pre><code>&lt;?php
+class Action {
+  private $name;
+  public function __construct($name) {
+    $this-&gt;name = $name;
+  }
+  public function eat($food) {
+    echo $this-&gt;name . &quot; eat &quot;. $food . &quot;.\n&quot;;
+  }
+}
+
+class Gender {
+  private $gender;
+  public function __construct($gender) {
+    $this-&gt;gender= $gender;
+  }
+  public function getGender() {
+    return $this-&gt;gender;
+  }
+}
+
+class BullWhale {
+  private $action;
+  private $gender;
+  public function __construct() {
+    $this-&gt;action = new Action(&quot;Bull Whale&quot;);
+    $this-&gt;gender = new Gender(&quot;Male&quot;);
+  }
+  public function eatFood($food) {
+    $this-&gt;action-&gt;eat($food);
+  }
+  public function getGender() {
+    return $this-&gt;gender-&gt;getGender();
+  }
+}
+
+$bullWhale = new BullWhale();
+$bullWhale-&gt;eatFood(&quot;fish&quot;);
+echo $bullWhale-&gt;getGender() . &quot;\n&quot;;
+?&gt;
+</code></pre>
+<p>运行一下：</p>
+<pre><code>$ php BullWhale.php
+Bill Whale eat fish.
+Male
+</code></pre>
+<p>BullWhale由Action和Gender组件构成，不同的类可以选择不同的组件组合，这样就不会造成类冗余了。</p>
+<h2 id="总结">总结</h2>
+<p>实际编程中，更多的往往是混合架构，如既包含继承，又包含组件的编程设计模式。不过，掌握基本的编程架构设计是一切的基础。</p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章推荐</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\fb867561.html" rel="bookmark">基础编程模式</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\f5c535ea.html" rel="bookmark">适配器模式</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\ac4294eb.html" rel="bookmark">多态</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\daef90fc.html" rel="bookmark">抽象类和接口</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\d60eb45.html" rel="bookmark">封装</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/php/" rel="tag"># php</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/ce7fb64a.html" rel="prev" title="设计模式分类">
+      <i class="fa fa-chevron-left"></i> 设计模式分类
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/archives/54788f73.html" rel="next" title="工厂模式">
+      工厂模式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC"><span class="nav-number">2.</span> <span class="nav-text">MVC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC中的设计模式"><span class="nav-number">3.</span> <span class="nav-text">MVC中的设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于接口去编程"><span class="nav-number">3.1.</span> <span class="nav-text">基于接口去编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用组件而不是继承"><span class="nav-number">3.2.</span> <span class="nav-text">使用组件而不是继承</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="曹强"
+      src="/img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">曹强</p>
+  <div class="site-description" itemprop="description">caoqiang's blog | java |前端 | PHP |nodeJs | python</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+      <div class="links-of-blogroll-title">
+        <!-- modify icon to fire by szw -->
+        <i class="fa fa-history fa-" aria-hidden="true"></i>
+        近期文章
+      </div>
+      <ul class="links-of-blogroll-list">
+        
+        
+          <li>
+            <a href="/archives/2fd7dbc7.html" title="Shadow DOM" target="_blank">Shadow DOM</a>
+          </li>
+        
+          <li>
+            <a href="/archives/b4a56055.html" title="可视化埋点" target="_blank">可视化埋点</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a5431a21.html" title="从 JavaScript 数组去重谈性能优化" target="_blank">从 JavaScript 数组去重谈性能优化</a>
+          </li>
+        
+      </ul>
+    </div>
+
+
+<div style="">
+  <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
+
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">318k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:49</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
+          }
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz',
+            'X-LC-Key': '9kCQuNi7NFq5MdDBn9J1Xj1r',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout: 3000,
+        priority: true,
+        ignores: [uri => uri.includes('#'),uri => uri == 'http://ronghuaxueleng.github.io/archives/84372d79.html',]
+      });
+      });
+  </script>
+
+
+  <script async src="/blog/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/blog/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div class="moon-menu-item" onclick="back2bottom()">
+      <i class="fa fa-chevron-down"></i>
+    </div>
+    
+    <div class="moon-menu-item" onclick="back2top()">
+      <i class="fa fa-chevron-up"></i>
+    </div>
+    
+  </div>
+  <div class="moon-menu-button" onclick="moonMenuClick()">
+    <svg class="moon-menu-svg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+      <g class="moon-menu-points">
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
+        <circle class="moon-menu-point" r=".2rem"></circle>
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
+      </g>
+    </svg>
+    <div class="moon-menu-icon">
+    </div>
+    <div class="moon-menu-text">
+    </div>
+  </div>
+</div>
+
+<script>
+
+  const moonMenuListener = function () {
+
+    //Get scroll percent
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+    let percent = Math.round(scrollTop / (scrollHeight - offsetHeight) * 100);
+    if (percent > 100) percent = 100;
+
+    let menuText = document.querySelector('.moon-menu-text');
+    let menuPoints = document.querySelector('.moon-menu-points');
+    if (!percent) {
+      percent = 0;
+      menuText.style.display = 'none';
+      menuPoints.style.display = 'block';
+    } else {
+      menuText.style.display = 'block';
+      menuPoints.style.display = 'none';
+      menuText.innerHTML = percent + '%';
+    }
+
+    //Update strokeDasharray
+    let length = 196;
+    document.querySelector('.moon-menu-border').style.strokeDasharray = percent * length / 100 + ' ' + length;
+
+  }
+
+  window.addEventListener('load', () => {
+    moonMenuListener();
+  });
+  window.addEventListener('scroll', moonMenuListener);
+
+  const moonMenuClick = function () {
+    let items = document.querySelector('.moon-menu-items')
+    items.classList.toggle('active');
+    let points = document.querySelectorAll('.moon-menu-point');
+    let childItems = document.querySelectorAll('.moon-menu-item');
+    if (items.classList.contains('active')) {
+      points[0].setAttribute("cx", "-.8rem");
+      points[0].setAttribute("cy", "0");
+      points[2].setAttribute("cx", ".8rem");
+      points[2].setAttribute("cy", "0");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = -3 - 3 * i + 'rem';
+        childItems[i].style.opacity = .9;
+      }
+    } else {
+      points[0].setAttribute("cx", "0");
+      points[0].setAttribute("cy", "-.8rem");
+      points[2].setAttribute("cx", "0");
+      points[2].setAttribute("cy", ".8rem");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = '1rem';
+        childItems[i].style.opacity = 0;
+      }
+    }
+  };
+
+  const back2top = () => {
+    window.scroll({ top: 0, behavior: 'smooth' });
+  }
+
+  const back2bottom = () => {
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    window.scroll({ top: (scrollHeight - offsetHeight), behavior: 'smooth' });
+  }
+
+</script>
+</body>
+</html>

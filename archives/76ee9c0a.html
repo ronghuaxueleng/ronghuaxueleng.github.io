@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://ronghuaxueleng.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="概述 除了正常运行模式，ECMAscript 5添加了第二种运行模式：“严格模式”（strict mode）。顾名思义，这种模式使得Javascript在更严格的条件下运行。  设立&quot;严格模式&quot;的目的，主要有以下几个：  消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为; 消除代码运行的一些不安全之处，保证代码运行的安全； 提高编译器效率，增加运行速度；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript 严格模式详解">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/76ee9c0a.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="概述 除了正常运行模式，ECMAscript 5添加了第二种运行模式：“严格模式”（strict mode）。顾名思义，这种模式使得Javascript在更严格的条件下运行。  设立&quot;严格模式&quot;的目的，主要有以下几个：  消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为; 消除代码运行的一些不安全之处，保证代码运行的安全； 提高编译器效率，增加运行速度；">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ronghuaxueleng.github.io/img/javascript/bg2013011401.jpg">
+<meta property="article:published_time" content="2016-09-19T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-06T11:58:27.970Z">
+<meta property="article:author" content="曹强">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ronghuaxueleng.github.io/img/javascript/bg2013011401.jpg">
+
+<link rel="canonical" href="http://ronghuaxueleng.github.io/archives/76ee9c0a.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Javascript 严格模式详解 | 白云雅阁</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">白云雅阁</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一切都是最好的安排</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/76ee9c0a.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Javascript 严格模式详解
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-09-19 00:00:00" itemprop="dateCreated datePublished" datetime="2016-09-19T00:00:00Z">2016-09-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/76ee9c0a.html" class="post-meta-item leancloud_visitors" data-flag-title="Javascript 严格模式详解" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <hr>
+<h3 id="概述">概述</h3>
+<p>除了正常运行模式，ECMAscript 5添加了第二种运行模式：<a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Functions_and_function_scope/Strict_mode" target="_blank" rel="noopener">“严格模式”</a>（strict mode）。顾名思义，这种模式使得Javascript在更严格的条件下运行。</p>
+<p><img src="/img/javascript/bg2013011401.jpg" alt=""></p>
+<p>设立&quot;严格模式&quot;的目的，主要有以下几个：</p>
+<ul>
+<li>消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;</li>
+<li>消除代码运行的一些不安全之处，保证代码运行的安全；</li>
+<li>提高编译器效率，增加运行速度；</li>
+<li>为未来新版本的Javascript做好铺垫。</li>
+</ul>
+<p>&quot;严格模式&quot;体现了Javascript更合理、更安全、更严谨的发展方向，包括IE10在内的主流浏览器，都已经<a href="http://kangax.github.com/es5-compat-table" target="_blank" rel="noopener">支持</a>它，许多大项目已经开始全面拥抱它。</p>
+<p>另一方面，同样的代码，在&quot;严格模式&quot;中，可能会有不一样的运行结果；一些在&quot;正常模式&quot;下可以运行的语句，在&quot;严格模式&quot;下将不能运行。掌握这些内容，有助于更细致深入地理解Javascript，让你变成一个更好的程序员。</p>
+<p>本文将对&quot;严格模式&quot;做详细介绍。</p>
+<a id="more"></a>
+<h3 id="进入标志">进入标志</h3>
+<p>进入&quot;严格模式&quot;的标志，是下面这行语句：</p>
+<blockquote>
+<p>“use strict”;</p>
+</blockquote>
+<p>老版本的浏览器会把它当作一行普通字符串，加以忽略。</p>
+<h3 id="如何调用">如何调用</h3>
+<p>&quot;严格模式&quot;有两种调用方法，适用于不同的场合。</p>
+<h4 id="针对整个脚本文件">针对整个脚本文件</h4>
+<p>将&quot;use strict&quot;放在脚本文件的第一行，则整个脚本都将以&quot;严格模式&quot;运行。如果这行语句不在第一行，则无效，整个脚本以&quot;正常模式&quot;运行。如果不同模式的代码文件合并成一个文件，这一点需要特别注意。</p>
+<p>(严格地说，只要前面不是产生实际运行结果的语句，&quot;use strict&quot;可以不在第一行，比如直接跟在一个空的分号后面。)</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>  </span><br><span class="line"><span class="javascript"><span class="meta">  "use strict"</span>;  </span></span><br><span class="line"><span class="javascript">　<span class="built_in">console</span>.log(<span class="string">"这是严格模式。"</span>);  </span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="built_in">console</span>.log(<span class="string">"这是正常模式。"</span>);  </span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面的代码表示，一个网页中依次有两段Javascript代码。前一个script标签是严格模式，后一个不是。</p>
+<h4 id="针对单个函数">针对单个函数</h4>
+<p>将&quot;use strict&quot;放在函数体的第一行，则整个函数以&quot;严格模式&quot;运行。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strict</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line"><span class="meta">  "use strict"</span>;  </span><br><span class="line">  <span class="keyword">return</span> <span class="string">"这是严格模式。"</span>;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">notStrict</span>(<span class="params"></span>) </span>&#123;  </span><br><span class="line">  <span class="keyword">return</span> <span class="string">"这是正常模式。"</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="脚本文件的变通写法">脚本文件的变通写法</h4>
+<p>因为第一种调用方法不利于文件合并，所以更好的做法是，借用第二种方法，将整个脚本文件放在一个立即执行的匿名函数之中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;  </span><br><span class="line"><span class="meta">  "use strict"</span>;</span><br><span class="line">  <span class="comment">// some code here  </span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<h3 id="语法和行为改变">语法和行为改变</h3>
+<p>严格模式对Javascript的语法和行为，都做了一些改变。</p>
+<h4 id="全局变量显式声明">全局变量显式声明</h4>
+<p>在正常模式中，如果一个变量没有声明就赋值，默认是全局变量。严格模式禁止这种用法，全局变量必须显式声明。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line">v = <span class="number">1</span>; <span class="comment">// 报错，v未声明</span></span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; i 　　&#125;</span><br></pre></td></tr></table></figure>
+<p>因此，严格模式下，变量都必须先用var命令声明，然后再使用。</p>
+<h4 id="静态绑定">静态绑定</h4>
+<p>Javascript语言的一个特点，就是允许&quot;动态绑定&quot;，即某些属性和方法到底属于哪一个对象，不是在编译时确定的，而是在运行时（runtime）确定的。</p>
+<p>严格模式对动态绑定做了一些限制。某些情况下，只允许静态绑定。也就是说，属性和方法到底归属哪个对象，在编译阶段就确定。这样做有利于编译效率的提高，也使得代码更容易阅读，更少出现意外。</p>
+<p>具体来说，涉及以下几个方面。</p>
+<h5 id="禁止使用with语句">禁止使用with语句</h5>
+<p>因为with语句无法在编译时就确定，属性到底归属哪个对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"><span class="keyword">var</span> v = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">with</span> (o)&#123; <span class="comment">// 语法错误  </span></span><br><span class="line">  v = <span class="number">2</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="创设eval作用域">创设eval作用域</h5>
+<p>正常模式下，Javascript语言有两种变量作用域（scope）：全局作用域和函数作用域。严格模式创设了第三种作用域：eval作用域。</p>
+<p>正常模式下，eval语句的作用域，取决于它处于全局作用域，还是处于函数作用域。严格模式下，eval语句本身就是一个作用域，不再能够生成全局变量了，它所生成的变量只能用于eval内部。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"><span class="keyword">var</span> x = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.info(<span class="built_in">eval</span>(<span class="string">"var x = 5; x"</span>)); <span class="comment">// 5</span></span><br><span class="line"><span class="built_in">console</span>.info(x); <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<h4 id="增强的安全措施">增强的安全措施</h4>
+<h5 id="禁止this关键字指向全局对象">禁止this关键字指向全局对象</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> !<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 返回false，因为"this"指向全局对象，"!this"就是false</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="meta">  "use strict"</span>;</span><br><span class="line">　<span class="keyword">return</span> !<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 返回true，因为严格模式下，this的值为undefined，所以"!this"为true。</span></span><br></pre></td></tr></table></figure>
+<p>因此，使用构造函数时，如果忘了加new，this不再指向全局对象，而是报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="meta">  "use strict"</span>;</span><br><span class="line">  <span class="keyword">this</span>.a = <span class="number">1</span>;</span><br><span class="line">&#125;;</span><br><span class="line">f();<span class="comment">// 报错，this未定义</span></span><br></pre></td></tr></table></figure>
+<h5 id="禁止在函数内部遍历调用栈">禁止在函数内部遍历调用栈</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="meta">  "use strict"</span>;</span><br><span class="line">  f1.caller; <span class="comment">// 报错</span></span><br><span class="line">  f1.arguments; <span class="comment">// 报错</span></span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br></pre></td></tr></table></figure>
+<h4 id="禁止删除变量">禁止删除变量</h4>
+<p>严格模式下无法删除变量。只有configurable设置为true的对象属性，才能被删除。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"><span class="keyword">var</span> x;</span><br><span class="line"><span class="keyword">delete</span> x; <span class="comment">// 语法错误</span></span><br><span class="line"><span class="keyword">var</span> o = <span class="built_in">Object</span>.create(<span class="literal">null</span>, &#123;<span class="string">'x'</span>: &#123;  </span><br><span class="line">  value: <span class="number">1</span>,  </span><br><span class="line">  configurable: <span class="literal">true</span>  </span><br><span class="line">&#125;&#125;);</span><br><span class="line"><span class="keyword">delete</span> o.x; <span class="comment">// 删除成功</span></span><br></pre></td></tr></table></figure>
+<h4 id="显式报错">显式报错</h4>
+<p>正常模式下，对一个对象的只读属性进行赋值，不会报错，只会默默地失败。严格模式下，将报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"><span class="keyword">var</span> o = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperty(o, <span class="string">"v"</span>, &#123; <span class="attr">value</span>: <span class="number">1</span>, <span class="attr">writable</span>: <span class="literal">false</span> &#125;);</span><br><span class="line">o.v = <span class="number">2</span>; <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+<p>严格模式下，对一个使用getter方法读取的属性进行赋值，会报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">  <span class="keyword">get</span> v() &#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line">o.v = <span class="number">2</span>; <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+<p>严格模式下，对禁止扩展的对象添加新属性，会报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"><span class="keyword">var</span> o = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.preventExtensions(o);</span><br><span class="line">o.v = <span class="number">1</span>; <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+<p>严格模式下，删除一个不可删除的属性，会报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"><span class="keyword">delete</span> <span class="built_in">Object</span>.prototype; <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+<h4 id="重名错误">重名错误</h4>
+<p>严格模式新增了一些语法错误。</p>
+<h5 id="对象不能有重名的属性">对象不能有重名的属性</h5>
+<p>正常模式下，如果对象有多个重名属性，最后赋值的那个属性会覆盖前面的值。严格模式下，这属于语法错误。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"><span class="keyword">var</span> o = &#123;  </span><br><span class="line">  p: <span class="number">1</span>,  </span><br><span class="line">  p: <span class="number">2</span>  </span><br><span class="line">&#125;; <span class="comment">// 语法错误</span></span><br></pre></td></tr></table></figure>
+<h5 id="函数不能有重名的参数">函数不能有重名的参数</h5>
+<p>正常模式下，如果函数有多个重名的参数，可以用arguments[i]读取。严格模式下，这属于语法错误。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">a, a, b</span>) </span>&#123; <span class="comment">// 语法错误</span></span><br><span class="line">  <span class="keyword">return</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="禁止八进制表示法">禁止八进制表示法</h5>
+<p>正常模式下，整数的第一位如果是0，表示这是八进制数，比如0100等于十进制的64。严格模式禁止这种表示法，整数第一位为0，将报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"><span class="keyword">var</span> n = <span class="number">0100</span>; <span class="comment">// 语法错误</span></span><br></pre></td></tr></table></figure>
+<h4 id="arguments对象的限制">arguments对象的限制</h4>
+<p>arguments是函数的参数对象，严格模式对它的使用做了限制。</p>
+<h5 id="不允许对arguments赋值">不允许对arguments赋值</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"><span class="built_in">arguments</span>++; <span class="comment">// 语法错误</span></span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="keyword">set</span> p(arguments) &#123; &#125; &#125;; <span class="comment">// 语法错误</span></span><br><span class="line"><span class="keyword">try</span> &#123; &#125; <span class="keyword">catch</span> (<span class="built_in">arguments</span>) &#123; &#125; <span class="comment">// 语法错误</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arguments</span>(<span class="params"></span>) </span>&#123; &#125; <span class="comment">// 语法错误</span></span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"arguments"</span>, <span class="string">"'use strict'; return 17;"</span>); <span class="comment">// 语法错误</span></span><br></pre></td></tr></table></figure>
+<h5 id="arguments不再追踪参数的变化">arguments不再追踪参数的变化</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">  a = <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">return</span> [a, <span class="built_in">arguments</span>[<span class="number">0</span>]];</span><br><span class="line">&#125;</span><br><span class="line">f(<span class="number">1</span>); <span class="comment">// 正常模式为[2,2]</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line"><span class="meta">  "use strict"</span>;</span><br><span class="line">  a = <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">return</span> [a, <span class="built_in">arguments</span>[<span class="number">0</span>]];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f(<span class="number">1</span>); <span class="comment">// 严格模式为[2,1]</span></span><br></pre></td></tr></table></figure>
+<h6 id="禁止使用arguments-callee">禁止使用arguments.callee</h6>
+<p>这意味着，你无法在匿名函数内部调用自身了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="built_in">arguments</span>.callee; &#125;;</span><br><span class="line">f(); <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+<h4 id="函数必须声明在顶层">函数必须声明在顶层</h4>
+<p>将来Javascript的新版本会引入&quot;块级作用域&quot;。为了与新版本接轨，严格模式只允许在全局作用域或函数作用域的顶层声明函数。也就是说，不允许在非函数的代码<br>
+块内声明函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123; &#125; <span class="comment">// 语法错误</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>) </span>&#123; &#125; <span class="comment">// 语法错误</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="保留字">保留字</h4>
+<p>为了向将来Javascript的新版本过渡，严格模式新增了一些保留字：implements, interface, let, package,<br>
+private, protected, public, static, yield。</p>
+<p>使用这些词作为变量名将会报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">package</span>(<span class="params">protected</span>) </span>&#123; <span class="comment">// 语法错误</span></span><br><span class="line"><span class="meta">  "use strict"</span>;</span><br><span class="line">  <span class="keyword">var</span> implements; <span class="comment">// 语法错误</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此外，ECMAscript第五版本身还规定了另一些保留字（class, enum, export, extends, import,<br>
+super），以及各大浏览器自行增加的const保留字，也是不能作为变量名的。</p>
+<h3 id="参考链接">参考链接</h3>
+<p>- MDN, <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Functions_and_function_scope/Strict_mode" target="_blank" rel="noopener">Strict mode</a><br>
+- Dr. Axel Rauschmayer，<a href="http://www.2ality.com/2011/01/javascripts-strict-mode-summary.html" target="_blank" rel="noopener">JavaScript’s strict mode: a summary</a><br>
+- Douglas Crockford, <a href="http://java-script.limewebs.com/strictMode/test_hosted.html" target="_blank" rel="noopener">Strict Mode Is Coming To Town</a></p>
+<p>（完）</p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章推荐</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\2fd7dbc7.html" rel="bookmark">Shadow DOM</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\a26c9c63.html" rel="bookmark">44个 Javascript 变态题解析 (下)</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\bb77ad22.html" rel="bookmark">44个 Javascript 变态题解析 (上)</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\a5431a21.html" rel="bookmark">从 JavaScript 数组去重谈性能优化</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\84bd9124.html" rel="bookmark">发布订阅模式</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/b4e77896.html" rel="prev" title="Javascript定义类（class）的三种方法">
+      <i class="fa fa-chevron-left"></i> Javascript定义类（class）的三种方法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/archives/822a6e74.html" rel="next" title="12种不宜使用的Javascript语法">
+      12种不宜使用的Javascript语法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进入标志"><span class="nav-number">2.</span> <span class="nav-text">进入标志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何调用"><span class="nav-number">3.</span> <span class="nav-text">如何调用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#针对整个脚本文件"><span class="nav-number">3.1.</span> <span class="nav-text">针对整个脚本文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#针对单个函数"><span class="nav-number">3.2.</span> <span class="nav-text">针对单个函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#脚本文件的变通写法"><span class="nav-number">3.3.</span> <span class="nav-text">脚本文件的变通写法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法和行为改变"><span class="nav-number">4.</span> <span class="nav-text">语法和行为改变</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#全局变量显式声明"><span class="nav-number">4.1.</span> <span class="nav-text">全局变量显式声明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#静态绑定"><span class="nav-number">4.2.</span> <span class="nav-text">静态绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#禁止使用with语句"><span class="nav-number">4.2.1.</span> <span class="nav-text">禁止使用with语句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创设eval作用域"><span class="nav-number">4.2.2.</span> <span class="nav-text">创设eval作用域</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#增强的安全措施"><span class="nav-number">4.3.</span> <span class="nav-text">增强的安全措施</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#禁止this关键字指向全局对象"><span class="nav-number">4.3.1.</span> <span class="nav-text">禁止this关键字指向全局对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#禁止在函数内部遍历调用栈"><span class="nav-number">4.3.2.</span> <span class="nav-text">禁止在函数内部遍历调用栈</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#禁止删除变量"><span class="nav-number">4.4.</span> <span class="nav-text">禁止删除变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显式报错"><span class="nav-number">4.5.</span> <span class="nav-text">显式报错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重名错误"><span class="nav-number">4.6.</span> <span class="nav-text">重名错误</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对象不能有重名的属性"><span class="nav-number">4.6.1.</span> <span class="nav-text">对象不能有重名的属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数不能有重名的参数"><span class="nav-number">4.6.2.</span> <span class="nav-text">函数不能有重名的参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#禁止八进制表示法"><span class="nav-number">4.6.3.</span> <span class="nav-text">禁止八进制表示法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#arguments对象的限制"><span class="nav-number">4.7.</span> <span class="nav-text">arguments对象的限制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#不允许对arguments赋值"><span class="nav-number">4.7.1.</span> <span class="nav-text">不允许对arguments赋值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#arguments不再追踪参数的变化"><span class="nav-number">4.7.2.</span> <span class="nav-text">arguments不再追踪参数的变化</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#禁止使用arguments-callee"><span class="nav-number">4.7.2.1.</span> <span class="nav-text">禁止使用arguments.callee</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数必须声明在顶层"><span class="nav-number">4.8.</span> <span class="nav-text">函数必须声明在顶层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#保留字"><span class="nav-number">4.9.</span> <span class="nav-text">保留字</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考链接"><span class="nav-number">5.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="曹强"
+      src="/img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">曹强</p>
+  <div class="site-description" itemprop="description">caoqiang's blog | java |前端 | PHP |nodeJs | python</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+      <div class="links-of-blogroll-title">
+        <!-- modify icon to fire by szw -->
+        <i class="fa fa-history fa-" aria-hidden="true"></i>
+        近期文章
+      </div>
+      <ul class="links-of-blogroll-list">
+        
+        
+          <li>
+            <a href="/archives/2fd7dbc7.html" title="Shadow DOM" target="_blank">Shadow DOM</a>
+          </li>
+        
+          <li>
+            <a href="/archives/b4a56055.html" title="可视化埋点" target="_blank">可视化埋点</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a5431a21.html" title="从 JavaScript 数组去重谈性能优化" target="_blank">从 JavaScript 数组去重谈性能优化</a>
+          </li>
+        
+      </ul>
+    </div>
+
+
+<div style="">
+  <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
+
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">318k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:49</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
+          }
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz',
+            'X-LC-Key': '9kCQuNi7NFq5MdDBn9J1Xj1r',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout: 3000,
+        priority: true,
+        ignores: [uri => uri.includes('#'),uri => uri == 'http://ronghuaxueleng.github.io/archives/76ee9c0a.html',]
+      });
+      });
+  </script>
+
+
+  <script async src="/blog/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/blog/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div class="moon-menu-item" onclick="back2bottom()">
+      <i class="fa fa-chevron-down"></i>
+    </div>
+    
+    <div class="moon-menu-item" onclick="back2top()">
+      <i class="fa fa-chevron-up"></i>
+    </div>
+    
+  </div>
+  <div class="moon-menu-button" onclick="moonMenuClick()">
+    <svg class="moon-menu-svg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+      <g class="moon-menu-points">
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
+        <circle class="moon-menu-point" r=".2rem"></circle>
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
+      </g>
+    </svg>
+    <div class="moon-menu-icon">
+    </div>
+    <div class="moon-menu-text">
+    </div>
+  </div>
+</div>
+
+<script>
+
+  const moonMenuListener = function () {
+
+    //Get scroll percent
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+    let percent = Math.round(scrollTop / (scrollHeight - offsetHeight) * 100);
+    if (percent > 100) percent = 100;
+
+    let menuText = document.querySelector('.moon-menu-text');
+    let menuPoints = document.querySelector('.moon-menu-points');
+    if (!percent) {
+      percent = 0;
+      menuText.style.display = 'none';
+      menuPoints.style.display = 'block';
+    } else {
+      menuText.style.display = 'block';
+      menuPoints.style.display = 'none';
+      menuText.innerHTML = percent + '%';
+    }
+
+    //Update strokeDasharray
+    let length = 196;
+    document.querySelector('.moon-menu-border').style.strokeDasharray = percent * length / 100 + ' ' + length;
+
+  }
+
+  window.addEventListener('load', () => {
+    moonMenuListener();
+  });
+  window.addEventListener('scroll', moonMenuListener);
+
+  const moonMenuClick = function () {
+    let items = document.querySelector('.moon-menu-items')
+    items.classList.toggle('active');
+    let points = document.querySelectorAll('.moon-menu-point');
+    let childItems = document.querySelectorAll('.moon-menu-item');
+    if (items.classList.contains('active')) {
+      points[0].setAttribute("cx", "-.8rem");
+      points[0].setAttribute("cy", "0");
+      points[2].setAttribute("cx", ".8rem");
+      points[2].setAttribute("cy", "0");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = -3 - 3 * i + 'rem';
+        childItems[i].style.opacity = .9;
+      }
+    } else {
+      points[0].setAttribute("cx", "0");
+      points[0].setAttribute("cy", "-.8rem");
+      points[2].setAttribute("cx", "0");
+      points[2].setAttribute("cy", ".8rem");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = '1rem';
+        childItems[i].style.opacity = 0;
+      }
+    }
+  };
+
+  const back2top = () => {
+    window.scroll({ top: 0, behavior: 'smooth' });
+  }
+
+  const back2bottom = () => {
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    window.scroll({ top: (scrollHeight - offsetHeight), behavior: 'smooth' });
+  }
+
+</script>
+</body>
+</html>

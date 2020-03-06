@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://ronghuaxueleng.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="所谓继承，比较熟悉，这里就是指定义一个新的controller&#x2F;service（不同名），继承原来的controller&#x2F;service，然后在其基础上重写一些功能。 所谓扩展，这里说的是在不产生新的controller&#x2F;service的情况下，添加或修改原controller&#x2F;service的功能。 目前研究的结果就是service可以轻松的实现继承和扩展，而controller貌似只能继承。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AngularJS中controller和service的继承与扩展">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/1a4f4112.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="所谓继承，比较熟悉，这里就是指定义一个新的controller&#x2F;service（不同名），继承原来的controller&#x2F;service，然后在其基础上重写一些功能。 所谓扩展，这里说的是在不产生新的controller&#x2F;service的情况下，添加或修改原controller&#x2F;service的功能。 目前研究的结果就是service可以轻松的实现继承和扩展，而controller貌似只能继承。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-08-23T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-06T11:58:27.903Z">
+<meta property="article:author" content="曹强">
+<meta property="article:tag" content="AngularJS, controller, service, 继承, 扩展, decorator, $provide, $delegate">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://ronghuaxueleng.github.io/archives/1a4f4112.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>AngularJS中controller和service的继承与扩展 | 白云雅阁</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">白云雅阁</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一切都是最好的安排</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/1a4f4112.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AngularJS中controller和service的继承与扩展
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-23 00:00:00" itemprop="dateCreated datePublished" datetime="2016-08-23T00:00:00Z">2016-08-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/angularjs/" itemprop="url" rel="index">
+                    <span itemprop="name">angularjs</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/1a4f4112.html" class="post-meta-item leancloud_visitors" data-flag-title="AngularJS中controller和service的继承与扩展" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>所谓继承，比较熟悉，这里就是指定义一个<strong>新的</strong>controller/service（不同名），继承原来的controller/service，然后在其基础上重写一些功能。<br>
+所谓扩展，这里说的是在<strong>不产生新的</strong>controller/service的情况下，添加或修改原controller/service的功能。</p>
+<p>目前研究的结果就是service可以轻松的实现继承和扩展，而controller貌似只能继承。</p>
+<a id="more"></a>
+<h3 id="controller的继承">controller的继承</h3>
+<p>说到controller，我们在[前面的文章](/2016/08/22/angularJs/用$scope还是用controller as/)中介绍过有两种写法：使用<code>$scope</code>或使用<code>controller as</code>。针对这两种方式的区别，我们也可以使用两种不同的继承方式：</p>
+<ul>
+<li>使用<code>controller as</code>的情况下，特点是controller不再依赖<code>$scope</code>，就跟普通的函数差不多，这个时候可以使用Javascript原生的继承方式。</li>
+<li>使用<code>$scope</code>时，可以使用AngularJS内置的<code>$controller</code>service，通过依赖注入的方式实现继承。</li>
+</ul>
+<p>还是直接上例子吧。</p>
+<p><strong><em>使用原生的继承</em></strong></p>
+<p data-height="305" data-theme-id="0" data-slug-hash="zBQAbw" data-default-tab="js,result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/zBQAbw/" target="_blank" rel="noopener">zBQAbw</a> by 曹强 (<a href="http://codepen.io/ronghuaxueleng" target="_blank" rel="noopener">@ronghuaxueleng</a>) on <a href="http://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<p>这个例子有左右两块区域，左边的是parent，右边的是child，它们分别有5行数据需要显示：</p>
+<ul>
+<li>第1行性别，对应属性<code>sex</code>。用于展示继承时不更改的属性。</li>
+<li>第2行角色，对应属性<code>name</code>。用于展示继承后覆盖的属性。</li>
+<li>第3行个数，对应属性<code>num</code>，左边是孩子的个数，右边是兄弟的个数，显然右边比左边少1。用于显示后面<code>add()</code>方法的结果。</li>
+<li>第4行是个按钮，对应方法<code>add()</code>，左边是parent想多要一个孩子，右边是想child想多要一个兄弟，结果是一样的。用于展示继承时不改变的方法。</li>
+<li>第5行也是个按钮，对应方法<code>test()</code>，用于展示继承时覆盖的方法。（不要在意这个随意的名字，因为我已经场景匮乏了。。。）</li>
+</ul>
+<p>通过这5行，这个例子就基本涵盖了继承时发生的大部分情况。那么切换到JS里看看实现吧。JS里的代码结构大致分为5部分，用注释<code>/* Section 1 */</code>来区分（由于CodePen这工具不支持显示行号，所以只能用代码里的注释来分块讲解了）。</p>
+<ul>
+<li>第1部分是一个典型的Javascript实现的继承函数<code>extend</code>，里面的原理不再详述，有兴趣可以看以前写的<a href="/2016/07/31/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B9%8B%E7%BB%A7%E6%89%BF/">《《JavaScript高级程序设计》阅读笔记：面向对象之继》</a>。</li>
+</ul>
+<blockquote>
+<p>这段代码怎么生成？访问<a href="http://coffeescript.org/" target="_blank" rel="noopener">CoffeeScript官网</a>，点击“TRY COFFEESCRIPT”，会打开一个编辑器窗口，左边写CoffeeScript，右边就会生成相应的Javascript。在左边键入<code>class A extends B</code>，右面就会有extend函数啦。机！智！</p>
+</blockquote>
+<ul>
+<li>第2部分是一个名叫<code>FamilyService</code>的AngularJS的service。两个controller都需要依赖它。它的功能很简单，parent和child需要的孩子数量和兄弟数量都由这个service来提供，分别是方法<code>getChildrenCount()</code>和<code>getSiblingCount()</code>。除此之外，每次生孩子的时候它会trigger一个<code>new-child</code>事件，并将孩子数量通过参数传播出去。</li>
+<li>第3部分就是定义<code>ParentCtrl</code>这个父controller了，由于采用<code>controller as</code>写法，这里的定义跟普通的对象没区别，在构造函数里定义属性，方法则定义在<code>prototype</code>上。这里值得注意的有两点：
+<ul>
+<li><code>add()</code>函数其实仅仅是调用<code>FamilyService</code>的<code>newChild()</code>方法。</li>
+<li><code>num</code>属性的改变是通过响应<code>new-child</code>事件来实现的。</li>
+</ul>
+</li>
+<li>第4部分就是关键的<code>ChildCtrl</code>定义了，同样，属性的定义在构造函数中，方法定义在<code>prototype</code>上。可以发现，发生继承需要以下几步：
+<ol>
+<li>构造函数中先调用父controller的构造函数。这里是通过<code>__super__</code>来实现对父controller的引用的，因为在<code>extend</code>函数中我们已将讲<code>ParentCtrl</code>的prototype赋值给<code>__super__</code>变量了。这步可以保证把<code>ParentCtrl</code>里定义的属性以及事件响应继承过来。</li>
+<li>覆盖属性和事件响应。 这里覆盖了<code>name</code>和<code>num</code>属性，并且更改了事件响应函数的内容，因为<code>new-child</code>事件返回的参数是孩子的总数，这里要减去自己才能得到兄弟的个数。</li>
+<li>调用<code>extend</code>函数。</li>
+<li>覆盖方法。这一步必须放在最后，如果放在<code>extend</code>函数的前面，则<code>extend</code>函数会将<code>ChildCtrl</code>重新定义的<code>add</code>方法用<code>ParentCtrl</code>的覆盖。</li>
+</ol>
+</li>
+<li>第5部分就是各种模块、controller、service的定义了，没啥多说的。</li>
+</ul>
+<p><strong><em>使用<code>$controller</code>service</em></strong></p>
+<p data-height="265" data-theme-id="0" data-slug-hash="RRmAmq" data-default-tab="js,result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/RRmAmq/" target="_blank" rel="noopener">RRmAmq</a> by 曹强 (<a href="http://codepen.io/ronghuaxueleng" target="_blank" rel="noopener">@ronghuaxueleng</a>) on <a href="http://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<p>例子的实际效果与上面的一致，我们直接看JS部分的实现吧。这个代码分为4个部分：</p>
+<ul>
+<li>第1部分与前面service的定义相同。</li>
+<li>第2部分是<code>ParentCtrl</code>的定义，这里与前面的不同一个是全部使用<code>$scope</code>，另一个比较特殊的是<code>add</code>方法，它直接调用了一个绑定在<code>this</code>上面的<code>add</code>方法，这样做没什么特殊含义，仅为了演示后面的继承。</li>
+<li>第3部分是<code>ChildCtrl</code>的定义，这里的继承是通过<code>var parentCtrl = $controller('ParentCtrl', {$scope: $scope});</code>来实现的，通过依赖注入得到父controller的实例，并将自己的<code>$scope</code>传入，这样，父controller绑定在<code>$scope</code>上面的东西就全部继承到子controller上面了。除此之外，还可以使用变量<code>parentCtrl</code>来引用父controller，跟前面的<code>__super__</code>一样。<code>add</code>方法的覆盖给出了使用<code>parentCtrl</code>的例子。</li>
+<li>第4部分与前面相同，区别就是<code>ChildCtrl</code>依赖了<code>$controller</code>service。</li>
+</ul>
+<p><strong><em>比较</em></strong></p>
+<p>可以发现，其实这两种方式最大的区别就是，原生继承中需要调用<code>extend</code>函数来继承，并且子controller里需要显式调用父controller的构造函数来是实现属性的继承。而使用<code>$controller</code>service则只需要依赖注入和传入<code>$scope</code>即可。</p>
+<h3 id="service的继承">service的继承</h3>
+<p>service的继承就比较简单了，AngularJS中的service可以认为是new了service构造函数的实例。看下面这个例子，与上面的例子类似，同样是展示了继承过程中不改变或覆盖父service的属性和方法。</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="YWbwoO" data-default-tab="js,result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/YWbwoO/" target="_blank" rel="noopener">YWbwoO</a> by 曹强 (<a href="http://codepen.io/ronghuaxueleng" target="_blank" rel="noopener">@ronghuaxueleng</a>) on <a href="http://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<p>熟悉的左右布局，三个属性两个方法。直接看JS中的实现，4个部分：</p>
+<ul>
+<li>第1部分定义了一个controller，这个controller的所有功能基本都来自于service。页面中左右两个部分用的是同样的controller，只是名字不同，而且依赖的service不同。这一点从第4部分可以直观的看出来。</li>
+<li>第2部分定义父service，没什么特别的。</li>
+<li>第3部分定义子servcie，继承就发生在这里。首先，子service需要依赖父service，然后直接使用AngularJS内置的extend函数来实现继承，将父service实例上的属性方法都拷贝到this上，即完成了继承，后面就是一些属性和方法的覆盖了。</li>
+</ul>
+<blockquote>
+<p>这里的extend和上面自己写的extend有什么区别呢？其实<code>angular.extend</code>的功能是一个Shallow Copy，类似上面我们自己的extend中的这段</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> parent) &#123;</span><br><span class="line">  <span class="keyword">if</span> (hasProp.call(parent, key))</span><br><span class="line">    child[key] = parent[key];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第4部分各种定义，可以看到<code>TestCtrl1</code>和<code>TestCtrl2</code>的定义都是<code>TestCtrl</code>，只是一个依赖<code>ParentService</code>，另一个依赖<code>ChildService</code>罢了。</li>
+</ul>
+<h3 id="service的扩展">service的扩展</h3>
+<p>其实扩展说白了，就是可以把一个已经定义好的service进行修改，为了保证这个修改的优先级，可以在module的config阶段来实现。废话不说，直接上例子吧。</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="qNGbZx" data-default-tab="result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/qNGbZx/" target="_blank" rel="noopener">qNGbZx</a> by 曹强 (<a href="http://codepen.io/ronghuaxueleng" target="_blank" rel="noopener">@ronghuaxueleng</a>) on <a href="http://codepen.io" target="_blank" rel="noopener">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+<p>这个例子与前面的类似，只是页面只有一个部分，实现的结果跟上面的右半部分一致。直接看JS中的实现，除了第3部分其他都是一样的。第3部分中定义了一个<code>extendServcie</code>函数，这个函数是在app的config阶段调用的（见第4部分）。这个函数中依赖了一个特殊的service<code>$provide</code>，扩展功能就由它的<code>decorator</code>方法来实现，方法的第一个参数就是要扩展的service的名称，第二个参数就是实际的扩展。在第二个参数中依赖一个<code>$delegate</code>service，这个service代表的其实就是<code>TestService</code>本身，可以看到在函数中我们直接使用<code>$delegate</code>去引用原有servcie，并进行随意更改，最终将这个<code>$delegate</code>返回即可。</p>
+<p>也许很多人会觉得这种场景很诡异，平常根本不可能用得到。但是我在项目中就曾经遇到一个例子：在单页面应用中我们并没有把所有JS文件压缩在一起，而是根据不同的页面去lazy load不同的文件。具体去load哪些文件定义在一个servcie中，但这些文件名在development和production阶段是不一样的，这样就需要两套不同的文件名配置。利用servcie的扩展，可以在production环境时多include一个JS文件，在这个文件中对servcie进行扩展，更新那些相应的文件名。</p>
+
+    </div>
+
+    
+    
+    
+      
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AngularJS-controller-service-%E7%BB%A7%E6%89%BF-%E6%89%A9%E5%B1%95-decorator-provide-delegate/" rel="tag"># AngularJS, controller, service, 继承, 扩展, decorator, $provide, $delegate</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/dad35b70.html" rel="prev" title="说说 tabindex 的那些事儿">
+      <i class="fa fa-chevron-left"></i> 说说 tabindex 的那些事儿
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/archives/dbff372f.html" rel="next" title="理解Javascript的prototype">
+      理解Javascript的prototype <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#controller的继承"><span class="nav-number">1.</span> <span class="nav-text">controller的继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#service的继承"><span class="nav-number">2.</span> <span class="nav-text">service的继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#service的扩展"><span class="nav-number">3.</span> <span class="nav-text">service的扩展</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="曹强"
+      src="/img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">曹强</p>
+  <div class="site-description" itemprop="description">caoqiang's blog | java |前端 | PHP |nodeJs | python</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+      <div class="links-of-blogroll-title">
+        <!-- modify icon to fire by szw -->
+        <i class="fa fa-history fa-" aria-hidden="true"></i>
+        近期文章
+      </div>
+      <ul class="links-of-blogroll-list">
+        
+        
+          <li>
+            <a href="/archives/2fd7dbc7.html" title="Shadow DOM" target="_blank">Shadow DOM</a>
+          </li>
+        
+          <li>
+            <a href="/archives/b4a56055.html" title="可视化埋点" target="_blank">可视化埋点</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a5431a21.html" title="从 JavaScript 数组去重谈性能优化" target="_blank">从 JavaScript 数组去重谈性能优化</a>
+          </li>
+        
+      </ul>
+    </div>
+
+
+<div style="">
+  <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
+
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">318k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:49</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
+          }
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz',
+            'X-LC-Key': '9kCQuNi7NFq5MdDBn9J1Xj1r',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout: 3000,
+        priority: true,
+        ignores: [uri => uri.includes('#'),uri => uri == 'http://ronghuaxueleng.github.io/archives/1a4f4112.html',]
+      });
+      });
+  </script>
+
+
+  <script async src="/blog/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/blog/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div class="moon-menu-item" onclick="back2bottom()">
+      <i class="fa fa-chevron-down"></i>
+    </div>
+    
+    <div class="moon-menu-item" onclick="back2top()">
+      <i class="fa fa-chevron-up"></i>
+    </div>
+    
+  </div>
+  <div class="moon-menu-button" onclick="moonMenuClick()">
+    <svg class="moon-menu-svg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+      <g class="moon-menu-points">
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
+        <circle class="moon-menu-point" r=".2rem"></circle>
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
+      </g>
+    </svg>
+    <div class="moon-menu-icon">
+    </div>
+    <div class="moon-menu-text">
+    </div>
+  </div>
+</div>
+
+<script>
+
+  const moonMenuListener = function () {
+
+    //Get scroll percent
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+    let percent = Math.round(scrollTop / (scrollHeight - offsetHeight) * 100);
+    if (percent > 100) percent = 100;
+
+    let menuText = document.querySelector('.moon-menu-text');
+    let menuPoints = document.querySelector('.moon-menu-points');
+    if (!percent) {
+      percent = 0;
+      menuText.style.display = 'none';
+      menuPoints.style.display = 'block';
+    } else {
+      menuText.style.display = 'block';
+      menuPoints.style.display = 'none';
+      menuText.innerHTML = percent + '%';
+    }
+
+    //Update strokeDasharray
+    let length = 196;
+    document.querySelector('.moon-menu-border').style.strokeDasharray = percent * length / 100 + ' ' + length;
+
+  }
+
+  window.addEventListener('load', () => {
+    moonMenuListener();
+  });
+  window.addEventListener('scroll', moonMenuListener);
+
+  const moonMenuClick = function () {
+    let items = document.querySelector('.moon-menu-items')
+    items.classList.toggle('active');
+    let points = document.querySelectorAll('.moon-menu-point');
+    let childItems = document.querySelectorAll('.moon-menu-item');
+    if (items.classList.contains('active')) {
+      points[0].setAttribute("cx", "-.8rem");
+      points[0].setAttribute("cy", "0");
+      points[2].setAttribute("cx", ".8rem");
+      points[2].setAttribute("cy", "0");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = -3 - 3 * i + 'rem';
+        childItems[i].style.opacity = .9;
+      }
+    } else {
+      points[0].setAttribute("cx", "0");
+      points[0].setAttribute("cy", "-.8rem");
+      points[2].setAttribute("cx", "0");
+      points[2].setAttribute("cy", ".8rem");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = '1rem';
+        childItems[i].style.opacity = 0;
+      }
+    }
+  };
+
+  const back2top = () => {
+    window.scroll({ top: 0, behavior: 'smooth' });
+  }
+
+  const back2bottom = () => {
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    window.scroll({ top: (scrollHeight - offsetHeight), behavior: 'smooth' });
+  }
+
+</script>
+</body>
+</html>

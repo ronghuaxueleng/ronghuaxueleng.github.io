@@ -1,1052 +1,1079 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
 
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://ronghuaxueleng.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
-
-
-
-
-
-
-<meta name="description" content="caoqiang&apos;s blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs">
+  <meta name="description" content="caoqiang&#39;s blog | java |前端 | PHP |nodeJs | python">
 <meta property="og:type" content="website">
 <meta property="og:title" content="白云雅阁">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/page/6/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="caoqiang&apos;s blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs">
+<meta property="og:description" content="caoqiang&#39;s blog | java |前端 | PHP |nodeJs | python">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="曹强">
+<meta property="article:tag" content="java 前端 php nodejs python javascript css html">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白云雅阁">
-<meta name="twitter:description" content="caoqiang&apos;s blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs">
+
+<link rel="canonical" href="http://ronghuaxueleng.github.io/page/6/">
 
 
-
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 0,
-      author: '博主'
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false
   };
 </script>
 
+  <title>白云雅阁</title>
+  
 
 
 
-  <link rel="canonical" href="http://ronghuaxueleng.github.io/page/6/"/>
 
-  <title> 白云雅阁 </title>
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <a href="https://github.com/ronghuaxueleng">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
-    </a>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">白云雅阁</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">白云雅阁</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一切都是最好的安排</p>
   </div>
-  <p class="site-subtitle">读懂别人的故事，写好自己的人生</p>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
 
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
-  
+  </li>
+  </ul>
+
 </nav>
-
- </div>
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content">
             
-  <section id="posts" class="posts-expand">
-    
-      
 
+  <div class="posts-expand">
+        
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/75f5b5c3.html">
 
-  
-  
-  
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/" itemprop="url">
-                  发布订阅模式
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/75f5b5c3.html" class="post-title-link" itemprop="url">this关键字</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/javascript/" itemprop="url" rel="index">
                     <span itemprop="name">javascript</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/"class="leancloud_visitors" data-flag-title="发布订阅模式"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-
-发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。在JavaScript开发中，我们一般用事件模型来替代传统的发布—订阅模式。
-
-
-发布—订阅模式可以广泛应用于异步编程中，这是一种替代传递回调函数的方案。比如，我们可以订阅ajax 请求的error、succ 等事件。 或者如果想在动画的每一帧完成之后做一些事情，那我们可以订阅一个事件，然后在动画的每一帧完成之后发布这个事件。在异步编程中使用发布—订阅模式，我们就无需过多关注对象在异步运行期间的内部状态，而只需要订阅感兴趣的事件发生点。
-
-发布—订阅模式可以取代对象之间硬编码的通知机制，一个对象不用再显式地调用另外一个对象的某个接口。发布—订阅模式让两个对象松耦合地联系在一起，虽然不太清楚彼此的细节，但这不影响它们之间相互通信。当有新的订阅者出现时，发布者的代码不需要任何修改；同样发布者需要改变时，也不会影响到之前的订阅者。只要之前约定的事件名没有变化，就可以自由地改变它们。
-
-
-DOM 事件实际上，只要我们曾经在DOM节点上面绑定过事件函数，那我们就曾经使用过发布—订阅模式，例如
-document.body.addEventListener( &apos;click&apos;, function(){
-    alert(2);
-}, false );
-document.body.click(); // 模拟用户点击
-在这里需要监控用户点击document.body的动作，但是我们没办法预知用户将在什么时候点击。所以我们订阅document.body上的click事件，当body 节点被点击时，body节点便会向订阅者发布这个消息。当然我们还可以随意增加或者删除订阅者，增加任何订阅者都不会影响发布者代码的编写。
-自定义事件除了DOM 事件，我们还会经常实现一些自定义的事件，这种依靠自定义事件完成的发布—订阅模式可以用于任何JavaScript 代码中。步骤：
-
-指定好谁充当发布者（例如售楼处）
-
-然后给发布者添加一个缓存列表，用于存放回调函数以便通知订阅者（售楼处的花名册）
-
-最后发布消息的时候，发布者会遍历整个缓存列表，依次触发里面存放的订阅者回调函数（遍历花名册挨个发短信通知有空房）另外，我们还可以往回调函数里填入一些参数，订阅者
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/10发布订阅模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/" itemprop="url">
-                  组合模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+            <span id="/archives/75f5b5c3.html" class="post-meta-item leancloud_visitors" data-flag-title="this关键字" title="阅读次数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="fa fa-eye"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
             </span>
-          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
 
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/"class="leancloud_visitors" data-flag-title="组合模式"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-          组合模式
-
-组合模式将对象组合成树形结构，以表示“部分-整体”的层次结构。除了用来表示树形结构之外，组合模式的另一个好处是通过对象的多态性表现，使得用户对单个对象和组合对象的使用具有一致性。
-
-请求在树中传递的过程在组合模式中，请求在树中传递的过程总是遵循一种逻辑。请求从树的最顶端的对象往下传递，如果当前处理请求的对象是叶对象，叶对象自身会对请求做相互相应的处理；如果当前处理请求对象是组合对象，组合对象则会遍历它下面的节点，将请求继续传递。总之，组合对象的请求是从上到下沿着树传递，直到树的尽头。作为客户，只要关心树最顶层的组合对象，客户只需要请求这个组合对象，请求便会向下延续。
-现在，假设一个需求，我们需要一个超级遥控器可以控制家里所有的电器，且拥有以下功能
-
-打开空调
-
-打开电视和音响
-
-关门，开电脑，登录QQ  
-
-
-依旧，废话不多说，show the code
-var MacroCommand = function() {
-  return {
-    commandsList : [],
-    add: function( command ) {
-      this.commandsList.push( command );
-    },
-    execute: function() {
-      for (var i = 0, command; command = this.commandsList[i++];) {
-        command.execute();
-      }
+          <hr>
+<blockquote>
+<p>this的指向大概可以分成四种：</p>
+<ul>
+<li>作为对象的方法调用</li>
+<li>作为普通函数调用</li>
+<li>构造器调用</li>
+<li>Function.prototype.call或Function.prototype.apply调用</li>
+</ul>
+</blockquote>
+<h3 id="1-作为对象的时候，this指向该对象">1. 作为对象的时候，<strong>this指向该对象</strong></h3>
+<pre><code>var obj = {
+    a: 1,
+    getA: function() {
+        alert(this === obj); //true;
+        alert(this.a); //1
     }
-  };
 };
-
-var openAcCommand = {
-  execute: function() {
-    console.log(&apos;打开空调&apos;);
-  }
+obj.getA();
+</code></pre>
+<h3 id="2-作为普通函数调用，this总是指向全局对象（在浏览器中就是window）">2. 作为普通函数调用，<strong>this总是指向全局对象（在浏览器中就是window）</strong></h3>
+<pre><code>window.name = 'globalName';
+var getName = function() {
+    return this.name;
 };
-
-/*家里电视和音响是连接在一起的，所以可以用一个宏命令来组合打开电视和打开音响的命令*/
-var openTvCommand = {
-  execute: function() {
-    console.log(&apos;打开电视&apos;);
-  }
-};
-var openSoundCommand = {
-  execute: function() {
-    console.log(&apos;打开音响&apos;);
-  }
-};
-
-var macr
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/12组合模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/" itemprop="url">
-                  代码重构
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/"class="leancloud_visitors" data-flag-title="代码重构"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-一些重构的建议：
-
-提炼函数
-
-避免出现超大函数
-
-独立出来的函数有助于代码复用
-
-独立出来的函数更容易被覆写
-
-独立出来的函数如果拥有一个良好的命名，
-
-它本身就起到了注释的作用。
-
-
-
-
-比如在一个负责取得用户信息的函数里面，我们还需要打印跟用户信息有关的log，那么打印log的语句就可以被封装在一个独立的函数里：
-var getUserInfo = function() {
-    ajax(&apos;http://xxx.com/userInfo&apos;, function(data) {
-        console.log(&apos;userId: &apos; + data.userId);
-        console.log(&apos;userName: &apos; + data.userName);
-        console.log(&apos;nickName: &apos; + data.nickName);
-    });
-};
-可以改成：
-var getUserInfo = function() {
-    ajax(&apos;http://xxx.com/userInfo&apos;, function(data) {
-        printDetails(data);
-    });
-};
-var printDetails = function(data) {
-    console.log(&apos;userId: &apos; + data.userId);
-    console.log(&apos;userName: &apos; + data.userName);
-    console.log(&apos;nickName: &apos; + data.nickName);
+console.log(getName()); //globalName
+</code></pre>
+<p>再例如局部的callback，它作为普通函数调用时，callback内部的this指向了windows对象，解决方法则可以用一个变量保存this，例如</p>
+<pre><code>document.getElemmentById('div1').onclick = function() {
+    var that = this;
+    var callback = function() {
+        alert(that.id); //div1;
+    }
+    callback();
 }
+</code></pre>
+<h3 id="3-构造器调用">3. 构造器调用</h3>
+<p>当用<code>new</code>运算符调用函数时，该函数总会返回一个对象，通常情况this就是指向返回的这个对象，但如果构造器显示返回了一个object类的对象，那运算结果最终返回的是那个对象而不是this，例如</p>
+<pre><code>var MyClass1 = function() {
+    this.name = '111';
+}
+var obj1 = new MyClass1();
+alert(obj1.name); //111
 
-合并重复的条件片段如果一个函数内有一些条件分支语句，而这些条件分支语句内部散步了一些重复的代码，那么就有必要进行合并去重工作。
+var MyClass2 = function() {
+    this.name = '111';
+    return { //显式的返回一个对象
+        name: '222';
+    }
+}
+var obj2 = new MyClass2();
+alert(obj2.name); //222
+</code></pre>
+<h3 id="4-Function-prototype-call或Function-prototype-apply可以动态的改变传入函数的this">4. Function.prototype.call或Function.prototype.apply可以动态的改变传入函数的this</h3>
+<ul>
+<li>
+<p>两者区别：传入参数不同，apply接受两个参数，第一个为this指向，第二个为一个带下标的集合，这个集合可以为数组也可以为类数组；call传入的参数数量不固定，第一个也是代表this指向，第二个开始往后每个参数被依次传入函数。</p>
+</li>
+<li>
+<p>改变this例子</p>
+<p>var obj1 = {<br>
+name: ‘111’;<br>
+};<br>
+var obj2 = {<br>
+name: ‘222’;<br>
+};<br>
+<a href="http://window.name" target="_blank" rel="noopener">window.name</a> = ‘window’;<br>
+var getNmae = function() {<br>
+alert(<a href="http://this.name" target="_blank" rel="noopener">this.name</a>);<br>
+}<br>
+getName(); //window<br>
+getName.call(obj1); //111<br>
+getName.call(obj2); //222</p>
+</li>
+</ul>
 
-//页面跳转
-var paging = function(currPage) {
-    if (currPage &lt;= 0) {
-        currPage = 0;
-        jump(currPage); //跳转
-    } else if (currPage 
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/21代码重构/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
       
     </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
+    
+    
+    
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-
-
-    
-      
-
-  
-  
-
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/ffd643db.html">
 
-    
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/11命令模式/" itemprop="url">
-                  命令模式
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/ffd643db.html" class="post-title-link" itemprop="url">设计原则和编程技巧</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/javascript/" itemprop="url" rel="index">
                     <span itemprop="name">javascript</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
+            <span id="/archives/ffd643db.html" class="post-meta-item leancloud_visitors" data-flag-title="设计原则和编程技巧" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>817</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
 
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/11命令模式/"class="leancloud_visitors" data-flag-title="命令模式"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <hr>
+<h3 id="单一职责原则">单一职责原则</h3>
+<p>就一个类而言，应该仅有一个引起它变化的原因。在JavaScript中，需要用到类的场景并不太多，单一职责原则（SRP）更多的是被运用在对象或者方法级别上。<br>
+总之，SRP原则体现为：一个对象（方法）只做一件事情。<br>
+例如：</p>
+<ul>
+<li>
+<p>代理模式</p>
+</li>
+<li>
+<p>迭代器模式</p>
+</li>
+<li>
+<p>单例模式</p>
+</li>
+<li>
+<p>装饰者模式<br>
+但是，并不是所有的职责都应该一一分离的，一方面如果随着需求的变化，有两个职责是同时变化的，那就不必分离他们。比如在ajax请求的时候，创建xhr对象和发送xhr请求几乎总是在一起的，那么创建xhr对象的职责和发送xhr对象的职责就没有必要分开。</p>
+</li>
+</ul>
+<p>另一方面，职责的变化轴线仅当它们确定会发生变化时才有意义，即使两个职责已经被耦合在一起但他们没有发生改变的征兆，那么也许没有必要主动分离他们，在代码需要重构的时候再分离也不迟。</p>
+<h3 id="最少知识原则">最少知识原则</h3>
+<p>最少知识原则（LKP）说的是一个软件实体应当尽可能少与其他实体发生相互作用。这里的软件的实体是一个广义的概念，不仅包括对象，还包括系统，类，模块，函数，变量等。<br>
+单一职责原则指导我们把对象划分成较小的粒度，这可以提高对象的可复用性。但越来越多的对象之间可能会产生错综复杂的联系，如果修改了其中一个对象，很可能会影响到跟它相互引用的其他对象。对象和对象耦合在一起，有可能会降低他们的复用性。在程序中，对象的“朋友”太多并不是一件好事。<br>
+最少知识原则要求我们在设计程序时，应当尽量减少对象之间的交互。如果两个对象之间不必彼此直接通信，那么两个对象就不要发生直接的相互联系。常见的做法是引入一个第三者对象，来承担这些对象之间的通信作用。如果一些对象需要向另一些对象发起请求，可以通过第三者对象来转发这些请求。<br>
+体现地方：</p>
+<ul>
+<li>
+<p>中介者模式</p>
+</li>
+<li>
+<p>外观模式</p>
+</li>
+</ul>
+<h3 id="开放-封闭原则">开放-封闭原则</h3>
+<p>在面向对象的程序设计中，开放-封闭原则（OCP）是最重要的一条原则。他的定义为：软件实体（类，模块，函数）等应该是可以拓展的，但是不可修改的。<br>
+举例：</p>
+<ul>
+<li>
+<p>发布-订阅模式</p>
+</li>
+<li>
+<p>模板方法模式</p>
+</li>
+<li>
+<p>策略模式</p>
+</li>
+<li>
+<p>代理模式</p>
+</li>
+<li>
+<p>职责链模式</p>
+</li>
+</ul>
 
       
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
-          
-          
-命令模式是最简单和优雅的模式之一，命令模式中的命令指的是一个执行某些特定事情的指令。命令模式最常见的应用场景是：有时候需要向某些对象发送请求，但是不知道请求的接收者是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送者和请求接收者能够消除彼此之间的耦合关系。
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/f1601c3e.html">
 
-菜单程序假设要编写一个用户界面程序，该用户界面上至少有数十个button按钮，通过分析我们发现按下按钮之后会发生的一些事情是不变的，而具体会发生什么事情是可变的。通过command对象的帮助，将来我们可以轻易改变这种关联。废话不多说，上代码：
-//负责往按钮上面安装命令
-var setCommand = function( button, command ) {
-    button.onclick = function() { //执行的动作
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/f1601c3e.html" class="post-title-link" itemprop="url">单例模式</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/f1601c3e.html" class="post-meta-item leancloud_visitors" data-flag-title="单例模式" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<p>用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。</p>
+<h3 id="实现单例模式">实现单例模式</h3>
+<pre><code>//1.实现单例模式
+var Singleton = function (name) {
+  this.name = name;
+};
+Singleton.prototype.getName = function() {
+  alert(this.name);
+};
+Singleton.getInstance = (function() {
+  var instance = null;
+  return function(name) {
+    if (!instance) {
+      instance = new Singleton(name);
+    }
+    return instance;
+  }
+})();
+var a = Singleton.getInstance('sven1');
+var b = Singleton.getInstance('sven2');
+
+console.log(a === b); //true
+</code></pre>
+<p>以上，我们通过<code>Singleton.getInstance</code>来获取<code>Singleton</code>类的唯一对象，虽然简单但是增加了这个类的“不透明性”，<code>Singleton</code>类的使用者必须知道这是一个单例类，跟以往通过<code>new xxx</code>的方法不同</p>
+<h3 id="透明的单例模式">透明的单例模式</h3>
+<p>有了以上的不足，我们现在就来解决</p>
+<pre><code>//透明的单例模式 
+var CreateDiv = (function() {
+  var instance;
+  var CreateDiv = function(html) {
+    if (instance) {
+      return instance;
+    }
+    this.html = html;
+    this.init();
+    return instance = this;
+  };
+  
+  CreateDiv.prototype.init = function() {
+    var div = document.createElement('div');
+    div.innerHTML = this.html;
+    document.body.appendChild(div);
+  };
+  
+  return CreateDiv;
+})();
+var aa = new CreateDiv('sven1');
+var bb = new CreateDiv('sven2');
+
+console.log(aa === bb);
+</code></pre>
+<p>以上代码，CreateDiv做了创建对象和执行初始化init方法，且保证只有一个对象。<br>
+但是，假如有一天我们需要利用这个类，在页面中创建千千万万个div，即要让这个类从单例类变成一个普通的可以产生多个实例的类，那我们必须改写CreateDiv构造函数，把控制创建唯一的那一段去掉…这样好像有点太麻烦了</p>
+<h3 id="用代理实现单例模式">用代理实现单例模式</h3>
+<p>这里就可以引入代理类的方式，思想就是将负责管理的单例逻辑移到一个代理类中，这样CreateDiv就变成一个普通的类，代码此处省略…</p>
+<h3 id="JavaScript中的单例模式">JavaScript中的单例模式</h3>
+<p>前面几种单例模式的实现，更多是接近传统面向对象语言中的实现，单例从“类”中创建出来。<br>
+然而，js作为一个没有类的语言，生搬单例模式的概念并无意义。我们只要一个对象，为什么要创建一个类呢？我们只是要一个唯一的实例就好了…因此我们可以直接用<code>var a = {}</code>来创建对象字面量。</p>
+<h3 id="惰性单例">惰性单例</h3>
+<p>惰性单例：需要的时候才创建。<br>
+例如，以一个登录悬浮窗为例，我们可以在页面加载的时候创建好这个div窗口，然后点击登录按钮的时候开始显示，但是这样如果用户只是随便浏览下就白白浪费了一些dom节点。<br>
+还有一种方法，点击的时候再创建，关闭的时候销毁。但是如果用户频繁的进行注销等操作，我们就要频繁的创建和删除div，显然这也不合理。<br>
+所以，这时候惰性单例模式就出马了。</p>
+<pre><code>var createLoginLayer = (function() {
+    var div;
+    return function() {
+        if (!div) {
+            div = document.createElement('div');
+            //创建添加等dom操作...
+        }
+        return div;
+    }
+})();
+
+$(&quot;xxx&quot;).onclick = function() {
+    var loginLayer = createLoginLayer();
+    loginLayer.show();
+}
+</code></pre>
+<h3 id="通用的惰性实例">通用的惰性实例</h3>
+<p>看起来好像没什么问题，然而，他还是违反了单一的原则，创建的对象逻辑都放在createLoginLayer内部，如果我们要创建别的东西例如iframe，就要几乎将这个函数照抄一遍了，因此我们应该把不变的部分隔离出来。</p>
+<pre><code>var getSingle = function(fn) {
+    var result;
+    return function() {
+        return result || (result = fn.apply(this, arguments));
+    }
+};
+
+var createLoginLayer = function() {
+    //创建登录框
+}  
+
+var createSingleLoginLayer = getSingle(createLoginLayer);
+</code></pre>
+<p>于是，目的达成。<br>
+当然，单例模式用途远远不止于创建对象，比如我们在渲染完页面的时候，接下来要给这个列表绑定click事件，如果是ajax动态向列表里面加载数据，实际上只需要第一次渲染的时候绑定。如果不用jq的<code>$(&quot;&quot;).one('click', function(){})</code>的话，我们也可以用单例模式，做法类似。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/47f3f95c.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/47f3f95c.html" class="post-title-link" itemprop="url">高阶函数</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/47f3f95c.html" class="post-meta-item leancloud_visitors" data-flag-title="高阶函数" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<p>高阶函数是至少满足下列条件之一的函数</p>
+<ul>
+<li>函数可以作为参数被传递</li>
+<li>函数可以作为返回值输出<br>
+<em>（js这么好的语言中的函数当然满足 ^</em>^）_</li>
+</ul>
+<h3 id="函数作为参数传递">函数作为参数传递</h3>
+<p>把函数当作参数传递，可以抽离出一部分容易变化的业务逻辑，把这部分业务逻辑放在函数中，可以分离业务代码中变与不变的部分。</p>
+<ul>
+<li>
+<p>回调函数，ajax异步，callback</p>
+<p>var getUserInfo() = function(userId, callback) {<br>
+$.ajax('<a href="http://xxx.com/getUserInfo?' target="_blank" rel="noopener"">http://xxx.com/getUserInfo?’</a> + userId, function(data) {<br>
+if (typeof(callback === ‘function’) {<br>
+callback(data);<br>
+}<br>
+});<br>
+}<br>
+getUserInfo(13157, function(data) {<br>
+alert(data.user);<br>
+})</p>
+</li>
+</ul>
+<h3 id="高阶函数实现AOP">高阶函数实现AOP</h3>
+<p><strong>AOP（面向切面编程），把一些跟核心业务逻辑模块无关的功能抽离出来（通常包括日志统计，安全控制，异常处理等）</strong></p>
+<pre><code>Function.prototype.before = function(beforefn) {
+    var __self = this; //保存原函数的引用
+    return function() { //返回包含原函数和新函数的“代理”函数
+        beforefn.apply(this, arguments); //执行新函数，修正this
+        return __self.apply(this, arguments); //执行原函数
+    }
+};
+
+Function.prototype.after= function(afterfn) {
+    var __self = this; 
+    return function() { 
+        var ret = __self.apply(this, arguments);
+        afterfn.apply(this, arguments); 
+        return ret ;
+    }
+};
+
+var func = function() {
+    console.log(2);
+};
+
+func = func.before(function() {
+    console.log(1);
+}).after(function() {
+    console.log(3);
+});
+
+func();
+</code></pre>
+<p>以上代码我们把打印1和打印3的函数通过AOP的方式动态植入func函数，于是执行时候顺利返回1,2,3</p>
+<h3 id="函数节流">函数节流</h3>
+<p>js函数大多是用户触发，大多不会遇到跟性能相关的问题，但是少数情况触发不被用户控制的。<br>
+例如：</p>
+<ul>
+<li>
+<p>window.onresize事件</p>
+</li>
+<li>
+<p>mousemove事件</p>
+</li>
+<li>
+<p>上传进度</p>
+</li>
+</ul>
+<p>以上函数触发频率太高，比如我们对onresize事件绑定了打印事件，当拖动窗口时，可能会一秒打印十次，这太累了，因此要采取一点措施（聪明的机智的你一定想到了setTimeout）</p>
+<p>主要实现原理：当即将被执行的函数用setTimeout延迟一段时间执行，如果这次延迟执行还没完成，则忽略接下来调用该函数的请求。</p>
+<pre><code>var throttle = function(fn, interval) {
+    var __self = fn, //保存需要被延迟的函数引用
+    timer, //计时器
+    firstTime = true; //是否第一次调用
+    return function() {
+        var args = arguments,
+        __me = this;
+    
+        if (firstTime) { //如果第一次调用不需要延迟
+            __self.apply(_me, args);
+            return firstTime = false;
+        }
+        
+        if (timer) { //如果定时器还在，说明前一次延迟执行还没完成
+            return false;
+        }
+
+        timer = setTimeout( function () {
+            clearTimeout(timer);
+            timer = null;
+            __self.apply(__me, args);
+        }, interval || 500);
+    };
+};
+
+window.onresize = throttle(function() {
+    console.log(1);
+}, 500);
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/f9636392.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/f9636392.html" class="post-title-link" itemprop="url">闭包</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/f9636392.html" class="post-meta-item leancloud_visitors" data-flag-title="闭包" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>闭包是js中一个难懂又必须征服的概念，他的形成与变量作用域以及变量的生存周期密切相关。</p>
+</blockquote>
+<h3 id="变量作用域和生存周期">变量作用域和生存周期</h3>
+<p>作用域，按字面理解，就是指变量的有效范围，超出这个范围就无法访问。<br>
+在函数中，里面函数可以访问外面的变量，但是外面无法访问内部变量。举个简单例子：</p>
+<pre><code>var a = 1;
+var fun1 = function() {
+    var b = 2;
+    var fun2 = function() {
+        var c = 3;
+        alert(b); //2
+        alert(c); //3
+    }
+    fun2();
+    alert(c); //c is not defined
+};
+fun1();
+</code></pre>
+<p>生存周期：全局变量的生存周期是永久的，除非我们主动销毁，但是普通对于用var声明的局部变量，当退出函数不再使用时，就会被销毁。但是当你使用到闭包时，情况就不一样了</p>
+<pre><code>var fun = function() {
+    var a = 1;
+    return function() {
+        a++;
+        alert(a);
+    }
+};
+var f = fun();
+f(); //2
+f(); //3
+f(); //4
+f(); //5
+</code></pre>
+<p>解释：当执行var f = fun();时，f返回了一个匿名函数的引用，它可以访问到fun()被调用的生产环境，而局部变量a一直在这个环境中。既然局部变量能<br>
+被外界访问，那它就有了不被销毁的理由，于是局部变量生命被延续了。</p>
+<p>再例如：</p>
+<pre><code>var nodes = document.getElemmentByTagName('div'); //此处他的长度为5
+for (var i = 0, len = nodes.length; i &lt; len; i++) {
+    nodes[i].onclick = function() {
+        alert(i);
+    }
+};
+</code></pre>
+<p>以上代码无论点哪个div显示的都是5（div节点的onclick是异步触发的，当事件触发时，循环已经结束，此时i的值是5）<br>
+解决方法：闭包大法好</p>
+<pre><code>for (var i = 0, len = nodes.length; i &lt; len; i++) {
+    (function(i) {
+        nodes[i].onclick = function() {
+            alert(i);
+        }
+    })(i)
+};
+</code></pre>
+<p>通常，闭包可以有封装一些不需要暴露在全局的变量，延续局部变量寿命等等用途。</p>
+<h3 id="命令模式">命令模式</h3>
+<p>命令模式的意图是把请求封装为对象，从而分离请求的发起者和请求的接收者（执行者）之间的耦合关系。在命令执行之前可预先往命令对象中植入命令的接收者。</p>
+<pre><code>var TV = {
+    open: function() {
+        alert('open');
+    },
+    close: function() {
+        alert('close');
+    }
+};
+
+var createCommand = function(receiver) {
+    var execute= function() {
+        return receiver.open(); //执行命令打开电视
+    }
+
+    var undo= function() {
+        return receiver.close(); //执行命令关闭电视
+    }
+
+    return {
+        execute: execute,
+        undo: undo
+    }
+};
+
+var setComment = function(command) {
+    document.getElementById('execute').onclick = function() {
         command.execute();
     }
-};
-
-//一些功能函数
-var MenuBar = {
-    refresh: function() {
-        console.log(&apos;刷新菜单栏目&apos;);
+    document.getElementById('undo').onclick = function() {
+        command.undo();
     }
 };
-var SubMenu = {
-    add: function() {
-        console.log(&apos;增加子菜单&apos;);
-    },
-    del: function() {
-        console.log(&apos;删除子菜单&apos;);
-    }
-};
+setCommand(createCommand(tv));
+</code></pre>
 
-//封装
-var RefreshMenuBarCommand = function( receiver ) {
-    this.receiver = receiver;
-};
-RefreshMenuBarCommand.prototype.execute = function() {
-    this.receiver.refresh();
-};
-var AddSubMenuCommand = function( receiver ) {
-    this.receiver = receiver;
-};
-AddSubMenuCommand.prototype.execute = function() {
-    this.receiver.add();
-
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/11命令模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
       
     </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
+    
+    
+    
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-
-
-    
-      
-
-  
-  
-
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/" itemprop="url">
-                  模版方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/"class="leancloud_visitors" data-flag-title="模版方法"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-
-模版方法是一种只需要使用继承就可以实现的非常简单的模式。他由两部分组成，第一部分是抽象父类，第二部分是具体实现子类。通常在抽象父类中封装了子类的算法框架，包括实现一些共用方法以及封装子类所有方法的执行顺序。子类通过继承这个抽象类，也继承了整个算法结构，并且可以选择重写父类的方法。
-
-Coffee or Tea假设我们现在要泡一杯咖啡步骤如下：
-
-把水煮沸
-用沸水冲泡咖啡
-把咖啡倒进杯子
-加糖和牛奶
-
-泡茶的步骤：
-
-把水煮沸
-用沸水浸泡茶叶
-把茶水倒进杯子
-加柠檬
-
-经过比较，我们可以发现泡茶和泡咖啡有以下共同点：
-
-原料不同。一个是茶一个是咖啡，但是我们都可以把它们抽象为“饮料”
-
-泡的方式不同。咖啡是冲泡，茶叶是浸泡，我们都可以抽象成“泡”。
-
-加入的调料不同。一个是糖和牛奶，一个是柠檬，我们把它们抽象成“调料”。
-
-
-所以经过抽象后，无论是泡咖啡还是泡茶我们都是要进行下列步骤：
-
-把水煮沸
-用沸水冲泡咖啡
-把饮料倒进杯子
-加调料现在用代码来表示这个抽象过程
-
-var Beverage = function()  {};
-Beverage.prototype.boilWater = function() {
-    console.log(&apos;把水煮沸&apos;);
-};
-Beverage.prototype.brew = function(){}; //空方法，应该由子类重写
-Beverage.prototype.pourInCup = function(){}; //空方法，应该由子类重写
-Beverage.prototype.addCondiments = function(){}; //空方法，应该由子类重写
-
-Beverage.prototype.init= function(){
-    this.boilWater();
-    this.brew();
-    this.pourInCup();
-    this.addCondiments();
-}; 
-接着就是创建Coffee子类和Tea子类
-var Coffee = function() {};
-Coffee.prototype = new Beverage();
-Coffee.prototype.brew = function() {
-    console.log(&apo
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/13模版方法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
+  </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1054,445 +1081,704 @@ Coffee.prototype.brew = function() {
           </div>
           
 
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/img/avatar.jpg"
-               alt="曹强" />
-          <p class="site-author-name" itemprop="name">曹强</p>
-          <p class="site-description motion-element" itemprop="description">caoqiang's blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">83</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">14</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/ronghuaxueleng" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-      </section>
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">曹强</span>
-</div>
-
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
-
-<!-- 不蒜子 -->
-<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_pv" style="display:none">
-  本站总访问量<span id="busuanzi_value_site_pv"></span>人次
-</span>
-<!-- 不蒜子计数初始值纠正 -->
-<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function() {
-        var int = setInterval(fixCount, 100);
-        var busuanziSiteOffset = parseInt(1203);
-        function fixCount() {
-            if ($("#busuanzi_container_site_pv").css("display") != "none") {
-                clearInterval(int);
-                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
-            }
-        }
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
     });
-</script>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
   }
 </script>
 
-
-
-
-
-
-
-
-
+        </div>
+          
   
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="曹强"
+      src="/img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">曹强</p>
+  <div class="site-description" itemprop="description">caoqiang's blog | java |前端 | PHP |nodeJs | python</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
 
 
 
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+      <div class="links-of-blogroll-title">
+        <!-- modify icon to fire by szw -->
+        <i class="fa fa-history fa-" aria-hidden="true"></i>
+        近期文章
+      </div>
+      <ul class="links-of-blogroll-list">
+        
+        
+          <li>
+            <a href="/archives/2fd7dbc7.html" title="Shadow DOM" target="_blank">Shadow DOM</a>
+          </li>
+        
+          <li>
+            <a href="/archives/b4a56055.html" title="可视化埋点" target="_blank">可视化埋点</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a5431a21.html" title="从 JavaScript 数组去重谈性能优化" target="_blank">从 JavaScript 数组去重谈性能优化</a>
+          </li>
+        
+      </ul>
+    </div>
+
+
+<div style="">
+  <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
+
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
   
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">318k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:49</span>
+</div>
 
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
-
-
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-   
-     
-   
-  
- 
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
 
 
-  
 
-
-
-
-  
-  
-
-  
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
   <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
       });
 
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
           if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
             return;
           }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
           }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
             }
           }
         })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
         });
     }
+  }
 
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
+  fetch('https://app-router.leancloud.cn/2/route?appId=bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz',
+            'X-LC-Key': '9kCQuNi7NFq5MdDBn9J1Xj1r',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
         addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
         showTime(Counter);
       }
     });
   </script>
 
 
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 
   
-  
-    <!-- custom analytics part create by xiamo -->
-<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-<script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout: 3000,
+        priority: true,
+        ignores: [uri => uri.includes('#'),uri => uri == 'http://ronghuaxueleng.github.io/page/6/',]
+      });
+      });
+  </script>
+
+
+  <script async src="/blog/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/blog/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div class="moon-menu-item" onclick="back2bottom()">
+      <i class="fa fa-chevron-down"></i>
+    </div>
+    
+    <div class="moon-menu-item" onclick="back2top()">
+      <i class="fa fa-chevron-up"></i>
+    </div>
+    
+  </div>
+  <div class="moon-menu-button" onclick="moonMenuClick()">
+    <svg class="moon-menu-svg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+      <g class="moon-menu-points">
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
+        <circle class="moon-menu-point" r=".2rem"></circle>
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
+      </g>
+    </svg>
+    <div class="moon-menu-icon">
+    </div>
+    <div class="moon-menu-text">
+    </div>
+  </div>
+</div>
+
 <script>
-function showTime(Counter) {
-	var query = new AV.Query(Counter);
-	$(".leancloud_visitors").each(function() {
-		var url = $(this).attr("id").trim();
-		query.equalTo("url", url);
-		query.find({
-			success: function(results) {
-				if (results.length == 0) {
-					var content = '0';
-					$(document.getElementById(url)).text(content);
-					return;
-				}
-				for (var i = 0; i < results.length; i++) {
-					var object = results[i];
-					var content = object.get('time');
-					$(document.getElementById(url)).text(content);
-				}
-			},
-			error: function(object, error) {
-				console.log("Error: " + error.code + " " + error.message);
-			}
-		});
 
-	});
-}
+  const moonMenuListener = function () {
 
-function addCount(Counter) {
-	var Counter = AV.Object.extend("Counter");
-	url = $(".leancloud_visitors").attr('id').trim();
-	title = $(".leancloud_visitors").attr('data-flag-title').trim();
-	var query = new AV.Query(Counter);
-	query.equalTo("url", url);
-	query.find({
-		success: function(results) {
-			if (results.length > 0) {
-				var counter = results[0];
-				counter.fetchWhenSave(true);
-				counter.increment("time");
-				counter.save(null, {
-					success: function(counter) {
-						var content =  counter.get('time');
-						$(document.getElementById(url)).text(content);
-					},
-					error: function(counter, error) {
-						console.log('Failed to save Visitor num, with error message: ' + error.message);
-					}
-				});
-			} else {
-				var newcounter = new Counter();
-				newcounter.set("title", title);
-				newcounter.set("url", url);
-				newcounter.set("time", 1);
-				newcounter.save(null, {
-					success: function(newcounter) {
-					    console.log("newcounter.get('time')="+newcounter.get('time'));
-						var content = newcounter.get('time');
-						$(document.getElementById(url)).text(content);
-					},
-					error: function(newcounter, error) {
-						console.log('Failed to create');
-					}
-				});
-			}
-		},
-		error: function(error) {
-			console.log('Error:' + error.code + " " + error.message);
-		}
-	});
-}
-$(function() {
-	var Counter = AV.Object.extend("Counter");
-	if ($('.leancloud_visitors').length == 1) {
-		addCount(Counter);
-	} else if ($('.post-title-link').length > 1) {
-		showTime(Counter);
-	}
-}); 
+    //Get scroll percent
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+    let percent = Math.round(scrollTop / (scrollHeight - offsetHeight) * 100);
+    if (percent > 100) percent = 100;
+
+    let menuText = document.querySelector('.moon-menu-text');
+    let menuPoints = document.querySelector('.moon-menu-points');
+    if (!percent) {
+      percent = 0;
+      menuText.style.display = 'none';
+      menuPoints.style.display = 'block';
+    } else {
+      menuText.style.display = 'block';
+      menuPoints.style.display = 'none';
+      menuText.innerHTML = percent + '%';
+    }
+
+    //Update strokeDasharray
+    let length = 196;
+    document.querySelector('.moon-menu-border').style.strokeDasharray = percent * length / 100 + ' ' + length;
+
+  }
+
+  window.addEventListener('load', () => {
+    moonMenuListener();
+  });
+  window.addEventListener('scroll', moonMenuListener);
+
+  const moonMenuClick = function () {
+    let items = document.querySelector('.moon-menu-items')
+    items.classList.toggle('active');
+    let points = document.querySelectorAll('.moon-menu-point');
+    let childItems = document.querySelectorAll('.moon-menu-item');
+    if (items.classList.contains('active')) {
+      points[0].setAttribute("cx", "-.8rem");
+      points[0].setAttribute("cy", "0");
+      points[2].setAttribute("cx", ".8rem");
+      points[2].setAttribute("cy", "0");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = -3 - 3 * i + 'rem';
+        childItems[i].style.opacity = .9;
+      }
+    } else {
+      points[0].setAttribute("cx", "0");
+      points[0].setAttribute("cy", "-.8rem");
+      points[2].setAttribute("cx", "0");
+      points[2].setAttribute("cy", ".8rem");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = '1rem';
+        childItems[i].style.opacity = 0;
+      }
+    }
+  };
+
+  const back2top = () => {
+    window.scroll({ top: 0, behavior: 'smooth' });
+  }
+
+  const back2bottom = () => {
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    window.scroll({ top: (scrollHeight - offsetHeight), behavior: 'smooth' });
+  }
+
 </script>
-  
-
 </body>
 </html>

@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://ronghuaxueleng.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="写在前面 fetch 同 XMLHttpRequest 非常类似，都是用来做网络请求。但是同复杂的XMLHttpRequest的API相比，fetch使用了Promise，这让它使用起来更加简洁，从而避免陷入&quot;回调地狱&quot;。 两者比较 比如，如果我们想要实现这样一个需求：请求一个URL地址，获取响应数据并将数据转换成JSON格式。使用fetch和XMLHttpRequest实现的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="fetch和XMLHttpRequest讲解">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/79c585a2.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="写在前面 fetch 同 XMLHttpRequest 非常类似，都是用来做网络请求。但是同复杂的XMLHttpRequest的API相比，fetch使用了Promise，这让它使用起来更加简洁，从而避免陷入&quot;回调地狱&quot;。 两者比较 比如，如果我们想要实现这样一个需求：请求一个URL地址，获取响应数据并将数据转换成JSON格式。使用fetch和XMLHttpRequest实现的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-08-30T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-06T11:58:27.993Z">
+<meta property="article:author" content="曹强">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://ronghuaxueleng.github.io/archives/79c585a2.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>fetch和XMLHttpRequest讲解 | 白云雅阁</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">白云雅阁</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一切都是最好的安排</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/79c585a2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          fetch和XMLHttpRequest讲解
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-30 00:00:00" itemprop="dateCreated datePublished" datetime="2016-08-30T00:00:00Z">2016-08-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/79c585a2.html" class="post-meta-item leancloud_visitors" data-flag-title="fetch和XMLHttpRequest讲解" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1>写在前面</h1>
+<p><code>fetch</code> 同 <code>XMLHttpRequest</code> 非常类似，都是用来做网络请求。但是同复杂的<code>XMLHttpRequest</code>的API相比，<code>fetch</code>使用了<code>Promise</code>，这让它使用起来更加简洁，从而避免陷入&quot;回调地狱&quot;。</p>
+<h1>两者比较</h1>
+<p>比如，如果我们想要实现这样一个需求：请求一个URL地址，获取响应数据并将数据转换成JSON格式。使用<code>fetch</code>和<code>XMLHttpRequest</code>实现的方式是不同的。</p>
+<a id="more"></a> 
+<h2 id="使用XMLHttpRequest实现">使用<code>XMLHttpRequest</code>实现</h2>
+<p>使用<code>XMLHttpRequest</code>来实现改功能需要设置两个监听函数，分别用来处理成功和失败的情况，同时还需要依次调用<code>open()</code>和<code>send()</code>方法才能实现请求。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function reqListener() &#123;</span><br><span class="line">	var data &#x3D; JSON.parse(this.responseText);</span><br><span class="line">	console.log(data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function reqError(err) &#123;</span><br><span class="line">	console.log(&#39;Fetch Error : %S&#39;, err);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var oReq &#x3D; new XMLHttpRequest();</span><br><span class="line">oReq.onload &#x3D; reqListener;</span><br><span class="line">oReq.onerror &#x3D; reqError;</span><br><span class="line">oReq.open(&#39;get&#39;, &#39;.&#x2F;api&#x2F;some.json&#39;, true);</span><br><span class="line">oReq.send();</span><br></pre></td></tr></table></figure>
+<h2 id="使用fetch实现">使用<code>fetch</code>实现</h2>
+<p>使用<code>fetch</code>来实现是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">fetch(&#39;.&#x2F;api&#x2F;some.json&#39;)</span><br><span class="line">	.then(function(res) &#123;</span><br><span class="line">		if (res.status !&#x3D;&#x3D; 200) &#123;</span><br><span class="line">			console.log(&#39;Looks like there was a problem. Status Code: &#39; + res.status);</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">			</span><br><span class="line">		&#x2F;&#x2F; 处理响应中的文本信息 </span><br><span class="line">		res.json().then(function(data) &#123;</span><br><span class="line">			console.log(data);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;)</span><br><span class="line">	.catch(function(err) &#123;</span><br><span class="line">		console.log(&#39;Fetch Error : %S&#39;, err);</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+<p>在将响应的文本信息转换成JSON格式前，需要先确保响应的状态码为200。<br>
+<code>fetch()</code>请求后返回的响应是一个<code>stream</code>对象，这就意味着我们在调用<code>json()</code>方法后会返回一个<code>Promise</code>，因为读取<code>stream</code>的过程是异步操作的。</p>
+<h3 id="响应中的元数据">响应中的元数据</h3>
+<p>在上面的例子中，我们可以查看响应对象的状态码，也知道了如何将响应转换成JSON格式的数据。但其实我们可以访问的元数据还有以下这些：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fetch(&quot;users.json&quot;).then(function(res) &#123;</span><br><span class="line">	console.log(res.headers.get(&#39;Content-Type&#39;));</span><br><span class="line">	console.log(res.headers.get(&#39;Data&#39;));</span><br><span class="line">	</span><br><span class="line">	console.log(res.status);</span><br><span class="line">	console.log(res.statusText);</span><br><span class="line">	console.log(res.type);</span><br><span class="line">	console.log(res.url);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="响应类型">响应类型</h3>
+<p>当我们发送<code>fetch</code>请求时，返回的<code>res.type</code>可能是<code>basic</code>、<code>cors</code>或<code>opaque</code>中的一种。这些类型可以告知我们资源从何而来，这样就能知道该如何处理响应对象。</p>
+<p>当我们请求的是同一域下的资源时，响应返回的类型为<code>basic</code>，此时没有任何限制，我们可以查看响应中的任何数据。</p>
+<p>如何请求的是跨域资源，那么会返回一个<code>CORS</code>类型的头部，并且响应类型为<code>cors</code>。这种类型跟上面的<code>basic</code>非常相似，只是它对响应头部的字段访问有限制，你只可以访问这些属性：</p>
+<ul>
+<li>Cache-Control</li>
+<li>Content-Language</li>
+<li>Content-Type</li>
+<li>Expires</li>
+<li>Last-Modified</li>
+<li>Pragma</li>
+</ul>
+<blockquote>
+<p><code>Opaque</code> 类型的响应也是访问跨域资源的时候产生的，只是响应头不是CORS类型的响应头而已。如果是这种类型的响应，那么我们就不能读取返回的数据，也不能查看请求的状态码，这就是意味着我们将无法确定请求是成功了还是失败了。目前在<code>fetch()</code>的实现中，无法请求跨域的资源。</p>
+</blockquote>
+<p>我们可以为<code>fetch</code>请求定义<code>mode</code>属性，来保证只有符合条件的请求才会被处理。可以设置的<code>mode</code>属性值如下：</p>
+<ul>
+<li><code>same-origin</code>  只有请求相同域下的资源才能成功，其他请求均被拒绝。</li>
+<li><code>cors</code>  允许请求同域或者跨域资源，但是跨域必须返回相应的跨域请求头部。</li>
+<li><code>cors-with-forced-preflight</code>  在发出实际请求前先做<code>preflight</code>检查。</li>
+<li><code>no-cors</code>  针对跨域资源做请求，但是不返回CORS的响应头，这是属于<code>opaque</code>类型的响应（window下无法使用）</li>
+</ul>
+<p>在使用<code>mode</code>时，需要将<code>fetch</code>请求的第二个参数作为配置对象，并在其中配置具体的模式，如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fetch(&quot;http:&#x2F;&#x2F;some-site.com&#x2F;cors-enabled&#x2F;some.json&quot;,&#123;mode: &#39;cors&#39;&#125;)</span><br><span class="line">	.then(function(res)&#123;</span><br><span class="line">		return res.text();</span><br><span class="line">	&#125;)</span><br><span class="line">	.then(function(text) &#123;</span><br><span class="line">		console.log(&#39;Request successfully&#39;, text);</span><br><span class="line">	&#125;)</span><br><span class="line">	.catch(function(err) &#123;</span><br><span class="line">		console.log(&#39;Request failed&#39;, error)</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="Promise-方法链">Promise 方法链</h2>
+<p><code>Promise</code> 的特性之一就是可以实现链式调用，<code>fetch</code>也可以使用该特性，同时，使用链式调用可以让请求的处理逻辑更加通用。</p>
+<p>如果使用接口反馈的<code>JSON</code>格式数据，那么针对每次响应，我们都需要检查响应状态并做<code>JSON</code>格式转换。其实还能简化代码，那就是把状态监测和<code>JSON</code>转换的代码放到单独的函数中去。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function status(res) &#123;</span><br><span class="line">	if (res.status &gt;&#x3D; 200 &amp;&amp; res.status &lt; 300) &#123;</span><br><span class="line">		return Promise.resolve(response)</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		return Promise.reject(new Error(res.statusText))</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function json(res) &#123;</span><br><span class="line">	return res.json()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fetch(&#39;user.json&#39;)</span><br><span class="line">	.then(status)</span><br><span class="line">	.then(json)</span><br><span class="line">	.then(function(data) &#123;</span><br><span class="line">		console.log(&#39;Request succeeded with JSON response&#39;, data);</span><br><span class="line">	&#125;)</span><br><span class="line">	.catch(function(err) &#123;</span><br><span class="line">		console.log(&#39;Request failed&#39;, error);</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+<p>在上面的代码中，我们定义了一个<code>status</code>方法来检查<code>response.status</code> 的状态，根据结果不同返回<code>Promise.resolve()</code>  或 <code>Promise.reject()</code> ，这是<code>fetch()</code>方法链中的第一个方法调用。如果返回<code>resolve</code>状态，我们会继续调用<code>json()</code>，从而返回<code>response.json()</code>的执行结果。经过这些处理完我们已经可以获取解析后的<code>JSON</code>对象。如果解析失败，<code>Promise</code>返回<code>reject</code>状态，执行<code>catch</code>里的代码进行错误处理。</p>
+<p>这么编码更大的好处在于，你可以在所有的fetch请求中使用上面的逻辑代码，从而让代码变得更加容易阅读、维护和测试。</p>
+<h2 id="使用fetch-请求发送凭证信息">使用<code>fetch</code> 请求发送凭证信息</h2>
+<p>如果我们想在<code>fetch</code>请求中带一些凭证信息，比如<code>cookie</code>等，我们应该将请求中的<code>credentials</code>设置为<code>include</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fetch(url, &#123;</span><br><span class="line">	credentials: &#39;include&#39;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意： 服务器返回 400，500 错误码时并不会 reject，只有网络错误这些导致请求不能完成时，fetch 才会被 reject。</p>
+</blockquote>
+<h2 id="Response相关属性及方法"><code>Response</code>相关属性及方法</h2>
+<h3 id="bodyUsed"><code>bodyUsed</code></h3>
+<ol>
+<li>标记返回值是否被使用过</li>
+<li>这样设计的目的是为了之后兼容基于流的API，让应用一次消费data，这样就允许了JavaScript处理大文件例如视频，并且可以支持实时压缩和编辑。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fetch(&#39;&#x2F;test&#x2F;content.json&#39;).then(function(res)&#123;</span><br><span class="line">    console.log(res.bodyUsed); &#x2F;&#x2F; false</span><br><span class="line">    var data &#x3D; res.json();</span><br><span class="line">    console.log(res.bodyUsed); &#x2F;&#x2F;true</span><br><span class="line">    return data;</span><br><span class="line">&#125;).then(function(data)&#123;</span><br><span class="line">    console.log(data);</span><br><span class="line">&#125;).catch(function(error)&#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="headers"><code>headers</code></h3>
+<p>返回Headers对象，该对象实现了Iterator，可通过for…of遍历</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">fetch(&#39;&#x2F;test&#x2F;content.json&#39;).then(function(res)&#123;</span><br><span class="line">    var headers &#x3D; res.headers;</span><br><span class="line">    console.log(headers.get(&#39;Content-Type&#39;)); &#x2F;&#x2F; application&#x2F;json</span><br><span class="line">    console.log(headers.has(&#39;Content-Type&#39;)); &#x2F;&#x2F; true</span><br><span class="line">    console.log(headers.getAll(&#39;Content-Type&#39;)); &#x2F;&#x2F; [&quot;application&#x2F;json&quot;]</span><br><span class="line">    for(let key of headers.keys())&#123;</span><br><span class="line">        console.log(key); &#x2F;&#x2F; datelast-modified server accept-ranges etag content-length content-type</span><br><span class="line">    &#125;</span><br><span class="line">    for(let value of headers.values())&#123;</span><br><span class="line">        console.log(value);</span><br><span class="line">    &#125;</span><br><span class="line">    headers.forEach(function(value, key, arr)&#123;</span><br><span class="line">        console.log(value); &#x2F;&#x2F; 对应values()的返回值</span><br><span class="line">        console.log(key); &#x2F;&#x2F; 对应keys()的返回值</span><br><span class="line">    &#125;);</span><br><span class="line">    return res.json();</span><br><span class="line">&#125;).then(function(data)&#123;</span><br><span class="line">    console.log(data);</span><br><span class="line">&#125;).catch(function(error)&#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="ok"><code>ok</code></h3>
+<ol>
+<li>是否正常返回</li>
+<li>代表状态码在200-299之间</li>
+</ol>
+<h3 id="status"><code>status</code></h3>
+<p>状态码( 200表示 成功)</p>
+<h3 id="statusText"><code>statusText</code></h3>
+<p>状态描述 ('OK’表示 成功)</p>
+<h3 id="type"><code>type</code></h3>
+<ul>
+<li><code>basic</code>：正常的，同域的请求，包含所有的<code>headers</code>。排除<code>Set-Cookie</code>和<code>Set-Cookie2</code>。</li>
+<li><code>cors</code>：<code>Response</code>从一个合法的跨域请求获得，一部分<code>header</code>和<code>body</code>可读。</li>
+<li><code>error</code>：网络错误。<code>Response</code>的<code>status</code>是0，<code>Headers</code>是空的并且不可写。当<code>Response</code>是从<code>Response.error()</code>中得到时，就是这种类型。</li>
+<li><code>opaque</code>： <code>Response</code>从<code>&quot;no-cors&quot;</code>请求了跨域资源。依靠<code>Server</code>端来做限制。</li>
+</ul>
+<h3 id="url"><code>url</code></h3>
+<p>返回完整的url字符串。如：‘<a href="http://xxx.com/xx?a=1" target="_blank" rel="noopener">http://xxx.com/xx?a=1</a>’</p>
+<h3 id="arrayBuffer"><code>arrayBuffer()</code></h3>
+<p>返回ArrayBuffer类型的数据的Promise对象</p>
+<h3 id="blob"><code>blob()</code></h3>
+<p>返回Blob类型的数据的Promise对象</p>
+<h3 id="clone"><code>clone()</code></h3>
+<ul>
+<li>生成一个<code>Response</code>的克隆</li>
+<li><code>body</code>只能被读取一次，但<code>clone</code>方法就可以得到<code>body</code>的一个备份</li>
+<li>克隆体仍然具有<code>bodyUsed</code>属性，如果被使用过一次，依然会失效</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">fetch(&#39;&#x2F;test&#x2F;content.json&#39;).then(function(data)&#123;</span><br><span class="line">    var d &#x3D; data.clone();</span><br><span class="line">    d.text().then(function(text)&#123;</span><br><span class="line">        console.log(JSON.parse(text));</span><br><span class="line">    &#125;);</span><br><span class="line">    return data.json();</span><br><span class="line">&#125;).then(function(data)&#123;</span><br><span class="line">    console.log(data);</span><br><span class="line">&#125;).catch(function(error)&#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">&#125;);</span><br><span class="line">&#96;&#96;&#96; </span><br><span class="line"></span><br><span class="line">### &#96;json()&#96; </span><br><span class="line">返回JSON类型的数据的Promise对象</span><br><span class="line"></span><br><span class="line">### &#96;text()&#96;</span><br><span class="line">返回Text类型的数据的Promise对象 </span><br><span class="line"></span><br><span class="line">### &#96;formData()&#96; </span><br><span class="line">返回FormData类型的数据的Promise对象</span><br><span class="line"></span><br><span class="line">## fetch基本用法 </span><br><span class="line"></span><br><span class="line">### &#96;get&#96;方式</span><br></pre></td></tr></table></figure>
+<p>fetch(’/test/content.json’).then(function(data){<br>
+return data.json();<br>
+}).then(function(data){<br>
+console.log(data);<br>
+}).catch(function(error){<br>
+console.log(error);<br>
+});</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### &#96;post&#96;方式</span><br></pre></td></tr></table></figure>
+<p>fetch(’/test/content.json’, { // url: fetch事实标准中可以通过Request相关api进行设置<br>
+method: ‘POST’,<br>
+mode: ‘same-origin’, // same-origin|no-cors（默认）|cors<br>
+credentials: ‘include’, // omit（默认，不带cookie）|same-origin(同源带cookie)|include(总是带cookie)<br>
+headers: { // headers: fetch事实标准中可以通过Header相关api进行设置<br>
+‘Content-Type’: ‘application/x-www-form-urlencoded’ // default: ‘application/json’<br>
+},<br>
+body: ‘a=1&amp;b=2’ // body: fetch事实标准中可以通过Body相关api进行设置<br>
+}).then(function(res){ res: fetch事实标准中可以通过Response相关api进行设置<br>
+return res.json();<br>
+}).then(function(data){<br>
+console.log(data);<br>
+}).catch(function(error){</p>
+<p>});</p>
+<pre><code>
+## `fetch`不足之处  
+
+### 无法监控读取进度和中断请求
+`Promises`缺少了一些重要的`XMLHttpRequest`的使用场景。例如， 使用标准的`ES6 Promise`你无法收集进入信息或中断请求。而`Fetch`的狂热开发者更是试图提供`Promise API`的扩展用于取消一个`Promise`。 这个提议有点自挖墙角的意思，因为将这将让`Promise`变得不符合标准。但这个提议或许会导致未来出现一个可取消的`Promise`标准。 但另一方面，使用`XMLHttpRequest`你可以模拟进度（监听`progress`事件），也可以取消请求（使用`abort()`方法）。 但是，如果有必要你也可以使用`Promise`来包裹它
+
+### 浏览器支持
+目前Chrome 42+, Opera 29+, 和Firefox 39+都支持Fetch。微软也考虑在未来的版本中支持Fetch。 讽刺的是，当IE浏览器终于微响应实现了progress事件的时候，XMLHttpRequest也走到了尽头。 目前，如果你需要支持IE的话，你需要使用一个polyfill库。
+
+![这里写图片描述](http://static.open-open.com/lib/uploadImg/20160111/20160111123542_840.png)
+
+@参考 [深入浅出Fetch API](http://www.open-open.com/lib/view/open1452486942714.html)
+</code></pre>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章推荐</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\2fd7dbc7.html" rel="bookmark">Shadow DOM</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\a26c9c63.html" rel="bookmark">44个 Javascript 变态题解析 (下)</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\bb77ad22.html" rel="bookmark">44个 Javascript 变态题解析 (上)</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\a5431a21.html" rel="bookmark">从 JavaScript 数组去重谈性能优化</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\84bd9124.html" rel="bookmark">发布订阅模式</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/dbff372f.html" rel="prev" title="理解Javascript的prototype">
+      <i class="fa fa-chevron-left"></i> 理解Javascript的prototype
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/archives/8e049f8a.html" rel="next" title="call和apply区别解析">
+      call和apply区别解析 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">两者比较</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用XMLHttpRequest实现"><span class="nav-number">2.1.</span> <span class="nav-text">使用XMLHttpRequest实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用fetch实现"><span class="nav-number">2.2.</span> <span class="nav-text">使用fetch实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#响应中的元数据"><span class="nav-number">2.2.1.</span> <span class="nav-text">响应中的元数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应类型"><span class="nav-number">2.2.2.</span> <span class="nav-text">响应类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Promise-方法链"><span class="nav-number">2.3.</span> <span class="nav-text">Promise 方法链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用fetch-请求发送凭证信息"><span class="nav-number">2.4.</span> <span class="nav-text">使用fetch 请求发送凭证信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Response相关属性及方法"><span class="nav-number">2.5.</span> <span class="nav-text">Response相关属性及方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bodyUsed"><span class="nav-number">2.5.1.</span> <span class="nav-text">bodyUsed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#headers"><span class="nav-number">2.5.2.</span> <span class="nav-text">headers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ok"><span class="nav-number">2.5.3.</span> <span class="nav-text">ok</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#status"><span class="nav-number">2.5.4.</span> <span class="nav-text">status</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#statusText"><span class="nav-number">2.5.5.</span> <span class="nav-text">statusText</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#type"><span class="nav-number">2.5.6.</span> <span class="nav-text">type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#url"><span class="nav-number">2.5.7.</span> <span class="nav-text">url</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#arrayBuffer"><span class="nav-number">2.5.8.</span> <span class="nav-text">arrayBuffer()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#blob"><span class="nav-number">2.5.9.</span> <span class="nav-text">blob()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clone"><span class="nav-number">2.5.10.</span> <span class="nav-text">clone()</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="曹强"
+      src="/img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">曹强</p>
+  <div class="site-description" itemprop="description">caoqiang's blog | java |前端 | PHP |nodeJs | python</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+      <div class="links-of-blogroll-title">
+        <!-- modify icon to fire by szw -->
+        <i class="fa fa-history fa-" aria-hidden="true"></i>
+        近期文章
+      </div>
+      <ul class="links-of-blogroll-list">
+        
+        
+          <li>
+            <a href="/archives/2fd7dbc7.html" title="Shadow DOM" target="_blank">Shadow DOM</a>
+          </li>
+        
+          <li>
+            <a href="/archives/b4a56055.html" title="可视化埋点" target="_blank">可视化埋点</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a5431a21.html" title="从 JavaScript 数组去重谈性能优化" target="_blank">从 JavaScript 数组去重谈性能优化</a>
+          </li>
+        
+      </ul>
+    </div>
+
+
+<div style="">
+  <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
+
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">318k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:49</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
+          }
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz',
+            'X-LC-Key': '9kCQuNi7NFq5MdDBn9J1Xj1r',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout: 3000,
+        priority: true,
+        ignores: [uri => uri.includes('#'),uri => uri == 'http://ronghuaxueleng.github.io/archives/79c585a2.html',]
+      });
+      });
+  </script>
+
+
+  <script async src="/blog/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/blog/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div class="moon-menu-item" onclick="back2bottom()">
+      <i class="fa fa-chevron-down"></i>
+    </div>
+    
+    <div class="moon-menu-item" onclick="back2top()">
+      <i class="fa fa-chevron-up"></i>
+    </div>
+    
+  </div>
+  <div class="moon-menu-button" onclick="moonMenuClick()">
+    <svg class="moon-menu-svg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+      <g class="moon-menu-points">
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
+        <circle class="moon-menu-point" r=".2rem"></circle>
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
+      </g>
+    </svg>
+    <div class="moon-menu-icon">
+    </div>
+    <div class="moon-menu-text">
+    </div>
+  </div>
+</div>
+
+<script>
+
+  const moonMenuListener = function () {
+
+    //Get scroll percent
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+    let percent = Math.round(scrollTop / (scrollHeight - offsetHeight) * 100);
+    if (percent > 100) percent = 100;
+
+    let menuText = document.querySelector('.moon-menu-text');
+    let menuPoints = document.querySelector('.moon-menu-points');
+    if (!percent) {
+      percent = 0;
+      menuText.style.display = 'none';
+      menuPoints.style.display = 'block';
+    } else {
+      menuText.style.display = 'block';
+      menuPoints.style.display = 'none';
+      menuText.innerHTML = percent + '%';
+    }
+
+    //Update strokeDasharray
+    let length = 196;
+    document.querySelector('.moon-menu-border').style.strokeDasharray = percent * length / 100 + ' ' + length;
+
+  }
+
+  window.addEventListener('load', () => {
+    moonMenuListener();
+  });
+  window.addEventListener('scroll', moonMenuListener);
+
+  const moonMenuClick = function () {
+    let items = document.querySelector('.moon-menu-items')
+    items.classList.toggle('active');
+    let points = document.querySelectorAll('.moon-menu-point');
+    let childItems = document.querySelectorAll('.moon-menu-item');
+    if (items.classList.contains('active')) {
+      points[0].setAttribute("cx", "-.8rem");
+      points[0].setAttribute("cy", "0");
+      points[2].setAttribute("cx", ".8rem");
+      points[2].setAttribute("cy", "0");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = -3 - 3 * i + 'rem';
+        childItems[i].style.opacity = .9;
+      }
+    } else {
+      points[0].setAttribute("cx", "0");
+      points[0].setAttribute("cy", "-.8rem");
+      points[2].setAttribute("cx", "0");
+      points[2].setAttribute("cy", ".8rem");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = '1rem';
+        childItems[i].style.opacity = 0;
+      }
+    }
+  };
+
+  const back2top = () => {
+    window.scroll({ top: 0, behavior: 'smooth' });
+  }
+
+  const back2bottom = () => {
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    window.scroll({ top: (scrollHeight - offsetHeight), behavior: 'smooth' });
+  }
+
+</script>
+</body>
+</html>

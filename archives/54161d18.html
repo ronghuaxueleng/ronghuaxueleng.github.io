@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://ronghuaxueleng.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="参考原文：https:&#x2F;&#x2F;github.com&#x2F;angular-ui&#x2F;ui-router&#x2F;wiki ui-router 的工作原理非常类似于 Angular 的路由控制器，但它只关注状态。  在应用程序的整个用户界面和导航中，一个状态对应于一个页面位置 通过定义controller、template和view等属性，来定义指定位置的用户界面和界面行为 通过嵌套的方式来解决页面中的一些重复出现的部位">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习 ui-router - 管理状态">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/54161d18.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="参考原文：https:&#x2F;&#x2F;github.com&#x2F;angular-ui&#x2F;ui-router&#x2F;wiki ui-router 的工作原理非常类似于 Angular 的路由控制器，但它只关注状态。  在应用程序的整个用户界面和导航中，一个状态对应于一个页面位置 通过定义controller、template和view等属性，来定义指定位置的用户界面和界面行为 通过嵌套的方式来解决页面中的一些重复出现的部位">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-08-03T17:30:30.000Z">
+<meta property="article:modified_time" content="2020-03-06T11:58:28.061Z">
+<meta property="article:author" content="曹强">
+<meta property="article:tag" content="angularjs">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://ronghuaxueleng.github.io/archives/54161d18.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>学习 ui-router - 管理状态 | 白云雅阁</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">白云雅阁</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一切都是最好的安排</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/54161d18.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          学习 ui-router - 管理状态
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-03 17:30:30" itemprop="dateCreated datePublished" datetime="2016-08-03T17:30:30Z">2016-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:28" itemprop="dateModified" datetime="2020-03-06T11:58:28Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/angularjs/" itemprop="url" rel="index">
+                    <span itemprop="name">angularjs</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/54161d18.html" class="post-meta-item leancloud_visitors" data-flag-title="学习 ui-router - 管理状态" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>参考原文：<a href="https://github.com/angular-ui/ui-router/wiki" target="_blank" rel="noopener">https://github.com/angular-ui/ui-router/wiki</a></p>
+<p>ui-router 的工作原理非常类似于 Angular 的路由控制器，但它只关注状态。</p>
+<ul>
+<li>在应用程序的整个用户界面和导航中，一个状态对应于一个页面位置</li>
+<li>通过定义<code>controller</code>、<code>template</code>和<code>view</code>等属性，来定义指定位置的用户界面和界面行为</li>
+<li>通过嵌套的方式来解决页面中的一些重复出现的部位</li>
+</ul>
+<h2 id="最简单的形式">最简单的形式</h2>
+<p>模板可以通过下面这种最简单的方式来指定</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- in index.html --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">ng-controller</span>=<span class="string">"MainCtrl"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">ui-view</span>&gt;</span><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in app-states.js (or whatever you want to name it)</span></span><br><span class="line">$stateProvider.state(<span class="string">'contacts'</span>, &#123;</span><br><span class="line">  template: <span class="string">'&lt;h1&gt;My Contacts&lt;/h1&gt;'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="模板将被插入哪里">模板将被插入哪里?</h3>
+<p>状态被激活时，它的模板会自动插入到父状态对应的模板中包含<code>ui-view</code>属性的元素内部。如果是顶层的状态，那么它的父模板就是<code>index.html</code>。</p>
+<h3 id="激活状态">激活状态</h3>
+<p>有三种方法来激活状态：</p>
+<ol>
+<li>调用<code>$state.go()</code>方法，这是一个高级的便利方法；</li>
+<li>点击包含<code>ui-sref</code>指令的链接；</li>
+<li>导航到与状态相关联的 url。</li>
+</ol>
+<h2 id="Templates-模板">Templates 模板</h2>
+<p>可以通过下面几种方法来配置一个状态的模板。</p>
+<p>方法一：配置<code>template</code>属性，指定一段 HTML 字符串，这人是设置模板的最简单的方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider.state(<span class="string">'contacts'</span>, &#123;</span><br><span class="line">  template: <span class="string">'&lt;h1&gt;My Contacts&lt;/h1&gt;'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>方法二：配置<code>templateUrl</code>属性，来加载指定位置的模板，<strong>这是设置模板的常用方法。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider.state(<span class="string">'contacts'</span>, &#123;</span><br><span class="line">  templateUrl: <span class="string">'contacts.html'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><code>templateUrl</code>的值也可以是一个函数返回的url，函数带一个预设参数<code>stateParams</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider.state(<span class="string">'contacts'</span>, &#123;</span><br><span class="line">  templateUrl: <span class="function"><span class="keyword">function</span> (<span class="params">stateParams</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'/partials/contacts.'</span> + stateParams.filterBy + <span class="string">'.html'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>方法三：通过<code>templateProvider</code>函数返回模板的 HTML。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider.state(<span class="string">'contacts'</span>, &#123;</span><br><span class="line">  templateProvider: <span class="function"><span class="keyword">function</span> (<span class="params">$timeout, $stateParams</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> $timeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'&lt;h1&gt;'</span> + $stateParams.contactId + <span class="string">'&lt;/h1&gt;'</span></span><br><span class="line">    &#125;, <span class="number">100</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>如果想在状态被激活前，让<code>&lt;ui-view&gt;</code>有一些默认的内容，当状态被激活之后默认内容将被状态对应的模板替换。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ui-view</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">i</span>&gt;</span>Some content will load here!<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ui-view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Controllers-控制器">Controllers 控制器</h2>
+<p>可以为模板指定一个控制器（controller）。<strong>警告</strong>：控制器不会被实例化如果模板没有定义。</p>
+<p>设置控制器：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider.state(<span class="string">'contacts'</span>, &#123;</span><br><span class="line">  template: <span class="string">'&lt;h1&gt;&#123;&#123;title&#125;&#125;&lt;/h1&gt;'</span>,</span><br><span class="line">  controller: <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>)</span>&#123;</span><br><span class="line">    $scope.title = <span class="string">'My Contacts'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>如果在模块中已经定义了一个控制器，只需要指定控制器的名称即可：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider.state(<span class="string">'contacts'</span>, &#123;</span><br><span class="line">  template: ...,</span><br><span class="line">  controller: <span class="string">'ContactsCtrl'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>使用<code>controllerAs</code>语法：</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider.state(<span class="string">'contacts'</span>, &#123;</span><br><span class="line">  template: ...,</span><br><span class="line">  controller: <span class="string">'ContactsCtrl as contact'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>对于更高级的需要，可以使用<code>controllerProvider</code>来动态返回一个控制器函数或字符串：</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider.state(<span class="string">'contacts'</span>, &#123;</span><br><span class="line">  template: ...,</span><br><span class="line">  controllerProvider: <span class="function"><span class="keyword">function</span>(<span class="params">$stateParams</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> ctrlName = $stateParams.type + <span class="string">"Controller"</span>;</span><br><span class="line">      <span class="keyword">return</span> ctrlName;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>控制器可以使用<code>$scope.on()</code>方法来监听事件状态转换。</p>
+<p>控制器可以根据需要实例化，当相应的<code>scope</code>被创建时。例如，当用户点击一个url手动导航一个状态时，<code>$stateProvider</code>将加载对应的模板到视图中，并且将控制器和模板的<code>scope</code>绑定在一起。</p>
+<h2 id="解决器-Resolve">解决器 Resolve</h2>
+<p>可以使用<code>resolve</code>为控制器提供可选的依赖注入项。</p>
+<p><code>resolve</code>配置项是一个由<code>key/value</code>构成的对象。</p>
+<ul>
+<li>key – {string}：注入控制器的依赖项名称。</li>
+<li>factory - {string|function}：
+<ul>
+<li>string：一个服务的别名</li>
+<li>function：函数的返回值将作为依赖注入项，如果函数是一个耗时的操作，那么控制器必须等待该函数执行完成（be resolved）才会被实例化。</li>
+</ul>
+</li>
+</ul>
+<h3 id="例子">例子</h3>
+<p>在<code>controller</code>实例化之前，<code>resolve</code>中的每一个对象都必须 be resolved，请注意每个 resolved object 是怎样作为参数注入到控制器中的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider.state(<span class="string">'myState'</span>, &#123;</span><br><span class="line">      resolve:&#123;</span><br><span class="line"></span><br><span class="line">         <span class="comment">// Example using function with simple return value.</span></span><br><span class="line">         <span class="comment">// Since it's not a promise, it resolves immediately.</span></span><br><span class="line">         simpleObj:  <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="attr">value</span>: <span class="string">'simple!'</span>&#125;;</span><br><span class="line">         &#125;,</span><br><span class="line"></span><br><span class="line">         <span class="comment">// Example using function with returned promise.</span></span><br><span class="line">         <span class="comment">// 这是一种典型使用方式</span></span><br><span class="line">         <span class="comment">// 请给函数注入任何想要的服务依赖，例如 $http</span></span><br><span class="line">         promiseObj:  <span class="function"><span class="keyword">function</span>(<span class="params">$http</span>)</span>&#123;</span><br><span class="line">            <span class="comment">// $http returns a promise for the url data</span></span><br><span class="line">            <span class="keyword">return</span> $http(&#123;<span class="attr">method</span>: <span class="string">'GET'</span>, <span class="attr">url</span>: <span class="string">'/someUrl'</span>&#125;);</span><br><span class="line">         &#125;,</span><br><span class="line"></span><br><span class="line">         <span class="comment">// Another promise example. </span></span><br><span class="line">         <span class="comment">// 如果想对返回结果进行处理， 可以使用 .then 方法</span></span><br><span class="line">         <span class="comment">// 这是另一种典型使用方式</span></span><br><span class="line">         promiseObj2:  <span class="function"><span class="keyword">function</span>(<span class="params">$http</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> $http(&#123;<span class="attr">method</span>: <span class="string">'GET'</span>, <span class="attr">url</span>: <span class="string">'/someUrl'</span>&#125;)</span><br><span class="line">               .then (<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                   <span class="keyword">return</span> doSomeStuffFirst(data);</span><br><span class="line">               &#125;);</span><br><span class="line">         &#125;,        </span><br><span class="line"></span><br><span class="line">         <span class="comment">// 使用服务名的例子，这将在模块中查找名称为 'translations' 的服务，并返回该服务 </span></span><br><span class="line">         <span class="comment">// Note: The service could return a promise and</span></span><br><span class="line">         <span class="comment">// it would work just like the example above</span></span><br><span class="line">         translations: <span class="string">"translations"</span>,</span><br><span class="line"></span><br><span class="line">         <span class="comment">// 将服务模块作为解决函数的依赖项，通过参数传入</span></span><br><span class="line">         <span class="comment">// 提示：依赖项 $stateParams 代表 url 中的参数</span></span><br><span class="line">         translations2: <span class="function"><span class="keyword">function</span>(<span class="params">translations, $stateParams</span>)</span>&#123;</span><br><span class="line">             <span class="comment">// Assume that getLang is a service method</span></span><br><span class="line">             <span class="comment">// that uses $http to fetch some translations.</span></span><br><span class="line">             <span class="comment">// Also assume our url was "/:lang/home".</span></span><br><span class="line">             translations.getLang($stateParams.lang);</span><br><span class="line">         &#125;,</span><br><span class="line"></span><br><span class="line">         <span class="comment">// Example showing returning of custom made promise</span></span><br><span class="line">         greeting: <span class="function"><span class="keyword">function</span>(<span class="params">$q, $timeout</span>)</span>&#123;</span><br><span class="line">             <span class="keyword">var</span> deferred = $q.defer();</span><br><span class="line">             $timeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                 deferred.resolve(<span class="string">'Hello!'</span>);</span><br><span class="line">             &#125;, <span class="number">1000</span>);</span><br><span class="line">             <span class="keyword">return</span> deferred.promise;</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;,</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 控制器将等待上面的解决项都被解决后才被实例化</span></span><br><span class="line">      controller: <span class="function"><span class="keyword">function</span>(<span class="params">$scope, simpleObj, promiseObj, promiseObj2, translations, translations2, greeting</span>)</span>&#123;</span><br><span class="line">          </span><br><span class="line">          $scope.simple = simpleObj.value;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 这里可以放心使用 promiseObj 中的对象</span></span><br><span class="line">          $scope.items = promiseObj.items;</span><br><span class="line">          $scope.items = promiseObj2.items;</span><br><span class="line"></span><br><span class="line">          $scope.title = translations.getLang(<span class="string">"english"</span>).title;</span><br><span class="line">          $scope.title = translations2.title;</span><br><span class="line"></span><br><span class="line">          $scope.greeting = greeting;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="为-state-对象提供自定义数据">为 $state 对象提供自定义数据</h2>
+<p>可以给 $state 对象提供自定义数据（建议使用<code>data</code>属性，以免冲突）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 基于对象和基于字符串定义 state 的例子</span></span><br><span class="line"><span class="keyword">var</span> contacts = &#123; </span><br><span class="line">    name: <span class="string">'contacts'</span>,</span><br><span class="line">    templateUrl: <span class="string">'contacts.html'</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        customData1: <span class="number">5</span>,</span><br><span class="line">        customData2: <span class="string">"blue"</span></span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br><span class="line">$stateProvider</span><br><span class="line">  .state(contacts)</span><br><span class="line">  .state(<span class="string">'contacts.list'</span>, &#123;</span><br><span class="line">    templateUrl: <span class="string">'contacts.list.html'</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        customData1: <span class="number">44</span>,</span><br><span class="line">        customData2: <span class="string">"red"</span></span><br><span class="line">    &#125; </span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<p>可以通过下面的方式来访问上面定义的数据：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Ctrl</span>(<span class="params">$state</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log($state.current.data.customData1) <span class="comment">// 输出 5;</span></span><br><span class="line">    <span class="built_in">console</span>.log($state.current.data.customData2) <span class="comment">// 输出 "blue";</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="onEnter-和-onExit-回调函数">onEnter 和 onExit 回调函数</h2>
+<p><code>onEnter</code>和<code>onExit</code>回调函数是可选配置项，分别称为当一个状态变得活跃的和不活跃的时候触发。回调函数也可以访问所有解决依赖项。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider.state(<span class="string">"contacts"</span>, &#123;</span><br><span class="line">  template: <span class="string">'&lt;h1&gt;&#123;&#123;title&#125;&#125;&lt;/h1&gt;'</span>,</span><br><span class="line">  resolve: &#123; <span class="attr">title</span>: <span class="string">'My Contacts'</span> &#125;,</span><br><span class="line">  controller: <span class="function"><span class="keyword">function</span>(<span class="params">$scope, title</span>)</span>&#123;</span><br><span class="line">    $scope.title = <span class="string">'My Contacts'</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// title 是解决依赖项，这里也是可以使用解决依赖项的</span></span><br><span class="line">  onEnter: <span class="function"><span class="keyword">function</span>(<span class="params">title</span>)</span>&#123; </span><br><span class="line">    <span class="keyword">if</span>(title)&#123; ... do something ... &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// title 是解决依赖项，这里也是可以使用解决依赖项的</span></span><br><span class="line">  onExit: <span class="function"><span class="keyword">function</span>(<span class="params">title</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(title)&#123; ... do something ... &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="State-Change-Events-状态改变事件">State Change Events 状态改变事件</h2>
+<p>所有这些事件都是在<code>$rootScope</code>作用域触发</p>
+<ul>
+<li><strong>$stateChangeStart</strong> - 当模板开始解析之前触发</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$rootScope.$on(<span class="string">'$stateChangeStart'</span>, </span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">event, toState, toParams, fromState, fromParams</span>)</span>&#123; ... &#125;)</span><br></pre></td></tr></table></figure>
+<p>注意：使用<code>event.preventDefault()</code>可以阻止模板解析的发生</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$rootScope.$on(<span class="string">'$stateChangeStart'</span>, </span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">event, toState, toParams, fromState, fromParams</span>)</span>&#123; </span><br><span class="line">    event.preventDefault(); </span><br><span class="line">    <span class="comment">// transitionTo() promise will be rejected with </span></span><br><span class="line">    <span class="comment">// a 'transition prevented' error</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>$stateNotFound</strong> - <code>v0.3.0</code> - 在 transition 时通过状态名查找状态，当状态无法找到时发生。该事件在 scope 链上广播，只允许一次处理错误的机会。<code>unfoundState</code>将作为参数传入事件监听函数，下面例子中可以看到<code>unfoundState</code>的三个属性。使用 <code>event.preventDefault()</code> 来阻止模板解析，</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// somewhere, assume lazy.state has not been defined</span></span><br><span class="line">$state.go(<span class="string">"lazy.state"</span>, &#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>&#125;, &#123;<span class="attr">inherit</span>:<span class="literal">false</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// somewhere else</span></span><br><span class="line">$scope.$on(<span class="string">'$stateNotFound'</span>, </span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">event, unfoundState, fromState, fromParams</span>)</span>&#123; </span><br><span class="line">    <span class="built_in">console</span>.log(unfoundState.to); <span class="comment">// "lazy.state"</span></span><br><span class="line">    <span class="built_in">console</span>.log(unfoundState.toParams); <span class="comment">// &#123;a:1, b:2&#125;</span></span><br><span class="line">    <span class="built_in">console</span>.log(unfoundState.options); <span class="comment">// &#123;inherit:false&#125; + default options</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>$stateChangeSuccess</strong> - 当模板解析完成后触发</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$rootScope.$on(<span class="string">'$stateChangeSuccess'</span>, </span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">event, toState, toParams, fromState, fromParams</span>)</span>&#123; ... &#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>$stateChangeError</strong> - 当模板解析过程中发生错误时触发</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$rootScope.$on(<span class="string">'$stateChangeError'</span>, </span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">event, toState, toParams, fromState, fromParams, error</span>)</span>&#123; ... &#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="View-Load-Events-视图加载事件">View Load Events 视图加载事件</h2>
+<ul>
+<li><strong>$viewContentLoading</strong> - 当视图开始加载，DOM渲染完成之前触发，该事件将在<code>$scope</code>链上广播此事件。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$scope.$on(<span class="string">'$viewContentLoading'</span>, </span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">event, viewConfig</span>)</span>&#123; </span><br><span class="line">    <span class="comment">// Access to all the view config properties.</span></span><br><span class="line">    <span class="comment">// and one special property 'targetView'</span></span><br><span class="line">    <span class="comment">// viewConfig.targetView </span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>$viewContentLoaded</strong> - 当视图加载完成，DOM渲染完成之后触发，视图所在的<code>$scope</code>发出该事件。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$scope.$on(<span class="string">'$viewContentLoading'</span>, </span><br><span class="line">$scope.$on(<span class="string">'$viewContentLoaded'</span>, </span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123; ... &#125;);</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章推荐</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\828c261b.html" rel="bookmark">学习 ui-router - 组件</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\a0250973.html" rel="bookmark">学习 ui-router - 路由控制</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\e3ced589.html" rel="bookmark">学习 ui-router - 多个命名的视图</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\fa7f8f37.html" rel="bookmark">学习 ui-router - 状态嵌套和视图嵌套</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\af5e7c72.html" rel="bookmark">学习 ui-router 系列文章索引</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/angularjs/" rel="tag"># angularjs</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/af5e7c72.html" rel="prev" title="学习 ui-router 系列文章索引">
+      <i class="fa fa-chevron-left"></i> 学习 ui-router 系列文章索引
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/archives/fa7f8f37.html" rel="next" title="学习 ui-router - 状态嵌套和视图嵌套">
+      学习 ui-router - 状态嵌套和视图嵌套 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#最简单的形式"><span class="nav-number">1.</span> <span class="nav-text">最简单的形式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模板将被插入哪里"><span class="nav-number">1.1.</span> <span class="nav-text">模板将被插入哪里?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#激活状态"><span class="nav-number">1.2.</span> <span class="nav-text">激活状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Templates-模板"><span class="nav-number">2.</span> <span class="nav-text">Templates 模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Controllers-控制器"><span class="nav-number">3.</span> <span class="nav-text">Controllers 控制器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决器-Resolve"><span class="nav-number">4.</span> <span class="nav-text">解决器 Resolve</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">4.1.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为-state-对象提供自定义数据"><span class="nav-number">5.</span> <span class="nav-text">为 $state 对象提供自定义数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onEnter-和-onExit-回调函数"><span class="nav-number">6.</span> <span class="nav-text">onEnter 和 onExit 回调函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#State-Change-Events-状态改变事件"><span class="nav-number">7.</span> <span class="nav-text">State Change Events 状态改变事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#View-Load-Events-视图加载事件"><span class="nav-number">8.</span> <span class="nav-text">View Load Events 视图加载事件</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="曹强"
+      src="/img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">曹强</p>
+  <div class="site-description" itemprop="description">caoqiang's blog | java |前端 | PHP |nodeJs | python</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+      <div class="links-of-blogroll-title">
+        <!-- modify icon to fire by szw -->
+        <i class="fa fa-history fa-" aria-hidden="true"></i>
+        近期文章
+      </div>
+      <ul class="links-of-blogroll-list">
+        
+        
+          <li>
+            <a href="/archives/2fd7dbc7.html" title="Shadow DOM" target="_blank">Shadow DOM</a>
+          </li>
+        
+          <li>
+            <a href="/archives/b4a56055.html" title="可视化埋点" target="_blank">可视化埋点</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a5431a21.html" title="从 JavaScript 数组去重谈性能优化" target="_blank">从 JavaScript 数组去重谈性能优化</a>
+          </li>
+        
+      </ul>
+    </div>
+
+
+<div style="">
+  <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
+
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">318k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:49</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
+          }
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz',
+            'X-LC-Key': '9kCQuNi7NFq5MdDBn9J1Xj1r',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout: 3000,
+        priority: true,
+        ignores: [uri => uri.includes('#'),uri => uri == 'http://ronghuaxueleng.github.io/archives/54161d18.html',]
+      });
+      });
+  </script>
+
+
+  <script async src="/blog/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/blog/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div class="moon-menu-item" onclick="back2bottom()">
+      <i class="fa fa-chevron-down"></i>
+    </div>
+    
+    <div class="moon-menu-item" onclick="back2top()">
+      <i class="fa fa-chevron-up"></i>
+    </div>
+    
+  </div>
+  <div class="moon-menu-button" onclick="moonMenuClick()">
+    <svg class="moon-menu-svg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+      <g class="moon-menu-points">
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
+        <circle class="moon-menu-point" r=".2rem"></circle>
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
+      </g>
+    </svg>
+    <div class="moon-menu-icon">
+    </div>
+    <div class="moon-menu-text">
+    </div>
+  </div>
+</div>
+
+<script>
+
+  const moonMenuListener = function () {
+
+    //Get scroll percent
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+    let percent = Math.round(scrollTop / (scrollHeight - offsetHeight) * 100);
+    if (percent > 100) percent = 100;
+
+    let menuText = document.querySelector('.moon-menu-text');
+    let menuPoints = document.querySelector('.moon-menu-points');
+    if (!percent) {
+      percent = 0;
+      menuText.style.display = 'none';
+      menuPoints.style.display = 'block';
+    } else {
+      menuText.style.display = 'block';
+      menuPoints.style.display = 'none';
+      menuText.innerHTML = percent + '%';
+    }
+
+    //Update strokeDasharray
+    let length = 196;
+    document.querySelector('.moon-menu-border').style.strokeDasharray = percent * length / 100 + ' ' + length;
+
+  }
+
+  window.addEventListener('load', () => {
+    moonMenuListener();
+  });
+  window.addEventListener('scroll', moonMenuListener);
+
+  const moonMenuClick = function () {
+    let items = document.querySelector('.moon-menu-items')
+    items.classList.toggle('active');
+    let points = document.querySelectorAll('.moon-menu-point');
+    let childItems = document.querySelectorAll('.moon-menu-item');
+    if (items.classList.contains('active')) {
+      points[0].setAttribute("cx", "-.8rem");
+      points[0].setAttribute("cy", "0");
+      points[2].setAttribute("cx", ".8rem");
+      points[2].setAttribute("cy", "0");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = -3 - 3 * i + 'rem';
+        childItems[i].style.opacity = .9;
+      }
+    } else {
+      points[0].setAttribute("cx", "0");
+      points[0].setAttribute("cy", "-.8rem");
+      points[2].setAttribute("cx", "0");
+      points[2].setAttribute("cy", ".8rem");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = '1rem';
+        childItems[i].style.opacity = 0;
+      }
+    }
+  };
+
+  const back2top = () => {
+    window.scroll({ top: 0, behavior: 'smooth' });
+  }
+
+  const back2bottom = () => {
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    window.scroll({ top: (scrollHeight - offsetHeight), behavior: 'smooth' });
+  }
+
+</script>
+</body>
+</html>

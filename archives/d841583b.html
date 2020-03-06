@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://ronghuaxueleng.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="jQuery的开发速度很快，几乎每半年一个大版本，每两个月一个小版本。 每个版本都会引入一些新功能。今天我想介绍的，就是从jQuery 1.5.0版本开始引入的一个新功能----deferred对象。 这个功能很重要，未来将成为jQuery的核心方法，它彻底改变了如何在jQuery中使用ajax。为了实现它，jQuery的全部ajax代码都被改写了。但是， 它比较抽象，初学者很难掌握，网上的教程也">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery的deferred对象详解">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/d841583b.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="jQuery的开发速度很快，几乎每半年一个大版本，每两个月一个小版本。 每个版本都会引入一些新功能。今天我想介绍的，就是从jQuery 1.5.0版本开始引入的一个新功能----deferred对象。 这个功能很重要，未来将成为jQuery的核心方法，它彻底改变了如何在jQuery中使用ajax。为了实现它，jQuery的全部ajax代码都被改写了。但是， 它比较抽象，初学者很难掌握，网上的教程也">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ronghuaxueleng.github.io/img/javascript/bg2011081601.jpg">
+<meta property="article:published_time" content="2016-09-19T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-06T11:58:27.994Z">
+<meta property="article:author" content="曹强">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ronghuaxueleng.github.io/img/javascript/bg2011081601.jpg">
+
+<link rel="canonical" href="http://ronghuaxueleng.github.io/archives/d841583b.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>jQuery的deferred对象详解 | 白云雅阁</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">白云雅阁</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一切都是最好的安排</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/d841583b.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          jQuery的deferred对象详解
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-09-19 00:00:00" itemprop="dateCreated datePublished" datetime="2016-09-19T00:00:00Z">2016-09-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/d841583b.html" class="post-meta-item leancloud_visitors" data-flag-title="jQuery的deferred对象详解" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a href="http://jquery.com/" target="_blank" rel="noopener">jQuery</a>的开发速度很快，几乎每半年一个大版本，每两个月一个小版本。</p>
+<p>每个版本都会引入一些新功能。今天我想介绍的，就是从jQuery 1.5.0版本开始引入的一个新功能----<a href="http://api.jquery.com/category/deferred-object/" target="_blank" rel="noopener">deferred对象</a>。</p>
+<p>这个功能很重要，未来将成为jQuery的核心方法，它彻底改变了如何在jQuery中使用ajax。为了实现它，jQuery的全部ajax代码都被改写了。但是，<br>
+它比较抽象，初学者很难掌握，网上的教程也不多。所以，我把自己的学习笔记整理出来了，希望对大家有用。</p>
+<a id="more"></a>
+<p><img src="/img/javascript/bg2011081601.jpg" alt=""></p>
+<h3 id="什么是deferred对象？"><strong>什么是deferred对象？</strong></h3>
+<p>开发网站的过程中，我们经常遇到某些耗时很长的javascript操作。其中，既有异步的操作（比如ajax读取服务器数据），也有同步的操作（比如遍历一个大型数组），它们都不是立即能得到结果的。</p>
+<p>通常的做法是，为它们指定回调函数（callback）。即事先规定，一旦它们运行结束，应该调用哪些函数。</p>
+<p>但是，在回调函数方面，jQuery的功能非常弱。为了改变这一点，jQuery开发团队就设计了<a href="http://api.jquery.com/category/deferred-object/" target="_blank" rel="noopener">deferred对象</a>。</p>
+<p>**简单说，deferred对象就是jQuery的回调函数解决方案。**在英语中，defer的意思是&quot;延迟&quot;，所以deferred对象的含义就是&quot;延迟&quot;到未来某个点再执行。</p>
+<p>它解决了如何处理耗时操作的问题，对那些操作提供了更好的控制，以及统一的编程接口。它的主要功能，可以归结为四点。下面我们通过示例代码，一步步来学习。</p>
+<h3 id="ajax操作的链式写法"><strong>ajax操作的链式写法</strong></h3>
+<p>首先，回顾一下jQuery的ajax操作的传统写法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url: <span class="string">"test.html"</span>,</span><br><span class="line">  success: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    alert(<span class="string">"哈哈，成功了！"</span>);  </span><br><span class="line">  &#125;,</span><br><span class="line">  error:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    alert(<span class="string">"出错啦！"</span>);  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>（运行<a href="http://jsfiddle.net/ruanyf/pdQYH/" target="_blank" rel="noopener">代码示例1</a>）<br>
+在上面的代码中，$.ajax()接受一个对象参数，这个对象包含两个方法：success方法指定操作成功后的回调函数，error方法指定操作失败后的回调函数。</p>
+<p>$.ajax()操作完成后，如果使用的是低于1.5.0版本的jQuery，返回的是XHR对象，你没法进行链式操作；如果高于1.5.0版本，返回的是deferred对象，可以进行链式操作。</p>
+<p>现在，新的写法是这样的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(<span class="string">"test.html"</span>)</span><br><span class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"哈哈，成功了！"</span>); &#125;)</span><br><span class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"出错啦！"</span>); &#125;);</span><br></pre></td></tr></table></figure>
+<p>（运行<a href="http://jsfiddle.net/ruanyf/dYKLJ/" target="_blank" rel="noopener">代码示例2</a>）</p>
+<p>可以看到，<a href="http://api.jquery.com/deferred.done/" target="_blank" rel="noopener">done()</a>相当于success方法，<a href="http://api.jquery.com/deferred.fail/" target="_blank" rel="noopener">fail()</a>相当于error方法。采用链式写法以后，代码的可读性大大提高。</p>
+<h3 id="指定同一操作的多个回调函数"><strong>指定同一操作的多个回调函数</strong></h3>
+<p>deferred对象的一大好处，就是它允许你自由添加多个回调函数。</p>
+<p>还是以上面的代码为例，如果ajax操作成功后，除了原来的回调函数，我还想再运行一个回调函数，怎么办？</p>
+<p>很简单，直接把它加在后面就行了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(<span class="string">"test.html"</span>)</span><br><span class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"哈哈，成功了！"</span>);&#125; )</span><br><span class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"出错啦！"</span>); &#125; )</span><br><span class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"第二个回调函数！"</span>);&#125; );</span><br></pre></td></tr></table></figure>
+<p>（运行<a href="http://jsfiddle.net/ruanyf/sQYjs/" target="_blank" rel="noopener">代码示例3</a>）</p>
+<p>回调函数可以添加任意多个，它们按照添加顺序执行。</p>
+<h3 id="为多个操作指定回调函数"><strong>为多个操作指定回调函数</strong></h3>
+<p>deferred对象的另一大好处，就是它允许你为多个事件指定一个回调函数，这是传统写法做不到的。</p>
+<p>请看下面的代码，它用到了一个新的方法<a href="http://api.jquery.com/jQuery.when/" target="_blank" rel="noopener">$.when()</a>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.when($.ajax(<span class="string">"test1.html"</span>), $.ajax(<span class="string">"test2.html"</span>))</span><br><span class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"哈哈，成功了！"</span>); &#125;)</span><br><span class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"出错啦！"</span>); &#125;);</span><br></pre></td></tr></table></figure>
+<p>（运行<a href="http://jsfiddle.net/ruanyf/CdKjn/" target="_blank" rel="noopener">代码示例4</a>）</p>
+<p>这段代码的意思是，先执行两个操作$.ajax(“test1.html”)和$.ajax(“test2.html”)，如果都成功了，就运行done()指定的回调函数；如果有一个失败或都失败了，就执行fail()指定的回调函数。</p>
+<h3 id="普通操作的回调函数接口（上）"><strong>普通操作的回调函数接口（上）</strong></h3>
+<p>deferred对象的最大优点，就是它把这一套回调函数接口，从ajax操作扩展到了所有操作。也就是说，任何一个操作----不管是ajax操作还是本地操作，也不管是异步操作还是同步操作----都可以使用deferred对象的各种方法，指定回调函数。</p>
+<p>我们来看一个具体的例子。假定有一个很耗时的操作wait：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">"执行完毕！"</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">  </span><br><span class="line">  setTimeout(tasks,<span class="number">5000</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我们为它指定回调函数，应该怎么做呢？</p>
+<p>很自然的，你会想到，可以使用$.when()：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.when(wait())</span><br><span class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"哈哈，成功了！"</span>); &#125;)</span><br><span class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"出错啦！"</span>); &#125;);</span><br></pre></td></tr></table></figure>
+<p>（运行<a href="http://jsfiddle.net/5wzrt/" target="_blank" rel="noopener">代码示例5</a>）</p>
+<p>但是，这样写的话，done()方法会立即执行，起不到回调函数的作用。原因在于$.when()的参数只能是deferred对象，所以必须对wait()进行改写<br>
+：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dtd = $.Deferred(); <span class="comment">// 新建一个deferred对象</span></span><br><span class="line"><span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params">dtd</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">"执行完毕！"</span>);</span><br><span class="line">    dtd.resolve(); <span class="comment">// 改变deferred对象的执行状态</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  setTimeout(tasks,<span class="number">5000</span>);</span><br><span class="line">  <span class="keyword">return</span> dtd;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>现在，wait()函数返回的是deferred对象，这就可以加上链式操作了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.when(wait(dtd))</span><br><span class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"哈哈，成功了！"</span>); &#125;)</span><br><span class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"出错啦！"</span>); &#125;);</span><br></pre></td></tr></table></figure>
+<p>（运行<a href="http://jsfiddle.net/gfFPj/" target="_blank" rel="noopener">代码示例6</a>）</p>
+<p>wait()函数运行完，就会自动运行done()方法指定的回调函数。</p>
+<h3 id="deferred-resolve-方法和deferred-reject-方法"><strong>deferred.resolve()方法和deferred.reject()方法</strong></h3>
+<p>如果仔细看，你会发现在上面的wait()函数中，还有一个地方我没讲解。那就是<a href="http://api.jquery.com/deferred.resolve" target="_blank" rel="noopener">dtd.resolve()</a>的作用是什么？</p>
+<p>要说清楚这个问题，就要引入一个新概念&quot;执行状态&quot;。jQuery规定，deferred对象有三种执行状态----未完成，已完成和已失败。如果执行状态是&quot;已完成&quot;（resolved）,deferred对象立刻调用done()方法指定的回调函数；如果执行状态是&quot;已失败&quot;，调用fail()方法指定的回调函数；如果执行状态是&quot;未完成&quot;，则继续等待，或者调用<a href="http://api.jquery.com/deferred.progress/" target="_blank" rel="noopener">progress()</a>方法指定的回调函数（jQuery1.7版本添加）。</p>
+<p>前面部分的ajax操作时，deferred对象会根据返回结果，自动改变自身的执行状态；但是，在wait()函数中，这个执行状态必须由程序员手动指定。dtd.resolve()的意思是，将dtd对象的执行状态从&quot;未完成&quot;改为&quot;已完成&quot;，从而触发done()方法。</p>
+<p>类似的，还存在一个<a href="http://api.jquery.com/deferred.reject" target="_blank" rel="noopener">deferred.reject()</a>方法，作用是将dtd对象的执行状态从&quot;未完成&quot;改为&quot;已失败&quot;，从而触发fail()方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dtd = $.Deferred(); <span class="comment">// 新建一个Deferred对象</span></span><br><span class="line"><span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params">dtd</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">"执行完毕！"</span>);</span><br><span class="line">    dtd.reject(); <span class="comment">// 改变Deferred对象的执行状态</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  setTimeout(tasks,<span class="number">5000</span>);</span><br><span class="line">  <span class="keyword">return</span> dtd;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">$.when(wait(dtd))</span><br><span class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"哈哈，成功了！"</span>); &#125;)</span><br><span class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"出错啦！"</span>); &#125;);</span><br></pre></td></tr></table></figure>
+<p>（运行<a href="http://jsfiddle.net/bhDjd/" target="_blank" rel="noopener">代码示例7</a>）</p>
+<h3 id="deferred-promise-方法"><strong>deferred.promise()方法</strong></h3>
+<p>上面这种写法，还是有问题。那就是dtd是一个全局对象，所以它的执行状态可以从外部改变。</p>
+<p>请看下面的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dtd = $.Deferred(); <span class="comment">// 新建一个Deferred对象</span></span><br><span class="line"><span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params">dtd</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">"执行完毕！"</span>);</span><br><span class="line">    dtd.resolve(); <span class="comment">// 改变Deferred对象的执行状态</span></span><br><span class="line">  &#125;;</span><br><span class="line">  setTimeout(tasks,<span class="number">5000</span>);</span><br><span class="line">  <span class="keyword">return</span> dtd;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">$.when(wait(dtd))</span><br><span class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"哈哈，成功了！"</span>); &#125;)</span><br><span class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"出错啦！"</span>); &#125;);</span><br><span class="line">dtd.resolve(); *</span><br></pre></td></tr></table></figure>
+<p>（运行<a href="http://jsfiddle.net/nBFse/" target="_blank" rel="noopener">代码示例8</a>）</p>
+<p>我在代码的尾部加了一行dtd.resolve()，这就改变了dtd对象的执行状态，因此导致done()方法立刻执行，跳出&quot;哈哈，成功了！&quot;的提示框，等5秒之后再跳出&quot;执行完毕！&quot;的提示框。</p>
+<p>为了避免这种情况，jQuery提供了<a href="http://api.jquery.com/deferred.promise/" target="_blank" rel="noopener">deferred.promise()</a>方法。它的作用是，在原来的deferred对象上返回另一个deferred对象，后者只开放与改变执行状态无关的方法（比如done()方法和fail()方法），屏蔽与改变执行状态有关的方法（比如resolve()方法和reject()方法），从而使得执行状态不能被改变。</p>
+<p>请看下面的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dtd = $.Deferred(); <span class="comment">// 新建一个Deferred对象</span></span><br><span class="line"><span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params">dtd</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">"执行完毕！"</span>);</span><br><span class="line">    dtd.resolve(); <span class="comment">// 改变Deferred对象的执行状态</span></span><br><span class="line">  &#125;;  </span><br><span class="line">  </span><br><span class="line">  setTimeout(tasks,<span class="number">5000</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> dtd.promise(); <span class="comment">// 返回promise对象</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> d = wait(dtd); <span class="comment">//新建一个d对象，改为对这个对象进行操作</span></span><br><span class="line"></span><br><span class="line">$.when(d)</span><br><span class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"哈哈，成功了！"</span>); &#125;)</span><br><span class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"出错啦！"</span>); &#125;);</span><br><span class="line">d.resolve(); <span class="comment">// 此时，这个语句是无效的</span></span><br></pre></td></tr></table></figure>
+<p>（运行<a href="http://jsfiddle.net/Yur4R/" target="_blank" rel="noopener">代码示例9</a>）</p>
+<p>在上面的这段代码中，wait()函数返回的是promise对象。然后，我们把回调函数绑定在这个对象上面，而不是原来的deferred对象上面。这样的好处是，无法改变这个对象的执行状态，要想改变执行状态，只能操作原来的deferred对象。</p>
+<p>不过，更好的写法是<a href="http://blog.allenm.me/2012/01/jquery_deferred_promise_method/" target="_blank" rel="noopener">allenm</a>所指出的，将dtd对象变成wait(）函数的内部对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params">dtd</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> dtd = $.Deferred(); <span class="comment">//在函数内部，新建一个Deferred对象</span></span><br><span class="line">  <span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">"执行完毕！"</span>);</span><br><span class="line">    dtd.resolve(); <span class="comment">// 改变Deferred对象的执行状态</span></span><br><span class="line">  &#125;;  </span><br><span class="line">  </span><br><span class="line">  setTimeout(tasks,<span class="number">5000</span>);</span><br><span class="line">  <span class="keyword">return</span> dtd.promise(); <span class="comment">// 返回promise对象</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">$.when(wait())</span><br><span class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"哈哈，成功了！"</span>); &#125;)</span><br><span class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"出错啦！"</span>); &#125;);</span><br></pre></td></tr></table></figure>
+<p>（运行<a href="http://jsfiddle.net/q9TvT/" target="_blank" rel="noopener">代码示例10</a>）</p>
+<h3 id="普通操作的回调函数接口（中）"><strong>普通操作的回调函数接口（中）</strong></h3>
+<p>另一种防止执行状态被外部改变的方法，是使用deferred对象的建构函数$.Deferred()。</p>
+<p>这时，wait函数还是保持不变，我们直接把它传入$.Deferred()：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.Deferred(wait)</span><br><span class="line">  .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"哈哈，成功了！"</span>); &#125;)</span><br><span class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"出错啦！"</span>); &#125;);</span><br></pre></td></tr></table></figure>
+<p>（运行<a href="http://jsfiddle.net/ruanyf/CucGp/" target="_blank" rel="noopener">代码示例11</a>）</p>
+<p>jQuery规定，$.Deferred()可以接受一个函数名（注意，是函数名）作为参数，$.Deferred()所生成的deferred对象将作为这个函数的默认参数。</p>
+<h3 id="普通操作的回调函数接口（下）"><strong>普通操作的回调函数接口（下）</strong></h3>
+<p>除了上面两种方法以外，我们还可以直接在wait对象上部署deferred接口。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dtd = $.Deferred(); <span class="comment">// 生成Deferred对象</span></span><br><span class="line"><span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params">dtd</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">"执行完毕！"</span>);</span><br><span class="line">    dtd.resolve(); <span class="comment">// 改变Deferred对象的执行状态</span></span><br><span class="line">  &#125;;</span><br><span class="line">  setTimeout(tasks,<span class="number">5000</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">dtd.promise(wait);</span><br><span class="line"></span><br><span class="line">wait.done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"哈哈，成功了！"</span>); &#125;)</span><br><span class="line">  .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"出错啦！"</span>); &#125;);</span><br><span class="line"></span><br><span class="line">wait(dtd);</span><br></pre></td></tr></table></figure>
+<p>（运行<a href="http://jsfiddle.net/ruanyf/PF7Xf/" target="_blank" rel="noopener">代码示例12</a>）</p>
+<p>这里的关键是dtd.promise(wait)这一行，它的作用就是在wait对象上部署Deferred接口。正是因为有了这一行，后面才能直接在wait上面调用done()和fail()。</p>
+<h3 id="小结：deferred对象的方法"><strong>小结：deferred对象的方法</strong></h3>
+<p>前面已经讲到了deferred对象的多种方法，下面做一个总结：</p>
+<p>（1） <a href="http://api.jquery.com/category/deferred-object/" target="_blank" rel="noopener">$.Deferred()</a> 生成一个deferred对象。</p>
+<p>（2） <a href="http://api.jquery.com/deferred.done/" target="_blank" rel="noopener">deferred.done()</a> 指定操作成功时的回调函数</p>
+<p>（3） <a href="http://api.jquery.com/deferred.fail/" target="_blank" rel="noopener">deferred.fail()</a> 指定操作失败时的回调函数</p>
+<p>（4） <a href="http://api.jquery.com/deferred.promise/" target="_blank" rel="noopener">deferred.promise()</a> 没有参数时，返回一个新的deferred对象，该对象的运行状态无法被改变；接受参数时，作用为在参数对象上部署deferred接口。</p>
+<p>（5） <a href="http://api.jquery.com/deferred.resolve/" target="_blank" rel="noopener">deferred.resolve()</a> 手动改变deferred对象的运行状态为&quot;已完成&quot;，从而立即触发done()方法。</p>
+<p>（6）<a href="http://api.jquery.com/deferred.reject/" target="_blank" rel="noopener">deferred.reject()</a><br>
+这个方法与deferred.resolve()正好相反，调用后将deferred对象的运行状态变为&quot;已失败&quot;，从而立即触发fail()方法。</p>
+<p>（7） <a href="http://api.jquery.com/jQuery.when/" target="_blank" rel="noopener">$.when()</a> 为多个操作指定回调函数。</p>
+<p>除了这些方法以外，deferred对象还有二个重要方法，上面的教程中没有涉及到。</p>
+<p>（8）<a href="http://api.jquery.com/deferred.then/" target="_blank" rel="noopener">deferred.then()</a></p>
+<p>有时为了省事，可以把done()和fail()合在一起写，这就是then()方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$.when($.ajax( <span class="string">"/main.php"</span> ))</span><br><span class="line">  .then(successFunc, failureFunc );</span><br></pre></td></tr></table></figure>
+<p>如果then()有两个参数，那么第一个参数是done()方法的回调函数，第二个参数是fail()方法的回调方法。如果then()只有一个参数，那么等同于done()。</p>
+<p>（9）<a href="http://api.jquery.com/deferred.always/" target="_blank" rel="noopener">deferred.always()</a></p>
+<p>这个方法也是用来指定回调函数的，它的作用是，不管调用的是deferred.resolve()还是deferred.reject()，最后总是执行。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$.ajax( <span class="string">"test.html"</span> )</span><br><span class="line">  .always( <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; alert(<span class="string">"已执行！"</span>);&#125; );</span><br></pre></td></tr></table></figure>
+<p>（完）</p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章推荐</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\2fd7dbc7.html" rel="bookmark">Shadow DOM</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\a26c9c63.html" rel="bookmark">44个 Javascript 变态题解析 (下)</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\bb77ad22.html" rel="bookmark">44个 Javascript 变态题解析 (上)</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\a5431a21.html" rel="bookmark">从 JavaScript 数组去重谈性能优化</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\84bd9124.html" rel="bookmark">发布订阅模式</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/a47d18ae.html" rel="prev" title="JavaScript Constructor(构造器)模式">
+      <i class="fa fa-chevron-left"></i> JavaScript Constructor(构造器)模式
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/archives/2f961800.html" rel="next" title="如何判断Javascript对象是否存在">
+      如何判断Javascript对象是否存在 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是deferred对象？"><span class="nav-number">1.</span> <span class="nav-text">什么是deferred对象？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ajax操作的链式写法"><span class="nav-number">2.</span> <span class="nav-text">ajax操作的链式写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定同一操作的多个回调函数"><span class="nav-number">3.</span> <span class="nav-text">指定同一操作的多个回调函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为多个操作指定回调函数"><span class="nav-number">4.</span> <span class="nav-text">为多个操作指定回调函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#普通操作的回调函数接口（上）"><span class="nav-number">5.</span> <span class="nav-text">普通操作的回调函数接口（上）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deferred-resolve-方法和deferred-reject-方法"><span class="nav-number">6.</span> <span class="nav-text">deferred.resolve()方法和deferred.reject()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deferred-promise-方法"><span class="nav-number">7.</span> <span class="nav-text">deferred.promise()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#普通操作的回调函数接口（中）"><span class="nav-number">8.</span> <span class="nav-text">普通操作的回调函数接口（中）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#普通操作的回调函数接口（下）"><span class="nav-number">9.</span> <span class="nav-text">普通操作的回调函数接口（下）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结：deferred对象的方法"><span class="nav-number">10.</span> <span class="nav-text">小结：deferred对象的方法</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="曹强"
+      src="/img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">曹强</p>
+  <div class="site-description" itemprop="description">caoqiang's blog | java |前端 | PHP |nodeJs | python</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+      <div class="links-of-blogroll-title">
+        <!-- modify icon to fire by szw -->
+        <i class="fa fa-history fa-" aria-hidden="true"></i>
+        近期文章
+      </div>
+      <ul class="links-of-blogroll-list">
+        
+        
+          <li>
+            <a href="/archives/2fd7dbc7.html" title="Shadow DOM" target="_blank">Shadow DOM</a>
+          </li>
+        
+          <li>
+            <a href="/archives/b4a56055.html" title="可视化埋点" target="_blank">可视化埋点</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a5431a21.html" title="从 JavaScript 数组去重谈性能优化" target="_blank">从 JavaScript 数组去重谈性能优化</a>
+          </li>
+        
+      </ul>
+    </div>
+
+
+<div style="">
+  <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
+
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">318k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:49</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
+          }
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz',
+            'X-LC-Key': '9kCQuNi7NFq5MdDBn9J1Xj1r',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout: 3000,
+        priority: true,
+        ignores: [uri => uri.includes('#'),uri => uri == 'http://ronghuaxueleng.github.io/archives/d841583b.html',]
+      });
+      });
+  </script>
+
+
+  <script async src="/blog/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/blog/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div class="moon-menu-item" onclick="back2bottom()">
+      <i class="fa fa-chevron-down"></i>
+    </div>
+    
+    <div class="moon-menu-item" onclick="back2top()">
+      <i class="fa fa-chevron-up"></i>
+    </div>
+    
+  </div>
+  <div class="moon-menu-button" onclick="moonMenuClick()">
+    <svg class="moon-menu-svg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+      <g class="moon-menu-points">
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
+        <circle class="moon-menu-point" r=".2rem"></circle>
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
+      </g>
+    </svg>
+    <div class="moon-menu-icon">
+    </div>
+    <div class="moon-menu-text">
+    </div>
+  </div>
+</div>
+
+<script>
+
+  const moonMenuListener = function () {
+
+    //Get scroll percent
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+    let percent = Math.round(scrollTop / (scrollHeight - offsetHeight) * 100);
+    if (percent > 100) percent = 100;
+
+    let menuText = document.querySelector('.moon-menu-text');
+    let menuPoints = document.querySelector('.moon-menu-points');
+    if (!percent) {
+      percent = 0;
+      menuText.style.display = 'none';
+      menuPoints.style.display = 'block';
+    } else {
+      menuText.style.display = 'block';
+      menuPoints.style.display = 'none';
+      menuText.innerHTML = percent + '%';
+    }
+
+    //Update strokeDasharray
+    let length = 196;
+    document.querySelector('.moon-menu-border').style.strokeDasharray = percent * length / 100 + ' ' + length;
+
+  }
+
+  window.addEventListener('load', () => {
+    moonMenuListener();
+  });
+  window.addEventListener('scroll', moonMenuListener);
+
+  const moonMenuClick = function () {
+    let items = document.querySelector('.moon-menu-items')
+    items.classList.toggle('active');
+    let points = document.querySelectorAll('.moon-menu-point');
+    let childItems = document.querySelectorAll('.moon-menu-item');
+    if (items.classList.contains('active')) {
+      points[0].setAttribute("cx", "-.8rem");
+      points[0].setAttribute("cy", "0");
+      points[2].setAttribute("cx", ".8rem");
+      points[2].setAttribute("cy", "0");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = -3 - 3 * i + 'rem';
+        childItems[i].style.opacity = .9;
+      }
+    } else {
+      points[0].setAttribute("cx", "0");
+      points[0].setAttribute("cy", "-.8rem");
+      points[2].setAttribute("cx", "0");
+      points[2].setAttribute("cy", ".8rem");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = '1rem';
+        childItems[i].style.opacity = 0;
+      }
+    }
+  };
+
+  const back2top = () => {
+    window.scroll({ top: 0, behavior: 'smooth' });
+  }
+
+  const back2bottom = () => {
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    window.scroll({ top: (scrollHeight - offsetHeight), behavior: 'smooth' });
+  }
+
+</script>
+</body>
+</html>

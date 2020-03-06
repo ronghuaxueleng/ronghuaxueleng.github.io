@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://ronghuaxueleng.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="在Javascript的开发过程中，经常会遇到一些重复性的任务，比如合并文件、压缩代码、检查语法错误、将Sass代码转成CSS代码等等。通常，我们需要使用不同的工具，来完成不同的任务，既重复劳动又非常耗时。Grunt就是为了解决这个问题而发明的工具，可以帮助我们自动管理和运行各种任务。 简单说，Grunt是一个自动任务运行器，会按照预先设定的顺序自动运行一系列的任务。这可以简化工作流程，减轻重复">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Grunt：任务自动管理工具">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/b9ea40f8.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="在Javascript的开发过程中，经常会遇到一些重复性的任务，比如合并文件、压缩代码、检查语法错误、将Sass代码转成CSS代码等等。通常，我们需要使用不同的工具，来完成不同的任务，既重复劳动又非常耗时。Grunt就是为了解决这个问题而发明的工具，可以帮助我们自动管理和运行各种任务。 简单说，Grunt是一个自动任务运行器，会按照预先设定的顺序自动运行一系列的任务。这可以简化工作流程，减轻重复">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-03-21T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-06T11:58:27.890Z">
+<meta property="article:author" content="曹强">
+<meta property="article:tag" content="tool,grunt,javascript,自动管理">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://ronghuaxueleng.github.io/archives/b9ea40f8.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Grunt：任务自动管理工具 | 白云雅阁</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">白云雅阁</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一切都是最好的安排</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/b9ea40f8.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Grunt：任务自动管理工具
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-03-21 00:00:00" itemprop="dateCreated datePublished" datetime="2016-03-21T00:00:00Z">2016-03-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%87%AA%E5%8A%A8%E7%AE%A1%E7%90%86-grunt/" itemprop="url" rel="index">
+                    <span itemprop="name">自动管理,grunt</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/b9ea40f8.html" class="post-meta-item leancloud_visitors" data-flag-title="Grunt：任务自动管理工具" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>9.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <hr>
+<p>在Javascript的开发过程中，经常会遇到一些重复性的任务，比如合并文件、压缩代码、检查语法错误、将Sass代码转成CSS代码等等。通常，我们需要使用不同的工具，来完成不同的任务，既重复劳动又非常耗时。Grunt就是为了解决这个问题而发明的工具，可以帮助我们自动管理和运行各种任务。</p>
+<p>简单说，Grunt是一个自动任务运行器，会按照预先设定的顺序自动运行一系列的任务。这可以简化工作流程，减轻重复性工作带来的负担。</p>
+<h1>安装</h1>
+<p>Grunt基于Node.js，安装之前要先安装Node.js，然后运行下面的命令。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo npm install grunt-cli -g</span><br></pre></td></tr></table></figure>
+<p>grunt-cli表示安装的是grunt的命令行界面，参数g表示全局安装。</p>
+<p>Grunt使用模块结构，除了安装命令行界面以外，还要根据需要安装相应的模块。这些模块应该采用局部安装，因为不同项目可能需要同一个模块的不同版本。</p>
+<p>首先，在项目的根目录下，创建一个文本文件package.json，指定当前项目所需的模块。下面就是一个例子。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"my-project-name"</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"0.1.0"</span>,</span><br><span class="line">  <span class="string">"author"</span>: <span class="string">"Your Name"</span>,</span><br><span class="line">  <span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"grunt"</span>: <span class="string">"0.x.x"</span>,</span><br><span class="line">    <span class="string">"grunt-contrib-jshint"</span>: <span class="string">"*"</span>,</span><br><span class="line">    <span class="string">"grunt-contrib-concat"</span>: <span class="string">"~0.1.1"</span>,</span><br><span class="line">    <span class="string">"grunt-contrib-uglify"</span>: <span class="string">"~0.1.0"</span>,</span><br><span class="line">    <span class="string">"grunt-contrib-watch"</span>: <span class="string">"~0.1.4"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面这个package.json文件中，除了注明项目的名称和版本以外，还在devDependencies属性中指定了项目依赖的grunt模块和版本：grunt核心模块为最新的0.x.x版，jshint插件为最新版本，concat插件不低于0.1.1版，uglify插件不低于0.1.0版，watch插件不低于0.1.4版。</p>
+<p>然后，在项目的根目录下运行下面的命令，这些插件就会被自动安装在node_modules子目录。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>上面这种方法是针对已有package.json的情况。如果想要自动生成package.json文件，可以使用npm init命令，按照屏幕提示回答所需模块的名称和版本即可。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">npm init</span><br></pre></td></tr></table></figure>
+<p>如果已有的package.json文件不包括Grunt模块，可以在直接安装Grunt模块的时候，加上–save-dev参数，该模块就会自动被加入package.json文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">npm install &lt;<span class="built_in">module</span>&gt; --save-dev</span><br></pre></td></tr></table></figure>
+<p>比如，对应上面package.json文件指定的模块，需要运行以下npm命令。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">npm install grunt --save-dev</span><br><span class="line">npm install grunt-contrib-jshint --save-dev</span><br><span class="line">npm install grunt-contrib-concat --save-dev</span><br><span class="line">npm install grunt-contrib-uglify --save-dev</span><br><span class="line">npm install grunt-contrib-watch --save-dev</span><br></pre></td></tr></table></figure>
+<h1>命令脚本文件Gruntfile.js</h1>
+<p>模块安装完以后，下一步在项目的根目录下，新建脚本文件Gruntfile.js。它是grunt的配置文件，就好像package.json是npm的配置文件一样。Gruntfile.js就是一般的Node.js模块的写法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 配置Grunt各种模块的参数</span></span><br><span class="line">  grunt.initConfig(&#123;</span><br><span class="line">    jshint: &#123; <span class="comment">/* jshint的参数 */</span> &#125;,</span><br><span class="line">    concat: &#123; <span class="comment">/* concat的参数 */</span> &#125;,</span><br><span class="line">    uglify: &#123; <span class="comment">/* uglify的参数 */</span> &#125;,</span><br><span class="line">    watch:  &#123; <span class="comment">/* watch的参数 */</span> &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 从node_modules目录加载模块文件</span></span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-jshint'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-concat'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-uglify'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-watch'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 每行registerTask定义一个任务</span></span><br><span class="line">  grunt.registerTask(<span class="string">'default'</span>, [<span class="string">'jshint'</span>, <span class="string">'concat'</span>, <span class="string">'uglify'</span>]);</span><br><span class="line">  grunt.registerTask(<span class="string">'check'</span>, [<span class="string">'jshint'</span>]);</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面的代码用到了grunt代码的三个方法：</p>
+<ul>
+<li>
+<p><strong>grunt.initConfig</strong>：定义各种模块的参数，每一个成员项对应一个同名模块。</p>
+</li>
+<li>
+<p><strong>grunt.loadNpmTasks</strong>：加载完成任务所需的模块。</p>
+</li>
+<li>
+<p><strong>grunt.registerTask</strong>：定义具体的任务。第一个参数为任务名，第二个参数是一个数组，表示该任务需要依次使用的模块。default任务名表示，如果直接输入grunt命令，后面不跟任何参数，这时所调用的模块（该例为jshint，concat和uglify）；该例的check任务则表示使用jshint插件对代码进行语法检查。</p>
+</li>
+</ul>
+<p>上面的代码一共加载了四个模块：jshint（检查语法错误）、concat（合并文件）、uglify（压缩代码）和watch（自动执行）。接下来，有两种使用方法。</p>
+<p>（1）命令行执行某个模块，比如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">grunt jshint</span><br></pre></td></tr></table></figure>
+<p>上面代码表示运行jshint模块。</p>
+<p>（2）命令行执行某个任务。比如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">grunt check</span><br></pre></td></tr></table></figure>
+<p>上面代码表示运行check任务。如果运行成功，就会显示“Done, without errors.”。</p>
+<p>如果没有给出任务名，只键入grunt，就表示执行默认的default任务。</p>
+<h1>Gruntfile.js实例：grunt-contrib-cssmin模块</h1>
+<p>下面通过cssmin模块，演示如何编写Gruntfile.js文件。cssmin模块的作用是最小化CSS文件。</p>
+<p>首先，在项目的根目录下安装该模块。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">npm install grunt-contrib-cssmin --save-dev</span><br></pre></td></tr></table></figure>
+<p>然后，新建文件Gruntfile.js。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  grunt.initConfig(&#123;</span><br><span class="line">    cssmin: &#123;</span><br><span class="line">      minify: &#123;</span><br><span class="line">        expand: <span class="literal">true</span>,</span><br><span class="line">		cwd: <span class="string">'css/'</span>,</span><br><span class="line">		src: [<span class="string">'*.css'</span>, <span class="string">'!*.min.css'</span>],</span><br><span class="line">		dest: <span class="string">'css/'</span>,</span><br><span class="line">		ext: <span class="string">'.min.css'</span></span><br><span class="line">	  &#125;,</span><br><span class="line">      combine: &#123;</span><br><span class="line">	    files: &#123;</span><br><span class="line">		  <span class="string">'css/out.min.css'</span>: [<span class="string">'css/part1.min.css'</span>, <span class="string">'css/part2.min.css'</span>]</span><br><span class="line">		&#125;</span><br><span class="line">	  &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-cssmin'</span>);</span><br><span class="line"></span><br><span class="line">  grunt.registerTask(<span class="string">'default'</span>, [<span class="string">'cssmin:minify'</span>,<span class="string">'cssmin:combine'</span>]);</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>下面详细解释上面代码中的三个方法，下面一个个来看。</p>
+<p><strong>（1）grunt.loadNpmTasks</strong></p>
+<p>grunt.loadNpmTasks方法载入模块文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">grunt.loadNpmTasks(<span class="string">'grunt-contrib-cssmin'</span>);</span><br></pre></td></tr></table></figure>
+<p>你需要使用几个模块，这里就要写几条grunt.loadNpmTasks语句，将各个模块一一加载。</p>
+<p>如果加载模块很多，这部分会非常冗长。而且，还存在一个问题，就是凡是在这里加载的模块，也同时出现在package.json文件中。如果使用npm命令卸载模块以后，模块会自动从package.json文件中消失，但是必须手动从Gruntfile.js文件中清除，这样很不方便，一旦忘记，还会出现运行错误。这里有一个解决办法，就是安装load-grunt-tasks模块，然后在Gruntfile.js文件中，用下面的语句替代所有的grunt.loadNpmTasks语句。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'load-grunt-tasks'</span>)(grunt);</span><br></pre></td></tr></table></figure>
+<p>这条语句的作用是自动分析package.json文件，自动加载所找到的grunt模块。</p>
+<p><strong>（2）grunt.initConfig</strong></p>
+<p>grunt.initConfig方法用于模块配置，它接受一个对象作为参数。该对象的成员与使用的同名模块一一对应。由于我们要配置的是cssmin模块，所以里面有一个cssmin成员（属性）。</p>
+<p>cssmin（属性）指向一个对象，该对象又包含多个成员。除了一些系统设定的成员（比如options），其他自定义的成员称为目标（target）。一个模块可以有多个目标（target），上面代码里面，cssmin模块共有两个目标，一个是“minify”，用于压缩css文件；另一个是“combine”，用于将多个css文件合并一个文件。</p>
+<p>每个目标的具体设置，需要参考该模板的文档。就cssmin来讲，minify目标的参数具体含义如下：</p>
+<ul>
+<li>
+<p><strong>expand</strong>：如果设为true，就表示下面文件名的占位符（即*号）都要扩展成具体的文件名。</p>
+</li>
+<li>
+<p><strong>cwd</strong>：需要处理的文件（input）所在的目录。</p>
+</li>
+<li>
+<p><strong>src</strong>：表示需要处理的文件。如果采用数组形式，数组的每一项就是一个文件名，可以使用通配符。</p>
+</li>
+<li>
+<p><strong>dest</strong>：表示处理后的文件名或所在目录。</p>
+</li>
+<li>
+<p><strong>ext</strong>：表示处理后的文件后缀名。</p>
+</li>
+</ul>
+<p>除了上面这些参数，还有一些参数也是grunt所有模块通用的。</p>
+<ul>
+<li>
+<p><strong>filter</strong>：一个返回布尔值的函数，用于过滤文件名。只有返回值为true的文件，才会被grunt处理。</p>
+</li>
+<li>
+<p><strong>dot</strong>：是否匹配以点号（.）开头的系统文件。</p>
+</li>
+<li>
+<p><strong>makeBase</strong>：如果设置为true，就只匹配文件路径的最后一部分。比如，a?b可以匹配/xyz/123/acb，而不匹配/xyz/acb/123。</p>
+</li>
+</ul>
+<p>关于通配符，含义如下：</p>
+<ul>
+<li>*：匹配任意数量的字符，不包括/。</li>
+<li>?：匹配单个字符，不包括/。</li>
+<li>**：匹配任意数量的字符，包括/。</li>
+<li>{}：允许使用逗号分隔的列表，表示“or”（或）关系。</li>
+<li>!：用于模式的开头，表示只返回不匹配的情况。</li>
+</ul>
+<p>比如，foo/*.js匹配foo目录下面的文件名以.js结尾的文件，foo/**/*.js匹配foo目录和它的所有子目录下面的文件名以.js结尾的文件，!*.css表示匹配所有后缀名不为“.css”的文件。</p>
+<p>使用通配符设置src属性的更多例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;<span class="attr">src</span>: <span class="string">'foo/th*.js'</span>&#125;grunt-contrib-uglify</span><br><span class="line"></span><br><span class="line">&#123;<span class="attr">src</span>: <span class="string">'foo/&#123;a,b&#125;*.js'</span>&#125;</span><br><span class="line"></span><br><span class="line">&#123;<span class="attr">src</span>: [<span class="string">'foo/a*.js'</span>, <span class="string">'foo/b*.js'</span>]&#125;</span><br></pre></td></tr></table></figure>
+<p>至于combine目标，就只有一个files参数，表示输出文件是css子目录下的out.min.css，输入文件则是css子目录下的part1.min.css和part2.min.css。</p>
+<p>files参数的格式可以是一个对象，也可以是一个数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">files: &#123;</span><br><span class="line">        <span class="string">'dest/b.js'</span>: [<span class="string">'src/bb.js'</span>, <span class="string">'src/bbb.js'</span>],</span><br><span class="line">        <span class="string">'dest/b1.js'</span>: [<span class="string">'src/bb1.js'</span>, <span class="string">'src/bbb1.js'</span>],</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"></span><br><span class="line">files: [</span><br><span class="line">        &#123;<span class="attr">src</span>: [<span class="string">'src/aa.js'</span>, <span class="string">'src/aaa.js'</span>], <span class="attr">dest</span>: <span class="string">'dest/a.js'</span>&#125;,</span><br><span class="line">        &#123;<span class="attr">src</span>: [<span class="string">'src/aa1.js'</span>, <span class="string">'src/aaa1.js'</span>], <span class="attr">dest</span>: <span class="string">'dest/a1.js'</span>&#125;,</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+<p>如果minify目标和combine目标的属性设置有重合的部分，可以另行定义一个与minify和combine平行的options属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">grunt.initConfig(&#123;</span><br><span class="line">   cssmin: &#123;</span><br><span class="line">  options: &#123; <span class="comment">/* ... */</span> &#125;,</span><br><span class="line">     minify: &#123; <span class="comment">/* ... */</span> &#125;,</span><br><span class="line">     combine: &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+<p><strong>（3）grunt.registerTask</strong></p>
+<p>grunt.registerTask方法定义如何调用具体的任务。“default”任务表示如果不提供参数，直接输入grunt命令，则先运行“cssmin:minify”，后运行“cssmin:combine”，即先压缩再合并。如果只执行压缩，或者只执行合并，则需要在grunt命令后面指明“模块名:目标名”。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">grunt # 默认情况下，先压缩后合并</span><br><span class="line"></span><br><span class="line">grunt cssmin:minify # 只压缩不合并</span><br><span class="line"></span><br><span class="line">grunt css:combine # 只合并不压缩</span><br></pre></td></tr></table></figure>
+<p>如果不指明目标，只是指明模块，就表示将所有目标依次运行一遍。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">grunt cssmin</span><br></pre></td></tr></table></figure>
+<h1>常用模块设置</h1>
+<p>grunt的<a href="http://gruntjs.com/plugins" target="_blank" rel="noopener">模块</a>已经超过了2000个，且还在快速增加。下面是一些常用的模块（按字母排序）。</p>
+<ul>
+<li><strong>grunt-contrib-clean</strong>：删除文件。</li>
+<li><strong>grunt-contrib-compass</strong>：使用compass编译sass文件。</li>
+<li><strong>grunt-contrib-concat</strong>：合并文件。</li>
+<li><strong>grunt-contrib-copy</strong>：复制文件。</li>
+<li><strong>grunt-contrib-cssmin</strong>：压缩以及合并CSS文件。</li>
+<li><strong>grunt-contrib-imagemin</strong>：图像压缩模块。</li>
+<li><strong>grunt-contrib-jshint</strong>：检查JavaScript语法。</li>
+<li><strong>grunt-contrib-uglify</strong>：压缩以及合并JavaScript文件。</li>
+<li><strong>grunt-contrib-watch</strong>：监视文件变动，做出相应动作。</li>
+</ul>
+<p>模块的前缀如果是grunt-contrib，就表示该模块由grunt开发团队维护；如果前缀是grunt（比如grunt-pakmanager），就表示由第三方开发者维护。</p>
+<p>以下选几个模块，看看它们配置参数的写法，也就是说如何在grunt.initConfig方法中配置各个模块。</p>
+<h2 id="grunt-contrib-jshint">grunt-contrib-jshint</h2>
+<p>jshint用来检查语法错误，比如分号的使用是否正确、有没有忘记写括号等等。它在grunt.initConfig方法里面的配置代码如下。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">jshint: &#123;</span><br><span class="line">	options: &#123;</span><br><span class="line">		eqeqeq: <span class="literal">true</span>,</span><br><span class="line">		trailing: <span class="literal">true</span></span><br><span class="line">	&#125;,</span><br><span class="line">	files: [<span class="string">'Gruntfile.js'</span>, <span class="string">'lib/**/*.js'</span>]</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>上面代码先指定jshint的<a href="http://www.jshint.com/docs/options/" target="_blank" rel="noopener">检查项目</a>，eqeqeq表示要用严格相等运算符取代相等运算符，trailing表示行尾不得有多余的空格。然后，指定files属性，表示检查目标是Gruntfile.js文件，以及lib目录的所有子目录下面的JavaScript文件。</p>
+<h2 id="grunt-contrib-concat">grunt-contrib-concat</h2>
+<p>concat用来合并同类文件，它不仅可以合并JavaScript文件，还可以合并CSS文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">concat: &#123;</span><br><span class="line">  js: &#123;</span><br><span class="line">    src: [<span class="string">'lib/module1.js'</span>, <span class="string">'lib/module2.js'</span>, <span class="string">'lib/plugin.js'</span>],</span><br><span class="line">    dest: <span class="string">'dist/script.js'</span></span><br><span class="line">  &#125;</span><br><span class="line">  css: &#123;</span><br><span class="line">    src: [<span class="string">'style/normalize.css'</span>, <span class="string">'style/base.css'</span>, <span class="string">'style/theme.css'</span>],</span><br><span class="line">    dest: <span class="string">'dist/screen.css'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>js目标用于合并JavaScript文件，css目标用语合并CSS文件。两者的src属性指定需要合并的文件（input），dest属性指定输出的目标文件（output）。</p>
+<h2 id="grunt-contrib-uglify">grunt-contrib-uglify</h2>
+<p>uglify模块用来压缩代码，减小文件体积。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">uglify: &#123;</span><br><span class="line">  options: &#123;</span><br><span class="line">    banner: bannerContent,</span><br><span class="line">    sourceMapRoot: <span class="string">'../'</span>,</span><br><span class="line">    sourceMap: <span class="string">'distrib/'</span>+name+<span class="string">'.min.js.map'</span>,</span><br><span class="line">    sourceMapUrl: name+<span class="string">'.min.js.map'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  target : &#123;</span><br><span class="line">	expand: <span class="literal">true</span>,</span><br><span class="line">	cwd: <span class="string">'js/origin'</span>,</span><br><span class="line">	src : <span class="string">'*.js'</span>,</span><br><span class="line">	dest : <span class="string">'js/'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>上面代码中的options属性指定压缩后文件的文件头，以及sourceMap设置；target目标指定输入和输出文件。</p>
+<h2 id="grunt-contrib-copy">grunt-contrib-copy</h2>
+<p><a href="https://github.com/gruntjs/grunt-contrib-copy" target="_blank" rel="noopener">copy模块</a>用于复制文件与目录。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">copy: &#123;</span><br><span class="line">  main: &#123;</span><br><span class="line">    src: <span class="string">'src/*'</span>,</span><br><span class="line">    dest: <span class="string">'dest/'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>上面代码将src子目录（只包含它下面的第一层文件和子目录），拷贝到dest子目录下面（即dest/src目录）。如果要更准确控制拷贝行为，比如只拷贝文件、不拷贝目录、不保持目录结构，可以写成下面这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">copy: &#123;</span><br><span class="line">  main: &#123;</span><br><span class="line">    expand: <span class="literal">true</span>,</span><br><span class="line">    cwd: <span class="string">'src/'</span>,</span><br><span class="line">    src: <span class="string">'**'</span>,</span><br><span class="line">    dest: <span class="string">'dest/'</span>,</span><br><span class="line">    flatten: <span class="literal">true</span>,</span><br><span class="line">    filter: <span class="string">'isFile'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h2 id="grunt-contrib-watch">grunt-contrib-watch</h2>
+<p><a href="https://github.com/gruntjs/grunt-contrib-watch" target="_blank" rel="noopener">watch模块</a>用来在后台运行，监听指定事件，然后自动运行指定的任务。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">watch: &#123;</span><br><span class="line">   scripts: &#123;</span><br><span class="line">    files: <span class="string">'**/*.js'</span>,</span><br><span class="line">    tasks: <span class="string">'jshint'</span>,</span><br><span class="line">	options: &#123;</span><br><span class="line">      livereload: <span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">   &#125;,</span><br><span class="line">   css: &#123;</span><br><span class="line">    files: <span class="string">'**/*.sass'</span>,</span><br><span class="line">    tasks: [<span class="string">'sass'</span>],</span><br><span class="line">    options: &#123;</span><br><span class="line">      livereload: <span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">   &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>设置好上面的代码，打开另一个进程，运行grunt watch。此后，任何的js代码变动，文件保存后就会自动运行jshint任务；任何sass文件变动，文件保存后就会自动运行sass任务。</p>
+<p>需要注意的是，这两个任务的options参数之中，都设置了livereload，表示任务运行结束后，自动在浏览器中重载（reload）。这需要在浏览器中安装<a href="http://livereload.com/" target="_blank" rel="noopener">livereload插件</a>。安装后，livereload的默认端口为localhost:35729，但是也可以用livereload: 1337的形式重设端口（localhost:1337）。</p>
+<h1>其他模块</h1>
+<p>下面是另外一些有用的模块。</p>
+<h2 id="grunt-contrib-clean">grunt-contrib-clean</h2>
+<p>该模块用于删除文件或目录。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">clean: &#123;</span><br><span class="line">  build: &#123;</span><br><span class="line">    src: [<span class="string">"path/to/dir/one"</span>, <span class="string">"path/to/dir/two"</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="grunt-autoprefixer">grunt-autoprefixer</h2>
+<p>该模块用于为CSS语句加上浏览器前缀。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">autoprefixer: &#123;</span><br><span class="line">  build: &#123;</span><br><span class="line">    expand: <span class="literal">true</span>,</span><br><span class="line">    cwd: <span class="string">'build'</span>,</span><br><span class="line">    src: [ <span class="string">'**/*.css'</span> ],</span><br><span class="line">    dest: <span class="string">'build'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h2 id="grunt-contrib-connect">grunt-contrib-connect</h2>
+<p>该模块用于在本机运行一个Web Server。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">connect: &#123;</span><br><span class="line">  server: &#123;</span><br><span class="line">    options: &#123;</span><br><span class="line">      port: <span class="number">4000</span>,</span><br><span class="line">      base: <span class="string">'build'</span>,</span><br><span class="line">      hostname: <span class="string">'*'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>connect模块会随着grunt运行结束而结束，为了使它一直处于运行状态，可以把它放在watch模块之前运行。因为watch模块需要手动中止，所以connect模块也就会一直运行。</p>
+<h2 id="grunt-htmlhint">grunt-htmlhint</h2>
+<p>该模块用于检查HTML语法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">htmlhint: &#123;</span><br><span class="line">    build: &#123;</span><br><span class="line">        options: &#123;</span><br><span class="line">            <span class="string">'tag-pair'</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="string">'tagname-lowercase'</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="string">'attr-lowercase'</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="string">'attr-value-double-quotes'</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="string">'spec-char-escape'</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="string">'id-unique'</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="string">'head-script-disabled'</span>: <span class="literal">true</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        src: [<span class="string">'index.html'</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码用于检查index.html文件：HTML标记是否配对、标记名和属性名是否小写、属性值是否包括在双引号之中、特殊字符是否转义、HTML元素的id属性是否为唯一值、head部分是否没有script标记。</p>
+<h2 id="grunt-contrib-sass模块">grunt-contrib-sass模块</h2>
+<p>该模块用于将SASS文件转为CSS文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sass: &#123;</span><br><span class="line">    build: &#123;</span><br><span class="line">		options: &#123;</span><br><span class="line">            style: <span class="string">'compressed'</span></span><br><span class="line">        &#125;,</span><br><span class="line">        files: &#123;</span><br><span class="line">            <span class="string">'build/css/master.css'</span>: <span class="string">'assets/sass/master.scss'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码指定输出文件为build/css/master.css，输入文件为assets/sass/master.scss。</p>
+<h2 id="grunt-markdown">grunt-markdown</h2>
+<p>该模块用于将markdown文档转为HTML文档。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">markdown: &#123;</span><br><span class="line">    all: &#123;</span><br><span class="line">      files: [</span><br><span class="line">        &#123;</span><br><span class="line">          expand: <span class="literal">true</span>,</span><br><span class="line">          src: <span class="string">'*.md'</span>,</span><br><span class="line">          dest: <span class="string">'docs/html/'</span>,</span><br><span class="line">          ext: <span class="string">'.html'</span></span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">      options: &#123;</span><br><span class="line">        template: <span class="string">'templates/index.html'</span>,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>上面代码指定将md后缀名的文件，转为docs/html/目录下的html文件。template属性指定转换时采用的模板，模板样式如下。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"main"</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">%=content%</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+      
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/tool-grunt-javascript-%E8%87%AA%E5%8A%A8%E7%AE%A1%E7%90%86/" rel="tag"># tool,grunt,javascript,自动管理</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/5b6e6c1a.html" rel="prev" title="NPM安装及优化步骤--详细版">
+      <i class="fa fa-chevron-left"></i> NPM安装及优化步骤--详细版
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/archives/4bbe7293.html" rel="next" title="《JavaScript高级程序设计》阅读笔记：函数表达式、闭包、私有变量">
+      《JavaScript高级程序设计》阅读笔记：函数表达式、闭包、私有变量 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">命令脚本文件Gruntfile.js</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">Gruntfile.js实例：grunt-contrib-cssmin模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">4.</span> <span class="nav-text">常用模块设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#grunt-contrib-jshint"><span class="nav-number">4.1.</span> <span class="nav-text">grunt-contrib-jshint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grunt-contrib-concat"><span class="nav-number">4.2.</span> <span class="nav-text">grunt-contrib-concat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grunt-contrib-uglify"><span class="nav-number">4.3.</span> <span class="nav-text">grunt-contrib-uglify</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grunt-contrib-copy"><span class="nav-number">4.4.</span> <span class="nav-text">grunt-contrib-copy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grunt-contrib-watch"><span class="nav-number">4.5.</span> <span class="nav-text">grunt-contrib-watch</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">5.</span> <span class="nav-text">其他模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#grunt-contrib-clean"><span class="nav-number">5.1.</span> <span class="nav-text">grunt-contrib-clean</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grunt-autoprefixer"><span class="nav-number">5.2.</span> <span class="nav-text">grunt-autoprefixer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grunt-contrib-connect"><span class="nav-number">5.3.</span> <span class="nav-text">grunt-contrib-connect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grunt-htmlhint"><span class="nav-number">5.4.</span> <span class="nav-text">grunt-htmlhint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grunt-contrib-sass模块"><span class="nav-number">5.5.</span> <span class="nav-text">grunt-contrib-sass模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#grunt-markdown"><span class="nav-number">5.6.</span> <span class="nav-text">grunt-markdown</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="曹强"
+      src="/img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">曹强</p>
+  <div class="site-description" itemprop="description">caoqiang's blog | java |前端 | PHP |nodeJs | python</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+      <div class="links-of-blogroll-title">
+        <!-- modify icon to fire by szw -->
+        <i class="fa fa-history fa-" aria-hidden="true"></i>
+        近期文章
+      </div>
+      <ul class="links-of-blogroll-list">
+        
+        
+          <li>
+            <a href="/archives/2fd7dbc7.html" title="Shadow DOM" target="_blank">Shadow DOM</a>
+          </li>
+        
+          <li>
+            <a href="/archives/b4a56055.html" title="可视化埋点" target="_blank">可视化埋点</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a5431a21.html" title="从 JavaScript 数组去重谈性能优化" target="_blank">从 JavaScript 数组去重谈性能优化</a>
+          </li>
+        
+      </ul>
+    </div>
+
+
+<div style="">
+  <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
+
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">318k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:49</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
+          }
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz',
+            'X-LC-Key': '9kCQuNi7NFq5MdDBn9J1Xj1r',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout: 3000,
+        priority: true,
+        ignores: [uri => uri.includes('#'),uri => uri == 'http://ronghuaxueleng.github.io/archives/b9ea40f8.html',]
+      });
+      });
+  </script>
+
+
+  <script async src="/blog/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/blog/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div class="moon-menu-item" onclick="back2bottom()">
+      <i class="fa fa-chevron-down"></i>
+    </div>
+    
+    <div class="moon-menu-item" onclick="back2top()">
+      <i class="fa fa-chevron-up"></i>
+    </div>
+    
+  </div>
+  <div class="moon-menu-button" onclick="moonMenuClick()">
+    <svg class="moon-menu-svg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+      <g class="moon-menu-points">
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
+        <circle class="moon-menu-point" r=".2rem"></circle>
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
+      </g>
+    </svg>
+    <div class="moon-menu-icon">
+    </div>
+    <div class="moon-menu-text">
+    </div>
+  </div>
+</div>
+
+<script>
+
+  const moonMenuListener = function () {
+
+    //Get scroll percent
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+    let percent = Math.round(scrollTop / (scrollHeight - offsetHeight) * 100);
+    if (percent > 100) percent = 100;
+
+    let menuText = document.querySelector('.moon-menu-text');
+    let menuPoints = document.querySelector('.moon-menu-points');
+    if (!percent) {
+      percent = 0;
+      menuText.style.display = 'none';
+      menuPoints.style.display = 'block';
+    } else {
+      menuText.style.display = 'block';
+      menuPoints.style.display = 'none';
+      menuText.innerHTML = percent + '%';
+    }
+
+    //Update strokeDasharray
+    let length = 196;
+    document.querySelector('.moon-menu-border').style.strokeDasharray = percent * length / 100 + ' ' + length;
+
+  }
+
+  window.addEventListener('load', () => {
+    moonMenuListener();
+  });
+  window.addEventListener('scroll', moonMenuListener);
+
+  const moonMenuClick = function () {
+    let items = document.querySelector('.moon-menu-items')
+    items.classList.toggle('active');
+    let points = document.querySelectorAll('.moon-menu-point');
+    let childItems = document.querySelectorAll('.moon-menu-item');
+    if (items.classList.contains('active')) {
+      points[0].setAttribute("cx", "-.8rem");
+      points[0].setAttribute("cy", "0");
+      points[2].setAttribute("cx", ".8rem");
+      points[2].setAttribute("cy", "0");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = -3 - 3 * i + 'rem';
+        childItems[i].style.opacity = .9;
+      }
+    } else {
+      points[0].setAttribute("cx", "0");
+      points[0].setAttribute("cy", "-.8rem");
+      points[2].setAttribute("cx", "0");
+      points[2].setAttribute("cy", ".8rem");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = '1rem';
+        childItems[i].style.opacity = 0;
+      }
+    }
+  };
+
+  const back2top = () => {
+    window.scroll({ top: 0, behavior: 'smooth' });
+  }
+
+  const back2bottom = () => {
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    window.scroll({ top: (scrollHeight - offsetHeight), behavior: 'smooth' });
+  }
+
+</script>
+</body>
+</html>

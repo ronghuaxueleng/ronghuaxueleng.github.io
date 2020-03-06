@@ -1,633 +1,796 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
 
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://ronghuaxueleng.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
-
-
-
-
-
-
-<meta name="description" content="caoqiang&apos;s blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs">
+  <meta name="description" content="caoqiang&#39;s blog | java |前端 | PHP |nodeJs | python">
 <meta property="og:type" content="website">
 <meta property="og:title" content="白云雅阁">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/page/17/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="caoqiang&apos;s blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs">
+<meta property="og:description" content="caoqiang&#39;s blog | java |前端 | PHP |nodeJs | python">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="曹强">
+<meta property="article:tag" content="java 前端 php nodejs python javascript css html">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白云雅阁">
-<meta name="twitter:description" content="caoqiang&apos;s blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs">
+
+<link rel="canonical" href="http://ronghuaxueleng.github.io/page/17/">
 
 
-
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 0,
-      author: '博主'
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false
   };
 </script>
 
+  <title>白云雅阁</title>
+  
 
 
 
-  <link rel="canonical" href="http://ronghuaxueleng.github.io/page/17/"/>
 
-  <title> 白云雅阁 </title>
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <a href="https://github.com/ronghuaxueleng">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
-    </a>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">白云雅阁</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">白云雅阁</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一切都是最好的安排</p>
   </div>
-  <p class="site-subtitle">读懂别人的故事，写好自己的人生</p>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
 
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
-  
+  </li>
+  </ul>
+
 </nav>
-
- </div>
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content">
             
-  <section id="posts" class="posts-expand">
-    
-      
 
+  <div class="posts-expand">
+        
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/f94f1ed0.html">
 
-  
-  
-  
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/11/25/build-first-blog/" itemprop="url">
-                  使用hexo搭建属于自己的博客
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/f94f1ed0.html" class="post-title-link" itemprop="url">使用hexo搭建属于自己的博客</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-11-25T00:00:00+08:00" content="2015-11-25">
-              2015-11-25
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2015-11-25 00:00:00" itemprop="dateCreated datePublished" datetime="2015-11-25T00:00:00Z">2015-11-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/hexo/" itemprop="url" rel="index">
                     <span itemprop="name">hexo</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2015/11/25/build-first-blog/"class="leancloud_visitors" data-flag-title="使用hexo搭建属于自己的博客"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-在搭建这个博客期间参考了很多资料，因为不是所有的资料都能完整并且顺利搭建出来，经过我本人实践，整理出来这篇文章，希望可以帮助大家减少不必要的麻烦，不用再到处找搭建方法，本文的共分为一下几章：
-
-第一节： 什么是hexo第二节： 为什么要用hexo第三节： 谁使用hexo第四节： 怎样搭建hexo博客第五节： 如何更换自己的主题第六节： 如何发表文章
-
-
-第一节：什么是hexo hexo是一个基于Node.js的静态博客程序，可以方便的生成静态网页托管在github和Heroku上。作者是来自台湾的@tommy351。引用@tommy351的话，hexo：
-
-快速、简单且功能强大的 Node.js 博客框架。A fast, simple &amp; powerful blog framework, powered by Node.js.类似于jekyll、Octopress、Wordpress，我们可以用hexo创建自己的博客，托管到github或Heroku上，绑定自己的域名，用markdown写文章。本博客即使用hexo创建并托管在github上。
-
-类似于jekyll、Octopress、Wordpress，我们可以用hexo创建自己的博客，托管到github或Heroku上，绑定自己的域名，用markdown写文章。
-
-第二节：为什么要用hexo还是引用作者的话：
-
-不可思议的快速 ─ 只要一眨眼静态文件即生成完成支持 Markdown仅需一道指令即可部署到 GitHub Pages 和 Heroku已移植 Octopress 插件高扩展性、自订性兼容于 Windows, Mac &amp; Linux
-
-我在加几个自己体会到的优点：
-
-易用：不仅部署简单，平时使用中仅需要hexo new hexo generate hexo server hexo deploy四个命令。不像Jekyll需要很多繁琐的git命令。
-轻：文件少、小，易理解，方便自定义。
-用户多：虽然赶不上Jekyll和Octopress，但遇到什么问题都能搜索到答案，或者找到同样使用hexo的用户进行参考和咨询。
-简单：我本人不太爱倒腾这东西，但是当我看到本博客的模板后，在看完教程后，都停不下来，用了一晚上就搭起来了
-省时：不必浪费时间在你不关注的东西上，专心写你的博客
-
-
-第三节：谁使用h
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/11/25/build-first-blog/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/26/jQuery/jQuery性能优化常用策略/" itemprop="url">
-                  jQuery性能优化常用策略
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-08-26T00:00:00+08:00" content="2015-08-26">
-              2015-08-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+            <span id="/archives/f94f1ed0.html" class="post-meta-item leancloud_visitors" data-flag-title="使用hexo搭建属于自己的博客" title="阅读次数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="fa fa-eye"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/jQuery/" itemprop="url" rel="index">
-                    <span itemprop="name">jQuery</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.5k</span>
             </span>
-          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
 
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2015/08/26/jQuery/jQuery性能优化常用策略/"class="leancloud_visitors" data-flag-title="jQuery性能优化常用策略"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>如果你不会原生js，只会用jquery，那么你必须懂得jquery如何做性能优化。下面我总结了一些常用的，希望对大家有些帮助。</p>
-<h5 id="使用最新的jQuery类库"><a href="#使用最新的jQuery类库" class="headerlink" title="使用最新的jQuery类库"></a>使用最新的jQuery类库</h5><h5 id="使用合适的选择器"><a href="#使用合适的选择器" class="headerlink" title="使用合适的选择器"></a>使用合适的选择器</h5><blockquote>
-<p>(1) 使用id来定位DOM元素是最高效的方式，如果不能直接用id找到你需要的元素，可以考虑用find()方法。<br>(2) 标签选择器的性能也是不错的，它是性能优化的第二选择，因为jQuery将直接调用本地方法document.getElementByTagName()来定位DOM元素。<br>(3) 对于类选择器，现代浏览器和IE9+ 支持本地方法document.getElementByClassName(),而对于老的浏览器如IE8 以及以前的版本，只能靠使用DOM 搜索方式来实现，这无疑对性能产生较大的影响，所以建议大家有选择性的使用它。<br>(4) 属性选择器无法直接实现，大多都是使用DOM搜索方式来达到效果，很多现代浏览器支持querySelectorAll()方法，但是不同的浏览器的性能还是不一样的，总的来说，使用这种方式性能并不是非常理想。所以尽量避免使用这种有害性能的方式。<br>(5) 伪类选择器也同样无法直接实现，jQuery需要搜索每一个元素来定位这个元素，这将是对性能造成较大的消耗，尽量不要使用，如果非用不可，就先用ID 选择器定位父元素，然后再使用该选择器。<br>注意：尽量使用ID选择器，尽量给选择器指定上下文。</p>
+          <hr>
+<p>在搭建这个博客期间参考了很多资料，因为不是所有的资料都能完整并且顺利搭建出来，经过我本人实践，整理出来这篇文章，希望可以帮助大家减少不必要的麻烦，不用再到处找搭建方法，本文的共分为一下几章：</p>
+<blockquote>
+<p>第一节： 什么是hexo<br>
+第二节： 为什么要用hexo<br>
+第三节： 谁使用hexo<br>
+第四节： 怎样搭建hexo博客<br>
+第五节： 如何更换自己的主题<br>
+第六节： 如何发表文章</p>
 </blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/08/26/jQuery/jQuery性能优化常用策略/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+<hr>
+<h2 id="第一节：什么是hexo">第一节：什么是hexo</h2>
+<p>hexo是一个基于Node.js的静态博客程序，可以方便的生成静态网页托管在github和Heroku上。作者是来自台湾的@tommy351。引用@tommy351的话，hexo：</p>
+<blockquote>
+<p>快速、简单且功能强大的 Node.js 博客框架。<br>
+A fast, simple &amp; powerful blog framework, powered by Node.js.<br>
+类似于jekyll、Octopress、Wordpress，我们可以用hexo创建自己的博客，托管到github或Heroku上，绑定自己的域名，用markdown写文章。本博客即使用hexo创建并托管在github上。</p>
+</blockquote>
+<p>类似于jekyll、Octopress、Wordpress，我们可以用hexo创建自己的博客，托管到github或Heroku上，绑定自己的域名，用markdown写文章。</p>
+<hr>
+<h2 id="第二节：为什么要用hexo">第二节：为什么要用hexo</h2>
+<p>还是引用作者的话：</p>
+<blockquote>
+<p>不可思议的快速 ─ 只要一眨眼静态文件即生成完成<br>
+支持 Markdown<br>
+仅需一道指令即可部署到 GitHub Pages 和 Heroku<br>
+已移植 Octopress 插件<br>
+高扩展性、自订性<br>
+兼容于 Windows, Mac &amp; Linux</p>
+</blockquote>
+<p>我在加几个自己体会到的优点：</p>
+<ul>
+<li>易用：不仅部署简单，平时使用中仅需要hexo new hexo generate hexo server hexo deploy四个命令。不像Jekyll需要很多繁琐的git命令。</li>
+<li>轻：文件少、小，易理解，方便自定义。</li>
+<li>用户多：虽然赶不上Jekyll和Octopress，但遇到什么问题都能搜索到答案，或者找到同样使用hexo的用户进行参考和咨询。</li>
+<li>简单：我本人不太爱倒腾这东西，但是当我看到本博客的模板后，在看完教程后，都停不下来，用了一晚上就搭起来了</li>
+<li>省时：不必浪费时间在你不关注的东西上，专心写你的博客</li>
+</ul>
+<hr>
+<h2 id="第三节：谁使用hexo">第三节：谁使用hexo</h2>
+<p>这是一个免费开源的博客程序，任何人都可以使用和修改。但是不同于wordpress，hexo由于需要使用<strong>Github,Git,Markdown,Node.js</strong>这样的工具，好多插件、widget都需要自己安装、设置。所以<strong>适合那些有一定计算机基础，喜欢折腾的人</strong>。</p>
+<hr>
+<h2 id="第四节：怎样搭建hexo博客">第四节：怎样搭建hexo博客</h2>
+<blockquote>
+<p><em>注意：本节教程只针对Windows用户，Linux和Mac用户请移步hexo安装</em>。</p>
+</blockquote>
+<hr>
+<p><em><strong>安装Git</strong></em></p>
+<blockquote>
+<p>下载 <a href="http://git-scm.com/download/win" target="_blank" rel="noopener">msysgit</a> 并执行即可完成安装。</p>
+</blockquote>
+<hr>
+<p><em><strong>安装Node.js</strong></em></p>
+<blockquote>
+<p>在Windows环境下安装<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a>非常简单，仅须下载安装文件并执行即可完成安装。</p>
+</blockquote>
+<hr>
+<p><em><strong>设置软件包国内镜像</strong></em></p>
+<pre><code>npm config set registry http://registry.npm.taobao.org
+</code></pre>
+<hr>
+<p><em><strong>安装hexo</strong></em></p>
+<pre><code>npm install -g hexo
+</code></pre>
+<hr>
+<p><em><strong>创建hexo文件夹</strong></em><br>
+安装完成后，在你喜爱的文件夹下（如F:\hexo），执行以下指令(在F:\hexo内点击鼠标右键，选择Git bash)，Hexo即会自动在目标文件夹建立网站所需要的所有文件。</p>
+<pre><code>hexo init
+</code></pre>
+<p>执行完这一步后，你会发现文件夹下生成了一些文件和文件夹，用文本编辑器打开package.json文件，将里面的内容改为以下内容：</p>
+<pre><code>{
+  &quot;name&quot;: &quot;hexo-site&quot;,
+  &quot;version&quot;: &quot;0.0.0&quot;,
+  &quot;private&quot;: true,
+  &quot;hexo&quot;: {
+    &quot;version&quot;: &quot;3.1.1&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;hexo&quot;: &quot;^3.1.0&quot;,
+    &quot;hexo-deployer-git&quot;: &quot;0.0.4&quot;,
+    &quot;hexo-deployer-heroku&quot;: &quot;0.0.3&quot;,
+    &quot;hexo-deployer-openshift&quot;: &quot;0.0.1&quot;,
+    &quot;hexo-deployer-rsync&quot;: &quot;^0.1.1&quot;,
+    &quot;hexo-generator-archive&quot;: &quot;^0.1.3&quot;,
+    &quot;hexo-generator-category&quot;: &quot;^0.1.3&quot;,
+    &quot;hexo-generator-feed&quot;: &quot;^1.0.3&quot;,
+    &quot;hexo-generator-index&quot;: &quot;^0.1.3&quot;,
+    &quot;hexo-generator-sitemap&quot;: &quot;^1.0.1&quot;,
+    &quot;hexo-generator-tag&quot;: &quot;^0.1.2&quot;,
+    &quot;hexo-renderer-ejs&quot;: &quot;^0.1.0&quot;,
+    &quot;hexo-renderer-marked&quot;: &quot;^0.2.5&quot;,
+    &quot;hexo-renderer-stylus&quot;: &quot;^0.2.3&quot;,
+    &quot;hexo-server&quot;: &quot;^0.1.2&quot;
+  }
+}
+</code></pre>
+<hr>
+<p><em><strong>安装依赖包</strong></em></p>
+<pre><code>npm install
+</code></pre>
+<hr>
+<p><em><strong>本地查看</strong></em><br>
+现在我们已经搭建起本地的hexo博客了，执行以下命令(在F:\hexo)，然后到浏览器输入localhost:4000看看。</p>
+<pre><code>hexo generate
+hexo server
+</code></pre>
+<hr>
+<p><em><strong>注册Github账号</strong></em></p>
+<blockquote>
+<p>已有账号可以跳过，没有的，请在<a href="https://github.com/" target="_blank" rel="noopener">此处</a>进行注册，很简单，这里就不介绍了。</p>
+</blockquote>
+<hr>
+<p><em><strong>创建repository</strong></em></p>
+<blockquote>
+<p>在自己Github主页右下角，创建一个新的repository。比如我的Github账号是ronghuaxueleng，那么我应该创建的repository名字应该是<a href="http://ronghuaxueleng.github.io">ronghuaxueleng.github.io</a></p>
+</blockquote>
+<p><img src="/img/github_build.png" alt=""><br>
+<img src="/img/github_created.png" alt=""></p>
+<hr>
+<p><em><strong>部署</strong></em></p>
+<p>编辑_config.yml(在F:\hexo下)。你在部署时，要把下面的nothingcpd都换成你的账号名。</p>
+<pre><code>deploy:
+  type: git
+  repository: http://github.com/ronghuaxueleng/ronghuaxueleng.github.io.git
+  branch: master
+  ##注意：&quot;：&quot;后边需要有一个&quot;空格&quot;
+</code></pre>
+<p><em><strong>执行下列指令即可完成部署。</strong></em></p>
+<pre><code>hexo generate
+hexo deploy
+</code></pre>
+<hr>
+<h2 id="第五节：如何更换自己的主题">第五节：如何更换自己的主题</h2>
+<p><em><strong>使用</strong></em></p>
+<ol>
+<li>安装</li>
+</ol>
+<blockquote>
+<p>在hexo主目录下<br>
+$ git clone <a href="https://github.com/litten/hexo-theme-yilia.git" target="_blank" rel="noopener">https://github.com/litten/hexo-theme-yilia.git</a> themes/yilia</p>
+</blockquote>
+<p>2.配置</p>
+<blockquote>
+<p>修改hexo根目录下_config.yml ：<br>
+theme: yilia</p>
+</blockquote>
+<p>3.更新</p>
+<pre><code>cd themes/yilia
+git pull
+</code></pre>
+<hr>
+<p><em><strong>配置</strong></em><br>
+主题配置文件在主题目录yalia下的_config.yml：</p>
+<pre><code># Header
+menu:
+  主页: /
+  所有文章: /archives
+  # 随笔: /tags/随笔
+
+# SubNav
+subnav:
+  github: &quot;#&quot;
+  weibo: &quot;#&quot;
+  rss: &quot;#&quot;
+  facebook: &quot;#&quot;
+  # google: &quot;#&quot;
+  # twitter: &quot;#&quot;
+  # linkedin: &quot;#&quot;
+
+rss: /atom.xml
+
+# Content
+excerpt_link: more
+fancybox: true
+
+# Miscellaneous
+google_analytics: ''
+favicon: /favicon.png
+
+#你的头像
+avatar: &quot;https://avatars2.githubusercontent.com/u/2024949?v=2&amp;s=150&quot;
+#是否开启分享
+share: true
+#是否开启多说评论，填写你在多说申请的项目名称
+duoshuo: true
+#是否开启云标签
+tagcloud: true
+
+#是否开启友情链接
+#不开启——
+#friends: false
+#开启——
+friends:
+  奥巴马的博客: http://localhost:4000/
+  卡卡的美丽传说: http://localhost:4000/
+  本泽马的博客: http://localhost:4000/
+  吉格斯的博客: http://localhost:4000/
+  习大大大不同: http://localhost:4000/
+  托蒂的博客: http://localhost:4000/
+
+#是否开启“关于我”。
+#不开启——
+#aboutme: false
+#开启——
+aboutme: 我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…
+</code></pre>
+<hr>
+<p><em><strong>体验</strong></em></p>
+<pre><code>hexo generate
+hexo server
+</code></pre>
+<p>最后在浏览器中输入：localhost:4000 查看主题效果</p>
+<pre><code>hexo generate
+hexo deploy
+
+最后在浏览器中输入： ronghuaxueleng.github.com 
+ps：ronghuaxueleng换成你自己的repo名字，查看效果
+</code></pre>
+<hr>
+<p>这里有hexo的各种主题，喜欢折腾的可以去看看</p>
+<pre><code>https://hexo.io/themes/
+</code></pre>
+<h2 id="第六节：如何发表文章">第六节：如何发表文章</h2>
+<blockquote>
+<p><strong>1. step1：输入 hexo new &quot;my first post&quot;</strong><br>
+ps:引号可以不加，最好不加，此时 查看source/_posts/下面会产生post.md的文件，此文件需要用markdown语言编辑，后面会有一篇专门介绍markdown语法的blog<br>
+以后每次运行上面的命令都会产生文件，<a href="http://xn--post1-1-bx4kl7a549y.md" target="_blank" rel="noopener">会产生post1-1.md</a>，post-2.md等依次增加</p>
+</blockquote>
+<blockquote>
+<p><strong>step2: 在F:\hexo\source_posts中打开这个文件（打开方式用“记事本”即可）, 然后将下面内容 拷贝到里面</strong></p>
+</blockquote>
+<pre><code> layout: post
+ title: &quot;我的博客情缘&quot;
+ date: 2014-12-17 13:15
+ comments: true
+ tags: 
+    - 随笔
+    - 心情
+    - 个人
+---
+</code></pre>
+<blockquote>
+<p><strong>step3: 输入 hexo server</strong><br>
+访问localhost:4000预览效果。（退出server用Ctrl+c）</p>
+</blockquote>
+<blockquote>
+<p><strong>step4: 输入 hexo deploy</strong><br>
+同步到github。访问网站看看效果。<a href="http://ronghuaxueleng.github.io">ronghuaxueleng.github.io</a>(ronghuaxueleng换成你自己的repo)</p>
+</blockquote>
+<p>现在为止，我们已经搭建起博客，进行一些基本配置，设置了主题，并学会了怎么发表文章。</p>
+
       
     </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
+    
+    
+    
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-
-
-    
-      
-
-  
-  
-
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/7dbb5353.html">
 
-    
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/25/jQuery/jQuery技巧/" itemprop="url">
-                  jQuery技巧
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/7dbb5353.html" class="post-title-link" itemprop="url">jQuery性能优化常用策略</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-08-25T00:00:00+08:00" content="2015-08-25">
-              2015-08-25
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2015-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-26T00:00:00Z">2015-08-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/jQuery/" itemprop="url" rel="index">
                     <span itemprop="name">jQuery</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
+            <span id="/archives/7dbb5353.html" class="post-meta-item leancloud_visitors" data-flag-title="jQuery性能优化常用策略" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
 
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2015/08/25/jQuery/jQuery技巧/"class="leancloud_visitors" data-flag-title="jQuery技巧"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
+          <h4 id="写在前面">写在前面</h4>
+<p>如果你不会原生js，只会用jquery，那么你必须懂得jquery如何做性能优化。下面我总结了一些常用的，希望对大家有些帮助。</p>
+<h5 id="使用最新的jQuery类库">使用最新的jQuery类库</h5>
+<h5 id="使用合适的选择器">使用合适的选择器</h5>
+<blockquote>
+<p>(1) 使用id来定位DOM元素是最高效的方式，如果不能直接用id找到你需要的元素，可以考虑用find()方法。<br>
+(2) 标签选择器的性能也是不错的，它是性能优化的第二选择，因为jQuery将直接调用本地方法document.getElementByTagName()来定位DOM元素。<br>
+(3) 对于类选择器，现代浏览器和IE9+ 支持本地方法document.getElementByClassName(),而对于老的浏览器如IE8 以及以前的版本，只能靠使用DOM 搜索方式来实现，这无疑对性能产生较大的影响，所以建议大家有选择性的使用它。<br>
+(4) 属性选择器无法直接实现，大多都是使用DOM搜索方式来达到效果，很多现代浏览器支持querySelectorAll()方法，但是不同的浏览器的性能还是不一样的，总的来说，使用这种方式性能并不是非常理想。所以尽量避免使用这种有害性能的方式。<br>
+(5) 伪类选择器也同样无法直接实现，jQuery需要搜索每一个元素来定位这个元素，这将是对性能造成较大的消耗，尽量不要使用，如果非用不可，就先用ID 选择器定位父元素，然后再使用该选择器。<br>
+注意：尽量使用ID选择器，尽量给选择器指定上下文。</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/archives/7dbb5353.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
-          
-          禁用页面的右击菜单12345$(function()&#123;    $(document).on('contextmenu',function(e)&#123;       return false;     &#125;);&#125;);
-新窗口打开页面123456789$(function()&#123;    //例子1:href="http://"的超链接将会在新窗口打开链接    $('a[href^="http://"]').attr('target','_blank');    //例子2:rel="external"的超链接将会在新窗口打开链接    $('#a[rel$="external"]').on('click',function()&#123;        this.target="_blank";    &#125;);&#125;);
-判断浏览器类型1234567891011121314151617181920212223242526$(function()&#123;    //Firefox 2 and above    if($.support.mozilla &amp;&amp; $.support.version&gt;='1.8')&#123;        //do something    &#125;    //Safari    if($.support.safari)&#123;        //do something    &#125;    //Chrome    if($.support.chrome)&#123;        //do something    &#125;    //Opera    if($.support.opera)&#123;        //do something    &#125;    //IE6 and below    if($.support.msie &amp;&amp; $.support.version&lt;=6)&#123;        //do something    &#125;    //anything above IE6    if($.support.msie &amp;&amp; $.support.version&gt;6
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/08/25/jQuery/jQuery技巧/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
 
     
-  </section>
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/b9c3328.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/b9c3328.html" class="post-title-link" itemprop="url">jQuery技巧</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-08-25 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-25T00:00:00Z">2015-08-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/b9c3328.html" class="post-meta-item leancloud_visitors" data-flag-title="jQuery技巧" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h5 id="禁用页面的右击菜单">禁用页面的右击菜单</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="built_in">document</span>).on(<span class="string">'contextmenu'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">false</span>; </span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="新窗口打开页面">新窗口打开页面</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//例子1:href="http://"的超链接将会在新窗口打开链接</span></span><br><span class="line">    $(<span class="string">'a[href^="http://"]'</span>).attr(<span class="string">'target'</span>,<span class="string">'_blank'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//例子2:rel="external"的超链接将会在新窗口打开链接</span></span><br><span class="line">    $(<span class="string">'#a[rel$="external"]'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.target=<span class="string">"_blank"</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="判断浏览器类型">判断浏览器类型</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//Firefox 2 and above</span></span><br><span class="line">    <span class="keyword">if</span>($.support.mozilla &amp;&amp; $.support.version&gt;=<span class="string">'1.8'</span>)&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//Safari</span></span><br><span class="line">    <span class="keyword">if</span>($.support.safari)&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//Chrome</span></span><br><span class="line">    <span class="keyword">if</span>($.support.chrome)&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//Opera</span></span><br><span class="line">    <span class="keyword">if</span>($.support.opera)&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//IE6 and below</span></span><br><span class="line">    <span class="keyword">if</span>($.support.msie &amp;&amp; $.support.version&lt;=<span class="number">6</span>)&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//anything above IE6</span></span><br><span class="line">    <span class="keyword">if</span>($.support.msie &amp;&amp; $.support.version&gt;<span class="number">6</span>)&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="输入框文字获取和失去焦点">输入框文字获取和失去焦点</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'input.text1'</span>).val(<span class="string">"Enter your search text here"</span>);</span><br><span class="line">    textFill($(<span class="string">'input.text1'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//input focus text function</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">textFill</span>(<span class="params">input</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> originalvalue=input.val();</span><br><span class="line">    input.focus(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>($.trim(input.val())===originalvalue)&#123;</span><br><span class="line">            input.val();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).blur(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>($.trim(input.val()===<span class="string">''</span>))&#123;</span><br><span class="line">            input.val(originalvalue);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="返回头部滑动动画">返回头部滑动动画</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">jQuery.fn.scrollTo=<span class="function"><span class="keyword">function</span>(<span class="params">speed</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> targetOffset=$(<span class="keyword">this</span>).offset().top;</span><br><span class="line">    $(<span class="string">'html.body'</span>).stop().animate(&#123;<span class="attr">scrollTop</span>:targetOffset&#125;,speed);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// use</span></span><br><span class="line">$(<span class="string">'#goheader'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'body'</span>).scrollTo(<span class="number">500</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="获取鼠标位置">获取鼠标位置</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="built_in">document</span>).mousemove(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'#XY'</span>).html(<span class="string">"X:"</span>+e.pageX+<span class="string">" | Y:"</span>+e.pageY);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="判断元素是否存在">判断元素是否存在</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>($(<span class="string">'#id'</span>).length)&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="点击div也可以跳转">点击div也可以跳转</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">window</span>.location=$(<span class="keyword">this</span>).find(<span class="string">'a'</span>).attr(<span class="string">'href'</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// use</span></span><br><span class="line">&lt;div&gt;<span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span>&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="设置div在屏幕中央">设置div在屏幕中央</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    jQuery.fn.center=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.css(&#123;</span><br><span class="line">            <span class="string">'position'</span>:’absolute‘,</span><br><span class="line">            <span class="string">'top'</span>:($(<span class="built_in">window</span>).height()-<span class="keyword">this</span>.height())/<span class="number">2</span>+$(<span class="built_in">window</span>).scrollTop()+<span class="string">"px"</span>,</span><br><span class="line">            <span class="string">'left'</span>:($(<span class="built_in">window</span>).width()-<span class="keyword">this</span>.width())/<span class="number">2</span>+$(<span class="built_in">window</span>).scrollLeft()+<span class="string">"px"</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//use</span></span><br><span class="line">    $(<span class="string">'#XY'</span>).center();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="根据浏览器的大小添加不同的样式">根据浏览器的大小添加不同的样式</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">checkWindowSize</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>($(<span class="built_in">window</span>).width()&gt;<span class="number">1200</span>)&#123;</span><br><span class="line">            $(<span class="string">'body'</span>).addClass(<span class="string">'large'</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            $(<span class="string">'body'</span>).removeClass(<span class="string">'large'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    $(<span class="built_in">window</span>).resize(checkWindowSize);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="创建自己的选择器">创建自己的选择器</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $.extend($.expr[<span class="string">':'</span>],&#123;</span><br><span class="line">        moreThen500px:<span class="function"><span class="keyword">function</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> $(a).width()&gt;<span class="number">500</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    $(<span class="string">'.box:moreThen500px'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="关闭所有的动画效果">关闭所有的动画效果</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    jQuery.fn.off=<span class="literal">true</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="检测鼠标的右键还是左键">检测鼠标的右键还是左键</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#XY'</span>).mousedown(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">        alert(e.which) <span class="comment">//1:左键 2:中键 3:右键</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="回车提交表单">回车提交表单</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'input'</span>).keyup(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(e.which===<span class="string">'13'</span>)&#123;</span><br><span class="line">            alert(<span class="string">'回车提交！'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="设置全局Ajax参数">设置全局Ajax参数</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#load'</span>).ajaxStart(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        showLoading();  <span class="comment">//显示loading</span></span><br><span class="line">        disableButtons();   <span class="comment">//禁用按钮</span></span><br><span class="line">    &#125;);</span><br><span class="line">    $(<span class="string">'#load'</span>).ajaxComplete(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        hideLoading();  <span class="comment">//隐藏 loading</span></span><br><span class="line">        enableButtons();    <span class="comment">//启用按钮</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="获取选中的下拉框">获取选中的下拉框</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#someElement'</span>).find(<span class="string">'option:selected'</span>);</span><br><span class="line">$(<span class="string">'#someElement option:selected'</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="切换复选框">切换复选框</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tog=<span class="literal">false</span>;</span><br><span class="line">$(<span class="string">'button'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'input[type=checkbox]'</span>).attr(<span class="string">'checked'</span>,!tog);</span><br><span class="line">    tog=!tog;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="使用siblings-来选择同辈元素">使用siblings()来选择同辈元素</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不这样做</span></span><br><span class="line">$(<span class="string">'#nav li'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#nav li'</span>).removeClass(<span class="string">'active'</span>);</span><br><span class="line">    $(<span class="keyword">this</span>).addClass(<span class="string">'active'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//替代的做法</span></span><br><span class="line">$(<span class="string">'#nav li'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="keyword">this</span>).addClass(<span class="string">'active'</span>).siblings().removeClass(<span class="string">'active'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="在一段时间之后自动隐藏或者关闭元素">在一段时间之后自动隐藏或者关闭元素</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).slideUp(<span class="number">300</span>).delay(<span class="number">3000</span>).fadeIn(<span class="number">400</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="使用Firefox和Firebug来记录事件日志">使用Firefox和Firebug来记录事件日志</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">jQuery.log=jQuery.fn.log=<span class="function"><span class="keyword">function</span>(<span class="params">msg</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">console</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'%s:%o'</span>,msg,<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="为任何与选择器相匹配的元素绑定事件">为任何与选择器相匹配的元素绑定事件</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'table'</span>).on(<span class="string">'click'</span>,<span class="string">'td'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="keyword">this</span>).toggleClass(<span class="string">'hover'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="使用CSS钩子">使用CSS钩子</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$.cssHooks[<span class="string">'borderRadius'</span>]=&#123;</span><br><span class="line">    <span class="keyword">get</span>:function(elem,computed,extra)&#123;</span><br><span class="line">        <span class="comment">//depending on browser,read the value of -moz-,-webkit-,-o-...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span>:function(elem,value)&#123;</span><br><span class="line">        <span class="comment">//set the appropriate css3 property</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//use</span></span><br><span class="line">$(<span class="string">'#reset'</span>).css(<span class="string">'borderRadius'</span>,<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="proxy-的使用">$.proxy()的使用</h5>
+<p>使用回调方法的缺点之一是当执行类库中的方法后，上下文对象this被设置到另外一个元素，而使用$.proxy()可以解决这个问题，代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#panel'</span>).fadeIn(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//Using $.proxy:</span></span><br><span class="line">    $(<span class="string">'#panel button'</span>).click($.proxy(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//this 指向 #panel</span></span><br><span class="line">        $(<span class="keyword">this</span>).fadeOut();</span><br><span class="line">    &#125;,<span class="keyword">this</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="限制Text-Area域中的字符个数">限制Text-Area域中的字符个数</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">jQuery.fn.maxLength=<span class="function"><span class="keyword">function</span>(<span class="params">max</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> type=<span class="keyword">this</span>.tagName.toLowerCase();</span><br><span class="line">        <span class="keyword">var</span> inputType=<span class="keyword">this</span>.type?<span class="keyword">this</span>.type.toLowerCase():<span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span>(type===<span class="string">"input"</span> &amp;&amp; inputType===<span class="string">"text"</span> || inputType===<span class="string">"password"</span>)&#123;</span><br><span class="line">            <span class="comment">//应用标准的maxLength</span></span><br><span class="line">            <span class="keyword">this</span>.maxLength=max;e</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(type===<span class="string">"textarea"</span>)&#123;</span><br><span class="line">            <span class="keyword">this</span>.onkeypress=<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">var</span> ob=e||event;</span><br><span class="line">                <span class="keyword">var</span> keyCode=ob.keyCode;</span><br><span class="line">                <span class="keyword">var</span> hasSlection=<span class="built_in">document</span>.selection?<span class="built_in">document</span>.selection.createRange().text.length&gt;<span class="number">0</span>:<span class="keyword">this</span>.selectionStart!==<span class="keyword">this</span>.selectionEnd;</span><br><span class="line">                <span class="keyword">return</span> !(<span class="keyword">this</span>.value.length&gt;==max &amp;&amp; (keyCode&gt;<span class="number">50</span> || keyCode===<span class="number">32</span> || keyCode===<span class="number">0</span> || keyCode===<span class="number">13</span>) &amp;&amp; !ob.ctrlKey &amp;&amp; !ob.altKey &amp;&amp; !hasSlection);</span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="keyword">this</span>.onkeyup=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="keyword">this</span>.value.length&gt;max)&#123;</span><br><span class="line">                    <span class="keyword">this</span>.value=<span class="keyword">this</span>.value.substring(<span class="number">0</span>,max);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//use</span></span><br><span class="line">$(<span class="string">'#mytextarea'</span>).maxLength(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="本地存储">本地存储</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localStorage.someData=<span class="string">"This is going to be saved"</span>;</span><br></pre></td></tr></table></figure>
+<h5 id="解析json数据时报parseError错误">解析json数据时报parseError错误</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.4之前版本，key没引号，这样没问题</span></span><br><span class="line">&#123;</span><br><span class="line">    key:<span class="string">"123"</span>,</span><br><span class="line">    status:<span class="string">"0"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//升级成jQuery1.4之后，都必须加上双引号，格式如下：</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"key"</span>:<span class="string">"123"</span>,</span><br><span class="line">    <span class="string">"status"</span>:<span class="string">"0"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="从元素中除去HTML">从元素中除去HTML</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</span><br><span class="line">    $.fn.stripHtml=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> regExp=<span class="regexp">/&lt;("[^"]*"|'[^']*'|[^'"&gt;])*&gt;/gi</span>;</span><br><span class="line">        <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            $(<span class="keyword">this</span>).html($(<span class="keyword">this</span>).html().replace(regExp,<span class="string">''</span>));</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> $(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)(jQuery);</span><br><span class="line"><span class="comment">//use</span></span><br><span class="line">$(<span class="string">'div'</span>).stripHtml();</span><br></pre></td></tr></table></figure>
+<h5 id="拓展String对象的方法">拓展String对象的方法</h5>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">$.extend(<span class="built_in">String</span>.prototype,&#123;</span><br><span class="line">    isPositiveInteger:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/^[1-9]\d/</span>).test(<span class="keyword">this</span>));</span><br><span class="line">    &#125;,</span><br><span class="line">    isInteger:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/^\d+$/</span>).test(<span class="keyword">this</span>));</span><br><span class="line">    &#125;,</span><br><span class="line">    isNumber:<span class="function"><span class="keyword">function</span>(<span class="params">value,element</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/^-?(?:\d+|\d&#123;1,3&#125;(?:,\d&#123;3&#125;)+)(?:\.\d+)?$/</span>).test(<span class="keyword">this</span>));</span><br><span class="line">    &#125;,</span><br><span class="line">    trim:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.replace(<span class="regexp">/(^\s*)|(\s*$)|\r|\n/g</span>,<span class="string">""</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    trans:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.replace(<span class="regexp">/&amp;lt;/g</span>,<span class="string">'&lt;'</span>).replace(<span class="regexp">/&amp;gt;/g</span>,<span class="string">'&gt;'</span>).replace(<span class="regexp">/&amp;quot;/g</span>,<span class="string">'"'</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    replaceAll:<span class="function"><span class="keyword">function</span>(<span class="params">os,ns</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.replace(<span class="keyword">new</span> <span class="built_in">RegExp</span>(os,<span class="string">"gm"</span>),ns);</span><br><span class="line">    &#125;,</span><br><span class="line">    skipChar:<span class="function"><span class="keyword">function</span>(<span class="params">ch</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="keyword">this</span> || <span class="keyword">this</span>.length===<span class="number">0</span>)&#123;<span class="keyword">return</span> <span class="string">''</span>;&#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.charAt(<span class="number">0</span>)===ch)&#123;<span class="keyword">return</span> <span class="keyword">this</span>.substring(<span class="number">1</span>).skipChar(ch);&#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    isValidPwd:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/^([_]|[a-zA-Z0-9])&#123;6,32&#125;$/</span>).test(<span class="keyword">this</span>));</span><br><span class="line">    &#125;,</span><br><span class="line">    isValidMail:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/</span>).test(<span class="keyword">this</span>.trim()));</span><br><span class="line">    &#125;,</span><br><span class="line">    isSpaces:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,length=<span class="keyword">this</span>.length;i&lt;length;i++)&#123;</span><br><span class="line">            <span class="keyword">var</span> ch=<span class="keyword">this</span>.charAt(i);</span><br><span class="line">            <span class="keyword">if</span>(ch!=<span class="string">' '</span> &amp;&amp; ch!=<span class="string">"\n"</span> &amp;&amp; ch!=<span class="string">"\t"</span> &amp;&amp; ch!=<span class="string">"\r"</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    isPhone:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/(^([0-9]&#123;3,4&#125;[-])?\d&#123;3,8&#125;(-\d&#123;1,6&#125;)?$)|(^\([0-9]&#123;3,4&#125;\)\d&#123;3,8&#125;(\(\d&#123;1,6&#125;\))?$)|(^\d&#123;3,8&#125;$)/</span>).test(<span class="keyword">this</span>));</span><br><span class="line">    &#125;,</span><br><span class="line">    isUrl:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/^[a-zA-Z]+:\/\/([a-zA-Z0-9\-\.]+)(-\w .\/?%&amp;=:]*)$/</span>).test(<span class="keyword">this</span>));</span><br><span class="line">    &#125;,</span><br><span class="line">    isExternalUrl:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.isUrl() &amp;&amp; <span class="keyword">this</span>.indexOf(<span class="string">"://"</span>+<span class="built_in">document</span>.domain)===<span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//use</span></span><br><span class="line">$(<span class="string">'input'</span>).val().isInteger();</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span>
+    <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span>
   </nav>
 
 
@@ -635,445 +798,704 @@
           </div>
           
 
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/img/avatar.jpg"
-               alt="曹强" />
-          <p class="site-author-name" itemprop="name">曹强</p>
-          <p class="site-description motion-element" itemprop="description">caoqiang's blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">83</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">14</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/ronghuaxueleng" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-      </section>
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">曹强</span>
-</div>
-
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
-
-<!-- 不蒜子 -->
-<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_pv" style="display:none">
-  本站总访问量<span id="busuanzi_value_site_pv"></span>人次
-</span>
-<!-- 不蒜子计数初始值纠正 -->
-<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function() {
-        var int = setInterval(fixCount, 100);
-        var busuanziSiteOffset = parseInt(1203);
-        function fixCount() {
-            if ($("#busuanzi_container_site_pv").css("display") != "none") {
-                clearInterval(int);
-                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
-            }
-        }
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
     });
-</script>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
   }
 </script>
 
-
-
-
-
-
-
-
-
+        </div>
+          
   
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="曹强"
+      src="/img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">曹强</p>
+  <div class="site-description" itemprop="description">caoqiang's blog | java |前端 | PHP |nodeJs | python</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
 
 
 
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+      <div class="links-of-blogroll-title">
+        <!-- modify icon to fire by szw -->
+        <i class="fa fa-history fa-" aria-hidden="true"></i>
+        近期文章
+      </div>
+      <ul class="links-of-blogroll-list">
+        
+        
+          <li>
+            <a href="/archives/2fd7dbc7.html" title="Shadow DOM" target="_blank">Shadow DOM</a>
+          </li>
+        
+          <li>
+            <a href="/archives/b4a56055.html" title="可视化埋点" target="_blank">可视化埋点</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a5431a21.html" title="从 JavaScript 数组去重谈性能优化" target="_blank">从 JavaScript 数组去重谈性能优化</a>
+          </li>
+        
+      </ul>
+    </div>
+
+
+<div style="">
+  <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
+
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
   
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">318k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:49</span>
+</div>
 
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
-
-
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-   
-     
-   
-  
- 
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
 
 
-  
 
-
-
-
-  
-  
-
-  
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
   <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
       });
 
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
           if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
             return;
           }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
           }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
             }
           }
         })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
         });
     }
+  }
 
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
+  fetch('https://app-router.leancloud.cn/2/route?appId=bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz',
+            'X-LC-Key': '9kCQuNi7NFq5MdDBn9J1Xj1r',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
         addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
         showTime(Counter);
       }
     });
   </script>
 
 
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 
   
-  
-    <!-- custom analytics part create by xiamo -->
-<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-<script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout: 3000,
+        priority: true,
+        ignores: [uri => uri.includes('#'),uri => uri == 'http://ronghuaxueleng.github.io/page/17/',]
+      });
+      });
+  </script>
+
+
+  <script async src="/blog/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/blog/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div class="moon-menu-item" onclick="back2bottom()">
+      <i class="fa fa-chevron-down"></i>
+    </div>
+    
+    <div class="moon-menu-item" onclick="back2top()">
+      <i class="fa fa-chevron-up"></i>
+    </div>
+    
+  </div>
+  <div class="moon-menu-button" onclick="moonMenuClick()">
+    <svg class="moon-menu-svg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+      <g class="moon-menu-points">
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
+        <circle class="moon-menu-point" r=".2rem"></circle>
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
+      </g>
+    </svg>
+    <div class="moon-menu-icon">
+    </div>
+    <div class="moon-menu-text">
+    </div>
+  </div>
+</div>
+
 <script>
-function showTime(Counter) {
-	var query = new AV.Query(Counter);
-	$(".leancloud_visitors").each(function() {
-		var url = $(this).attr("id").trim();
-		query.equalTo("url", url);
-		query.find({
-			success: function(results) {
-				if (results.length == 0) {
-					var content = '0';
-					$(document.getElementById(url)).text(content);
-					return;
-				}
-				for (var i = 0; i < results.length; i++) {
-					var object = results[i];
-					var content = object.get('time');
-					$(document.getElementById(url)).text(content);
-				}
-			},
-			error: function(object, error) {
-				console.log("Error: " + error.code + " " + error.message);
-			}
-		});
 
-	});
-}
+  const moonMenuListener = function () {
 
-function addCount(Counter) {
-	var Counter = AV.Object.extend("Counter");
-	url = $(".leancloud_visitors").attr('id').trim();
-	title = $(".leancloud_visitors").attr('data-flag-title').trim();
-	var query = new AV.Query(Counter);
-	query.equalTo("url", url);
-	query.find({
-		success: function(results) {
-			if (results.length > 0) {
-				var counter = results[0];
-				counter.fetchWhenSave(true);
-				counter.increment("time");
-				counter.save(null, {
-					success: function(counter) {
-						var content =  counter.get('time');
-						$(document.getElementById(url)).text(content);
-					},
-					error: function(counter, error) {
-						console.log('Failed to save Visitor num, with error message: ' + error.message);
-					}
-				});
-			} else {
-				var newcounter = new Counter();
-				newcounter.set("title", title);
-				newcounter.set("url", url);
-				newcounter.set("time", 1);
-				newcounter.save(null, {
-					success: function(newcounter) {
-					    console.log("newcounter.get('time')="+newcounter.get('time'));
-						var content = newcounter.get('time');
-						$(document.getElementById(url)).text(content);
-					},
-					error: function(newcounter, error) {
-						console.log('Failed to create');
-					}
-				});
-			}
-		},
-		error: function(error) {
-			console.log('Error:' + error.code + " " + error.message);
-		}
-	});
-}
-$(function() {
-	var Counter = AV.Object.extend("Counter");
-	if ($('.leancloud_visitors').length == 1) {
-		addCount(Counter);
-	} else if ($('.post-title-link').length > 1) {
-		showTime(Counter);
-	}
-}); 
+    //Get scroll percent
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+    let percent = Math.round(scrollTop / (scrollHeight - offsetHeight) * 100);
+    if (percent > 100) percent = 100;
+
+    let menuText = document.querySelector('.moon-menu-text');
+    let menuPoints = document.querySelector('.moon-menu-points');
+    if (!percent) {
+      percent = 0;
+      menuText.style.display = 'none';
+      menuPoints.style.display = 'block';
+    } else {
+      menuText.style.display = 'block';
+      menuPoints.style.display = 'none';
+      menuText.innerHTML = percent + '%';
+    }
+
+    //Update strokeDasharray
+    let length = 196;
+    document.querySelector('.moon-menu-border').style.strokeDasharray = percent * length / 100 + ' ' + length;
+
+  }
+
+  window.addEventListener('load', () => {
+    moonMenuListener();
+  });
+  window.addEventListener('scroll', moonMenuListener);
+
+  const moonMenuClick = function () {
+    let items = document.querySelector('.moon-menu-items')
+    items.classList.toggle('active');
+    let points = document.querySelectorAll('.moon-menu-point');
+    let childItems = document.querySelectorAll('.moon-menu-item');
+    if (items.classList.contains('active')) {
+      points[0].setAttribute("cx", "-.8rem");
+      points[0].setAttribute("cy", "0");
+      points[2].setAttribute("cx", ".8rem");
+      points[2].setAttribute("cy", "0");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = -3 - 3 * i + 'rem';
+        childItems[i].style.opacity = .9;
+      }
+    } else {
+      points[0].setAttribute("cx", "0");
+      points[0].setAttribute("cy", "-.8rem");
+      points[2].setAttribute("cx", "0");
+      points[2].setAttribute("cy", ".8rem");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = '1rem';
+        childItems[i].style.opacity = 0;
+      }
+    }
+  };
+
+  const back2top = () => {
+    window.scroll({ top: 0, behavior: 'smooth' });
+  }
+
+  const back2bottom = () => {
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    window.scroll({ top: (scrollHeight - offsetHeight), behavior: 'smooth' });
+  }
+
 </script>
-  
-
 </body>
 </html>

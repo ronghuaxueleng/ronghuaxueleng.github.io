@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://ronghuaxueleng.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="参考原文：https:&#x2F;&#x2F;github.com&#x2F;angular-ui&#x2F;ui-router&#x2F;wiki&#x2F;URL-Routing 在你的应用中大多数状态都有与其相关联的 url，路由控制不是设计完成 state 之后的事后想法，而是开始开发时就应该考虑的问题。 这里是如何设置一个基本url。 12345$stateProvider    .state(&#39;contacts&#39;, &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习 ui-router - 路由控制">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/a0250973.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="参考原文：https:&#x2F;&#x2F;github.com&#x2F;angular-ui&#x2F;ui-router&#x2F;wiki&#x2F;URL-Routing 在你的应用中大多数状态都有与其相关联的 url，路由控制不是设计完成 state 之后的事后想法，而是开始开发时就应该考虑的问题。 这里是如何设置一个基本url。 12345$stateProvider    .state(&#39;contacts&#39;, &amp;#123;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-08-06T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-06T11:58:28.069Z">
+<meta property="article:author" content="曹强">
+<meta property="article:tag" content="angularjs">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://ronghuaxueleng.github.io/archives/a0250973.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>学习 ui-router - 路由控制 | 白云雅阁</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">白云雅阁</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一切都是最好的安排</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/a0250973.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          学习 ui-router - 路由控制
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-06 00:00:00" itemprop="dateCreated datePublished" datetime="2016-08-06T00:00:00Z">2016-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:28" itemprop="dateModified" datetime="2020-03-06T11:58:28Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/angularjs/" itemprop="url" rel="index">
+                    <span itemprop="name">angularjs</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/a0250973.html" class="post-meta-item leancloud_visitors" data-flag-title="学习 ui-router - 路由控制" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>参考原文：<a href="https://github.com/angular-ui/ui-router/wiki/URL-Routing" target="_blank" rel="noopener">https://github.com/angular-ui/ui-router/wiki/URL-Routing</a></p>
+<p>在你的应用中大多数状态都有与其相关联的 url，路由控制不是设计完成 state 之后的事后想法，而是开始开发时就应该考虑的问题。</p>
+<p>这里是如何设置一个基本url。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider</span><br><span class="line">    .state(<span class="string">'contacts'</span>, &#123;</span><br><span class="line">        url: <span class="string">"/contacts"</span>,</span><br><span class="line">        templateUrl: <span class="string">'contacts.html'</span></span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<p>当我们访问<code>index.html/contacts</code>时， <code>'contacts'</code>状态将被激活，同时<code>index.html</code>中的<code>ui-view</code>将被<code>'contacts.html'</code>填充。或者，通过<code>transitionTo('contacts')</code>方法将状态转变到<code>'contacts'</code>状态，同时 url 将更新为<code>index.html/contacts</code>。</p>
+<a id="more"></a>
+<h2 id="URL参数">URL参数</h2>
+<h3 id="基本参数">基本参数</h3>
+<p>通常，url动态部分被称为参数，有几个选项用于指定参数。基本参数如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider</span><br><span class="line">    .state(<span class="string">'contacts.detail'</span>, &#123;</span><br><span class="line">        <span class="comment">// 这里设置了url参数</span></span><br><span class="line">        url: <span class="string">"/contacts/:contactId"</span>,</span><br><span class="line">        templateUrl: <span class="string">'contacts.detail.html'</span>,</span><br><span class="line">        controller: <span class="function"><span class="keyword">function</span> (<span class="params">$stateParams</span>) </span>&#123;</span><br><span class="line">            <span class="comment">// If we got here from a url of /contacts/42</span></span><br><span class="line">            expect($stateParams).toBe(&#123;<span class="attr">contactId</span>: <span class="number">42</span>&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<p>或者，你也可以使用花括号的方式来指定参数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 与前面的设置方法等效</span></span><br><span class="line">url: <span class="string">"/contacts/&#123;contactId&#125;"</span></span><br></pre></td></tr></table></figure>
+<p><strong>示例：</strong></p>
+<ul>
+<li><code>'/hello/'</code> - 只匹配<code>'/hello/'</code>路径，没有对斜杠进行特殊处理，这种模式将匹配整个路径，而不仅仅是一个前缀。</li>
+<li><code>'/user/:id'</code> - 匹配<code>'/user/bob'</code>、<code>'/user/1234!!!'</code>，甚至还匹配 <code>'/user/'</code>，但是不匹配<code>'/user'</code>和<code>'/user/bob/details'</code>。第二个路径段将被捕获作为参数<code>&quot;id&quot;</code>。</li>
+<li><code>'/user/{id}'</code> - 与前面的示例相同,但使用花括号语法。</li>
+</ul>
+<h3 id="含正则表达式的参数">含正则表达式的参数</h3>
+<p>使用花括号的方式可以设置一个正则表达式规则的参数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只会匹配 contactId 为1到8位的数字</span></span><br><span class="line">url: <span class="string">"/contacts/&#123;contactId:[0-9]&#123;1,8&#125;&#125;"</span></span><br></pre></td></tr></table></figure>
+<p><strong>示例：</strong></p>
+<ul>
+<li><code>'/user/{id:[^/]*}'</code> - 与<code>'/user/{id}'</code>相同</li>
+<li><code>'/user/{id:[0-9a-fA-F]{1,8}}'</code> - 与前面的示例相似，但只匹配1到8为的数字和字符</li>
+<li><code>'/files/{path:.*}'</code> - 匹配任何以<code>'/files/'</code>开始的URL路径，并且捕获剩余路径到参数<code>'path'</code>中。</li>
+<li><code>'/files/*path'</code> - 与前面相同，捕获所有特殊的语法。</li>
+</ul>
+<p>**警告：**不要把捕获圆括号写进正则表达式，ui-router 的 UrlMatcher 将为整个正则表达式添加捕获。</p>
+<h3 id="Query-Parameters">Query Parameters</h3>
+<p>可以通过<code>?</code>来指定参数作为查询参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">url: <span class="string">"/contacts?myParam"</span></span><br><span class="line"><span class="comment">// 匹配 "/contacts?myParam=value"</span></span><br></pre></td></tr></table></figure>
+<p>如果你需要不止一个查询参数，请用<code>&amp;</code>分隔：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">url: <span class="string">"/contacts?myParam1&amp;myParam2"</span></span><br><span class="line"><span class="comment">// 匹配 "/contacts?myParam1=value1&amp;myParam2=wowcool"</span></span><br></pre></td></tr></table></figure>
+<h2 id="嵌套状态的路由控制">嵌套状态的路由控制</h2>
+<h3 id="附加的方式（默认）">附加的方式（默认）</h3>
+<p>在嵌套状态的路由控制中，默认方式是子状态的 url 附加到父状态的 url 之后。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider</span><br><span class="line">  .state(<span class="string">'contacts'</span>, &#123;</span><br><span class="line">     url: <span class="string">'/contacts'</span>,</span><br><span class="line">     ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .state(<span class="string">'contacts.list'</span>, &#123;</span><br><span class="line">     url: <span class="string">'/list'</span>,</span><br><span class="line">     ...</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p>路由将成为：</p>
+<ul>
+<li><code>'contacts'</code>状态将匹配<code>&quot;/contacts&quot;</code></li>
+<li><code>'contacts.list'</code>状态将匹配<code>&quot;/contacts/list&quot;</code>。子状态的url是附在父状态的url之后的。</li>
+</ul>
+<h3 id="绝对路由（-）">绝对路由（^）</h3>
+<p>如果你使用绝对 url 匹配的方式，那么你需要给你的url字符串加上特殊符号<code>&quot;^&quot;</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider</span><br><span class="line">  .state(<span class="string">'contacts'</span>, &#123;</span><br><span class="line">     url: <span class="string">'/contacts'</span>,</span><br><span class="line">     ...</span><br><span class="line">  &#125;)</span><br><span class="line">  .state(<span class="string">'contacts.list'</span>, &#123;</span><br><span class="line">     url: <span class="string">'^/list'</span>,</span><br><span class="line">     ...</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p>路由将成为：</p>
+<ul>
+<li><code>'contacts'</code>状态将匹配<code>&quot;/contacts&quot;</code></li>
+<li><code>'contacts.list'</code>状态将匹配<code>&quot;/list&quot;</code>。子状态的url没有附在父状态的url之后的，因为使用了<code>^</code>。</li>
+</ul>
+<h2 id="stateParams-服务">$stateParams 服务</h2>
+<p>之前看到的<code>$stateParams</code>服务是一个对象，包含 url 中每个参数的键/值。<code>$stateParams</code>可以为控制器或者服务提供 url 的各个部分。<br>
+<strong>注意：</strong><code>$stateParams</code>服务必须与一个控制器相关，并且<code>$stateParams</code>中的“键/值”也必须事先在那个控制器的<code>url</code>属性中有定义。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果状态中 url 属性是：</span></span><br><span class="line">url: <span class="string">'/users/:id/details/&#123;type&#125;/&#123;repeat:[0-9]+&#125;?from&amp;to'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 当浏览</span></span><br><span class="line"><span class="string">'/users/123/details//0'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// $stateParams 对象将是</span></span><br><span class="line">&#123; <span class="attr">id</span>:<span class="string">'123'</span>, <span class="attr">type</span>:<span class="string">''</span>, <span class="attr">repeat</span>:<span class="string">'0'</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当浏览</span></span><br><span class="line"><span class="string">'/users/123/details/default/0?from=there&amp;to=here'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// $stateParams 对象将是</span></span><br><span class="line">&#123; <span class="attr">id</span>:<span class="string">'123'</span>, <span class="attr">type</span>:<span class="string">'default'</span>, <span class="attr">repeat</span>:<span class="string">'0'</span>, <span class="attr">from</span>:<span class="string">'there'</span>, <span class="attr">to</span>:<span class="string">'here'</span> &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用-stateParams的两个陷阱">使用<code>$stateParams</code>的两个陷阱</h3>
+<ul>
+<li>只有当状态被激活并且状态的所有依赖项都被注入时，<code>$stateParams</code>对象才存在。这代表你不能再状态的<code>resolve</code>函数中使用<code>$stateParams</code>对象，可以使用<code>$state.current.params</code>来代替。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider.state(<span class="string">'contacts.detail'</span>, &#123;  </span><br><span class="line">   resolve: &#123; </span><br><span class="line">      someResolve: <span class="function"><span class="keyword">function</span>(<span class="params">$state</span>)</span>&#123; </span><br><span class="line">         <span class="comment">//*** 不能在这里使用 $stateParams , the service is not ready ***//</span></span><br><span class="line">         <span class="comment">//*** 使用 $state.current.params 来代替 ***//</span></span><br><span class="line">         <span class="keyword">return</span> $state.current.params.contactId + <span class="string">"!"</span> </span><br><span class="line">      &#125;; </span><br><span class="line">   &#125;,</span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在状态控制器中，<code>$stateParams</code>对象只包含那些在状态中定义的参数，因此你不能访问在其他状态或者祖先状态中定义的参数。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider.state(<span class="string">'contacts.detail'</span>, &#123;</span><br><span class="line">   url: <span class="string">'/contacts/:contactId'</span>,   </span><br><span class="line">   controller: <span class="function"><span class="keyword">function</span>(<span class="params">$stateParams</span>)</span>&#123;</span><br><span class="line">      $stateParams.contactId  <span class="comment">//*** Exists! ***//</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;).state(<span class="string">'contacts.detail.subitem'</span>, &#123;</span><br><span class="line">   url: <span class="string">'/item/:itemId'</span>, </span><br><span class="line">   controller: <span class="function"><span class="keyword">function</span>(<span class="params">$stateParams</span>)</span>&#123;</span><br><span class="line">      $stateParams.contactId <span class="comment">//*** 注意! DOESN'T EXIST!! ***//</span></span><br><span class="line">      $stateParams.itemId <span class="comment">//*** Exists! ***//  </span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="urlRouterProvider">$urlRouterProvider</h2>
+<p><code>$urlRouterProvider</code>负责处理在状态配置中指定的url路由方式之外的 url 请求的路由方式。<code>$urlRouterProvider</code>负责监视<code>$location</code>，当<code>$location</code>改变后，<code>$urlRouterProvider</code>将从一个列表，一个接一个查找匹配项，直到找到。所有 url 都编译成一个<code>UrlMatcher</code>对象。</p>
+<p><code>$urlRouterProvider</code>有一些实用的方法，可以在<code>module.config</code>中直接使用。</p>
+<p><strong><code>when()</code> for redirection 重定向</strong></p>
+<p>参数：</p>
+<ul>
+<li><code>what</code> <strong>String | RegExp | UrlMatcher</strong>，你想重定向的传入路径</li>
+<li><code>handler</code> <strong>String | Function</strong> 将要重定向到的路径</li>
+</ul>
+<p><code>handler</code> 作为 <strong>String</strong><br>
+如果<code>handler</code>是字符串，它被视为一个重定向，并且根据匹配语法决定重定向的地址。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">app.config(<span class="function"><span class="keyword">function</span>(<span class="params">$urlRouterProvider</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// when there is an empty route, redirect to /index   </span></span><br><span class="line">    $urlRouterProvider.when(<span class="string">''</span>, <span class="string">'/index'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// You can also use regex for the match parameter</span></span><br><span class="line">    $urlRouterProvider.when(<span class="string">'/aspx/i'</span>, <span class="string">'/index'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><code>handler</code> 作为 <strong>Function</strong><br>
+如果<code>handler</code>是一个函数，这个函数是注入一些服务的。如果<code>$location</code>匹配成功，函数将被调用。你可以选择性注入<code>$match</code>。</p>
+<p>函数可以返回：</p>
+<ul>
+<li><strong>falsy</strong> 表明规则不匹配，<code>$urlRouter</code>将试图寻找另一个匹配</li>
+<li><strong>String</strong> 该字符串作为重定向地址并且作为参数传递给<code>$location.url()</code></li>
+<li><strong>nothing</strong>或者任何为真的值，告诉<code>$urlRouter</code>url 已经被处理</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$urlRouterProvider.when(state.url, [<span class="string">'$match'</span>, <span class="string">'$stateParams'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">$match, $stateParams</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> ($state.$current.navigable != state || !equalForKeys($match, $stateParams)) &#123;</span><br><span class="line">        $state.transitionTo(state, $match, <span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure>
+<p><strong><code>otherwise()</code> 无效路由</strong></p>
+<p>参数：</p>
+<ul>
+<li><code>path</code> <strong>String | Function</strong> 你想重定向url路径或者一个函数返回url路径。函数可以包含<code>$injector</code>和<code>$location</code>两个参数。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">app.config(<span class="function"><span class="keyword">function</span>(<span class="params">$urlRouterProvider</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 在配置（状态配置和when()方法）中没有找到url的任何匹配</span></span><br><span class="line">    <span class="comment">// otherwise will take care of routing the user to the specified url</span></span><br><span class="line">    $urlRouterProvider.otherwise(<span class="string">'/index'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Example of using function rule as param</span></span><br><span class="line">    $urlRouterProvider.otherwise(<span class="function"><span class="keyword">function</span>(<span class="params">$injector, $location</span>)</span>&#123;</span><br><span class="line">        ... some advanced code...</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><strong><code>rule()</code> 自定义url处理</strong></p>
+<p>参数：</p>
+<ul>
+<li><code>handler</code> <strong>Function</strong> 一个函数，包含<code>$injector</code>和<code>$location</code>两个服务作为参数，函数负责返回一个有效的路径的字符串。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">app.config(<span class="function"><span class="keyword">function</span>(<span class="params">$urlRouterProvider</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// Here's an example of how you might allow case insensitive urls</span></span><br><span class="line">    $urlRouterProvider.rule(<span class="function"><span class="keyword">function</span> (<span class="params">$injector, $location</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> path = $location.path(), normalized = path.toLowerCase();</span><br><span class="line">        <span class="keyword">if</span> (path != normalized) <span class="keyword">return</span> normalized;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="urlMatcherFactory-和-UrlMatchers">$urlMatcherFactory 和 UrlMatchers</h2>
+<p>定义了url模式和参数占位符的语法。<code>$urlMatcherFactory</code>是在幕后被<code>$urlRouterProvider</code>调用，来缓存编译后的<code>UrlMatcher</code>对象，而不必在每次 location 改变后重新解析url。大多数用户不需要直接使用<code>$urlMatcherFactory</code>方法，但是在状态配置中非常实用，可以使用<code>$urlMatcherFactory</code>方法来生成一个<code>UrlMatcher</code>对象，并在状态配置中使用该对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> urlMatcher = $urlMatcherFactory.compile(<span class="string">"/home/:id?param1"</span>);</span><br><span class="line">$stateProvider.state(<span class="string">'myState'</span>, &#123;</span><br><span class="line">    url: urlMatcher </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章推荐</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\828c261b.html" rel="bookmark">学习 ui-router - 组件</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\e3ced589.html" rel="bookmark">学习 ui-router - 多个命名的视图</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\fa7f8f37.html" rel="bookmark">学习 ui-router - 状态嵌套和视图嵌套</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\54161d18.html" rel="bookmark">学习 ui-router - 管理状态</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\archives\af5e7c72.html" rel="bookmark">学习 ui-router 系列文章索引</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/angularjs/" rel="tag"># angularjs</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/archives/e3ced589.html" rel="prev" title="学习 ui-router - 多个命名的视图">
+      <i class="fa fa-chevron-left"></i> 学习 ui-router - 多个命名的视图
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/archives/828c261b.html" rel="next" title="学习 ui-router - 组件">
+      学习 ui-router - 组件 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#URL参数"><span class="nav-number">1.</span> <span class="nav-text">URL参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本参数"><span class="nav-number">1.1.</span> <span class="nav-text">基本参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#含正则表达式的参数"><span class="nav-number">1.2.</span> <span class="nav-text">含正则表达式的参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Query-Parameters"><span class="nav-number">1.3.</span> <span class="nav-text">Query Parameters</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套状态的路由控制"><span class="nav-number">2.</span> <span class="nav-text">嵌套状态的路由控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#附加的方式（默认）"><span class="nav-number">2.1.</span> <span class="nav-text">附加的方式（默认）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绝对路由（-）"><span class="nav-number">2.2.</span> <span class="nav-text">绝对路由（^）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stateParams-服务"><span class="nav-number">3.</span> <span class="nav-text">$stateParams 服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-stateParams的两个陷阱"><span class="nav-number">3.1.</span> <span class="nav-text">使用$stateParams的两个陷阱</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#urlRouterProvider"><span class="nav-number">4.</span> <span class="nav-text">$urlRouterProvider</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#urlMatcherFactory-和-UrlMatchers"><span class="nav-number">5.</span> <span class="nav-text">$urlMatcherFactory 和 UrlMatchers</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="曹强"
+      src="/img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">曹强</p>
+  <div class="site-description" itemprop="description">caoqiang's blog | java |前端 | PHP |nodeJs | python</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+      <div class="links-of-blogroll-title">
+        <!-- modify icon to fire by szw -->
+        <i class="fa fa-history fa-" aria-hidden="true"></i>
+        近期文章
+      </div>
+      <ul class="links-of-blogroll-list">
+        
+        
+          <li>
+            <a href="/archives/2fd7dbc7.html" title="Shadow DOM" target="_blank">Shadow DOM</a>
+          </li>
+        
+          <li>
+            <a href="/archives/b4a56055.html" title="可视化埋点" target="_blank">可视化埋点</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a5431a21.html" title="从 JavaScript 数组去重谈性能优化" target="_blank">从 JavaScript 数组去重谈性能优化</a>
+          </li>
+        
+      </ul>
+    </div>
+
+
+<div style="">
+  <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
+
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">318k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:49</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
+          }
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz',
+            'X-LC-Key': '9kCQuNi7NFq5MdDBn9J1Xj1r',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout: 3000,
+        priority: true,
+        ignores: [uri => uri.includes('#'),uri => uri == 'http://ronghuaxueleng.github.io/archives/a0250973.html',]
+      });
+      });
+  </script>
+
+
+  <script async src="/blog/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/blog/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div class="moon-menu-item" onclick="back2bottom()">
+      <i class="fa fa-chevron-down"></i>
+    </div>
+    
+    <div class="moon-menu-item" onclick="back2top()">
+      <i class="fa fa-chevron-up"></i>
+    </div>
+    
+  </div>
+  <div class="moon-menu-button" onclick="moonMenuClick()">
+    <svg class="moon-menu-svg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+      <g class="moon-menu-points">
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
+        <circle class="moon-menu-point" r=".2rem"></circle>
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
+      </g>
+    </svg>
+    <div class="moon-menu-icon">
+    </div>
+    <div class="moon-menu-text">
+    </div>
+  </div>
+</div>
+
+<script>
+
+  const moonMenuListener = function () {
+
+    //Get scroll percent
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+    let percent = Math.round(scrollTop / (scrollHeight - offsetHeight) * 100);
+    if (percent > 100) percent = 100;
+
+    let menuText = document.querySelector('.moon-menu-text');
+    let menuPoints = document.querySelector('.moon-menu-points');
+    if (!percent) {
+      percent = 0;
+      menuText.style.display = 'none';
+      menuPoints.style.display = 'block';
+    } else {
+      menuText.style.display = 'block';
+      menuPoints.style.display = 'none';
+      menuText.innerHTML = percent + '%';
+    }
+
+    //Update strokeDasharray
+    let length = 196;
+    document.querySelector('.moon-menu-border').style.strokeDasharray = percent * length / 100 + ' ' + length;
+
+  }
+
+  window.addEventListener('load', () => {
+    moonMenuListener();
+  });
+  window.addEventListener('scroll', moonMenuListener);
+
+  const moonMenuClick = function () {
+    let items = document.querySelector('.moon-menu-items')
+    items.classList.toggle('active');
+    let points = document.querySelectorAll('.moon-menu-point');
+    let childItems = document.querySelectorAll('.moon-menu-item');
+    if (items.classList.contains('active')) {
+      points[0].setAttribute("cx", "-.8rem");
+      points[0].setAttribute("cy", "0");
+      points[2].setAttribute("cx", ".8rem");
+      points[2].setAttribute("cy", "0");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = -3 - 3 * i + 'rem';
+        childItems[i].style.opacity = .9;
+      }
+    } else {
+      points[0].setAttribute("cx", "0");
+      points[0].setAttribute("cy", "-.8rem");
+      points[2].setAttribute("cx", "0");
+      points[2].setAttribute("cy", ".8rem");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = '1rem';
+        childItems[i].style.opacity = 0;
+      }
+    }
+  };
+
+  const back2top = () => {
+    window.scroll({ top: 0, behavior: 'smooth' });
+  }
+
+  const back2bottom = () => {
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    window.scroll({ top: (scrollHeight - offsetHeight), behavior: 'smooth' });
+  }
+
+</script>
+</body>
+</html>

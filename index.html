@@ -1,992 +1,1600 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
 
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://ronghuaxueleng.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
-
-
-
-
-
-
-<meta name="description" content="caoqiang&apos;s blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs">
+  <meta name="description" content="caoqiang&#39;s blog | java |前端 | PHP |nodeJs | python">
 <meta property="og:type" content="website">
 <meta property="og:title" content="白云雅阁">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="caoqiang&apos;s blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs">
+<meta property="og:description" content="caoqiang&#39;s blog | java |前端 | PHP |nodeJs | python">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="曹强">
+<meta property="article:tag" content="java 前端 php nodejs python javascript css html">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白云雅阁">
-<meta name="twitter:description" content="caoqiang&apos;s blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs">
+
+<link rel="canonical" href="http://ronghuaxueleng.github.io/">
 
 
-
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 0,
-      author: '博主'
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false
   };
 </script>
 
+  <title>白云雅阁</title>
+  
 
 
 
-  <link rel="canonical" href="http://ronghuaxueleng.github.io/"/>
 
-  <title> 白云雅阁 </title>
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <a href="https://github.com/ronghuaxueleng">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
-    </a>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">白云雅阁</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">白云雅阁</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一切都是最好的安排</p>
   </div>
-  <p class="site-subtitle">读懂别人的故事，写好自己的人生</p>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
 
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
-  
+  </li>
+  </ul>
+
 </nav>
-
- </div>
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content">
             
-  <section id="posts" class="posts-expand">
-    
-      
 
+  <div class="posts-expand">
+        
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/2fd7dbc7.html">
 
-  
-  
-  
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/09/shadowdom/" itemprop="url">
-                  Shadow DOM
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/2fd7dbc7.html" class="post-title-link" itemprop="url">Shadow DOM</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-09T00:00:00+08:00" content="2017-11-09">
-              2017-11-09
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2017-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2017-11-09T00:00:00Z">2017-11-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/javascript/" itemprop="url" rel="index">
                     <span itemprop="name">javascript</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
+            <span id="/archives/2fd7dbc7.html" class="post-meta-item leancloud_visitors" data-flag-title="Shadow DOM" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
 
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2017/11/09/shadowdom/"class="leancloud_visitors" data-flag-title="Shadow DOM"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
+          <p><img src="http://7vikhl.com1.z0.glb.clouddn.com/shadow-dom.png" alt=""><br>
+Shadow DOM 是四大网络组件标准之一，提供 CSS 作用域、DOM 封装和组合(Composition) 等优势，构建自定义元素。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/archives/2fd7dbc7.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
-          <p><img src="http://7vikhl.com1.z0.glb.clouddn.com/shadow-dom.png" alt=""><br>Shadow DOM 是四大网络组件标准之一，提供 CSS 作用域、DOM 封装和组合(Composition) 等优势，构建自定义元素。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/11/09/shadowdom/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
       
     </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
+    
+    
+    
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-
-
-    
-      
-
-  
-  
-
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/b4a56055.html">
 
-    
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/25/可视化埋点/" itemprop="url">
-                  可视化埋点
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/b4a56055.html" class="post-title-link" itemprop="url">可视化埋点</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-25T14:18:52+08:00" content="2017-10-25">
-              2017-10-25
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2017-10-25 14:18:52" itemprop="dateCreated datePublished" datetime="2017-10-25T14:18:52Z">2017-10-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/javascript/" itemprop="url" rel="index">
                     <span itemprop="name">javascript</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
+            <span id="/archives/b4a56055.html" class="post-meta-item leancloud_visitors" data-flag-title="可视化埋点" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
 
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2017/10/25/可视化埋点/"class="leancloud_visitors" data-flag-title="可视化埋点"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <h3 id="埋点">埋点</h3>
+<blockquote>
+<p>所谓“埋点”，是数据采集领域（尤其是用户行为数据采集领域）的术语，指的是针对特定用户行为或事件进行捕获、处理和发送的相关技术及其实施过程</p>
+</blockquote>
+<p><em><strong>埋点的技术实质</strong></em>，是先监听软件应用运行过程中的事件，当需要关注的事件发生时进行判断和捕获，然后获取必要的上下文信息，最后将信息整理后发送至服务器端。所监听的事件，通常由操作系统、浏览器、APP框架等平台提供，也可以在基础事件之上进行触发条件的自定义（如点击某一个特定按钮）。一般情况下，埋点可以通过监测分析工具提供的SDK来进行编程实现。<br>
+<em><strong>埋点的业务意义显而易见</strong></em>，即帮助定义和获取分析人员真正需要的业务数据及其附带信息。在不同场景下，业务人员关注的信息和角度可能不同。典型的应用场景有面向数字营销领域的分析，以及面向产品运营领域的分析。前者注重来源渠道和广告效果，后者更在意产品本身流程和体验的优化。两者各有侧重，也可以有一些交叉。所以，对于不同的项目和分析目的，应当设计不同的埋点方案。</p>
+<p>近年来，<em>埋点的方法论上也出现了一些业界新趋势</em>，主要分为一下三种：</p>
+<ul>
+<li><em><strong>代码埋点</strong></em> 在需要埋点的节点直接调用接口上传数据，代表方友盟。</li>
+<li><em><strong>可视化埋点</strong></em> 通过可视化工具配置采集节点，在前端自动解析配置并上报埋点数据，代表方案是已经开源的<a href="https://github.com/mixpanel" target="_blank" rel="noopener">Mixpanel</a>。</li>
+<li><em><strong>无埋点</strong></em> 并不是没有埋点，而是在前端采集所有数据并上报，然后在后端通过计算过滤出有用的数据，代表是国内的GrowingIO。</li>
+</ul>
+<p>三种埋点的对比：</p>
+<table>
+<thead>
+<tr>
+<th>埋点方式</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码埋点</td>
+<td>技术实现难度低，数据实时性好</td>
+<td>开发效率低，难于维护，数据准确性依赖于埋点的正确性，APP端依赖于发版，不具备热更新能力；web端热更新能力差。</td>
+</tr>
+<tr>
+<td>可视化埋点</td>
+<td>开发效率高，易于维护</td>
+<td>技术实现较为复杂，目前好的可视化埋点产品都是收费的</td>
+</tr>
+<tr>
+<td>无埋点</td>
+<td>易于维护，数据全面</td>
+<td>牺牲部分实时性，技术实现较为复杂</td>
+</tr>
+</tbody>
+</table>
+<p>Mixpanel主要流程如下：</p>
+<ol>
+<li>设置要埋点的网址-&gt;生成token</li>
+<li>在宿主页面插入代码</li>
+<li>在mixpanel页面点击进入宿主页面(<font color="red">下面这种方式在单页面应用中可能存在问题</font>)<br>
+a：在宿主URL添加上一段查询hash代码<br>
+b：获取hash代码解析出state并保存到sessionStorage<br>
+c：删除宿主URL后的hash代码<br>
+d：初始化<br>
+e：判断是否是在编辑状态下</li>
+</ol>
+<p>下面是实现的简单流程图：</p>
+<div id="flowchart-0" class="flow-chart"></div>
+<p>参考文档：<br>
+<a href="http://help.zhugeio.com/hc/kb/article/1068533/" target="_blank" rel="noopener">诸葛IO的JS可视化埋点-使用指南</a><br>
+<a href="http://help.zhugeio.com/hc/kb/article/1060006/" target="_blank" rel="noopener">诸葛IO的JS全埋点接入文档</a><br>
+[诸葛IO文档][4]</p>
+<p>[4]: <a href="https://docs.zhugeio.com/quickstart/" target="_blank" rel="noopener">https://docs.zhugeio.com/quickstart/</a><script src="https://cdn.bootcss.com/raphael/2.2.7/raphael.min.js"></script><script src="https://cdn.bootcss.com/flowchart/1.7.0/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">start=>start: 加载JS
+cond=>condition: 判断sessionStorage是否存在指定key
+estep1=>operation: 加载editor.js
+estep2=>operation: 显示添加埋点的导航栏
+estep3=>operation: 点击添加按钮开始埋点
+estep4=>operation: 点击要埋点的元素
+estep5=>operation: 弹出配置对话框进行配置
+estep6=>operation: 点击保存配置完毕
+estep7=>operation: 点击退出按钮退出编辑
+nstep1=>operation: 从服务器获取埋点数据
+nstep2=>operation: 在页面找到对应的元素并绑定事件
+start->cond
+cond(yes)->estep1->estep2->estep3->estep4->estep5->estep6->estep7->estep3
+cond(no)->nstep1->nstep2</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12,"theme":"simple"}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script></p>
 
-      
-        
-          
-          埋点
-所谓“埋点”，是数据采集领域（尤其是用户行为数据采集领域）的术语，指的是针对特定用户行为或事件进行捕获、处理和发送的相关技术及其实施过程
-
-埋点的技术实质，是先监听软件应用运行过程中的事件，当需要关注的事件发生时进行判断和捕获，然后获取必要的上下文信息，最后将信息整理后发送至服务器端。所监听的事件，通常由操作系统、浏览器、APP框架等平台提供，也可以在基础事件之上进行触发条件的自定义（如点击某一个特定按钮）。一般情况下，埋点可以通过监测分析工具提供的SDK来进行编程实现。埋点的业务意义显而易见，即帮助定义和获取分析人员真正需要的业务数据及其附带信息。在不同场景下，业务人员关注的信息和角度可能不同。典型的应用场景有面向数字营销领域的分析，以及面向产品运营领域的分析。前者注重来源渠道和广告效果，后者更在意产品本身流程和体验的优化。两者各有侧重，也可以有一些交叉。所以，对于不同的项目和分析目的，应当设计不同的埋点方案。
-近年来，埋点的方法论上也出现了一些业界新趋势，主要分为一下三种：
-
-代码埋点 在需要埋点的节点直接调用接口上传数据，代表方友盟。
-可视化埋点 通过可视化工具配置采集节点，在前端自动解析配置并上报埋点数据，代表方案是已经开源的Mixpanel。
-无埋点 并不是没有埋点，而是在前端采集所有数据并上报，然后在后端通过计算过滤出有用的数据，代表是国内的GrowingIO。
-
-三种埋点的对比：
-
-
-
-埋点方式
-优点
-缺点
-
-
-
-
-代码埋点
-技术实现难度低，数据实时性好
-开发效率低，难于维护，数据准确性依赖于埋点的正确性，APP端依赖于发版，不具备热更新能力；web端热更新能力差。
-
-
-可视化埋点
-开发效率高，易于维护
-技术实现较为复杂，目前好的可视化埋点产品都是收费的
-
-
-无埋点
-易于维护，数据全面
-牺牲部分实时性，技术实现较为复杂
-
-
-
-Mixpanel主要流程如下：
-
-设置要埋点的网址-&gt;生成token
-在宿主页面插入代码
-在mixpanel页面点击进入宿主页面(下面这种方式在单页面应用中可能存在问题)a：在宿主URL添加上一段查询hash代码b：获取hash代码解析出state并保存到sessionStoragec：删除宿主URL后的hash代码d：初始化e：判断是否是在编辑状态下
-
-下面是实现的简单流程图：
-
-
-
-参考文档：诸葛IO的JS可视化埋
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/10/25/可视化埋点/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
       
     </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
+    
+    
+    
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-
-
-    
-      
-
-  
-  
-
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/a26c9c63.html">
 
-    
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(9)：原型设计模式/" itemprop="url">
-                  原型设计模式
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/a26c9c63.html" class="post-title-link" itemprop="url">44个 Javascript 变态题解析 (下)</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
-              2016-10-13
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2016-10-13 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-13T00:00:00Z">2016-10-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
+            <span id="/archives/a26c9c63.html" class="post-meta-item leancloud_visitors" data-flag-title="44个 Javascript 变态题解析 (下)" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
 
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/13/php设计模式/PHP设计模式(9)：原型设计模式/"class="leancloud_visitors" data-flag-title="原型设计模式"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-          简介在[PHP设计模式(八)：工厂模式][2]中我们介绍了创建设计模式(Creationpatterns)中的工厂模式，下面我们将介绍另一种原型设计模式(Prototype Method)。在PHP中，原型设计模式依靠cloning复制对象来实现。通过cloning构造的对象，将大量节省新对象的构造时间。
-何时使用原型设计模式？简单来说，当你希望根据已有的对象来创建新对象时。为什么会有这种需求？想象一下，你在做细胞分裂的项目，每一个细胞都是一个对象，现在你有一个细胞类，每一个新的细胞都是由这个类生成的，不同的细胞只是内部的状态参数不同。当分裂到第N代的时候，已经和初代大不一样了，你是愿意使用第N代的副本修改一下呢？还是愿意从初代慢慢推演？
-ExamplePHP提供了内建的__clone()函数以及clone关键字，来实现对象的复制。下面给出一个例子：
-&lt;?php
-abstract class Cell {
-  public $id;
-  public $dna;
-  abstract function __clone();
+          <p>承接上篇 <a href="https://github.com/xiaoyu2er/blog/issues/1" target="_blank" rel="noopener">44个 Javascript 变态题解析 (上)</a></p>
+<h2 id="第23题">第23题</h2>
+<pre><code>[1 &lt; 2 &lt; 3, 3 &lt; 2 &lt; 1]
+</code></pre>
+<p>这个题也还可以.</p>
+<p>这个题会让人误以为是 <code>2 &gt; 1 &amp;&amp; 2 &lt; 3</code> 其实不是的.</p>
+<p>这个题等价于</p>
+<pre><code> 1 &lt; 2 =&gt; true;
+ true &lt; 3 =&gt;  1 &lt; 3 =&gt; true;
+ 3 &lt; 2 =&gt; false;
+ false &lt; 1 =&gt; 0 &lt; 1 =&gt; true;
+</code></pre>
+<p>答案是 <code>[true, true]</code></p>
+<h2 id="第24题">第24题</h2>
+<pre><code>// the most classic wtf
+2 == [[[2]]]
+</code></pre>
+<p>这个题我是猜的. 我猜的 <code>true</code>, 至于为什么…</p>
+<p><code>both objects get converted to strings and in both cases the resulting string is &quot;2&quot;</code> 我不能信服…</p>
+<h2 id="第25题">第25题</h2>
+<pre><code>3.toString()
+3..toString()
+3...toString()
+</code></pre>
+<p>这个题也挺逗, 我做对了 :) 答案是 <code>error, '3', error</code></p>
+<p>你如果换一个写法就更费解了</p>
+<pre><code>var a = 3;
+a.toString()
+</code></pre>
+<p>这个答案就是 <code>'3'</code>;</p>
+<p>为啥呢?</p>
+<p>因为在 js 中 <code>1.1</code>, <code>1.</code>, <code>.1</code> 都是合法的数字. 那么在解析 <code>3.toString</code> 的时候这个 <code>.</code><br>
+到底是属于这个数字还是函数调用呢? 只能是数字, 因为<code>3.</code>合法啊!</p>
+<h2 id="第26题">第26题</h2>
+<pre><code>(function(){
+  var x = y = 1;
+})();
+console.log(y);
+console.log(x);
+</code></pre>
+<p>答案是 <code>1, error</code></p>
+<p>y 被赋值到全局. x 是局部变量. 所以打印 x 的时候会报 <code>ReferenceError</code></p>
+<h2 id="第27题">第27题</h2>
+<pre><code>var a = /123/,
+    b = /123/;
+a == b
+a === b
+</code></pre>
+<p>即使正则的字面量一致, 他们也不相等.</p>
+<p>答案 <code>false, false</code></p>
+<h2 id="第28题">第28题</h2>
+<pre><code>var a = [1, 2, 3],
+    b = [1, 2, 3],
+    c = [1, 2, 4]
+a ==  b
+a === b
+a &gt;   c
+a &lt;   c
+</code></pre>
+<p>字面量相等的数组也不相等.</p>
+<p>数组在比较大小的时候按照字典序比较</p>
+<p>答案 <code>false, false, false, true</code></p>
+<h2 id="第29题">第29题</h2>
+<pre><code>var a = {}, b = Object.prototype;
+[a.prototype === b, Object.getPrototypeOf(a) === b]
+</code></pre>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf" target="_blank" rel="noopener">Object/getPrototypeOf</a></li>
+</ul>
+<p>只有 Function 拥有一个 prototype 的属性. 所以 <code>a.prototype</code> 为 <code>undefined</code>.</p>
+<p>而 <code>Object.getPrototypeOf(obj)</code> 返回一个具体对象的原型(该对象的内部<code>[[prototype]]</code>值)</p>
+<p>答案 <code>false, true</code></p>
+<h2 id="第30题">第30题</h2>
+<pre><code>function f() {}
+var a = f.prototype, b = Object.getPrototypeOf(f);
+a === b
+</code></pre>
+<p>f.prototype is the object that will become the parent of any objects created<br>
+with new f while Object.getPrototypeOf returns the parent in the inheritance<br>
+hierarchy.</p>
+<p>f.prototype 是使用使用 new 创建的 f 实例的原型. 而 Object.getPrototypeOf 是 f 函数的原型.</p>
+<p>请看:</p>
+<pre><code>a === Object.getPrototypeOf(new f()) // true
+b === Function.prototype // true
+</code></pre>
+<p>答案 <code>false</code></p>
+<h2 id="31">31</h2>
+<pre><code>function foo() { }
+var oldName = foo.name;
+foo.name = &quot;bar&quot;;
+[oldName, foo.name]
+</code></pre>
+<p>答案 <code>['foo', 'foo']</code></p>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name" target="_blank" rel="noopener">Function/name</a></li>
+</ul>
+<p>因为<strong>函数的名字不可变</strong>.</p>
+<h2 id="第32题">第32题</h2>
+<pre><code>&quot;1 2 3&quot;.replace(/\d/g, parseInt)
+</code></pre>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Glob" target="_blank" rel="noopener">String/replace#Specifying_a_function_as_a_parameter</a></li>
+</ul>
+<p><code>str.replace(regexp|substr, newSubStr|function)</code></p>
+<p>如果replace函数传入的第二个参数是函数, 那么这个函数将接受如下参数</p>
+<ul>
+<li>match 首先是匹配的字符串</li>
+<li>p1, p2 … 然后是正则的分组</li>
+<li>offset match 匹配的index</li>
+<li>string 整个字符串</li>
+</ul>
+<p>由于题目中的正则没有分组, 所以等价于问</p>
+<pre><code>parseInt('1', 0)
+parseInt('2', 2)
+parseInt('3', 4)
+</code></pre>
+<p>答案: <code>1, NaN, 3</code></p>
+<h2 id="第33题">第33题</h2>
+<pre><code>function f() {}
+var parent = Object.getPrototypeOf(f);
+f.name // ?
+parent.name // ?
+typeof eval(f.name) // ?
+typeof eval(parent.name) //  ?
+</code></pre>
+<p>先说以下答案 <code>'f', 'Empty', 'function', error</code> 这个答案并不重要…</p>
+<p>这里第一小问和第三小问很简单不解释了.</p>
+<p>第二小问笔者在自己的浏览器测试的时候是 <code>''</code>, 第四问是 <code>'undefined'</code></p>
+<p>所以应该是平台相关的. 这里明白 <code>parent === Function.prototype</code> 就好了.</p>
+<h2 id="第34题">第34题</h2>
+<pre><code>var lowerCaseOnly =  /^[a-z]+$/;
+[lowerCaseOnly.test(null), lowerCaseOnly.test()]
+</code></pre>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test" target="_blank" rel="noopener">RegExp/test</a></li>
+</ul>
+<p>这里 test 函数会将参数转为字符串. <code>'nul'</code>, <code>'undefined'</code> 自然都是全小写了</p>
+<p>答案: <code>true, true</code></p>
+<h2 id="第35题">第35题</h2>
+<pre><code>[,,,].join(&quot;, &quot;)
+</code></pre>
+<p><code>[,,,] =&gt; [undefined × 3]</code></p>
+<p>因为javascript 在定义数组的时候允许最后一个元素后跟一个<code>,</code>, 所以这是个长度为三的稀疏数组(这是长度为三, 并没有 0, 1, 2三个属性哦)</p>
+<p>答案: <code>&quot;, , &quot;</code></p>
+<h2 id="第36题">第36题</h2>
+<pre><code>var a = {class: &quot;Animal&quot;, name: 'Fido'};
+a.class
+</code></pre>
+<p>这个题比较流氓… 因为是浏览器相关, <code>class</code>是个保留字(现在是个关键字了)</p>
+<p>所以答案不重要, 重要的是自己在取属性名称的时候尽量避免保留字. 如果使用的话请加引号 <code>a['class']</code></p>
+<h2 id="第37题">第37题</h2>
+<pre><code>var a = new Date(&quot;epoch&quot;)
+</code></pre>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" rel="noopener">Date</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse" target="_blank" rel="noopener">Date/parse</a></li>
+</ul>
+<p>简单来说, 如果调用 Date 的构造函数传入一个字符串的话需要符合规范, 即满足 Date.parse 的条件.</p>
+<p>另外需要注意的是 如果格式错误 构造函数返回的仍是一个Date 的实例 <code>Invalid Date</code>.</p>
+<p>答案 <code>Invalid Date</code></p>
+<h2 id="第38题">第38题</h2>
+<pre><code>var a = Function.length,
+    b = new Function().length
+a === b
+</code></pre>
+<p>我们知道一个function(Function 的实例)的 <code>length</code> 属性就是函数签名的参数个数, 所以 b.length == 0.</p>
+<p>另外 Function.length 定义为1…</p>
+<p>所以不相等…答案 <code>false</code></p>
+<h2 id="第39题">第39题</h2>
+<pre><code>var a = Date(0);
+var b = new Date(0);
+var c = new Date();
+[a === b, b === c, a === c]
+</code></pre>
+<p>还是关于Date 的题, 需要注意的是</p>
+<ul>
+<li>如果不传参数等价于当前时间.</li>
+<li>如果是函数调用 返回一个字符串.</li>
+</ul>
+<p>答案 <code>false, false, false</code></p>
+<h2 id="第40题">第40题</h2>
+<pre><code>var min = Math.min(), max = Math.max()
+min &lt; max
+</code></pre>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/min" target="_blank" rel="noopener">Math/min</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max" target="_blank" rel="noopener">Math/max</a></li>
+</ul>
+<p>有趣的是, Math.min 不传参数返回 <code>Infinity</code>, Math.max 不传参数返回 <code>-Infinity</code> 😆</p>
+<p>答案: <code>false</code></p>
+<h2 id="第41题">第41题</h2>
+<pre><code>function captureOne(re, str) {
+  var match = re.exec(str);
+  return match &amp;&amp; match[1];
 }
+var numRe  = /num=(\d+)/ig,
+    wordRe = /word=(\w+)/i,
+    a1 = captureOne(numRe,  &quot;num=1&quot;),
+    a2 = captureOne(wordRe, &quot;word=1&quot;),
+    a3 = captureOne(numRe,  &quot;NUM=2&quot;),
+    a4 = captureOne(wordRe,  &quot;WORD=2&quot;);
+[a1 === a2, a3 === a4]
+</code></pre>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec" target="_blank" rel="noopener">RegExp/exec</a></li>
+</ul>
+<p>通俗的讲</p>
+<p>因为第一个正则有一个 g 选项 它会‘记忆’他所匹配的内容, 等匹配后他会从上次匹配的索引继续, 而第二个正则不会</p>
+<p>举个例子</p>
+<pre><code>var myRe = /ab*/g;
+var str = 'abbcdefabh';
+var myArray;
+while ((myArray = myRe.exec(str)) !== null) {
+  var msg = 'Found ' + myArray[0] + '. ';
+  msg += 'Next match starts at ' + myRe.lastIndex;
+  console.log(msg);
+}
+// Found abb. Next match starts at 3
+// Found ab. Next match starts at 9
+</code></pre>
+<p>所以 a1 = ‘1’; a2 = ‘1’; a3 = null; a4 = ‘2’</p>
+<p>答案 <code>[true, false]</code></p>
+<h2 id="第42题">第42题</h2>
+<pre><code>var a = new Date(&quot;2014-03-19&quot;),
+    b = new Date(2014, 03, 19);
+[a.getDay() === b.getDay(), a.getMonth() === b.getMonth()]
+</code></pre>
+<p>这个…</p>
+<blockquote>
+<p>JavaScript inherits 40 years old design from C: days are 1-indexed in C’s<br>
+struct tm, but months are 0 indexed. In addition to that, getDay returns the<br>
+0-indexed day of the week, to get the 1-indexed day of the month you have to<br>
+use getDate, which doesn’t return a Date object.</p>
+</blockquote>
+<pre><code>a.getDay()
+3
+b.getDay()
+6
+a.getMonth()
+2
+b.getMonth()
+3
+</code></pre>
+<p>都是套路!</p>
+<p>答案 <code>[false, false]</code></p>
+<h2 id="第43题">第43题</h2>
+<pre><code>if ('http://giftwrapped.com/picture.jpg'.match('.gif')) {
+  'a gif file'
+} else {
+  'not a gif file'
+}
+</code></pre>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match" target="_blank" rel="noopener">String/match</a></li>
+</ul>
+<p>String.prototype.match 接受一个正则, 如果不是, 按照 <code>new RegExp(obj)</code> 转化. 所以 <code>.</code> 并不会转义<br>
+那么 <code>/gif</code> 就匹配了 /.gif/</p>
+<p>答案: <code>'a gif file'</code></p>
+<h2 id="第44题">第44题</h2>
+<pre><code>function foo(a) {
+    var a;
+    return a;
+}
+function bar(a) {
+    var a = 'bye';
+    return a;
+}
+[foo('hello'), bar('hello')]
+</code></pre>
+<p>在两个函数里, a作为参数其实已经声明了, 所以 <code>var a; var a = 'bye'</code> 其实就是 <code>a; a ='bye'</code></p>
+<p>所以答案 <code>'hello', 'bye'</code></p>
+<p>全部结束!</p>
+<h1></h1>
+<h1>总结</h1>
+<p>由于笔者水平有限, 如果解释有误, 还望指出 😄</p>
+<p>通过整理, 笔者发现绝大部分题目都是因为自己对于基础知识或者说某个 API 的参数理解偏差才做错的.</p>
+<p>笔者的重灾区在原型那一块, 所以这次被虐和整理还是很有意义呀.</p>
+<p>笔者相信 坚实的基础是深入编程的前提. 所以基础书还是要常看啊 🐹</p>
+<p>最后这些变态题现在看看还变态嘛?</p>
+<p>al_Objects/String/replace#Specifying_a_function_as_a_parameter</p>
 
-class WhaleCell extends Cell {
-  public function __construct() {
-    $this-&gt;id = 1;
-    $this-&gt;dna = &quot;ATCG&quot;;
-  }
-  public function displayDNA() {
-    echo $this-&gt;dna . &quot;\n&quot;;
-  }
-  function __clone() {
-    $this-&gt;id = $this-&gt;id + 1;
-    if ($this-&gt;id % 3 == 0) {
-      $this-&gt;dna = $this-&gt;dna . &quot;AT&quot;;
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/bb77ad22.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/bb77ad22.html" class="post-title-link" itemprop="url">44个 Javascript 变态题解析 (上)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-13 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-13T00:00:00Z">2016-10-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/bb77ad22.html" class="post-meta-item leancloud_visitors" data-flag-title="44个 Javascript 变态题解析 (上)" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>原题来自: <a href="http://javascript-puzzlers.herokuapp.com/" target="_blank" rel="noopener">javascript-puzzlers</a></p>
+<p>读者可以先去做一下感受感受. 当初笔者的成绩是 21/44…</p>
+<p>当初笔者做这套题的时候不仅怀疑智商, 连人生都开始怀疑了…</p>
+<p>不过, 对于基础知识的理解是深入编程的前提. 让我们一起来看看这些变态题到底变态不变态吧!</p>
+<h2 id="第1题">第1题</h2>
+<pre><code>[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].map(parseInt)
+</code></pre>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map" target="_blank" rel="noopener">Array/map</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/parseInt" target="_blank" rel="noopener">Number/parseInt</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt" target="_blank" rel="noopener">Global_Objects/parseInt</a></li>
+<li><a href="http://www.w3school.com.cn/jsref/jsref_parseInt.asp" target="_blank" rel="noopener">JavaScript parseInt</a></li>
+</ul>
+<p>首先, map接受两个参数, 一个回调函数 callback, 一个回调函数的this值</p>
+<p>其中回调函数接受三个参数 currentValue, index, arrary;</p>
+<p>而题目中, map只传入了回调函数–parseInt.</p>
+<p>其次, parseInt 只接受两个两个参数 string, radix(基数).</p>
+<blockquote>
+<p>在没有指定基数，或者基数为 0 的情况下，JavaScript 作如下处理：</p>
+</blockquote>
+<blockquote></blockquote>
+<blockquote>
+<ul>
+<li>如果字符串 string 以&quot;0x&quot;或者&quot;0X&quot;开头, 则基数是16 (16进制).</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>如果字符串 string 以&quot;0&quot;开头, 基数是8（八进制）或者10（十进制），那么具体是哪个基数由实现环境决- 定。ECMAScript 5<br>
+规定使用10，但是并不是所有的浏览器都遵循这个规定。因此，永远都要明确给出radix参数的值。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>如果字符串 string 以其它任何值开头，则基数是10 (十进制)。</li>
+</ul>
+</blockquote>
+<p>所以本题即问</p>
+<pre><code>parseInt('1', 0);
+parseInt('2', 1);
+parseInt('3', 2);
+</code></pre>
+<p>首先后两者参数不合法.</p>
+<p>所以答案是 <code>[1, NaN, NaN]</code></p>
+<h2 id="第2题">第2题</h2>
+<pre><code>[typeof null, null instanceof Object]
+</code></pre>
+<p>两个知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof" target="_blank" rel="noopener">Operators/typeof</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof" target="_blank" rel="noopener">Operators/instanceof</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof" target="_blank" rel="noopener">Operators/instanceof(中)</a></li>
+</ul>
+<p>typeof 返回一个表示类型的字符串.</p>
+<p>instanceof 运算符用来检测 constructor.prototype 是否存在于参数 object 的原型链上.</p>
+<p>这个题可以直接看链接… 因为 <code>typeof null === 'object'</code> 自语言之初就是这样…</p>
+<p>typeof 的结果请看下表:</p>
+<pre><code>type         result
+Undefined   &quot;undefined&quot;
+Null        &quot;object&quot;
+Boolean     &quot;boolean&quot;
+Number      &quot;number&quot;
+String      &quot;string&quot;
+Symbol      &quot;symbol&quot;
+Host object Implementation-dependent
+Function    &quot;function&quot;
+Object      &quot;object&quot;
+</code></pre>
+<p>所以答案 <code>[object, false]</code></p>
+<h2 id="第3题">第3题</h2>
+<pre><code>[ [3,2,1].reduce(Math.pow), [].reduce(Math.pow) ]
+</code></pre>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce" target="_blank" rel="noopener">Array/Reduce</a></li>
+</ul>
+<p><code>arr.reduce(callback[, initialValue])</code></p>
+<p>reduce接受两个参数, 一个回调, 一个初始值.</p>
+<p>回调函数接受四个参数 <code>previousValue, currentValue, currentIndex, array</code></p>
+<p>需要注意的是 <code>If the array is empty and no initialValue was provided, TypeError would be thrown.</code></p>
+<p>所以第二个表达式会报异常. 第一个表达式等价于 <code>Math.pow(3, 2) =&gt; 9; Math.pow(9, 1) =&gt;9</code></p>
+<p>答案 <code>an error</code></p>
+<h2 id="第4题">第4题</h2>
+<pre><code>var val = 'smtg';
+console.log('Value is ' + (val === 'smtg') ? 'Something' : 'Nothing');
+</code></pre>
+<p>两个知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence" target="_blank" rel="noopener">Operators/Operator_Precedence</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator" target="_blank" rel="noopener">Operators/Conditional_Operator</a></li>
+</ul>
+<p>简而言之 <code>+</code> 的优先级 大于 <code>?</code></p>
+<p>所以原题等价于 <code>'Value is true' ? 'Somthing' : 'Nonthing'</code> 而不是 <code>'Value is' + (true ? 'Something' : 'Nonthing')</code></p>
+<p>答案 <code>'Something'</code></p>
+<h2 id="第5题">第5题</h2>
+<pre><code>var name = 'World!';
+(function () {
+    if (typeof name === 'undefined') {
+        var name = 'Jack';
+        console.log('Goodbye ' + name);
+    } else {
+        console.log('Hello ' + name);
     }
-    if ($this-&gt;id % 5 == 0) {
-      $this-&gt;dna = $this-&gt;dna . &quot;CG&quot;;
+})();
+</code></pre>
+<p>这个相对简单, 一个知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Hoisting" target="_blank" rel="noopener">Hoisting</a></li>
+</ul>
+<p>在 JavaScript中， functions 和 variables 会被提升。变量提升是JavaScript将声明移至作用域 scope<br>
+(全局域或者当前函数作用域) 顶部的行为。</p>
+<p>这个题目相当于</p>
+<pre><code>var name = 'World!';
+(function () {
+    var name;
+    if (typeof name === 'undefined') {
+        name = 'Jack';
+        console.log('Goodbye ' + name);
+    } else {
+        console.log('Hello ' + name);
     }
-  }
+})();
+</code></pre>
+<p>所以答案是 <code>'Goodbye Jack'</code></p>
+<h2 id="第6题">第6题</h2>
+<pre><code>var END = Math.pow(2, 53);
+var START = END - 100;
+var count = 0;
+for (var i = START; i &lt;= END; i++) {
+    count++;
 }
+console.log(count);
+</code></pre>
+<p>一个知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity" target="_blank" rel="noopener">Infinity</a><br>
+<del>在 JS 里, Math.pow(2, 53) == 9007199254740992 是可以表示的最大值. 最大值加一还是最大值.<br>
+所以循环不会停.</del></li>
+</ul>
+<p>补充: <a href="https://github.com/jelly7723" target="_blank" rel="noopener">@jelly7723</a></p>
+<blockquote>
+<p>js中可以表示的最大整数不是2的53次方，而是1.7976931348623157e+308。<br>
+2的53次方不是js能表示的最大整数而应该是能正确计算且不失精度的最大整数，可以参见js权威指南。<br>
+9007199254740992 +1还是 9007199254740992 ，这就是因为精度问题，如果 9007199254740992 +11或者<br>
+9007199254740992 +111的话，值是会发生改变的，只是这时候计算的结果不是正确的值，就是因为精度丢失的问题。</p>
+</blockquote>
+<h2 id="第7题">第7题</h2>
+<pre><code>var ary = [0,1,2];
+ary[10] = 10;
+ary.filter(function(x) { return x === undefined;});
+</code></pre>
+<p>答案是 <code>[]</code></p>
+<p>看一篇文章理解稀疏数组</p>
+<ul>
+<li><a href="http://www.cnblogs.com/ziyunfei/archive/2012/09/16/2687165.html" target="_blank" rel="noopener">译 JavaScript中的稀疏数组与密集数组</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" target="_blank" rel="noopener">Array/filter</a></li>
+</ul>
+<p>我们来看一下 Array.prototype.filter 的 polyfill:</p>
+<pre><code>if (!Array.prototype.filter) {
+  Array.prototype.filter = function(fun/*, thisArg*/) {
+    'use strict';
 
-$whaleCell = new WhaleCell();
-$whaleCell-&gt;displayDNA();
-$whale
-          ...
+    if (this === void 0 || this === null) {
+      throw new TypeError();
+    }
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(9)：原型设计模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    var t = Object(this);
+    var len = t.length &gt;&gt;&gt; 0;
+    if (typeof fun !== 'function') {
+      throw new TypeError();
+    }
+
+    var res = [];
+    var thisArg = arguments.length &gt;= 2 ? arguments[1] : void 0;
+    for (var i = 0; i &lt; len; i++) {
+      if (i in t) { // 注意这里!!!
+        var val = t[i];
+        if (fun.call(thisArg, val, i, t)) {
+          res.push(val);
+        }
+      }
+    }
+
+    return res;
+  };
+}
+</code></pre>
+<p>我们看到在迭代这个数组的时候, 首先检查了这个索引值是不是数组的一个属性, 那么我们测试一下.</p>
+<pre><code>0 in ary; =&gt; true
+3 in ary; =&gt; false
+10 in ary; =&gt; true
+</code></pre>
+<p>也就是说 从 3 - 9 都是没有初始化的’坑’!, 这些索引并不存在与数组中. 在 array 的函数调用的时候是会跳过这些’坑’的.</p>
+<h2 id="第8题">第8题</h2>
+<pre><code>var two   = 0.2
+var one   = 0.1
+var eight = 0.8
+var six   = 0.6
+[two - one == one, eight - six == two]
+</code></pre>
+<ul>
+<li><a href="http://ourjs.com/detail/54695381bc3f9b154e000046" target="_blank" rel="noopener">JavaScript的设计缺陷?浮点运算：0.1 + 0.2 != 0.3</a></li>
+</ul>
+<p>IEEE 754标准中的浮点数并不能精确地表达小数</p>
+<p>那什么时候精准, 什么时候不经准呢? 笔者也不知道…</p>
+<p>答案 <code>[true, false]</code></p>
+<h2 id="第9题">第9题</h2>
+<pre><code>function showCase(value) {
+    switch(value) {
+    case 'A':
+        console.log('Case A');
+        break;
+    case 'B':
+        console.log('Case B');
+        break;
+    case undefined:
+        console.log('undefined');
+        break;
+    default:
+        console.log('Do not know!');
+    }
+}
+showCase(new String('A'));
+</code></pre>
+<p>两个知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch" target="_blank" rel="noopener">Statements/switch</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank" rel="noopener">String</a></li>
+</ul>
+<p>switch 是严格比较, String 实例和 字符串不一样.</p>
+<pre><code>var s_prim = 'foo';
+var s_obj = new String(s_prim);
+
+console.log(typeof s_prim); // &quot;string&quot;
+console.log(typeof s_obj);  // &quot;object&quot;
+console.log(s_prim === s_obj); // false
+</code></pre>
+<p>答案是 <code>'Do not know!'</code></p>
+<h2 id="第10题">第10题</h2>
+<pre><code>function showCase2(value) {
+    switch(value) {
+    case 'A':
+        console.log('Case A');
+        break;
+    case 'B':
+        console.log('Case B');
+        break;
+    case undefined:
+        console.log('undefined');
+        break;
+    default:
+        console.log('Do not know!');
+    }
+}
+showCase2(String('A'));
+</code></pre>
+<p>解释:<br>
+<code>String(x) does not create an object but does return a string, i.e. typeof String(1) === &quot;string&quot;</code></p>
+<p>还是刚才的知识点, 只不过 String 不仅是个构造函数 直接调用返回一个字符串哦.</p>
+<p>答案 <code>'Case A'</code></p>
+<h2 id="第11题">第11题</h2>
+<pre><code>function isOdd(num) {
+    return num % 2 == 1;
+}
+function isEven(num) {
+    return num % 2 == 0;
+}
+function isSane(num) {
+    return isEven(num) || isOdd(num);
+}
+var values = [7, 4, '13', -9, Infinity];
+values.map(isSane);
+</code></pre>
+<p>一个知识点</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Remainder" target="_blank" rel="noopener">Arithmetic_Operators#Remainder</a></li>
+</ul>
+<p>此题等价于</p>
+<pre><code>7 % 2 =&gt; 1
+4 % 2 =&gt; 0
+'13' % 2 =&gt; 1
+-9 % % 2 =&gt; -1
+Infinity % 2 =&gt; NaN
+</code></pre>
+<p>需要注意的是 余数的正负号随第一个操作数.</p>
+<p>答案 <code>[true, true, true, false, false]</code></p>
+<h2 id="第12题">第12题</h2>
+<pre><code>parseInt(3, 8)
+parseInt(3, 2)
+parseInt(3, 0)
+</code></pre>
+<p>第一个题讲过了, 答案 <code>3, NaN, 3</code></p>
+<h2 id="第13题">第13题</h2>
+<pre><code>Array.isArray( Array.prototype )
+</code></pre>
+<p>一个知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype" target="_blank" rel="noopener">Array/prototype</a></li>
+</ul>
+<p>一个鲜为人知的实事: <code>Array.prototype =&gt; []</code>;</p>
+<p>答案: <code>true</code></p>
+<h2 id="第14题">第14题</h2>
+<pre><code>var a = [0];
+if ([0]) {
+  console.log(a == true);
+} else {
+  console.log(&quot;wut&quot;);
+}
+</code></pre>
+<ul>
+<li><a href="https://dorey.github.io/JavaScript-Equality-Table/" target="_blank" rel="noopener">JavaScript-Equality-Table</a></li>
+<li><em>更新</em><a href="https://zhuanlan.zhihu.com/p/21650547" target="_blank" rel="noopener">通过一张简单的图，让你彻底地、永久地搞懂JS的==运算</a> 非常不错的一篇文章!</li>
+</ul>
+<p>解析:</p>
+<ul>
+<li><code>Boolean([0]) === true</code></li>
+<li>[0] == true
+<ul>
+<li>true 转换为数字 =&gt; 1</li>
+<li>[0] 转化为数字失败, 转化为字符串 ‘0’, 转化成数字 =&gt; 0</li>
+<li>0 !== 1</li>
+</ul>
+</li>
+</ul>
+<p>答案: <code>false</code></p>
+<h2 id="第15题">第15题</h2>
+<pre><code>[]==[]
+</code></pre>
+<p>[] 是Object, 两个 Object 不相等</p>
+<p>答案是 <code>false</code></p>
+<h2 id="第16题">第16题</h2>
+<pre><code>'5' + 3
+'5' - 3
+</code></pre>
+<p>两个知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Addition" target="_blank" rel="noopener">Arithmetic_Operators#Addition</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Subtraction" target="_blank" rel="noopener">Arithmetic_Operators#Subtraction</a></li>
+</ul>
+<p><code>+</code> 用来表示两个数的和或者字符串拼接, <code>-</code>表示两数之差.</p>
+<p>请看例子, 体会区别:</p>
+<pre><code>&gt; '5' + 3
+'53'
+&gt; 5 + '3'
+'53'
+&gt; 5 - '3'
+2
+&gt; '5' - 3
+2
+&gt; '5' - '3'
+2
+</code></pre>
+<p>也就是说 <code>-</code> 会尽可能的将两个操作数变成数字, 而 <code>+</code> 如果两边不都是数字, 那么就是字符串拼接.</p>
+<p>答案是 <code>'53', 2</code></p>
+<h2 id="第17题">第17题</h2>
+<pre><code>1 + - + + + - + 1
+</code></pre>
+<p>这里应该是(倒着看)</p>
+<pre><code>1 + (a)  =&gt; 2
+a = - (b) =&gt; 1
+b = + (c) =&gt; -1
+c = + (d) =&gt; -1
+d = + (e) =&gt; -1
+e = + (f) =&gt; -1
+f = - (g) =&gt; -1
+g = + 1   =&gt; 1
+</code></pre>
+<p>所以答案 <code>2</code></p>
+<h2 id="第18题">第18题</h2>
+<pre><code>var ary = Array(3);
+ary[0]=2
+ary.map(function(elem) { return '1'; });
+</code></pre>
+<p>稀疏数组. 同第7题.</p>
+<p>题目中的数组其实是一个长度为3, 但是没有内容的数组, array 上的操作会跳过这些未初始化的’坑’.</p>
+<p>所以答案是 <code>[&quot;1&quot;, undefined × 2]</code></p>
+<p>这里贴上 Array.prototype.map 的 polyfill.</p>
+<pre><code>Array.prototype.map = function(callback, thisArg) {
+
+        var T, A, k;
+
+        if (this == null) {
+            throw new TypeError(' this is null or not defined');
+        }
+
+        var O = Object(this);
+        var len = O.length &gt;&gt;&gt; 0;
+        if (typeof callback !== 'function') {
+            throw new TypeError(callback + ' is not a function');
+        }
+        if (arguments.length &gt; 1) {
+            T = thisArg;
+        }
+        A = new Array(len);
+        k = 0;
+        while (k &lt; len) {
+            var kValue, mappedValue;
+            if (k in O) {
+                kValue = O[k];
+                mappedValue = callback.call(T, kValue, k, O);
+                A[k] = mappedValue;
+            }
+            k++;
+        }
+        return A;
+    };
+</code></pre>
+<h2 id="第19题">第19题</h2>
+<pre><code>function sidEffecting(ary) {
+  ary[0] = ary[2];
+}
+function bar(a,b,c) {
+  c = 10
+  sidEffecting(arguments);
+  return a + b + c;
+}
+bar(1,1,1)
+</code></pre>
+<p>这是一个大坑, 尤其是涉及到 ES6语法的时候</p>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments" target="_blank" rel="noopener">Functions/arguments</a></li>
+</ul>
+<p>首先 <code>The arguments object is an Array-like object corresponding to the arguments passed to a function.</code></p>
+<p>也就是说 <code>arguments</code> 是一个 <code>object</code>, c 就是 arguments<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map" target="_blank" rel="noopener">2</a>, 所以对于 c 的修改就是对 arguments<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map" target="_blank" rel="noopener">2</a><br>
+的修改.</p>
+<p>所以答案是 <code>21</code>.</p>
+<p>然而!!!</p>
+<p>当函数参数涉及到 <code>any rest parameters, any default parameters or any destructured parameters</code> 的时候, 这个 arguments 就不在是一个 <code>mapped arguments object</code> 了…</p>
+<p>请看:</p>
+<pre><code>function sidEffecting(ary) {
+  ary[0] = ary[2];
+}
+function bar(a,b,c=3) {
+  c = 10
+  sidEffecting(arguments);
+  return a + b + c;
+}
+bar(1,1,1)
+</code></pre>
+<p>答案是 <code>12</code> !!!</p>
+<p>请读者细细体会!!</p>
+<h2 id="第20题">第20题</h2>
+<pre><code>var a = 111111111111111110000,
+    b = 1111;
+a + b;
+</code></pre>
+<p>答案还是 <code>111111111111111110000</code>. 解释是 <code>Lack of precision for numbers in JavaScript affects both small and big numbers.</code> 但是笔者不是很明白… 请读者赐教!</p>
+<h2 id="第21题">第21题</h2>
+<pre><code>var x = [].reverse;
+x();
+</code></pre>
+<p>这个题有意思!</p>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse" target="_blank" rel="noopener">Array/reverse</a></li>
+</ul>
+<p><code>The reverse method transposes the elements of the calling array object in place, mutating the array, and returning a reference to the array.</code></p>
+<p>也就是说 最后会返回这个调用者(this), 可是 x 执行的时候是上下文是全局. 那么最后返回的是 <code>window</code>.</p>
+<p>补充:</p>
+<blockquote>
+<p><a href="https://github.com/stellar91" target="_blank" rel="noopener">@stellar91</a> 这个笔者实践了一下 发现 firefox 是 window, chrome 报错 <code>VM190:2 Uncaught TypeError: Array.prototype.reverse called on null or undefined(…)</code> 可能是实现不同, 在<br>
+chrome 中应该是对调用者做了检查.</p>
+</blockquote>
+<p>答案是 <code>window</code></p>
+<h2 id="第22题">第22题</h2>
+<pre><code>Number.MIN_VALUE &gt; 0
+</code></pre>
+<p><code>true</code></p>
+<h1></h1>
+<p>今天先到这里, 下次我们来看后22个题!</p>
+<p><a href="https://github.com/xiaoyu2er/blog/issues/3" target="_blank" rel="noopener">44个 Javascript 变态题解析 (下)</a></p>
+
       
     </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
+    
+    
+    
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-
-
-    
-      
-
-  
-  
-
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/a5431a21.html">
 
-    
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/13/javascript/44个 Javascript 变态题解析 (上)/" itemprop="url">
-                  44个 Javascript 变态题解析 (上)
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/a5431a21.html" class="post-title-link" itemprop="url">从 JavaScript 数组去重谈性能优化</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
-              2016-10-13
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2016-10-13 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-13T00:00:00Z">2016-10-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/javascript/" itemprop="url" rel="index">
                     <span itemprop="name">javascript</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/13/javascript/44个 Javascript 变态题解析 (上)/"class="leancloud_visitors" data-flag-title="44个 Javascript 变态题解析 (上)"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          原题来自: javascript-puzzlers
-读者可以先去做一下感受感受. 当初笔者的成绩是 21/44…
-当初笔者做这套题的时候不仅怀疑智商, 连人生都开始怀疑了….
-不过, 对于基础知识的理解是深入编程的前提. 让我们一起来看看这些变态题到底变态不变态吧!
-第1题[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].map(parseInt)
-知识点:
-
-Array/map
-Number/parseInt
-Global_Objects/parseInt
-JavaScript parseInt
-
-首先, map接受两个参数, 一个回调函数 callback, 一个回调函数的this值
-其中回调函数接受三个参数 currentValue, index, arrary;
-而题目中, map只传入了回调函数–parseInt.
-其次, parseInt 只接受两个两个参数 string, radix(基数).
-
-在没有指定基数，或者基数为 0 的情况下，JavaScript 作如下处理：
-
-&gt;
-
-
-如果字符串 string 以”0x”或者”0X”开头, 则基数是16 (16进制).
-
-如果字符串 string 以”0”开头, 基数是8（八进制）或者10（十进制），那么具体是哪个基数由实现环境决- 定。ECMAScript 5规定使用10，但是并不是所有的浏览器都遵循这个规定。因此，永远都要明确给出radix参数的值。
-
-如果字符串 string 以其它任何值开头，则基数是10 (十进制)。
-
-
-
-所以本题即问
-parseInt(&apos;1&apos;, 0);
-parseInt(&apos;2&apos;, 1);
-parseInt(&apos;3&apos;, 2);
-首先后两者参数不合法.
-所以答案是 [1, NaN, NaN]
-第2题[typeof null, null instanceof Object]
-两个知识点:
-
-Operators/typeof
-Operators/instanceof
-Operators/instanceof(中)
-
-typeof 返回一个表示类型的字符串.
-instanceof 运算符用来检测 constructor.prototype 是否存在于参数 object 的原型链上.
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/javascript/44个 Javascript 变态题解析 (上)/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/" itemprop="url">
-                  基础编程模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-13T00:00:00+08:00" content="2016-10-13">
-              2016-10-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+            <span id="/archives/a5431a21.html" class="post-meta-item leancloud_visitors" data-flag-title="从 JavaScript 数组去重谈性能优化" title="阅读次数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="fa fa-eye"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.7k</span>
             </span>
-          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
 
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/"class="leancloud_visitors" data-flag-title="基础编程模式"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <h2 id="缘由">缘由</h2>
+<p>JavaScript 数组去重经常出现在前端招聘的笔试题里，比如：</p>
+<blockquote>
+<p>有数组 <code>var arr = ['a', 'b', 'c', '1', 0, 'c', 1, '', 1, 0]</code>，请用 JavaScript<br>
+实现去重函数 <code>unqiue</code>，使得 <code>unique(arr)</code> 返回 <code>['a', 'b', 'c', '1', 0, 1, '']</code></p>
+</blockquote>
+<p>作为笔试题，考点有二：</p>
+<ol>
+<li>
+<p><strong>正确</strong>。别小看这个考点，考虑到 JavaScript 经常要在浏览器上运行，在千姿百态的各种浏览器环境下要保障一个函数的正确性可不是一件简单的事，不信你继续读完这篇博客。</p>
+</li>
+<li>
+<p><strong>性能</strong>。虽然大部分情况下 JavaScript 语言本身（狭义范畴，不包含 DOM 等延拓）不会导致性能问题，但很不幸这是一道考题，因此面试官们还是会把性能作为一个考点。</p>
+</li>
+</ol>
+<p>在继续往下阅读之前，建议先实现一个自己认为最好的版本。</p>
+<h2 id="直觉方案">直觉方案</h2>
+<p>对于数组去重，只要写过程序的，立刻就能得到第一个解法：</p>
+<pre><code>function unique(arr) {
+  var ret = []
 
-      
-        
-          
-          简介俗话说，“PHP是世界上最好的语言”，因为PHP什么都能干。但是在PHP编程中，你是否会遇到这样的困惑：明明是相同的需求，但是之前写的代码却并不能重用，稍微修改不满足需求，大改又会让页面变样。是的，由于PHP什么都能干，但是高度灵活性降低了代码的结构性。虽然可以利用三方框架来解决问题，但问题的根本在于缺乏设计模式。本系列文章将由浅入深的介绍各种设计模式。
-面向对象编程面向对象编程，Object-Oriented Programming(OOP)作为最基本的设计模式并不是什么新鲜的话题，但是大部分新手的PHP编程都是在写流水账，各种拼接字符串，所以这里还是要提一下。Object-Oriented Programming的概念这里就不说了，毕竟很多人都明白，但是如何在PHP中使用？假设你需要在页面上显示不同的用户类型，如电脑用户、手机用户等，那么你可以将“显示”这件事抽象为一个类，如：
-&lt;?php
-class ShowAgent {
-  private $agent;
-  public function __construct() {
-    $this-&gt;agent = $_SERVER[&apos;HTTP_USER_AGENT&apos;];
-    echo $this-&gt;agent;
+  for (var i = 0; i &lt; arr.length; i++) {
+    var item = arr[i]
+    if (ret.indexOf(item) === -1) {
+      ret.push(item)
+    }
   }
+
+  return ret
 }
-$showAgent = new ShowAgent();
-?&gt;
-调试技巧在很多PHP默认环境中，调试功能是关闭的。打开调试功能又需要配置php.ini文件，其实有一个简单的方法：
-&lt;?php
-ini_set(&quot;display_errors&quot;, &quot;1&quot;);
-ERROR_REPORTING(E_ALL);
-?&gt;
-将这段代码加入到你的代码中，甚至可以require或者include进去，方便调试。
-流水账编程这里列出流水账编程，并不是让你学习，而是指出何种编程不推荐使用：
-&lt;?php
-$total = &quot;Total number is &quot;;
-$number = &quot;6&quot;;
-$totalNumber = $total.$number;
-echo $totalNumber;
-?&gt;
-这段代码并没有错，但是以后再也无法重用了，对吧？每次遇到相同问题，你
-          ...
+</code></pre>
+<p>直觉往往很靠谱，在现代浏览器下，上面这个函数很正确，性能也不错。但前端最大的悲哀也是挑战之处在于，要支持各种运行环境。在 IE6-8 下，数组的<br>
+<code>indexOf</code> 方法还不存在。直觉方案要稍微改造一下：</p>
+<pre><code>var indexOf = [].indexOf ?
+    function(arr, item) {
+      return arr.indexOf(item)
+    } :
+    function indexOf(arr, item) {
+      for (var i = 0; i &lt; arr.length; i++) {
+        if (arr[i] === item) {
+          return i
+        }
+      }
+      return -1
+    }
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/13/php设计模式/PHP设计模式(1)：基础编程模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+function unique(arr) {
+  var ret = []
+
+  for (var i = 0; i &lt; arr.length; i++) {
+    var item = arr[i]
+    if (indexOf(ret, item) === -1) {
+      ret.push(item)
+    }
+  }
+
+  return ret
+}
+</code></pre>
+<p>写到这一步，正确性已没问题，但性能上，两重循环会让面试官们看了不爽。</p>
+<h2 id="优化方案">优化方案</h2>
+<p>一谈到优化，往往就是八仙过海、百花齐放。但八仙往往不接地气，百花则很容易招来臭虫。数组去重的各种优化方案在此不一一讨论，下面只说最常用效果也很不错的一种。</p>
+<pre><code>function unique(arr) {
+  var ret = []
+  var hash = {}
+
+  for (var i = 0; i &lt; arr.length; i++) {
+    var item = arr[i]
+    var key = typeof(item) + item
+    if (hash[key] !== 1) {
+      ret.push(item)
+      hash[key] = 1
+    }
+  }
+
+  return ret
+}
+</code></pre>
+<p>核心是构建了一个 <code>hash</code> 对象来替代 <code>indexOf</code>. 注意在 JavaScript 里，对象的键值只能是字符串，因此需要 <code>var key = typeof(item) + item</code> 来区分数值 <code>1</code> 和字符串 <code>'1'</code> 等情况。</p>
+<p>但优化真的很容易带来坑，比如上面的实现，对下面这种输入就无法判断：</p>
+<pre><code>unique([ new String(1), new Number(1) ])
+</code></pre>
+<p>可以继续修改代码，做到性能和正确性都很好。但往往，这带来的结果并不好。</p>
+<h2 id="真实需求">真实需求</h2>
+<p>写到这里，这篇博客才算进入正题。程序员心中都会有一些梦想，比如写出又通用性能又好的普适函数。这种梦想是让程序员变得卓越的重要内驱力，但倘若不加以控制，也很容<br>
+易走入迷途。</p>
+<p>回到性能优化。这年头有各种各样优化，核心系统、数据库、网络、前端等等，所有这些优化，都必须回答下面这个问题：</p>
+<ol>
+<li>
+<p><strong>当前有什么</strong>。在什么场景下进行优化，场景下有哪些具体限制。理清限制很重要，限制往往带来自由。</p>
+</li>
+<li>
+<p><strong>究竟要什么</strong>。优化的目的是什么。是提高稳定性，还是增大吞吐量，抑或减少用户等待时间。在回答这个问题之前，优化都是徒劳。对这个问题的准确回答，能为优化带来具体可测量的参数，这样优化才有目标。</p>
+</li>
+<li>
+<p><strong>可以放弃什么</strong>。鱼与熊掌不可兼得。优化的本质是在具体场景下的取舍、权衡。什么都不愿意放弃的话，优化往往会举步维艰。</p>
+</li>
+</ol>
+
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
 
     
-  </section>
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -994,445 +1602,704 @@ echo $totalNumber;
           </div>
           
 
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/img/avatar.jpg"
-               alt="曹强" />
-          <p class="site-author-name" itemprop="name">曹强</p>
-          <p class="site-description motion-element" itemprop="description">caoqiang's blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">83</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">14</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/ronghuaxueleng" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-      </section>
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">曹强</span>
-</div>
-
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
-
-<!-- 不蒜子 -->
-<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_pv" style="display:none">
-  本站总访问量<span id="busuanzi_value_site_pv"></span>人次
-</span>
-<!-- 不蒜子计数初始值纠正 -->
-<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function() {
-        var int = setInterval(fixCount, 100);
-        var busuanziSiteOffset = parseInt(1203);
-        function fixCount() {
-            if ($("#busuanzi_container_site_pv").css("display") != "none") {
-                clearInterval(int);
-                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
-            }
-        }
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
     });
-</script>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
   }
 </script>
 
-
-
-
-
-
-
-
-
+        </div>
+          
   
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="曹强"
+      src="/img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">曹强</p>
+  <div class="site-description" itemprop="description">caoqiang's blog | java |前端 | PHP |nodeJs | python</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
 
 
 
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+      <div class="links-of-blogroll-title">
+        <!-- modify icon to fire by szw -->
+        <i class="fa fa-history fa-" aria-hidden="true"></i>
+        近期文章
+      </div>
+      <ul class="links-of-blogroll-list">
+        
+        
+          <li>
+            <a href="/archives/2fd7dbc7.html" title="Shadow DOM" target="_blank">Shadow DOM</a>
+          </li>
+        
+          <li>
+            <a href="/archives/b4a56055.html" title="可视化埋点" target="_blank">可视化埋点</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a5431a21.html" title="从 JavaScript 数组去重谈性能优化" target="_blank">从 JavaScript 数组去重谈性能优化</a>
+          </li>
+        
+      </ul>
+    </div>
+
+
+<div style="">
+  <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
+
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
   
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">318k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:49</span>
+</div>
 
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
-
-
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-   
-     
-   
-  
- 
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
 
 
-  
 
-
-
-
-  
-  
-
-  
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
   <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
       });
 
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
           if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
             return;
           }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
           }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
             }
           }
         })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
         });
     }
+  }
 
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
+  fetch('https://app-router.leancloud.cn/2/route?appId=bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz',
+            'X-LC-Key': '9kCQuNi7NFq5MdDBn9J1Xj1r',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
         addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
         showTime(Counter);
       }
     });
   </script>
 
 
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 
   
-  
-    <!-- custom analytics part create by xiamo -->
-<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-<script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout: 3000,
+        priority: true,
+        ignores: [uri => uri.includes('#'),uri => uri == 'http://ronghuaxueleng.github.io/',]
+      });
+      });
+  </script>
+
+
+  <script async src="/blog/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/blog/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div class="moon-menu-item" onclick="back2bottom()">
+      <i class="fa fa-chevron-down"></i>
+    </div>
+    
+    <div class="moon-menu-item" onclick="back2top()">
+      <i class="fa fa-chevron-up"></i>
+    </div>
+    
+  </div>
+  <div class="moon-menu-button" onclick="moonMenuClick()">
+    <svg class="moon-menu-svg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+      <g class="moon-menu-points">
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
+        <circle class="moon-menu-point" r=".2rem"></circle>
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
+      </g>
+    </svg>
+    <div class="moon-menu-icon">
+    </div>
+    <div class="moon-menu-text">
+    </div>
+  </div>
+</div>
+
 <script>
-function showTime(Counter) {
-	var query = new AV.Query(Counter);
-	$(".leancloud_visitors").each(function() {
-		var url = $(this).attr("id").trim();
-		query.equalTo("url", url);
-		query.find({
-			success: function(results) {
-				if (results.length == 0) {
-					var content = '0';
-					$(document.getElementById(url)).text(content);
-					return;
-				}
-				for (var i = 0; i < results.length; i++) {
-					var object = results[i];
-					var content = object.get('time');
-					$(document.getElementById(url)).text(content);
-				}
-			},
-			error: function(object, error) {
-				console.log("Error: " + error.code + " " + error.message);
-			}
-		});
 
-	});
-}
+  const moonMenuListener = function () {
 
-function addCount(Counter) {
-	var Counter = AV.Object.extend("Counter");
-	url = $(".leancloud_visitors").attr('id').trim();
-	title = $(".leancloud_visitors").attr('data-flag-title').trim();
-	var query = new AV.Query(Counter);
-	query.equalTo("url", url);
-	query.find({
-		success: function(results) {
-			if (results.length > 0) {
-				var counter = results[0];
-				counter.fetchWhenSave(true);
-				counter.increment("time");
-				counter.save(null, {
-					success: function(counter) {
-						var content =  counter.get('time');
-						$(document.getElementById(url)).text(content);
-					},
-					error: function(counter, error) {
-						console.log('Failed to save Visitor num, with error message: ' + error.message);
-					}
-				});
-			} else {
-				var newcounter = new Counter();
-				newcounter.set("title", title);
-				newcounter.set("url", url);
-				newcounter.set("time", 1);
-				newcounter.save(null, {
-					success: function(newcounter) {
-					    console.log("newcounter.get('time')="+newcounter.get('time'));
-						var content = newcounter.get('time');
-						$(document.getElementById(url)).text(content);
-					},
-					error: function(newcounter, error) {
-						console.log('Failed to create');
-					}
-				});
-			}
-		},
-		error: function(error) {
-			console.log('Error:' + error.code + " " + error.message);
-		}
-	});
-}
-$(function() {
-	var Counter = AV.Object.extend("Counter");
-	if ($('.leancloud_visitors').length == 1) {
-		addCount(Counter);
-	} else if ($('.post-title-link').length > 1) {
-		showTime(Counter);
-	}
-}); 
+    //Get scroll percent
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+    let percent = Math.round(scrollTop / (scrollHeight - offsetHeight) * 100);
+    if (percent > 100) percent = 100;
+
+    let menuText = document.querySelector('.moon-menu-text');
+    let menuPoints = document.querySelector('.moon-menu-points');
+    if (!percent) {
+      percent = 0;
+      menuText.style.display = 'none';
+      menuPoints.style.display = 'block';
+    } else {
+      menuText.style.display = 'block';
+      menuPoints.style.display = 'none';
+      menuText.innerHTML = percent + '%';
+    }
+
+    //Update strokeDasharray
+    let length = 196;
+    document.querySelector('.moon-menu-border').style.strokeDasharray = percent * length / 100 + ' ' + length;
+
+  }
+
+  window.addEventListener('load', () => {
+    moonMenuListener();
+  });
+  window.addEventListener('scroll', moonMenuListener);
+
+  const moonMenuClick = function () {
+    let items = document.querySelector('.moon-menu-items')
+    items.classList.toggle('active');
+    let points = document.querySelectorAll('.moon-menu-point');
+    let childItems = document.querySelectorAll('.moon-menu-item');
+    if (items.classList.contains('active')) {
+      points[0].setAttribute("cx", "-.8rem");
+      points[0].setAttribute("cy", "0");
+      points[2].setAttribute("cx", ".8rem");
+      points[2].setAttribute("cy", "0");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = -3 - 3 * i + 'rem';
+        childItems[i].style.opacity = .9;
+      }
+    } else {
+      points[0].setAttribute("cx", "0");
+      points[0].setAttribute("cy", "-.8rem");
+      points[2].setAttribute("cx", "0");
+      points[2].setAttribute("cy", ".8rem");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = '1rem';
+        childItems[i].style.opacity = 0;
+      }
+    }
+  };
+
+  const back2top = () => {
+    window.scroll({ top: 0, behavior: 'smooth' });
+  }
+
+  const back2bottom = () => {
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    window.scroll({ top: (scrollHeight - offsetHeight), behavior: 'smooth' });
+  }
+
 </script>
-  
-
 </body>
 </html>

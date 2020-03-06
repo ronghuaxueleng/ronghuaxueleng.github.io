@@ -1,1005 +1,1379 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
 
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://ronghuaxueleng.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
-
-
-
-
-
-
-<meta name="description" content="caoqiang&apos;s blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs">
+  <meta name="description" content="caoqiang&#39;s blog | java |前端 | PHP |nodeJs | python">
 <meta property="og:type" content="website">
 <meta property="og:title" content="白云雅阁">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/page/7/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="caoqiang&apos;s blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs">
+<meta property="og:description" content="caoqiang&#39;s blog | java |前端 | PHP |nodeJs | python">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="曹强">
+<meta property="article:tag" content="java 前端 php nodejs python javascript css html">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白云雅阁">
-<meta name="twitter:description" content="caoqiang&apos;s blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs">
+
+<link rel="canonical" href="http://ronghuaxueleng.github.io/page/7/">
 
 
-
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 0,
-      author: '博主'
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false
   };
 </script>
 
+  <title>白云雅阁</title>
+  
 
 
 
-  <link rel="canonical" href="http://ronghuaxueleng.github.io/page/7/"/>
 
-  <title> 白云雅阁 </title>
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <a href="https://github.com/ronghuaxueleng">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
-    </a>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">白云雅阁</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">白云雅阁</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一切都是最好的安排</p>
   </div>
-  <p class="site-subtitle">读懂别人的故事，写好自己的人生</p>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
 
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
-  
+  </li>
+  </ul>
+
 </nav>
-
- </div>
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content">
             
-  <section id="posts" class="posts-expand">
-    
-      
 
+  <div class="posts-expand">
+        
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/513e5894.html">
 
-  
-  
-  
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/15职责链模式/" itemprop="url">
-                  职责链模式
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/513e5894.html" class="post-title-link" itemprop="url">代码重构</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/javascript/" itemprop="url" rel="index">
                     <span itemprop="name">javascript</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
+            <span id="/archives/513e5894.html" class="post-meta-item leancloud_visitors" data-flag-title="代码重构" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
 
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/15职责链模式/"class="leancloud_visitors" data-flag-title="职责链模式"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <hr>
+<p>一些重构的建议：</p>
+<ol>
+<li>提炼函数</li>
+</ol>
+<pre><code>* 避免出现超大函数
 
-      
-        
-          
-          
+* 独立出来的函数有助于代码复用
 
-使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系，将这些对象都练成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。
+* 独立出来的函数更容易被覆写
 
-如图所示：请求→A→B→C→D再来一个更形象的比喻，读书的时候假设你坐在前面，要在上课时告诉后排一些事情，这时候你可能会选择写一张小纸条，小纸条就会陆续的被向后传递。从上面的例子中，我们可以看到职责链的优点：请求发送者只需要知道链中的第一个节点，从而弱化了发送者和一组接收者之间的强联系。
-实际开发中的职责链模式需求：一个售卖手机的电商网站，交纳500定金和200定金和没交定金的有不同的优惠状况。我们刚开始可能会这么写：
-// orderType: 订单类型（普通用户或定金用户），1为500元定金用户，2为200，3为普通用户
-// pay：表示是否已支付定金，true或false
-// stock：表示当前用于普通购买的手机库存数量，已支付过定金的用户不受此限制。
+* 独立出来的函数如果拥有一个良好的命名，
 
-var order = function (orderType, pay, stock) {
-    if (orderType === 1) { //500元定金购买模式
-        if (pay === true) {
-            console.log(&apos;500元定金预定，已获得100元优惠券&apos;);
-        }else { //未支付定金，降级到普通购买模式
-            if (stock &gt; 0) {
-                console.log(&apos;普通购买，无优惠券&apos;);
-            } else {
-                console.log(&apos;库存不足&apos;);
+* 它本身就起到了注释的作用。
+</code></pre>
+<p>比如在一个负责取得用户信息的函数里面，我们还需要打印跟用户信息有关的log，那么打印log的语句就可以被封装在一个独立的函数里：</p>
+<pre><code>var getUserInfo = function() {
+    ajax('http://xxx.com/userInfo', function(data) {
+        console.log('userId: ' + data.userId);
+        console.log('userName: ' + data.userName);
+        console.log('nickName: ' + data.nickName);
+    });
+};
+</code></pre>
+<p>可以改成：</p>
+<pre><code>var getUserInfo = function() {
+    ajax('http://xxx.com/userInfo', function(data) {
+        printDetails(data);
+    });
+};
+var printDetails = function(data) {
+    console.log('userId: ' + data.userId);
+    console.log('userName: ' + data.userName);
+    console.log('nickName: ' + data.nickName);
+}
+</code></pre>
+<ol>
+<li>合并重复的条件片段<br>
+如果一个函数内有一些条件分支语句，而这些条件分支语句内部散步了一些重复的代码，那么就有必要进行合并去重工作。</li>
+</ol>
+<pre><code>//页面跳转
+var paging = function(currPage) {
+    if (currPage &lt;= 0) {
+        currPage = 0;
+        jump(currPage); //跳转
+    } else if (currPage &gt;= totalPage) {
+        currPage = totalPage;
+        jump(currPage); //跳转
+    } else {
+        jump(currPage); //跳转
+    }
+}
+</code></pre>
+<p>改成</p>
+<pre><code>//页面跳转
+var paging = function(currPage) {
+    if (currPage &lt;= 0) {
+        currPage = 0;
+    } else if (currPage &gt;= totalPage) {
+        currPage = totalPage;
+    } 
+    jump(currPage); //跳转
+}
+</code></pre>
+<ol>
+<li>把条件分支语句提炼成函数<br>
+在程序设计中，复杂的条件分支语句是导致程序难以阅读和理解的重要原因，而且容易导致一个庞大的函数，所以通常我们要进行一定的提炼。</li>
+</ol>
+<pre><code>//计算商品价格，如果处于夏季，全部商品八折出售
+var getPrice = function(price) {
+    var date = new Date();
+    if (date.getMonth() &gt;= 6 &amp;&amp; date.getMonth &lt;= 9) { //夏季
+        return price * 0.8;
+    }
+    return price;
+}
+</code></pre>
+<p>改成</p>
+<pre><code>//计算商品价格，如果处于夏季，全部商品八折出售
+var getPrice = function(price) {
+    
+    if (isSummer()) { //夏季
+        return price * 0.8;
+    }
+    return price;
+}
+var isSummer = function() {
+    var date = new Date();
+    return date.getMonth() &gt;= 6 &amp;&amp; date.getMonth &lt;= 9;
+}
+</code></pre>
+<ol>
+<li>合理使用循环</li>
+</ol>
+<pre><code>var createXHR = function() {
+    var xhr;
+    try{
+        xhr = new ActiveXObject('MSXML2.XMLHttp.6.0');
+    } catch(e) {
+        try {
+            xhr = new ActiveXObject('MSXML2.XMLHttp.3.0');
+        } catch(e) {
+            xhr = new ActiveXObject('MSXML2.XMLHttp');
+        }
+    }
+    return xhr;
+};
+var xhr = createXHR();
+</code></pre>
+<p>改成：</p>
+<pre><code>var createXHR = function() {
+    var versions = ['MSXML2.XMLHttp.6.0', 'MSXML2.XMLHttp.3.0', 'MSXML2.XMLHttp'];
+    for (var i = 0, version; version = versions[i++]; ) {
+        try {
+            return new ActiveObject(version);
+        } catch(e) {
+            
+        }
+    }
+};
+var xhr = createXHR();
+</code></pre>
+<ol>
+<li>提前让函数退出代替嵌套条件分支</li>
+</ol>
+<pre><code>var del = function(obj) {
+    var ret;
+    if (!obj.isReadOnly) { //不为只读的时候才可以删除
+        if (obj.isFolder) { //如果是文件夹
+            ret = deleteFolder(obj);
+        } else if (obj.isFile) { //如果是文件
+            ret = deleteFile(obj);
+        }
+    }
+    return ret;
+}
+</code></pre>
+<p>改成：</p>
+<pre><code>var del = function(obj) {
+    if (obj.isReadOnly) { 
+        return;
+    }
+    if (obj.isFolder) { //如果是文件夹
+        return deleteFolder(obj);
+    } 
+    if (obj.isFile) { //如果是文件
+        return deleteFile(obj);
+    }
+}
+</code></pre>
+<ol>
+<li>传递对象参数代替过长的参数列表<br>
+有时候一个函数可能接收多个参数，而参数的数量越多函数就越难理解和使用。这时我们可以把参数放入一个对象内，然后把对象传入。</li>
+</ol>
+<pre><code>var setUserInfo = function(id, name, address, sex, mobile, qq) {
+    console.log('id=' + id);
+    console.log('name=' + name);
+    console.log('address=' + address);
+    console.log('sex=' + sex);
+    console.log('mobile=' + mobile);
+    console.log('qq=' + qq);
+}
+setUserInfo(1234, cyseria, guangzhou, female, 188***, 52***);
+</code></pre>
+<p>改成：</p>
+<pre><code>var setUserInfo = function(obj) {
+    console.log('id=' + obj.id);
+    console.log('name=' + obj.name);
+    console.log('address=' + obj.address);
+    console.log('sex=' + obj.sex);
+    console.log('mobile=' + obj.mobile);
+    console.log('qq=' + obj.qq);
+}
+setUserInfo({
+    id: 1234, 
+    name: cyseria, 
+    address: guangzhou, 
+    sex: female, 
+    mobile: 188***, 
+    qq: 52***
+});
+</code></pre>
+<ol>
+<li>
+<p>尽量减少参数数量<br>
+尽量减少一些没必要的不会使用或者可以求出的参数。这里不做过多阐述。</p>
+</li>
+<li>
+<p>少用三目运算<br>
+有时候我们用三目运算会觉得它性能高，代码量少。但是在实际开发中，即使把一段代码循环一百万次，使用三目运算和<code>if,else</code>的时间开销依旧在同个级别中。同样，相比损失的代码可读性和可维护性，他能节省的代码量可以忽略不计。</p>
+</li>
+</ol>
+<p>至于例子，看看下面那个你就知道了：</p>
+<pre><code>if (!aup || bup) {
+    return a === doc ? -1 :
+        b === doc ? 1 : 
+        aup ? -1 : 
+        bup : -1 :
+        sortInput ? (indexOf.call(sortInput, a) - indexOf.call(sortInput, b)) : 
+        0;
+}
+</code></pre>
+<p>当然，如果只是简单的一句，用一下也没什么所谓。</p>
+<ol>
+<li>合理使用链式调用<br>
+使用jq的对链式调用一定不陌生，在自己编写函数的时候也可以使用这点，返回自身。但是他也有一个坏处，调试的时候不方便。所以如果链条的结构稳定后期不易修改，那么使用他无可厚非，但是如果该链经常发生变化那么还是用普通的调用吧。</li>
+</ol>
+<pre><code>var User = {
+    id: null,
+    name: null,
+    setId: function(id) {
+        this.id = id;
+        return this;
+    },
+    setName: function(name) {
+        this.name= name;
+        return this;
+    }
+};
+console.log(User.setId(1234).setName('cyseria'));
+</code></pre>
+<ol>
+<li>分解大型类</li>
+</ol>
+<pre><code>var Spirit = function(name) {
+    this.name = name;
+};
+Spirit.prototype.attack = function(type) {
+    if (type === 'waveBoxing') {
+        console.log(this.name + ':使用波动拳');
+    } else if (type === 'whirlKick') {
+        console.log(this.name + ':使用旋风腿');
+    }
+};
+var Spirit = new Spirit('AAA');
+Spirit .attack('waveBoxing');
+Spirit .attack('whirlKick');
+</code></pre>
+<p>改成：</p>
+<pre><code>var Attack = function(spirit) {
+    this.spirit = spirit;
+};
+Attack.prototype.start = function(type) {
+    return this.list[type].call(this);
+}
+Attack.prototype.list= function(type) {
+    waveBoxing: function() {
+        console.log(this.spirit.name + ':使用波动拳');
+    },
+    whirlKick: function() {
+        console.log(this.spirit.name + ':使用旋风腿');
+    }
+};
+var Spirit = function(name) {
+    this.name = name;
+    this.attackObj = new Attack(this);
+};
+Spirit.prototype.attack = function(type) {
+    this.attackObj.start(type);
+};
+
+var Spirit = new Spirit('AAA');
+Spirit .attack('waveBoxing');
+Spirit .attack('whirlKick');
+</code></pre>
+<ol>
+<li>用return退出多重循环<br>
+假设在函数体内有一个两重循环语句，我们需要在内层循环中判断当达到某个临界条件时退出外层循环。</li>
+</ol>
+<pre><code>var print = function(i) {
+    console.log(i);
+};
+var func = function() {
+    for (var i = 0; i &lt; 10; i++) {
+        for (var j = 0; j &lt; 10; j++) {
+            if (i * j &gt; 30) {
+                return print(i);
             }
         }
     }
-    else if (orderType === 2) {
-        if (pay === true) {
-            console.log(&apos;200元定金预定，已获得50元优惠券&apos;);
-        }else { //未支付定金，降级到普通购买模式
-            if (stock &gt; 0) {
-             
-          ...
+};
+func();
+</code></pre>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/15职责链模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
       
     </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
+    
+    
+    
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-
-
-    
-      
-
-  
-  
-
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/72e3b671.html">
 
-    
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/14享元模式/" itemprop="url">
-                  享元模式
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/72e3b671.html" class="post-title-link" itemprop="url">策略模式</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/javascript/" itemprop="url" rel="index">
                     <span itemprop="name">javascript</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/14享元模式/"class="leancloud_visitors" data-flag-title="享元模式"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-
-享元模式的核心是运用共享技术来有效支持大量细粒度的对象。如果系统中因为创建了大量类似的对象而导致内存占用过高，享元模式就非常有用了。在JavaScript中，浏览器特别是移动端的浏览器分配的内存不算多，如何节省内存就成了一件非常有意义的事。
-
-初识假设有个内衣工厂，要50个男模50个女模，你可能会这么写程序：
-var Model = function(sex, underwear) {
-    this.sex = sex;
-    this.underwear = underwear;
-}
-Model.prototype.takePhoto = function() {
-    console.log(&apos;sex=&apos; + this.sex + &apos; underwear=&apos; + this.underwear );
-}
-for (var i = 1; i &lt;= 50; i++) {
-    var maleModel = new Model(&apos;male&apos;, &apos;underwear&apos; + i);
-    maleModel.takePhoto();
-}
-for (var j = 1; j &lt;= 50; j++) {
-    var femaleModel = new Model(&apos;female&apos;, &apos;underwear&apos; + j);
-    femaleModel.takePhoto();
-}
-要得到一张照片，每次都需要传入sex，underwear参数，根据现在的需求一共会产生100个对象。但是如果将来要生产10000种，那这个程序可能会因为存在太多对象提前崩溃。所以我们做一点改动
-var Model = function(sex) {
-    this.sex = sex;
-}
-Model.pototype.takePhoto = function() {
-    console.log(&apos;sex=&apos; + this.sex + &apos; underwear=&apos; + this.underwear );
-};
-
-//分别创建一个男模特对象和女模特对象
-var maleModel = new Model(&ap
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/14享元模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/16中介者模式/" itemprop="url">
-                  中介者模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+            <span id="/archives/72e3b671.html" class="post-meta-item leancloud_visitors" data-flag-title="策略模式" title="阅读次数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="fa fa-eye"></i>
               </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2k</span>
             </span>
-          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
 
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/16中介者模式/"class="leancloud_visitors" data-flag-title="中介者模式"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-          
-
-中介者模式的作用就是解除对象与对象之间的紧耦合关系。增加一个中介者对象后，所有的相关对象都可以通过中介者对象来通信，而不是相互引用，所以当一个对象发生改变时，只需要通知中介者对象即可。中介者模式使网状的多对多关系变成了相对简单的一对多关系。
-
-中介者模式的例子–购买商品假如我们正在编写一个手机购买的页面，在购买流程中，可以选择手机的颜色以及输入购买数量，同时页面中有两个展示区域，分别向用户展示选择好的颜色和数量。show the code：
-var colorSelect = document.getElemmentById(&apos;colorSelect&apos;),
-    numberInput= document.getElemmentById(&apos;numberInput&apos;),
-    colorInfo= document.getElemmentById(&apos;colorInfo&apos;),
-    numberInfo = document.getElemmentById(&apos;numberInfo &apos;),
-    nextBtn = document.getElemmentById(&apos;nextBtn &apos;);
-
-var goods = { //手机库存
-    &quot;red&quot;: 3,
-    &quot;blue&quot;: 6
-};
-//选择颜色时候
-colorSelect.onchange = function() {
-    var color = this.value, //颜色
-        number = numberInput.value, //数量
-        stock = goods[color]; //该颜色手机对应的当前库存
-    colorInfo.innerHTML = color;
-    if (!color) {
-        nextBtn.disabled = true;
-        nextBtn.innerHTML = &apos;请选择手机颜色&apos;;
-        return;
+          <blockquote>
+<p>定义：定义一系列算法，把他们一个个封装起来，并且使他们可以相互替换。</p>
+</blockquote>
+<p>需求：绩效为S的人年终奖有4倍工资，绩效为A的人年终奖有3倍工资，绩效为B的人年终奖有2倍工资。</p>
+<pre><code>var calculateBonus = function(performanceLevel, salary) {
+    if (performanceLevel === 'S') {
+        return salary * 4;
     }
-    if (((number - 0) | 0) !== number - 0) { //用户输入的
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/16中介者模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/17装饰者模式/" itemprop="url">
-                  装饰者模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/17装饰者模式/"class="leancloud_visitors" data-flag-title="装饰者模式"></span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-
-装饰者模式：给对象动态地增加职责。跟继承相比，装饰者是一种更轻便灵活的做法，是一种“即用即付”的方式。
-
-js的装饰者假设我们在编写一个飞机大战游戏，这个飞机可以升级，发射导弹，发射原子弹
-var plane = {
-    fire: function() {
-        console.log(&apos;发射普通子弹&apos;);
+    if (performanceLevel === 'A') {
+        return salary * 3;
+    }
+    if (performanceLevel === 'B') {
+        return salary * 2;
     }
 };
-var missileDecorator = function() {
-    console.log(&apos;发射导弹&apos;);
-};
-var atomDecorator = function() {
-    console.log(&apos;发射原子弹&apos;);
-};
-var fire1 = plane.fire;
-plane.fire = function() {
-    fire1();
-    missileDecorator();
+
+calculateBonus('B', 20000); //輸出：40000
+</code></pre>
+<p>然而，calculateBonus函数比较庞大，包含了很多if语句，且缺乏弹性，如果增加新的绩效等级，复用性差，如果在程序的其他地方需要重用这些计算奖金的算法，我们的选择只有复制和粘贴。因此，我们要重构这段代码。</p>
+<pre><code>var performanceS = function(salary) {
+    return salary * 4;
+}
+var performanceA = function(salary) {
+    return salary * 3;
+}
+var performanceB = function(salary) {
+    return salary * 2;
+}
+
+var calculateBonus = function(performanceLevel, salary) {
+    if (performanceLevel == 'S') {
+        return performanceS(salary);
+    }
+    if (performanceLevel == 'A') {
+        return performanceA(salary);
+    }
+    if (performanceLevel == 'B') {
+        return performanceB(salary);
+    }
 };
 
-var fire2 = plane.fire;
-plane.fire = function() {
-    fire2();
-    atomDecorator();
+calculateBonus('A', 10000);//輸出：30000
+</code></pre>
+<p>我们的程序得到了一定的改善，但calculateBonus函数可能越来越庞大，依旧缺乏弹性。</p>
+<h3 id="策略模式">策略模式</h3>
+<p>这时候策略模式该出场了。</p>
+<p><strong>我们要将算法的使用与算法的实现分离开来</strong></p>
+<pre><code>//我们先把每种绩效的计算规则封装在对应的策略类里
+var porformanceS = function() {};
+porformanceS.prototype.calculate = function(salary) {
+    return salary * 4;
 };
-plane.fire(); //&quot;发射普通子弹&quot;&quot;发射导弹&quot;&quot;发射原子弹&quot;
-用AOP装饰函数首先给出Function.prototype.before方法和Function.prototype.after方法
-Function.prototype.before = function (beforefn) {
-  var __self = this; //保存原函数的引用
-  return function() {  //返回包含了原函数和新函数的代理函数
-    beforefn.apply(this, arguments); //执行新函数，且保证this不被劫持，新函数接受的参数也会原封不动的传入原函数，新函数在原函数之前执行
-    return __self.apply(this, arguments); //执行原函数并返回原函数的执行结果，并保证this不被劫持
-  };
+var porformanceA = function() {};
+porformanceA.prototype.calculate = function(salary) {
+    return salary * 3;
 };
-Function.prototype.after = function (afterfn) {
-  var __self 
-          ...
+var porformanceB = function() {};
+porformanceB.prototype.calculate = function(salary) {
+    return salary * 2;
+};
+//接下来定义奖金类Bonus:
+var Bonus = function() {
+    this.salary = null;
+    this.strategy = null;
+};
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/17装饰者模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+Bonus.prototype.setSalary = function(salary) {
+    this.salary = salary;
+}
+Bonus.prototype.setStrategy = function(strategy) {
+    this.strategy = strategy;
+}
+Bonus.prototype.getBonus = function() {
+    return this.strategy.calculate(this.salary);
+}
+
+//使用
+var Bonus = new Bonus();
+bonus.setSalary(1000);
+bonus.setStrategy(new performanceS());
+bonus.getBonus();
+</code></pre>
+<h3 id="JavaScript版本">JavaScript版本</h3>
+<p>在JavaScript中，函数即对象，因此我们可以直接把strategy定义成函数:</p>
+<pre><code>var strategies = {
+    &quot;S&quot;: function ( salary ){
+        return salary * 4;
+    },
+    &quot;A&quot;: function ( salary ){
+        return salary * 3;
+    },
+    &quot;B&quot;: function ( salary ){
+        return salary * 2;
+    }
+};
+
+var calculateBonus = function(level,salary){
+    return strategies[level](salary);
+};
+
+console.log(calculateBonus('S', 2000); //80000
+console.log(calculateBonus('A', 1000); //30000
+</code></pre>
+
       
     </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
+    
+    
+    
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-
-
-    
-      
-
-  
-  
-
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/681b9f80.html">
 
-    
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/" itemprop="url">
-                  状态模式
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/681b9f80.html" class="post-title-link" itemprop="url">代理模式的应用</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-12T00:00:00+08:00" content="2016-10-12">
-              2016-10-12
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/javascript/" itemprop="url" rel="index">
                     <span itemprop="name">javascript</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
+            <span id="/archives/681b9f80.html" class="post-meta-item leancloud_visitors" data-flag-title="代理模式的应用" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
 
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/"class="leancloud_visitors" data-flag-title="状态模式"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <hr>
+<h3 id="虚拟代理实现图片预加载">虚拟代理实现图片预加载</h3>
+<p>图片预加载：图片过大或者网络不佳时，图片位置有段时间会是一片空白，常见的用一张loading占位，然后异步加载图片，等图片加载好了再把它填充到img节点里。</p>
+<pre><code>var myImage = (function() {
+    var imgNode = document.createElement('img');
+    document.body.appendChild( imgNode );
+    return {
+        setSrc : function( src ) {
+            imgNode.src = src;
+        }
+    }
+})();
+
+var proxyImage = (function() {
+    var img = new Image;
+    img.onload = function() {//图片加载完成之后触发
+        myImage.setSrc(this.src);
+    }
+    return {
+        setSrc: function(src) {
+            myImage.setSrc('loading.gif'); //loading图片
+            img.src = src;
+        }
+    }
+})();
+proxyImage.setSrc('xxxx');
+</code></pre>
+<p>这里我们通过proxyImage间接地访问MyImage，proxyImage控制了客户对MyImage的访问，因此在此过程中加入一些额外的操作，比如在真正图片加在之前先把img的节点的src设置成一张本地的图片。</p>
+<h3 id="虚拟代理合并http请求">虚拟代理合并http请求</h3>
+<p>假设我有一堆选项(checkbox)，每次点击就会往服务器同步文件，手速快的一秒或许可以点中四五个，然而太过平凡的服务器请求开销略大。<br>
+因此，我们决定设置一个代理函数，将两秒之内的数据传输收集到一起两秒再发送一次，对于实时性要求不是很高的系统两秒延迟不会有太大副作用但是对服务器的压力就是量级的减少。</p>
+<pre><code>var synchronousFile = function(id) {
+    console.log('开始同步文件' + id);
+};
+
+var proxySynchronousFile = (function() {
+    var cache = [], //保存一段时间内需要同步的ID
+        timer;
+    return function(id) {
+        cache.push(id);
+        if (timer) { //保证不会覆盖已启动的定时器
+            return;
+        }
+        timer = setTimeout(function() {
+            synchronousFile(cache.join(',')); //两秒后向本体发送需要同步的ID集合
+            clearTimeout(timer);
+            timer = null;
+            cache.length = 0;
+        }, 2000);
+    }
+})();
+
+var chechbox = document.getElementByTagName('input');
+for(var i = 0, c; c = checkbox[i++];) {
+    c.onclick = function() {
+        if(this.checked === true) {
+            proxySychronousFile(this.id);
+        }
+    }
+}
+</code></pre>
+<h3 id="其他代理模式">其他代理模式</h3>
+<ul>
+<li>
+<p>缓存代理：为一些开销大的运算结果提供暂时的存储，在下次运算时，如果传过来的参数跟之前的一直可以直接返回前面的存储运算结果</p>
+</li>
+<li>
+<p>防火墙代理：控制网络资源的访问，保护主题不让“坏人”接近</p>
+</li>
+<li>
+<p>远程代理：为一个对象在不同的地址空间提供局部代表</p>
+</li>
+<li>
+<p>保护代理：用于对象应该有不同访问权限的情况</p>
+</li>
+<li>
+<p>智能引用代理：取代了简单的指针，它在访问对象时执行了一些附加操作，比如计算一个对象被引用的次数</p>
+</li>
+<li>
+<p>写时服饰代理：通常用于复制一个庞大对象时候的情况。写时复制代理延迟了复制的过程，当对象被真正修改时，才能对它进行复制操作。<br>
+…</p>
+</li>
+</ul>
 
       
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
-          
-          
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/b6f5c834.html">
 
-状态模式的关键是区分事物内部的状态，事物内部状态的改变往往会带来事物的行为改变。
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
 
-电灯程序首先给一个不用状态模式的电灯程序例子：
-var Light = function() {
-  this.state = &apos;off&apos;; //电灯初始状态off
-  this.button = null; //电灯开关按钮
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/b6f5c834.html" class="post-title-link" itemprop="url">策略模式的应用</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/b6f5c834.html" class="post-meta-item leancloud_visitors" data-flag-title="策略模式的应用" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<h3 id="用策略模式实现缓动动画">用策略模式实现缓动动画</h3>
+<p>需求：让小球以各种缓动效果在页面中运动<br>
+动画开始前需要记录的：</p>
+<ul>
+<li>
+<p>小球所在原始位置</p>
+</li>
+<li>
+<p>小球移动的目标位置</p>
+</li>
+<li>
+<p>动画开始时的时间点</p>
+</li>
+<li>
+<p>小球运动的时间点<br>
+之后，用<code>setInterval</code>创建一个定时器，定时器每19秒循环一次。</p>
+<p>//缓动算法，此算法移植于flash</p>
+<p>var tween = {<br>
+//t：动画已消耗的时间，b：小球原始位置，c：小球目标位置，d：动画持续时间<br>
+linear: function(t, b, c, d) {<br>
+return c*t/d + b;<br>
+},<br>
+reseIn: function(t, b, c, d) {<br>
+return c * (t /= d) * t + b;<br>
+},<br>
+strongEaseIn: function(t, b, c, d) {<br>
+return c * (t /= d) * t * t * t * t + b;<br>
+},<br>
+strongEaseOut: function(t, b, c, d) {<br>
+return c * (( t = t / d - 1) * t * t * t * t + 1) + b;<br>
+},<br>
+sineaseIn: function(t, b, c, d) {<br>
+return c * (t /= d) * t * t + b;<br>
+},<br>
+sineaseOur: function(t, b, c, d) {<br>
+return c * ((t = t / d - 1) * t * t + 1 ) + b;<br>
+}<br>
+};</p>
+</li>
+</ul>
+<p>接着Animation类</p>
+<pre><code>var Animate = function( dom ) {
+    this.dom = dom;              //进行运动的dom节点
+    this.startTime = 0;         //动画开始时间
+    this.startPos = 0;           //动画开始时候dom位置
+    this.endPos = 0;            //结束dom位置
+    this.propertyName = null;     //dom节点需要被改变的属性名
+    this.easing = null;    //缓动算法
+    this.duration = null;   //动画持续时间
+};
+</code></pre>
+<p>Animate.prototype.start方法负责启动这个动画<br>
+Animate.prototype.step代表小球运动的每一帧要做的事情</p>
+<pre><code>Animate.prototype.start = function( propertyName, endPos, duration, easing) {
+    this.startTime = +new Date;  //动画启动时间
+    this.startPos = this.dom.getBoundingClientRect()[ propertyName ]; //dom节点初始位置
+    this.endPos = endPos;
+    this.duration = duration;
+    this.easing = tween[ easing ]; 
+  
+    var self = this;
+    var timeId = setInterval(function() { //启动定时器，开始执行动画
+        if (self.step() === false) {
+            clearInterval(timeId);
+        }
+    }, 19);
 };
 
-Light.prototype.init = function() {
-  var button = document.createElement(&apos;button&apos;),
-      self = this;
 
-  button.innerHTML = &apos;开关&apos;;
-  this.button = document.body.appendChild(button);
-  this.button.onclick = function() {
-    self.buttonWasPressed();
-  };
+Animate.prototype.step = function() {
+    var t = +new Date;
+    if (t &gt;= this.startTime + this.duration) {
+        this.update(this.endPos);
+        return false;
+    }
+    var pos = this.easing(t - this.startTime, this.startPos, this.endPos = this.startPos, this.duration);
+  
+    this.update(pos);
 };
 
-Light.prototype.buttonWasPressed = function() {
-  if (this.state === &apos;off&apos;) {
-    console.log(&apos;开灯&apos;);
-    this.state = &apos;on&apos;;
-  } else if (this.state === &apos;on&apos;) {
-    console.log(&apos;关灯&apos;);
-    this.state = &apos;off&apos;;
+Animate.prototype.update = function(pos) {
+    this.dom.style[this.propertyName] = pos + 'px';
+};
+</code></pre>
+<p>最后，调用</p>
+<pre><code>var div = document.getElementById('div');
+var animate = new Animate(div);
+animate.start('left', 500, 1000, 'strongEaseOut');
+</code></pre>
+<h3 id="表单验证">表单验证</h3>
+<p>需求：</p>
+<ul>
+<li>
+<p>用户名不能为空</p>
+</li>
+<li>
+<p>密码长度不能少于6位</p>
+</li>
+<li>
+<p>手机号码符合格式</p>
+</li>
+</ul>
+<p>常规，我们可能这么写：</p>
+<pre><code>var registerForm = document.getElementById('registerForm');
+
+registerForm.onsubmit = function() {
+  if (registerForm.userName.value === '') {
+    alert(&quot;用户名不能为空&quot;);
+    return false;
+  }
+  if (registerForm.password.value.length &lt; 6) {
+    alert(&quot;密码长度不能少于6位&quot;);
+    return false;
+  }
+  if (!/(^1[3|5|8][0-9]{9}$)/.test(registerForm.phoneNumber.value)) {
+    alert(&quot;手机号码格式不正确&quot;);
+    return false;
+  }
+}
+</code></pre>
+<p>当然，这个也有函数庞大，缺乏弹性，复用性差等问题，所以，开始突出本文的重点，策略模式的应用</p>
+<pre><code>var strategies = {
+  isNonEmpty: function(value, errorMsg) {
+    if (value == '') {
+      return errorMsg;
+    }
+  },
+  minLength: function(value, length, errorMsg) {
+    if (value.length &lt; length) {
+      return errorMsg;
+    }
+  },
+  isMobile: function(value, errorMsg) {
+    if (!/(^1[3|5|8][0-9]{9}$)/.test(value)) {
+      return errorMsg;
+    }
   }
 };
 
-var light = new Light();
-light.init();
-这样子看起来非常完美。但是假如我们有三种光，甚至四种五种，只能在buttonWasPressed里面新增代码，这样就显得他很不稳定了。而且所有跟状态有关的行为，这里只是console，但是在实际应用中要处理的事情庞大得多…所以，我们用状态模式进行改写
-//OffLightState
-var OffLightState = function(light) {
-  this.light = light;
+var Validator = function() {
+  this.cache = [];
 };
-OffLightState.prototype.buttonW
-          ...
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/12/JavaScript设计模式与开发实践/18状态模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+Validator.prototype.add = function(dom, rule, errorMsg) {
+  var ary = rule.split(':');
+  this.cache.push(function() {
+    var strategy = ary.shift();
+    ary.unshift(dom.value);
+    ary.push(errorMsg);
+    return strategies[strategy].apply(dom, ary);
+  })
+};
+
+Validator.prototype.start = function() {
+  for (var i = 0; validataFunc; validataFunc = this.cache[i++]) {
+    var msg = validataFunc();
+    if (msg) {
+      return msg;
+    }
+  }
+}
+
+var registerForm = document.getElementById('registerForm');
+registerForm.onsubmit = function() {
+  var errorMsg = validataFunc();
+
+  if (errorMsg) {
+    alert(errorMsg);
+    return false;
+  }
+};
+
+var validataFunc = function() {
+  var validator = new Validator();
+
+  validator.add(registerForm.userName, 'isNonEmpty', '用户名不能为空');
+  validator.add(registerForm.password, 'minLength:6', '密码长度不能少于6位');
+  validator.add(registerForm.phoneNumber, 'isMobile', '手机号码格式不正确');
+
+  var errorMsg = validator.start();
+  return errorMsg;
+}
+</code></pre>
+
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
 
     
-  </section>
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/7b510e10.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/7b510e10.html" class="post-title-link" itemprop="url">代理模式</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/7b510e10.html" class="post-meta-item leancloud_visitors" data-flag-title="代理模式" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>代理模式是为一个对象提供一个代用品或占位符，以便控制对他的访问。代理模式的关键是，当客户不方便直接访问一个对象或者不满足需要的时候，提供一个对象来控制这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理后再把请求转交给本体对象。</p>
+</blockquote>
+<p>不使用代理：客户 → 本体<br>
+使用代理：客户 → 代理 → 本体</p>
+<p>先来一个带点趣味性的例子，小明要给女神A送花，然后他不好意思，打算让B代送</p>
+<pre><code>var Flower = function(){};
+var xiaoming = {
+    sendFlower: function( traget ) {
+      var flower = new Flower();
+      target.receveFlower( flower );
+    }
+};
+
+var A = {
+    receiveFlower: function( flower ) {
+      console.log('收到花' + flower);
+  }
+};
+
+xiaoming.sendFlower(A);
+
+//引入代理B
+var B = {
+    receiverFlower: function( flower ) {
+      A.receiveFlower( flower );
+  }
+};
+</code></pre>
+<p>此时，我们就简单的完成了一个代理模式</p>
+<p>接着，我们在原需求上做点改动，假设女神心情好的时候成功率会增大，小明跟女神不熟不知道她心情，而B跟女神比较熟可以去监听她心情的变化恰当时机送花，这样就不会造成不必要浪费了，于是代码如下：</p>
+<pre><code>//代理B
+var B = {
+    receiverFlower: function( flower ) {
+      A.listenGoodMood(function() { //监听A的好心情
+        A.receiveFlower( flower );
+    })；
+  }
+};
+
+//女神A也要提供一个可被监听的方法（当然我们只是假设，毕竟女人我们是摸不透的）
+var A = {
+    receiveFlower: function( flower ) {
+      console.log('收到花' + flower);
+  },
+  listenGoodMood: function( fn ) {
+      setTimeout(function() { //假设A的心情十秒之后会变好
+        fn();
+    }, 10000);
+  }
+};
+</code></pre>
+<p>再假设买花是一个代价昂贵的操作（说不定会被别人误会什么的，而且花放太久也会谢），所以我们当需要的时候再去做这事才比较划算，就是在A心情好的时候再去new一个花出来。</p>
+<pre><code>//引入代理B
+var B = {
+    receiverFlower: function( flower ) {
+      A.listenGoodMood(function() { //监听A的好心情
+        var Flower = function(){};
+      A.receiveFlower( flower );
+    })；
+  }
+};
+</code></pre>
+<p>此外，代理B可以帮助A做一些过滤请求，比如把一些年纪太大的，没有宝马的送花者都过滤掉，这种请求就可以直接在代理B中被拒绝掉，这种代理方式叫<strong>保护代理</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1007,445 +1381,704 @@ OffLightState.prototype.buttonW
           </div>
           
 
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/img/avatar.jpg"
-               alt="曹强" />
-          <p class="site-author-name" itemprop="name">曹强</p>
-          <p class="site-description motion-element" itemprop="description">caoqiang's blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">83</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">14</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/ronghuaxueleng" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-      </section>
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">曹强</span>
-</div>
-
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
-
-<!-- 不蒜子 -->
-<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_pv" style="display:none">
-  本站总访问量<span id="busuanzi_value_site_pv"></span>人次
-</span>
-<!-- 不蒜子计数初始值纠正 -->
-<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function() {
-        var int = setInterval(fixCount, 100);
-        var busuanziSiteOffset = parseInt(1203);
-        function fixCount() {
-            if ($("#busuanzi_container_site_pv").css("display") != "none") {
-                clearInterval(int);
-                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
-            }
-        }
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
     });
-</script>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
   }
 </script>
 
-
-
-
-
-
-
-
-
+        </div>
+          
   
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="曹强"
+      src="/img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">曹强</p>
+  <div class="site-description" itemprop="description">caoqiang's blog | java |前端 | PHP |nodeJs | python</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
 
 
 
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+      <div class="links-of-blogroll-title">
+        <!-- modify icon to fire by szw -->
+        <i class="fa fa-history fa-" aria-hidden="true"></i>
+        近期文章
+      </div>
+      <ul class="links-of-blogroll-list">
+        
+        
+          <li>
+            <a href="/archives/2fd7dbc7.html" title="Shadow DOM" target="_blank">Shadow DOM</a>
+          </li>
+        
+          <li>
+            <a href="/archives/b4a56055.html" title="可视化埋点" target="_blank">可视化埋点</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a5431a21.html" title="从 JavaScript 数组去重谈性能优化" target="_blank">从 JavaScript 数组去重谈性能优化</a>
+          </li>
+        
+      </ul>
+    </div>
+
+
+<div style="">
+  <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
+
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
   
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">318k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:49</span>
+</div>
 
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
-
-
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-   
-     
-   
-  
- 
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
 
 
-  
 
-
-
-
-  
-  
-
-  
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
   <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
       });
 
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
           if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
             return;
           }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
           }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
             }
           }
         })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
         });
     }
+  }
 
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
+  fetch('https://app-router.leancloud.cn/2/route?appId=bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz',
+            'X-LC-Key': '9kCQuNi7NFq5MdDBn9J1Xj1r',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
         addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
         showTime(Counter);
       }
     });
   </script>
 
 
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 
   
-  
-    <!-- custom analytics part create by xiamo -->
-<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-<script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout: 3000,
+        priority: true,
+        ignores: [uri => uri.includes('#'),uri => uri == 'http://ronghuaxueleng.github.io/page/7/',]
+      });
+      });
+  </script>
+
+
+  <script async src="/blog/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/blog/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div class="moon-menu-item" onclick="back2bottom()">
+      <i class="fa fa-chevron-down"></i>
+    </div>
+    
+    <div class="moon-menu-item" onclick="back2top()">
+      <i class="fa fa-chevron-up"></i>
+    </div>
+    
+  </div>
+  <div class="moon-menu-button" onclick="moonMenuClick()">
+    <svg class="moon-menu-svg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+      <g class="moon-menu-points">
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
+        <circle class="moon-menu-point" r=".2rem"></circle>
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
+      </g>
+    </svg>
+    <div class="moon-menu-icon">
+    </div>
+    <div class="moon-menu-text">
+    </div>
+  </div>
+</div>
+
 <script>
-function showTime(Counter) {
-	var query = new AV.Query(Counter);
-	$(".leancloud_visitors").each(function() {
-		var url = $(this).attr("id").trim();
-		query.equalTo("url", url);
-		query.find({
-			success: function(results) {
-				if (results.length == 0) {
-					var content = '0';
-					$(document.getElementById(url)).text(content);
-					return;
-				}
-				for (var i = 0; i < results.length; i++) {
-					var object = results[i];
-					var content = object.get('time');
-					$(document.getElementById(url)).text(content);
-				}
-			},
-			error: function(object, error) {
-				console.log("Error: " + error.code + " " + error.message);
-			}
-		});
 
-	});
-}
+  const moonMenuListener = function () {
 
-function addCount(Counter) {
-	var Counter = AV.Object.extend("Counter");
-	url = $(".leancloud_visitors").attr('id').trim();
-	title = $(".leancloud_visitors").attr('data-flag-title').trim();
-	var query = new AV.Query(Counter);
-	query.equalTo("url", url);
-	query.find({
-		success: function(results) {
-			if (results.length > 0) {
-				var counter = results[0];
-				counter.fetchWhenSave(true);
-				counter.increment("time");
-				counter.save(null, {
-					success: function(counter) {
-						var content =  counter.get('time');
-						$(document.getElementById(url)).text(content);
-					},
-					error: function(counter, error) {
-						console.log('Failed to save Visitor num, with error message: ' + error.message);
-					}
-				});
-			} else {
-				var newcounter = new Counter();
-				newcounter.set("title", title);
-				newcounter.set("url", url);
-				newcounter.set("time", 1);
-				newcounter.save(null, {
-					success: function(newcounter) {
-					    console.log("newcounter.get('time')="+newcounter.get('time'));
-						var content = newcounter.get('time');
-						$(document.getElementById(url)).text(content);
-					},
-					error: function(newcounter, error) {
-						console.log('Failed to create');
-					}
-				});
-			}
-		},
-		error: function(error) {
-			console.log('Error:' + error.code + " " + error.message);
-		}
-	});
-}
-$(function() {
-	var Counter = AV.Object.extend("Counter");
-	if ($('.leancloud_visitors').length == 1) {
-		addCount(Counter);
-	} else if ($('.post-title-link').length > 1) {
-		showTime(Counter);
-	}
-}); 
+    //Get scroll percent
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+    let percent = Math.round(scrollTop / (scrollHeight - offsetHeight) * 100);
+    if (percent > 100) percent = 100;
+
+    let menuText = document.querySelector('.moon-menu-text');
+    let menuPoints = document.querySelector('.moon-menu-points');
+    if (!percent) {
+      percent = 0;
+      menuText.style.display = 'none';
+      menuPoints.style.display = 'block';
+    } else {
+      menuText.style.display = 'block';
+      menuPoints.style.display = 'none';
+      menuText.innerHTML = percent + '%';
+    }
+
+    //Update strokeDasharray
+    let length = 196;
+    document.querySelector('.moon-menu-border').style.strokeDasharray = percent * length / 100 + ' ' + length;
+
+  }
+
+  window.addEventListener('load', () => {
+    moonMenuListener();
+  });
+  window.addEventListener('scroll', moonMenuListener);
+
+  const moonMenuClick = function () {
+    let items = document.querySelector('.moon-menu-items')
+    items.classList.toggle('active');
+    let points = document.querySelectorAll('.moon-menu-point');
+    let childItems = document.querySelectorAll('.moon-menu-item');
+    if (items.classList.contains('active')) {
+      points[0].setAttribute("cx", "-.8rem");
+      points[0].setAttribute("cy", "0");
+      points[2].setAttribute("cx", ".8rem");
+      points[2].setAttribute("cy", "0");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = -3 - 3 * i + 'rem';
+        childItems[i].style.opacity = .9;
+      }
+    } else {
+      points[0].setAttribute("cx", "0");
+      points[0].setAttribute("cy", "-.8rem");
+      points[2].setAttribute("cx", "0");
+      points[2].setAttribute("cy", ".8rem");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = '1rem';
+        childItems[i].style.opacity = 0;
+      }
+    }
+  };
+
+  const back2top = () => {
+    window.scroll({ top: 0, behavior: 'smooth' });
+  }
+
+  const back2bottom = () => {
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    window.scroll({ top: (scrollHeight - offsetHeight), behavior: 'smooth' });
+  }
+
 </script>
-  
-
 </body>
 </html>

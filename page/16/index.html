@@ -1,719 +1,783 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
 
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://ronghuaxueleng.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
-
-
-
-
-
-
-<meta name="description" content="caoqiang&apos;s blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs">
+  <meta name="description" content="caoqiang&#39;s blog | java |前端 | PHP |nodeJs | python">
 <meta property="og:type" content="website">
 <meta property="og:title" content="白云雅阁">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/page/16/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="caoqiang&apos;s blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs">
+<meta property="og:description" content="caoqiang&#39;s blog | java |前端 | PHP |nodeJs | python">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="曹强">
+<meta property="article:tag" content="java 前端 php nodejs python javascript css html">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白云雅阁">
-<meta name="twitter:description" content="caoqiang&apos;s blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs">
+
+<link rel="canonical" href="http://ronghuaxueleng.github.io/page/16/">
 
 
-
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 0,
-      author: '博主'
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false
   };
 </script>
 
+  <title>白云雅阁</title>
+  
 
 
 
-  <link rel="canonical" href="http://ronghuaxueleng.github.io/page/16/"/>
 
-  <title> 白云雅阁 </title>
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <a href="https://github.com/ronghuaxueleng">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
-    </a>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">白云雅阁</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">白云雅阁</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一切都是最好的安排</p>
   </div>
-  <p class="site-subtitle">读懂别人的故事，写好自己的人生</p>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
 
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
-  
+  </li>
+  </ul>
+
 </nav>
-
- </div>
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content">
             
-  <section id="posts" class="posts-expand">
-    
-      
 
+  <div class="posts-expand">
+        
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/9c7a7c8f.html">
 
-  
-  
-  
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/30/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记：面向对象之创建对象/" itemprop="url">
-                  《JavaScript高级程序设计》阅读笔记：面向对象之创建对象
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/9c7a7c8f.html" class="post-title-link" itemprop="url">《JavaScript高级程序设计》阅读笔记：面向对象之创建对象</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-30T00:00:00+08:00" content="2016-07-30">
-              2016-07-30
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2016-07-30 00:00:00" itemprop="dateCreated datePublished" datetime="2016-07-30T00:00:00Z">2016-07-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/《JavaScript高级程序设计》阅读笔记/" itemprop="url" rel="index">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
                     <span itemprop="name">《JavaScript高级程序设计》阅读笔记</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
+            <span id="/archives/9c7a7c8f.html" class="post-meta-item leancloud_visitors" data-flag-title="《JavaScript高级程序设计》阅读笔记：面向对象之创建对象" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
 
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/07/30/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记：面向对象之创建对象/"class="leancloud_visitors" data-flag-title="《JavaScript高级程序设计》阅读笔记：面向对象之创建对象"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <hr>
+<h3 id="创建对象">创建对象</h3>
+<h5 id="工厂模式">工厂模式</h5>
+<p>工厂模式优点：有了封装的概念，解决了创建多个相似对象的问题</p>
+<p>缺点：没有解决对象识别问题,所有对象都仅是Object的实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function createPerson(name,age,job)</span><br><span class="line">&#123;</span><br><span class="line">    var o&#x3D;new Object();</span><br><span class="line">    o.name&#x3D;name;</span><br><span class="line">    o.age&#x3D;age;</span><br><span class="line">    o.job&#x3D;job;</span><br><span class="line">    o.sayName&#x3D;function()&#123;</span><br><span class="line">        alert(this.name);</span><br><span class="line">    &#125;;</span><br><span class="line">    return o;</span><br><span class="line">&#125;</span><br><span class="line">var person1&#x3D;createPerson(&quot;Jack&quot;,29,&quot;Engineer&quot;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;检测对象类型</span><br><span class="line">alert(person1 instanceof Object) &#x2F;&#x2F;true</span><br><span class="line">alert(person1 instanceof Person) &#x2F;&#x2F;error Person is not defined</span><br></pre></td></tr></table></figure>
+<h5 id="构造函数模式">构造函数模式</h5>
+<p>构造函数模式相比工厂模式的优点就在于，构造函数模式可以将他的实例标示为特定类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function Person(name,age,job)</span><br><span class="line">&#123;</span><br><span class="line">    this.name&#x3D;name;</span><br><span class="line">    this.age&#x3D;age;</span><br><span class="line">    this.job&#x3D;job;</span><br><span class="line">    this.sayName&#x3D;function()&#123;</span><br><span class="line">        alert(this.name);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var person1&#x3D;new Person(&quot;Jack&quot;,29,&quot;Engineer&quot;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;检测对象类型</span><br><span class="line">alert(person1 instanceof Object) &#x2F;&#x2F;true</span><br><span class="line">alert(person1 instanceof Person) &#x2F;&#x2F;true</span><br></pre></td></tr></table></figure>
+<p>构造函数也是函数，如果不通过new 操作符调用，和其他函数没有不同</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function Person(name,age,job)</span><br><span class="line">&#123;</span><br><span class="line">    this.name&#x3D;name;</span><br><span class="line">    this.age&#x3D;age;</span><br><span class="line">    this.job&#x3D;job;</span><br><span class="line">    this.sayName&#x3D;function()&#123;</span><br><span class="line">        alert(this.name);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;以构造函数模式调用</span><br><span class="line">var person1&#x3D;new Person(&quot;Jack&quot;,29,&quot;Engineer&quot;);</span><br><span class="line">person1.sayName();&#x2F;&#x2F;Jack</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;以普通函数调用</span><br><span class="line">Person(&quot;Lily&quot;,25,&quot;Actor&quot;);&#x2F;&#x2F;执行环境为全局执行环节，this指向window</span><br><span class="line">window.sayName();&#x2F;&#x2F;Lily</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;在另一个对象的作用域中调用</span><br><span class="line">var o&#x3D;new Object();</span><br><span class="line">Person.apply(o,[&quot;Jim&quot;,21,&quot;Teacher&quot;]);&#x2F;&#x2F;扩展Person至实例对象o的作用域</span><br><span class="line">o.sayName();&#x2F;&#x2F;Jim</span><br></pre></td></tr></table></figure>
+<p>构造函数模式缺点在于实例方法无法复用，创建两个对象person1,person2的sayName方法的不等的，解决方法可以将函数定义转至构造函数外部，构造函数这用函数指针作为对象属性，指向外部的函数定义。</p>
+<p>但是这样的实现，首先污染了全局作用域，其次破坏了封装性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function Person(name,age,job)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    this.name&#x3D;name;</span><br><span class="line">    this.age&#x3D;age;</span><br><span class="line">    this.job&#x3D;job;</span><br><span class="line">    this.sayName&#x3D;sayName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function sayName()&#123;</span><br><span class="line">    alert(this.Name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var person1&#x3D;new Person(&quot;Karl&quot;,28,&quot;Doctor&quot;);</span><br></pre></td></tr></table></figure>
+<h5 id="原型模式">原型模式</h5>
+<p>每个函数都有一个prototype属性，这个属性是一个指针，指向一个对象，这个对象用途是包含可以由特定类型的所有实例共享的属性和方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function Person()</span><br><span class="line">&#123;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.name&#x3D;&quot;Jim&quot;;</span><br><span class="line">Person.prototype.age&#x3D;29;</span><br><span class="line">Person.prototype.job&#x3D;&quot;Teacher&quot;;</span><br><span class="line">Person.prototype.sayName&#x3D;function()&#123;</span><br><span class="line">    alert(this.Name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var person1&#x3D;new Person();</span><br><span class="line">person1.sayName();&#x2F;&#x2F;&quot;Jim&quot;</span><br><span class="line">var person2&#x3D;new Person();</span><br><span class="line">alert(person1.sayName&#x3D;&#x3D;person2.sayName);&#x2F;&#x2F;true</span><br></pre></td></tr></table></figure>
+<p>代码这构造函数、原型对象和实例对象之间关系如下图</p>
+<p><img src="/img/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1.png" alt=""></p>
+<p>原型模式简易写法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function Person()</span><br><span class="line">&#123;    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype&#x3D;&#123;</span><br><span class="line">    constructor:Person,&#x2F;&#x2F;对象字面量创建了新对象，如不指定，constructor指向了Object</span><br><span class="line">    name:&quot;Jim&quot;,</span><br><span class="line">    age:29,</span><br><span class="line">    job:&quot;Teacher&quot;,</span><br><span class="line">    sayName:function()&#123;</span><br><span class="line">        alert(this.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>原型模式的缺点：所有实例在默认情况下取得相同属性值</p>
+<h5 id="构造器与原型混合模式">构造器与原型混合模式</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function Person(name,age,job)</span><br><span class="line">&#123;    </span><br><span class="line">    this.name&#x3D;name;</span><br><span class="line">    this.age&#x3D;age;</span><br><span class="line">    this.job&#x3D;job;</span><br><span class="line">    this.friends&#x3D;[&quot;Tom&quot;,&quot;Jack&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype&#x3D;&#123;</span><br><span class="line">    constructor:Person,&#x2F;&#x2F;对象字面量创建了新对象，如不指定，constructor指向了Object</span><br><span class="line">    sayName:function()&#123;</span><br><span class="line">        alert(this.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var person1&#x3D;new Person(&quot;Jim&quot;,25,&quot;Teacher&quot;);</span><br><span class="line">var person2&#x3D;new Person(&quot;Lily&quot;,20,&quot;Actor&quot;);</span><br><span class="line">person1.friends.push(&quot;Mark&quot;);</span><br><span class="line">alert(person1.friends&#x3D;&#x3D;&#x3D;person2.friends);&#x2F;&#x2F;false</span><br><span class="line">alert(person1.sayName&#x3D;&#x3D;&#x3D;person2.sayName);&#x2F;&#x2F;true</span><br></pre></td></tr></table></figure>
+<h5 id="动态原型模式">动态原型模式</h5>
+<p>所有代码封装在构造函数，首次调用将方法添加至原型对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function Person(name,age,job)</span><br><span class="line">&#123;    </span><br><span class="line">    this.name&#x3D;name;</span><br><span class="line">    this.age&#x3D;age;</span><br><span class="line">    this.job&#x3D;job;</span><br><span class="line">    this.friends&#x3D;[&quot;Tom&quot;,&quot;Jack&quot;];</span><br><span class="line">    &#x2F;&#x2F;方法</span><br><span class="line">    if(typeof this.sayName !&#x3D; &quot;function&quot;)</span><br><span class="line">    &#123;</span><br><span class="line">        Person.prototype.sayName&#x3D;function()&#123;</span><br><span class="line">            alert(this.name);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      
-        
-          
-          
-创建对象工厂模式工厂模式优点：有了封装的概念，解决了创建多个相似对象的问题
-缺点：没有解决对象识别问题,所有对象都仅是Object的实例
-12345678910111213141516function createPerson(name,age,job)&#123;    var o=new Object();    o.name=name;    o.age=age;    o.job=job;    o.sayName=function()&#123;        alert(this.name);    &#125;;    return o;&#125;var person1=createPerson("Jack",29,"Engineer");//检测对象类型alert(person1 instanceof Object) //truealert(person1 instanceof Person) //error Person is not defined
-构造函数模式构造函数模式相比工厂模式的优点就在于，构造函数模式可以将他的实例标示为特定类型
-123456789101112131415function Person(name,age,job)&#123;    this.name=name;    this.age=age;    this.job=job;    this.sayName=function()&#123;        alert(this.name);    &#125;;&#125;var person1=new Person("Jack",29,"Engineer");//检测对象类型alert(person1 instanceof Object) //truealert(person1 instanceof Person) //true
-构造函数也是函数，如果不通过new 操作符调用，和其他函数没有不同
-12345678910111213141516171819202122function Person(name,age,job)&#123;    this.name=name;    this.age=age;    this.job=job;    this.sayName=function()&#123;     
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/30/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记：面向对象之创建对象/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
       
     </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
+    
+    
+    
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-
-
-    
-      
-
-  
-  
-
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/4bbe7293.html">
 
-    
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/29/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记：函数表达式、闭包、私有变量 /" itemprop="url">
-                  《JavaScript高级程序设计》阅读笔记：函数表达式、闭包、私有变量
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/4bbe7293.html" class="post-title-link" itemprop="url">《JavaScript高级程序设计》阅读笔记：函数表达式、闭包、私有变量</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-29T00:00:00+08:00" content="2016-07-29">
-              2016-07-29
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2016-07-29 00:00:00" itemprop="dateCreated datePublished" datetime="2016-07-29T00:00:00Z">2016-07-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/《JavaScript高级程序设计》阅读笔记/" itemprop="url" rel="index">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
                     <span itemprop="name">《JavaScript高级程序设计》阅读笔记</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
+            <span id="/archives/4bbe7293.html" class="post-meta-item leancloud_visitors" data-flag-title="《JavaScript高级程序设计》阅读笔记：函数表达式、闭包、私有变量" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
 
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/07/29/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记：函数表达式、闭包、私有变量 /"class="leancloud_visitors" data-flag-title="《JavaScript高级程序设计》阅读笔记：函数表达式、闭包、私有变量"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <hr>
+<h4 id="定义函数有两种方式：函数声明和函数表达式。它们之间一个重要的区别是函数提升。">定义函数有两种方式：函数声明和函数表达式。它们之间一个重要的区别是函数提升。</h4>
+<h5 id="1-函数声明会进行函数提升，所以函数调用在函数声明之前也不会报错：">1.函数声明会进行函数提升，所以函数调用在函数声明之前也不会报错：</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">test();</span><br><span class="line"></span><br><span class="line">function test()&#123;</span><br><span class="line"></span><br><span class="line">alert(1);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2-函数表达式不会进行函数提升，函数调用在函数声明之前的话会报错：">2.函数表达式不会进行函数提升，函数调用在函数声明之前的话会报错：</h5>
+<h2 id="￼1"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">test(); &#x2F;&#x2F; test is not a function</span><br><span class="line"></span><br><span class="line">var test&#x3D;function()&#123;</span><br><span class="line"></span><br><span class="line">alert(1);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></h2>
+<h4 id="递归函数是通过在函数内部调用自身实现的。">递归函数是通过在函数内部调用自身实现的。</h4>
+<h5 id="直接使用函数名进行递归调用">直接使用函数名进行递归调用</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function f(num)&#123;</span><br><span class="line"></span><br><span class="line">  if(num&#x3D;&#x3D;1)&#123;</span><br><span class="line"></span><br><span class="line">  return 1;</span><br><span class="line"></span><br><span class="line">  &#125;else&#123;</span><br><span class="line"></span><br><span class="line">  return num*f(num-1);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(f(4));&#x2F;&#x2F;24</span><br><span class="line"></span><br><span class="line">console.log(f(5));&#x2F;&#x2F;120</span><br></pre></td></tr></table></figure>
+<p>这种实现的缺点是，在函数内部直接写死了函数名称。如果进行如下设置就会报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var test&#x3D;f;</span><br><span class="line"></span><br><span class="line">f&#x3D;null;</span><br><span class="line"></span><br><span class="line">console.log(test(3));&#x2F;&#x2F;报错， f is not a function</span><br></pre></td></tr></table></figure>
+<h5 id="通过arguments-callee解决，arguments-callee是一个指向正在执行的函数的指针。这样就避免了上述问题。">通过arguments.callee解决，arguments.callee是一个指向正在执行的函数的指针。这样就避免了上述问题。</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function f(num)&#123;</span><br><span class="line"></span><br><span class="line">  if(num&#x3D;&#x3D;1)&#123;</span><br><span class="line"></span><br><span class="line">  return 1;</span><br><span class="line"></span><br><span class="line">  &#125;else&#123;</span><br><span class="line"></span><br><span class="line">  return num*arguments.callee(num-1);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(f(4));&#x2F;&#x2F;24</span><br><span class="line"></span><br><span class="line">console.log(f(5));&#x2F;&#x2F;120</span><br><span class="line"></span><br><span class="line">var test&#x3D;f;</span><br><span class="line"></span><br><span class="line">f&#x3D;null;</span><br><span class="line"></span><br><span class="line">console.log(test(3));&#x2F;&#x2F;6</span><br></pre></td></tr></table></figure>
+<p>不过这种方式还有一个缺点，就是在严格模式下会执行失败。</p>
+<p>添加&quot;use strict&quot;后执行会报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#39;caller&#39;, &#39;callee&#39;, and &#39;arguments&#39; properties may not be accessed on strict mode functions or the arguments objects for calls to them</span><br></pre></td></tr></table></figure>
+<h5 id="采用命名函数表达式可以在严格模式下成功。">采用命名函数表达式可以在严格模式下成功。</h5>
+<h2 id="￼6"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&quot;use strict&quot;;</span><br><span class="line"></span><br><span class="line">var f&#x3D;function t(num)&#123;</span><br><span class="line"></span><br><span class="line">if(num&#x3D;&#x3D;1)&#123;</span><br><span class="line"></span><br><span class="line">  return 1;</span><br><span class="line"></span><br><span class="line">  &#125;else&#123;</span><br><span class="line"></span><br><span class="line">  return num*t(num-1);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(f(4));&#x2F;&#x2F;24</span><br><span class="line"></span><br><span class="line">console.log(f(5));&#x2F;&#x2F;120</span><br><span class="line"></span><br><span class="line">var test&#x3D;f;</span><br><span class="line"></span><br><span class="line">f&#x3D;null;</span><br><span class="line"></span><br><span class="line">console.log(test(3));&#x2F;&#x2F;6</span><br></pre></td></tr></table></figure></h2>
+<h4 id="闭包是有权访问另一个函数作用域内变量的函数。创建闭包的常见方式就是在一个函数内创建另外一个函数。在另一个函数内部定义的函数，会把外部函数的作用域添加到其作用域链中。">闭包是有权访问另一个函数作用域内变量的函数。创建闭包的常见方式就是在一个函数内创建另外一个函数。在另一个函数内部定义的函数，会把外部函数的作用域添加到其作用域链中。</h4>
+<h5 id="闭包与变量">闭包与变量</h5>
+<h6 id="闭包只能取得包含函数中任意变量的最后一个值。例如：">闭包只能取得包含函数中任意变量的最后一个值。例如：</h6>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function createFunctions()&#123;</span><br><span class="line"></span><br><span class="line">  var result&#x3D;new Array();</span><br><span class="line"></span><br><span class="line">  for(var i&#x3D;0;i&lt;10;i++)&#123;</span><br><span class="line"></span><br><span class="line">    result[i]&#x3D;function()&#123;</span><br><span class="line"></span><br><span class="line">    return i;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return result;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var result&#x3D;createFunctions();</span><br><span class="line"></span><br><span class="line">result[1]();&#x2F;&#x2F;10</span><br></pre></td></tr></table></figure>
+<p>这个方法调用传入1-10返回结果都是10，这并不符合预期。</p>
+<h6 id="通过匿名函数进行改造：">通过匿名函数进行改造：</h6>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function createFunctions()&#123;</span><br><span class="line"></span><br><span class="line">  var result&#x3D;new Array();</span><br><span class="line"></span><br><span class="line">  for(var i&#x3D;0;i&lt;10;i++)&#123;</span><br><span class="line"></span><br><span class="line">    result[i]&#x3D;(function(num)&#123;</span><br><span class="line"></span><br><span class="line">    return num;</span><br><span class="line"></span><br><span class="line">    &#125;)(i);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return result;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var result&#x3D;createFunctions();</span><br><span class="line"></span><br><span class="line">result[2];&#x2F;&#x2F;2</span><br></pre></td></tr></table></figure>
+<p>改造后的运行结果符合我们的预期了。因为将i传递给num命名参数时是按值传递的。</p>
+<h5 id="闭包中的this">闭包中的this</h5>
+<p>this变量是在运行时基于函数的执行环境绑定的。</p>
+<p>在全局执行环境中，this指向window对象；</p>
+<p>当函数作为某个对象的方法时，this等于那个对象；</p>
+<p>匿名函数的执行具有全局性，this通常指向window对象。</p>
+<h6 id="闭包中this实例：">闭包中this实例：</h6>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var name&#x3D;&#39;window&#39;;</span><br><span class="line"></span><br><span class="line">var object&#x3D;&#123;</span><br><span class="line"></span><br><span class="line">  name:&quot;object&quot;,</span><br><span class="line"></span><br><span class="line">  getName:function()&#123;</span><br><span class="line"></span><br><span class="line">    return function()&#123;</span><br><span class="line"></span><br><span class="line">        return this.name;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">object.getName()();&#x2F;&#x2F;window</span><br></pre></td></tr></table></figure>
+<h6 id="先将闭包外部作用域中的this保存到一个闭包能访问到的变量中，这样就可以让闭包访问相应的对象了。例如：">先将闭包外部作用域中的this保存到一个闭包能访问到的变量中，这样就可以让闭包访问相应的对象了。例如：</h6>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var name&#x3D;&#39;window&#39;;</span><br><span class="line"></span><br><span class="line">var object&#x3D;&#123;</span><br><span class="line"></span><br><span class="line">  name:&quot;object&quot;,</span><br><span class="line"></span><br><span class="line">  getName:function()&#123;</span><br><span class="line"></span><br><span class="line">var that&#x3D;this;</span><br><span class="line"></span><br><span class="line">     return function()&#123;      </span><br><span class="line"></span><br><span class="line">        return that.name;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">object.getName()();&#x2F;&#x2F;object</span><br></pre></td></tr></table></figure>
 
-      
-        
-          
-          
-定义函数有两种方式：函数声明和函数表达式。它们之间一个重要的区别是函数提升。1.函数声明会进行函数提升，所以函数调用在函数声明之前也不会报错：12345678test();function test()&#123;alert(1);&#125;
-2.函数表达式不会进行函数提升，函数调用在函数声明之前的话会报错：12345678test(); // test is not a functionvar test=function()&#123;alert(1);&#125;
-
-递归函数是通过在函数内部调用自身实现的。直接使用函数名进行递归调用123456789101112131415161718function f(num)&#123;  if(num==1)&#123;  return 1;  &#125;else&#123;  return num*f(num-1);  &#125;&#125;console.log(f(4));//24console.log(f(5));//120
-这种实现的缺点是，在函数内部直接写死了函数名称。如果进行如下设置就会报错：
-123456var test=f;f=null;console.log(test(3));//报错， f is not a function
-通过arguments.callee解决，arguments.callee是一个指向正在执行的函数的指针。这样就避免了上述问题。123456789101112131415161718192021222324function f(num)&#123;  if(num==1)&#123;  return 1;  &#125;else&#123;  return num*arguments.callee(num-1);  &#125;&#125;console.log(f(4));//24console.log(f(5));//120var test=f;f=null;console.log(test(3));//6
-不过这种方式还有一个缺点，就是在严格模式下会执行失败。
-添加”use strict”后执行会报错：
-12'caller', 'callee', and 'arguments' properties may not be accessed on strict mo
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/29/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记：函数表达式、闭包、私有变量 /#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
       
     </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
+    
+    
+    
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-
-
-    
-      
-
-  
-  
-
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/b9ea40f8.html">
 
-    
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/21/grunt-install/" itemprop="url">
-                  Grunt：任务自动管理工具
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/b9ea40f8.html" class="post-title-link" itemprop="url">Grunt：任务自动管理工具</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-21T00:00:00+08:00" content="2016-03-21">
-              2016-03-21
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2016-03-21 00:00:00" itemprop="dateCreated datePublished" datetime="2016-03-21T00:00:00Z">2016-03-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/自动管理-grunt/" itemprop="url" rel="index">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%87%AA%E5%8A%A8%E7%AE%A1%E7%90%86-grunt/" itemprop="url" rel="index">
                     <span itemprop="name">自动管理,grunt</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
+            <span id="/archives/b9ea40f8.html" class="post-meta-item leancloud_visitors" data-flag-title="Grunt：任务自动管理工具" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>9.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
 
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/03/21/grunt-install/"class="leancloud_visitors" data-flag-title="Grunt：任务自动管理工具"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <hr>
+<p>在Javascript的开发过程中，经常会遇到一些重复性的任务，比如合并文件、压缩代码、检查语法错误、将Sass代码转成CSS代码等等。通常，我们需要使用不同的工具，来完成不同的任务，既重复劳动又非常耗时。Grunt就是为了解决这个问题而发明的工具，可以帮助我们自动管理和运行各种任务。</p>
+<p>简单说，Grunt是一个自动任务运行器，会按照预先设定的顺序自动运行一系列的任务。这可以简化工作流程，减轻重复性工作带来的负担。</p>
+<h1>安装</h1>
+<p>Grunt基于Node.js，安装之前要先安装Node.js，然后运行下面的命令。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo npm install grunt-cli -g</span><br></pre></td></tr></table></figure>
+<p>grunt-cli表示安装的是grunt的命令行界面，参数g表示全局安装。</p>
+<p>Grunt使用模块结构，除了安装命令行界面以外，还要根据需要安装相应的模块。这些模块应该采用局部安装，因为不同项目可能需要同一个模块的不同版本。</p>
+<p>首先，在项目的根目录下，创建一个文本文件package.json，指定当前项目所需的模块。下面就是一个例子。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"my-project-name"</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"0.1.0"</span>,</span><br><span class="line">  <span class="string">"author"</span>: <span class="string">"Your Name"</span>,</span><br><span class="line">  <span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"grunt"</span>: <span class="string">"0.x.x"</span>,</span><br><span class="line">    <span class="string">"grunt-contrib-jshint"</span>: <span class="string">"*"</span>,</span><br><span class="line">    <span class="string">"grunt-contrib-concat"</span>: <span class="string">"~0.1.1"</span>,</span><br><span class="line">    <span class="string">"grunt-contrib-uglify"</span>: <span class="string">"~0.1.0"</span>,</span><br><span class="line">    <span class="string">"grunt-contrib-watch"</span>: <span class="string">"~0.1.4"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面这个package.json文件中，除了注明项目的名称和版本以外，还在devDependencies属性中指定了项目依赖的grunt模块和版本：grunt核心模块为最新的0.x.x版，jshint插件为最新版本，concat插件不低于0.1.1版，uglify插件不低于0.1.0版，watch插件不低于0.1.4版。</p>
+<p>然后，在项目的根目录下运行下面的命令，这些插件就会被自动安装在node_modules子目录。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>上面这种方法是针对已有package.json的情况。如果想要自动生成package.json文件，可以使用npm init命令，按照屏幕提示回答所需模块的名称和版本即可。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">npm init</span><br></pre></td></tr></table></figure>
+<p>如果已有的package.json文件不包括Grunt模块，可以在直接安装Grunt模块的时候，加上–save-dev参数，该模块就会自动被加入package.json文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">npm install &lt;<span class="built_in">module</span>&gt; --save-dev</span><br></pre></td></tr></table></figure>
+<p>比如，对应上面package.json文件指定的模块，需要运行以下npm命令。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">npm install grunt --save-dev</span><br><span class="line">npm install grunt-contrib-jshint --save-dev</span><br><span class="line">npm install grunt-contrib-concat --save-dev</span><br><span class="line">npm install grunt-contrib-uglify --save-dev</span><br><span class="line">npm install grunt-contrib-watch --save-dev</span><br></pre></td></tr></table></figure>
+<h1>命令脚本文件Gruntfile.js</h1>
+<p>模块安装完以后，下一步在项目的根目录下，新建脚本文件Gruntfile.js。它是grunt的配置文件，就好像package.json是npm的配置文件一样。Gruntfile.js就是一般的Node.js模块的写法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 配置Grunt各种模块的参数</span></span><br><span class="line">  grunt.initConfig(&#123;</span><br><span class="line">    jshint: &#123; <span class="comment">/* jshint的参数 */</span> &#125;,</span><br><span class="line">    concat: &#123; <span class="comment">/* concat的参数 */</span> &#125;,</span><br><span class="line">    uglify: &#123; <span class="comment">/* uglify的参数 */</span> &#125;,</span><br><span class="line">    watch:  &#123; <span class="comment">/* watch的参数 */</span> &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 从node_modules目录加载模块文件</span></span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-jshint'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-concat'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-uglify'</span>);</span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-watch'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 每行registerTask定义一个任务</span></span><br><span class="line">  grunt.registerTask(<span class="string">'default'</span>, [<span class="string">'jshint'</span>, <span class="string">'concat'</span>, <span class="string">'uglify'</span>]);</span><br><span class="line">  grunt.registerTask(<span class="string">'check'</span>, [<span class="string">'jshint'</span>]);</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面的代码用到了grunt代码的三个方法：</p>
+<ul>
+<li>
+<p><strong>grunt.initConfig</strong>：定义各种模块的参数，每一个成员项对应一个同名模块。</p>
+</li>
+<li>
+<p><strong>grunt.loadNpmTasks</strong>：加载完成任务所需的模块。</p>
+</li>
+<li>
+<p><strong>grunt.registerTask</strong>：定义具体的任务。第一个参数为任务名，第二个参数是一个数组，表示该任务需要依次使用的模块。default任务名表示，如果直接输入grunt命令，后面不跟任何参数，这时所调用的模块（该例为jshint，concat和uglify）；该例的check任务则表示使用jshint插件对代码进行语法检查。</p>
+</li>
+</ul>
+<p>上面的代码一共加载了四个模块：jshint（检查语法错误）、concat（合并文件）、uglify（压缩代码）和watch（自动执行）。接下来，有两种使用方法。</p>
+<p>（1）命令行执行某个模块，比如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">grunt jshint</span><br></pre></td></tr></table></figure>
+<p>上面代码表示运行jshint模块。</p>
+<p>（2）命令行执行某个任务。比如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">grunt check</span><br></pre></td></tr></table></figure>
+<p>上面代码表示运行check任务。如果运行成功，就会显示“Done, without errors.”。</p>
+<p>如果没有给出任务名，只键入grunt，就表示执行默认的default任务。</p>
+<h1>Gruntfile.js实例：grunt-contrib-cssmin模块</h1>
+<p>下面通过cssmin模块，演示如何编写Gruntfile.js文件。cssmin模块的作用是最小化CSS文件。</p>
+<p>首先，在项目的根目录下安装该模块。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">npm install grunt-contrib-cssmin --save-dev</span><br></pre></td></tr></table></figure>
+<p>然后，新建文件Gruntfile.js。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">grunt</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  grunt.initConfig(&#123;</span><br><span class="line">    cssmin: &#123;</span><br><span class="line">      minify: &#123;</span><br><span class="line">        expand: <span class="literal">true</span>,</span><br><span class="line">		cwd: <span class="string">'css/'</span>,</span><br><span class="line">		src: [<span class="string">'*.css'</span>, <span class="string">'!*.min.css'</span>],</span><br><span class="line">		dest: <span class="string">'css/'</span>,</span><br><span class="line">		ext: <span class="string">'.min.css'</span></span><br><span class="line">	  &#125;,</span><br><span class="line">      combine: &#123;</span><br><span class="line">	    files: &#123;</span><br><span class="line">		  <span class="string">'css/out.min.css'</span>: [<span class="string">'css/part1.min.css'</span>, <span class="string">'css/part2.min.css'</span>]</span><br><span class="line">		&#125;</span><br><span class="line">	  &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  grunt.loadNpmTasks(<span class="string">'grunt-contrib-cssmin'</span>);</span><br><span class="line"></span><br><span class="line">  grunt.registerTask(<span class="string">'default'</span>, [<span class="string">'cssmin:minify'</span>,<span class="string">'cssmin:combine'</span>]);</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>下面详细解释上面代码中的三个方法，下面一个个来看。</p>
+<p><strong>（1）grunt.loadNpmTasks</strong></p>
+<p>grunt.loadNpmTasks方法载入模块文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">grunt.loadNpmTasks(<span class="string">'grunt-contrib-cssmin'</span>);</span><br></pre></td></tr></table></figure>
+<p>你需要使用几个模块，这里就要写几条grunt.loadNpmTasks语句，将各个模块一一加载。</p>
+<p>如果加载模块很多，这部分会非常冗长。而且，还存在一个问题，就是凡是在这里加载的模块，也同时出现在package.json文件中。如果使用npm命令卸载模块以后，模块会自动从package.json文件中消失，但是必须手动从Gruntfile.js文件中清除，这样很不方便，一旦忘记，还会出现运行错误。这里有一个解决办法，就是安装load-grunt-tasks模块，然后在Gruntfile.js文件中，用下面的语句替代所有的grunt.loadNpmTasks语句。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'load-grunt-tasks'</span>)(grunt);</span><br></pre></td></tr></table></figure>
+<p>这条语句的作用是自动分析package.json文件，自动加载所找到的grunt模块。</p>
+<p><strong>（2）grunt.initConfig</strong></p>
+<p>grunt.initConfig方法用于模块配置，它接受一个对象作为参数。该对象的成员与使用的同名模块一一对应。由于我们要配置的是cssmin模块，所以里面有一个cssmin成员（属性）。</p>
+<p>cssmin（属性）指向一个对象，该对象又包含多个成员。除了一些系统设定的成员（比如options），其他自定义的成员称为目标（target）。一个模块可以有多个目标（target），上面代码里面，cssmin模块共有两个目标，一个是“minify”，用于压缩css文件；另一个是“combine”，用于将多个css文件合并一个文件。</p>
+<p>每个目标的具体设置，需要参考该模板的文档。就cssmin来讲，minify目标的参数具体含义如下：</p>
+<ul>
+<li>
+<p><strong>expand</strong>：如果设为true，就表示下面文件名的占位符（即*号）都要扩展成具体的文件名。</p>
+</li>
+<li>
+<p><strong>cwd</strong>：需要处理的文件（input）所在的目录。</p>
+</li>
+<li>
+<p><strong>src</strong>：表示需要处理的文件。如果采用数组形式，数组的每一项就是一个文件名，可以使用通配符。</p>
+</li>
+<li>
+<p><strong>dest</strong>：表示处理后的文件名或所在目录。</p>
+</li>
+<li>
+<p><strong>ext</strong>：表示处理后的文件后缀名。</p>
+</li>
+</ul>
+<p>除了上面这些参数，还有一些参数也是grunt所有模块通用的。</p>
+<ul>
+<li>
+<p><strong>filter</strong>：一个返回布尔值的函数，用于过滤文件名。只有返回值为true的文件，才会被grunt处理。</p>
+</li>
+<li>
+<p><strong>dot</strong>：是否匹配以点号（.）开头的系统文件。</p>
+</li>
+<li>
+<p><strong>makeBase</strong>：如果设置为true，就只匹配文件路径的最后一部分。比如，a?b可以匹配/xyz/123/acb，而不匹配/xyz/acb/123。</p>
+</li>
+</ul>
+<p>关于通配符，含义如下：</p>
+<ul>
+<li>*：匹配任意数量的字符，不包括/。</li>
+<li>?：匹配单个字符，不包括/。</li>
+<li>**：匹配任意数量的字符，包括/。</li>
+<li>{}：允许使用逗号分隔的列表，表示“or”（或）关系。</li>
+<li>!：用于模式的开头，表示只返回不匹配的情况。</li>
+</ul>
+<p>比如，foo/*.js匹配foo目录下面的文件名以.js结尾的文件，foo/**/*.js匹配foo目录和它的所有子目录下面的文件名以.js结尾的文件，!*.css表示匹配所有后缀名不为“.css”的文件。</p>
+<p>使用通配符设置src属性的更多例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;<span class="attr">src</span>: <span class="string">'foo/th*.js'</span>&#125;grunt-contrib-uglify</span><br><span class="line"></span><br><span class="line">&#123;<span class="attr">src</span>: <span class="string">'foo/&#123;a,b&#125;*.js'</span>&#125;</span><br><span class="line"></span><br><span class="line">&#123;<span class="attr">src</span>: [<span class="string">'foo/a*.js'</span>, <span class="string">'foo/b*.js'</span>]&#125;</span><br></pre></td></tr></table></figure>
+<p>至于combine目标，就只有一个files参数，表示输出文件是css子目录下的out.min.css，输入文件则是css子目录下的part1.min.css和part2.min.css。</p>
+<p>files参数的格式可以是一个对象，也可以是一个数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">files: &#123;</span><br><span class="line">        <span class="string">'dest/b.js'</span>: [<span class="string">'src/bb.js'</span>, <span class="string">'src/bbb.js'</span>],</span><br><span class="line">        <span class="string">'dest/b1.js'</span>: [<span class="string">'src/bb1.js'</span>, <span class="string">'src/bbb1.js'</span>],</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"></span><br><span class="line">files: [</span><br><span class="line">        &#123;<span class="attr">src</span>: [<span class="string">'src/aa.js'</span>, <span class="string">'src/aaa.js'</span>], <span class="attr">dest</span>: <span class="string">'dest/a.js'</span>&#125;,</span><br><span class="line">        &#123;<span class="attr">src</span>: [<span class="string">'src/aa1.js'</span>, <span class="string">'src/aaa1.js'</span>], <span class="attr">dest</span>: <span class="string">'dest/a1.js'</span>&#125;,</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+<p>如果minify目标和combine目标的属性设置有重合的部分，可以另行定义一个与minify和combine平行的options属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">grunt.initConfig(&#123;</span><br><span class="line">   cssmin: &#123;</span><br><span class="line">  options: &#123; <span class="comment">/* ... */</span> &#125;,</span><br><span class="line">     minify: &#123; <span class="comment">/* ... */</span> &#125;,</span><br><span class="line">     combine: &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+<p><strong>（3）grunt.registerTask</strong></p>
+<p>grunt.registerTask方法定义如何调用具体的任务。“default”任务表示如果不提供参数，直接输入grunt命令，则先运行“cssmin:minify”，后运行“cssmin:combine”，即先压缩再合并。如果只执行压缩，或者只执行合并，则需要在grunt命令后面指明“模块名:目标名”。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">grunt # 默认情况下，先压缩后合并</span><br><span class="line"></span><br><span class="line">grunt cssmin:minify # 只压缩不合并</span><br><span class="line"></span><br><span class="line">grunt css:combine # 只合并不压缩</span><br></pre></td></tr></table></figure>
+<p>如果不指明目标，只是指明模块，就表示将所有目标依次运行一遍。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">grunt cssmin</span><br></pre></td></tr></table></figure>
+<h1>常用模块设置</h1>
+<p>grunt的<a href="http://gruntjs.com/plugins" target="_blank" rel="noopener">模块</a>已经超过了2000个，且还在快速增加。下面是一些常用的模块（按字母排序）。</p>
+<ul>
+<li><strong>grunt-contrib-clean</strong>：删除文件。</li>
+<li><strong>grunt-contrib-compass</strong>：使用compass编译sass文件。</li>
+<li><strong>grunt-contrib-concat</strong>：合并文件。</li>
+<li><strong>grunt-contrib-copy</strong>：复制文件。</li>
+<li><strong>grunt-contrib-cssmin</strong>：压缩以及合并CSS文件。</li>
+<li><strong>grunt-contrib-imagemin</strong>：图像压缩模块。</li>
+<li><strong>grunt-contrib-jshint</strong>：检查JavaScript语法。</li>
+<li><strong>grunt-contrib-uglify</strong>：压缩以及合并JavaScript文件。</li>
+<li><strong>grunt-contrib-watch</strong>：监视文件变动，做出相应动作。</li>
+</ul>
+<p>模块的前缀如果是grunt-contrib，就表示该模块由grunt开发团队维护；如果前缀是grunt（比如grunt-pakmanager），就表示由第三方开发者维护。</p>
+<p>以下选几个模块，看看它们配置参数的写法，也就是说如何在grunt.initConfig方法中配置各个模块。</p>
+<h2 id="grunt-contrib-jshint">grunt-contrib-jshint</h2>
+<p>jshint用来检查语法错误，比如分号的使用是否正确、有没有忘记写括号等等。它在grunt.initConfig方法里面的配置代码如下。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">jshint: &#123;</span><br><span class="line">	options: &#123;</span><br><span class="line">		eqeqeq: <span class="literal">true</span>,</span><br><span class="line">		trailing: <span class="literal">true</span></span><br><span class="line">	&#125;,</span><br><span class="line">	files: [<span class="string">'Gruntfile.js'</span>, <span class="string">'lib/**/*.js'</span>]</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>上面代码先指定jshint的<a href="http://www.jshint.com/docs/options/" target="_blank" rel="noopener">检查项目</a>，eqeqeq表示要用严格相等运算符取代相等运算符，trailing表示行尾不得有多余的空格。然后，指定files属性，表示检查目标是Gruntfile.js文件，以及lib目录的所有子目录下面的JavaScript文件。</p>
+<h2 id="grunt-contrib-concat">grunt-contrib-concat</h2>
+<p>concat用来合并同类文件，它不仅可以合并JavaScript文件，还可以合并CSS文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">concat: &#123;</span><br><span class="line">  js: &#123;</span><br><span class="line">    src: [<span class="string">'lib/module1.js'</span>, <span class="string">'lib/module2.js'</span>, <span class="string">'lib/plugin.js'</span>],</span><br><span class="line">    dest: <span class="string">'dist/script.js'</span></span><br><span class="line">  &#125;</span><br><span class="line">  css: &#123;</span><br><span class="line">    src: [<span class="string">'style/normalize.css'</span>, <span class="string">'style/base.css'</span>, <span class="string">'style/theme.css'</span>],</span><br><span class="line">    dest: <span class="string">'dist/screen.css'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>js目标用于合并JavaScript文件，css目标用语合并CSS文件。两者的src属性指定需要合并的文件（input），dest属性指定输出的目标文件（output）。</p>
+<h2 id="grunt-contrib-uglify">grunt-contrib-uglify</h2>
+<p>uglify模块用来压缩代码，减小文件体积。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">uglify: &#123;</span><br><span class="line">  options: &#123;</span><br><span class="line">    banner: bannerContent,</span><br><span class="line">    sourceMapRoot: <span class="string">'../'</span>,</span><br><span class="line">    sourceMap: <span class="string">'distrib/'</span>+name+<span class="string">'.min.js.map'</span>,</span><br><span class="line">    sourceMapUrl: name+<span class="string">'.min.js.map'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  target : &#123;</span><br><span class="line">	expand: <span class="literal">true</span>,</span><br><span class="line">	cwd: <span class="string">'js/origin'</span>,</span><br><span class="line">	src : <span class="string">'*.js'</span>,</span><br><span class="line">	dest : <span class="string">'js/'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>上面代码中的options属性指定压缩后文件的文件头，以及sourceMap设置；target目标指定输入和输出文件。</p>
+<h2 id="grunt-contrib-copy">grunt-contrib-copy</h2>
+<p><a href="https://github.com/gruntjs/grunt-contrib-copy" target="_blank" rel="noopener">copy模块</a>用于复制文件与目录。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">copy: &#123;</span><br><span class="line">  main: &#123;</span><br><span class="line">    src: <span class="string">'src/*'</span>,</span><br><span class="line">    dest: <span class="string">'dest/'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>上面代码将src子目录（只包含它下面的第一层文件和子目录），拷贝到dest子目录下面（即dest/src目录）。如果要更准确控制拷贝行为，比如只拷贝文件、不拷贝目录、不保持目录结构，可以写成下面这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">copy: &#123;</span><br><span class="line">  main: &#123;</span><br><span class="line">    expand: <span class="literal">true</span>,</span><br><span class="line">    cwd: <span class="string">'src/'</span>,</span><br><span class="line">    src: <span class="string">'**'</span>,</span><br><span class="line">    dest: <span class="string">'dest/'</span>,</span><br><span class="line">    flatten: <span class="literal">true</span>,</span><br><span class="line">    filter: <span class="string">'isFile'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h2 id="grunt-contrib-watch">grunt-contrib-watch</h2>
+<p><a href="https://github.com/gruntjs/grunt-contrib-watch" target="_blank" rel="noopener">watch模块</a>用来在后台运行，监听指定事件，然后自动运行指定的任务。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">watch: &#123;</span><br><span class="line">   scripts: &#123;</span><br><span class="line">    files: <span class="string">'**/*.js'</span>,</span><br><span class="line">    tasks: <span class="string">'jshint'</span>,</span><br><span class="line">	options: &#123;</span><br><span class="line">      livereload: <span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">   &#125;,</span><br><span class="line">   css: &#123;</span><br><span class="line">    files: <span class="string">'**/*.sass'</span>,</span><br><span class="line">    tasks: [<span class="string">'sass'</span>],</span><br><span class="line">    options: &#123;</span><br><span class="line">      livereload: <span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">   &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>设置好上面的代码，打开另一个进程，运行grunt watch。此后，任何的js代码变动，文件保存后就会自动运行jshint任务；任何sass文件变动，文件保存后就会自动运行sass任务。</p>
+<p>需要注意的是，这两个任务的options参数之中，都设置了livereload，表示任务运行结束后，自动在浏览器中重载（reload）。这需要在浏览器中安装<a href="http://livereload.com/" target="_blank" rel="noopener">livereload插件</a>。安装后，livereload的默认端口为localhost:35729，但是也可以用livereload: 1337的形式重设端口（localhost:1337）。</p>
+<h1>其他模块</h1>
+<p>下面是另外一些有用的模块。</p>
+<h2 id="grunt-contrib-clean">grunt-contrib-clean</h2>
+<p>该模块用于删除文件或目录。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">clean: &#123;</span><br><span class="line">  build: &#123;</span><br><span class="line">    src: [<span class="string">"path/to/dir/one"</span>, <span class="string">"path/to/dir/two"</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="grunt-autoprefixer">grunt-autoprefixer</h2>
+<p>该模块用于为CSS语句加上浏览器前缀。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">autoprefixer: &#123;</span><br><span class="line">  build: &#123;</span><br><span class="line">    expand: <span class="literal">true</span>,</span><br><span class="line">    cwd: <span class="string">'build'</span>,</span><br><span class="line">    src: [ <span class="string">'**/*.css'</span> ],</span><br><span class="line">    dest: <span class="string">'build'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h2 id="grunt-contrib-connect">grunt-contrib-connect</h2>
+<p>该模块用于在本机运行一个Web Server。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">connect: &#123;</span><br><span class="line">  server: &#123;</span><br><span class="line">    options: &#123;</span><br><span class="line">      port: <span class="number">4000</span>,</span><br><span class="line">      base: <span class="string">'build'</span>,</span><br><span class="line">      hostname: <span class="string">'*'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>connect模块会随着grunt运行结束而结束，为了使它一直处于运行状态，可以把它放在watch模块之前运行。因为watch模块需要手动中止，所以connect模块也就会一直运行。</p>
+<h2 id="grunt-htmlhint">grunt-htmlhint</h2>
+<p>该模块用于检查HTML语法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">htmlhint: &#123;</span><br><span class="line">    build: &#123;</span><br><span class="line">        options: &#123;</span><br><span class="line">            <span class="string">'tag-pair'</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="string">'tagname-lowercase'</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="string">'attr-lowercase'</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="string">'attr-value-double-quotes'</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="string">'spec-char-escape'</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="string">'id-unique'</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="string">'head-script-disabled'</span>: <span class="literal">true</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        src: [<span class="string">'index.html'</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码用于检查index.html文件：HTML标记是否配对、标记名和属性名是否小写、属性值是否包括在双引号之中、特殊字符是否转义、HTML元素的id属性是否为唯一值、head部分是否没有script标记。</p>
+<h2 id="grunt-contrib-sass模块">grunt-contrib-sass模块</h2>
+<p>该模块用于将SASS文件转为CSS文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sass: &#123;</span><br><span class="line">    build: &#123;</span><br><span class="line">		options: &#123;</span><br><span class="line">            style: <span class="string">'compressed'</span></span><br><span class="line">        &#125;,</span><br><span class="line">        files: &#123;</span><br><span class="line">            <span class="string">'build/css/master.css'</span>: <span class="string">'assets/sass/master.scss'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码指定输出文件为build/css/master.css，输入文件为assets/sass/master.scss。</p>
+<h2 id="grunt-markdown">grunt-markdown</h2>
+<p>该模块用于将markdown文档转为HTML文档。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">markdown: &#123;</span><br><span class="line">    all: &#123;</span><br><span class="line">      files: [</span><br><span class="line">        &#123;</span><br><span class="line">          expand: <span class="literal">true</span>,</span><br><span class="line">          src: <span class="string">'*.md'</span>,</span><br><span class="line">          dest: <span class="string">'docs/html/'</span>,</span><br><span class="line">          ext: <span class="string">'.html'</span></span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">      options: &#123;</span><br><span class="line">        template: <span class="string">'templates/index.html'</span>,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>上面代码指定将md后缀名的文件，转为docs/html/目录下的html文件。template属性指定转换时采用的模板，模板样式如下。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"main"</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">%=content%</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-      
-        
-          
-          
-在Javascript的开发过程中，经常会遇到一些重复性的任务，比如合并文件、压缩代码、检查语法错误、将Sass代码转成CSS代码等等。通常，我们需要使用不同的工具，来完成不同的任务，既重复劳动又非常耗时。Grunt就是为了解决这个问题而发明的工具，可以帮助我们自动管理和运行各种任务。
-简单说，Grunt是一个自动任务运行器，会按照预先设定的顺序自动运行一系列的任务。这可以简化工作流程，减轻重复性工作带来的负担。
-安装Grunt基于Node.js，安装之前要先安装Node.js，然后运行下面的命令。
-12sudo npm install grunt-cli -g
-grunt-cli表示安装的是grunt的命令行界面，参数g表示全局安装。
-Grunt使用模块结构，除了安装命令行界面以外，还要根据需要安装相应的模块。这些模块应该采用局部安装，因为不同项目可能需要同一个模块的不同版本。
-首先，在项目的根目录下，创建一个文本文件package.json，指定当前项目所需的模块。下面就是一个例子。
-12345678910111213&#123;  "name": "my-project-name",  "version": "0.1.0",  "author": "Your Name",  "devDependencies": &#123;    "grunt": "0.x.x",    "grunt-contrib-jshint": "*",    "grunt-contrib-concat": "~0.1.1",    "grunt-contrib-uglify": "~0.1.0",    "grunt-contrib-watch": "~0.1.4"  &#125;&#125;
-上面这个package.json文件中，除了注明项目的名称和版本以外，还在devDependencies属性中指定了项目依赖的grunt模块和版本：grunt核心模块为最新的0.x.x版，jshint插件为最新版本，concat插件不低于0.1.1版，uglify插件不低于0.1.0版，watch插件不低于0.1.4版。
-然后，在项目的根目录下运行下面的命令，这些插件就会被自动安装在node_modules子目录。
-12npm install
-上面这种方法是针对已有package.json的
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/21/grunt-install/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
       
     </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
+    
+    
+    
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-
-
-    
-      
-
-  
-  
-
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/5b6e6c1a.html">
 
-    
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/15/npm-setting/" itemprop="url">
-                  NPM安装及优化步骤--详细版
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/5b6e6c1a.html" class="post-title-link" itemprop="url">NPM安装及优化步骤--详细版</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-12-15T19:12:59+08:00" content="2015-12-15">
-              2015-12-15
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2015-12-15 19:12:59" itemprop="dateCreated datePublished" datetime="2015-12-15T19:12:59Z">2015-12-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/环境-npm/" itemprop="url" rel="index">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%8E%AF%E5%A2%83-npm/" itemprop="url" rel="index">
                     <span itemprop="name">环境,npm</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
+            <span id="/archives/5b6e6c1a.html" class="post-meta-item leancloud_visitors" data-flag-title="NPM安装及优化步骤--详细版" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
 
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2015/12/15/npm-setting/"class="leancloud_visitors" data-flag-title="NPM安装及优化步骤--详细版"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-          
-npm的常用命令npm install xxx 安装模块  
+          <hr>
+<h1>npm的常用命令</h1>
+<pre><code>npm install xxx 安装模块  
 npm install xxx@1.1.1   安装1.1.1版本的xxx  
 npm install xxx -g 将模块安装到全局环境中。  
 npm ls 查看安装的模块及依赖  
@@ -730,142 +794,179 @@ npm help folders   查看npm使用的所有文件夹
 npm rebuild moduleName    用于更改包内容后进行重建  
 npm outdated   检查包是否已经过时，此命令会列出所有已经过时的包，可以及时进行包的更新  
 npm update moduleName   更新node模块  
-npm获取配置有6种方式，优先级由高到低1、命令行参数。 --proxy http://server:port即将proxy的值设为http://server:port。
+</code></pre>
+<h1>npm获取配置有6种方式，优先级由高到低</h1>
+<pre><code>1、命令行参数。 --proxy http://server:port即将proxy的值设为http://server:port。
 2、环境变量。 以npm_config_为前缀的环境变量将会被认为是npm的配置属性。如设置proxy可以加入这样的环境变量npm_config_proxy=http://server:port。
 3、用户配置文件。可以通过npm config get userconfig查看文件路径。如果是mac系统的话默认路径就是$HOME/.npmrc。
 4、全局配置文件。可以通过npm config get globalconfig查看文件路径。mac系统的默认路径是/usr/local/etc/npmrc。
-5、内置配置文件。安装npm的目录下的npm
-          ...
+5、内置配置文件。安装npm的目录下的npmrc文件。
+6、默认配置。 npm本身有默认配置参数，如果以上5条都没设置，则npm会使用默认配置参数。
+</code></pre>
+<h1>针对npm配置的命令行操作</h1>
+<pre><code>npm config set &lt;key&gt; &lt;value&gt; [--global]
+npm config get &lt;key&gt;
+npm config delete &lt;key&gt;
+npm config list
+npm config edit
+npm get &lt;key&gt;
+npm set &lt;key&gt; &lt;value&gt; [--global]
+在设置配置属性时属性值默认是被存储于用户配置文件中，如果加上--global，则被存储在全局配置文件中。
+如果要查看npm的所有配置属性（包括默认配置），可以使用npm config ls -l。
+如果要查看npm的各种配置的含义，可以使用npm help config。
+</code></pre>
+<h1>解决npm install安装模块失败的问题</h1>
+<h2 id="1、为npm设置代理">1、为npm设置代理</h2>
+<pre><code>npm config set proxy http://server:port
+npm config set https-proxy http://server:port
+</code></pre>
+<p>如果代理需要认证的话可以这样来设置。</p>
+<pre><code>npm config set proxy http://username:password@server:port
+npm config set https-proxy http://username:pawword@server:port
+</code></pre>
+<h2 id="2、国内镜像">2、国内镜像</h2>
+<pre><code>清华大学Node Packaged Modules镜像：
+http://npm.tuna.tsinghua.edu.cn
+淘宝：
+http://registry.npm.taobao.org
+cnpmjs:
+http://r.cnpmjs.org
+未知：
+http://registry.cnpmjs.org
+</code></pre>
+<p>方法一：通过config命令指定</p>
+<pre><code>npm config set registry http://registry.cnpmjs.org 
+npm info underscore （如果上面配置正确这个命令会有字符串response）
+</code></pre>
+<p>方法二：在命令行中指定</p>
+<pre><code>npm --registry http://registry.cnpmjs.org info underscore
+</code></pre>
+<p>方法三：在配置文件中指定，编辑安装npm的目录下的npmrc文件加入下面内容</p>
+<pre><code>registry = http://registry.cnpmjs.org
+</code></pre>
+<p>方法四：利用定制的cnpm代替npm</p>
+<pre><code>#安装该模块，然后通过该命令来安装所需模块
+npm install -g cnpm --registry=http://registry.npm.taobao.org
+# 利用cnpm来安装模块
+cnpm install [name]# 利用cnpm来同步模块
+cnpm sync connect
+</code></pre>
+<p>方法五：利用alias添加一个基于npm的新命令</p>
+<pre><code>alias cnpm=&quot;npm --registry=http://registry.npm.taobao.org \--cache=$HOME/.npm/.cache/cnpm \--disturl=http://npm.taobao.org/dist \--userconfig=$HOME/.cnpmrc&quot;#Or alias it in .bashrc or .zshrc$ echo '\n#alias for cnpm\nalias cnpm=&quot;npm --registry=registry.npm.taobao.org \  --cache=$HOME/.npm/.cache/cnpm \  --disturl=http://npm.taobao.org/dist \  --userconfig=$HOME/.cnpmrc&quot;' &gt;&gt; ~/.zshrc &amp;&amp; source ~/.zshrc</code></pre>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/15/npm-setting/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
       
     </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
+    
+    
+    
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-
-
-    
-      
-
-  
-  
-
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/4d2fd6c9.html">
 
-    
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/08/nodejs-install/" itemprop="url">
-                  快速搭建 Node.js 开发环境
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/4d2fd6c9.html" class="post-title-link" itemprop="url">快速搭建 Node.js 开发环境</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-12-08T19:12:59+08:00" content="2015-12-08">
-              2015-12-08
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2015-12-08 19:12:59" itemprop="dateCreated datePublished" datetime="2015-12-08T19:12:59Z">2015-12-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/环境-nodejs/" itemprop="url" rel="index">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%8E%AF%E5%A2%83-nodejs/" itemprop="url" rel="index">
                     <span itemprop="name">环境,nodejs</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
+            <span id="/archives/4d2fd6c9.html" class="post-meta-item leancloud_visitors" data-flag-title="快速搭建 Node.js 开发环境" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
 
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2015/12/08/nodejs-install/"class="leancloud_visitors" data-flag-title="快速搭建 Node.js 开发环境"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-          
-如果你想长期做 node 开发, 或者想快速更新 node 版本, 或者想快速切换 node 版本,那么在非 Windows(如 osx, linux) 环境下, 请使用 nvm 来安装你的 node 开发环境, 保持系统的干净.如果你使用 Windows 做开发, 那么你可以使用 nvmw 来替代 nvm
-
-osx, linux 环境如果你是 windows 环境开发, 请跳过这里, 直接查看下一章.
-git clone nvm直接从 github clone nvm 到本地, 这里假设大家都使用 ~/git 目录存放 git 项目:
-cd ~/git
+          <hr>
+<p>如果你想长期做 node 开发, 或者想快速更新 node 版本, 或者想快速切换 node 版本,<br>
+那么在非 Windows(如 osx, linux) 环境下, 请使用 nvm 来安装你的 node 开发环境, 保持系统的干净.<br>
+如果你使用 Windows 做开发, 那么你可以使用 nvmw 来替代 nvm</p>
+<hr>
+<h1>osx, linux 环境</h1>
+<p>如果你是 windows 环境开发, 请跳过这里, 直接查看下一章.</p>
+<h2 id="git-clone-nvm">git clone nvm</h2>
+<p>直接从 github clone nvm 到本地, 这里假设大家都使用 ~/git 目录存放 git 项目:</p>
+<pre><code>cd ~/git
 git clone https://github.com/creationix/nvm.git
-配置终端启动时自动执行 source ~/git/nvm/nvm.sh,在 ~/.bashrc, ~/.bash_profile, ~/.profile, 或者 ~/.zshrc 文件添加以下命令:
-source ~/git/nvm/nvm.sh
-重新打开你的终端, 输入 nvm
-$ nvm
+</code></pre>
+<p>配置终端启动时自动执行 source ~/git/nvm/nvm.sh,<br>
+在 ~/.bashrc, ~/.bash_profile, ~/.profile, 或者 ~/.zshrc 文件添加以下命令:</p>
+<pre><code>source ~/git/nvm/nvm.sh
+</code></pre>
+<p>重新打开你的终端, 输入 nvm</p>
+<pre><code>$ nvm
 
 Node Version Manager
 
@@ -876,45 +977,106 @@ Usage:
     nvm uninstall &lt;version&gt;     Uninstall a version
     nvm use &lt;version&gt;           Modify PATH to use &lt;version&gt;
     nvm run &lt;version&gt; [&lt;args&gt;]  Run &lt;version&gt; with &lt;args&gt; as arguments
-    nvm current                 Display curre
-          ...
+    nvm current                 Display currently activated version
+    nvm ls                      List installed versions
+    nvm ls &lt;version&gt;            List versions matching a given description
+    nvm ls-remote               List remote versions available for install
+    nvm deactivate              Undo effects of NVM on current shell
+    nvm alias [&lt;pattern&gt;]       Show all aliases beginning with &lt;pattern&gt;
+    nvm alias &lt;name&gt; &lt;version&gt;  Set an alias named &lt;name&gt; pointing to &lt;version&gt;
+    nvm unalias &lt;name&gt;          Deletes the alias named &lt;name&gt;
+    nvm copy-packages &lt;version&gt; Install global NPM packages contained in &lt;version&gt; to current version
+Example:
+    nvm install v0.10.24        Install a specific version number
+    nvm use 0.10                Use the latest available 0.10.x release
+    nvm run 0.10.24 myApp.js    Run myApp.js using node v0.10.24
+    nvm alias default 0.10.24   Set default node version on a shell
+Note:
+    to remove, delete or uninstall nvm - just remove ~/.nvm, ~/.npm and ~/.bower folders
+</code></pre>
+<h2 id="通过-nvm-安装任意版本的-node">通过 nvm 安装任意版本的 node</h2>
+<p>nvm 默认是从 <a href="http://nodejs.org/dist/" target="_blank" rel="noopener">http://nodejs.org/dist/</a> 下载的, 国外服务器, 必然很慢,<br>
+好在 nvm 以及支持从镜像服务器下载包, 于是我们可以方便地从七牛的 node dist 镜像下载:</p>
+<pre><code>NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist nvm install 0.11.11
+</code></pre>
+<p>于是你就会看到一段非常快速进度条:</p>
+<pre><code>######################################################################## 100.0%
+Now using node v0.11.11
+</code></pre>
+<p>如果你不想每次都输入环境变量 NVM_NODEJS_ORG_MIRROR, 那么我建议你加入到 .bashrc 文件中:</p>
+<pre><code># nvm
+export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
+source ~/git/nvm/nvm.sh
+</code></pre>
+<p>然后你可以继续非常方便地安装各个版本的 node 了, 你可以查看一下你当前已经安装的版本:</p>
+<pre><code>$ nvm ls
+     nvm
+ v0.8.26
+v0.10.26
+v0.11.11
+-&gt;  v0.11.12
+</code></pre>
+<h1>windows 环境</h1>
+<hr>
+<h2 id="git-clone-nvmw">git clone nvmw</h2>
+<p>直接从 github clone nvmw 到本地, 这里假设大家都使用 d:\git 目录存放 git 项目:</p>
+<pre><code>$ d:
+$ cd git
+$ git clone https://github.com/hakobera/nvmw.git
+</code></pre>
+<p>设置 d:\git\nvmw 目录到你的 PATH 环境变量中:</p>
+<pre><code>set &quot;PATH=d:\git\nvmw;%PATH%&quot;
+</code></pre>
+<p>重新打开你的终端, 输入 nvmw</p>
+<pre><code>$ nvmw
+Usage:
+  nvmw help                    Show this message
+  nvmw install [version]       Download and install a [version]
+  nvmw uninstall [version]     Uninstall a [version]
+  nvmw use [version]           Modify PATH to use [version]
+  nvmw ls                      List installed versions
+Example:
+  nvmw install v0.6.0          Install a specific version number
+  nvmw use v0.6.0              Use the specific version
+</code></pre>
+<h2 id="通过-nvmw-安装任意版本的-node">通过 nvmw 安装任意版本的 node</h2>
+<p>nvmw 默认是从 <a href="http://nodejs.org/dist/" target="_blank" rel="noopener">http://nodejs.org/dist/</a> 下载的, 国外服务器, 必然很慢,<br>
+好在 nvmw 以及支持从镜像服务器下载包, 于是我们可以方便地从七牛的 node dist 镜像下载:</p>
+<pre><code>$ set &quot;NVMW_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist&quot;
+$ nvmw install 0.11.11
+</code></pre>
+<p>于是你就会看到一段非常快速进度条:</p>
+<pre><code>######################################################################## 100.0%
+Now using node v0.11.11
+</code></pre>
+<p>如果你不想每次都输入环境变量 NVMW_NODEJS_ORG_MIRROR, 那么我建议你在全局环境变量中增加它.</p>
+<p>然后你可以继续非常方便地安装各个版本的 node 了, 你可以查看一下你当前已经安装的版本:</p>
+<pre><code>$ nvmw ls
+v0.10.26
+v0.11.12
+Current: v0.11.12
+</code></pre>
+<p>到此, 无论是 windows 环境, 还是 osx, linux 环境, 都能快速安装多个版本的 node 了.</p>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/08/nodejs-install/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
 
     
-  </section>
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -922,445 +1084,704 @@ Usage:
           </div>
           
 
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/img/avatar.jpg"
-               alt="曹强" />
-          <p class="site-author-name" itemprop="name">曹强</p>
-          <p class="site-description motion-element" itemprop="description">caoqiang's blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">83</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">14</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/ronghuaxueleng" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-      </section>
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">曹强</span>
-</div>
-
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
-
-<!-- 不蒜子 -->
-<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_pv" style="display:none">
-  本站总访问量<span id="busuanzi_value_site_pv"></span>人次
-</span>
-<!-- 不蒜子计数初始值纠正 -->
-<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function() {
-        var int = setInterval(fixCount, 100);
-        var busuanziSiteOffset = parseInt(1203);
-        function fixCount() {
-            if ($("#busuanzi_container_site_pv").css("display") != "none") {
-                clearInterval(int);
-                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
-            }
-        }
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
     });
-</script>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
   }
 </script>
 
-
-
-
-
-
-
-
-
+        </div>
+          
   
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="曹强"
+      src="/img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">曹强</p>
+  <div class="site-description" itemprop="description">caoqiang's blog | java |前端 | PHP |nodeJs | python</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
 
 
 
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+      <div class="links-of-blogroll-title">
+        <!-- modify icon to fire by szw -->
+        <i class="fa fa-history fa-" aria-hidden="true"></i>
+        近期文章
+      </div>
+      <ul class="links-of-blogroll-list">
+        
+        
+          <li>
+            <a href="/archives/2fd7dbc7.html" title="Shadow DOM" target="_blank">Shadow DOM</a>
+          </li>
+        
+          <li>
+            <a href="/archives/b4a56055.html" title="可视化埋点" target="_blank">可视化埋点</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a5431a21.html" title="从 JavaScript 数组去重谈性能优化" target="_blank">从 JavaScript 数组去重谈性能优化</a>
+          </li>
+        
+      </ul>
+    </div>
+
+
+<div style="">
+  <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
+
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
   
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">318k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:49</span>
+</div>
 
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
-
-
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-   
-     
-   
-  
- 
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
 
 
-  
 
-
-
-
-  
-  
-
-  
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
   <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
       });
 
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
           if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
             return;
           }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
           }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
             }
           }
         })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
         });
     }
+  }
 
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
+  fetch('https://app-router.leancloud.cn/2/route?appId=bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz',
+            'X-LC-Key': '9kCQuNi7NFq5MdDBn9J1Xj1r',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
         addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
         showTime(Counter);
       }
     });
   </script>
 
 
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 
   
-  
-    <!-- custom analytics part create by xiamo -->
-<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-<script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout: 3000,
+        priority: true,
+        ignores: [uri => uri.includes('#'),uri => uri == 'http://ronghuaxueleng.github.io/page/16/',]
+      });
+      });
+  </script>
+
+
+  <script async src="/blog/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/blog/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div class="moon-menu-item" onclick="back2bottom()">
+      <i class="fa fa-chevron-down"></i>
+    </div>
+    
+    <div class="moon-menu-item" onclick="back2top()">
+      <i class="fa fa-chevron-up"></i>
+    </div>
+    
+  </div>
+  <div class="moon-menu-button" onclick="moonMenuClick()">
+    <svg class="moon-menu-svg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+      <g class="moon-menu-points">
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
+        <circle class="moon-menu-point" r=".2rem"></circle>
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
+      </g>
+    </svg>
+    <div class="moon-menu-icon">
+    </div>
+    <div class="moon-menu-text">
+    </div>
+  </div>
+</div>
+
 <script>
-function showTime(Counter) {
-	var query = new AV.Query(Counter);
-	$(".leancloud_visitors").each(function() {
-		var url = $(this).attr("id").trim();
-		query.equalTo("url", url);
-		query.find({
-			success: function(results) {
-				if (results.length == 0) {
-					var content = '0';
-					$(document.getElementById(url)).text(content);
-					return;
-				}
-				for (var i = 0; i < results.length; i++) {
-					var object = results[i];
-					var content = object.get('time');
-					$(document.getElementById(url)).text(content);
-				}
-			},
-			error: function(object, error) {
-				console.log("Error: " + error.code + " " + error.message);
-			}
-		});
 
-	});
-}
+  const moonMenuListener = function () {
 
-function addCount(Counter) {
-	var Counter = AV.Object.extend("Counter");
-	url = $(".leancloud_visitors").attr('id').trim();
-	title = $(".leancloud_visitors").attr('data-flag-title').trim();
-	var query = new AV.Query(Counter);
-	query.equalTo("url", url);
-	query.find({
-		success: function(results) {
-			if (results.length > 0) {
-				var counter = results[0];
-				counter.fetchWhenSave(true);
-				counter.increment("time");
-				counter.save(null, {
-					success: function(counter) {
-						var content =  counter.get('time');
-						$(document.getElementById(url)).text(content);
-					},
-					error: function(counter, error) {
-						console.log('Failed to save Visitor num, with error message: ' + error.message);
-					}
-				});
-			} else {
-				var newcounter = new Counter();
-				newcounter.set("title", title);
-				newcounter.set("url", url);
-				newcounter.set("time", 1);
-				newcounter.save(null, {
-					success: function(newcounter) {
-					    console.log("newcounter.get('time')="+newcounter.get('time'));
-						var content = newcounter.get('time');
-						$(document.getElementById(url)).text(content);
-					},
-					error: function(newcounter, error) {
-						console.log('Failed to create');
-					}
-				});
-			}
-		},
-		error: function(error) {
-			console.log('Error:' + error.code + " " + error.message);
-		}
-	});
-}
-$(function() {
-	var Counter = AV.Object.extend("Counter");
-	if ($('.leancloud_visitors').length == 1) {
-		addCount(Counter);
-	} else if ($('.post-title-link').length > 1) {
-		showTime(Counter);
-	}
-}); 
+    //Get scroll percent
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+    let percent = Math.round(scrollTop / (scrollHeight - offsetHeight) * 100);
+    if (percent > 100) percent = 100;
+
+    let menuText = document.querySelector('.moon-menu-text');
+    let menuPoints = document.querySelector('.moon-menu-points');
+    if (!percent) {
+      percent = 0;
+      menuText.style.display = 'none';
+      menuPoints.style.display = 'block';
+    } else {
+      menuText.style.display = 'block';
+      menuPoints.style.display = 'none';
+      menuText.innerHTML = percent + '%';
+    }
+
+    //Update strokeDasharray
+    let length = 196;
+    document.querySelector('.moon-menu-border').style.strokeDasharray = percent * length / 100 + ' ' + length;
+
+  }
+
+  window.addEventListener('load', () => {
+    moonMenuListener();
+  });
+  window.addEventListener('scroll', moonMenuListener);
+
+  const moonMenuClick = function () {
+    let items = document.querySelector('.moon-menu-items')
+    items.classList.toggle('active');
+    let points = document.querySelectorAll('.moon-menu-point');
+    let childItems = document.querySelectorAll('.moon-menu-item');
+    if (items.classList.contains('active')) {
+      points[0].setAttribute("cx", "-.8rem");
+      points[0].setAttribute("cy", "0");
+      points[2].setAttribute("cx", ".8rem");
+      points[2].setAttribute("cy", "0");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = -3 - 3 * i + 'rem';
+        childItems[i].style.opacity = .9;
+      }
+    } else {
+      points[0].setAttribute("cx", "0");
+      points[0].setAttribute("cy", "-.8rem");
+      points[2].setAttribute("cx", "0");
+      points[2].setAttribute("cy", ".8rem");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = '1rem';
+        childItems[i].style.opacity = 0;
+      }
+    }
+  };
+
+  const back2top = () => {
+    window.scroll({ top: 0, behavior: 'smooth' });
+  }
+
+  const back2bottom = () => {
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    window.scroll({ top: (scrollHeight - offsetHeight), behavior: 'smooth' });
+  }
+
 </script>
-  
-
 </body>
 </html>

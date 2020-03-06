@@ -1,888 +1,787 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
 
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://ronghuaxueleng.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"mac"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
-
-
-
-
-
-
-<meta name="description" content="caoqiang&apos;s blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs">
+  <meta name="description" content="caoqiang&#39;s blog | java |前端 | PHP |nodeJs | python">
 <meta property="og:type" content="website">
 <meta property="og:title" content="白云雅阁">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/page/15/index.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="caoqiang&apos;s blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs">
+<meta property="og:description" content="caoqiang&#39;s blog | java |前端 | PHP |nodeJs | python">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="曹强">
+<meta property="article:tag" content="java 前端 php nodejs python javascript css html">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="白云雅阁">
-<meta name="twitter:description" content="caoqiang&apos;s blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs">
+
+<link rel="canonical" href="http://ronghuaxueleng.github.io/page/15/">
 
 
-
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 0,
-      author: '博主'
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false
   };
 </script>
 
+  <title>白云雅阁</title>
+  
 
 
 
-  <link rel="canonical" href="http://ronghuaxueleng.github.io/page/15/"/>
 
-  <title> 白云雅阁 </title>
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="白云雅阁" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <a href="https://github.com/ronghuaxueleng">
-        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
-    </a>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">白云雅阁</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">白云雅阁</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">一切都是最好的安排</p>
   </div>
-  <p class="site-subtitle">读懂别人的故事，写好自己的人生</p>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
 
 <nav class="site-nav">
   
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
-  
+  </li>
+  </ul>
+
 </nav>
-
- </div>
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content">
             
-  <section id="posts" class="posts-expand">
-    
-      
 
+  <div class="posts-expand">
+        
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/af5e7c72.html">
 
-  
-  
-  
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/03/angularJs/ui-router/index/" itemprop="url">
-                  学习 ui-router 系列文章索引
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/af5e7c72.html" class="post-title-link" itemprop="url">学习 ui-router 系列文章索引</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-03T17:00:00+08:00" content="2016-08-03">
-              2016-08-03
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2016-08-03 17:00:00" itemprop="dateCreated datePublished" datetime="2016-08-03T17:00:00Z">2016-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:28" itemprop="dateModified" datetime="2020-03-06T11:58:28Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/angularjs/" itemprop="url" rel="index">
                     <span itemprop="name">angularjs</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
+            <span id="/archives/af5e7c72.html" class="post-meta-item leancloud_visitors" data-flag-title="学习 ui-router 系列文章索引" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>523</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
 
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/08/03/angularJs/ui-router/index/"class="leancloud_visitors" data-flag-title="学习 ui-router 系列文章索引"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          <p><a href="http://angular-ui.github.io/" target="_blank" rel="external">Angular-Ui</a> 对于 <a href="http://angularjs.org/" target="_blank" rel="external">AngularJS</a> 开发者来说是一个非常重要的工具，其中 <a href="https://github.com/angular-ui/ui-router" target="_blank" rel="external">UI-Router</a> 又是重中之重。<a href="https://github.com/angular-ui/ui-router" target="_blank" rel="external">UI-Router</a> 插件提供了“嵌套作用域等规则”等有用的特性，对于复杂项目开发非常实用，最近在项目中开始使用 <a href="https://github.com/angular-ui/ui-router" target="_blank" rel="external">UI-Router</a> ，于是决定好好把它学习一遍，这些文章都来源于 <a href="https://github.com/angular-ui/ui-router/wiki" target="_blank" rel="external">UI-Router 的 github</a>，下面是这次学习内容</p>
+          <p><a href="http://angular-ui.github.io/" target="_blank" rel="noopener">Angular-Ui</a> 对于 <a href="http://angularjs.org/" target="_blank" rel="noopener">AngularJS</a> 开发者来说是一个非常重要的工具，其中 <a href="https://github.com/angular-ui/ui-router" target="_blank" rel="noopener">UI-Router</a> 又是重中之重。<a href="https://github.com/angular-ui/ui-router" target="_blank" rel="noopener">UI-Router</a> 插件提供了“嵌套作用域等规则”等有用的特性，对于复杂项目开发非常实用，最近在项目中开始使用 <a href="https://github.com/angular-ui/ui-router" target="_blank" rel="noopener">UI-Router</a> ，于是决定好好把它学习一遍，这些文章都来源于 <a href="https://github.com/angular-ui/ui-router/wiki" target="_blank" rel="noopener">UI-Router 的 github</a>，下面是这次学习内容</p>
 <ol>
-<li><a href="/2016/08/03/angularJs/ui-router/学习 ui-router - 管理状态/">学习 ui-router - 管理状态</a></li>
-<li><a href="/2016/08/04/angularJs/ui-router/学习 ui-router - 状态嵌套和视图嵌套/">学习 ui-router - 状态嵌套和视图嵌套</a></li>
-<li><a href="/2016/08/05/angularJs/ui-router/学习 ui-router - 多个命名的视图/">学习 ui-router - 多个命名的视图</a></li>
-<li><a href="/2016/08/06/angularJs/ui-router/学习 ui-router - 路由控制/">学习 ui-router - 路由控制</a></li>
-<li><a href="/2016/08/07/angularJs/ui-router/学习 ui-router - 组件/">学习 ui-router - 组件</a></li>
+<li>[学习 ui-router - 管理状态](/2016/08/03/angularJs/ui-router/学习 ui-router - 管理状态/)</li>
+<li>[学习 ui-router - 状态嵌套和视图嵌套](/2016/08/04/angularJs/ui-router/学习 ui-router - 状态嵌套和视图嵌套/)</li>
+<li>[学习 ui-router - 多个命名的视图](/2016/08/05/angularJs/ui-router/学习 ui-router - 多个命名的视图/)</li>
+<li>[学习 ui-router - 路由控制](/2016/08/06/angularJs/ui-router/学习 ui-router - 路由控制/)</li>
+<li>[学习 ui-router - 组件](/2016/08/07/angularJs/ui-router/学习 ui-router - 组件/)</li>
 </ol>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/03/angularJs/ui-router/index/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/archives/af5e7c72.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
+    
+    
+    
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-
-
-    
-      
-
-  
-  
-
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/b6bf4ab1.html">
 
-    
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/03/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记（三）：ECMAScript中的引用类型/" itemprop="url">
-                  《JavaScript高级程序设计》阅读笔记（三）：ECMAScript中的引用类型
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/b6bf4ab1.html" class="post-title-link" itemprop="url">《JavaScript高级程序设计》阅读笔记（三）：ECMAScript中的引用类型</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-03T00:00:00+08:00" content="2016-08-03">
-              2016-08-03
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2016-08-03 00:00:00" itemprop="dateCreated datePublished" datetime="2016-08-03T00:00:00Z">2016-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/《JavaScript高级程序设计》阅读笔记/" itemprop="url" rel="index">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
                     <span itemprop="name">《JavaScript高级程序设计》阅读笔记</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
+            <span id="/archives/b6bf4ab1.html" class="post-meta-item leancloud_visitors" data-flag-title="《JavaScript高级程序设计》阅读笔记（三）：ECMAScript中的引用类型" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
 
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/08/03/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记（三）：ECMAScript中的引用类型/"class="leancloud_visitors" data-flag-title="《JavaScript高级程序设计》阅读笔记（三）：ECMAScript中的引用类型"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <hr>
+<h4 id="引用类型">引用类型</h4>
+<h5 id="Object类">Object类</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ECMAScript中的所有类都是由Object类继承而来。</span><br><span class="line"></span><br><span class="line">Object类具有下列属性：</span><br><span class="line"></span><br><span class="line">Constructor：对创建对象的函数的引用（指针），对于Object类，该指针指向原始的Object()函数</span><br><span class="line"></span><br><span class="line">Prototype：对该对象的对象原型的引用。</span><br><span class="line"></span><br><span class="line">Object类还有几个方法：</span><br><span class="line">    1、PropertyIsEnumerable(property)：判断给定的属性是否可以用for...in语句进行枚举</span><br><span class="line"></span><br><span class="line">    2、ToString()：返回对象的原始字符串表示。</span><br><span class="line"></span><br><span class="line">    3、ValueOf()：返回最适合该对象的原始值。对于许多类，该方法返回的值都与toString()的返回值相同。</span><br><span class="line"></span><br><span class="line">上面列出的每种属性和方法都会被其他类覆盖。</span><br></pre></td></tr></table></figure>
+<h5 id="Boolen类">Boolen类</h5>
+<p>在ECMAScript中很少使用Boolean对象，因为不易理解，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var oFalseObject &#x3D; new Boolean(false);</span><br><span class="line">var bResult&#x3D; oFalseObject &amp;&amp; true; &#x2F;&#x2F;outpus true</span><br></pre></td></tr></table></figure>
+<p>在这段代码中，用false值创建Boolean对象，然后用这个值与原始值true进行 AND 操作。在Boolean运算中，false和true进行AND 操作的结果是 false。不过，在这行代码中，计算的是oFalseObject，而不是它的值false。在Boolean表达式中，所有对象都会被自动转换为true，所以结果为true。参考下面的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var oFalseObject &#x3D; new Boolean(false);</span><br><span class="line">var bResult&#x3D; oFalseObject &amp;&amp; true; &#x2F;&#x2F;outpus true</span><br><span class="line">var bResult2&#x3D; oFalseObject.valueOf() &amp;&amp; true; &#x2F;&#x2F;outpus false</span><br></pre></td></tr></table></figure>
+<h5 id="Number类">Number类</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Number的toString()方法在上篇文章中有详细的介绍。</span><br><span class="line"></span><br><span class="line">Number有几个处理数值的专用方法：</span><br><span class="line"></span><br><span class="line">toFixed(参数)：返回的是具有指定位数小数的数字的字符串表示。参数范围为0—20</span><br><span class="line"></span><br><span class="line">toExponential(参数)：返回的是用科学计数法表示的数字的字符串形式。与toFixed()方法相似，toExponential()也有一个参数要输出的小数的位数。参数范围为0—20</span><br><span class="line"></span><br><span class="line">toPrecision(参数)：根据最有意义的形式来返回数字的预定形式或指数形式。它有一个参数，即用于表示数字总数（不包括指数）。参数最小为1</span><br></pre></td></tr></table></figure>
+<p>以上三个方法都会进行舍入操作。示例代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var oNumber&#x3D;new Number(99);</span><br><span class="line">console.log(oNumber.toFixed(0));    &#x2F;&#x2F;outpus 99</span><br><span class="line">console.log(oNumber.toFixed(2));    &#x2F;&#x2F;outpus 99.00</span><br><span class="line"></span><br><span class="line">var oNumber1&#x3D;new Number(99);</span><br><span class="line">console.log(oNumber1.toExponential(0));    &#x2F;&#x2F;outpus 1e+2 进行了舍入操作</span><br><span class="line">console.log(oNumber1.toExponential(1));    &#x2F;&#x2F;outpus 9.9e+1</span><br><span class="line">console.log(oNumber1.toExponential(2));    &#x2F;&#x2F;outpus 9.90e+1</span><br><span class="line"></span><br><span class="line">var oNumber3&#x3D;new Number(99);</span><br><span class="line">console.log(oNumber3.toPrecision(0));    &#x2F;&#x2F;outpus error precision 0 out of range</span><br><span class="line">console.log(oNumber3.toPrecision(1));    &#x2F;&#x2F;outpus 1e+2 进行了舍入操作</span><br><span class="line">console.log(oNumber3.toPrecision(2));    &#x2F;&#x2F;outpus 99</span><br><span class="line">console.log(oNumber3.toPrecision(3));    &#x2F;&#x2F;outpus 99.0</span><br></pre></td></tr></table></figure>
+<h5 id="String类">String类</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String对象的valueOf()方法和toString()方法都会返回String型的原始值：</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var oStringObject&#x3D;new String(&quot;Hello world&quot;);</span><br><span class="line">console.log(oStringObject.valueOf() &#x3D;&#x3D; oStringObject.toString());&#x2F;&#x2F;outpus true</span><br></pre></td></tr></table></figure>
+<p>String类具有length属性，它是字符串中的字符个数，双字节字符也算一个字符。</p>
+<p>String类有大量的方法，主要介绍如下：</p>
+<p>charAt(整型参数)：返回字符串中单个字符。示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var oStringObject&#x3D;new String(&quot;Hello world&quot;);</span><br><span class="line">console.log(oStringObject.charAt(0));&#x2F;&#x2F;outpus &quot;H&quot;</span><br><span class="line">console.log(oStringObject.charAt(1));&#x2F;&#x2F;outpus &quot;e&quot;</span><br><span class="line">console.log(oStringObject.charAt(11));&#x2F;&#x2F;outpus (an empty string)</span><br></pre></td></tr></table></figure>
+<p>charCodeAt(整型参数)：返回字符串中单个字符代码。示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var oStringObject&#x3D;new String(&quot;Hello world&quot;);</span><br><span class="line">console.log(oStringObject.charCodeAt(0));&#x2F;&#x2F;outpus &quot;72&quot;</span><br><span class="line">console.log(oStringObject.charCodeAt(1));&#x2F;&#x2F;outpus &quot;101&quot;</span><br><span class="line">console.log(oStringObject.charCodeAt(11));&#x2F;&#x2F;outpus NaN</span><br></pre></td></tr></table></figure>
+<p>concat(字符串)：把一个或多个字符串连接到String对象的原始值上。示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var oStringObject&#x3D;new String(&quot;Hello world&quot;);</span><br><span class="line">var sResult&#x3D;oStringObject.concat(&quot; Concat&quot;);</span><br><span class="line">console.log(oStringObject);&#x2F;&#x2F;outpus &quot;String &#123; 0&#x3D;&quot;H&quot;, 1&#x3D;&quot;e&quot;, 2&#x3D;&quot;l&quot;, ...&#125;&quot;</span><br><span class="line">console.log(sResult);&#x2F;&#x2F;outpus &quot;Hello world Concat&quot;</span><br><span class="line">alert(oStringObject);&#x2F;&#x2F;outpus &quot;Hello world&quot;</span><br></pre></td></tr></table></figure>
+<p>indexOf(字符串)：返回指定的字符串在另一个字符串中的位置（从字符串的开头进行检索）。</p>
+<p>lastIndexOf(字符串)：返回指定的字符串在另一个字符串中的位置（从字符串的结尾进行检索）。示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var oStringObject&#x3D;new String(&quot;Hello Hello&quot;);</span><br><span class="line">console.log(oStringObject.indexOf(&quot;lo&quot;));&#x2F;&#x2F;outpus 3</span><br><span class="line">console.log(oStringObject.lastIndexOf(&quot;lo&quot;));&#x2F;&#x2F;outpus 9</span><br></pre></td></tr></table></figure>
+<p>localeCompare(字符串)：对字符串进行排序，返回值是下列三个之一：</p>
+<p>A、如果String对象按照字母顺序排在参数中的字符串之前，返回负数(通常是-1，但真正返回值由具体实现决定)</p>
+<p>B、如果String对象等于参数中的字符串，返回0</p>
+<p>C、如果String对象按照字母顺序排在参数中的字符串之后，返回正数(通常是1，但真正返回值由具体实现决定)</p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var oStringObject&#x3D;new String(&quot;Hello&quot;);</span><br><span class="line">console.log(oStringObject.localeCompare(&quot;aello&quot;));    &#x2F;&#x2F;outpus 1</span><br><span class="line">console.log(oStringObject.localeCompare(&quot;Hello&quot;));    &#x2F;&#x2F;outpus 0</span><br><span class="line">console.log(oStringObject.localeCompare(&quot;zello&quot;));    &#x2F;&#x2F;outpus -1</span><br></pre></td></tr></table></figure>
+<p>slice(整型参数[,整型参数])、substring(整型参数[,整型参数])：从子串创建字符串值。第一个参数是要获取的子串的起始位置，第二个参数是要获取的子串终止前的位置，如果省略第二参数，终止位就默认为字符串长度。这两个方法都不改变String对象自身值。当参数为正时两个方法用法及返回值均相同，只有参数有负值时才不同。对于负参数，slice()方法会用字符串的长度加上参数，substring()将其做为0处理。另外如果有两个参数，第二个比第一个小时，slice()返回的值为空，substring()会把较小的作为第一个参数。为示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var oStringObject&#x3D;new String(&quot;Hello World&quot;); </span><br><span class="line">console.log(oStringObject.slice(3));    &#x2F;&#x2F;outpus &quot;lo World&quot; </span><br><span class="line">console.log(oStringObject.substring(3));    &#x2F;&#x2F;outpus &quot;lo World&quot; </span><br><span class="line">console.log(oStringObject.slice(3,7));    &#x2F;&#x2F;outpus &quot;lo W&quot; </span><br><span class="line">console.log(oStringObject.substring(3,7));    &#x2F;&#x2F;outpus &quot;lo W&quot; </span><br><span class="line">console.log(oStringObject.slice(3,0));    &#x2F;&#x2F;outpus (an empty string) </span><br><span class="line">console.log(oStringObject.substring(3,0));    &#x2F;&#x2F;outpus &quot;Hel&quot;</span><br><span class="line"></span><br><span class="line">console.log(oStringObject.slice(-3));    &#x2F;&#x2F;outpus &quot;rld&quot;</span><br><span class="line">console.log(oStringObject.substring(-3));    &#x2F;&#x2F;outpus &quot;Hello World&quot;</span><br><span class="line">console.log(oStringObject.slice(3,-4));    &#x2F;&#x2F;outpus &quot;lo W&quot;</span><br><span class="line">console.log(oStringObject.substring(3,-4));    &#x2F;&#x2F;outpus &quot;Hel&quot;</span><br></pre></td></tr></table></figure>
+<p>toLowerCase()、toLocaleLowerCase()、toUpperCase()、toLocaleUpperCase()：前两个用于把字符串转换为全小写，后两个用于把字符串转换为全大写。toLowerCase()跟toUpperCase()是原始方法，toLocaleLowerCase()跟toLocaleUpperCase()是基于特定区域实现的。示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var oStringObject&#x3D;new String(&quot;Hello World&quot;);</span><br><span class="line">console.log(oStringObject.toLowerCase());    &#x2F;&#x2F;outpus &quot;hello world&quot;</span><br><span class="line">console.log(oStringObject.toLocaleLowerCase());    &#x2F;&#x2F;outpus &quot;hello world&quot;</span><br><span class="line">console.log(oStringObject.toUpperCase());    &#x2F;&#x2F;outpus &quot;HELLO WORLD&quot;</span><br><span class="line">console.log(oStringObject.toLocaleUpperCase());    &#x2F;&#x2F;outpus &quot;HELLO WORLD&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var oStringObject&#x3D;new String(&quot;hello world&quot;);</span><br><span class="line">alert(oStringObject instanceof String); &#x2F;&#x2F;outpus &quot;true&quot;</span><br></pre></td></tr></table></figure>
 
-      
-        
-          
-          
-引用类型Object类12345678910111213141516ECMAScript中的所有类都是由Object类继承而来。Object类具有下列属性：Constructor：对创建对象的函数的引用（指针），对于Object类，该指针指向原始的Object()函数Prototype：对该对象的对象原型的引用。Object类还有几个方法：    1、PropertyIsEnumerable(property)：判断给定的属性是否可以用for...in语句进行枚举    2、ToString()：返回对象的原始字符串表示。    3、ValueOf()：返回最适合该对象的原始值。对于许多类，该方法返回的值都与toString()的返回值相同。上面列出的每种属性和方法都会被其他类覆盖。
-Boolen类在ECMAScript中很少使用Boolean对象，因为不易理解，如：
-12var oFalseObject = new Boolean(false);var bResult= oFalseObject &amp;&amp; true; //outpus true
-在这段代码中，用false值创建Boolean对象，然后用这个值与原始值true进行 AND 操作。在Boolean运算中，false和true进行AND 操作的结果是 false。不过，在这行代码中，计算的是oFalseObject，而不是它的值false。在Boolean表达式中，所有对象都会被自动转换为true，所以结果为true。参考下面的代码：
-123var oFalseObject = new Boolean(false);var bResult= oFalseObject &amp;&amp; true; //outpus truevar bResult2= oFalseObject.valueOf() &amp;&amp; true; //outpus false
-Number类123456789Number的toString()方法在上篇文章中有详细的介绍。Number有几个处理数值的专用方法：toFixed(参数)：返回的是具有指定位数小数的数字的字符串表示。参数范围为0—20toExponential(参数)：返回的是用科学计数法表示的数字的字符串形式。与toFixed()方法相似，to
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/03/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记（三）：ECMAScript中的引用类型/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
       
     </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
+    
+    
+    
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-
-
-    
-      
-
-  
-  
-
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/bcee9cbd.html">
 
-    
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/02/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记（二）：ECMAScript中的原始类型/" itemprop="url">
-                  《JavaScript高级程序设计》阅读笔记（二）：ECMAScript中的原始类型
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/bcee9cbd.html" class="post-title-link" itemprop="url">《JavaScript高级程序设计》阅读笔记（二）：ECMAScript中的原始类型</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-02T00:00:00+08:00" content="2016-08-02">
-              2016-08-02
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2016-08-02 00:00:00" itemprop="dateCreated datePublished" datetime="2016-08-02T00:00:00Z">2016-08-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/《JavaScript高级程序设计》阅读笔记/" itemprop="url" rel="index">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
                     <span itemprop="name">《JavaScript高级程序设计》阅读笔记</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
+            <span id="/archives/bcee9cbd.html" class="post-meta-item leancloud_visitors" data-flag-title="《JavaScript高级程序设计》阅读笔记（二）：ECMAScript中的原始类型" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
 
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/08/02/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记（二）：ECMAScript中的原始类型/"class="leancloud_visitors" data-flag-title="《JavaScript高级程序设计》阅读笔记（二）：ECMAScript中的原始类型"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <hr>
+<h4 id="原始类型">原始类型</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ECMAScript有5种原始类型(primitive type)，即Undefined、Null、Boolean、Number和String。ECMAScript提供了typeof来判断值的类型。</span><br></pre></td></tr></table></figure>
+<h5 id="typeof运算符">typeof运算符</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var sTemp&#x3D;&quot;test string&quot;;</span><br><span class="line">alert(typeof sTemp);&#x2F;&#x2F;outpus &quot;string&quot;</span><br><span class="line">alert(typeof 95);&#x2F;&#x2F;outpus &quot;number&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typeof运算符返回值只有5种，分别为：如果变量是Undefined型返回&quot;undefined&quot;，如果变量是Boolean型返回&quot;boolean&quot;，如果变量是Number型返回&quot;number&quot;，如果变量是String型返回&quot;string&quot;，如果变量是一种引用类型或Null类型返回&quot;object&quot;。</span><br></pre></td></tr></table></figure>
+<h5 id="Undefined类型">Undefined类型</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Undefined类型只有一个值，即undefined。当声明的变量未初始化和函数无明确的返回值时该变量的默认值和函数的返回值都是undefined。需要注意的是值undefined并不同于未定义的值，但typeof不区分这两种值。参考下面的代码：</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var oTemp;</span><br><span class="line">alert(typeof oTemp); &#x2F;&#x2F;outpus &quot;undefined&quot;</span><br><span class="line">alert(typeof otemp2); &#x2F;&#x2F;outpus &quot;undefined&quot;</span><br><span class="line">alert(oTemp&#x3D;&#x3D;undefined); &#x2F;&#x2F;outpus &quot;true&quot;</span><br><span class="line">alert(oTemp2&#x3D;&#x3D;undefined); &#x2F;&#x2F;causes error</span><br><span class="line">function testFunc()&#123;</span><br><span class="line">&#125;</span><br><span class="line">alert(testFunc() &#x3D;&#x3D; undefined); &#x2F;&#x2F;outpus &quot;true&quot;</span><br></pre></td></tr></table></figure>
+<h5 id="Null类型">Null类型</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Null也是只有一个值的类型，它只有一个专用值null。值undefined实际不是从值null派生来的，因此ECMAScript把它们定义为相等。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(null &#x3D;&#x3D; undefined); &#x2F;&#x2F;outpus &quot;true&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">尽管这两个值相等，但它们的含义不同。undefined是声明了变量但未对其初始化时的值，null则用于表示尚未存在的对象。</span><br></pre></td></tr></table></figure>
+<h5 id="Boolean类型">Boolean类型</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Boolean有两个值true和false</span><br></pre></td></tr></table></figure>
+<h5 id="Number类型">Number类型</h5>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Number可以表示32位整数，还可以表示64位浮点数，不同进制间的表示：</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var iNum&#x3D;55;&#x2F;&#x2F; 10进制</span><br><span class="line">var iNum&#x3D;070;&#x2F;&#x2F; 8进制var iNum&#x3D;oxAB;&#x2F;&#x2F;16进制</span><br><span class="line">var fNum&#x3D;3.125e7;&#x2F;&#x2F;科学计数法表示浮点数</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">几个特殊值也被定义为Number类型，前两个是Number.MAX_VALUE和Number.MIN_VALUE，它们定义了Number值集合的外边界。所有ECMAScript数都必须在这两个值之间，不过计算生成的数值结果可以不落在这两个数之间。</span><br><span class="line"></span><br><span class="line">当计算生成的数大于Number.MAX_VALUE时，它将被赋予值Number.POSITIVE_INFINITY，意味着不再有数字值。同样，生成的数值小于Number.MIN_VALUE的计算也会被赋予值Number.NEGATIVE_INFINITY，也意味着不再有数字值。如果计算返回的结果是无穷大，那么生成的结果不能再用于其他计算。</span><br><span class="line"></span><br><span class="line">事实上，有专门的值表示无穷大，即Infinity。Number.POSITIVE_INFINITY的值为Infinity，Number.NEGATIVE_INFINITY的值为-Infinity。</span><br></pre></td></tr></table></figure>
+<p>可以对任何数调用isFinit()方法来判断是不是无穷大。例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var iResult &#x3D; iNum*some_really_large_number;</span><br><span class="line">if(isFinit(iResult))&#123; </span><br><span class="line">    alert(&quot;Number is finite&quot;);</span><br><span class="line">&#125;else&#123; </span><br><span class="line">    alert(&quot;Number is infinite&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还有一个特殊值是NaN，表示非数(Not a Number)。NaN一般为类型转换失败时的值，NaN不能用于算术计算，NaN的另一个奇特之处在于它与自身并不相等，因此推荐使用isNaN()，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">alert(NaN &#x3D;&#x3D; NaN); &#x2F;&#x2F;outpus &quot;false&quot;</span><br><span class="line">alert(isNaN(&quot;blue&quot;)); &#x2F;&#x2F;outpus &quot;true&quot;</span><br><span class="line">alert(isNaN(&quot;123&quot;)); &#x2F;&#x2F;outpus &quot;false&quot;</span><br><span class="line">alert(isNaN(123)); &#x2F;&#x2F;outpus &quot;false&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="String类型">String类型</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">String是唯一没有固定大小的原始类型。ECMAScript的字符字面量：</span><br><span class="line"></span><br><span class="line">字面量　　　　　　　　含义</span><br><span class="line">\n　　　　　　　　     换行</span><br><span class="line">\t　　　　　　　　     制表符</span><br><span class="line">\b　　　　　　　　　  空格</span><br><span class="line">\r　　　　　　　　　　回车</span><br><span class="line">\f　　　　　　　　　　换页符</span><br><span class="line">\\　　　　　　　　　　反斜杠</span><br><span class="line">\&#39;　　　　　　　　　　单引号</span><br><span class="line">\&quot;　　　　　　　　　　双引号</span><br><span class="line">\0nnn　　　　　　　  八进制代码nnn表示的字符</span><br><span class="line">\xnn　　　　　　　　 16进制代码nn表示的字符</span><br><span class="line">\unnnn　　　　　　   16进制的代码nnnn表不的Unicode字符</span><br></pre></td></tr></table></figure>
 
-      
-        
-          
-          
-原始类型1ECMAScript有5种原始类型(primitive type)，即Undefined、Null、Boolean、Number和String。ECMAScript提供了typeof来判断值的类型。
-typeof运算符123var sTemp="test string";alert(typeof sTemp);//outpus "string"alert(typeof 95);//outpus "number"
-1typeof运算符返回值只有5种，分别为：如果变量是Undefined型返回&quot;undefined&quot;，如果变量是Boolean型返回&quot;boolean&quot;，如果变量是Number型返回&quot;number&quot;，如果变量是String型返回&quot;string&quot;，如果变量是一种引用类型或Null类型返回&quot;object&quot;。
-Undefined类型1Undefined类型只有一个值，即undefined。当声明的变量未初始化和函数无明确的返回值时该变量的默认值和函数的返回值都是undefined。需要注意的是值undefined并不同于未定义的值，但typeof不区分这两种值。参考下面的代码：
-12345678var oTemp;alert(typeof oTemp); //outpus "undefined"alert(typeof otemp2); //outpus "undefined"alert(oTemp==undefined); //outpus "true"alert(oTemp2==undefined); //causes errorfunction testFunc()&#123;&#125;alert(testFunc() == undefined); //outpus "true"
-Null类型1Null也是只有一个值的类型，它只有一个专用值null。值undefined实际不是从值null派生来的，因此ECMAScript把它们定义为相等。
-1alert(null == undefined); //outpus "true"
-1尽管这两个值相等，但它们的含义不同。undefined是声明了变量但未对其初始化时的值，null则用于表示尚未存在的对象。
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/02/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记（二）：ECMAScript中的原始类型/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
       
     </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
+    
+    
+    
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-
-
-    
-      
-
-  
-  
-
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/455abdec.html">
 
-    
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/01/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记（一）：ECMAScript基础/" itemprop="url">
-                  《JavaScript高级程序设计》阅读笔记（一）：ECMAScript基础
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/455abdec.html" class="post-title-link" itemprop="url">《JavaScript高级程序设计》阅读笔记（一）：ECMAScript基础</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-01T00:00:00+08:00" content="2016-08-01">
-              2016-08-01
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2016-08-01 00:00:00" itemprop="dateCreated datePublished" datetime="2016-08-01T00:00:00Z">2016-08-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/《JavaScript高级程序设计》阅读笔记/" itemprop="url" rel="index">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
                     <span itemprop="name">《JavaScript高级程序设计》阅读笔记</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
+            <span id="/archives/455abdec.html" class="post-meta-item leancloud_visitors" data-flag-title="《JavaScript高级程序设计》阅读笔记（一）：ECMAScript基础" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
 
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/08/01/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记（一）：ECMAScript基础/"class="leancloud_visitors" data-flag-title="《JavaScript高级程序设计》阅读笔记（一）：ECMAScript基础"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <hr>
+<h4 id="语法">语法</h4>
+<h5 id="区分大小写、变量弱类型、行尾分号可有可无、注释为双斜线、括号表明代码块">区分大小写、变量弱类型、行尾分号可有可无、注释为双斜线、括号表明代码块</h5>
+<h4 id="变量">变量</h4>
+<h5 id="变量用var声明，变量的命名规则：第一个字符必须是字母、下划线或美元符号；余下的字符可以是下划线、美元符号或任何字母或数字字符。">变量用var声明，变量的命名规则：第一个字符必须是字母、下划线或美元符号；余下的字符可以是下划线、美元符号或任何字母或数字字符。</h5>
+<h6 id="变量命名规范：">变量命名规范：</h6>
+<ul>
+<li>
+<p>Camel标记法：首字母小写，接下来的单词都以大写字母开头。例如：<code>var **m**y**T**est**V**alue=0,**m**y**S**econd**T**est**V**alue=&quot;hi&quot;</code>;</p>
+</li>
+<li>
+<p>Pascal标记法：首字母大写，接下来的单词都以大写字母开头。例如：<code>var **M**y**T**est**V**alue=0,**M**y**S**econd**T**est**V**alue=&quot;hi&quot;</code>;</p>
+</li>
+<li>
+<p>匈牙利类型标记法：在以Pascal标记法命名的变量前附加一个小写字母（或小写字母序列），说明该变量的类型。例如，i表示整数，s表示字符串，如下面所示：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">类型：数组　　　　前缀：a　　示例：aValues</span><br><span class="line"></span><br><span class="line">类型：布尔型　　　前缀：b　　示例：bFound</span><br><span class="line"></span><br><span class="line">类型：浮点型　　　前缀：f　　 示例：fValue</span><br><span class="line"></span><br><span class="line">类型：函数　　　　前缀：fn　  示例：fnMethod</span><br><span class="line"></span><br><span class="line">类型：整型　　　　前缀：i　　 示例：iValue</span><br><span class="line"></span><br><span class="line">类型：对象　　　　前缀：o　　示例：oType</span><br><span class="line"></span><br><span class="line">类型：正则　　　　前缀：re　  示例：rePatten</span><br><span class="line"></span><br><span class="line">类型：字符串　　　前缀：s　　示例：sValue</span><br><span class="line"></span><br><span class="line">类型：变量　　　　前缀：v　　示例：vValue</span><br></pre></td></tr></table></figure>
+<h4 id="关键字">关键字</h4>
+<p>ECMA-262 定义的关键字为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">break　　case　　catch　　continue　　default　　delete　　do　　else　　finally　　for　　function　　if　　in　　instanceof　　new　　return　　switch　　this　　throw　　try　　typeof　　var　　void　　while　　with</span><br></pre></td></tr></table></figure>
+<h4 id="保留字">保留字</h4>
+<p>ECMA-262第3版中保留字为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abstract　　boolean　　byte　　char　　class　　const　　debugger　　double　　enum　　export　　extends　　final　　float　　goto　　implements　　import　　int　　interface　　long　　native　　package　　private　　protected　　public　　short　　static　　super　　synchronized　　throws　　transient　　volatile</span><br></pre></td></tr></table></figure>
+<h4 id="原始值和引用值">原始值和引用值</h4>
+<p>原始值(primitive value)是存储在栈(stack)中的简单数据段，也就是说，它们的值直接存储在变量访问的位置。</p>
+<p>引用值(reference value)是存储在堆(heap)中的对象，也就是说，存储在变量处的值是一个指针(point)，指向存储对象的内存处。</p>
 
-      
-        
-          
-          
-语法区分大小写、变量弱类型、行尾分号可有可无、注释为双斜线、括号表明代码块变量变量用var声明，变量的命名规则：第一个字符必须是字母、下划线或美元符号；余下的字符可以是下划线、美元符号或任何字母或数字字符。变量命名规范：
-Camel标记法：首字母小写，接下来的单词都以大写字母开头。例如：**m**y**T**est**V**alue=0,**m**y**S**econd**T**est**V**alue="hi"```;1234- Pascal标记法：首字母大写，接下来的单词都以大写字母开头。例如：```var **M**y**T**est**V**alue=0,**M**y**S**econd**T**est**V**alue=&quot;hi&quot;```;- 匈牙利类型标记法：在以Pascal标记法命名的变量前附加一个小写字母（或小写字母序列），说明该变量的类型。例如，i表示整数，s表示字符串，如下面所示：
-
-类型：数组　　　　前缀：a　　示例：aValues
-类型：布尔型　　　前缀：b　　示例：bFound
-类型：浮点型　　　前缀：f　　 示例：fValue
-类型：函数　　　　前缀：fn　  示例：fnMethod
-类型：整型　　　　前缀：i　　 示例：iValue
-类型：对象　　　　前缀：o　　示例：oType
-类型：正则　　　　前缀：re　  示例：rePatten
-类型：字符串　　　前缀：s　　示例：sValue
-类型：变量　　　　前缀：v　　示例：vValue12#### 关键字ECMA-262 定义的关键字为：
-break　　case　　catch　　continue　　default　　delete　　do　　else　　finally　　for　　function　　if　　in　　instanceof　　new　　return　　switch　　this　　throw　　try　　typeof　　var　　void　　while　　with12#### 保留字ECMA-262第3版中保留字为：
-abstract　　boolean　　byte　　char　　class　　const　　debugger　　double　　enum　　export　　extends　　final　　float　　goto　　implements　　impor
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/01/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记（一）：ECMAScript基础/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
       
     </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
+    
+    
+    
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
-
-
-    
-      
-
-  
-  
-
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/72f0ef7f.html">
 
-    
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/31/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记：面向对象之继承/" itemprop="url">
-                  《JavaScript高级程序设计》阅读笔记：面向对象之继承
-                </a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/72f0ef7f.html" class="post-title-link" itemprop="url">《JavaScript高级程序设计》阅读笔记：面向对象之继承</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-31T00:00:00+08:00" content="2016-07-31">
-              2016-07-31
-            </time>
-          </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
+              <time title="创建时间：2016-07-31 00:00:00" itemprop="dateCreated datePublished" datetime="2016-07-31T00:00:00Z">2016-07-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/《JavaScript高级程序设计》阅读笔记/" itemprop="url" rel="index">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
                     <span itemprop="name">《JavaScript高级程序设计》阅读笔记</span>
                   </a>
                 </span>
-
-                
-                
-
-              
             </span>
-          
 
           
-            
-          
+            <span id="/archives/72f0ef7f.html" class="post-meta-item leancloud_visitors" data-flag-title="《JavaScript高级程序设计》阅读笔记：面向对象之继承" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
 
-          
-
-          
-          
-            阅读次数 &nbsp;
-            <span id="/2016/07/31/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记：面向对象之继承/"class="leancloud_visitors" data-flag-title="《JavaScript高级程序设计》阅读笔记：面向对象之继承"></span>
-          
-
-          
         </div>
       </header>
+
     
-
-
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <hr>
+<h2 id="原型链继承">原型链继承</h2>
+<p>让构造函数的原型对象等于另一个类型的实例，利用原型让一个引用类型继承另一个引用类型的属性和方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">function SuperType()</span><br><span class="line">&#123;</span><br><span class="line">    this.property&#x3D;true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SuperType.prototype.getSuperValue&#x3D;function()&#123;</span><br><span class="line">    return this.property;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function SubType()</span><br><span class="line">&#123;</span><br><span class="line">    this.subProperty&#x3D;false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;继承SuperType</span><br><span class="line"></span><br><span class="line">SubType.prototype&#x3D;new SuperType();</span><br><span class="line"></span><br><span class="line">SubType.prototype.getSubValue&#x3D;function()&#123;</span><br><span class="line">    return this.subProperty;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var instance&#x3D;new SubType();</span><br><span class="line">alert(instance.getSuperValue());&#x2F;&#x2F;true</span><br></pre></td></tr></table></figure>
+<p>代码示例中，完整原型链如下</p>
+<p><img src="/img/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B9%8B%E7%BB%A7%E6%89%BF.png" alt=""></p>
+<p>原型链继承的问题：父类型引用类型的属性会被所有子类型实例共享，这是不符合预期的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function SuperType()</span><br><span class="line">&#123;</span><br><span class="line">    this.colors&#x3D;[&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function SubType()</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;继承SuperType</span><br><span class="line"></span><br><span class="line">SubType.prototype&#x3D;new SuperType();</span><br><span class="line"></span><br><span class="line">var instance1&#x3D;new SubType();</span><br><span class="line"></span><br><span class="line">instance1.colors.push(&quot;black&quot;);</span><br><span class="line"></span><br><span class="line">alert(instance1.colors);&#x2F;&#x2F;&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;,&quot;black&quot;</span><br><span class="line"></span><br><span class="line">var instance2&#x3D;new SubType();</span><br><span class="line"></span><br><span class="line">alert(instance2.colors);&#x2F;&#x2F;&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;,&quot;black&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="借用构造函数继承">借用构造函数继承</h2>
+<p>基本思想是在子类型构造函数内部调用超类型构造函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function SuperType()</span><br><span class="line">&#123;</span><br><span class="line">    this.colors&#x3D;[&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function SubType()</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F;继承SuperType</span><br><span class="line">    SuperType.call(this);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var instance1&#x3D;new SubType();</span><br><span class="line"></span><br><span class="line">instance1.colors.push(&quot;black&quot;);</span><br><span class="line"></span><br><span class="line">alert(instance1.colors);&#x2F;&#x2F;&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;,&quot;black&quot;</span><br><span class="line"></span><br><span class="line">var instance2&#x3D;new SubType();</span><br><span class="line"></span><br><span class="line">alert(instance2.colors);&#x2F;&#x2F;&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;</span><br></pre></td></tr></table></figure>
+<p>借用构造函数可以像超类型构造函数传递参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function SuperType(name)</span><br><span class="line">&#123;</span><br><span class="line">    this.name&#x3D;name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function SubType()</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F;继承SuperType</span><br><span class="line">    SuperType.call(this,&quot;Jim&quot;);</span><br><span class="line">    this.age&#x3D;28;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var instance1&#x3D;new SubType();</span><br><span class="line"></span><br><span class="line">alert(instance1.name);&#x2F;&#x2F;&quot;Jim&quot;</span><br><span class="line"></span><br><span class="line">alert(instance1.age);&#x2F;&#x2F;28</span><br></pre></td></tr></table></figure>
+<p>借用构造函数的问题：不能复用超类型的方法</p>
+<h2 id="组合继承">组合继承</h2>
+<p>使用原型链实现对原型属性和方法的继承，通过借用构造函数实现对实例属性的继承</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function SuperType(name)</span><br><span class="line">&#123;</span><br><span class="line">    this.name&#x3D;name;</span><br><span class="line">    this.colors&#x3D;[&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SuperType.prototype.sayName&#x3D;function()&#123;</span><br><span class="line">    alert(this.name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function SubType(name,age)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F;继承SuperType</span><br><span class="line">    SuperType.call(this,name);</span><br><span class="line">    this.age&#x3D;age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SubType.prototype&#x3D;new SuperType();</span><br><span class="line"></span><br><span class="line">SubType.prototype.sayAge&#x3D;function()&#123;</span><br><span class="line">    alert(this.age);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var instance1&#x3D;new SubType(&quot;Jim&quot;,29);</span><br><span class="line"></span><br><span class="line">instance1.colors.push(&quot;black&quot;);</span><br><span class="line"></span><br><span class="line">alert(instance1.colors);&#x2F;&#x2F;&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;,&quot;black&quot;</span><br><span class="line"></span><br><span class="line">instance1.sayName();&#x2F;&#x2F;&quot;Jim&quot;</span><br><span class="line"></span><br><span class="line">instance1.sayAge();&#x2F;&#x2F;29</span><br><span class="line"></span><br><span class="line">var instance2&#x3D;new SubType(&quot;Jack&quot;,28);</span><br><span class="line"></span><br><span class="line">alert(instance2.colors);&#x2F;&#x2F;&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;</span><br><span class="line"></span><br><span class="line">instance2.sayName();&#x2F;&#x2F;&quot;Jack&quot;</span><br><span class="line"></span><br><span class="line">instance2.sayAge();&#x2F;&#x2F;28</span><br></pre></td></tr></table></figure>
+<h2 id="寄生组合式继承">寄生组合式继承</h2>
+<p>寄生组合式继承解决了组合继承中，两次调用超类型构造函数的问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">function object(o)</span><br><span class="line">&#123;</span><br><span class="line">    function F()&#123;&#125;</span><br><span class="line">    F.prototype&#x3D;o;</span><br><span class="line">    return new F();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function inheritPrototype(subType,superType)</span><br><span class="line">&#123;</span><br><span class="line">    var prototype &#x3D;object(superType.prototype);</span><br><span class="line">    prototype.constructor&#x3D;superType;&#x2F;&#x2F;原书是prototype.constructor&#x3D;subType，看书时认为这里应该是superType</span><br><span class="line">    subType.prototype&#x3D;prototype;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function SuperType(name)</span><br><span class="line">&#123;</span><br><span class="line">    this.name&#x3D;name;</span><br><span class="line">    this.colors&#x3D;[&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SuperType.prototype.sayName&#x3D;function()&#123;</span><br><span class="line">    alert(this.name);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function SubType(name,age)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F;继承SuperType</span><br><span class="line">    SuperType.call(this,name);</span><br><span class="line">    this.age&#x3D;age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">inheritPrototype(SubType,SuperType);</span><br><span class="line"></span><br><span class="line">SubType.prototype.sayAge&#x3D;function()&#123;</span><br><span class="line">    alert(this.age);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var instance1&#x3D;new SubType(&quot;Jim&quot;,29);</span><br><span class="line"></span><br><span class="line">instance1.colors.push(&quot;black&quot;);</span><br><span class="line"></span><br><span class="line">alert(instance1.colors);&#x2F;&#x2F;&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;,&quot;black&quot;</span><br><span class="line"></span><br><span class="line">instance1.sayName();&#x2F;&#x2F;&quot;Jim&quot;</span><br><span class="line"></span><br><span class="line">instance1.sayAge();&#x2F;&#x2F;29</span><br><span class="line"></span><br><span class="line">var instance2&#x3D;new SubType(&quot;Jack&quot;,28);</span><br><span class="line"></span><br><span class="line">alert(instance2.colors);&#x2F;&#x2F;&quot;red&quot;,&quot;blue&quot;,&quot;green&quot;</span><br><span class="line"></span><br><span class="line">instance2.sayName();&#x2F;&#x2F;&quot;Jack&quot;</span><br><span class="line"></span><br><span class="line">instance2.sayAge();&#x2F;&#x2F;28</span><br></pre></td></tr></table></figure>
 
-      
-        
-          
-          
-原型链继承让构造函数的原型对象等于另一个类型的实例，利用原型让一个引用类型继承另一个引用类型的属性和方法
-123456789101112131415161718192021222324function SuperType()&#123;    this.property=true;&#125;SuperType.prototype.getSuperValue=function()&#123;    return this.property;&#125;;function SubType()&#123;    this.subProperty=false;&#125;//继承SuperTypeSubType.prototype=new SuperType();SubType.prototype.getSubValue=function()&#123;    return this.subProperty;&#125;var instance=new SubType();alert(instance.getSuperValue());//true
-代码示例中，完整原型链如下
-
-原型链继承的问题：父类型引用类型的属性会被所有子类型实例共享，这是不符合预期的
-1234567891011121314151617181920212223function SuperType()&#123;    this.colors=["red","blue","green"];&#125;function SubType()&#123;&#125;//继承SuperTypeSubType.prototype=new SuperType();var instance1=new SubType();instance1.colors.push("black");alert(instance1.colors);//"red","blue","green","black"var instance2=new SubType();alert(instance2.colors);//"red","blue","green","black"
-借用构造函数继承基本思想是在子类型构造函数内部调用超类型构造函数
-12345678910111213141516171819202122function SuperTy
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/31/JavaScript高级程序设计/《JavaScript高级程序设计》阅读笔记：面向对象之继承/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
 
     
-  </section>
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/16/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/16/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -890,445 +789,704 @@ abstract　　boolean　　byte　　char　　class　　const　　debugger　
           </div>
           
 
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/img/avatar.jpg"
-               alt="曹强" />
-          <p class="site-author-name" itemprop="name">曹强</p>
-          <p class="site-description motion-element" itemprop="description">caoqiang's blog | javascript | css | html | angularjs | 前端 | PHP |nodeJs</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">83</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-            <div class="site-state-item site-state-categories">
-              <a href="/categories">
-                <span class="site-state-item-count">14</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">17</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/ronghuaxueleng" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-      </section>
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">曹强</span>
-</div>
-
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
-
-<!-- 不蒜子 -->
-<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_pv" style="display:none">
-  本站总访问量<span id="busuanzi_value_site_pv"></span>人次
-</span>
-<!-- 不蒜子计数初始值纠正 -->
-<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function() {
-        var int = setInterval(fixCount, 100);
-        var busuanziSiteOffset = parseInt(1203);
-        function fixCount() {
-            if ($("#busuanzi_container_site_pv").css("display") != "none") {
-                clearInterval(int);
-                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + busuanziSiteOffset);
-            }
-        }
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
     });
-</script>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
   }
 </script>
 
-
-
-
-
-
-
-
-
+        </div>
+          
   
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="曹强"
+      src="/img/avatar.jpg">
+  <p class="site-author-name" itemprop="name">曹强</p>
+  <div class="site-description" itemprop="description">caoqiang's blog | java |前端 | PHP |nodeJs | python</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
 
 
 
+    <div class="links-of-blogroll motion-element links-of-blogroll-block">
+      <div class="links-of-blogroll-title">
+        <!-- modify icon to fire by szw -->
+        <i class="fa fa-history fa-" aria-hidden="true"></i>
+        近期文章
+      </div>
+      <ul class="links-of-blogroll-list">
+        
+        
+          <li>
+            <a href="/archives/2fd7dbc7.html" title="Shadow DOM" target="_blank">Shadow DOM</a>
+          </li>
+        
+          <li>
+            <a href="/archives/b4a56055.html" title="可视化埋点" target="_blank">可视化埋点</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+          </li>
+        
+          <li>
+            <a href="/archives/a5431a21.html" title="从 JavaScript 数组去重谈性能优化" target="_blank">从 JavaScript 数组去重谈性能优化</a>
+          </li>
+        
+      </ul>
+    </div>
+
+
+<div style="">
+  <canvas id="canvas" style="width:60%;">当前浏览器不支持canvas，请更换浏览器后再试</canvas>
+</div>
+<script>
+(function(){
+
+   var digit=
+    [
+        [
+            [0,0,1,1,1,0,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,0,1,1,0],
+            [0,0,1,1,1,0,0]
+        ],//0
+        [
+            [0,0,0,1,1,0,0],
+            [0,1,1,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [1,1,1,1,1,1,1]
+        ],//1
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,1,1],
+            [1,1,1,1,1,1,1]
+        ],//2
+        [
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//3
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,0],
+            [0,0,1,1,1,1,0],
+            [0,1,1,0,1,1,0],
+            [1,1,0,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,1,1]
+        ],//4
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,1,1,1,1,0],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//5
+        [
+            [0,0,0,0,1,1,0],
+            [0,0,1,1,0,0,0],
+            [0,1,1,0,0,0,0],
+            [1,1,0,0,0,0,0],
+            [1,1,0,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//6
+        [
+            [1,1,1,1,1,1,1],
+            [1,1,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,0,0,1,1,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0],
+            [0,0,1,1,0,0,0]
+        ],//7
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,1,1,0]
+        ],//8
+        [
+            [0,1,1,1,1,1,0],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [1,1,0,0,0,1,1],
+            [0,1,1,1,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,0,1,1],
+            [0,0,0,0,1,1,0],
+            [0,0,0,1,1,0,0],
+            [0,1,1,0,0,0,0]
+        ],//9
+        [
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0]
+        ]//:
+    ];
+
+var canvas = document.getElementById('canvas');
+
+if(canvas.getContext){
+    var cxt = canvas.getContext('2d');
+    //声明canvas的宽高
+    var H = 100,W = 700;
+    canvas.height = H;
+    canvas.width = W;
+    cxt.fillStyle = '#f00';
+    cxt.fillRect(10,10,50,50);
+
+    //存储时间数据
+    var data = [];
+    //存储运动的小球
+    var balls = [];
+    //设置粒子半径
+    var R = canvas.height/20-1;
+    (function(){
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        //存储时间数字，由十位小时、个位小时、冒号、十位分钟、个位分钟、冒号、十位秒钟、个位秒钟这7个数字组成
+        data.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+    })();
+
+    /*生成点阵数字*/
+    function renderDigit(index,num){
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    cxt.beginPath();
+                    cxt.arc(14*(R+2)*index + j*2*(R+1)+(R+1),i*2*(R+1)+(R+1),R,0,2*Math.PI);
+                    cxt.closePath();
+                    cxt.fill();
+                }
+            }
+        }
+    }
+
+    /*更新时钟*/
+    function updateDigitTime(){
+        var changeNumArray = [];
+        var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+        var NewData = [];
+        NewData.push(temp[1],temp[2],10,temp[3],temp[4],10,temp[5],temp[6]);
+        for(var i = data.length-1; i >=0 ; i--){
+            //时间发生变化
+            if(NewData[i] !== data[i]){
+                //将变化的数字值和在data数组中的索引存储在changeNumArray数组中
+                changeNumArray.push(i+'_'+(Number(data[i])+1)%10);
+            }
+        }
+        //增加小球
+        for(var i = 0; i< changeNumArray.length; i++){
+            addBalls.apply(this,changeNumArray[i].split('_'));
+        }
+        data = NewData.concat();
+    }
+
+    /*更新小球状态*/
+    function updateBalls(){
+        for(var i = 0; i < balls.length; i++){
+            balls[i].stepY += balls[i].disY;
+            balls[i].x += balls[i].stepX;
+            balls[i].y += balls[i].stepY;
+            if(balls[i].x > W + R || balls[i].y > H + R){
+                balls.splice(i,1);
+                i--;
+            }
+        }
+    }
+
+    /*增加要运动的小球*/
+    function addBalls(index,num){
+        var numArray = [1,2,3];
+        var colorArray =  ["#3BE","#09C","#A6C","#93C","#9C0","#690","#FB3","#F80","#F44","#C00"];
+        for(var i = 0; i < digit[num].length; i++){
+            for(var j = 0; j < digit[num][i].length; j++){
+                if(digit[num][i][j] == 1){
+                    var ball = {
+                        x:14*(R+2)*index + j*2*(R+1)+(R+1),
+                        y:i*2*(R+1)+(R+1),
+                        stepX:Math.floor(Math.random() * 4 -2),
+                        stepY:-2*numArray[Math.floor(Math.random()*numArray.length)],
+                        color:colorArray[Math.floor(Math.random()*colorArray.length)],
+                        disY:1
+                    };
+                    balls.push(ball);
+                }
+            }
+        }
+    }
+
+    /*渲染*/
+    function render(){
+        //重置画布宽度，达到清空画布的效果
+        canvas.height = 100;
+        //渲染时钟
+        for(var i = 0; i < data.length; i++){
+            renderDigit(i,data[i]);
+        }
+        //渲染小球
+        for(var i = 0; i < balls.length; i++){
+            cxt.beginPath();
+            cxt.arc(balls[i].x,balls[i].y,R,0,2*Math.PI);
+            cxt.fillStyle = balls[i].color;
+            cxt.closePath();
+            cxt.fill();
+        }
+    }
+
+    clearInterval(oTimer);
+    var oTimer = setInterval(function(){
+        //更新时钟
+        updateDigitTime();
+        //更新小球状态
+        updateBalls();
+        //渲染
+        render();
+    },50);
+}
+
+})();
+</script>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
   
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">曹强</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">318k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:49</span>
+</div>
 
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
-
-
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-   
-     
-   
-  
- 
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
 
 
-  
 
-
-
-
-  
-  
-
-  
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
   <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
 
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
       });
 
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
           if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
             return;
           }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
           }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
             }
           }
         })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
         });
     }
+  }
 
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
+  fetch('https://app-router.leancloud.cn/2/route?appId=bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz',
+            'X-LC-Key': '9kCQuNi7NFq5MdDBn9J1Xj1r',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
         addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
         showTime(Counter);
       }
     });
   </script>
 
 
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 
   
-  
-    <!-- custom analytics part create by xiamo -->
-<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-<script>AV.initialize("bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz", "9kCQuNi7NFq5MdDBn9J1Xj1r");</script>
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout: 3000,
+        priority: true,
+        ignores: [uri => uri.includes('#'),uri => uri == 'http://ronghuaxueleng.github.io/page/15/',]
+      });
+      });
+  </script>
+
+
+  <script async src="/blog/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/blog/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div class="moon-menu-item" onclick="back2bottom()">
+      <i class="fa fa-chevron-down"></i>
+    </div>
+    
+    <div class="moon-menu-item" onclick="back2top()">
+      <i class="fa fa-chevron-up"></i>
+    </div>
+    
+  </div>
+  <div class="moon-menu-button" onclick="moonMenuClick()">
+    <svg class="moon-menu-svg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+      <g class="moon-menu-points">
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy="-.8rem"></circle>
+        <circle class="moon-menu-point" r=".2rem"></circle>
+        <circle class="moon-menu-point" r=".2rem" cx="0" cy=".8rem"></circle>
+      </g>
+    </svg>
+    <div class="moon-menu-icon">
+    </div>
+    <div class="moon-menu-text">
+    </div>
+  </div>
+</div>
+
 <script>
-function showTime(Counter) {
-	var query = new AV.Query(Counter);
-	$(".leancloud_visitors").each(function() {
-		var url = $(this).attr("id").trim();
-		query.equalTo("url", url);
-		query.find({
-			success: function(results) {
-				if (results.length == 0) {
-					var content = '0';
-					$(document.getElementById(url)).text(content);
-					return;
-				}
-				for (var i = 0; i < results.length; i++) {
-					var object = results[i];
-					var content = object.get('time');
-					$(document.getElementById(url)).text(content);
-				}
-			},
-			error: function(object, error) {
-				console.log("Error: " + error.code + " " + error.message);
-			}
-		});
 
-	});
-}
+  const moonMenuListener = function () {
 
-function addCount(Counter) {
-	var Counter = AV.Object.extend("Counter");
-	url = $(".leancloud_visitors").attr('id').trim();
-	title = $(".leancloud_visitors").attr('data-flag-title').trim();
-	var query = new AV.Query(Counter);
-	query.equalTo("url", url);
-	query.find({
-		success: function(results) {
-			if (results.length > 0) {
-				var counter = results[0];
-				counter.fetchWhenSave(true);
-				counter.increment("time");
-				counter.save(null, {
-					success: function(counter) {
-						var content =  counter.get('time');
-						$(document.getElementById(url)).text(content);
-					},
-					error: function(counter, error) {
-						console.log('Failed to save Visitor num, with error message: ' + error.message);
-					}
-				});
-			} else {
-				var newcounter = new Counter();
-				newcounter.set("title", title);
-				newcounter.set("url", url);
-				newcounter.set("time", 1);
-				newcounter.save(null, {
-					success: function(newcounter) {
-					    console.log("newcounter.get('time')="+newcounter.get('time'));
-						var content = newcounter.get('time');
-						$(document.getElementById(url)).text(content);
-					},
-					error: function(newcounter, error) {
-						console.log('Failed to create');
-					}
-				});
-			}
-		},
-		error: function(error) {
-			console.log('Error:' + error.code + " " + error.message);
-		}
-	});
-}
-$(function() {
-	var Counter = AV.Object.extend("Counter");
-	if ($('.leancloud_visitors').length == 1) {
-		addCount(Counter);
-	} else if ($('.post-title-link').length > 1) {
-		showTime(Counter);
-	}
-}); 
+    //Get scroll percent
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+    let percent = Math.round(scrollTop / (scrollHeight - offsetHeight) * 100);
+    if (percent > 100) percent = 100;
+
+    let menuText = document.querySelector('.moon-menu-text');
+    let menuPoints = document.querySelector('.moon-menu-points');
+    if (!percent) {
+      percent = 0;
+      menuText.style.display = 'none';
+      menuPoints.style.display = 'block';
+    } else {
+      menuText.style.display = 'block';
+      menuPoints.style.display = 'none';
+      menuText.innerHTML = percent + '%';
+    }
+
+    //Update strokeDasharray
+    let length = 196;
+    document.querySelector('.moon-menu-border').style.strokeDasharray = percent * length / 100 + ' ' + length;
+
+  }
+
+  window.addEventListener('load', () => {
+    moonMenuListener();
+  });
+  window.addEventListener('scroll', moonMenuListener);
+
+  const moonMenuClick = function () {
+    let items = document.querySelector('.moon-menu-items')
+    items.classList.toggle('active');
+    let points = document.querySelectorAll('.moon-menu-point');
+    let childItems = document.querySelectorAll('.moon-menu-item');
+    if (items.classList.contains('active')) {
+      points[0].setAttribute("cx", "-.8rem");
+      points[0].setAttribute("cy", "0");
+      points[2].setAttribute("cx", ".8rem");
+      points[2].setAttribute("cy", "0");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = -3 - 3 * i + 'rem';
+        childItems[i].style.opacity = .9;
+      }
+    } else {
+      points[0].setAttribute("cx", "0");
+      points[0].setAttribute("cy", "-.8rem");
+      points[2].setAttribute("cx", "0");
+      points[2].setAttribute("cy", ".8rem");
+      for (let i = 0; i < childItems.length; i++) {
+        childItems[i].style.top = '1rem';
+        childItems[i].style.opacity = 0;
+      }
+    }
+  };
+
+  const back2top = () => {
+    window.scroll({ top: 0, behavior: 'smooth' });
+  }
+
+  const back2bottom = () => {
+    let offsetHeight = document.documentElement.offsetHeight;
+    let scrollHeight = document.documentElement.scrollHeight;
+    window.scroll({ top: (scrollHeight - offsetHeight), behavior: 'smooth' });
+  }
+
 </script>
-  
-
 </body>
 </html>
