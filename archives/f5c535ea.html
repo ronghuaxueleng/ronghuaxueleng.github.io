@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
 <link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
 
 <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
@@ -51,15 +51,15 @@
   };
 </script>
 
-  <meta name="description" content="适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。  适配器模式的应用 适配模式是一种“亡羊补牢”的模式，没有人会在程序的设计之初就使用它，因为没有人可以完全预料到未来的事情，也许现在好好工作的接口未来就不再适用于新系统，那么我们可以使用适配器模式把旧的接口包装成新的接口，使他继续保持生命力。 比如在json数据流">
+  <meta name="description" content="适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="适配器模式">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/archives/f5c535ea.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。  适配器模式的应用 适配模式是一种“亡羊补牢”的模式，没有人会在程序的设计之初就使用它，因为没有人可以完全预料到未来的事情，也许现在好好工作的接口未来就不再适用于新系统，那么我们可以使用适配器模式把旧的接口包装成新的接口，使他继续保持生命力。 比如在json数据流">
+<meta property="og:description" content="适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-10-12T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-06T11:58:27.921Z">
+<meta property="article:modified_time" content="2020-03-07T05:30:31.818Z">
 <meta property="article:author" content="曹强">
 <meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary">
@@ -116,7 +116,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -126,6 +126,9 @@
       </a>
     </div>
         <p class="site-subtitle">一切都是最好的安排</p>
+      <a>
+        <img class="custom-logo-image" src="/favicon.ico" alt="白云雅阁">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -203,13 +206,6 @@
 
               <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -265,22 +261,23 @@
 <blockquote>
 <p>适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。</p>
 </blockquote>
+<a id="more"></a>
 <h3 id="适配器模式的应用">适配器模式的应用</h3>
 <p>适配模式是一种“亡羊补牢”的模式，没有人会在程序的设计之初就使用它，因为没有人可以完全预料到未来的事情，也许现在好好工作的接口未来就不再适用于新系统，那么我们可以使用适配器模式把旧的接口包装成新的接口，使他继续保持生命力。<br>
 比如在json数据流行之前，很多cgi返回的都是XML格式的数据，如果今天仍然想用这些接口，显然我们可以创造一个XML-JSON适配器。</p>
 <p>比如有一段代码，我们向googleMap和baiduMap都发出显示请求时，他们分别以各自的方式在页面中展现了地图：</p>
-<pre><code>var googleMap = {
-    show: function() {
-        console.log('开始渲染谷歌地图');
-    }
-};
-var baiduMap = {
-    show: function() {
-        console.log('开始渲染百度地图');
-    }
-};
-
-var renderMap = function(map) {
+<p>​<br>
+var googleMap = {<br>
+show: function() {<br>
+console.log(‘开始渲染谷歌地图’);<br>
+}<br>
+};<br>
+var baiduMap = {<br>
+show: function() {<br>
+console.log(‘开始渲染百度地图’);<br>
+}<br>
+};</p>
+<pre><code>var renderMap = function(map) {
     if (map.show.instanceof Function) {
         map.show();
     }
@@ -291,28 +288,28 @@ renderMap(baiduMap); //开始渲染百度地图
 </code></pre>
 <p>这个程序能运行的关键之处在于<code>googleMap</code>和<code>baiduMap</code>提供了一致的show方法，但是第三方接口并不在我们的控制范围内，加入<code>baiduMap</code>提供的显示地图的方法不叫<code>show</code>，而叫<code>display</code>呢?</p>
 <p>此时我们可以通过增加<code>baiduMapAdapter</code>来解决问题：</p>
-<pre><code>var googleMap = {
-    show: function() {
-        console.log('开始渲染谷歌地图');
-    }
-};
-var baiduMap = {
-    display: function() {
-        console.log('开始渲染百度地图');
-    }
-};
-var baiduAdapter = {
-    show: function() {
-        return baiduMap.display();
-    }
-};
-var renderMap = function(map) {
-    if (map.show.instanceof Function) {
-        map.show();
-    }
-};
-
-renderMap(googleMap); //开始渲染谷歌地图
+<p>​<br>
+var googleMap = {<br>
+show: function() {<br>
+console.log(‘开始渲染谷歌地图’);<br>
+}<br>
+};<br>
+var baiduMap = {<br>
+display: function() {<br>
+console.log(‘开始渲染百度地图’);<br>
+}<br>
+};<br>
+var baiduAdapter = {<br>
+show: function() {<br>
+return baiduMap.display();<br>
+}<br>
+};<br>
+var renderMap = function(map) {<br>
+if (map.show.instanceof Function) {<br>
+map.show();<br>
+}<br>
+};</p>
+<pre><code>renderMap(googleMap); //开始渲染谷歌地图
 renderMap(baiduAdapter); //开始渲染百度地图
 </code></pre>
 <h3 id="小结">小结</h3>
@@ -366,8 +363,8 @@ renderMap(baiduAdapter); //开始渲染百度地图
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/archives/513e5894.html" rel="prev" title="代码重构">
-      <i class="fa fa-chevron-left"></i> 代码重构
+    <a href="/archives/ffd643db.html" rel="prev" title="设计原则和编程技巧">
+      <i class="fa fa-chevron-left"></i> 设计原则和编程技巧
     </a></div>
       <div class="post-nav-item">
     <a href="/archives/8acb1976.html" rel="next" title="状态模式">
@@ -791,13 +788,13 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">318k</span>
+    <span title="站点总字数">320k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">4:49</span>
+    <span title="站点阅读时长">4:51</span>
 </div>
 
         
@@ -973,12 +970,12 @@ if(canvas.getContext){
   </script>
 
 
-  <script async src="/js/cursor/fireworks.js"></script>
+  <script async src="/blog/js/cursor/fireworks.js"></script>
 
 
 
 
-  <script src="/js/activate-power-mode.min.js"></script>
+  <script src="/blog/js/activate-power-mode.min.js"></script>
   <script>
     POWERMODE.colorful = true;
     POWERMODE.shake = false;
@@ -987,7 +984,7 @@ if(canvas.getContext){
 
 
 
-<script type="text/javascript" src="/js/fold_action.js"></script><div class="moon-menu">
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
   <div class="moon-menu-items">
     
     <div class="moon-menu-item" onclick="back2bottom()">

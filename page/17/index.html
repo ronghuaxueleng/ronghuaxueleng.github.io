@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
 <link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
 
 <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
@@ -114,7 +114,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -124,6 +124,9 @@
       </a>
     </div>
         <p class="site-subtitle">一切都是最好的安排</p>
+      <a>
+        <img class="custom-logo-image" src="/favicon.ico" alt="白云雅阁">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -202,13 +205,6 @@
 
               <time title="创建时间：2015-11-25 00:00:00" itemprop="dateCreated datePublished" datetime="2015-11-25T00:00:00Z">2015-11-25</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -264,246 +260,14 @@
 第六节： 如何发表文章</p>
 </blockquote>
 <hr>
-<h2 id="第一节：什么是hexo">第一节：什么是hexo</h2>
-<p>hexo是一个基于Node.js的静态博客程序，可以方便的生成静态网页托管在github和Heroku上。作者是来自台湾的@tommy351。引用@tommy351的话，hexo：</p>
-<blockquote>
-<p>快速、简单且功能强大的 Node.js 博客框架。<br>
-A fast, simple &amp; powerful blog framework, powered by Node.js.<br>
-类似于jekyll、Octopress、Wordpress，我们可以用hexo创建自己的博客，托管到github或Heroku上，绑定自己的域名，用markdown写文章。本博客即使用hexo创建并托管在github上。</p>
-</blockquote>
-<p>类似于jekyll、Octopress、Wordpress，我们可以用hexo创建自己的博客，托管到github或Heroku上，绑定自己的域名，用markdown写文章。</p>
-<hr>
-<h2 id="第二节：为什么要用hexo">第二节：为什么要用hexo</h2>
-<p>还是引用作者的话：</p>
-<blockquote>
-<p>不可思议的快速 ─ 只要一眨眼静态文件即生成完成<br>
-支持 Markdown<br>
-仅需一道指令即可部署到 GitHub Pages 和 Heroku<br>
-已移植 Octopress 插件<br>
-高扩展性、自订性<br>
-兼容于 Windows, Mac &amp; Linux</p>
-</blockquote>
-<p>我在加几个自己体会到的优点：</p>
-<ul>
-<li>易用：不仅部署简单，平时使用中仅需要hexo new hexo generate hexo server hexo deploy四个命令。不像Jekyll需要很多繁琐的git命令。</li>
-<li>轻：文件少、小，易理解，方便自定义。</li>
-<li>用户多：虽然赶不上Jekyll和Octopress，但遇到什么问题都能搜索到答案，或者找到同样使用hexo的用户进行参考和咨询。</li>
-<li>简单：我本人不太爱倒腾这东西，但是当我看到本博客的模板后，在看完教程后，都停不下来，用了一晚上就搭起来了</li>
-<li>省时：不必浪费时间在你不关注的东西上，专心写你的博客</li>
-</ul>
-<hr>
-<h2 id="第三节：谁使用hexo">第三节：谁使用hexo</h2>
-<p>这是一个免费开源的博客程序，任何人都可以使用和修改。但是不同于wordpress，hexo由于需要使用<strong>Github,Git,Markdown,Node.js</strong>这样的工具，好多插件、widget都需要自己安装、设置。所以<strong>适合那些有一定计算机基础，喜欢折腾的人</strong>。</p>
-<hr>
-<h2 id="第四节：怎样搭建hexo博客">第四节：怎样搭建hexo博客</h2>
-<blockquote>
-<p><em>注意：本节教程只针对Windows用户，Linux和Mac用户请移步hexo安装</em>。</p>
-</blockquote>
-<hr>
-<p><em><strong>安装Git</strong></em></p>
-<blockquote>
-<p>下载 <a href="http://git-scm.com/download/win" target="_blank" rel="noopener">msysgit</a> 并执行即可完成安装。</p>
-</blockquote>
-<hr>
-<p><em><strong>安装Node.js</strong></em></p>
-<blockquote>
-<p>在Windows环境下安装<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a>非常简单，仅须下载安装文件并执行即可完成安装。</p>
-</blockquote>
-<hr>
-<p><em><strong>设置软件包国内镜像</strong></em></p>
-<pre><code>npm config set registry http://registry.npm.taobao.org
-</code></pre>
-<hr>
-<p><em><strong>安装hexo</strong></em></p>
-<pre><code>npm install -g hexo
-</code></pre>
-<hr>
-<p><em><strong>创建hexo文件夹</strong></em><br>
-安装完成后，在你喜爱的文件夹下（如F:\hexo），执行以下指令(在F:\hexo内点击鼠标右键，选择Git bash)，Hexo即会自动在目标文件夹建立网站所需要的所有文件。</p>
-<pre><code>hexo init
-</code></pre>
-<p>执行完这一步后，你会发现文件夹下生成了一些文件和文件夹，用文本编辑器打开package.json文件，将里面的内容改为以下内容：</p>
-<pre><code>{
-  &quot;name&quot;: &quot;hexo-site&quot;,
-  &quot;version&quot;: &quot;0.0.0&quot;,
-  &quot;private&quot;: true,
-  &quot;hexo&quot;: {
-    &quot;version&quot;: &quot;3.1.1&quot;
-  },
-  &quot;dependencies&quot;: {
-    &quot;hexo&quot;: &quot;^3.1.0&quot;,
-    &quot;hexo-deployer-git&quot;: &quot;0.0.4&quot;,
-    &quot;hexo-deployer-heroku&quot;: &quot;0.0.3&quot;,
-    &quot;hexo-deployer-openshift&quot;: &quot;0.0.1&quot;,
-    &quot;hexo-deployer-rsync&quot;: &quot;^0.1.1&quot;,
-    &quot;hexo-generator-archive&quot;: &quot;^0.1.3&quot;,
-    &quot;hexo-generator-category&quot;: &quot;^0.1.3&quot;,
-    &quot;hexo-generator-feed&quot;: &quot;^1.0.3&quot;,
-    &quot;hexo-generator-index&quot;: &quot;^0.1.3&quot;,
-    &quot;hexo-generator-sitemap&quot;: &quot;^1.0.1&quot;,
-    &quot;hexo-generator-tag&quot;: &quot;^0.1.2&quot;,
-    &quot;hexo-renderer-ejs&quot;: &quot;^0.1.0&quot;,
-    &quot;hexo-renderer-marked&quot;: &quot;^0.2.5&quot;,
-    &quot;hexo-renderer-stylus&quot;: &quot;^0.2.3&quot;,
-    &quot;hexo-server&quot;: &quot;^0.1.2&quot;
-  }
-}
-</code></pre>
-<hr>
-<p><em><strong>安装依赖包</strong></em></p>
-<pre><code>npm install
-</code></pre>
-<hr>
-<p><em><strong>本地查看</strong></em><br>
-现在我们已经搭建起本地的hexo博客了，执行以下命令(在F:\hexo)，然后到浏览器输入localhost:4000看看。</p>
-<pre><code>hexo generate
-hexo server
-</code></pre>
-<hr>
-<p><em><strong>注册Github账号</strong></em></p>
-<blockquote>
-<p>已有账号可以跳过，没有的，请在<a href="https://github.com/" target="_blank" rel="noopener">此处</a>进行注册，很简单，这里就不介绍了。</p>
-</blockquote>
-<hr>
-<p><em><strong>创建repository</strong></em></p>
-<blockquote>
-<p>在自己Github主页右下角，创建一个新的repository。比如我的Github账号是ronghuaxueleng，那么我应该创建的repository名字应该是<a href="http://ronghuaxueleng.github.io">ronghuaxueleng.github.io</a></p>
-</blockquote>
-<p><img src="/img/github_build.png" alt=""><br>
-<img src="/img/github_created.png" alt=""></p>
-<hr>
-<p><em><strong>部署</strong></em></p>
-<p>编辑_config.yml(在F:\hexo下)。你在部署时，要把下面的nothingcpd都换成你的账号名。</p>
-<pre><code>deploy:
-  type: git
-  repository: http://github.com/ronghuaxueleng/ronghuaxueleng.github.io.git
-  branch: master
-  ##注意：&quot;：&quot;后边需要有一个&quot;空格&quot;
-</code></pre>
-<p><em><strong>执行下列指令即可完成部署。</strong></em></p>
-<pre><code>hexo generate
-hexo deploy
-</code></pre>
-<hr>
-<h2 id="第五节：如何更换自己的主题">第五节：如何更换自己的主题</h2>
-<p><em><strong>使用</strong></em></p>
-<ol>
-<li>安装</li>
-</ol>
-<blockquote>
-<p>在hexo主目录下<br>
-$ git clone <a href="https://github.com/litten/hexo-theme-yilia.git" target="_blank" rel="noopener">https://github.com/litten/hexo-theme-yilia.git</a> themes/yilia</p>
-</blockquote>
-<p>2.配置</p>
-<blockquote>
-<p>修改hexo根目录下_config.yml ：<br>
-theme: yilia</p>
-</blockquote>
-<p>3.更新</p>
-<pre><code>cd themes/yilia
-git pull
-</code></pre>
-<hr>
-<p><em><strong>配置</strong></em><br>
-主题配置文件在主题目录yalia下的_config.yml：</p>
-<pre><code># Header
-menu:
-  主页: /
-  所有文章: /archives
-  # 随笔: /tags/随笔
-
-# SubNav
-subnav:
-  github: &quot;#&quot;
-  weibo: &quot;#&quot;
-  rss: &quot;#&quot;
-  facebook: &quot;#&quot;
-  # google: &quot;#&quot;
-  # twitter: &quot;#&quot;
-  # linkedin: &quot;#&quot;
-
-rss: /atom.xml
-
-# Content
-excerpt_link: more
-fancybox: true
-
-# Miscellaneous
-google_analytics: ''
-favicon: /favicon.png
-
-#你的头像
-avatar: &quot;https://avatars2.githubusercontent.com/u/2024949?v=2&amp;s=150&quot;
-#是否开启分享
-share: true
-#是否开启多说评论，填写你在多说申请的项目名称
-duoshuo: true
-#是否开启云标签
-tagcloud: true
-
-#是否开启友情链接
-#不开启——
-#friends: false
-#开启——
-friends:
-  奥巴马的博客: http://localhost:4000/
-  卡卡的美丽传说: http://localhost:4000/
-  本泽马的博客: http://localhost:4000/
-  吉格斯的博客: http://localhost:4000/
-  习大大大不同: http://localhost:4000/
-  托蒂的博客: http://localhost:4000/
-
-#是否开启“关于我”。
-#不开启——
-#aboutme: false
-#开启——
-aboutme: 我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…
-</code></pre>
-<hr>
-<p><em><strong>体验</strong></em></p>
-<pre><code>hexo generate
-hexo server
-</code></pre>
-<p>最后在浏览器中输入：localhost:4000 查看主题效果</p>
-<pre><code>hexo generate
-hexo deploy
-
-最后在浏览器中输入： ronghuaxueleng.github.com 
-ps：ronghuaxueleng换成你自己的repo名字，查看效果
-</code></pre>
-<hr>
-<p>这里有hexo的各种主题，喜欢折腾的可以去看看</p>
-<pre><code>https://hexo.io/themes/
-</code></pre>
-<h2 id="第六节：如何发表文章">第六节：如何发表文章</h2>
-<blockquote>
-<p><strong>1. step1：输入 hexo new &quot;my first post&quot;</strong><br>
-ps:引号可以不加，最好不加，此时 查看source/_posts/下面会产生post.md的文件，此文件需要用markdown语言编辑，后面会有一篇专门介绍markdown语法的blog<br>
-以后每次运行上面的命令都会产生文件，<a href="http://xn--post1-1-bx4kl7a549y.md" target="_blank" rel="noopener">会产生post1-1.md</a>，post-2.md等依次增加</p>
-</blockquote>
-<blockquote>
-<p><strong>step2: 在F:\hexo\source_posts中打开这个文件（打开方式用“记事本”即可）, 然后将下面内容 拷贝到里面</strong></p>
-</blockquote>
-<pre><code> layout: post
- title: &quot;我的博客情缘&quot;
- date: 2014-12-17 13:15
- comments: true
- tags: 
-    - 随笔
-    - 心情
-    - 个人
----
-</code></pre>
-<blockquote>
-<p><strong>step3: 输入 hexo server</strong><br>
-访问localhost:4000预览效果。（退出server用Ctrl+c）</p>
-</blockquote>
-<blockquote>
-<p><strong>step4: 输入 hexo deploy</strong><br>
-同步到github。访问网站看看效果。<a href="http://ronghuaxueleng.github.io">ronghuaxueleng.github.io</a>(ronghuaxueleng换成你自己的repo)</p>
-</blockquote>
-<p>现在为止，我们已经搭建起博客，进行一些基本配置，设置了主题，并学会了怎么发表文章。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/archives/f94f1ed0.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -548,13 +312,6 @@ ps:引号可以不加，最好不加，此时 查看source/_posts/下面会产�
 
               <time title="创建时间：2015-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-26T00:00:00Z">2015-08-26</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -663,13 +420,6 @@ ps:引号可以不加，最好不加，此时 查看source/_posts/下面会产�
 
               <time title="创建时间：2015-08-25 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-25T00:00:00Z">2015-08-25</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -716,62 +466,14 @@ ps:引号可以不加，最好不加，此时 查看source/_posts/下面会产�
       
           <h5 id="禁用页面的右击菜单">禁用页面的右击菜单</h5>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="built_in">document</span>).on(<span class="string">'contextmenu'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">false</span>; </span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h5 id="新窗口打开页面">新窗口打开页面</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//例子1:href="http://"的超链接将会在新窗口打开链接</span></span><br><span class="line">    $(<span class="string">'a[href^="http://"]'</span>).attr(<span class="string">'target'</span>,<span class="string">'_blank'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//例子2:rel="external"的超链接将会在新窗口打开链接</span></span><br><span class="line">    $(<span class="string">'#a[rel$="external"]'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.target=<span class="string">"_blank"</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h5 id="判断浏览器类型">判断浏览器类型</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//Firefox 2 and above</span></span><br><span class="line">    <span class="keyword">if</span>($.support.mozilla &amp;&amp; $.support.version&gt;=<span class="string">'1.8'</span>)&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//Safari</span></span><br><span class="line">    <span class="keyword">if</span>($.support.safari)&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//Chrome</span></span><br><span class="line">    <span class="keyword">if</span>($.support.chrome)&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//Opera</span></span><br><span class="line">    <span class="keyword">if</span>($.support.opera)&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//IE6 and below</span></span><br><span class="line">    <span class="keyword">if</span>($.support.msie &amp;&amp; $.support.version&lt;=<span class="number">6</span>)&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//anything above IE6</span></span><br><span class="line">    <span class="keyword">if</span>($.support.msie &amp;&amp; $.support.version&gt;<span class="number">6</span>)&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h5 id="输入框文字获取和失去焦点">输入框文字获取和失去焦点</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'input.text1'</span>).val(<span class="string">"Enter your search text here"</span>);</span><br><span class="line">    textFill($(<span class="string">'input.text1'</span>));</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//input focus text function</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">textFill</span>(<span class="params">input</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> originalvalue=input.val();</span><br><span class="line">    input.focus(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>($.trim(input.val())===originalvalue)&#123;</span><br><span class="line">            input.val();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).blur(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>($.trim(input.val()===<span class="string">''</span>))&#123;</span><br><span class="line">            input.val(originalvalue);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="返回头部滑动动画">返回头部滑动动画</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">jQuery.fn.scrollTo=<span class="function"><span class="keyword">function</span>(<span class="params">speed</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> targetOffset=$(<span class="keyword">this</span>).offset().top;</span><br><span class="line">    $(<span class="string">'html.body'</span>).stop().animate(&#123;<span class="attr">scrollTop</span>:targetOffset&#125;,speed);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// use</span></span><br><span class="line">$(<span class="string">'#goheader'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'body'</span>).scrollTo(<span class="number">500</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h5 id="获取鼠标位置">获取鼠标位置</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="built_in">document</span>).mousemove(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'#XY'</span>).html(<span class="string">"X:"</span>+e.pageX+<span class="string">" | Y:"</span>+e.pageY);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h5 id="判断元素是否存在">判断元素是否存在</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>($(<span class="string">'#id'</span>).length)&#123;</span><br><span class="line">        <span class="comment">//do something</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h5 id="点击div也可以跳转">点击div也可以跳转</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">window</span>.location=$(<span class="keyword">this</span>).find(<span class="string">'a'</span>).attr(<span class="string">'href'</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// use</span></span><br><span class="line">&lt;div&gt;<span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span>&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
-<h5 id="设置div在屏幕中央">设置div在屏幕中央</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    jQuery.fn.center=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.css(&#123;</span><br><span class="line">            <span class="string">'position'</span>:’absolute‘,</span><br><span class="line">            <span class="string">'top'</span>:($(<span class="built_in">window</span>).height()-<span class="keyword">this</span>.height())/<span class="number">2</span>+$(<span class="built_in">window</span>).scrollTop()+<span class="string">"px"</span>,</span><br><span class="line">            <span class="string">'left'</span>:($(<span class="built_in">window</span>).width()-<span class="keyword">this</span>.width())/<span class="number">2</span>+$(<span class="built_in">window</span>).scrollLeft()+<span class="string">"px"</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//use</span></span><br><span class="line">    $(<span class="string">'#XY'</span>).center();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h5 id="根据浏览器的大小添加不同的样式">根据浏览器的大小添加不同的样式</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">checkWindowSize</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>($(<span class="built_in">window</span>).width()&gt;<span class="number">1200</span>)&#123;</span><br><span class="line">            $(<span class="string">'body'</span>).addClass(<span class="string">'large'</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            $(<span class="string">'body'</span>).removeClass(<span class="string">'large'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    $(<span class="built_in">window</span>).resize(checkWindowSize);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h5 id="创建自己的选择器">创建自己的选择器</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $.extend($.expr[<span class="string">':'</span>],&#123;</span><br><span class="line">        moreThen500px:<span class="function"><span class="keyword">function</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> $(a).width()&gt;<span class="number">500</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    $(<span class="string">'.box:moreThen500px'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h5 id="关闭所有的动画效果">关闭所有的动画效果</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    jQuery.fn.off=<span class="literal">true</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h5 id="检测鼠标的右键还是左键">检测鼠标的右键还是左键</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#XY'</span>).mousedown(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">        alert(e.which) <span class="comment">//1:左键 2:中键 3:右键</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h5 id="回车提交表单">回车提交表单</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'input'</span>).keyup(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(e.which===<span class="string">'13'</span>)&#123;</span><br><span class="line">            alert(<span class="string">'回车提交！'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h5 id="设置全局Ajax参数">设置全局Ajax参数</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#load'</span>).ajaxStart(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        showLoading();  <span class="comment">//显示loading</span></span><br><span class="line">        disableButtons();   <span class="comment">//禁用按钮</span></span><br><span class="line">    &#125;);</span><br><span class="line">    $(<span class="string">'#load'</span>).ajaxComplete(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        hideLoading();  <span class="comment">//隐藏 loading</span></span><br><span class="line">        enableButtons();    <span class="comment">//启用按钮</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h5 id="获取选中的下拉框">获取选中的下拉框</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#someElement'</span>).find(<span class="string">'option:selected'</span>);</span><br><span class="line">$(<span class="string">'#someElement option:selected'</span>);</span><br></pre></td></tr></table></figure>
-<h5 id="切换复选框">切换复选框</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tog=<span class="literal">false</span>;</span><br><span class="line">$(<span class="string">'button'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'input[type=checkbox]'</span>).attr(<span class="string">'checked'</span>,!tog);</span><br><span class="line">    tog=!tog;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h5 id="使用siblings-来选择同辈元素">使用siblings()来选择同辈元素</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//不这样做</span></span><br><span class="line">$(<span class="string">'#nav li'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'#nav li'</span>).removeClass(<span class="string">'active'</span>);</span><br><span class="line">    $(<span class="keyword">this</span>).addClass(<span class="string">'active'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//替代的做法</span></span><br><span class="line">$(<span class="string">'#nav li'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="keyword">this</span>).addClass(<span class="string">'active'</span>).siblings().removeClass(<span class="string">'active'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h5 id="在一段时间之后自动隐藏或者关闭元素">在一段时间之后自动隐藏或者关闭元素</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'div'</span>).slideUp(<span class="number">300</span>).delay(<span class="number">3000</span>).fadeIn(<span class="number">400</span>);</span><br></pre></td></tr></table></figure>
-<h5 id="使用Firefox和Firebug来记录事件日志">使用Firefox和Firebug来记录事件日志</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">jQuery.log=jQuery.fn.log=<span class="function"><span class="keyword">function</span>(<span class="params">msg</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">console</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'%s:%o'</span>,msg,<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="为任何与选择器相匹配的元素绑定事件">为任何与选择器相匹配的元素绑定事件</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'table'</span>).on(<span class="string">'click'</span>,<span class="string">'td'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="keyword">this</span>).toggleClass(<span class="string">'hover'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h5 id="使用CSS钩子">使用CSS钩子</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$.cssHooks[<span class="string">'borderRadius'</span>]=&#123;</span><br><span class="line">    <span class="keyword">get</span>:function(elem,computed,extra)&#123;</span><br><span class="line">        <span class="comment">//depending on browser,read the value of -moz-,-webkit-,-o-...</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span>:function(elem,value)&#123;</span><br><span class="line">        <span class="comment">//set the appropriate css3 property</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//use</span></span><br><span class="line">$(<span class="string">'#reset'</span>).css(<span class="string">'borderRadius'</span>,<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
-<h5 id="proxy-的使用">$.proxy()的使用</h5>
-<p>使用回调方法的缺点之一是当执行类库中的方法后，上下文对象this被设置到另外一个元素，而使用$.proxy()可以解决这个问题，代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#panel'</span>).fadeIn(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//Using $.proxy:</span></span><br><span class="line">    $(<span class="string">'#panel button'</span>).click($.proxy(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//this 指向 #panel</span></span><br><span class="line">        $(<span class="keyword">this</span>).fadeOut();</span><br><span class="line">    &#125;,<span class="keyword">this</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h5 id="限制Text-Area域中的字符个数">限制Text-Area域中的字符个数</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">jQuery.fn.maxLength=<span class="function"><span class="keyword">function</span>(<span class="params">max</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> type=<span class="keyword">this</span>.tagName.toLowerCase();</span><br><span class="line">        <span class="keyword">var</span> inputType=<span class="keyword">this</span>.type?<span class="keyword">this</span>.type.toLowerCase():<span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span>(type===<span class="string">"input"</span> &amp;&amp; inputType===<span class="string">"text"</span> || inputType===<span class="string">"password"</span>)&#123;</span><br><span class="line">            <span class="comment">//应用标准的maxLength</span></span><br><span class="line">            <span class="keyword">this</span>.maxLength=max;e</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(type===<span class="string">"textarea"</span>)&#123;</span><br><span class="line">            <span class="keyword">this</span>.onkeypress=<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">var</span> ob=e||event;</span><br><span class="line">                <span class="keyword">var</span> keyCode=ob.keyCode;</span><br><span class="line">                <span class="keyword">var</span> hasSlection=<span class="built_in">document</span>.selection?<span class="built_in">document</span>.selection.createRange().text.length&gt;<span class="number">0</span>:<span class="keyword">this</span>.selectionStart!==<span class="keyword">this</span>.selectionEnd;</span><br><span class="line">                <span class="keyword">return</span> !(<span class="keyword">this</span>.value.length&gt;==max &amp;&amp; (keyCode&gt;<span class="number">50</span> || keyCode===<span class="number">32</span> || keyCode===<span class="number">0</span> || keyCode===<span class="number">13</span>) &amp;&amp; !ob.ctrlKey &amp;&amp; !ob.altKey &amp;&amp; !hasSlection);</span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="keyword">this</span>.onkeyup=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="keyword">this</span>.value.length&gt;max)&#123;</span><br><span class="line">                    <span class="keyword">this</span>.value=<span class="keyword">this</span>.value.substring(<span class="number">0</span>,max);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//use</span></span><br><span class="line">$(<span class="string">'#mytextarea'</span>).maxLength(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
-<h5 id="本地存储">本地存储</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localStorage.someData=<span class="string">"This is going to be saved"</span>;</span><br></pre></td></tr></table></figure>
-<h5 id="解析json数据时报parseError错误">解析json数据时报parseError错误</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.4之前版本，key没引号，这样没问题</span></span><br><span class="line">&#123;</span><br><span class="line">    key:<span class="string">"123"</span>,</span><br><span class="line">    status:<span class="string">"0"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//升级成jQuery1.4之后，都必须加上双引号，格式如下：</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">"key"</span>:<span class="string">"123"</span>,</span><br><span class="line">    <span class="string">"status"</span>:<span class="string">"0"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="从元素中除去HTML">从元素中除去HTML</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</span><br><span class="line">    $.fn.stripHtml=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> regExp=<span class="regexp">/&lt;("[^"]*"|'[^']*'|[^'"&gt;])*&gt;/gi</span>;</span><br><span class="line">        <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            $(<span class="keyword">this</span>).html($(<span class="keyword">this</span>).html().replace(regExp,<span class="string">''</span>));</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> $(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)(jQuery);</span><br><span class="line"><span class="comment">//use</span></span><br><span class="line">$(<span class="string">'div'</span>).stripHtml();</span><br></pre></td></tr></table></figure>
-<h5 id="拓展String对象的方法">拓展String对象的方法</h5>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">$.extend(<span class="built_in">String</span>.prototype,&#123;</span><br><span class="line">    isPositiveInteger:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/^[1-9]\d/</span>).test(<span class="keyword">this</span>));</span><br><span class="line">    &#125;,</span><br><span class="line">    isInteger:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/^\d+$/</span>).test(<span class="keyword">this</span>));</span><br><span class="line">    &#125;,</span><br><span class="line">    isNumber:<span class="function"><span class="keyword">function</span>(<span class="params">value,element</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/^-?(?:\d+|\d&#123;1,3&#125;(?:,\d&#123;3&#125;)+)(?:\.\d+)?$/</span>).test(<span class="keyword">this</span>));</span><br><span class="line">    &#125;,</span><br><span class="line">    trim:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.replace(<span class="regexp">/(^\s*)|(\s*$)|\r|\n/g</span>,<span class="string">""</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    trans:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.replace(<span class="regexp">/&amp;lt;/g</span>,<span class="string">'&lt;'</span>).replace(<span class="regexp">/&amp;gt;/g</span>,<span class="string">'&gt;'</span>).replace(<span class="regexp">/&amp;quot;/g</span>,<span class="string">'"'</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    replaceAll:<span class="function"><span class="keyword">function</span>(<span class="params">os,ns</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.replace(<span class="keyword">new</span> <span class="built_in">RegExp</span>(os,<span class="string">"gm"</span>),ns);</span><br><span class="line">    &#125;,</span><br><span class="line">    skipChar:<span class="function"><span class="keyword">function</span>(<span class="params">ch</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="keyword">this</span> || <span class="keyword">this</span>.length===<span class="number">0</span>)&#123;<span class="keyword">return</span> <span class="string">''</span>;&#125;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.charAt(<span class="number">0</span>)===ch)&#123;<span class="keyword">return</span> <span class="keyword">this</span>.substring(<span class="number">1</span>).skipChar(ch);&#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    isValidPwd:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/^([_]|[a-zA-Z0-9])&#123;6,32&#125;$/</span>).test(<span class="keyword">this</span>));</span><br><span class="line">    &#125;,</span><br><span class="line">    isValidMail:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/</span>).test(<span class="keyword">this</span>.trim()));</span><br><span class="line">    &#125;,</span><br><span class="line">    isSpaces:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,length=<span class="keyword">this</span>.length;i&lt;length;i++)&#123;</span><br><span class="line">            <span class="keyword">var</span> ch=<span class="keyword">this</span>.charAt(i);</span><br><span class="line">            <span class="keyword">if</span>(ch!=<span class="string">' '</span> &amp;&amp; ch!=<span class="string">"\n"</span> &amp;&amp; ch!=<span class="string">"\t"</span> &amp;&amp; ch!=<span class="string">"\r"</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    isPhone:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/(^([0-9]&#123;3,4&#125;[-])?\d&#123;3,8&#125;(-\d&#123;1,6&#125;)?$)|(^\([0-9]&#123;3,4&#125;\)\d&#123;3,8&#125;(\(\d&#123;1,6&#125;\))?$)|(^\d&#123;3,8&#125;$)/</span>).test(<span class="keyword">this</span>));</span><br><span class="line">    &#125;,</span><br><span class="line">    isUrl:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="regexp">/^[a-zA-Z]+:\/\/([a-zA-Z0-9\-\.]+)(-\w .\/?%&amp;=:]*)$/</span>).test(<span class="keyword">this</span>));</span><br><span class="line">    &#125;,</span><br><span class="line">    isExternalUrl:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.isUrl() &amp;&amp; <span class="keyword">this</span>.indexOf(<span class="string">"://"</span>+<span class="built_in">document</span>.domain)===<span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//use</span></span><br><span class="line">$(<span class="string">'input'</span>).val().isInteger();</span><br></pre></td></tr></table></figure>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/archives/b9c3328.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1201,13 +903,13 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">318k</span>
+    <span title="站点总字数">320k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">4:49</span>
+    <span title="站点阅读时长">4:51</span>
 </div>
 
         
@@ -1383,12 +1085,12 @@ if(canvas.getContext){
   </script>
 
 
-  <script async src="/js/cursor/fireworks.js"></script>
+  <script async src="/blog/js/cursor/fireworks.js"></script>
 
 
 
 
-  <script src="/js/activate-power-mode.min.js"></script>
+  <script src="/blog/js/activate-power-mode.min.js"></script>
   <script>
     POWERMODE.colorful = true;
     POWERMODE.shake = false;
@@ -1397,7 +1099,7 @@ if(canvas.getContext){
 
 
 
-<script type="text/javascript" src="/js/fold_action.js"></script><div class="moon-menu">
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
   <div class="moon-menu-items">
     
     <div class="moon-menu-item" onclick="back2bottom()">

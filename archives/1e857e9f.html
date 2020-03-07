@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
 <link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
 
 <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
@@ -51,15 +51,15 @@
   };
 </script>
 
-  <meta name="description" content="简介 在[PHP设计模式(八)：工厂模式][2]中我们介绍了创建设计模式(Creation patterns)中的工厂模式，下面我们将介绍另一种原型设计模式(Prototype Method)。 在PHP中，原型设计模式依靠cloning复制对象来实现。通过cloning构造的对象，将大量节省新对象的构造时间。 何时使用原型设计模式？ 简单来说，当你希望根据已有的对象来创建新对象时。 为什么会有这">
+  <meta name="description" content="简介 在PHP设计模式(八)：工厂模式中我们介绍了创建设计模式(Creation patterns)中的工厂模式，下面我们将介绍另一种原型设计模式(Prototype Method)。 在PHP中，原型设计模式依靠cloning复制对象来实现。通过cloning构造的对象，将大量节省新对象的构造时间。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="原型设计模式">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/archives/1e857e9f.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="简介 在[PHP设计模式(八)：工厂模式][2]中我们介绍了创建设计模式(Creation patterns)中的工厂模式，下面我们将介绍另一种原型设计模式(Prototype Method)。 在PHP中，原型设计模式依靠cloning复制对象来实现。通过cloning构造的对象，将大量节省新对象的构造时间。 何时使用原型设计模式？ 简单来说，当你希望根据已有的对象来创建新对象时。 为什么会有这">
+<meta property="og:description" content="简介 在PHP设计模式(八)：工厂模式中我们介绍了创建设计模式(Creation patterns)中的工厂模式，下面我们将介绍另一种原型设计模式(Prototype Method)。 在PHP中，原型设计模式依靠cloning复制对象来实现。通过cloning构造的对象，将大量节省新对象的构造时间。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-10-13T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-06T11:58:28.054Z">
+<meta property="article:modified_time" content="2020-03-07T05:06:33.423Z">
 <meta property="article:author" content="曹强">
 <meta property="article:tag" content="php">
 <meta name="twitter:card" content="summary">
@@ -116,7 +116,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -126,6 +126,9 @@
       </a>
     </div>
         <p class="site-subtitle">一切都是最好的安排</p>
+      <a>
+        <img class="custom-logo-image" src="/favicon.ico" alt="白云雅阁">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -203,13 +206,6 @@
 
               <time title="创建时间：2016-10-13 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-13T00:00:00Z">2016-10-13</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-06 11:58:28" itemprop="dateModified" datetime="2020-03-06T11:58:28Z">2020-03-06</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -242,7 +238,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
+              <span>1.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -262,60 +258,19 @@
 
       
         <h2 id="简介">简介</h2>
-<p>在[PHP设计模式(八)：工厂模式][2]中我们介绍了创建设计模式(Creation<br>
+<p>在<a href="54788f73.html">PHP设计模式(八)：工厂模式</a>中我们介绍了创建设计模式(Creation<br>
 patterns)中的工厂模式，下面我们将介绍另一种原型设计模式(Prototype Method)。<br>
 在PHP中，原型设计模式依靠cloning复制对象来实现。通过cloning构造的对象，将大量节省新对象的构造时间。</p>
+<a id="more"></a>
 <h2 id="何时使用原型设计模式？">何时使用原型设计模式？</h2>
 <p>简单来说，当你希望根据已有的对象来创建新对象时。<br>
 为什么会有这种需求？想象一下，你在做细胞分裂的项目，每一个细胞都是一个对象，现在你有一个细胞类，每一个新的细胞都是由这个类生成的，不同的细胞只是内部的状态参数不同。<br>
 当分裂到第N代的时候，已经和初代大不一样了，你是愿意使用第N代的副本修改一下呢？还是愿意从初代慢慢推演？</p>
 <h2 id="Example">Example</h2>
 <p>PHP提供了内建的__clone()函数以及clone关键字，来实现对象的复制。下面给出一个例子：</p>
-<pre><code>&lt;?php
-abstract class Cell {
-  public $id;
-  public $dna;
-  abstract function __clone();
-}
-
-class WhaleCell extends Cell {
-  public function __construct() {
-    $this-&gt;id = 1;
-    $this-&gt;dna = &quot;ATCG&quot;;
-  }
-  public function displayDNA() {
-    echo $this-&gt;dna . &quot;\n&quot;;
-  }
-  function __clone() {
-    $this-&gt;id = $this-&gt;id + 1;
-    if ($this-&gt;id % 3 == 0) {
-      $this-&gt;dna = $this-&gt;dna . &quot;AT&quot;;
-    }
-    if ($this-&gt;id % 5 == 0) {
-      $this-&gt;dna = $this-&gt;dna . &quot;CG&quot;;
-    }
-  }
-}
-
-$whaleCell = new WhaleCell();
-$whaleCell-&gt;displayDNA();
-$whaleCell2 = clone $whaleCell;
-$whaleCell2-&gt;displayDNA();
-$whaleCell3 = clone $whaleCell2;
-$whaleCell3-&gt;displayDNA();
-$whaleCell4 = clone $whaleCell3;
-$whaleCell4-&gt;displayDNA();
-$whaleCell5 = clone $whaleCell4;
-$whaleCell5-&gt;displayDNA();
-?&gt;
-</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Cell</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> $id;</span><br><span class="line">  <span class="keyword">public</span> $dna;</span><br><span class="line">  <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">__clone</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WhaleCell</span> <span class="keyword">extends</span> <span class="title">Cell</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;id = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;dna = <span class="string">"ATCG"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">displayDNA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;dna . <span class="string">"\n"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">__clone</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;id = <span class="keyword">$this</span>-&gt;id + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;id % <span class="number">3</span> == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">$this</span>-&gt;dna = <span class="keyword">$this</span>-&gt;dna . <span class="string">"AT"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;id % <span class="number">5</span> == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">$this</span>-&gt;dna = <span class="keyword">$this</span>-&gt;dna . <span class="string">"CG"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$whaleCell = <span class="keyword">new</span> WhaleCell();</span><br><span class="line">$whaleCell-&gt;displayDNA();</span><br><span class="line">$whaleCell2 = <span class="keyword">clone</span> $whaleCell;</span><br><span class="line">$whaleCell2-&gt;displayDNA();</span><br><span class="line">$whaleCell3 = <span class="keyword">clone</span> $whaleCell2;</span><br><span class="line">$whaleCell3-&gt;displayDNA();</span><br><span class="line">$whaleCell4 = <span class="keyword">clone</span> $whaleCell3;</span><br><span class="line">$whaleCell4-&gt;displayDNA();</span><br><span class="line">$whaleCell5 = <span class="keyword">clone</span> $whaleCell4;</span><br><span class="line">$whaleCell5-&gt;displayDNA();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>运行一下：</p>
-<pre><code>ATCG
-ATCG
-ATCGAT
-ATCGAT
-ATCGATCG
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ATCG</span><br><span class="line">ATCG</span><br><span class="line">ATCGAT</span><br><span class="line">ATCGAT</span><br><span class="line">ATCGATCG</span><br></pre></td></tr></table></figure>
 <p>程序简单的模拟了DNA的遗传突变，每遗传三代，DNA增加AT，每遗传五代，DNA增加CG。</p>
 <h2 id="原型设计模式中的构造函数">原型设计模式中的构造函数</h2>
 <p>使用clone创建新对象时，并不会触发类的构造函数。这也是在使用原型设计模式中需要注意的一点。clone的底层实现并不是调用类的构造函数来创建一个类，而是直接拷贝一个类的地址空间，生成另一个类。这种直接拷贝也带来了高效。<br>
@@ -332,16 +287,16 @@ ATCGATCG
   <div class="popular-posts-header">相关文章推荐</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\archives\fb867561.html" rel="bookmark">基础编程模式</a></div>
+      <div class="popular-posts-title"><a href="\archives\f5c535ea.html" rel="bookmark">适配器模式</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\archives\f5c535ea.html" rel="bookmark">适配器模式</a></div>
+      <div class="popular-posts-title"><a href="\archives\fb867561.html" rel="bookmark">基础编程模式</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\archives\daef90fc.html" rel="bookmark">抽象类和接口</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\archives\d60eb45.html" rel="bookmark">封装</a></div>
+      <div class="popular-posts-title"><a href="\archives\ac4294eb.html" rel="bookmark">多态</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\archives\11d8b32d.html" rel="bookmark">继承</a></div>
@@ -785,13 +740,13 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">318k</span>
+    <span title="站点总字数">320k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">4:49</span>
+    <span title="站点阅读时长">4:51</span>
 </div>
 
         
@@ -967,12 +922,12 @@ if(canvas.getContext){
   </script>
 
 
-  <script async src="/js/cursor/fireworks.js"></script>
+  <script async src="/blog/js/cursor/fireworks.js"></script>
 
 
 
 
-  <script src="/js/activate-power-mode.min.js"></script>
+  <script src="/blog/js/activate-power-mode.min.js"></script>
   <script>
     POWERMODE.colorful = true;
     POWERMODE.shake = false;
@@ -981,7 +936,7 @@ if(canvas.getContext){
 
 
 
-<script type="text/javascript" src="/js/fold_action.js"></script><div class="moon-menu">
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
   <div class="moon-menu-items">
     
     <div class="moon-menu-item" onclick="back2bottom()">

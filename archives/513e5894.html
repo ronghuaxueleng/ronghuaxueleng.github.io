@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
 <link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
 
 <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
@@ -51,15 +51,15 @@
   };
 </script>
 
-  <meta name="description" content="一些重构的建议：  提炼函数  * 避免出现超大函数  * 独立出来的函数有助于代码复用  * 独立出来的函数更容易被覆写  * 独立出来的函数如果拥有一个良好的命名，  * 它本身就起到了注释的作用。  比如在一个负责取得用户信息的函数里面，我们还需要打印跟用户信息有关的log，那么打印log的语句就可以被封装在一个独立的函数里： var getUserInfo &#x3D; function() {">
+  <meta name="description" content="一些重构的建议：  提炼函数  * 避免出现超大函数  * 独立出来的函数有助于代码复用  * 独立出来的函数更容易被覆写  * 独立出来的函数如果拥有一个良好的命名，  * 它本身就起到了注释的作用。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="代码重构">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/archives/513e5894.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="一些重构的建议：  提炼函数  * 避免出现超大函数  * 独立出来的函数有助于代码复用  * 独立出来的函数更容易被覆写  * 独立出来的函数如果拥有一个良好的命名，  * 它本身就起到了注释的作用。  比如在一个负责取得用户信息的函数里面，我们还需要打印跟用户信息有关的log，那么打印log的语句就可以被封装在一个独立的函数里： var getUserInfo &#x3D; function() {">
+<meta property="og:description" content="一些重构的建议：  提炼函数  * 避免出现超大函数  * 独立出来的函数有助于代码复用  * 独立出来的函数更容易被覆写  * 独立出来的函数如果拥有一个良好的命名，  * 它本身就起到了注释的作用。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-10-12T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-06T11:58:27.925Z">
+<meta property="article:modified_time" content="2020-03-07T05:17:02.785Z">
 <meta property="article:author" content="曹强">
 <meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary">
@@ -116,7 +116,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -126,6 +126,9 @@
       </a>
     </div>
         <p class="site-subtitle">一切都是最好的安排</p>
+      <a>
+        <img class="custom-logo-image" src="/favicon.ico" alt="白云雅阁">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -203,13 +206,6 @@
 
               <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -276,73 +272,74 @@
 
 * 它本身就起到了注释的作用。
 </code></pre>
+<a id="more"></a>
 <p>比如在一个负责取得用户信息的函数里面，我们还需要打印跟用户信息有关的log，那么打印log的语句就可以被封装在一个独立的函数里：</p>
-<pre><code>var getUserInfo = function() {
-    ajax('http://xxx.com/userInfo', function(data) {
-        console.log('userId: ' + data.userId);
-        console.log('userName: ' + data.userName);
-        console.log('nickName: ' + data.nickName);
-    });
-};
-</code></pre>
+<p>​<br>
+var getUserInfo = function() {<br>
+ajax(‘<a href="http://xxx.com/userInfo" target="_blank" rel="noopener">http://xxx.com/userInfo</a>’, function(data) {<br>
+console.log('userId: ’ + data.userId);<br>
+console.log('userName: ’ + data.userName);<br>
+console.log('nickName: ’ + data.nickName);<br>
+});<br>
+};</p>
 <p>可以改成：</p>
-<pre><code>var getUserInfo = function() {
-    ajax('http://xxx.com/userInfo', function(data) {
-        printDetails(data);
-    });
-};
-var printDetails = function(data) {
-    console.log('userId: ' + data.userId);
-    console.log('userName: ' + data.userName);
-    console.log('nickName: ' + data.nickName);
-}
-</code></pre>
+<p>​<br>
+var getUserInfo = function() {<br>
+ajax(‘<a href="http://xxx.com/userInfo" target="_blank" rel="noopener">http://xxx.com/userInfo</a>’, function(data) {<br>
+printDetails(data);<br>
+});<br>
+};<br>
+var printDetails = function(data) {<br>
+console.log('userId: ’ + data.userId);<br>
+console.log('userName: ’ + data.userName);<br>
+console.log('nickName: ’ + data.nickName);<br>
+}</p>
 <ol>
 <li>合并重复的条件片段<br>
 如果一个函数内有一些条件分支语句，而这些条件分支语句内部散步了一些重复的代码，那么就有必要进行合并去重工作。</li>
 </ol>
-<pre><code>//页面跳转
-var paging = function(currPage) {
-    if (currPage &lt;= 0) {
-        currPage = 0;
-        jump(currPage); //跳转
-    } else if (currPage &gt;= totalPage) {
-        currPage = totalPage;
-        jump(currPage); //跳转
-    } else {
-        jump(currPage); //跳转
-    }
-}
-</code></pre>
+<p>​<br>
+//页面跳转<br>
+var paging = function(currPage) {<br>
+if (currPage &lt;= 0) {<br>
+currPage = 0;<br>
+jump(currPage); //跳转<br>
+} else if (currPage &gt;= totalPage) {<br>
+currPage = totalPage;<br>
+jump(currPage); //跳转<br>
+} else {<br>
+jump(currPage); //跳转<br>
+}<br>
+}</p>
 <p>改成</p>
-<pre><code>//页面跳转
-var paging = function(currPage) {
-    if (currPage &lt;= 0) {
-        currPage = 0;
-    } else if (currPage &gt;= totalPage) {
-        currPage = totalPage;
-    } 
-    jump(currPage); //跳转
-}
-</code></pre>
+<p>​<br>
+//页面跳转<br>
+var paging = function(currPage) {<br>
+if (currPage &lt;= 0) {<br>
+currPage = 0;<br>
+} else if (currPage &gt;= totalPage) {<br>
+currPage = totalPage;<br>
+}<br>
+jump(currPage); //跳转<br>
+}</p>
 <ol>
 <li>把条件分支语句提炼成函数<br>
 在程序设计中，复杂的条件分支语句是导致程序难以阅读和理解的重要原因，而且容易导致一个庞大的函数，所以通常我们要进行一定的提炼。</li>
 </ol>
-<pre><code>//计算商品价格，如果处于夏季，全部商品八折出售
-var getPrice = function(price) {
-    var date = new Date();
-    if (date.getMonth() &gt;= 6 &amp;&amp; date.getMonth &lt;= 9) { //夏季
-        return price * 0.8;
-    }
-    return price;
-}
-</code></pre>
+<p>​<br>
+//计算商品价格，如果处于夏季，全部商品八折出售<br>
+var getPrice = function(price) {<br>
+var date = new Date();<br>
+if (date.getMonth() &gt;= 6 &amp;&amp; date.getMonth &lt;= 9) { //夏季<br>
+return price * 0.8;<br>
+}<br>
+return price;<br>
+}</p>
 <p>改成</p>
-<pre><code>//计算商品价格，如果处于夏季，全部商品八折出售
-var getPrice = function(price) {
-    
-    if (isSummer()) { //夏季
+<p>​<br>
+//计算商品价格，如果处于夏季，全部商品八折出售<br>
+var getPrice = function(price) {</p>
+<pre><code>    if (isSummer()) { //夏季
         return price * 0.8;
     }
     return price;
@@ -371,14 +368,14 @@ var isSummer = function() {
 var xhr = createXHR();
 </code></pre>
 <p>改成：</p>
-<pre><code>var createXHR = function() {
-    var versions = ['MSXML2.XMLHttp.6.0', 'MSXML2.XMLHttp.3.0', 'MSXML2.XMLHttp'];
-    for (var i = 0, version; version = versions[i++]; ) {
-        try {
-            return new ActiveObject(version);
-        } catch(e) {
-            
-        }
+<p>​<br>
+var createXHR = function() {<br>
+var versions = [‘MSXML2.XMLHttp.6.0’, ‘MSXML2.XMLHttp.3.0’, ‘MSXML2.XMLHttp’];<br>
+for (var i = 0, version; version = versions[i++]; ) {<br>
+try {<br>
+return new ActiveObject(version);<br>
+} catch(e) {</p>
+<pre><code>        }
     }
 };
 var xhr = createXHR();
@@ -399,50 +396,50 @@ var xhr = createXHR();
 }
 </code></pre>
 <p>改成：</p>
-<pre><code>var del = function(obj) {
-    if (obj.isReadOnly) { 
-        return;
-    }
-    if (obj.isFolder) { //如果是文件夹
-        return deleteFolder(obj);
-    } 
-    if (obj.isFile) { //如果是文件
-        return deleteFile(obj);
-    }
-}
-</code></pre>
+<p>​<br>
+var del = function(obj) {<br>
+if (obj.isReadOnly) {<br>
+return;<br>
+}<br>
+if (obj.isFolder) { //如果是文件夹<br>
+return deleteFolder(obj);<br>
+}<br>
+if (obj.isFile) { //如果是文件<br>
+return deleteFile(obj);<br>
+}<br>
+}</p>
 <ol>
 <li>传递对象参数代替过长的参数列表<br>
 有时候一个函数可能接收多个参数，而参数的数量越多函数就越难理解和使用。这时我们可以把参数放入一个对象内，然后把对象传入。</li>
 </ol>
-<pre><code>var setUserInfo = function(id, name, address, sex, mobile, qq) {
-    console.log('id=' + id);
-    console.log('name=' + name);
-    console.log('address=' + address);
-    console.log('sex=' + sex);
-    console.log('mobile=' + mobile);
-    console.log('qq=' + qq);
-}
-setUserInfo(1234, cyseria, guangzhou, female, 188***, 52***);
-</code></pre>
+<p>​<br>
+var setUserInfo = function(id, name, address, sex, mobile, qq) {<br>
+console.log(‘id=’ + id);<br>
+console.log(‘name=’ + name);<br>
+console.log(‘address=’ + address);<br>
+console.log(‘sex=’ + sex);<br>
+console.log(‘mobile=’ + mobile);<br>
+console.log(‘qq=’ + qq);<br>
+}<br>
+setUserInfo(1234, cyseria, guangzhou, female, 188***, 52***);</p>
 <p>改成：</p>
-<pre><code>var setUserInfo = function(obj) {
-    console.log('id=' + obj.id);
-    console.log('name=' + obj.name);
-    console.log('address=' + obj.address);
-    console.log('sex=' + obj.sex);
-    console.log('mobile=' + obj.mobile);
-    console.log('qq=' + obj.qq);
-}
-setUserInfo({
-    id: 1234, 
-    name: cyseria, 
-    address: guangzhou, 
-    sex: female, 
-    mobile: 188***, 
-    qq: 52***
-});
-</code></pre>
+<p>​<br>
+var setUserInfo = function(obj) {<br>
+console.log(‘id=’ + <a href="http://obj.id" target="_blank" rel="noopener">obj.id</a>);<br>
+console.log(‘name=’ + <a href="http://obj.name" target="_blank" rel="noopener">obj.name</a>);<br>
+console.log(‘address=’ + obj.address);<br>
+console.log(‘sex=’ + obj.sex);<br>
+console.log(‘mobile=’ + obj.mobile);<br>
+console.log(‘qq=’ + obj.qq);<br>
+}<br>
+setUserInfo({<br>
+id: 1234,<br>
+name: cyseria,<br>
+address: guangzhou,<br>
+sex: female,<br>
+mobile: 188***,<br>
+qq: 52***<br>
+});</p>
 <ol>
 <li>
 <p>尽量减少参数数量<br>
@@ -454,34 +451,34 @@ setUserInfo({
 </li>
 </ol>
 <p>至于例子，看看下面那个你就知道了：</p>
-<pre><code>if (!aup || bup) {
-    return a === doc ? -1 :
-        b === doc ? 1 : 
-        aup ? -1 : 
-        bup : -1 :
-        sortInput ? (indexOf.call(sortInput, a) - indexOf.call(sortInput, b)) : 
-        0;
-}
-</code></pre>
+<p>​<br>
+if (!aup || bup) {<br>
+return a === doc ? -1 :<br>
+b === doc ? 1 :<br>
+aup ? -1 :<br>
+bup : -1 :<br>
+sortInput ? (indexOf.call(sortInput, a) - indexOf.call(sortInput, b)) :<br>
+0;<br>
+}</p>
 <p>当然，如果只是简单的一句，用一下也没什么所谓。</p>
 <ol>
 <li>合理使用链式调用<br>
 使用jq的对链式调用一定不陌生，在自己编写函数的时候也可以使用这点，返回自身。但是他也有一个坏处，调试的时候不方便。所以如果链条的结构稳定后期不易修改，那么使用他无可厚非，但是如果该链经常发生变化那么还是用普通的调用吧。</li>
 </ol>
-<pre><code>var User = {
-    id: null,
-    name: null,
-    setId: function(id) {
-        this.id = id;
-        return this;
-    },
-    setName: function(name) {
-        this.name= name;
-        return this;
-    }
-};
-console.log(User.setId(1234).setName('cyseria'));
-</code></pre>
+<p>​<br>
+var User = {<br>
+id: null,<br>
+name: null,<br>
+setId: function(id) {<br>
+<a href="http://this.id" target="_blank" rel="noopener">this.id</a> = id;<br>
+return this;<br>
+},<br>
+setName: function(name) {<br>
+this.name= name;<br>
+return this;<br>
+}<br>
+};<br>
+console.log(User.setId(1234).setName(‘cyseria’));</p>
 <ol>
 <li>分解大型类</li>
 </ol>
@@ -500,29 +497,29 @@ Spirit .attack('waveBoxing');
 Spirit .attack('whirlKick');
 </code></pre>
 <p>改成：</p>
-<pre><code>var Attack = function(spirit) {
-    this.spirit = spirit;
-};
-Attack.prototype.start = function(type) {
-    return this.list[type].call(this);
-}
-Attack.prototype.list= function(type) {
-    waveBoxing: function() {
-        console.log(this.spirit.name + ':使用波动拳');
-    },
-    whirlKick: function() {
-        console.log(this.spirit.name + ':使用旋风腿');
-    }
-};
-var Spirit = function(name) {
-    this.name = name;
-    this.attackObj = new Attack(this);
-};
-Spirit.prototype.attack = function(type) {
-    this.attackObj.start(type);
-};
-
-var Spirit = new Spirit('AAA');
+<p>​<br>
+var Attack = function(spirit) {<br>
+this.spirit = spirit;<br>
+};<br>
+Attack.prototype.start = function(type) {<br>
+return this.list[type].call(this);<br>
+}<br>
+Attack.prototype.list= function(type) {<br>
+waveBoxing: function() {<br>
+console.log(<a href="http://this.spirit.name" target="_blank" rel="noopener">this.spirit.name</a> + ‘:使用波动拳’);<br>
+},<br>
+whirlKick: function() {<br>
+console.log(<a href="http://this.spirit.name" target="_blank" rel="noopener">this.spirit.name</a> + ‘:使用旋风腿’);<br>
+}<br>
+};<br>
+var Spirit = function(name) {<br>
+<a href="http://this.name" target="_blank" rel="noopener">this.name</a> = name;<br>
+this.attackObj = new Attack(this);<br>
+};<br>
+Spirit.prototype.attack = function(type) {<br>
+this.attackObj.start(type);<br>
+};</p>
+<pre><code>var Spirit = new Spirit('AAA');
 Spirit .attack('waveBoxing');
 Spirit .attack('whirlKick');
 </code></pre>
@@ -530,20 +527,20 @@ Spirit .attack('whirlKick');
 <li>用return退出多重循环<br>
 假设在函数体内有一个两重循环语句，我们需要在内层循环中判断当达到某个临界条件时退出外层循环。</li>
 </ol>
-<pre><code>var print = function(i) {
-    console.log(i);
-};
-var func = function() {
-    for (var i = 0; i &lt; 10; i++) {
-        for (var j = 0; j &lt; 10; j++) {
-            if (i * j &gt; 30) {
-                return print(i);
-            }
-        }
-    }
-};
-func();
-</code></pre>
+<p>​<br>
+var print = function(i) {<br>
+console.log(i);<br>
+};<br>
+var func = function() {<br>
+for (var i = 0; i &lt; 10; i++) {<br>
+for (var j = 0; j &lt; 10; j++) {<br>
+if (i * j &gt; 30) {<br>
+return print(i);<br>
+}<br>
+}<br>
+}<br>
+};<br>
+func();</p>
 
     </div>
 
@@ -582,12 +579,12 @@ func();
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/archives/f9636392.html" rel="prev" title="闭包">
-      <i class="fa fa-chevron-left"></i> 闭包
+    <a href="/archives/72e3b671.html" rel="prev" title="策略模式">
+      <i class="fa fa-chevron-left"></i> 策略模式
     </a></div>
       <div class="post-nav-item">
-    <a href="/archives/f5c535ea.html" rel="next" title="适配器模式">
-      适配器模式 <i class="fa fa-chevron-right"></i>
+    <a href="/archives/ffd643db.html" rel="next" title="设计原则和编程技巧">
+      设计原则和编程技巧 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -1006,13 +1003,13 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">318k</span>
+    <span title="站点总字数">320k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">4:49</span>
+    <span title="站点阅读时长">4:51</span>
 </div>
 
         
@@ -1188,12 +1185,12 @@ if(canvas.getContext){
   </script>
 
 
-  <script async src="/js/cursor/fireworks.js"></script>
+  <script async src="/blog/js/cursor/fireworks.js"></script>
 
 
 
 
-  <script src="/js/activate-power-mode.min.js"></script>
+  <script src="/blog/js/activate-power-mode.min.js"></script>
   <script>
     POWERMODE.colorful = true;
     POWERMODE.shake = false;
@@ -1202,7 +1199,7 @@ if(canvas.getContext){
 
 
 
-<script type="text/javascript" src="/js/fold_action.js"></script><div class="moon-menu">
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
   <div class="moon-menu-items">
     
     <div class="moon-menu-item" onclick="back2bottom()">

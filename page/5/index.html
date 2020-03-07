@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
 <link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
 
 <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
@@ -114,7 +114,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -124,6 +124,9 @@
       </a>
     </div>
         <p class="site-subtitle">一切都是最好的安排</p>
+      <a>
+        <img class="custom-logo-image" src="/favicon.ico" alt="白云雅阁">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -176,6 +179,105 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/78134e07.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/78134e07.html" class="post-title-link" itemprop="url">命令模式</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/78134e07.html" class="post-meta-item leancloud_visitors" data-flag-title="命令模式" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>命令模式是最简单和优雅的模式之一，命令模式中的命令指的是一个执行某些特定事情的指令。命令模式最常见的应用场景是：有时候需要向某些对象发送请求，但是不知道请求的接收者是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送者和请求接收者能够消除彼此之间的耦合关系。</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/archives/78134e07.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/d036071c.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -202,13 +304,6 @@
 
               <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -234,7 +329,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3k</span>
+              <span>2.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -257,135 +352,14 @@
 <blockquote>
 <p>中介者模式的作用就是解除对象与对象之间的紧耦合关系。增加一个中介者对象后，所有的相关对象都可以通过中介者对象来通信，而不是相互引用，所以当一个对象发生改变时，只需要通知中介者对象即可。中介者模式使网状的多对多关系变成了相对简单的一对多关系。</p>
 </blockquote>
-<h3 id="中介者模式的例子–购买商品">中介者模式的例子–购买商品</h3>
-<p>假如我们正在编写一个手机购买的页面，在购买流程中，可以选择手机的颜色以及输入购买数量，同时页面中有两个展示区域，分别向用户展示选择好的颜色和数量。<br>
-show the code：</p>
-<pre><code>var colorSelect = document.getElemmentById('colorSelect'),
-    numberInput= document.getElemmentById('numberInput'),
-    colorInfo= document.getElemmentById('colorInfo'),
-    numberInfo = document.getElemmentById('numberInfo '),
-    nextBtn = document.getElemmentById('nextBtn ');
-    
-var goods = { //手机库存
-    &quot;red&quot;: 3,
-    &quot;blue&quot;: 6
-};
-//选择颜色时候
-colorSelect.onchange = function() {
-    var color = this.value, //颜色
-        number = numberInput.value, //数量
-        stock = goods[color]; //该颜色手机对应的当前库存
-    colorInfo.innerHTML = color;
-    if (!color) {
-        nextBtn.disabled = true;
-        nextBtn.innerHTML = '请选择手机颜色';
-        return;
-    }
-    if (((number - 0) | 0) !== number - 0) { //用户输入的购买数量是否为正整数
-        nextBtn.disabled = true;
-        nextBtn.innerHTML = '请输入正确的购买数量';
-        return;
-    }
-    if (number &gt; stock) { //库存是否充足
-        nextBtn.disabled = true;
-        nextBtn.innerHTML = '库存不足';
-        return;
-    }
-    nextBtn.disable = false;
-    nextBtn.innerHTML = '放入购物车';
-}
-
-//选择数量的时候
-numberInput.oninput = function() {
-    var color = this.value, //颜色
-        number = numberInput.value, //数量
-        stock = goods[color]; //该颜色手机对应的当前库存
-    numberInfo.innerHTML = number;
-    if (!color) {
-        nextBtn.disabled = true;
-        nextBtn.innerHTML = '请选择手机颜色';
-        return;
-    }
-    if (((number - 0) | 0) !== number - 0) { //用户输入的购买数量是否为正整数
-        nextBtn.disabled = true;
-        nextBtn.innerHTML = '请输入正确的购买数量';
-        return;
-    }
-    if (number &gt; stock) { //库存是否充足
-        nextBtn.disabled = true;
-        nextBtn.innerHTML = '库存不足';
-        return;
-    }
-    nextBtn.disable = false;
-    nextBtn.innerHTML = '放入购物车';
-}
-</code></pre>
-<p>以上代码看起来能运行了，但是加入我们对json数据对象做了一些修改，例如：</p>
-<pre><code>var goods = {
-    &quot;red|32G&quot;: 3,
-    &quot;red|16G&quot;: 3,
-    &quot;blue|32G&quot;: 3,
-    &quot;blue|16G&quot;: 3
-}
-</code></pre>
-<p>那样子我们要对<code>numberInput</code>和<code>colorSelect</code>进行改写，而且添加的内容大同小异但是很繁复，每个对象都是耦合在一起的，如果其中一个任何做了改变，另外的都要进行改变，这样很麻烦</p>
-<h3 id="引入中介者">引入中介者</h3>
-<pre><code>var mediator = (function() {
-    var colorSelect = document.getElemmentById('colorSelect'),
-        numberInput= document.getElemmentById('numberInput'),
-        colorInfo= document.getElemmentById('colorInfo'),
-        numberInfo = document.getElemmentById('numberInfo '),
-        nextBtn = document.getElemmentById('nextBtn ');
-    return {
-        changed: function(obj) {
-            var color = colorSelect.value, //颜色
-                memory = memorySelect.value, //内存
-                number = numberInput.value, //数量
-                stock = goods[color + '|' + memory]; //颜色和内存对应的手机库存数量
-            if (obj === colorSelect) { //如果改变的是选择颜色下拉框
-                colorInfo.innerHTML = color;
-            } else if (obj === memorySelect) {
-                memoryInfo.innerHTML = memory ;
-            } else if (obj === numberInput) {
-                numberInfo.innerHTML = number;
-            }
-
-            if (!color) {
-                nextBtn.disabled = true;
-                nextBtn.innerHTML = '请选择手机颜色';
-                return;
-            }
-            if (!memory) {
-                nextBtn.disabled = true;
-                nextBtn.innerHTML = '请选择内存大小';
-                return;
-            }
-            if (((number - 0) | 0) !== number - 0) { //用户输入的购买数量是否为正整数
-                nextBtn.disabled = true;
-                nextBtn.innerHTML = '请输入正确的购买数量';
-                return;
-            }
-            nextBtn.disable = false;
-            nextBtn.innerHTML = '放入购物车';
-        }
-    }    
-})();
-//事件函数
-colorSelect.onchange = function() {
-    mediator.changed(this);
-};
-memorySelect.onchange = function() {
-    mediator.changed(this);
-};
-numberInput.oninput = function() {
-    mediator.changed(this);
-};
-</code></pre>
-<p>这样，假如某天我们又要新增什么需求，就只要能够稍稍改动mediator对象即可。</p>
-<h3 id="总结">总结</h3>
-<p>最后来个总结：<br>
-中介者模式使各个对象之间得以解耦，以中介者和对象之间的一对多关系取代了对象之间的网状多对多关系，各个对象只需关注自身功能的实现。但是这样也存在一个缺点，系统中会新增一个中介者对象，因为对象交互的复杂性，转移成了中介者对象的复杂性，使得中介者对象通常是巨大的。中介者对象自身往往就是一个难以维护的对象。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/archives/d036071c.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -430,13 +404,6 @@ numberInput.oninput = function() {
 
               <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -485,76 +452,14 @@ numberInput.oninput = function() {
 <blockquote>
 <p>装饰者模式：给对象动态地增加职责。跟继承相比，装饰者是一种更轻便灵活的做法，是一种“即用即付”的方式。</p>
 </blockquote>
-<h3 id="js的装饰者">js的装饰者</h3>
-<p>假设我们在编写一个飞机大战游戏，这个飞机可以升级，发射导弹，发射原子弹</p>
-<pre><code>var plane = {
-    fire: function() {
-        console.log('发射普通子弹');
-    }
-};
-var missileDecorator = function() {
-    console.log('发射导弹');
-};
-var atomDecorator = function() {
-    console.log('发射原子弹');
-};
-var fire1 = plane.fire;
-plane.fire = function() {
-    fire1();
-    missileDecorator();
-};
-
-var fire2 = plane.fire;
-plane.fire = function() {
-    fire2();
-    atomDecorator();
-};
-plane.fire(); //&quot;发射普通子弹&quot;&quot;发射导弹&quot;&quot;发射原子弹&quot;
-</code></pre>
-<h3 id="用AOP装饰函数">用AOP装饰函数</h3>
-<p>首先给出<code>Function.prototype.before</code>方法和<code>Function.prototype.after</code>方法</p>
-<pre><code>Function.prototype.before = function (beforefn) {
-  var __self = this; //保存原函数的引用
-  return function() {  //返回包含了原函数和新函数的代理函数
-    beforefn.apply(this, arguments); //执行新函数，且保证this不被劫持，新函数接受的参数也会原封不动的传入原函数，新函数在原函数之前执行
-    return __self.apply(this, arguments); //执行原函数并返回原函数的执行结果，并保证this不被劫持
-  };
-};
-Function.prototype.after = function (afterfn) {
-  var __self = this; 
-  return function() {
-    var ret = __self.apply(this, arguments); 
-    afterfn.apply(this, arguments); 
-    return ret;
-  };
-};
-</code></pre>
-<p>需求：<br>
-页面中有个按钮，点击会弹出登录浮层，与此同时要进行数据上报， 这时候我们最好去分离业务代码和数据统计代码，以便维护。</p>
-<pre><code>var showLogin = function() {
-    console.log('打开登陆浮层');
-    log(this.getAttribute('tag'));
-}
-var log = function(tag) {
-    console.log('上报标签为:' + tag);
-}
-document,getElementById('button').onclick = showLogin;
-</code></pre>
-<p>以上，<code>showLogin</code>函数既要负责打开登录浮层，又要负责数据上报，这是两个层面的功能，却被耦合在一个函数里，我们做点分离…</p>
-<pre><code>var showLogin = function() {
-    console.log('打开登陆浮层');
-}
-var log = function(tag) {
-    console.log('上报标签为:' + tag);
-}
-
-showLogin = showLogin.after(log); //打开登录浮层之后上报数据
-document,getElementById('button').onclick = showLogin;
-</code></pre>
-<h3 id="装饰者模式和代理模式">装饰者模式和代理模式</h3>
-<p>代理模式和装饰者模式两种都描述了怎样为对象提供一定程度上的间接引用，他们的实现部分都保留了对另外一个对象的引用，并且向那个对象发送请求。<br>
-代理模式和装饰者模式最重要的区别在于他们的意图和设计目的。代理模式的目的是当直接访问本体不方便或者不符合需求时，为这个本体提供一个替代者。代理模式强调一种关系，这种关系一开始就以确定且通常只有一层代理-本体的引用。而装饰者模式的作用是为对象的动态加入行为，一开始不能确定对象的全部行为，通常装饰者模式会形成一条长长的链。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/archives/a708a60d.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -573,7 +478,7 @@ document,getElementById('button').onclick = showLogin;
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/7bf8ae3c.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/75f5b5c3.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -587,7 +492,7 @@ document,getElementById('button').onclick = showLogin;
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/7bf8ae3c.html" class="post-title-link" itemprop="url">职责链模式</a>
+            <a href="/archives/75f5b5c3.html" class="post-title-link" itemprop="url">this关键字</a>
         </h1>
 
         <div class="post-meta">
@@ -599,13 +504,6 @@ document,getElementById('button').onclick = showLogin;
 
               <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -619,7 +517,7 @@ document,getElementById('button').onclick = showLogin;
             </span>
 
           
-            <span id="/archives/7bf8ae3c.html" class="post-meta-item leancloud_visitors" data-flag-title="职责链模式" title="阅读次数">
+            <span id="/archives/75f5b5c3.html" class="post-meta-item leancloud_visitors" data-flag-title="this关键字" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -631,14 +529,14 @@ document,getElementById('button').onclick = showLogin;
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.8k</span>
+              <span>1.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -652,130 +550,24 @@ document,getElementById('button').onclick = showLogin;
       
           <hr>
 <blockquote>
-<p>使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系，将这些对象都练成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。</p>
+<p>this的指向大概可以分成四种：</p>
+<ul>
+<li>作为对象的方法调用</li>
+<li>作为普通函数调用</li>
+<li>构造器调用</li>
+<li>Function.prototype.call或Function.prototype.apply调用</li>
+</ul>
 </blockquote>
-<p>如图所示：<br>
-请求→A→B→C→D<br>
-再来一个更形象的比喻，读书的时候假设你坐在前面，要在上课时告诉后排一些事情，这时候你可能会选择写一张小纸条，小纸条就会陆续的被向后传递。<br>
-从上面的例子中，我们可以看到职责链的优点：请求发送者只需要知道链中的第一个节点，从而弱化了发送者和一组接收者之间的强联系。</p>
-<h3 id="实际开发中的职责链模式">实际开发中的职责链模式</h3>
-<p>需求：一个售卖手机的电商网站，交纳500定金和200定金和没交定金的有不同的优惠状况。<br>
-我们刚开始可能会这么写：</p>
-<pre><code>// orderType: 订单类型（普通用户或定金用户），1为500元定金用户，2为200，3为普通用户
-// pay：表示是否已支付定金，true或false
-// stock：表示当前用于普通购买的手机库存数量，已支付过定金的用户不受此限制。
-
-var order = function (orderType, pay, stock) {
-    if (orderType === 1) { //500元定金购买模式
-        if (pay === true) {
-            console.log('500元定金预定，已获得100元优惠券');
-        }else { //未支付定金，降级到普通购买模式
-            if (stock &gt; 0) {
-                console.log('普通购买，无优惠券');
-            } else {
-                console.log('库存不足');
-            }
-        }
-    }
-    else if (orderType === 2) {
-        if (pay === true) {
-            console.log('200元定金预定，已获得50元优惠券');
-        }else { //未支付定金，降级到普通购买模式
-            if (stock &gt; 0) {
-                console.log('普通购买，无优惠券');
-            } else {
-                console.log('库存不足');
-            }
-        }
-    } 
-    else if (orderType === 3) {
-        if (stock &gt; 0) {
-            console.log('普通购买，无优惠券');
-        } else {
-                console.log('库存不足');
-        }
-    }
-};
-order(1, true, 500);
-</code></pre>
-<p>以上代码虽然保证了可以用的状态，但是只是能用，如果要修改就会很麻烦，而且阅读体验也不是很好，所以我们做一点优化</p>
-<pre><code>var order500 = function (orderType, pay, stock) {
-    if (orderType === 1 &amp;&amp; pay === true) { //500元定金购买模式
-            console.log('500元定金预定，已获得100元优惠券');
-    } else { 
-        order200 (orderType, pay, stock); //将请求传递给200元订单
-    }
-};
-
-var order200 = function (orderType, pay, stock) {
-    if (orderType === 2 &amp;&amp; pay === true) { //200元定金购买模式
-            console.log('200元定金预定，已获得50元优惠券');
-    } else { 
-        orderNormal (orderType, pay, stock); //将请求传递给普通订单
-    }
-};
-var orderNormal =  function (orderType, pay, stock) {
-    if (stock &gt; 0) {
-        console.log('普通购买，无优惠券');
-    } else {
-        console.log('库存不足');
-    }
-};
-
-order500 (1, true, 500);
-</code></pre>
-<p>虽然这有了小小进步，不过请求在链条中的传递依然很僵硬，传递请求的代码被耦合在了业务函数中，这显然是违反开放-封闭原则的，例如如果有一天我们要增加300元预定或者200元预定，意味着就必须改动这些业务函数的内部，就像一根根环环相扣的死结链条。</p>
-<h3 id="灵活可拆分的职责链">灵活可拆分的职责链</h3>
-<pre><code>var order500 = function (orderType, pay, stock) {
-    if (orderType === 1 &amp;&amp; pay === true) { //500元定金购买模式
-            console.log('500元定金预定，已获得100元优惠券');
-    } else { 
-        return 'nextSuccessor'; //我不知道下一个节点是谁，反正向后传递就好了
-    }
-};
-
-var order200 = function (orderType, pay, stock) {
-    if (orderType === 2 &amp;&amp; pay === true) { //200元定金购买模式
-            console.log('200元定金预定，已获得50元优惠券');
-    } else { 
-        return 'nextSuccessor';
-    }
-};
-var orderNormal =  function (orderType, pay, stock) {
-    if (stock &gt; 0) {
-        console.log('普通购买，无优惠券');
-    } else {
-        console.log('库存不足');
-    }
-};
-
-//Chain.prototype.setNextSuccessor 指定在链中的下一个节点
-//Chain.prototype.passRequest 传递请求给某个节点
-var Chain = function(fn) {
-    this.fn = fn;
-    this.successor = null;
-};
-Chain.prototype.setNextSuccessor = function(successor) {
-    return this.successor = successor;
-};
-Chain.prototype.passRequest = function(successor) {
-    var ret = this.fn.apply(this, arguments);
-    if (ret === 'nextSuccessor') {
-        return this.successor &amp;&amp; this.successor.passRequest.apply(this.successor, arguments);
-    }
-    return ret;
-};
-
-var chainOrder500 = new Chain(order500);
-var chainOrder200 = new Chain(order200);
-var chainOrderNormal = new Chain(orderNormal);
- 
-chainOrder500.passRequest(1, true, 500);  //500定金优惠100
-chainOrder200.passRequest(2, true, 500); //200定金优惠50
-chainOrderNormal.passRequest(3, true, 500); //普通购买无优惠券
-chainOrderNormal.passRequest(1, false, 0); //库存不足
-</code></pre>
-
+<h3 id="1-作为对象的时候，this指向该对象">1. 作为对象的时候，<strong>this指向该对象</strong></h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">1</span>,</span><br><span class="line">    getA: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span> === obj); <span class="comment">//true;</span></span><br><span class="line">        alert(<span class="keyword">this</span>.a); <span class="comment">//1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.getA();</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/archives/75f5b5c3.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -820,13 +612,6 @@ chainOrderNormal.passRequest(1, false, 0); //库存不足
 
               <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -875,260 +660,14 @@ chainOrderNormal.passRequest(1, false, 0); //库存不足
 <blockquote>
 <p>状态模式的关键是区分事物内部的状态，事物内部状态的改变往往会带来事物的行为改变。</p>
 </blockquote>
-<h3 id="电灯程序">电灯程序</h3>
-<p>首先给一个不用状态模式的电灯程序例子：</p>
-<pre><code>var Light = function() {
-  this.state = 'off'; //电灯初始状态off
-  this.button = null; //电灯开关按钮
-};
-
-Light.prototype.init = function() {
-  var button = document.createElement('button'),
-      self = this;
-  
-  button.innerHTML = '开关';
-  this.button = document.body.appendChild(button);
-  this.button.onclick = function() {
-    self.buttonWasPressed();
-  };
-};
-
-Light.prototype.buttonWasPressed = function() {
-  if (this.state === 'off') {
-    console.log('开灯');
-    this.state = 'on';
-  } else if (this.state === 'on') {
-    console.log('关灯');
-    this.state = 'off';
-  }
-};
-
-var light = new Light();
-light.init();
-</code></pre>
-<p>这样子看起来非常完美。但是假如我们有三种光，甚至四种五种，只能在<code>buttonWasPressed</code>里面新增代码，这样就显得他很不稳定了。而且所有跟状态有关的行为，这里只是console，但是在实际应用中要处理的事情庞大得多…<br>
-所以，我们用状态模式进行改写</p>
-<pre><code>//OffLightState
-var OffLightState = function(light) {
-  this.light = light;
-};
-OffLightState.prototype.buttonWasPressed = function() {
-  console.log('弱光'); 
-  this.light.setState(this.light.weakLightState);
-};
-
-//WeakLightState
-var WeakLightState = function(light) {
-  this.light = light;
-};
-WeakLightState.prototype.buttonWasPressed = function() {
-  console.log('强光');
-  this.light.setState(this.light.strongLightState); 
-};
-
-//StrongLightState
-var StrongLightState = function(light) {
-  this.light = light;
-};
-StrongLightState.prototype.buttonWasPressed = function() {
-  console.log('关灯');
-  this.light.setState(this.light.OffLightState); 
-};
-
-var Light = function() {
-  this.offLightState = new OffLightState(this);
-  this.weakLightState = new WeakLightState(this);
-  this.strongLightState = new StrongLightState(this);
-};
-Light.prototype.init = function() {
-  var button = document.createElement('button'),
-      self = this;
-  this.button = document.body.appendChild(button);
-  this.button.innerHTML = '开关';
-  
-  this.currState = this.offLightState; //设置当前状态
-  this.button.onclick = function() {
-    self.currState.buttonWasPressed();
-  };
-};
-</code></pre>
-<p>这样子，就没有了一堆繁复的if语句，如果再要增加什么状态，只需要新增对应的代码，再改变状态类之间的切换规则就好了。</p>
-<h3 id="状态模式的优缺点">状态模式的优缺点</h3>
-<ul>
-<li>
-<p>状态模式定义了状态与行为之间的关系，并将他们封装在一个类里。通过增加新的状态类，很容易增加新的状态和转换。</p>
-</li>
-<li>
-<p>避免context无线膨胀</p>
-</li>
-<li>
-<p>用对象代替字符串来记录当前状态使状态一目了然但是状态模式也会导致系统中定义许多的状态类，编写几十个状态类是一项枯燥的工作。虽然避开了不受欢迎的条件分支，但是也造成了逻辑分散的问题。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/archives/8acb1976.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/f5c535ea.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/img/avatar.jpg">
-      <meta itemprop="name" content="曹强">
-      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白云雅阁">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/archives/f5c535ea.html" class="post-title-link" itemprop="url">适配器模式</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/archives/f5c535ea.html" class="post-meta-item leancloud_visitors" data-flag-title="适配器模式" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<blockquote>
-<p>适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。</p>
-</blockquote>
-<h3 id="适配器模式的应用">适配器模式的应用</h3>
-<p>适配模式是一种“亡羊补牢”的模式，没有人会在程序的设计之初就使用它，因为没有人可以完全预料到未来的事情，也许现在好好工作的接口未来就不再适用于新系统，那么我们可以使用适配器模式把旧的接口包装成新的接口，使他继续保持生命力。<br>
-比如在json数据流行之前，很多cgi返回的都是XML格式的数据，如果今天仍然想用这些接口，显然我们可以创造一个XML-JSON适配器。</p>
-<p>比如有一段代码，我们向googleMap和baiduMap都发出显示请求时，他们分别以各自的方式在页面中展现了地图：</p>
-<pre><code>var googleMap = {
-    show: function() {
-        console.log('开始渲染谷歌地图');
-    }
-};
-var baiduMap = {
-    show: function() {
-        console.log('开始渲染百度地图');
-    }
-};
-
-var renderMap = function(map) {
-    if (map.show.instanceof Function) {
-        map.show();
-    }
-};
-
-renderMap(googleMap); //开始渲染谷歌地图
-renderMap(baiduMap); //开始渲染百度地图
-</code></pre>
-<p>这个程序能运行的关键之处在于<code>googleMap</code>和<code>baiduMap</code>提供了一致的show方法，但是第三方接口并不在我们的控制范围内，加入<code>baiduMap</code>提供的显示地图的方法不叫<code>show</code>，而叫<code>display</code>呢?</p>
-<p>此时我们可以通过增加<code>baiduMapAdapter</code>来解决问题：</p>
-<pre><code>var googleMap = {
-    show: function() {
-        console.log('开始渲染谷歌地图');
-    }
-};
-var baiduMap = {
-    display: function() {
-        console.log('开始渲染百度地图');
-    }
-};
-var baiduAdapter = {
-    show: function() {
-        return baiduMap.display();
-    }
-};
-var renderMap = function(map) {
-    if (map.show.instanceof Function) {
-        map.show();
-    }
-};
-
-renderMap(googleMap); //开始渲染谷歌地图
-renderMap(baiduAdapter); //开始渲染百度地图
-</code></pre>
-<h3 id="小结">小结</h3>
-<p>适配器模式是一对相对简单的模式，但是有一些模式跟适配器模式的结构非常相似，比如装饰者模式，代理模式和外观模式，这几种都属于“包装模式”，都是一个对象来包装另一个对象。我们现在就来做一些区分：</p>
-<ul>
-<li>
-<p>适配器模式主要用来解决两个已有接口之间的不匹配问题，它不需要考虑这些接口是怎样实现的，也不考虑它们讲来可能会如何演化。适配器模式不需要改变已有接口，就能够实现它们的协同作用。</p>
-</li>
-<li>
-<p>装饰者模式和代理模式也不会改变原有对象的接口，但装饰者模式的作用是为了给对象增加功能。装饰者模式常常形成一条长的装饰链，而适配器模式通常只包装一次。代理模式是为了控制对象的访问，通常也只包装一次。</p>
-</li>
-<li>
-<p>外观模式的作用和适配器比较像是，有人把外观模式看成一组对象的适配器，但外观模式最显著的特点是定义了一个新的接口。</p>
-</li>
-</ul>
-
       
     </div>
 
@@ -1558,13 +1097,13 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">318k</span>
+    <span title="站点总字数">320k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">4:49</span>
+    <span title="站点阅读时长">4:51</span>
 </div>
 
         
@@ -1740,12 +1279,12 @@ if(canvas.getContext){
   </script>
 
 
-  <script async src="/js/cursor/fireworks.js"></script>
+  <script async src="/blog/js/cursor/fireworks.js"></script>
 
 
 
 
-  <script src="/js/activate-power-mode.min.js"></script>
+  <script src="/blog/js/activate-power-mode.min.js"></script>
   <script>
     POWERMODE.colorful = true;
     POWERMODE.shake = false;
@@ -1754,7 +1293,7 @@ if(canvas.getContext){
 
 
 
-<script type="text/javascript" src="/js/fold_action.js"></script><div class="moon-menu">
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
   <div class="moon-menu-items">
     
     <div class="moon-menu-item" onclick="back2bottom()">

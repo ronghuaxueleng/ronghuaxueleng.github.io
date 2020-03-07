@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
 <link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
 
 <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
@@ -51,15 +51,15 @@
   };
 </script>
 
-  <meta name="description" content="迭代器模式是指提供一种方法，顺序访问一个聚合对象中的各个元素，而又不需要暴露该对象的内部表示。迭代器模式可以把迭代的过程从业务逻辑中分离出来，在使用迭代器模式之后，即使不关心内部构造，也可以按顺序访问其中的每个元素。  jQuery中的迭代器 迭代器模式无非就是循环访问聚合对象中的各个元素。比如jQuery中的$.each函数，其中回调函数中的i为当前 索引，n为当前元素，代码如下 $.eac">
+  <meta name="description" content="迭代器模式是指提供一种方法，顺序访问一个聚合对象中的各个元素，而又不需要暴露该对象的内部表示。迭代器模式可以把迭代的过程从业务逻辑中分离出来，在使用迭代器模式之后，即使不关心内部构造，也可以按顺序访问其中的每个元素。  jQuery中的迭代器 迭代器模式无非就是循环访问聚合对象中的各个元素。比如jQuery中的$.each函数，其中回调函数中的i为当前 索引，n为当前元素，代码如下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="迭代器模式">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/archives/9055d217.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="迭代器模式是指提供一种方法，顺序访问一个聚合对象中的各个元素，而又不需要暴露该对象的内部表示。迭代器模式可以把迭代的过程从业务逻辑中分离出来，在使用迭代器模式之后，即使不关心内部构造，也可以按顺序访问其中的每个元素。  jQuery中的迭代器 迭代器模式无非就是循环访问聚合对象中的各个元素。比如jQuery中的$.each函数，其中回调函数中的i为当前 索引，n为当前元素，代码如下 $.eac">
+<meta property="og:description" content="迭代器模式是指提供一种方法，顺序访问一个聚合对象中的各个元素，而又不需要暴露该对象的内部表示。迭代器模式可以把迭代的过程从业务逻辑中分离出来，在使用迭代器模式之后，即使不关心内部构造，也可以按顺序访问其中的每个元素。  jQuery中的迭代器 迭代器模式无非就是循环访问聚合对象中的各个元素。比如jQuery中的$.each函数，其中回调函数中的i为当前 索引，n为当前元素，代码如下">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-10-12T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-06T11:58:27.940Z">
+<meta property="article:modified_time" content="2020-03-07T05:25:35.137Z">
 <meta property="article:author" content="曹强">
 <meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary">
@@ -116,7 +116,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -126,6 +126,9 @@
       </a>
     </div>
         <p class="site-subtitle">一切都是最好的安排</p>
+      <a>
+        <img class="custom-logo-image" src="/favicon.ico" alt="白云雅阁">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -203,13 +206,6 @@
 
               <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -242,14 +238,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.5k</span>
+              <span>4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -267,145 +263,32 @@
 </blockquote>
 <h3 id="jQuery中的迭代器">jQuery中的迭代器</h3>
 <p>迭代器模式无非就是循环访问聚合对象中的各个元素。比如jQuery中的$.each函数，其中回调函数中的i为当前 索引，n为当前元素，代码如下</p>
-<pre><code>$.each([1, 2, 3], function(i, n) {
-    console.log('当前坐标：' + i);
-    console.log('当前值：' + n);
-});
-</code></pre>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$.each([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="function"><span class="keyword">function</span>(<span class="params">i, n</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'当前坐标：'</span> + i);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'当前值：'</span> + n);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>然而，作为一个合格的前端开发者，我们不应该只是会用，而更应该去研究他的实现，因此下面我们就来自己实现一个each函数</p>
-<pre><code>var each = function(ary, callback) {
-    for(var i = 0, l = ary.length; i &lt; l; i++) {
-        callback.call(ary[i], i, ary[i]); //把下标和元素当作参数传给callback函数
-    }
-};
-each([1,2,3], function(i, n) {
-    alert([i,n]);
-});
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> each = <span class="function"><span class="keyword">function</span>(<span class="params">ary, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>, l = ary.length; i &lt; l; i++) &#123;</span><br><span class="line">        callback.call(ary[i], i, ary[i]); <span class="comment">//把下标和元素当作参数传给callback函数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">each([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], <span class="function"><span class="keyword">function</span>(<span class="params">i, n</span>) </span>&#123;</span><br><span class="line">    alert([i,n]);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <h3 id="内部迭代器和外部迭代器">内部迭代器和外部迭代器</h3>
 <p>像刚刚编写的each函数属于<strong>内部迭代器，each函数的内部已经定义好了迭代规则，它完全接手整个迭代过程，外部只需要一次初始调用.</strong><br>
 然而，如果你想同时迭代两个数组，例如：判断两个数组里的元素的值是否完全相等。<br>
 此时如果不去改写each函数本身的代码，就只能够增加一个compare函数然后对each的回调进行更改了。</p>
-<pre><code>var compare = function(ary1, ary2) {
-    if (ary1.length !== ary2.length) {
-        throw new Error('ary1和ary2不相等');
-    }
-    each(ary1, function(i ,n) {
-        if (n !== ary2[i]) {
-            throw new Error('ary1和ary2不相等');
-        }
-    });
-    alert('ary1和ary2相等');
-};
-
-compare([1, 2, 3], [1, 2, 4]); //throw new Error('ary1和ary2不相等');
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> compare = <span class="function"><span class="keyword">function</span>(<span class="params">ary1, ary2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ary1.length !== ary2.length) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'ary1和ary2不相等'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    each(ary1, <span class="function"><span class="keyword">function</span>(<span class="params">i ,n</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n !== ary2[i]) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'ary1和ary2不相等'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    alert(<span class="string">'ary1和ary2相等'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">compare([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>]); <span class="comment">//throw new Error('ary1和ary2不相等');</span></span><br></pre></td></tr></table></figure>
 <p>代码看起来有点丑，所以要搬出外部迭代器。<br>
 <strong>外部迭代器必须显示地请求迭代下一个元素，他增加了一些调用的复杂度，但也相对的增加了迭代器的灵活性，我们可以手工控制迭代的过程或者顺序</strong></p>
 <p>我们根据这个思想稍微改写一下compare函数</p>
-<pre><code>var Iterator = function(obj) {
-    var current = 0;
-    var next = function() {
-        current += 1;
-    };
-    var isDone = function() {
-        return current &gt;= obj.length;
-    };
-    var getCurrItem = function() {
-        return obj[current];
-    };
-
-    return {
-        next: next,
-        isDone: isDone,
-        getCurrItem: getCurrItem
-    }
-};
-var compare = function(iterator1 , iterator2) {
-    while (iterator1.isDone() &amp;&amp; !iterator2.isDone()) {
-        if (iterator1.getCurrItem() !== iterator2.getCurrItem()) {
-            throw new Error('不相等');
-        }
-        iterator1.next();
-        iterator2.next();
-    }
-    alert('相等');
-};
-var iterator1 = Iterator( [1, 2, 3] );
-var iterator2 = Iterator( [1, 2, 3] );
-compare(iterator1 , iterator2); //相等
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Iterator = <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> current = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> next = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        current += <span class="number">1</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">var</span> isDone = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> current &gt;= obj.length;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">var</span> getCurrItem = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> obj[current];</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        next: next,</span><br><span class="line">        isDone: isDone,</span><br><span class="line">        getCurrItem: getCurrItem</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> compare = <span class="function"><span class="keyword">function</span>(<span class="params">iterator1 , iterator2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (iterator1.isDone() &amp;&amp; !iterator2.isDone()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (iterator1.getCurrItem() !== iterator2.getCurrItem()) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'不相等'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        iterator1.next();</span><br><span class="line">        iterator2.next();</span><br><span class="line">    &#125;</span><br><span class="line">    alert(<span class="string">'相等'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> iterator1 = Iterator( [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>] );</span><br><span class="line"><span class="keyword">var</span> iterator2 = Iterator( [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>] );</span><br><span class="line">compare(iterator1 , iterator2); <span class="comment">//相等</span></span><br></pre></td></tr></table></figure>
 <h3 id="迭代类数组和字面量变量">迭代类数组和字面量变量</h3>
-<pre><code>$.each = function(obj, callback) {
-  var value,
-      i = 0,
-      lenght = obj.length,
-      isArray = isArraylike(obj);
-  if (isArray) { //迭代类数组
-    for(; i &lt; length; i++) {
-      value = callback.call(obj[i], i, obj[i]);
-      if(value === false) {
-        break;
-      }
-    }
-  } else {
-    for (i in obj) { //迭代obj对象
-      value = callback.call(obj[i], i, obj[i]);
-      if (value === false) {
-        break;
-      }
-    } 
-  }
-  return obj;
-};
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$.each = <span class="function"><span class="keyword">function</span>(<span class="params">obj, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> value,</span><br><span class="line">      i = <span class="number">0</span>,</span><br><span class="line">      lenght = obj.length,</span><br><span class="line">      isArray = isArraylike(obj);</span><br><span class="line">  <span class="keyword">if</span> (isArray) &#123; <span class="comment">//迭代类数组</span></span><br><span class="line">    <span class="keyword">for</span>(; i &lt; length; i++) &#123;</span><br><span class="line">      value = callback.call(obj[i], i, obj[i]);</span><br><span class="line">      <span class="keyword">if</span>(value === <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> obj) &#123; <span class="comment">//迭代obj对象</span></span><br><span class="line">      value = callback.call(obj[i], i, obj[i]);</span><br><span class="line">      <span class="keyword">if</span> (value === <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> obj;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h3 id="终止迭代器">终止迭代器</h3>
 <p>上面的each函数里面我们有一句</p>
-<pre><code> if (value === false) {
-        break;
-      }
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (value === <span class="literal">false</span>) &#123;</span><br><span class="line">     <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这里是如果回调函数的执行结果返回<code>false</code>，则提前终止循环，前面each函数的改写这里就不多阐述。</p>
 <h3 id="迭代器的应用举例">迭代器的应用举例</h3>
 <p>我们先看一种情况：不同的浏览器中上传文件的方式是不一样的，因为使用的浏览器上传控件进行上传进度快，可以暂停和续传，所以我们首先会优先使用控件上传。如果浏览器没有安装上传控件则用flash上传，如果flash也没安装那就只能用浏览器原生表单上传了。<br>
 通常我们会这么做：</p>
-<pre><code>var getUploadObj = function() {
-  try{
-    return new ActiveXObject('TXFTNActive.FTNUpload'); //IE上传控件
-  } catch(e) {
-    if (supportFlash()) { //supportFlash函数未提供
-      var str = '&lt;object type = &quot;application/x-shockwave-flash&quot;&gt;&lt;/object&gt;';
-      return $(str).appendTo($('body'));
-    } else { //表单上传
-      var str = '&lt;input name = &quot;file&quot; type =&quot;file&quot; /&gt;';
-      return $(str).appendTo($('body'));
-    }
-  }
-};
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> getUploadObj = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ActiveXObject(<span class="string">'TXFTNActive.FTNUpload'</span>); <span class="comment">//IE上传控件</span></span><br><span class="line">  &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">    <span class="keyword">if</span> (supportFlash()) &#123; <span class="comment">//supportFlash函数未提供</span></span><br><span class="line">      <span class="keyword">var</span> str = <span class="string">'&lt;object type = "application/x-shockwave-flash"&gt;&lt;/object&gt;'</span>;</span><br><span class="line">      <span class="keyword">return</span> $(str).appendTo($(<span class="string">'body'</span>));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; <span class="comment">//表单上传</span></span><br><span class="line">      <span class="keyword">var</span> str = <span class="string">'&lt;input name = "file" type ="file" /&gt;'</span>;</span><br><span class="line">      <span class="keyword">return</span> $(str).appendTo($(<span class="string">'body'</span>));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>以上，为了得到一个upload对象，这里就充满了很多if条件分支，缺点显而易见。难以阅读，严重违反开闭原则，还有调试的时候我们需要来回切换不同的上传方式，每次改动都想当痛苦，如果要增加html5上传则又要添加分支…<br>
 这里我们可以把每种获取upload对象的方法都封装在各自的函数里，然后使用一个迭代器，迭代获取这些upload对象，直到获取到一个可用的为止。</p>
-<pre><code>var getActiveUploadObj = function() {
-    try{
-        return new ActiveXObject('TXFTNActive.FTNUpload'); //IE上传控件
-    } catch(e) {
-        return false;
-    }
-};
-
-var getFlashUploadObj = function() {
-    if (supportFlash()) { //supportFlash函数未提供
-        var str = '&lt;object type = &quot;application/x-shockwave-flash&quot;&gt;&lt;/object&gt;';
-        return $(str).appendTo($('body'));
-    }
-    return false;
-};
-
-var getFormUploadObj = function() {
-     var str = '&lt;input name = &quot;file&quot; type =&quot;file&quot; /&gt;';
-     return $(str).appendTo($('body'));
-}
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> getActiveUploadObj = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ActiveXObject(<span class="string">'TXFTNActive.FTNUpload'</span>); <span class="comment">//IE上传控件</span></span><br><span class="line">    &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getFlashUploadObj = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (supportFlash()) &#123; <span class="comment">//supportFlash函数未提供</span></span><br><span class="line">        <span class="keyword">var</span> str = <span class="string">'&lt;object type = "application/x-shockwave-flash"&gt;&lt;/object&gt;'</span>;</span><br><span class="line">        <span class="keyword">return</span> $(str).appendTo($(<span class="string">'body'</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getFormUploadObj = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="keyword">var</span> str = <span class="string">'&lt;input name = "file" type ="file" /&gt;'</span>;</span><br><span class="line">     <span class="keyword">return</span> $(str).appendTo($(<span class="string">'body'</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>接着我们的迭代器只需要进行下面几步工作：</p>
 <ul>
 <li>
@@ -413,17 +296,9 @@ var getFormUploadObj = function() {
 </li>
 <li>
 <p>如果正在被迭代的函数返回一个对象，则表示找到了正确的upload对象，反之则让迭代器继续工作</p>
-<p>var iteratorUploadObj = function() {<br>
-for (var i = 0, fn; fn = arguments[i++];) {<br>
-var uploadObj = fn();<br>
-if (uploadObj !== false) {<br>
-return uploadObj;<br>
-}<br>
-}<br>
-};</p>
-<p>var uploadObj = iteratorUploadObj(getActiveUploadObj, getFlashUploadObj, getFormUploadObj);</p>
 </li>
 </ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> iteratorUploadObj = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, fn; fn = <span class="built_in">arguments</span>[i++];) &#123;</span><br><span class="line">        <span class="keyword">var</span> uploadObj = fn();</span><br><span class="line">        <span class="keyword">if</span> (uploadObj !== <span class="literal">false</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> uploadObj;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> uploadObj = iteratorUploadObj(getActiveUploadObj, getFlashUploadObj, getFormUploadObj);</span><br></pre></td></tr></table></figure>
 <p>以后要加也就只需相应的调整参数顺序就好。</p>
 
     </div>
@@ -463,12 +338,12 @@ return uploadObj;<br>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/archives/77cd0e45.html" rel="prev" title="Fullscreen API：全屏操作">
-      <i class="fa fa-chevron-left"></i> Fullscreen API：全屏操作
+    <a href="/archives/681b9f80.html" rel="prev" title="代理模式的应用">
+      <i class="fa fa-chevron-left"></i> 代理模式的应用
     </a></div>
       <div class="post-nav-item">
-    <a href="/archives/681b9f80.html" rel="next" title="代理模式的应用">
-      代理模式的应用 <i class="fa fa-chevron-right"></i>
+    <a href="/archives/7b510e10.html" rel="next" title="代理模式">
+      代理模式 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -888,13 +763,13 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">318k</span>
+    <span title="站点总字数">320k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">4:49</span>
+    <span title="站点阅读时长">4:51</span>
 </div>
 
         
@@ -1070,12 +945,12 @@ if(canvas.getContext){
   </script>
 
 
-  <script async src="/js/cursor/fireworks.js"></script>
+  <script async src="/blog/js/cursor/fireworks.js"></script>
 
 
 
 
-  <script src="/js/activate-power-mode.min.js"></script>
+  <script src="/blog/js/activate-power-mode.min.js"></script>
   <script>
     POWERMODE.colorful = true;
     POWERMODE.shake = false;
@@ -1084,7 +959,7 @@ if(canvas.getContext){
 
 
 
-<script type="text/javascript" src="/js/fold_action.js"></script><div class="moon-menu">
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
   <div class="moon-menu-items">
     
     <div class="moon-menu-item" onclick="back2bottom()">

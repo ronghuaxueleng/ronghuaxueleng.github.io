@@ -43,17 +43,14 @@ Shadow DOM 是四大网络组件标准之一，提供 CSS 作用域、DOM 封装
     <link href="http://ronghuaxueleng.github.io/archives/b4a56055.html"/>
     <id>http://ronghuaxueleng.github.io/archives/b4a56055.html</id>
     <published>2017-10-25T14:18:52.000Z</published>
-    <updated>2020-03-06T11:58:27.897Z</updated>
+    <updated>2020-03-07T03:58:31.066Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h3
-        
-      
+      &lt;h3 id=&quot;埋点&quot;&gt;埋点&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;所谓“埋点”，是数据采集领域（尤其是用户行为数据采集领域）的术语，指的是针对特定用户行为或事件进行捕获、处理和发送的相关技术及其实施过程&lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
@@ -70,18 +67,14 @@ Shadow DOM 是四大网络组件标准之一，提供 CSS 作用域、DOM 封装
     <link href="http://ronghuaxueleng.github.io/archives/bb77ad22.html"/>
     <id>http://ronghuaxueleng.github.io/archives/bb77ad22.html</id>
     <published>2016-10-13T00:00:00.000Z</published>
-    <updated>2020-03-06T11:58:27.972Z</updated>
+    <updated>2020-03-07T04:09:55.661Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;原题来自: &lt;a href=&quot;http://javascript-puzzlers.herokuapp.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;javascript-puzzlers&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;读者可以先去做一下感受感受.
-        
-      
+      &lt;p&gt;原题来自: &lt;a href=&quot;http://javascript-puzzlers.herokuapp.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;javascript-puzzlers&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;读者可以先去做一下感受感受. 当初笔者的成绩是 21/44…&lt;/p&gt;
+&lt;p&gt;当初笔者做这套题的时候不仅怀疑智商, 连人生都开始怀疑了…&lt;/p&gt;
+&lt;p&gt;不过, 对于基础知识的理解是深入编程的前提. 让我们一起来看看这些变态题到底变态不变态吧!&lt;/p&gt;
     
     </summary>
     
@@ -98,18 +91,11 @@ Shadow DOM 是四大网络组件标准之一，提供 CSS 作用域、DOM 封装
     <link href="http://ronghuaxueleng.github.io/archives/a26c9c63.html"/>
     <id>http://ronghuaxueleng.github.io/archives/a26c9c63.html</id>
     <published>2016-10-13T00:00:00.000Z</published>
-    <updated>2020-03-06T11:58:27.974Z</updated>
+    <updated>2020-03-07T04:09:16.068Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;承接上篇 &lt;a href=&quot;https://github.com/xiaoyu2er/blog/issues/1&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;44个 Javascript 变态题解析 (上)&lt;/a&gt;&lt;/p&gt;
-&lt;h2
-        
-      
+      &lt;p&gt;承接上篇 &lt;a href=&quot;bb77ad22.html&quot;&gt;44个 Javascript 变态题解析 (上)&lt;/a&gt;&lt;/p&gt;
     
     </summary>
     
@@ -126,20 +112,26 @@ Shadow DOM 是四大网络组件标准之一，提供 CSS 作用域、DOM 封装
     <link href="http://ronghuaxueleng.github.io/archives/a5431a21.html"/>
     <id>http://ronghuaxueleng.github.io/archives/a5431a21.html</id>
     <published>2016-10-13T00:00:00.000Z</published>
-    <updated>2020-03-06T11:58:27.999Z</updated>
+    <updated>2020-03-07T04:06:48.177Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h2 id=&quot;缘由&quot;&gt;缘由&lt;/h2&gt;
+      &lt;h2 id=&quot;缘由&quot;&gt;缘由&lt;/h2&gt;
 &lt;p&gt;JavaScript 数组去重经常出现在前端招聘的笔试题里，比如：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;有数组 &lt;code&gt;var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, &#39;c&#39;, 1, &#39;&#39;, 1,
-        
-      
+&lt;p&gt;有数组 &lt;code&gt;var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, &#39;c&#39;, 1, &#39;&#39;, 1, 0]&lt;/code&gt;，请用 JavaScript&lt;br&gt;
+实现去重函数 &lt;code&gt;unqiue&lt;/code&gt;，使得 &lt;code&gt;unique(arr)&lt;/code&gt; 返回 &lt;code&gt;[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, 1, &#39;&#39;]&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;作为笔试题，考点有二：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;正确&lt;/strong&gt;。别小看这个考点，考虑到 JavaScript 经常要在浏览器上运行，在千姿百态的各种浏览器环境下要保障一个函数的正确性可不是一件简单的事，不信你继续读完这篇博客。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;性能&lt;/strong&gt;。虽然大部分情况下 JavaScript 语言本身（狭义范畴，不包含 DOM 等延拓）不会导致性能问题，但很不幸这是一道考题，因此面试官们还是会把性能作为一个考点。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在继续往下阅读之前，建议先实现一个自己认为最好的版本。&lt;/p&gt;
     
     </summary>
     
@@ -152,21 +144,42 @@ Shadow DOM 是四大网络组件标准之一，提供 CSS 作用域、DOM 封装
   </entry>
   
   <entry>
-    <title>基础编程模式</title>
-    <link href="http://ronghuaxueleng.github.io/archives/fb867561.html"/>
-    <id>http://ronghuaxueleng.github.io/archives/fb867561.html</id>
+    <title>适配器模式</title>
+    <link href="http://ronghuaxueleng.github.io/archives/f5c535ea.html"/>
+    <id>http://ronghuaxueleng.github.io/archives/f5c535ea.html</id>
     <published>2016-10-13T00:00:00.000Z</published>
-    <updated>2020-03-06T11:58:28.038Z</updated>
+    <updated>2020-03-07T05:05:05.226Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h2
-        
-      
+      &lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
+&lt;p&gt;在&lt;a href=&quot;ce7fb64a.html&quot;&gt;PHP设计模式(七)：设计模式分类&lt;/a&gt;中我们提到过结构设计模式(Structural&lt;br&gt;
+patterns)，结构设计模式专注于设计对象(Object)和实例(Instance)的构建、组合过程。&lt;br&gt;
+结构设计模式包括下面七种设计模式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;适配器(Adapter)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;桥接(Bridge)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;合成(Composite)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;装饰(Decorator)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;外部(Facade)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;轻量(Flyweight)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;代理(Proxy)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;请无视拗口的中文翻译。结构设计模式着重于低耦合、高复用、高可维护性、高拓展性的设计原则。&lt;/p&gt;
     
     </summary>
     
@@ -179,21 +192,18 @@ Shadow DOM 是四大网络组件标准之一，提供 CSS 作用域、DOM 封装
   </entry>
   
   <entry>
-    <title>适配器模式</title>
-    <link href="http://ronghuaxueleng.github.io/archives/f5c535ea.html"/>
-    <id>http://ronghuaxueleng.github.io/archives/f5c535ea.html</id>
+    <title>基础编程模式</title>
+    <link href="http://ronghuaxueleng.github.io/archives/fb867561.html"/>
+    <id>http://ronghuaxueleng.github.io/archives/fb867561.html</id>
     <published>2016-10-13T00:00:00.000Z</published>
-    <updated>2020-03-06T11:58:28.036Z</updated>
+    <updated>2020-03-07T04:52:40.135Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h2
-        
-      
+      &lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
+&lt;p&gt;俗话说，“PHP是世界上最好的语言”，因为PHP什么都能干。但是在PHP编程中，你是否会遇到这样的困惑：明明是相同的需求，但是之前写的代码却并不能重用，稍微修改不满足需求，大改又会让页面变样。&lt;br&gt;
+是的，由于PHP什么都能干，但是高度灵活性降低了代码的结构性。虽然可以利用三方框架来解决问题，但问题的根本在于缺乏设计模式。&lt;br&gt;
+本系列文章将由浅入深的介绍各种设计模式。&lt;/p&gt;
     
     </summary>
     
@@ -210,74 +220,13 @@ Shadow DOM 是四大网络组件标准之一，提供 CSS 作用域、DOM 封装
     <link href="http://ronghuaxueleng.github.io/archives/daef90fc.html"/>
     <id>http://ronghuaxueleng.github.io/archives/daef90fc.html</id>
     <published>2016-10-13T00:00:00.000Z</published>
-    <updated>2020-03-06T11:58:28.045Z</updated>
+    <updated>2020-03-07T04:50:59.757Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h2
-        
-      
-    
-    </summary>
-    
-    
-      <category term="php" scheme="http://ronghuaxueleng.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://ronghuaxueleng.github.io/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>封装</title>
-    <link href="http://ronghuaxueleng.github.io/archives/d60eb45.html"/>
-    <id>http://ronghuaxueleng.github.io/archives/d60eb45.html</id>
-    <published>2016-10-13T00:00:00.000Z</published>
-    <updated>2020-03-06T11:58:28.044Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;blockquote&gt;
-&lt;p&gt;原文地址：[PHP设计模式(三)：封装][1]&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2
-        
-      
-    
-    </summary>
-    
-    
-      <category term="php" scheme="http://ronghuaxueleng.github.io/categories/php/"/>
-    
-    
-      <category term="php" scheme="http://ronghuaxueleng.github.io/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>继承</title>
-    <link href="http://ronghuaxueleng.github.io/archives/11d8b32d.html"/>
-    <id>http://ronghuaxueleng.github.io/archives/11d8b32d.html</id>
-    <published>2016-10-13T00:00:00.000Z</published>
-    <updated>2020-03-06T11:58:28.040Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2
-        
-      
+      &lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
+&lt;p&gt;对于编程来说，对事物的抽象是一个老生常谈的话题，抽象问题更利于面向对象编程以及程序设计模式。&lt;br&gt;
+和C/C++，Java，Python等语言一样，PHP也支持面向对象，但是又有略微区别，如PHP支持在接口中定义常量，但是不支持抽象变量。&lt;/p&gt;
     
     </summary>
     
@@ -294,17 +243,59 @@ Shadow DOM 是四大网络组件标准之一，提供 CSS 作用域、DOM 封装
     <link href="http://ronghuaxueleng.github.io/archives/ac4294eb.html"/>
     <id>http://ronghuaxueleng.github.io/archives/ac4294eb.html</id>
     <published>2016-10-13T00:00:00.000Z</published>
-    <updated>2020-03-06T11:58:28.052Z</updated>
+    <updated>2020-03-07T04:40:33.031Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h2
-        
-      
+      &lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
+&lt;p&gt;在&lt;a href=&quot;11d8b32d.html&quot;&gt;PHP设计模式(四)：继承&lt;/a&gt;中我们介绍了继承，利用extends来进行程序设计的方法。 在&lt;a href=&quot;daef90fc.html&quot;&gt;PHP设计模式(二)：抽象类和接口&lt;/a&gt;中我们介绍了接口，事实上也存在利用interface的程序设计方法，那就是多态。&lt;br&gt;
+和C/C++，Java，Python等语言一样，PHP也支持多态。多态更多是是一种面向对象程序设计的概念，让同一类对象执行同一个接口，但却实现不同的逻辑功能。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="php" scheme="http://ronghuaxueleng.github.io/categories/php/"/>
+    
+    
+      <category term="php" scheme="http://ronghuaxueleng.github.io/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>继承</title>
+    <link href="http://ronghuaxueleng.github.io/archives/11d8b32d.html"/>
+    <id>http://ronghuaxueleng.github.io/archives/11d8b32d.html</id>
+    <published>2016-10-13T00:00:00.000Z</published>
+    <updated>2020-03-07T04:45:55.043Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
+&lt;p&gt;在&lt;a href=&quot;daef90fc.html&quot;&gt;PHP设计模式(二)：抽象类和接口&lt;/a&gt;以及&lt;a href=&quot;d60eb45.html&quot;&gt;PHP设计模式(三)：封装&lt;/a&gt;中，我们已经见过继承，也就是extends关键字。&lt;br&gt;
+和C/C++，Java，Python等语言一样，PHP也支持继承，而且和其他语言没有什么区别。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="php" scheme="http://ronghuaxueleng.github.io/categories/php/"/>
+    
+    
+      <category term="php" scheme="http://ronghuaxueleng.github.io/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>封装</title>
+    <link href="http://ronghuaxueleng.github.io/archives/d60eb45.html"/>
+    <id>http://ronghuaxueleng.github.io/archives/d60eb45.html</id>
+    <published>2016-10-13T00:00:00.000Z</published>
+    <updated>2020-03-07T04:47:58.986Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
+&lt;p&gt;面向对象编程中，一切都是对象，对一个对象的封装，也成了面向对象编程中必不可少的部分。&lt;br&gt;
+和C/C++，Java，Python等语言一样，PHP也支持封装。&lt;/p&gt;
     
     </summary>
     
@@ -321,20 +312,13 @@ Shadow DOM 是四大网络组件标准之一，提供 CSS 作用域、DOM 封装
     <link href="http://ronghuaxueleng.github.io/archives/84372d79.html"/>
     <id>http://ronghuaxueleng.github.io/archives/84372d79.html</id>
     <published>2016-10-13T00:00:00.000Z</published>
-    <updated>2020-03-06T11:58:28.047Z</updated>
+    <updated>2020-03-07T05:01:00.303Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;blockquote&gt;
-&lt;p&gt;原文地址：[PHP设计模式(六)：MVC][1]&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2
-        
-      
+      &lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
+&lt;p&gt;简介on算机发展迅速，编程技术也日益分化。桌面应用编程，也逐渐出现了用户图形界面和程序逻辑分离的程序设计。到了90年代，web的出现更是让这种程序设计模式得以延续。&lt;br&gt;
+这种设计模式便是&lt;a href=&quot;https://en.wikipedia.org/wiki/Model-view-controller&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;MVC(Model-View-Control)&lt;/a&gt;，除了MVC，还有MVC的变种，如&lt;a href=&quot;https://en.wikipedia.org/wiki/Model-view-viewmodel:&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;MVVM(Model-View-View-Model)&lt;/a&gt;等。&lt;/p&gt;
     
     </summary>
     
@@ -351,20 +335,12 @@ Shadow DOM 是四大网络组件标准之一，提供 CSS 作用域、DOM 封装
     <link href="http://ronghuaxueleng.github.io/archives/ce7fb64a.html"/>
     <id>http://ronghuaxueleng.github.io/archives/ce7fb64a.html</id>
     <published>2016-10-13T00:00:00.000Z</published>
-    <updated>2020-03-06T11:58:28.048Z</updated>
+    <updated>2020-03-07T04:15:14.618Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
-&lt;p&gt;根据目的和范围，设计模式可以分为五类。按照目的分为：创建设计模式，结构设计模式，以及行为设计模式。按照范围分为：类的设计模式，以及对象设计模式。下面分别介绍&lt;br&gt;
-。&lt;/p&gt;
-&lt;h2
-        
-      
+      &lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
+&lt;p&gt;根据目的和范围，设计模式可以分为五类。按照目的分为：创建设计模式，结构设计模式，以及行为设计模式。按照范围分为：类的设计模式，以及对象设计模式。下面分别介绍。&lt;/p&gt;
     
     </summary>
     
@@ -381,19 +357,14 @@ Shadow DOM 是四大网络组件标准之一，提供 CSS 作用域、DOM 封装
     <link href="http://ronghuaxueleng.github.io/archives/1e857e9f.html"/>
     <id>http://ronghuaxueleng.github.io/archives/1e857e9f.html</id>
     <published>2016-10-13T00:00:00.000Z</published>
-    <updated>2020-03-06T11:58:28.054Z</updated>
+    <updated>2020-03-07T05:06:33.423Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
-&lt;p&gt;在[PHP设计模式(八)：工厂模式][2]中我们介绍了创建设计模式(Creation&lt;br&gt;
-patterns)中的工厂模式，下面我们将介绍另一种原型设计模式(Prototype
-        
-      
+      &lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
+&lt;p&gt;在&lt;a href=&quot;54788f73.html&quot;&gt;PHP设计模式(八)：工厂模式&lt;/a&gt;中我们介绍了创建设计模式(Creation&lt;br&gt;
+patterns)中的工厂模式，下面我们将介绍另一种原型设计模式(Prototype Method)。&lt;br&gt;
+在PHP中，原型设计模式依靠cloning复制对象来实现。通过cloning构造的对象，将大量节省新对象的构造时间。&lt;/p&gt;
     
     </summary>
     
@@ -410,17 +381,33 @@ patterns)中的工厂模式，下面我们将介绍另一种原型设计模式(P
     <link href="http://ronghuaxueleng.github.io/archives/54788f73.html"/>
     <id>http://ronghuaxueleng.github.io/archives/54788f73.html</id>
     <published>2016-10-13T00:00:00.000Z</published>
-    <updated>2020-03-06T11:58:28.050Z</updated>
+    <updated>2020-03-07T04:53:23.250Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h2
-        
-      
+      &lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
+&lt;p&gt;在&lt;a href=&quot;ce7fb64a.html&quot;&gt;PHP设计模式(七)：设计模式分类&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;中我们提到过创建设计模式(Creation&lt;br&gt;
+patterns)，创建设计模式专注于设计对象(Object)和实例(Instance)的创建过程。&lt;br&gt;
+创建设计模式包括下面五种设计模式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;抽象工厂设计模式(Abstract Factory)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;生成器模式(Builder)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;工厂设计模式(Factory Method)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;原型设计模式(Prototype Method)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;单例设计模式(Singleton)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;当程序逐渐扩展的时候，需要更多的新对象，新对象的创建不应该依赖于创建者，换句话说，新对象的创建过程，不应该依赖调用创建函数的对象。为了减少冗余，增加拓展性，工厂模式就是一种创建新对象时使用的设计模式。&lt;/p&gt;
     
     </summary>
     
@@ -437,20 +424,18 @@ patterns)中的工厂模式，下面我们将介绍另一种原型设计模式(P
     <link href="http://ronghuaxueleng.github.io/archives/84bd9124.html"/>
     <id>http://ronghuaxueleng.github.io/archives/84bd9124.html</id>
     <published>2016-10-12T00:00:00.000Z</published>
-    <updated>2020-03-06T11:58:27.906Z</updated>
+    <updated>2020-03-07T05:26:26.028Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;hr&gt;
+      &lt;hr&gt;
 &lt;blockquote&gt;
 &lt;p&gt;发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。在JavaScript开发中，我们一般用事件模型来替代传统的发布—订阅模式。&lt;/p&gt;
 &lt;/blockquote&gt;
-        
-      
+&lt;ul&gt;
+&lt;li&gt;发布—订阅模式可以广泛应用于异步编程中，这是一种替代传递回调函数的方案。比如，我们可以订阅ajax 请求的error、succ 等事件。 或者如果想在动画的每一帧完成之后做一些事情，那我们可以订阅一个事件，然后在动画的每一帧完成之后发布这个事件。在异步编程中使用发布—订阅模式，我们就无需过多关注对象在异步运行期间的内部状态，而只需要订阅感兴趣的事件发生点。&lt;/li&gt;
+&lt;li&gt;发布—订阅模式可以取代对象之间硬编码的通知机制，一个对象不用再显式地调用另外一个对象的某个接口。发布—订阅模式让两个对象松耦合地联系在一起，虽然不太清楚彼此的细节，但这不影响它们之间相互通信。当有新的订阅者出现时，发布者的代码不需要任何修改；同样发布者需要改变时，也不会影响到之前的订阅者。只要之前约定的事件名没有变化，就可以自由地改变它们。&lt;/li&gt;
+&lt;/ul&gt;
     
     </summary>
     
@@ -467,74 +452,17 @@ patterns)中的工厂模式，下面我们将介绍另一种原型设计模式(P
     <link href="http://ronghuaxueleng.github.io/archives/e19da94a.html"/>
     <id>http://ronghuaxueleng.github.io/archives/e19da94a.html</id>
     <published>2016-10-12T00:00:00.000Z</published>
-    <updated>2020-03-06T11:58:27.912Z</updated>
+    <updated>2020-03-07T05:28:27.499Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;hr&gt;
+      &lt;hr&gt;
 &lt;blockquote&gt;
-&lt;p&gt;享元模式的核心是运用共享技术来有效支持大量细粒度的对象。如果系统中因为创建了大量类似的对象而导致内存占用过高，享元模式就非常有用了。在JavaScript中，浏览器特别是移动端的浏览器分配的内存不算多，如何节省内存就成了一件非常有意义的事
-        
-      
-    
-    </summary>
-    
-    
-      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
-    
-    
-      <category term="javascript" scheme="http://ronghuaxueleng.github.io/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>组合模式</title>
-    <link href="http://ronghuaxueleng.github.io/archives/df879792.html"/>
-    <id>http://ronghuaxueleng.github.io/archives/df879792.html</id>
-    <published>2016-10-12T00:00:00.000Z</published>
-    <updated>2020-03-06T11:58:27.909Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2
-        
-      
-    
-    </summary>
-    
-    
-      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
-    
-    
-      <category term="javascript" scheme="http://ronghuaxueleng.github.io/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>命令模式</title>
-    <link href="http://ronghuaxueleng.github.io/archives/78134e07.html"/>
-    <id>http://ronghuaxueleng.github.io/archives/78134e07.html</id>
-    <published>2016-10-12T00:00:00.000Z</published>
-    <updated>2020-03-06T11:58:27.910Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;blockquote&gt;
-&lt;p&gt;命令模式是最简单和优雅的模式之一，命令模式中的命令指的是一个执行某些特定事情的指令。命令模式最常见的应用场景是：有时候需要向某些对象发送请求，但是不知道请求的接收者是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送
-        
-      
+&lt;p&gt;享元模式的核心是运用共享技术来有效支持大量细粒度的对象。如果系统中因为创建了大量类似的对象而导致内存占用过高，享元模式就非常有用了。在JavaScript中，浏览器特别是移动端的浏览器分配的内存不算多，如何节省内存就成了一件非常有意义的事。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;初识&quot;&gt;初识&lt;/h3&gt;
+&lt;p&gt;假设有个内衣工厂，要50个男模50个女模，你可能会这么写程序：&lt;/p&gt;
+&lt;p&gt;​
     
     </summary>
     
@@ -551,19 +479,63 @@ patterns)中的工厂模式，下面我们将介绍另一种原型设计模式(P
     <link href="http://ronghuaxueleng.github.io/archives/6440915e.html"/>
     <id>http://ronghuaxueleng.github.io/archives/6440915e.html</id>
     <published>2016-10-12T00:00:00.000Z</published>
-    <updated>2020-03-06T11:58:27.908Z</updated>
+    <updated>2020-03-07T05:29:38.995Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;hr&gt;
+      &lt;hr&gt;
 &lt;blockquote&gt;
-&lt;p&gt;模版方法是一种只需要使用继承就可以实现的非常简单的模式。他由两部分组成，第一部分是抽象父类，第二部分是具体实现子类。通常在抽象父类中封装了子类的算法框架，包括实现一些共用方法以及封装子类所有方法的执行顺序。子类通过继承这个抽象类，也继承了
-        
-      
+&lt;p&gt;模版方法是一种只需要使用继承就可以实现的非常简单的模式。他由两部分组成，第一部分是抽象父类，第二部分是具体实现子类。通常在抽象父类中封装了子类的算法框架，包括实现一些共用方法以及封装子类所有方法的执行顺序。子类通过继承这个抽象类，也继承了整个算法结构，并且可以选择重写父类的方法。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>职责链模式</title>
+    <link href="http://ronghuaxueleng.github.io/archives/7bf8ae3c.html"/>
+    <id>http://ronghuaxueleng.github.io/archives/7bf8ae3c.html</id>
+    <published>2016-10-12T00:00:00.000Z</published>
+    <updated>2020-03-07T05:29:48.736Z</updated>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系，将这些对象都练成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://ronghuaxueleng.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>组合模式</title>
+    <link href="http://ronghuaxueleng.github.io/archives/df879792.html"/>
+    <id>http://ronghuaxueleng.github.io/archives/df879792.html</id>
+    <published>2016-10-12T00:00:00.000Z</published>
+    <updated>2020-03-07T05:29:22.003Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;组合模式&quot;&gt;组合模式&lt;/h2&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;组合模式将对象组合成树形结构，以表示“部分-整体”的层次结构。除了用来表示树形结构之外，组合模式的另一个好处是通过对象的多态性表现，使得用户对单个对象和组合对象的使用具有一致性。&lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     

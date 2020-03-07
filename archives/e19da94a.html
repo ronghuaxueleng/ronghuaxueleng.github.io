@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
 <link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
 
 <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
@@ -51,15 +51,15 @@
   };
 </script>
 
-  <meta name="description" content="享元模式的核心是运用共享技术来有效支持大量细粒度的对象。如果系统中因为创建了大量类似的对象而导致内存占用过高，享元模式就非常有用了。在JavaScript中，浏览器特别是移动端的浏览器分配的内存不算多，如何节省内存就成了一件非常有意义的事。  初识 假设有个内衣工厂，要50个男模50个女模，你可能会这么写程序： var Model &#x3D; function(sex, underwear) {">
+  <meta name="description" content="享元模式的核心是运用共享技术来有效支持大量细粒度的对象。如果系统中因为创建了大量类似的对象而导致内存占用过高，享元模式就非常有用了。在JavaScript中，浏览器特别是移动端的浏览器分配的内存不算多，如何节省内存就成了一件非常有意义的事。  初识 假设有个内衣工厂，要50个男模50个女模，你可能会这么写程序： ​">
 <meta property="og:type" content="article">
 <meta property="og:title" content="享元模式">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/archives/e19da94a.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="享元模式的核心是运用共享技术来有效支持大量细粒度的对象。如果系统中因为创建了大量类似的对象而导致内存占用过高，享元模式就非常有用了。在JavaScript中，浏览器特别是移动端的浏览器分配的内存不算多，如何节省内存就成了一件非常有意义的事。  初识 假设有个内衣工厂，要50个男模50个女模，你可能会这么写程序： var Model &#x3D; function(sex, underwear) {">
+<meta property="og:description" content="享元模式的核心是运用共享技术来有效支持大量细粒度的对象。如果系统中因为创建了大量类似的对象而导致内存占用过高，享元模式就非常有用了。在JavaScript中，浏览器特别是移动端的浏览器分配的内存不算多，如何节省内存就成了一件非常有意义的事。  初识 假设有个内衣工厂，要50个男模50个女模，你可能会这么写程序： ​">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-10-12T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-06T11:58:27.912Z">
+<meta property="article:modified_time" content="2020-03-07T05:28:27.499Z">
 <meta property="article:author" content="曹强">
 <meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary">
@@ -116,7 +116,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -126,6 +126,9 @@
       </a>
     </div>
         <p class="site-subtitle">一切都是最好的安排</p>
+      <a>
+        <img class="custom-logo-image" src="/favicon.ico" alt="白云雅阁">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -203,13 +206,6 @@
 
               <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -267,31 +263,31 @@
 </blockquote>
 <h3 id="初识">初识</h3>
 <p>假设有个内衣工厂，要50个男模50个女模，你可能会这么写程序：</p>
-<pre><code>var Model = function(sex, underwear) {
-    this.sex = sex;
-    this.underwear = underwear;
-}
-Model.prototype.takePhoto = function() {
-    console.log('sex=' + this.sex + ' underwear=' + this.underwear );
-}
-for (var i = 1; i &lt;= 50; i++) {
-    var maleModel = new Model('male', 'underwear' + i);
-    maleModel.takePhoto();
-}
-for (var j = 1; j &lt;= 50; j++) {
-    var femaleModel = new Model('female', 'underwear' + j);
-    femaleModel.takePhoto();
-}
-</code></pre>
+<p>​    <a id="more"></a><br>
+var Model = function(sex, underwear) {<br>
+this.sex = sex;<br>
+this.underwear = underwear;<br>
+}<br>
+Model.prototype.takePhoto = function() {<br>
+console.log(‘sex=’ + this.sex + ’ underwear=’ + this.underwear );<br>
+}<br>
+for (var i = 1; i &lt;= 50; i++) {<br>
+var maleModel = new Model(‘male’, ‘underwear’ + i);<br>
+maleModel.takePhoto();<br>
+}<br>
+for (var j = 1; j &lt;= 50; j++) {<br>
+var femaleModel = new Model(‘female’, ‘underwear’ + j);<br>
+femaleModel.takePhoto();<br>
+}</p>
 <p>要得到一张照片，每次都需要传入<code>sex</code>，<code>underwear</code>参数，根据现在的需求一共会产生100个对象。但是如果将来要生产10000种，那这个程序可能会因为存在太多对象提前崩溃。所以我们做一点改动</p>
-<pre><code>var Model = function(sex) {
-    this.sex = sex;
-}
-Model.pototype.takePhoto = function() {
-    console.log('sex=' + this.sex + ' underwear=' + this.underwear );
-};
-
-//分别创建一个男模特对象和女模特对象
+<p>​<br>
+var Model = function(sex) {<br>
+this.sex = sex;<br>
+}<br>
+Model.pototype.takePhoto = function() {<br>
+console.log(‘sex=’ + this.sex + ’ underwear=’ + this.underwear );<br>
+};</p>
+<pre><code>//分别创建一个男模特对象和女模特对象
 var maleModel = new Model('male'),
     femaleModel = new Model('female');
 //给模特依次穿上所有的男装，并进行拍照    
@@ -334,31 +330,31 @@ for (var j = 1; j &lt;= 50; j++) {
 <h3 id="对象池">对象池</h3>
 <p>在java中，对象池维护一个装载空闲对象的池子，如果需要对象的时候，不是直接new，而是转从对象池里获取。如果对象池里没有空闲对象，则创建一个新的对象，当获取出的对象完成他/它的职责之后，再进入池子等待下次获取。</p>
 <p>这里稍微介绍一下对象池工厂里实现通用对象池的方法：</p>
-<pre><code>var objectPoolFactory = function(createObjFn) {
-    var objectPool = [];
-    return {
-        create: function() {
-            var obj = objectPool.length === 0 ? createObjFn.apply(this, arguments) : objectPool.shift();
-            return obj;
-        },
-        recover: function(obj) {
-            objectPool.push(obj);
-        }
-    }
-};
-</code></pre>
+<p>​<br>
+var objectPoolFactory = function(createObjFn) {<br>
+var objectPool = [];<br>
+return {<br>
+create: function() {<br>
+var obj = objectPool.length === 0 ? createObjFn.apply(this, arguments) : objectPool.shift();<br>
+return obj;<br>
+},<br>
+recover: function(obj) {<br>
+objectPool.push(obj);<br>
+}<br>
+}<br>
+};</p>
 <p>现在利用<code>objectPoolFactory</code>来创建一个装载一些<code>iframe</code>的对象池：</p>
-<pre><code>var iframeFactory = objectPoolFactory( function() {
-    var iframe = document.createElement('iframe');
-    document.body.appendChild(iframe);
-    iframe.onload = function() {
-        iframe.onload = null; //防止iframe重复加载的bug
-        iframeFactory.recover(iframe); //iframe加载完成之后回收节点
-    }
-    return iframe;
-});
-
-var iframe1 = iframeFactory.create();
+<p>​<br>
+var iframeFactory = objectPoolFactory( function() {<br>
+var iframe = document.createElement(‘iframe’);<br>
+document.body.appendChild(iframe);<br>
+iframe.onload = function() {<br>
+iframe.onload = null; //防止iframe重复加载的bug<br>
+iframeFactory.recover(iframe); //iframe加载完成之后回收节点<br>
+}<br>
+return iframe;<br>
+});</p>
+<pre><code>var iframe1 = iframeFactory.create();
 iframe1.src = 'http://baidu.com';
 
 var iframe2 = iframeFactory.create();
@@ -409,8 +405,8 @@ setTimeout(function() {
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/archives/df879792.html" rel="prev" title="组合模式">
-      <i class="fa fa-chevron-left"></i> 组合模式
+    <a href="/archives/6440915e.html" rel="prev" title="模版方法">
+      <i class="fa fa-chevron-left"></i> 模版方法
     </a></div>
       <div class="post-nav-item">
     <a href="/archives/84bd9124.html" rel="next" title="发布订阅模式">
@@ -834,13 +830,13 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">318k</span>
+    <span title="站点总字数">320k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">4:49</span>
+    <span title="站点阅读时长">4:51</span>
 </div>
 
         
@@ -1016,12 +1012,12 @@ if(canvas.getContext){
   </script>
 
 
-  <script async src="/js/cursor/fireworks.js"></script>
+  <script async src="/blog/js/cursor/fireworks.js"></script>
 
 
 
 
-  <script src="/js/activate-power-mode.min.js"></script>
+  <script src="/blog/js/activate-power-mode.min.js"></script>
   <script>
     POWERMODE.colorful = true;
     POWERMODE.shake = false;
@@ -1030,7 +1026,7 @@ if(canvas.getContext){
 
 
 
-<script type="text/javascript" src="/js/fold_action.js"></script><div class="moon-menu">
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
   <div class="moon-menu-items">
     
     <div class="moon-menu-item" onclick="back2bottom()">

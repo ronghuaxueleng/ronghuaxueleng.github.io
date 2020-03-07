@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
 <link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
 
 <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
@@ -51,15 +51,15 @@
   };
 </script>
 
-  <meta name="description" content="Introduction 在[PHP设计模式(四)：继承][2]中我们介绍了继承，利用extends来进行程序设计的方法。 在[PHP设计模式(二)：抽象类和接口][3]中我们介绍了接口，事实上也存在利用interface的程序设计方法，那就是多态。 和C&#x2F;C++，Java，Python等语言一样，PHP也支持多态。多态更多是是一种面向对象程序设计的概念，让同一类对象执行同一个接口，但却实现不同的">
+  <meta name="description" content="简介 在PHP设计模式(四)：继承中我们介绍了继承，利用extends来进行程序设计的方法。 在PHP设计模式(二)：抽象类和接口中我们介绍了接口，事实上也存在利用interface的程序设计方法，那就是多态。 和C&#x2F;C++，Java，Python等语言一样，PHP也支持多态。多态更多是是一种面向对象程序设计的概念，让同一类对象执行同一个接口，但却实现不同的逻辑功能。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多态">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/archives/ac4294eb.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="Introduction 在[PHP设计模式(四)：继承][2]中我们介绍了继承，利用extends来进行程序设计的方法。 在[PHP设计模式(二)：抽象类和接口][3]中我们介绍了接口，事实上也存在利用interface的程序设计方法，那就是多态。 和C&#x2F;C++，Java，Python等语言一样，PHP也支持多态。多态更多是是一种面向对象程序设计的概念，让同一类对象执行同一个接口，但却实现不同的">
+<meta property="og:description" content="简介 在PHP设计模式(四)：继承中我们介绍了继承，利用extends来进行程序设计的方法。 在PHP设计模式(二)：抽象类和接口中我们介绍了接口，事实上也存在利用interface的程序设计方法，那就是多态。 和C&#x2F;C++，Java，Python等语言一样，PHP也支持多态。多态更多是是一种面向对象程序设计的概念，让同一类对象执行同一个接口，但却实现不同的逻辑功能。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-10-13T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-06T11:58:28.052Z">
+<meta property="article:modified_time" content="2020-03-07T04:40:33.031Z">
 <meta property="article:author" content="曹强">
 <meta property="article:tag" content="php">
 <meta name="twitter:card" content="summary">
@@ -116,7 +116,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -126,6 +126,9 @@
       </a>
     </div>
         <p class="site-subtitle">一切都是最好的安排</p>
+      <a>
+        <img class="custom-logo-image" src="/favicon.ico" alt="白云雅阁">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -203,13 +206,6 @@
 
               <time title="创建时间：2016-10-13 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-13T00:00:00Z">2016-10-13</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-06 11:58:28" itemprop="dateModified" datetime="2020-03-06T11:58:28Z">2020-03-06</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -242,7 +238,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>979</span>
+              <span>1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -261,52 +257,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Introduction">Introduction</h2>
-<p>在[PHP设计模式(四)：继承][2]中我们介绍了继承，利用extends来进行程序设计的方法。<br>
-在[PHP设计模式(二)：抽象类和接口][3]中我们介绍了接口，事实上也存在利用interface的程序设计方法，那就是多态。<br>
-和C/C++，Java，Python等语言一样，PHP也支持多态。多态更多是是一种面向对象程序设计的概念，让同一类对象执行同一个接口，但却实现不同的逻辑功能<br>
-。</p>
+        <h2 id="简介">简介</h2>
+<p>在<a href="11d8b32d.html">PHP设计模式(四)：继承</a>中我们介绍了继承，利用extends来进行程序设计的方法。 在<a href="daef90fc.html">PHP设计模式(二)：抽象类和接口</a>中我们介绍了接口，事实上也存在利用interface的程序设计方法，那就是多态。<br>
+和C/C++，Java，Python等语言一样，PHP也支持多态。多态更多是是一种面向对象程序设计的概念，让同一类对象执行同一个接口，但却实现不同的逻辑功能。</p>
+<a id="more"></a>
 <h2 id="多态-Polymorphism">多态/Polymorphism</h2>
 <p>还是用动物、鲸鱼和鲤鱼来举例：</p>
-<pre><code>&lt;?php
-interface IEat {
-  function eatFish();
-  function eatMoss();
-}
-
-class Whale implements IEat {
-  public function eatFish() {
-    echo &quot;Whale eats fish.\n&quot;;
-  }
-  public function eatMoss() {
-    echo &quot;Whale doesn't eat fish\n&quot;;
-  }
-}
-
-class Carp implements IEat {
-  public function eatFish() {
-    echo &quot;Carp doesn't eat moss.\n&quot;;
-  }
-  public function eatMoss() {
-    echo &quot;Carp eats moss.\n&quot;;
-  }
-}
-
-$whale = new Whale();
-$whale-&gt;eatFish();
-$whale-&gt;eatMoss();
-$carp = new Carp();
-$carp-&gt;eatFish();
-$carp-&gt;eatMoss();
-?&gt;
-</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="class"><span class="keyword">interface</span> <span class="title">IEat</span> </span>&#123;</span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">eatFish</span><span class="params">()</span></span>;</span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">eatMoss</span><span class="params">()</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Whale</span> <span class="keyword">implements</span> <span class="title">IEat</span> </span>&#123;</span><br><span class="line">      <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eatFish</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Whale eats fish.\n"</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eatMoss</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Whale doesn't eat fish\n"</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Carp</span> <span class="keyword">implements</span> <span class="title">IEat</span> </span>&#123;</span><br><span class="line">      <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eatFish</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Carp doesn't eat moss.\n"</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eatMoss</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Carp eats moss.\n"</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	$whale = <span class="keyword">new</span> Whale();</span><br><span class="line">	$whale-&gt;eatFish();</span><br><span class="line">	$whale-&gt;eatMoss();</span><br><span class="line">	$carp = <span class="keyword">new</span> Carp();</span><br><span class="line">	$carp-&gt;eatFish();</span><br><span class="line">	$carp-&gt;eatMoss();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>运行一下：</p>
-<pre><code>$ php Inheritance.php
-Whale eats fish.
-Whale doesn't eat fish.
-Carp eats moss.
-Carp doesn't eat moss.
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> php Inheritance.php</span></span><br><span class="line">	Whale eats fish.</span><br><span class="line">    Whale doesn't eat fish.</span><br><span class="line">	Carp eats moss.</span><br><span class="line">    Carp doesn't eat moss.</span><br></pre></td></tr></table></figure>
 <p>注意PHP的函数定义不包含返回值，因此完全可以给不同的接口实现返回不同类型的数据。这一点和C/C++，Java等语言是不同的。此外，返回不同类型的数据，甚至不返回结果，对程序设计来说，会额外增加维护成本，已经和使用接口的初衷不同了（接口为了封装实现，而不同的返回值事实上是需要调用者去理解实现的）。</p>
 <h2 id="总结">总结</h2>
 <p>合理利用多态对接口进行不同的实现，简化你的编程模型，让代码易于维护。</p>
@@ -320,19 +279,19 @@ Carp doesn't eat moss.
   <div class="popular-posts-header">相关文章推荐</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\archives\fb867561.html" rel="bookmark">基础编程模式</a></div>
+      <div class="popular-posts-title"><a href="\archives\f5c535ea.html" rel="bookmark">适配器模式</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\archives\f5c535ea.html" rel="bookmark">适配器模式</a></div>
+      <div class="popular-posts-title"><a href="\archives\fb867561.html" rel="bookmark">基础编程模式</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\archives\daef90fc.html" rel="bookmark">抽象类和接口</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\archives\d60eb45.html" rel="bookmark">封装</a></div>
+      <div class="popular-posts-title"><a href="\archives\11d8b32d.html" rel="bookmark">继承</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\archives\11d8b32d.html" rel="bookmark">继承</a></div>
+      <div class="popular-posts-title"><a href="\archives\d60eb45.html" rel="bookmark">封装</a></div>
     </li>
   </ul>
 
@@ -348,12 +307,12 @@ Carp doesn't eat moss.
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/archives/84372d79.html" rel="prev" title="MVC">
-      <i class="fa fa-chevron-left"></i> MVC
+    <a href="/archives/11d8b32d.html" rel="prev" title="继承">
+      <i class="fa fa-chevron-left"></i> 继承
     </a></div>
       <div class="post-nav-item">
-    <a href="/archives/11d8b32d.html" rel="next" title="继承">
-      继承 <i class="fa fa-chevron-right"></i>
+    <a href="/archives/daef90fc.html" rel="next" title="抽象类和接口">
+      抽象类和接口 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -414,7 +373,7 @@ Carp doesn't eat moss.
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态-Polymorphism"><span class="nav-number">2.</span> <span class="nav-text">多态&#x2F;Polymorphism</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态-Polymorphism"><span class="nav-number">2.</span> <span class="nav-text">多态&#x2F;Polymorphism</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -773,13 +732,13 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">318k</span>
+    <span title="站点总字数">320k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">4:49</span>
+    <span title="站点阅读时长">4:51</span>
 </div>
 
         
@@ -955,12 +914,12 @@ if(canvas.getContext){
   </script>
 
 
-  <script async src="/js/cursor/fireworks.js"></script>
+  <script async src="/blog/js/cursor/fireworks.js"></script>
 
 
 
 
-  <script src="/js/activate-power-mode.min.js"></script>
+  <script src="/blog/js/activate-power-mode.min.js"></script>
   <script>
     POWERMODE.colorful = true;
     POWERMODE.shake = false;
@@ -969,7 +928,7 @@ if(canvas.getContext){
 
 
 
-<script type="text/javascript" src="/js/fold_action.js"></script><div class="moon-menu">
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
   <div class="moon-menu-items">
     
     <div class="moon-menu-item" onclick="back2bottom()">

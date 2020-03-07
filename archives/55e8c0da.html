@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
 <link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
 
 <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
@@ -51,15 +51,15 @@
   };
 </script>
 
-  <meta name="description" content="事件 在d3入门系列文章中我们介绍过d3选择器，其中有提到选择器为交互添加或移除事件监听器的方法selection.on，除了选择器事件外，D3还提供了很多种事件机制，本节我们详细介绍下d3的事件机制 选择器事件 添加事件监听 跟jQuery类似的方法监听事件，传递参数为当前数据d和索引i; 如果所选择的元素相同类型的一个事件监听已经注册了，新的监听替换老的； selection.on(&#39;clic">
+  <meta name="description" content="事件 在d3入门系列文章中我们介绍过d3选择器，其中有提到选择器为交互添加或移除事件监听器的方法selection.on，除了选择器事件外，D3还提供了很多种事件机制，本节我们详细介绍下d3的事件机制">
 <meta property="og:type" content="article">
 <meta property="og:title" content="D3.js 进阶教程系列">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/archives/55e8c0da.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="事件 在d3入门系列文章中我们介绍过d3选择器，其中有提到选择器为交互添加或移除事件监听器的方法selection.on，除了选择器事件外，D3还提供了很多种事件机制，本节我们详细介绍下d3的事件机制 选择器事件 添加事件监听 跟jQuery类似的方法监听事件，传递参数为当前数据d和索引i; 如果所选择的元素相同类型的一个事件监听已经注册了，新的监听替换老的； selection.on(&#39;clic">
+<meta property="og:description" content="事件 在d3入门系列文章中我们介绍过d3选择器，其中有提到选择器为交互添加或移除事件监听器的方法selection.on，除了选择器事件外，D3还提供了很多种事件机制，本节我们详细介绍下d3的事件机制">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-09-24T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-06T11:58:27.953Z">
+<meta property="article:modified_time" content="2020-03-07T05:12:04.361Z">
 <meta property="article:author" content="曹强">
 <meta property="article:tag" content="d3">
 <meta name="twitter:card" content="summary">
@@ -116,7 +116,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -126,6 +126,9 @@
       </a>
     </div>
         <p class="site-subtitle">一切都是最好的安排</p>
+      <a>
+        <img class="custom-logo-image" src="/favicon.ico" alt="白云雅阁">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -203,13 +206,6 @@
 
               <time title="创建时间：2016-09-24 00:00:00" itemprop="dateCreated datePublished" datetime="2016-09-24T00:00:00Z">2016-09-24</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-06 11:58:27" itemprop="dateModified" datetime="2020-03-06T11:58:27Z">2020-03-06</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -242,14 +238,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>12k</span>
+              <span>11k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>11 分钟</span>
+              <span>10 分钟</span>
             </span>
 
         </div>
@@ -263,35 +259,36 @@
       
         <h2 id="事件">事件</h2>
 <p>在d3入门系列文章中我们介绍过<a href="http://www.atatech.org/articles/45474" target="_blank" rel="noopener">d3选择器</a>，其中有提到选择器<code>为交互添加或移除事件监听器</code>的方法<code>selection.on</code>，除了选择器事件外，D3还提供了很多种事件机制，本节我们详细介绍下d3的事件机制</p>
+<a id="more"></a>
 <h3 id="选择器事件">选择器事件</h3>
 <h4 id="添加事件监听">添加事件监听</h4>
 <p>跟jQuery类似的方法监听事件，传递参数为当前数据<code>d</code>和索引<code>i</code>;</p>
 <p>如果所选择的元素相同类型的一个事件监听已经注册了，新的监听替换老的；</p>
-<pre><code>selection.on('click',function(d,i){
-    ….
-});
-</code></pre>
+<p>​<br>
+selection.on(‘click’,function(d,i){<br>
+….<br>
+});</p>
 <p>为相同事件类型注册多个监听器，该类型可以跟一个可选的命名空间，如“click.foo”和“click.bar”。</p>
-<pre><code>selection.on('click.foo',function(d,i){
-    ….
-});
-</code></pre>
+<p>​<br>
+selection.on(‘click.foo’,function(d,i){<br>
+….<br>
+});</p>
 <h4 id="移除事件监听">移除事件监听</h4>
 <p>传递null删除监听器</p>
-<pre><code>selection.on('click', null);
-</code></pre>
+<p>​<br>
+selection.on(‘click’, null);</p>
 <h4 id="d3-event">d3.event</h4>
 <p>jQuery的事件一般是这样的</p>
-<pre><code>$('body').on('click', function(ev){
-    console.log(ev);
-});
-</code></pre>
+<p>​<br>
+$(‘body’).on(‘click’, function(ev){<br>
+console.log(ev);<br>
+});</p>
 <p>而在D3中，会有一点小小的不同，事件参数不再是默认的第一个参数，而是使用<code>d3.event</code>获取</p>
-<pre><code>d3.select('body').on('click', function(){
-    var ev = d3.event;
-    console.log(ev);
-});
-</code></pre>
+<p>​<br>
+d3.select(‘body’).on(‘click’, function(){<br>
+var ev = d3.event;<br>
+console.log(ev);<br>
+});</p>
 <h4 id="d3-mouse-container">d3.mouse(container)</h4>
 <p>以数组形式返回当前<code>d3.event</code>相对于指定容器的x和y坐标([11,22])，该容器可以是一个HTML或SVG<strong>容器元素</strong></p>
 <p><strong>需要注意一下容器元素，HTML的容器元素包括div、span、p之类标签，而SVG的容器元素主要是指<code>g</code>标签</strong></p>
@@ -302,18 +299,18 @@
 </code></pre>
 <h4 id="d3-touch-container-touches-identifier">d3.touch(container[, touches], identifier)</h4>
 <p>以数组形式返回当前<code>d3.event</code>指定触摸标识符相对于指定容器的x和y坐标([11,22])，该容器可以是一个HTML或SVG<strong>容器元素</strong>，如果未指定touches时，touches默认为当前事件的changedTouches。</p>
-<pre><code>d3.select(‘#demo1').on(’touchstart', function(){
-     var ev = d3.event;
-     console.log(d3.touch(this, ev.changedTouches[0].identifier)); // ==&gt;返回当前容器第1个触摸点的坐标，返回值示例：[11,22]
-});
-</code></pre>
+<p>​<br>
+d3.select(‘#demo1’).on(’touchstart’, function(){<br>
+var ev = d3.event;<br>
+console.log(d3.touch(this, ev.changedTouches[0].identifier)); // ==&gt;返回当前容器第1个触摸点的坐标，返回值示例：[11,22]<br>
+});</p>
 <h4 id="d3-touches-container-touches">d3.touches(container[, touches])</h4>
 <p>以双重数组形式返回当前<code>d3.event</code>相对于指定容器的所有x和y坐标([[11,22],[33,44]])，该容器可以是一个HTML或SVG<strong>容器元素</strong>，如果未指定touches时，touches默认为当前事件的touches。</p>
-<pre><code>d3.select(‘#demo1').on(’touchstart', function(){
-     var ev = d3.event;
-     console.log(d3.touches(this)); // ==&gt;返回当前容器所有触摸点的坐标，返回值示例：[[11,22],[33,44]]
-});
-</code></pre>
+<p>​<br>
+d3.select(‘#demo1’).on(’touchstart’, function(){<br>
+var ev = d3.event;<br>
+console.log(d3.touches(this)); // ==&gt;返回当前容器所有触摸点的坐标，返回值示例：[[11,22],[33,44]]<br>
+});</p>
 <h3 id="Ajax事件">Ajax事件</h3>
 <p>D3中用d3.xhr来发送ajax请求，对指定的类型添加或者移除事件监听器，支持4种类型事件：</p>
 <ul>
@@ -323,19 +320,19 @@
 <li>error – 当请求不成功之后，此类型包含4xx和5xx返回值</li>
 </ul>
 <p>如果一个相同的类型监听器已经被注册，已存在的监听器就会在新监听器添加之前被移除。为了给同一个事件类型注册多个监听器，那么类型将遵循可选的命名空间，例如load.foo 和 load.bar。为了移除监听器，传递null值为监听器。</p>
-<pre><code>监听请求成功数据
-d3.xhr('./data.json').on('load', function(d){
-     console.log(d)
-}).send('get');
-</code></pre>
+<p>​<br>
+监听请求成功数据<br>
+d3.xhr(’./data.json’).on(‘load’, function(d){<br>
+console.log(d)<br>
+}).send(‘get’);</p>
 <h3 id="自定义事件">自定义事件</h3>
 <p>通过d3.dispatch创建自定义事件，如果事件监听注册了同一个事件类型，已经存在的监听将被删除，然后注册新的监听。为了注册多个事件监听到同一个事件类型，可以为这个typy提供命名空间，如： “click.foo” 和 “click.bar”。同样的，可以通过dispatch.on(“click”,null) 来移除某个命名空间内注册的所有监听</p>
-<pre><code>  var dispatch = d3.dispatch('test','mock');
-  dispatch.on('test', function(text){
-    alert(text)
-  })
-  dispatch.test('this is test event');
-</code></pre>
+<p>​<br>
+var dispatch = d3.dispatch(‘test’,‘mock’);<br>
+dispatch.on(‘test’, function(text){<br>
+alert(text)<br>
+})<br>
+dispatch.test(‘this is test event’);</p>
 <h3 id="拖曳选择事件">拖曳选择事件</h3>
 <p>通过点击和拖曳来选择一个1维或2维区域，支持3种类型事件：</p>
 <ul>
@@ -441,61 +438,62 @@ link.attr(“x1”, function(d) { return d.source.x; })<br>
 <p>除了实现简单的属性、样式过渡动画，D3的transition通过tween(自定义补间)、interpolate(插值器)还可以实现非常强大的动画效果，而且更灵活，本节我们来了解一下更多动画细节。</p>
 <h3 id="transition-tween-name-factory">transition.tween(name,factory)</h3>
 <p>注册一个自定义补间函数，每次执行过渡动画时都会执行这个函数所返回的自定义插值函数，自定义插值函数将传递一个[0,1]区间的参数，参数值随着动画过程逐步从0增加到1，而我们需要做的就是在这个<code>自定义插值函数</code>中给动画元素赋值，可以是元素属性，也可以是元素样式，这完全由我们决定，通过设置name值，可以在需要时给此name赋值null来停止动画，上一段代码来更好的理解，简单实现一个矩形宽从0到500的动画，：</p>
-<pre><code>  var body = d3.select('body');
-  var div = body.append('div').style({width: 0, height:'20px', background: '#eee'});
-  div
-    .transition()
-    .duration(1000)
-    .tween('width',function(){
-      return function(t){
-        var w = Math.floor(t*500)+'px';
-        d3.select(this).text(w);
-        d3.select(this).style('width',w);
-      };
-    });
-  setTimeout(function(){div.transition().tween('width',null);},500);
-</code></pre>
+<p>​<br>
+var body = d3.select(‘body’);<br>
+var div = body.append(‘div’).style({width: 0, height:‘20px’, background: ‘#eee’});<br>
+div<br>
+.transition()<br>
+.duration(1000)<br>
+.tween(‘width’,function(){<br>
+return function(t){<br>
+var w = Math.floor(t*500)+‘px’;<br>
+d3.select(this).text(w);<br>
+d3.select(this).style(‘width’,w);<br>
+};<br>
+});<br>
+setTimeout(function(){div.transition().tween(‘width’,null);},500);</p>
 <p><a href="https://jsbin.com/hehiya/edit?html,js,output" target="_blank" rel="noopener">点击查看DEMO</a></p>
 <p>在上例中我们取到新的宽度值后，需要手动调用选择器的style的方法来赋值，感觉有点LOW是不。<br>
 其实在D3中有提供styleTween和attrTween方法分别为选择器的样式和属性快速赋值，所以上面的动画可以用styleTween来实现</p>
-<pre><code>  var body = d3.select('body');
-  var div = body.append('div').style({width: 0, height:'20px', background: '#eee'});
-  div
-    .transition()
-    .duration(1000)
-    .styleTween('width',function(){
-      var that = this;
-      return function(t){
-        var w = Math.floor(t*500)+'px';
-        d3.select(that).text(w);
-        return w;
-      };
-    });
-  setTimeout(function(){div.transition().tween('width',null);},500);
-</code></pre>
+<p>​<br>
+var body = d3.select(‘body’);<br>
+var div = body.append(‘div’).style({width: 0, height:‘20px’, background: ‘#eee’});<br>
+div<br>
+.transition()<br>
+.duration(1000)<br>
+.styleTween(‘width’,function(){<br>
+var that = this;<br>
+return function(t){<br>
+var w = Math.floor(t*500)+‘px’;<br>
+d3.select(that).text(w);<br>
+return w;<br>
+};<br>
+});<br>
+setTimeout(function(){div.transition().tween(‘width’,null);},500);</p>
 <p><a href="https://jsbin.com/zakihi/edit?html,js,output" target="_blank" rel="noopener">点击查看DEMO</a></p>
 <h3 id="d3-interpolate-a-b">d3.interpolate(a,b)</h3>
 <p>上面我们用的是<code>自定义插值函数</code>来实现过渡动画，D3中为我们提供更强大的内置插值器方法d3.interpolate，通过插值器，我们可以轻松的实现数字、颜色或任意值的过渡，如我们要实现上例中宽度变化的同时，背景颜色由浅变深，字体颜色由深变浅：</p>
-<pre><code>  var body = d3.select('body');
-  var div = body.append('div').style({width: 0, height:'20px', background: '#eee'});
-  div
-    .transition()
-    .duration(1000)
-    .styleTween('width',function(){
-      var that = this;
-      return function(t){
-        var w = Math.floor(t*500)+'px';
-        d3.select(that).text(w);
-        return w;
-      };
-    })
-    .styleTween('background',function(){
-      return d3.interpolate('#eee','#000');
-    })
-    .styleTween('color',function(){
-      return d3.interpolate('#000','#fff');
-    });
-</code></pre>
+<p>​<br>
+var body = d3.select(‘body’);<br>
+var div = body.append(‘div’).style({width: 0, height:‘20px’, background: ‘#eee’});<br>
+div<br>
+.transition()<br>
+.duration(1000)<br>
+.styleTween(‘width’,function(){<br>
+var that = this;<br>
+return function(t){<br>
+var w = Math.floor(t*500)+‘px’;<br>
+d3.select(that).text(w);<br>
+return w;<br>
+};<br>
+})<br>
+.styleTween(‘background’,function(){<br>
+return d3.interpolate(’#eee’,’#000’);<br>
+})<br>
+.styleTween(‘color’,function(){<br>
+return d3.interpolate(’#000’,’#fff’);<br>
+});</p>
+<p>​</p>
 <p><a href="https://jsbin.com/dilunow/edit?html,js,output" target="_blank" rel="noopener">点击查看DEMO</a></p>
 <p>d3.interpolate在执行时会根据参数的类型自动判断以什么样的方式实现过渡，以下是参数类型与具体内置插值器的对应关系</p>
 <table>
@@ -550,19 +548,19 @@ link.attr(“x1”, function(d) { return d.source.x; })<br>
 </table>
 <h3 id="d3-interpolators">d3.interpolators</h3>
 <p>如果内置插值器都不符合需要，那我们可以用d3.interpolators来自定义一个插值器，以一个百分比过渡动画为例：</p>
-<pre><code>d3.interpolators.push(function(a, b) {
-  var re = /^(\d\d\.\d\d)%$/, ma, mb, f = d3.format('05.2f’);
-//判断过渡参数是否符合此自定义插值器的要求
-  if ((ma = re.exec(a)) &amp;&amp; (mb = re.exec(b))) {
-    a = parseFloat(ma[1]);
-    b = parseFloat(mb[1]) - a;
-    return function(t) {
-      return f(a + b * t) + '%';
-    };
-  }
-});
-
-d3.select('body')
+<p>​<br>
+d3.interpolators.push(function(a, b) {<br>
+var re = /^(\d\d.\d\d)%$/, ma, mb, f = d3.format('05.2f’);<br>
+//判断过渡参数是否符合此自定义插值器的要求<br>
+if ((ma = re.exec(a)) &amp;&amp; (mb = re.exec(b))) {<br>
+a = parseFloat(ma<a href="http://www.atatech.org/articles/45474" target="_blank" rel="noopener">1</a>);<br>
+b = parseFloat(mb<a href="http://www.atatech.org/articles/45474" target="_blank" rel="noopener">1</a>) - a;<br>
+return function(t) {<br>
+return f(a + b * t) + ‘%’;<br>
+};<br>
+}<br>
+});</p>
+<pre><code>d3.select('body')
   .transition()
   .duration(10000)
   .tween('text',function(){
@@ -578,10 +576,10 @@ d3.select('body')
 <h3 id="空">空</h3>
 <p>允许语法为空，可以是空字符串或无参数，直接返回数字字符串，相当于执行.toString()；</p>
 <p>语法:[[fill]align][sign][symbol][0][width][,][.precision][type]</p>
-<pre><code>var formatter = d3.format(&quot;&quot;);
-formatter(2) // &quot;2&quot;
-
-var formatter = d3.format();
+<p>​<br>
+var formatter = d3.format(&quot;&quot;);<br>
+formatter(2) // “2”</p>
+<pre><code>var formatter = d3.format();
 formatter(2) // &quot;2&quot;
 </code></pre>
 <h3 id="简单类型">简单类型</h3>
@@ -589,141 +587,141 @@ formatter(2) // &quot;2&quot;
 <p>语法:[[fill]align][sign][symbol][0][width][,][.precision]<code>[type]</code></p>
 <h4 id="指数-e">指数 e</h4>
 <p>通过在数字对象调用<code>.toExponential</code>方法将数字以指数方式显示。</p>
-<pre><code>d3.format(&quot;e&quot;)(2000); // &quot;2e+3&quot;
-d3.format(&quot;e&quot;)(2000.0); // &quot;2e+3&quot;
-d3.format(&quot;e&quot;)(20003010); // &quot;2.000301e+7&quot;
-d3.format(&quot;e&quot;)(0.000001); // &quot;1e-6&quot;
-</code></pre>
+<p>​<br>
+d3.format(“e”)(2000); // “2e+3”<br>
+d3.format(“e”)(2000.0); // “2e+3”<br>
+d3.format(“e”)(20003010); // “2.000301e+7”<br>
+d3.format(“e”)(0.000001); // “1e-6”</p>
 <h4 id="整数-d">整数 d</h4>
 <p>将数字以整数方式显示，忽略非整数值。</p>
-<pre><code>d3.format(&quot;d&quot;)(20); // &quot;20&quot;
-d3.format(&quot;d&quot;)(1000.0); // &quot;1000&quot;
-d3.format(&quot;d&quot;)(1000.000001); // &quot;&quot;
-d3.format(&quot;d&quot;)(-1.12); // &quot;&quot;
-</code></pre>
+<p>​<br>
+d3.format(“d”)(20); // “20”<br>
+d3.format(“d”)(1000.0); // “1000”<br>
+d3.format(“d”)(1000.000001); // “”<br>
+d3.format(“d”)(-1.12); // “”</p>
 <h4 id="百分比">百分比 %</h4>
 <p>将数字x100并以Math.round方法取整，并在后面添加%显示。</p>
-<pre><code>d3.format(&quot;%&quot;)(1); // &quot;100%&quot;
-d3.format(&quot;%&quot;)(0.999); // &quot;100%&quot;
-d3.format(&quot;%&quot;)(+0.12); // &quot;+12%&quot;
-d3.format(&quot;%&quot;)(-0.12); // &quot;-12%&quot;
-</code></pre>
+<p>​<br>
+d3.format(&quot;%&quot;)(1); // “100%”<br>
+d3.format(&quot;%&quot;)(0.999); // “100%”<br>
+d3.format(&quot;%&quot;)(+0.12); // “+12%”<br>
+d3.format(&quot;%&quot;)(-0.12); // “-12%”</p>
 <h4 id="科学计数法-s">科学计数法 s</h4>
 <p>将数字转换为国际单位制显示。</p>
-<pre><code>d3.format(&quot;s&quot;)(1000); // &quot;1k&quot;
-d3.format(&quot;s&quot;)(0.000001); // &quot;1µ&quot;
-d3.format(&quot;s&quot;)(1000); // &quot;1k&quot;
-</code></pre>
+<p>​<br>
+d3.format(“s”)(1000); // “1k”<br>
+d3.format(“s”)(0.000001); // “1µ”<br>
+d3.format(“s”)(1000); // “1k”</p>
 <h3 id="不常用类型">不常用类型</h3>
 <p>以下这些类型是我认为在数据可视化中不常用的，了解即可</p>
 <p>语法:[[fill]align][sign][symbol][0][width][,][.precision]<code>[type]</code></p>
 <h4 id="二进制-b">二进制 b</h4>
 <p>将数字转换为二进制显示。</p>
-<pre><code>d3.format(&quot;b&quot;)(1); // &quot;1&quot;
-d3.format(&quot;b&quot;)(8); // &quot;1000&quot;
-d3.format(&quot;b&quot;)(16)’ // &quot;10000&quot;
-d3.format(&quot;b&quot;)(2012); // &quot;11111011100&quot;
-</code></pre>
+<p>​<br>
+d3.format(“b”)(1); // “1”<br>
+d3.format(“b”)(8); // “1000”<br>
+d3.format(“b”)(16)’ // “10000”<br>
+d3.format(“b”)(2012); // “11111011100”</p>
 <h4 id="八进制-o">八进制 o</h4>
 <p>将数字转换为八进制显示。</p>
-<pre><code>d3.format(&quot;o&quot;)(1); // &quot;1&quot;
-d3.format(&quot;o&quot;)(8); // &quot;10&quot;
-d3.format(&quot;o&quot;)(16)’ // &quot;20&quot;
-d3.format(&quot;o&quot;)(2012); // &quot;3734&quot;
-</code></pre>
+<p>​<br>
+d3.format(“o”)(1); // “1”<br>
+d3.format(“o”)(8); // “10”<br>
+d3.format(“o”)(16)’ // “20”<br>
+d3.format(“o”)(2012); // “3734”</p>
 <h4 id="十六进制-x">十六进制 x</h4>
 <p>将数字转换为十六进制显示。</p>
-<pre><code>d3.format(&quot;x&quot;)(1); // &quot;1&quot;
-d3.format(“x&quot;)(8); // &quot;8&quot;
-d3.format(“x&quot;)(16)’ // &quot;10&quot;
-d3.format(“x&quot;)(2012); // &quot;7dc&quot;
-</code></pre>
+<p>​<br>
+d3.format(“x”)(1); // “1”<br>
+d3.format(“x&quot;)(8); // “8”<br>
+d3.format(“x&quot;)(16)’ // “10”<br>
+d3.format(“x&quot;)(2012); // “7dc”</p>
 <h4 id="Unicode编码-c">Unicode编码 c</h4>
 <p>将数字作为Unicode编码，显示其所代码的字符。</p>
-<pre><code>d3.format(&quot;c&quot;)(1000); // &quot;Ϩ&quot;
-</code></pre>
+<p>​<br>
+d3.format(“c”)(1000); // “Ϩ”</p>
 <h3 id="与精度-precision-相关的类型">与精度(precision)相关的类型</h3>
 <p>以下3种类型非常类似，一般是跟精度(precision)参数一起使用。</p>
 <p>语法:[[fill]align][sign][symbol][0][width][,]<code>[.precision][type]</code></p>
 <h4 id="普通类型-g">普通类型 g</h4>
 <p>将数字转换普通的数字形式。</p>
-<pre><code>d3.format(&quot;g&quot;)(2000); // &quot;2000&quot;
-d3.format(&quot;g&quot;)(2000.0); // &quot;2000&quot;
-d3.format(&quot;g&quot;)(2000.93010); // &quot;2000.9301&quot;
-d3.format(&quot;g&quot;)(0.910120); // &quot;0.91012&quot;
-d3.format(&quot;g&quot;)(+0.910120); // &quot;0.91012&quot;
-d3.format(&quot;g&quot;)(-0.910120); // &quot;-0.91012&quot;
-</code></pre>
+<p>​<br>
+d3.format(“g”)(2000); // “2000”<br>
+d3.format(“g”)(2000.0); // “2000”<br>
+d3.format(“g”)(2000.93010); // “2000.9301”<br>
+d3.format(“g”)(0.910120); // “0.91012”<br>
+d3.format(“g”)(+0.910120); // “0.91012”<br>
+d3.format(“g”)(-0.910120); // “-0.91012”</p>
 <p>通过调用数字对象的<code>toPrecision</code>方法把数字转换为相应精度的值</p>
-<pre><code>d3.format(&quot;.4g&quot;)(1010101); // &quot;1.010e+6&quot;
-d3.format(&quot;.7g&quot;)(1010101); // &quot;1010101&quot;
-d3.format(&quot;.8g&quot;)(1010101); // &quot;1010101.0&quot;
-</code></pre>
+<p>​<br>
+d3.format(&quot;.4g&quot;)(1010101); // “1.010e+6”<br>
+d3.format(&quot;.7g&quot;)(1010101); // “1010101”<br>
+d3.format(&quot;.8g&quot;)(1010101); // “1010101.0”</p>
 <h4 id="Fixed类型-f">Fixed类型 f</h4>
 <p>将数字做整数的四舍五入处理。</p>
-<pre><code>d3.format(&quot;f&quot;)(2000); // &quot;2000&quot;
-d3.format(&quot;f&quot;)(2000.0); // &quot;2000&quot;
-d3.format(&quot;f&quot;)(2000.93010); // &quot;2001&quot;
-d3.format(&quot;f&quot;)(0.910120); // &quot;1&quot;
-d3.format(&quot;f&quot;)(+0.910120); // &quot;1&quot;
-d3.format(&quot;f&quot;)(-0.910120); // &quot;-1&quot;
-</code></pre>
+<p>​<br>
+d3.format(“f”)(2000); // “2000”<br>
+d3.format(“f”)(2000.0); // “2000”<br>
+d3.format(“f”)(2000.93010); // “2001”<br>
+d3.format(“f”)(0.910120); // “1”<br>
+d3.format(“f”)(+0.910120); // “1”<br>
+d3.format(“f”)(-0.910120); // “-1”</p>
 <p>通过调用数字对象的<code>toFixed</code>方法把数字小数点转换为相应精度的值</p>
-<pre><code>d3.format(&quot;.4f&quot;)(1010101); // &quot;1010101.0000&quot;
-d3.format(&quot;.7f&quot;)(1010101); // &quot;1010101.0000000&quot;
-d3.format(&quot;.8f&quot;)(1010101); // &quot;1010101.00000000&quot;
-</code></pre>
+<p>​<br>
+d3.format(&quot;.4f&quot;)(1010101); // “1010101.0000”<br>
+d3.format(&quot;.7f&quot;)(1010101); // “1010101.0000000”<br>
+d3.format(&quot;.8f&quot;)(1010101); // “1010101.00000000”</p>
 <h4 id="Rounded类型-r">Rounded类型 r</h4>
 <p>基本上跟普通类型 g一样；</p>
-<pre><code>d3.format(&quot;r&quot;)(2000); // &quot;2000&quot;
-d3.format(&quot;r&quot;)(2000.0); // &quot;2000&quot;
-d3.format(&quot;r&quot;)(2000.93010); // &quot;2000.93010&quot;
-d3.format(&quot;r&quot;)(0.910120); // &quot;0.91012&quot;
-d3.format(&quot;r&quot;)(+0.910120); // &quot;0.91012&quot;
-d3.format(&quot;r&quot;)(-0.910120); // &quot;-0.91012&quot;
-</code></pre>
+<p>​<br>
+d3.format(“r”)(2000); // “2000”<br>
+d3.format(“r”)(2000.0); // “2000”<br>
+d3.format(“r”)(2000.93010); // “2000.93010”<br>
+d3.format(“r”)(0.910120); // “0.91012”<br>
+d3.format(“r”)(+0.910120); // “0.91012”<br>
+d3.format(“r”)(-0.910120); // “-0.91012”</p>
 <p>通过调用数字对象的<code>toFixed</code>方法把数字转换为相应精度的值，超出精度值范围用0代替</p>
-<pre><code>d3.format(&quot;.4r&quot;)(1010101); // &quot;1010000&quot;
-d3.format(&quot;.7r&quot;)(1010101); // &quot;1010101&quot;
-d3.format(&quot;.8r&quot;)(1010101); // &quot;1010101.0&quot;
-</code></pre>
+<p>​<br>
+d3.format(&quot;.4r&quot;)(1010101); // “1010000”<br>
+d3.format(&quot;.7r&quot;)(1010101); // “1010101”<br>
+d3.format(&quot;.8r&quot;)(1010101); // “1010101.0”</p>
 <h3 id="千位分隔符">千位分隔符</h3>
 <p>在跟货币打交道时，千位分隔符是非常有用的。</p>
 <p>语法:[[fill]align][sign][symbol][0][width]<code>[,][.precision][type]</code></p>
-<pre><code>d3.format(&quot;,&quot;)(1000000); // &quot;1,000,000&quot;
-d3.format(&quot;,&quot;)(1010101); // &quot;1,010,101&quot;
-d3.format(&quot;,.4g&quot;)(1010101); // &quot;1.010e+6&quot;
-d3.format(&quot;,.4e&quot;)(1010101); // &quot;1.0101e+6&quot;
-d3.format(&quot;,.4f&quot;)(1010101); // &quot;1,010,101.0000&quot;
-d3.format(&quot;,.2f&quot;)(10101); // &quot;10,101.00&quot;
-</code></pre>
+<p>​<br>
+d3.format(&quot;,&quot;)(1000000); // “1,000,000”<br>
+d3.format(&quot;,&quot;)(1010101); // “1,010,101”<br>
+d3.format(&quot;,.4g&quot;)(1010101); // “1.010e+6”<br>
+d3.format(&quot;,.4e&quot;)(1010101); // “1.0101e+6”<br>
+d3.format(&quot;,.4f&quot;)(1010101); // “1,010,101.0000”<br>
+d3.format(&quot;,.2f&quot;)(10101); // “10,101.00”</p>
 <h3 id="宽度">宽度</h3>
 <p>指定输出时字符串的长度，如果指定值小于数字长度，则以数字长度为准</p>
 <p>语法:[[fill]align][sign][symbol][0]<code>[width][,][.precision][type]</code></p>
-<pre><code>d3.format(&quot;8&quot;)(1); // &quot;      1&quot;
-d3.format(&quot;8,.2f&quot;)(1); // &quot;    1.00&quot;
-d3.format(&quot;8g&quot;)(1e6); // &quot; 1000000&quot;
-</code></pre>
+<p>​<br>
+d3.format(“8”)(1); // &quot;      1&quot;<br>
+d3.format(“8,.2f”)(1); // &quot;    1.00&quot;<br>
+d3.format(“8g”)(1e6); // &quot; 1000000&quot;</p>
 <h3 id="补0">补0</h3>
 <p>在指定输出字符串长度大于数字长度时，不足的部分用0代替</p>
 <p>语法:[[fill]align][sign][symbol]<code>[0][width][,][.precision][type]</code></p>
-<pre><code>d3.format(&quot;8&quot;)(1234); // &quot;    1234&quot;
-d3.format(&quot;08&quot;)(1234); // &quot;00001234&quot;
-d3.format(&quot;08.2f&quot;)(123.456); // &quot;00123.46&quot;
-d3.format(&quot;08.3f&quot;)(123.456); // &quot;0123.456&quot;
-</code></pre>
+<p>​<br>
+d3.format(“8”)(1234); // &quot;    1234&quot;<br>
+d3.format(“08”)(1234); // “00001234”<br>
+d3.format(“08.2f”)(123.456); // “00123.46”<br>
+d3.format(“08.3f”)(123.456); // “0123.456”</p>
 <p>注意：在使用千位分隔符时小心使用</p>
-<pre><code>d3.format(&quot;09,&quot;)(123456); // &quot;0,123,456&quot;
-</code></pre>
+<p>​<br>
+d3.format(“09,”)(123456); // “0,123,456”</p>
 <h3 id="符号">符号</h3>
 <p>根据语言环境判断显示货币符号，二进制，八进制符号。</p>
 <p>语法:[[fill]align][sign]<code>[symbol][0][width][,][.precision][type]</code></p>
-<pre><code>d3.format(&quot;$,&quot;)(1250);  // &quot;$1,250&quot;
-d3.format(&quot;$,.2f&quot;)(1250); // &quot;$1,250.00&quot;
-d3.format(&quot;#0b&quot;)(125); // &quot;0b1111101&quot;
-d3.format(&quot;#0o&quot;)(125); // &quot;0o175&quot;
-d3.format(&quot;#0x&quot;)(125); // &quot;0x7d&quot;
-</code></pre>
+<p>​<br>
+d3.format(&quot;$,&quot;)(1250);  // “$1,250”<br>
+d3.format(&quot;$,.2f&quot;)(1250); // “$1,250.00”<br>
+d3.format(&quot;#0b&quot;)(125); // “0b1111101”<br>
+d3.format(&quot;#0o&quot;)(125); // “0o175”<br>
+d3.format(&quot;#0x&quot;)(125); // “0x7d”</p>
 <h3 id="标记">标记</h3>
 <p>如何显示正负号标记。</p>
 <p>语法:[[fill]align]<code>[sign][symbol][0][width][,][.precision][type]</code></p>
@@ -747,10 +745,10 @@ d3.format(&quot; “)(-125); //”-125&quot;</p>
 <h3 id="对齐和填充">对齐和填充</h3>
 <p>在不设置补0时，可以在输出的字符串占位上填充一个任意字符，并可以设置这些字符的位置</p>
 <p>语法:<code>[[fill]align][sign][symbol][0][width][,][.precision][type]</code></p>
-<pre><code>d3.format(&quot;4&gt;8&quot;)(1); //&quot;44444441&quot;
-d3.format(&quot;4^8&quot;)(1); //&quot;44441444&quot;
-d3.format(&quot;4&lt;8&quot;)(1); //&quot;14444444&quot;
-</code></pre>
+<p>​<br>
+d3.format(“4&gt;8”)(1); //“44444441”<br>
+d3.format(“4^8”)(1); //“44441444”<br>
+d3.format(“4&lt;8”)(1); //“14444444”</p>
 <h2 id="未完待续">未完待续</h2>
 
     </div>
@@ -1203,13 +1201,13 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">318k</span>
+    <span title="站点总字数">320k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">4:49</span>
+    <span title="站点阅读时长">4:51</span>
 </div>
 
         
@@ -1385,12 +1383,12 @@ if(canvas.getContext){
   </script>
 
 
-  <script async src="/js/cursor/fireworks.js"></script>
+  <script async src="/blog/js/cursor/fireworks.js"></script>
 
 
 
 
-  <script src="/js/activate-power-mode.min.js"></script>
+  <script src="/blog/js/activate-power-mode.min.js"></script>
   <script>
     POWERMODE.colorful = true;
     POWERMODE.shake = false;
@@ -1399,7 +1397,7 @@ if(canvas.getContext){
 
 
 
-<script type="text/javascript" src="/js/fold_action.js"></script><div class="moon-menu">
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
   <div class="moon-menu-items">
     
     <div class="moon-menu-item" onclick="back2bottom()">

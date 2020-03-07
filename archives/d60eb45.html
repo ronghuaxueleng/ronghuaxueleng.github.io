@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
 <link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-pace-theme-minimal.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
 
 <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 
@@ -51,15 +51,15 @@
   };
 </script>
 
-  <meta name="description" content="原文地址：[PHP设计模式(三)：封装][1]  简介 面向对象编程中，一切都是对象，对一个对象的封装，也成了面向对象编程中必不可少的部分。 和C&#x2F;C++，Java，Python等语言一样，PHP也支持封装。 封装&#x2F;Encapsulation  对事物的封装是指，将事物进行抽象后，提供抽象概念的实现的具体方法。  听起来很拗口，还是举鲸鱼的例子。 对于鲸鱼来说，需要吃东西这个行为，吃本身是一个抽">
+  <meta name="description" content="简介 面向对象编程中，一切都是对象，对一个对象的封装，也成了面向对象编程中必不可少的部分。 和C&#x2F;C++，Java，Python等语言一样，PHP也支持封装。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="封装">
 <meta property="og:url" content="http://ronghuaxueleng.github.io/archives/d60eb45.html">
 <meta property="og:site_name" content="白云雅阁">
-<meta property="og:description" content="原文地址：[PHP设计模式(三)：封装][1]  简介 面向对象编程中，一切都是对象，对一个对象的封装，也成了面向对象编程中必不可少的部分。 和C&#x2F;C++，Java，Python等语言一样，PHP也支持封装。 封装&#x2F;Encapsulation  对事物的封装是指，将事物进行抽象后，提供抽象概念的实现的具体方法。  听起来很拗口，还是举鲸鱼的例子。 对于鲸鱼来说，需要吃东西这个行为，吃本身是一个抽">
+<meta property="og:description" content="简介 面向对象编程中，一切都是对象，对一个对象的封装，也成了面向对象编程中必不可少的部分。 和C&#x2F;C++，Java，Python等语言一样，PHP也支持封装。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-10-13T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-06T11:58:28.044Z">
+<meta property="article:modified_time" content="2020-03-07T04:47:58.986Z">
 <meta property="article:author" content="曹强">
 <meta property="article:tag" content="php">
 <meta name="twitter:card" content="summary">
@@ -116,7 +116,7 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
+  <div class="site-meta custom-logo">
 
     <div>
       <a href="/" class="brand" rel="start">
@@ -126,6 +126,9 @@
       </a>
     </div>
         <p class="site-subtitle">一切都是最好的安排</p>
+      <a>
+        <img class="custom-logo-image" src="/favicon.ico" alt="白云雅阁">
+      </a>
   </div>
 
   <div class="site-nav-toggle">
@@ -203,13 +206,6 @@
 
               <time title="创建时间：2016-10-13 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-13T00:00:00Z">2016-10-13</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-06 11:58:28" itemprop="dateModified" datetime="2020-03-06T11:58:28Z">2020-03-06</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -242,14 +238,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
+              <span>2.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -261,12 +257,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <blockquote>
-<p>原文地址：[PHP设计模式(三)：封装][1]</p>
-</blockquote>
-<h2 id="简介">简介</h2>
+        <h2 id="简介">简介</h2>
 <p>面向对象编程中，一切都是对象，对一个对象的封装，也成了面向对象编程中必不可少的部分。<br>
 和C/C++，Java，Python等语言一样，PHP也支持封装。</p>
+<a id="more"></a>
 <h2 id="封装-Encapsulation">封装/Encapsulation</h2>
 <blockquote>
 <p>对事物的封装是指，将事物进行抽象后，提供抽象概念的实现的具体方法。</p>
@@ -277,109 +271,24 @@
 <p>和别的程序设计语言一样，PHP也只是三种封装概念：Private，Protected，Public。</p>
 <h3 id="私有-Private">私有/Private</h3>
 <p>私有的概念是，仅仅对象内部可见，外部不可见，如：</p>
-<pre><code>&lt;?php
-class Whale {
-  private $name;
-  public function __construct() {
-    $this-&gt;name = &quot;Whale&quot;;
-  }
-  public function eat($food) {
-    chew($food);
-    digest($food);
-  }
-  private function chew($food) {
-    echo &quot;Chewing &quot; . $food . &quot;\n&quot;;
-  }
-  private function digest($food) {
-    echo &quot;Digest &quot; . $food . &quot;\n&quot;;
-  }
-}
-?&gt;
-</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Whale</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> $name;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;name = <span class="string">"Whale"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eat</span><span class="params">($food)</span> </span>&#123;</span><br><span class="line">    chew($food);</span><br><span class="line">    digest($food);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">chew</span><span class="params">($food)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Chewing "</span> . $food . <span class="string">"\n"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">digest</span><span class="params">($food)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Digest "</span> . $food . <span class="string">"\n"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>name是鲸鱼的私有属性，chew()和digest()是鲸鱼的私有方法，对于其他类来说，都是不可见的。对于现实来说，我们如果只是注重吃，并没有必要去关心鲸鱼是如何去吃的。</p>
 <h3 id="保护-Protected">保护/Protected</h3>
 <p>保护的概念是，仅仅是自身类和继承类可见，这个关键字的用途主要是防止滥用类的派生，另外三方库编写的时候会用到，防止误用。</p>
-<pre><code>&lt;?php
-abstract class Animal {
-  private $name;
-  abstract public function eat($food);
-  protected function chew($food) {
-    echo &quot;Chewing &quot; . $food . &quot;\n&quot;;
-  }
-  protected function digest($food) {
-    echo &quot;Digest &quot; . $food . &quot;\n&quot;;
-  }
-}
-
-class Whale extends Animal {
-  private $name;
-  public function __construct() {
-    $this-&gt;name = &quot;Whale&quot;;
-  }
-  public function eat($food) {
-    chew($food);
-    digest($food);
-  }
-}
-?&gt;
-</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> $name;</span><br><span class="line">  <span class="keyword">abstract</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eat</span><span class="params">($food)</span></span>;</span><br><span class="line">  <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">chew</span><span class="params">($food)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Chewing "</span> . $food . <span class="string">"\n"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">digest</span><span class="params">($food)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"Digest "</span> . $food . <span class="string">"\n"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Whale</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> $name;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;name = <span class="string">"Whale"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eat</span><span class="params">($food)</span> </span>&#123;</span><br><span class="line">    chew($food);</span><br><span class="line">    digest($food);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>鲸鱼类可以通过继承使用动物类的咀嚼和消化方法，但是别的继承鲸鱼类的类就不可以再使用动物类的咀嚼和消化方法了。保护更多是用于面向对象设计，而不是为了编程来实现某个需求。</p>
 <h3 id="公共-Public">公共/Public</h3>
 <p>公共的概念就是，任何类、任何事物都可以访问，没有任何限制，这里不再赘述。</p>
 <h2 id="Getters-Setters">Getters/Setters</h2>
 <p>Getters和Setters也叫Accessors和Mutators，在Java/C#等语言中常以get()/set()方法出现。<br>
 对于这两个东西的争议很大，考虑下面一个类：</p>
-<pre><code>&lt;?php
-class Price {
-  public $priceA;
-  public $priceB;
-  public $priceC;
-  ...
-}
-?&gt;
-</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Price</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> $priceA;</span><br><span class="line">  <span class="keyword">public</span> $priceB;</span><br><span class="line">  <span class="keyword">public</span> $priceC;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>如果不使用Getters/Setters，我们给Price类赋值和取值一般是这样：</p>
-<pre><code>&lt;?php
-  $price = new Price();
-  $price-&gt;priceA = 1;
-  $price-&gt;priceB = 2;
-  $price-&gt;priceC = 3;
-  ...
-  echo $price-&gt;priceA;
-  echo $price-&gt;priceB;
-  echo $price-&gt;priceC;
-  ...
-?&gt;
-</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  $price = <span class="keyword">new</span> Price();</span><br><span class="line">  $price-&gt;priceA = <span class="number">1</span>;</span><br><span class="line">  $price-&gt;priceB = <span class="number">2</span>;</span><br><span class="line">  $price-&gt;priceC = <span class="number">3</span>;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">echo</span> $price-&gt;priceA;</span><br><span class="line">  <span class="keyword">echo</span> $price-&gt;priceB;</span><br><span class="line">  <span class="keyword">echo</span> $price-&gt;priceC;</span><br><span class="line">  ...</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>但是如果使用了Getters/Setters，Price类将变成这样：</p>
-<pre><code>&lt;?php
-class Price {
-  private $priceA;
-  private $priceB;
-  private $priceC;
-  public function getPriceA() {
-    return $this-&gt;priceA;
-  }
-  public function setPriceA($price) {
-    $this-&gt;priceA = $price;
-  }
-  ...
-}
-?&gt;
-</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Price</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> $priceA;</span><br><span class="line">  <span class="keyword">private</span> $priceB;</span><br><span class="line">  <span class="keyword">private</span> $priceC;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getPriceA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;priceA;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setPriceA</span><span class="params">($price)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&gt;priceA = $price;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这时候赋值将变成这样：</p>
-<pre><code>&lt;?php
-  $price = new Price();
-  $price-&gt;setpriceA(1);
-  $price-&gt;setPriceB(2);
-  $price-&gt;setPriceC(3);
-  ...
-  echo $price-&gt;getPriceA();
-  echo $price-&gt;getPriceB();
-  echo $price-&gt;getPriceC();
-  ...
-?&gt;
-</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  $price = <span class="keyword">new</span> Price();</span><br><span class="line">  $price-&gt;setpriceA(<span class="number">1</span>);</span><br><span class="line">  $price-&gt;setPriceB(<span class="number">2</span>);</span><br><span class="line">  $price-&gt;setPriceC(<span class="number">3</span>);</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">echo</span> $price-&gt;getPriceA();</span><br><span class="line">  <span class="keyword">echo</span> $price-&gt;getPriceB();</span><br><span class="line">  <span class="keyword">echo</span> $price-&gt;getPriceC();</span><br><span class="line">  ...</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>是不是感觉需要多敲很多代码？这也是很多程序员不愿意使用get/set的原因，造成了大量的看似无用冗余的代码。<br>
 为什么叫看似冗余和无用？因为Getters/Setters是编程设计方法，而不是编程实现方法。</p>
 <blockquote>
@@ -401,19 +310,19 @@ class Price {
   <div class="popular-posts-header">相关文章推荐</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\archives\fb867561.html" rel="bookmark">基础编程模式</a></div>
+      <div class="popular-posts-title"><a href="\archives\f5c535ea.html" rel="bookmark">适配器模式</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\archives\f5c535ea.html" rel="bookmark">适配器模式</a></div>
+      <div class="popular-posts-title"><a href="\archives\fb867561.html" rel="bookmark">基础编程模式</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\archives\daef90fc.html" rel="bookmark">抽象类和接口</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\archives\11d8b32d.html" rel="bookmark">继承</a></div>
+      <div class="popular-posts-title"><a href="\archives\ac4294eb.html" rel="bookmark">多态</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\archives\ac4294eb.html" rel="bookmark">多态</a></div>
+      <div class="popular-posts-title"><a href="\archives\11d8b32d.html" rel="bookmark">继承</a></div>
     </li>
   </ul>
 
@@ -429,12 +338,12 @@ class Price {
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/archives/11d8b32d.html" rel="prev" title="继承">
-      <i class="fa fa-chevron-left"></i> 继承
+    <a href="/archives/84372d79.html" rel="prev" title="MVC">
+      <i class="fa fa-chevron-left"></i> MVC
     </a></div>
       <div class="post-nav-item">
-    <a href="/archives/daef90fc.html" rel="next" title="抽象类和接口">
-      抽象类和接口 <i class="fa fa-chevron-right"></i>
+    <a href="/archives/11d8b32d.html" rel="next" title="继承">
+      继承 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -854,13 +763,13 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">318k</span>
+    <span title="站点总字数">320k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">4:49</span>
+    <span title="站点阅读时长">4:51</span>
 </div>
 
         
@@ -1036,12 +945,12 @@ if(canvas.getContext){
   </script>
 
 
-  <script async src="/js/cursor/fireworks.js"></script>
+  <script async src="/blog/js/cursor/fireworks.js"></script>
 
 
 
 
-  <script src="/js/activate-power-mode.min.js"></script>
+  <script src="/blog/js/activate-power-mode.min.js"></script>
   <script>
     POWERMODE.colorful = true;
     POWERMODE.shake = false;
@@ -1050,7 +959,7 @@ if(canvas.getContext){
 
 
 
-<script type="text/javascript" src="/js/fold_action.js"></script><div class="moon-menu">
+<script type="text/javascript" src="/blog/js/fold_action.js"></script><div class="moon-menu">
   <div class="moon-menu-items">
     
     <div class="moon-menu-item" onclick="back2bottom()">
