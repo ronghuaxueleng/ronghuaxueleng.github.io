@@ -179,7 +179,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/f5c535ea.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/513e5894.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -193,7 +193,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/f5c535ea.html" class="post-title-link" itemprop="url">适配器模式</a>
+            <a href="/archives/513e5894.html" class="post-title-link" itemprop="url">代码重构</a>
         </h1>
 
         <div class="post-meta">
@@ -218,7 +218,7 @@
             </span>
 
           
-            <span id="/archives/f5c535ea.html" class="post-meta-item leancloud_visitors" data-flag-title="适配器模式" title="阅读次数">
+            <span id="/archives/513e5894.html" class="post-meta-item leancloud_visitors" data-flag-title="代码重构" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -230,7 +230,118 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
+              <span>4.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<p>一些重构的建议：</p>
+<ol>
+<li>提炼函数</li>
+</ol>
+<pre><code>* 避免出现超大函数
+
+* 独立出来的函数有助于代码复用
+
+* 独立出来的函数更容易被覆写
+
+* 独立出来的函数如果拥有一个良好的命名，
+
+* 它本身就起到了注释的作用。
+</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/archives/513e5894.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/f9636392.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/f9636392.html" class="post-title-link" itemprop="url">闭包</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/f9636392.html" class="post-meta-item leancloud_visitors" data-flag-title="闭包" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -249,13 +360,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <hr>
-<blockquote>
-<p>适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。</p>
+          <blockquote>
+<p>闭包是js中一个难懂又必须征服的概念，他的形成与变量作用域以及变量的生存周期密切相关。</p>
 </blockquote>
+<h3 id="变量作用域和生存周期">变量作用域和生存周期</h3>
+<p>作用域，按字面理解，就是指变量的有效范围，超出这个范围就无法访问。<br>
+在函数中，里面函数可以访问外面的变量，但是外面无法访问内部变量。举个简单例子：</p>
+<p>​
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/archives/f5c535ea.html#more" rel="contents">
+              <a class="btn" href="/archives/f9636392.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -396,7 +510,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/513e5894.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/75f5b5c3.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -410,7 +524,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/513e5894.html" class="post-title-link" itemprop="url">代码重构</a>
+            <a href="/archives/75f5b5c3.html" class="post-title-link" itemprop="url">this关键字</a>
         </h1>
 
         <div class="post-meta">
@@ -435,7 +549,7 @@
             </span>
 
           
-            <span id="/archives/513e5894.html" class="post-meta-item leancloud_visitors" data-flag-title="代码重构" title="阅读次数">
+            <span id="/archives/75f5b5c3.html" class="post-meta-item leancloud_visitors" data-flag-title="this关键字" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -447,14 +561,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.4k</span>
+              <span>1.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -467,23 +581,20 @@
 
       
           <hr>
-<p>一些重构的建议：</p>
-<ol>
-<li>提炼函数</li>
-</ol>
-<pre><code>* 避免出现超大函数
-
-* 独立出来的函数有助于代码复用
-
-* 独立出来的函数更容易被覆写
-
-* 独立出来的函数如果拥有一个良好的命名，
-
-* 它本身就起到了注释的作用。
-</code></pre>
+<blockquote>
+<p>this的指向大概可以分成四种：</p>
+<ul>
+<li>作为对象的方法调用</li>
+<li>作为普通函数调用</li>
+<li>构造器调用</li>
+<li>Function.prototype.call或Function.prototype.apply调用</li>
+</ul>
+</blockquote>
+<h3 id="1-作为对象的时候，this指向该对象">1. 作为对象的时候，<strong>this指向该对象</strong></h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">1</span>,</span><br><span class="line">    getA: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span> === obj); <span class="comment">//true;</span></span><br><span class="line">        alert(<span class="keyword">this</span>.a); <span class="comment">//1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.getA();</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/archives/513e5894.html#more" rel="contents">
+              <a class="btn" href="/archives/75f5b5c3.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -507,7 +618,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/72e3b671.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/47f3f95c.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -521,7 +632,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/72e3b671.html" class="post-title-link" itemprop="url">策略模式</a>
+            <a href="/archives/47f3f95c.html" class="post-title-link" itemprop="url">高阶函数</a>
         </h1>
 
         <div class="post-meta">
@@ -546,7 +657,7 @@
             </span>
 
           
-            <span id="/archives/72e3b671.html" class="post-meta-item leancloud_visitors" data-flag-title="策略模式" title="阅读次数">
+            <span id="/archives/47f3f95c.html" class="post-meta-item leancloud_visitors" data-flag-title="高阶函数" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -577,112 +688,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
-<p>定义：定义一系列算法，把他们一个个封装起来，并且使他们可以相互替换。</p>
-</blockquote>
-<p>需求：绩效为S的人年终奖有4倍工资，绩效为A的人年终奖有3倍工资，绩效为B的人年终奖有2倍工资。</p>
-<p>​
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/archives/72e3b671.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/f1601c3e.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/img/avatar.jpg">
-      <meta itemprop="name" content="曹强">
-      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白云雅阁">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/archives/f1601c3e.html" class="post-title-link" itemprop="url">单例模式</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/archives/f1601c3e.html" class="post-meta-item leancloud_visitors" data-flag-title="单例模式" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
           <hr>
-<p>用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。</p>
+<p>高阶函数是至少满足下列条件之一的函数</p>
+<ul>
+<li>
+<p>函数可以作为参数被传递</p>
+</li>
+<li>
+<p>函数可以作为返回值输出<br>
+<em>（js这么好的语言中的函数当然满足 ^</em>^）_</p>
+</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/archives/f1601c3e.html#more" rel="contents">
+              <a class="btn" href="/archives/47f3f95c.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -811,11 +830,11 @@
           </li>
         
           <li>
-            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
           </li>
         
           <li>
-            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
           </li>
         
           <li>
@@ -1169,18 +1188,21 @@ if(canvas.getContext){
         .then(({ results }) => {
           if (results.length > 0) {
             var counter = results[0];
+              leancloudSelector(url).innerText = counter.time + 1;
             Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
               .then(response => response.json())
-              .then(() => {
-                leancloudSelector(url).innerText = counter.time + 1;
-              })
               .catch(error => {
                 console.error('Failed to save visitor count', error);
               })
           } else {
-              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
-              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
-            
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
           }
         })
         .catch(error => {

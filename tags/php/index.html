@@ -202,28 +202,8 @@
       </div>
 
       <h2 class="post-title">
-          <a class="post-title-link" href="/archives/f5c535ea.html" itemprop="url">
-            <span itemprop="name">适配器模式</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2016-10-13T00:00:00Z"
-              content="2016-10-13">
-          10-13
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/archives/fb867561.html" itemprop="url">
-            <span itemprop="name">基础编程模式</span>
+          <a class="post-title-link" href="/archives/d60eb45.html" itemprop="url">
+            <span itemprop="name">封装</span>
           </a>
       </h2>
 
@@ -262,8 +242,28 @@
       </div>
 
       <h2 class="post-title">
-          <a class="post-title-link" href="/archives/ac4294eb.html" itemprop="url">
-            <span itemprop="name">多态</span>
+          <a class="post-title-link" href="/archives/fb867561.html" itemprop="url">
+            <span itemprop="name">基础编程模式</span>
+          </a>
+      </h2>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2016-10-13T00:00:00Z"
+              content="2016-10-13">
+          10-13
+        </time>
+      </div>
+
+      <h2 class="post-title">
+          <a class="post-title-link" href="/archives/f5c535ea.html" itemprop="url">
+            <span itemprop="name">适配器模式</span>
           </a>
       </h2>
 
@@ -302,28 +302,8 @@
       </div>
 
       <h2 class="post-title">
-          <a class="post-title-link" href="/archives/d60eb45.html" itemprop="url">
-            <span itemprop="name">封装</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2016-10-13T00:00:00Z"
-              content="2016-10-13">
-          10-13
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/archives/84372d79.html" itemprop="url">
-            <span itemprop="name">MVC</span>
+          <a class="post-title-link" href="/archives/ac4294eb.html" itemprop="url">
+            <span itemprop="name">多态</span>
           </a>
       </h2>
 
@@ -344,6 +324,26 @@
       <h2 class="post-title">
           <a class="post-title-link" href="/archives/ce7fb64a.html" itemprop="url">
             <span itemprop="name">设计模式分类</span>
+          </a>
+      </h2>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2016-10-13T00:00:00Z"
+              content="2016-10-13">
+          10-13
+        </time>
+      </div>
+
+      <h2 class="post-title">
+          <a class="post-title-link" href="/archives/84372d79.html" itemprop="url">
+            <span itemprop="name">MVC</span>
           </a>
       </h2>
 
@@ -500,11 +500,11 @@
           </li>
         
           <li>
-            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
           </li>
         
           <li>
-            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
           </li>
         
           <li>
@@ -858,18 +858,21 @@ if(canvas.getContext){
         .then(({ results }) => {
           if (results.length > 0) {
             var counter = results[0];
+              leancloudSelector(url).innerText = counter.time + 1;
             Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
               .then(response => response.json())
-              .then(() => {
-                leancloudSelector(url).innerText = counter.time + 1;
-              })
               .catch(error => {
                 console.error('Failed to save visitor count', error);
               })
           } else {
-              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
-              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
-            
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
           }
         })
         .catch(error => {

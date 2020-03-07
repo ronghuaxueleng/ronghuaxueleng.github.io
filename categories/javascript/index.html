@@ -245,8 +245,8 @@
       </div>
 
       <h2 class="post-title">
-          <a class="post-title-link" href="/archives/bb77ad22.html" itemprop="url">
-            <span itemprop="name">44个 Javascript 变态题解析 (上)</span>
+          <a class="post-title-link" href="/archives/a26c9c63.html" itemprop="url">
+            <span itemprop="name">44个 Javascript 变态题解析 (下)</span>
           </a>
       </h2>
 
@@ -265,8 +265,8 @@
       </div>
 
       <h2 class="post-title">
-          <a class="post-title-link" href="/archives/a26c9c63.html" itemprop="url">
-            <span itemprop="name">44个 Javascript 变态题解析 (下)</span>
+          <a class="post-title-link" href="/archives/bb77ad22.html" itemprop="url">
+            <span itemprop="name">44个 Javascript 变态题解析 (上)</span>
           </a>
       </h2>
 
@@ -305,6 +305,26 @@
       </div>
 
       <h2 class="post-title">
+          <a class="post-title-link" href="/archives/78134e07.html" itemprop="url">
+            <span itemprop="name">命令模式</span>
+          </a>
+      </h2>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2016-10-12T00:00:00Z"
+              content="2016-10-12">
+          10-12
+        </time>
+      </div>
+
+      <h2 class="post-title">
           <a class="post-title-link" href="/archives/84bd9124.html" itemprop="url">
             <span itemprop="name">发布订阅模式</span>
           </a>
@@ -325,8 +345,8 @@
       </div>
 
       <h2 class="post-title">
-          <a class="post-title-link" href="/archives/e19da94a.html" itemprop="url">
-            <span itemprop="name">享元模式</span>
+          <a class="post-title-link" href="/archives/df879792.html" itemprop="url">
+            <span itemprop="name">组合模式</span>
           </a>
       </h2>
 
@@ -365,28 +385,8 @@
       </div>
 
       <h2 class="post-title">
-          <a class="post-title-link" href="/archives/7bf8ae3c.html" itemprop="url">
-            <span itemprop="name">职责链模式</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2016-10-12T00:00:00Z"
-              content="2016-10-12">
-          10-12
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/archives/df879792.html" itemprop="url">
-            <span itemprop="name">组合模式</span>
+          <a class="post-title-link" href="/archives/a708a60d.html" itemprop="url">
+            <span itemprop="name">装饰者模式</span>
           </a>
       </h2>
 
@@ -506,11 +506,11 @@
           </li>
         
           <li>
-            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
           </li>
         
           <li>
-            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
           </li>
         
           <li>
@@ -864,18 +864,21 @@ if(canvas.getContext){
         .then(({ results }) => {
           if (results.length > 0) {
             var counter = results[0];
+              leancloudSelector(url).innerText = counter.time + 1;
             Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
               .then(response => response.json())
-              .then(() => {
-                leancloudSelector(url).innerText = counter.time + 1;
-              })
               .catch(error => {
                 console.error('Failed to save visitor count', error);
               })
           } else {
-              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
-              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
-            
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
           }
         })
         .catch(error => {

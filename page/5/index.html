@@ -179,7 +179,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/78134e07.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/e19da94a.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -193,7 +193,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/78134e07.html" class="post-title-link" itemprop="url">命令模式</a>
+            <a href="/archives/e19da94a.html" class="post-title-link" itemprop="url">享元模式</a>
         </h1>
 
         <div class="post-meta">
@@ -218,7 +218,7 @@
             </span>
 
           
-            <span id="/archives/78134e07.html" class="post-meta-item leancloud_visitors" data-flag-title="命令模式" title="阅读次数">
+            <span id="/archives/e19da94a.html" class="post-meta-item leancloud_visitors" data-flag-title="享元模式" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -230,14 +230,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.8k</span>
+              <span>2.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -249,12 +249,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
-<p>命令模式是最简单和优雅的模式之一，命令模式中的命令指的是一个执行某些特定事情的指令。命令模式最常见的应用场景是：有时候需要向某些对象发送请求，但是不知道请求的接收者是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送者和请求接收者能够消除彼此之间的耦合关系。</p>
+          <hr>
+<blockquote>
+<p>享元模式的核心是运用共享技术来有效支持大量细粒度的对象。如果系统中因为创建了大量类似的对象而导致内存占用过高，享元模式就非常有用了。在JavaScript中，浏览器特别是移动端的浏览器分配的内存不算多，如何节省内存就成了一件非常有意义的事。</p>
 </blockquote>
+<h3 id="初识">初识</h3>
+<p>假设有个内衣工厂，要50个男模50个女模，你可能会这么写程序：</p>
+<p>​
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/archives/78134e07.html#more" rel="contents">
+              <a class="btn" href="/archives/e19da94a.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -378,7 +382,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/a708a60d.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/7bf8ae3c.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -392,7 +396,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/a708a60d.html" class="post-title-link" itemprop="url">装饰者模式</a>
+            <a href="/archives/7bf8ae3c.html" class="post-title-link" itemprop="url">职责链模式</a>
         </h1>
 
         <div class="post-meta">
@@ -417,7 +421,7 @@
             </span>
 
           
-            <span id="/archives/a708a60d.html" class="post-meta-item leancloud_visitors" data-flag-title="装饰者模式" title="阅读次数">
+            <span id="/archives/7bf8ae3c.html" class="post-meta-item leancloud_visitors" data-flag-title="职责链模式" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -429,14 +433,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.7k</span>
+              <span>2.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -450,11 +454,11 @@
       
           <hr>
 <blockquote>
-<p>装饰者模式：给对象动态地增加职责。跟继承相比，装饰者是一种更轻便灵活的做法，是一种“即用即付”的方式。</p>
+<p>使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系，将这些对象都练成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/archives/a708a60d.html#more" rel="contents">
+              <a class="btn" href="/archives/7bf8ae3c.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -478,7 +482,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/75f5b5c3.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/f5c535ea.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -492,7 +496,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/75f5b5c3.html" class="post-title-link" itemprop="url">this关键字</a>
+            <a href="/archives/f5c535ea.html" class="post-title-link" itemprop="url">适配器模式</a>
         </h1>
 
         <div class="post-meta">
@@ -517,7 +521,7 @@
             </span>
 
           
-            <span id="/archives/75f5b5c3.html" class="post-meta-item leancloud_visitors" data-flag-title="this关键字" title="阅读次数">
+            <span id="/archives/f5c535ea.html" class="post-meta-item leancloud_visitors" data-flag-title="适配器模式" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -529,7 +533,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
+              <span>1.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -550,19 +554,11 @@
       
           <hr>
 <blockquote>
-<p>this的指向大概可以分成四种：</p>
-<ul>
-<li>作为对象的方法调用</li>
-<li>作为普通函数调用</li>
-<li>构造器调用</li>
-<li>Function.prototype.call或Function.prototype.apply调用</li>
-</ul>
+<p>适配器模式的作用是解决两个软件实体间的接口不兼容问题。使用适配器模式之后，原本由于接口不兼容而不能工作的两个软件实体可以一起工作。</p>
 </blockquote>
-<h3 id="1-作为对象的时候，this指向该对象">1. 作为对象的时候，<strong>this指向该对象</strong></h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">1</span>,</span><br><span class="line">    getA: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="keyword">this</span> === obj); <span class="comment">//true;</span></span><br><span class="line">        alert(<span class="keyword">this</span>.a); <span class="comment">//1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.getA();</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/archives/75f5b5c3.html#more" rel="contents">
+              <a class="btn" href="/archives/f5c535ea.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -791,11 +787,11 @@
           </li>
         
           <li>
-            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
           </li>
         
           <li>
-            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
           </li>
         
           <li>
@@ -1149,18 +1145,21 @@ if(canvas.getContext){
         .then(({ results }) => {
           if (results.length > 0) {
             var counter = results[0];
+              leancloudSelector(url).innerText = counter.time + 1;
             Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
               .then(response => response.json())
-              .then(() => {
-                leancloudSelector(url).innerText = counter.time + 1;
-              })
               .catch(error => {
                 console.error('Failed to save visitor count', error);
               })
           } else {
-              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
-              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
-            
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.error('Failed to create', error);
+                });
           }
         })
         .catch(error => {
