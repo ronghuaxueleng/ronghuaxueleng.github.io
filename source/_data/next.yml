@@ -279,15 +279,15 @@ tag_icon: false
 # Front-matter variable (unsupport animation).
 reward_settings:
   # If true, reward will be displayed in every article by default.
-  enable: false
+  enable: true
   animation: false
-  #comment: Donate comment here.
-
+  comment: 我知道是不会有人点的，但万一有人想不开呢？
+  # Donate 文章末尾显示打赏按钮
 reward:
-  #wechatpay: /images/wechatpay.png
-  #alipay: /images/alipay.png
   #paypal: /images/paypal.png
   #bitcoin: /images/bitcoin.png
+  wechatpay: /img/wechatpay.png
+  alipay: /img/alipay.jpg
 
 # Subscribe through Telegram Channel, Twitter, etc.
 # Usage: `Key: permalink || icon` (Font Awesome)
@@ -1050,11 +1050,6 @@ feed:
   icon: icon.png
   autodiscovery: true
   template:
-
-# Donate 文章末尾显示打赏按钮
-reward_comment: 我知道是不会有人点的，但万一有人想不开呢？
-wechatpay: /img/wechatpay.png
-alipay: /img/alipay.jpg
 
 since: 2015
 # 来必力
