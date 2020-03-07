@@ -720,8 +720,8 @@ leancloud_visitors:
   class: Counter # leanclound上的class名称
   app_id: bsaOTPoCExAqjKNPN5rYUMkb-gzGzoHsz
   app_key: 9kCQuNi7NFq5MdDBn9J1Xj1r
-  security: true
-  betterPerformance: false
+  security: false
+  betterPerformance: true
 
 # Another tool to show number of visitors to each article.
 # Visit https://console.firebase.google.com/u/0/ to get apiKey and projectId.
