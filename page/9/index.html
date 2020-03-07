@@ -582,7 +582,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/d841583b.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/f12aca3e.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -596,7 +596,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/d841583b.html" class="post-title-link" itemprop="url">jQuery的deferred对象详解</a>
+            <a href="/archives/f12aca3e.html" class="post-title-link" itemprop="url">Javascript的this用法</a>
         </h1>
 
         <div class="post-meta">
@@ -621,7 +621,7 @@
             </span>
 
           
-            <span id="/archives/d841583b.html" class="post-meta-item leancloud_visitors" data-flag-title="jQuery的deferred对象详解" title="阅读次数">
+            <span id="/archives/f12aca3e.html" class="post-meta-item leancloud_visitors" data-flag-title="Javascript的this用法" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -633,14 +633,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.8k</span>
+              <span>1.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -652,13 +652,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a href="http://jquery.com/" target="_blank" rel="noopener">jQuery</a>的开发速度很快，几乎每半年一个大版本，每两个月一个小版本。</p>
-<p>每个版本都会引入一些新功能。今天我想介绍的，就是从jQuery 1.5.0版本开始引入的一个新功能----<a href="http://api.jquery.com/category/deferred-object/" target="_blank" rel="noopener">deferred对象</a>。</p>
-<p>这个功能很重要，未来将成为jQuery的核心方法，它彻底改变了如何在jQuery中使用ajax。为了实现它，jQuery的全部ajax代码都被改写了。但是，<br>
-它比较抽象，初学者很难掌握，网上的教程也不多。所以，我把自己的学习笔记整理出来了，希望对大家有用。</p>
+          <p>this是Javascript语言的一个关键字。</p>
+<p>它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.x = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是<strong>this指的是，调用函数的那个对象</strong>。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/archives/d841583b.html#more" rel="contents">
+              <a class="btn" href="/archives/f12aca3e.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
