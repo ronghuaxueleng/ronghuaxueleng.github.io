@@ -18,10 +18,9 @@ modifiedOn: 2015-11-25 00:00:00
 第五节： 如何更换自己的主题
 第六节： 如何发表文章
 
-
 ----------
 
- 
+ <!-- more -->
 
 第一节：什么是hexo
 -----------
@@ -53,7 +52,7 @@ A fast, simple & powerful blog framework, powered by Node.js.
  - 用户多：虽然赶不上Jekyll和Octopress，但遇到什么问题都能搜索到答案，或者找到同样使用hexo的用户进行参考和咨询。
  - 简单：我本人不太爱倒腾这东西，但是当我看到本博客的模板后，在看完教程后，都停不下来，用了一晚上就搭起来了
  - 省时：不必浪费时间在你不关注的东西上，专心写你的博客
- 
+
 
 
 ----------
@@ -169,7 +168,7 @@ A fast, simple & powerful blog framework, powered by Node.js.
 
     hexo generate
     hexo deploy
-    
+
 ----------
 
 第五节：如何更换自己的主题
@@ -211,7 +210,7 @@ theme: yilia
       # google: "#"
       # twitter: "#"
       # linkedin: "#"
-
+    
     rss: /atom.xml
     
     # Content
@@ -221,7 +220,7 @@ theme: yilia
     # Miscellaneous
     google_analytics: ''
     favicon: /favicon.png
-
+    
     #你的头像
     avatar: "https://avatars2.githubusercontent.com/u/2024949?v=2&s=150"
     #是否开启分享
@@ -230,7 +229,7 @@ theme: yilia
     duoshuo: true
     #是否开启云标签
     tagcloud: true
-
+    
     #是否开启友情链接
     #不开启——
     #friends: false
@@ -262,7 +261,7 @@ theme: yilia
     
     最后在浏览器中输入： ronghuaxueleng.github.com 
     ps：ronghuaxueleng换成你自己的repo名字，查看效果
-    
+
 ----------
 这里有hexo的各种主题，喜欢折腾的可以去看看
 
@@ -285,6 +284,7 @@ ps:引号可以不加，最好不加，此时 查看source/_posts/下面会产�
      tags: 
         - 随笔
         - 心情
+
         - 个人
     ---
 
@@ -297,7 +297,7 @@ ps:引号可以不加，最好不加，此时 查看source/_posts/下面会产�
 现在为止，我们已经搭建起博客，进行一些基本配置，设置了主题，并学会了怎么发表文章。
 
 
-  [1]: http://git-scm.com/download/win
-  [2]: https://nodejs.org/en/
-  [3]: https://github.com/
-  [4]: http://ronghuaxueleng.github.io
+[1]: http://git-scm.com/download/win
+[2]: https://nodejs.org/en/
+[3]: https://github.com/
+[4]: http://ronghuaxueleng.github.io

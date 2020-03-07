@@ -9,9 +9,11 @@ modifiedOn: 2016-10-13 00:00:00
 
 ## 简介
 
-在[PHP设计模式(八)：工厂模式][2]中我们介绍了创建设计模式(Creation
+在[PHP设计模式(八)：工厂模式](54788f73.html)中我们介绍了创建设计模式(Creation
 patterns)中的工厂模式，下面我们将介绍另一种原型设计模式(Prototype Method)。  
 在PHP中，原型设计模式依靠cloning复制对象来实现。通过cloning构造的对象，将大量节省新对象的构造时间。
+
+<!--more-->
 
 ## 何时使用原型设计模式？
 
@@ -22,9 +24,7 @@ patterns)中的工厂模式，下面我们将介绍另一种原型设计模式(P
 ## Example
 
 PHP提供了内建的__clone()函数以及clone关键字，来实现对象的复制。下面给出一个例子：
-
-    
-    
+```php    
     <?php
     abstract class Cell {
       public $id;
@@ -62,17 +62,15 @@ PHP提供了内建的__clone()函数以及clone关键字，来实现对象的复
     $whaleCell5 = clone $whaleCell4;
     $whaleCell5->displayDNA();
     ?>
-
+```
 运行一下：
-
-    
-    
+```shell
     ATCG
     ATCG
     ATCGAT
     ATCGAT
     ATCGATCG
-
+```
 程序简单的模拟了DNA的遗传突变，每遗传三代，DNA增加AT，每遗传五代，DNA增加CG。
 
 ## 原型设计模式中的构造函数

@@ -14,6 +14,8 @@ modifiedOn: 2016-08-02 00:00:00
 ```text
 ECMAScript有5种原始类型(primitive type)，即Undefined、Null、Boolean、Number和String。ECMAScript提供了typeof来判断值的类型。
 ```
+<!-- more -->
+
 ##### typeof运算符
 
 ```

@@ -14,12 +14,14 @@ modifiedOn: 2016-10-13 00:00:00
 
 不过, 对于基础知识的理解是深入编程的前提. 让我们一起来看看这些变态题到底变态不变态吧!
 
+<!-- more -->
+
 ## 第1题
 
-    
-    
-    ["1", "2", "3"].map(parseInt)
-    
+
+​    
+​    ["1", "2", "3"].map(parseInt)
+
 
 知识点:
 
@@ -49,12 +51,12 @@ modifiedOn: 2016-10-13 00:00:00
 
 所以本题即问
 
-    
-    
-    parseInt('1', 0);
-    parseInt('2', 1);
-    parseInt('3', 2);
-    
+
+​    
+​    parseInt('1', 0);
+​    parseInt('2', 1);
+​    parseInt('3', 2);
+
 
 首先后两者参数不合法.
 
@@ -62,10 +64,10 @@ modifiedOn: 2016-10-13 00:00:00
 
 ## 第2题
 
-    
-    
-    [typeof null, null instanceof Object]
-    
+
+​    
+​    [typeof null, null instanceof Object]
+
 
 两个知识点:
 
@@ -81,28 +83,28 @@ instanceof 运算符用来检测 constructor.prototype 是否存在于参数 obj
 
 typeof 的结果请看下表:
 
-    
-    
-    type         result
-    Undefined   "undefined"
-    Null        "object"
-    Boolean     "boolean"
-    Number      "number"
-    String      "string"
-    Symbol      "symbol"
-    Host object Implementation-dependent
-    Function    "function"
-    Object      "object"
-    
+
+​    
+​    type         result
+​    Undefined   "undefined"
+​    Null        "object"
+​    Boolean     "boolean"
+​    Number      "number"
+​    String      "string"
+​    Symbol      "symbol"
+​    Host object Implementation-dependent
+​    Function    "function"
+​    Object      "object"
+
 
 所以答案 `[object, false]`
 
 ## 第3题
 
-    
-    
-    [ [3,2,1].reduce(Math.pow), [].reduce(Math.pow) ]
-    
+
+​    
+​    [ [3,2,1].reduce(Math.pow), [].reduce(Math.pow) ]
+
 
 知识点:
 
@@ -123,11 +125,11 @@ would be thrown.`
 
 ## 第4题
 
-    
-    
-    var val = 'smtg';
-    console.log('Value is ' + (val === 'smtg') ? 'Something' : 'Nothing');
-    
+
+​    
+​    var val = 'smtg';
+​    console.log('Value is ' + (val === 'smtg') ? 'Something' : 'Nothing');
+
 
 两个知识点:
 
@@ -143,18 +145,18 @@ would be thrown.`
 
 ## 第5题
 
-    
-    
-    var name = 'World!';
-    (function () {
-        if (typeof name === 'undefined') {
-            var name = 'Jack';
-            console.log('Goodbye ' + name);
-        } else {
-            console.log('Hello ' + name);
-        }
-    })();
-    
+
+​    
+​    var name = 'World!';
+​    (function () {
+​        if (typeof name === 'undefined') {
+​            var name = 'Jack';
+​            console.log('Goodbye ' + name);
+​        } else {
+​            console.log('Hello ' + name);
+​        }
+​    })();
+
 
 这个相对简单, 一个知识点:
 
@@ -165,34 +167,34 @@ would be thrown.`
 
 这个题目相当于
 
-    
-    
-    var name = 'World!';
-    (function () {
-        var name;
-        if (typeof name === 'undefined') {
-            name = 'Jack';
-            console.log('Goodbye ' + name);
-        } else {
-            console.log('Hello ' + name);
-        }
-    })();
-    
+
+​    
+​    var name = 'World!';
+​    (function () {
+​        var name;
+​        if (typeof name === 'undefined') {
+​            name = 'Jack';
+​            console.log('Goodbye ' + name);
+​        } else {
+​            console.log('Hello ' + name);
+​        }
+​    })();
+
 
 所以答案是 `'Goodbye Jack'`
 
 ## 第6题
 
-    
-    
-    var END = Math.pow(2, 53);
-    var START = END - 100;
-    var count = 0;
-    for (var i = START; i <= END; i++) {
-        count++;
-    }
-    console.log(count);
-    
+
+​    
+​    var END = Math.pow(2, 53);
+​    var START = END - 100;
+​    var count = 0;
+​    for (var i = START; i <= END; i++) {
+​        count++;
+​    }
+​    console.log(count);
+
 
 一个知识点:
 
@@ -209,12 +211,12 @@ would be thrown.`
 
 ## 第7题
 
-    
-    
-    var ary = [0,1,2];
-    ary[10] = 10;
-    ary.filter(function(x) { return x === undefined;});
-    
+
+​    
+​    var ary = [0,1,2];
+​    ary[10] = 10;
+​    ary.filter(function(x) { return x === undefined;});
+
 
 答案是 `[]`
 
@@ -225,12 +227,12 @@ would be thrown.`
 
 我们来看一下 Array.prototype.filter 的 polyfill:
 
-    
-    
-    if (!Array.prototype.filter) {
-      Array.prototype.filter = function(fun/*, thisArg*/) {
-        'use strict';
-    
+
+​    
+​    if (!Array.prototype.filter) {
+​      Array.prototype.filter = function(fun/*, thisArg*/) {
+​        'use strict';
+​    
         if (this === void 0 || this === null) {
           throw new TypeError();
         }
@@ -255,29 +257,29 @@ would be thrown.`
         return res;
       };
     }
-    
+
 
 我们看到在迭代这个数组的时候, 首先检查了这个索引值是不是数组的一个属性, 那么我们测试一下.
 
-    
-    
-    0 in ary; => true
-    3 in ary; => false
-    10 in ary; => true
-    
+
+​    
+​    0 in ary; => true
+​    3 in ary; => false
+​    10 in ary; => true
+
 
 也就是说 从 3 - 9 都是没有初始化的'坑'!, 这些索引并不存在与数组中. 在 array 的函数调用的时候是会跳过这些'坑'的.
 
 ## 第8题
 
-    
-    
-    var two   = 0.2
-    var one   = 0.1
-    var eight = 0.8
-    var six   = 0.6
-    [two - one == one, eight - six == two]
-    
+
+​    
+​    var two   = 0.2
+​    var one   = 0.1
+​    var eight = 0.8
+​    var six   = 0.6
+​    [two - one == one, eight - six == two]
+
 
   * [JavaScript的设计缺陷?浮点运算：0.1 + 0.2 != 0.3][17]
 
@@ -289,25 +291,25 @@ IEEE 754标准中的浮点数并不能精确地表达小数
 
 ## 第9题
 
-    
-    
-    function showCase(value) {
-        switch(value) {
-        case 'A':
-            console.log('Case A');
-            break;
-        case 'B':
-            console.log('Case B');
-            break;
-        case undefined:
-            console.log('undefined');
-            break;
-        default:
-            console.log('Do not know!');
-        }
-    }
-    showCase(new String('A'));
-    
+
+​    
+​    function showCase(value) {
+​        switch(value) {
+​        case 'A':
+​            console.log('Case A');
+​            break;
+​        case 'B':
+​            console.log('Case B');
+​            break;
+​        case undefined:
+​            console.log('undefined');
+​            break;
+​        default:
+​            console.log('Do not know!');
+​        }
+​    }
+​    showCase(new String('A'));
+
 
 两个知识点:
 
@@ -316,40 +318,41 @@ IEEE 754标准中的浮点数并不能精确地表达小数
 
 switch 是严格比较, String 实例和 字符串不一样.
 
-    
-    
-    var s_prim = 'foo';
-    var s_obj = new String(s_prim);
-    
+
+​    
+​    var s_prim = 'foo';
+​    var s_obj = new String(s_prim);
+​    
     console.log(typeof s_prim); // "string"
     console.log(typeof s_obj);  // "object"
     console.log(s_prim === s_obj); // false
-    
-    
+
+
+​    
 
 答案是 `'Do not know!'`
 
 ## 第10题
 
-    
-    
-    function showCase2(value) {
-        switch(value) {
-        case 'A':
-            console.log('Case A');
-            break;
-        case 'B':
-            console.log('Case B');
-            break;
-        case undefined:
-            console.log('undefined');
-            break;
-        default:
-            console.log('Do not know!');
-        }
-    }
-    showCase2(String('A'));
-    
+
+​    
+​    function showCase2(value) {
+​        switch(value) {
+​        case 'A':
+​            console.log('Case A');
+​            break;
+​        case 'B':
+​            console.log('Case B');
+​            break;
+​        case undefined:
+​            console.log('undefined');
+​            break;
+​        default:
+​            console.log('Do not know!');
+​        }
+​    }
+​    showCase2(String('A'));
+
 
 解释:  
 `String(x) does not create an object but does return a string, i.e. typeof
@@ -361,20 +364,20 @@ String(1) === "string"`
 
 ## 第11题
 
-    
-    
-    function isOdd(num) {
-        return num % 2 == 1;
-    }
-    function isEven(num) {
-        return num % 2 == 0;
-    }
-    function isSane(num) {
-        return isEven(num) || isOdd(num);
-    }
-    var values = [7, 4, '13', -9, Infinity];
-    values.map(isSane);
-    
+
+​    
+​    function isOdd(num) {
+​        return num % 2 == 1;
+​    }
+​    function isEven(num) {
+​        return num % 2 == 0;
+​    }
+​    function isSane(num) {
+​        return isEven(num) || isOdd(num);
+​    }
+​    var values = [7, 4, '13', -9, Infinity];
+​    values.map(isSane);
+
 
 一个知识点
 
@@ -382,14 +385,14 @@ String(1) === "string"`
 
 此题等价于
 
-    
-    
-    7 % 2 => 1
-    4 % 2 => 0
-    '13' % 2 => 1
-    -9 % % 2 => -1
-    Infinity % 2 => NaN
-    
+
+​    
+​    7 % 2 => 1
+​    4 % 2 => 0
+​    '13' % 2 => 1
+​    -9 % % 2 => -1
+​    Infinity % 2 => NaN
+
 
 需要注意的是 余数的正负号随第一个操作数.
 
@@ -397,21 +400,21 @@ String(1) === "string"`
 
 ## 第12题
 
-    
-    
-    parseInt(3, 8)
-    parseInt(3, 2)
-    parseInt(3, 0)
-    
+
+​    
+​    parseInt(3, 8)
+​    parseInt(3, 2)
+​    parseInt(3, 0)
+
 
 第一个题讲过了, 答案 `3, NaN, 3`
 
 ## 第13题
 
-    
-    
-    Array.isArray( Array.prototype )
-    
+
+​    
+​    Array.isArray( Array.prototype )
+
 
 一个知识点:
 
@@ -423,15 +426,15 @@ String(1) === "string"`
 
 ## 第14题
 
-    
-    
-    var a = [0];
-    if ([0]) {
-      console.log(a == true);
-    } else {
-      console.log("wut");
-    }
-    
+
+​    
+​    var a = [0];
+​    if ([0]) {
+​      console.log(a == true);
+​    } else {
+​      console.log("wut");
+​    }
+
 
   * [JavaScript-Equality-Table][22]
   * _更新_[通过一张简单的图，让你彻底地、永久地搞懂JS的==运算][23] 非常不错的一篇文章!
@@ -448,11 +451,12 @@ String(1) === "string"`
 
 ## 第15题
 
-    
-    
-    []==[]
-    
-    
+
+​    
+​    []==[]
+
+
+​    
 
 [] 是Object, 两个 Object 不相等
 
@@ -460,11 +464,11 @@ String(1) === "string"`
 
 ## 第16题
 
-    
-    
-    '5' + 3
-    '5' - 3
-    
+
+​    
+​    '5' + 3
+​    '5' - 3
+
 
 两个知识点:
 
@@ -475,19 +479,19 @@ String(1) === "string"`
 
 请看例子, 体会区别:
 
-    
-    
-    > '5' + 3
-    '53'
-    > 5 + '3'
-    '53'
-    > 5 - '3'
-    2
-    > '5' - 3
-    2
-    > '5' - '3'
-    2
-    
+
+​    
+​    > '5' + 3
+​    '53'
+​    > 5 + '3'
+​    '53'
+​    > 5 - '3'
+​    2
+​    > '5' - 3
+​    2
+​    > '5' - '3'
+​    2
+
 
 也就是说 `-` 会尽可能的将两个操作数变成数字, 而 `+` 如果两边不都是数字, 那么就是字符串拼接.
 
@@ -495,36 +499,37 @@ String(1) === "string"`
 
 ## 第17题
 
-    
-    
-    1 + - + + + - + 1
-    
-    
+
+​    
+​    1 + - + + + - + 1
+
+
+​    
 
 这里应该是(倒着看)
 
-    
-    
-    1 + (a)  => 2
-    a = - (b) => 1
-    b = + (c) => -1
-    c = + (d) => -1
-    d = + (e) => -1
-    e = + (f) => -1
-    f = - (g) => -1
-    g = + 1   => 1
-    
+
+​    
+​    1 + (a)  => 2
+​    a = - (b) => 1
+​    b = + (c) => -1
+​    c = + (d) => -1
+​    d = + (e) => -1
+​    e = + (f) => -1
+​    f = - (g) => -1
+​    g = + 1   => 1
+
 
 所以答案 `2`
 
 ## 第18题
 
-    
-    
-    var ary = Array(3);
-    ary[0]=2
-    ary.map(function(elem) { return '1'; });
-    
+
+​    
+​    var ary = Array(3);
+​    ary[0]=2
+​    ary.map(function(elem) { return '1'; });
+
 
 稀疏数组. 同第7题.
 
@@ -534,10 +539,10 @@ String(1) === "string"`
 
 这里贴上 Array.prototype.map 的 polyfill.
 
-    
-    
-    Array.prototype.map = function(callback, thisArg) {
-    
+
+​    
+​    Array.prototype.map = function(callback, thisArg) {
+​    
             var T, A, k;
     
             if (this == null) {
@@ -565,23 +570,24 @@ String(1) === "string"`
             }
             return A;
         };
-    
+
 
 ## 第19题
 
-    
-    
-    function sidEffecting(ary) {
-      ary[0] = ary[2];
-    }
-    function bar(a,b,c) {
-      c = 10
-      sidEffecting(arguments);
-      return a + b + c;
-    }
-    bar(1,1,1)
-    
-    
+
+​    
+​    function sidEffecting(ary) {
+​      ary[0] = ary[2];
+​    }
+​    function bar(a,b,c) {
+​      c = 10
+​      sidEffecting(arguments);
+​      return a + b + c;
+​    }
+​    bar(1,1,1)
+
+
+​    
 
 这是一个大坑, 尤其是涉及到 ES6语法的时候
 
@@ -604,18 +610,18 @@ parameters` 的时候, 这个 arguments 就不在是一个 `mapped arguments obj
 
 请看:
 
-    
-    
-    function sidEffecting(ary) {
-      ary[0] = ary[2];
-    }
-    function bar(a,b,c=3) {
-      c = 10
-      sidEffecting(arguments);
-      return a + b + c;
-    }
-    bar(1,1,1)
-    
+
+​    
+​    function sidEffecting(ary) {
+​      ary[0] = ary[2];
+​    }
+​    function bar(a,b,c=3) {
+​      c = 10
+​      sidEffecting(arguments);
+​      return a + b + c;
+​    }
+​    bar(1,1,1)
+
 
 答案是 `12` !!!!
 
@@ -623,24 +629,25 @@ parameters` 的时候, 这个 arguments 就不在是一个 `mapped arguments obj
 
 ## 第20题
 
-    
-    
-    var a = 111111111111111110000,
-        b = 1111;
-    a + b;
-    
-    
+
+​    
+​    var a = 111111111111111110000,
+​        b = 1111;
+​    a + b;
+
+
+​    
 
 答案还是 `111111111111111110000`. 解释是 `Lack of precision for numbers in JavaScript
 affects both small and big numbers.` 但是笔者不是很明白................ 请读者赐教!
 
 ## 第21题
 
-    
-    
-    var x = [].reverse;
-    x();
-    
+
+​    
+​    var x = [].reverse;
+​    x();
+
 
 这个题有意思!
 
@@ -663,10 +670,10 @@ chrome 中应该是对调用者做了检查.
 
 ## 第22题
 
-    
-    
-    Number.MIN_VALUE > 0
-    
+
+​    
+​    Number.MIN_VALUE > 0
+
 
 `true`
 
@@ -676,61 +683,61 @@ chrome 中应该是对调用者做了检查.
 
 [44个 Javascript 变态题解析 (下)][29]
 
-   [1]: http://javascript-puzzlers.herokuapp.com/
+[1]: http://javascript-puzzlers.herokuapp.com/
 
-   [2]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+[2]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
 
-   [3]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/parseInt
+[3]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/parseInt
 
-   [4]: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt
+[4]: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt
 
-   [5]: http://www.w3school.com.cn/jsref/jsref_parseInt.asp
+[5]: http://www.w3school.com.cn/jsref/jsref_parseInt.asp
 
-   [6]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof
+[6]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof
 
-   [7]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof
+[7]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof
 
-   [8]: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof
+[8]: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof
 
-   [9]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+[9]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
 
-   [10]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
+[10]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
 
-   [11]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator
+[11]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator
 
-   [12]: https://developer.mozilla.org/en-US/docs/Glossary/Hoisting
+[12]: https://developer.mozilla.org/en-US/docs/Glossary/Hoisting
 
-   [13]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity
+[13]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity
 
-   [14]: https://github.com/jelly7723
+[14]: https://github.com/jelly7723
 
-   [15]: http://www.cnblogs.com/ziyunfei/archive/2012/09/16/2687165.html
+[15]: http://www.cnblogs.com/ziyunfei/archive/2012/09/16/2687165.html
 
-   [16]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+[16]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
 
-   [17]: http://ourjs.com/detail/54695381bc3f9b154e000046
+[17]: http://ourjs.com/detail/54695381bc3f9b154e000046
 
-   [18]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch
+[18]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch
 
-   [19]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
+[19]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
 
-   [20]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Remainder
+[20]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Remainder
 
-   [21]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype
+[21]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype
 
-   [22]: https://dorey.github.io/JavaScript-Equality-Table/
+[22]: https://dorey.github.io/JavaScript-Equality-Table/
 
-   [23]: https://zhuanlan.zhihu.com/p/21650547
+[23]: https://zhuanlan.zhihu.com/p/21650547
 
-   [24]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Addition
+[24]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Addition
 
-   [25]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Subtraction
+[25]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Subtraction
 
-   [26]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments
+[26]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments
 
-   [27]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse
+[27]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse
 
-   [28]: https://github.com/stellar91
+[28]: https://github.com/stellar91
 
-   [29]: https://github.com/xiaoyu2er/blog/issues/3
+[29]: a26c9c63.html
 

@@ -18,7 +18,7 @@ Javascript代码的复杂度也直线上升。单个网页包含10000行Javascri
 
 麻烦的是，Javascipt语法不支持"类"（class），导致传统的面向对象编程方法无法直接使用。程序员们做了很多探索，研究如何用Javascript模拟"类"。本文总结了Javascript定义"类"的三种方法，讨论了每种方法的特点，着重介绍了我眼中的最佳方法。
 
-==============================================
+<!-- more -->
 
 **Javascript定义类（class）的三种方法**
 
@@ -162,11 +162,11 @@ var Cat = {
 ```
 var cat1 = Cat.createNew();
 alert(cat1.sound); // undefined
-```javascript
+​```javascript
 **3.4 数据共享**
 
 有时候，我们需要所有实例对象，能够读写同一项内部数据。这个时候，只要把这个内部数据，封装在类对象的里面、createNew()方法的外面即可。
-```javascript
+​```javascript
 var Cat = {
   sound : "喵喵喵",
   createNew: function(){
@@ -190,27 +190,27 @@ cat1.makeSound(); // 啦啦啦
 ```
 （完）
 
-   [1]: http://www.ruanyifeng.com/blog/2011/06/birth_of_javascript.html
+[1]: http://www.ruanyifeng.com/blog/2011/06/birth_of_javascript.html
 
-   [2]: /img/javascript/bg2012070901.png
+[2]: /img/javascript/bg2012070901.png
 
-   [3]: http://nodejs.org/
+[3]: http://nodejs.org/
 
-   [4]: http://www.netmagazine.com/features/10-things-you-didnt-know-javascript-could-do
+[4]: http://www.netmagazine.com/features/10-things-you-didnt-know-javascript-could-do
 
-   [5]: http://googlesystem.blogspot.tw/2010/06/gmail-to-use-more-html5-features.html
+[5]: http://googlesystem.blogspot.tw/2010/06/gmail-to-use-more-html5-features.html
 
-   [6]: /img/javascript/bg2012070902.png
+[6]: /img/javascript/bg2012070902.png
 
-   [7]: http://en.wikipedia.org/wiki/Modular_design
+[7]: http://en.wikipedia.org/wiki/Modular_design
 
-   [8]: /img/javascript/bg2012070903.jpg
+[8]: /img/javascript/bg2012070903.jpg
 
-   [9]: http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_encapsulation.html
+[9]: http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_encapsulation.html
 
-   [10]: http://en.wikipedia.org/wiki/ECMAScript
+[10]: http://en.wikipedia.org/wiki/ECMAScript
 
-   [11]: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/create/
+[11]: https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/create/
 
-   [12]: http://www.gabordemooij.com/articles/jsoop.html
+[12]: http://www.gabordemooij.com/articles/jsoop.html
 

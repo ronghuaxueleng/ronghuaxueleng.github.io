@@ -40,6 +40,8 @@ alert(instance.getSuperValue());//true
 
 ```
 
+<!-- more -->
+
 代码示例中，完整原型链如下
 
 ![](/img/面向对象之继承.png)

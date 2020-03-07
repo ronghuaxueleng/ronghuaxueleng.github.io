@@ -30,6 +30,8 @@ npm的常用命令
     npm outdated   检查包是否已经过时，此命令会列出所有已经过时的包，可以及时进行包的更新  
     npm update moduleName   更新node模块  
 
+<!-- more -->
+
 npm获取配置有6种方式，优先级由高到低
 =============
 
@@ -53,7 +55,7 @@ npm获取配置有6种方式，优先级由高到低
     在设置配置属性时属性值默认是被存储于用户配置文件中，如果加上--global，则被存储在全局配置文件中。
     如果要查看npm的所有配置属性（包括默认配置），可以使用npm config ls -l。
     如果要查看npm的各种配置的含义，可以使用npm help config。
-    
+
 解决npm install安装模块失败的问题
 =============
 
@@ -62,12 +64,12 @@ npm获取配置有6种方式，优先级由高到低
 -------------
     npm config set proxy http://server:port
     npm config set https-proxy http://server:port
-    
+
 如果代理需要认证的话可以这样来设置。
 
     npm config set proxy http://username:password@server:port
     npm config set https-proxy http://username:pawword@server:port
-    
+
 2、国内镜像
 -------------
 
@@ -79,20 +81,20 @@ npm获取配置有6种方式，优先级由高到低
     http://r.cnpmjs.org
     未知：
     http://registry.cnpmjs.org
-    
+
 方法一：通过config命令指定
 
     npm config set registry http://registry.cnpmjs.org 
     npm info underscore （如果上面配置正确这个命令会有字符串response）
-    
+
 方法二：在命令行中指定
 
     npm --registry http://registry.cnpmjs.org info underscore
-    
+
 方法三：在配置文件中指定，编辑安装npm的目录下的npmrc文件加入下面内容
 
     registry = http://registry.cnpmjs.org
-    
+
 方法四：利用定制的cnpm代替npm
 
     #安装该模块，然后通过该命令来安装所需模块
@@ -100,7 +102,7 @@ npm获取配置有6种方式，优先级由高到低
     # 利用cnpm来安装模块
     cnpm install [name]# 利用cnpm来同步模块
     cnpm sync connect
-    
+
 方法五：利用alias添加一个基于npm的新命令
 
     alias cnpm="npm --registry=http://registry.npm.taobao.org \--cache=$HOME/.npm/.cache/cnpm \--disturl=http://npm.taobao.org/dist \--userconfig=$HOME/.cnpmrc"#Or alias it in .bashrc or .zshrc$ echo '\n#alias for cnpm\nalias cnpm="npm --registry=registry.npm.taobao.org \  --cache=$HOME/.npm/.cache/cnpm \  --disturl=http://npm.taobao.org/dist \  --userconfig=$HOME/.cnpmrc"' >> ~/.zshrc && source ~/.zshrc

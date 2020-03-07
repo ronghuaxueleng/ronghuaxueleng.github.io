@@ -6,12 +6,12 @@ abbrlink: d60eb45
 date: 2016-10-13 00:00:00
 modifiedOn: 2016-10-13 00:00:00
 ---
-> 原文地址：[PHP设计模式(三)：封装][1]
-
 ## 简介
 
 面向对象编程中，一切都是对象，对一个对象的封装，也成了面向对象编程中必不可少的部分。  
 和C/C++，Java，Python等语言一样，PHP也支持封装。
+
+<!--more-->
 
 ## 封装/Encapsulation
 
@@ -27,8 +27,7 @@ modifiedOn: 2016-10-13 00:00:00
 ### 私有/Private
 
 私有的概念是，仅仅对象内部可见，外部不可见，如：
-
-    
+```php
     
     <?php
     class Whale {
@@ -48,14 +47,13 @@ modifiedOn: 2016-10-13 00:00:00
       }
     }
     ?>
-
+```
 name是鲸鱼的私有属性，chew()和digest()是鲸鱼的私有方法，对于其他类来说，都是不可见的。对于现实来说，我们如果只是注重吃，并没有必要去关心鲸鱼是如何去吃的。
 
 ### 保护/Protected
 
 保护的概念是，仅仅是自身类和继承类可见，这个关键字的用途主要是防止滥用类的派生，另外三方库编写的时候会用到，防止误用。
-
-    
+```php
     
     <?php
     abstract class Animal {
@@ -80,7 +78,7 @@ name是鲸鱼的私有属性，chew()和digest()是鲸鱼的私有方法，对�
       }
     }
     ?>
-
+```
 鲸鱼类可以通过继承使用动物类的咀嚼和消化方法，但是别的继承鲸鱼类的类就不可以再使用动物类的咀嚼和消化方法了。保护更多是用于面向对象设计，而不是为了编程来实现某个需求。
 
 ### 公共/Public
@@ -91,8 +89,7 @@ name是鲸鱼的私有属性，chew()和digest()是鲸鱼的私有方法，对�
 
 Getters和Setters也叫Accessors和Mutators，在Java/C#等语言中常以get()/set()方法出现。  
 对于这两个东西的争议很大，考虑下面一个类：
-
-    
+```php
     
     <?php
     class Price {
@@ -102,10 +99,9 @@ Getters和Setters也叫Accessors和Mutators，在Java/C#等语言中常以get()/
       ...
     }
     ?>
-
+```
 如果不使用Getters/Setters，我们给Price类赋值和取值一般是这样：
-
-    
+```php
     
     <?php
       $price = new Price();
@@ -118,10 +114,9 @@ Getters和Setters也叫Accessors和Mutators，在Java/C#等语言中常以get()/
       echo $price->priceC;
       ...
     ?>
-
+```
 但是如果使用了Getters/Setters，Price类将变成这样：
-
-    
+```php
     
     <?php
     class Price {
@@ -137,10 +132,9 @@ Getters和Setters也叫Accessors和Mutators，在Java/C#等语言中常以get()/
       ...
     }
     ?>
-
+```
 这时候赋值将变成这样：
-
-    
+```php
     
     <?php
       $price = new Price();
@@ -153,7 +147,7 @@ Getters和Setters也叫Accessors和Mutators，在Java/C#等语言中常以get()/
       echo $price->getPriceC();
       ...
     ?>
-
+```
 是不是感觉需要多敲很多代码？这也是很多程序员不愿意使用get/set的原因，造成了大量的看似无用冗余的代码。  
 为什么叫看似冗余和无用？因为Getters/Setters是编程设计方法，而不是编程实现方法。
 

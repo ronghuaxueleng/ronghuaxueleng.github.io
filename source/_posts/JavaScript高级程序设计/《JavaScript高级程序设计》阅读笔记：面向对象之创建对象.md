@@ -33,6 +33,10 @@ var person1=createPerson("Jack",29,"Engineer");
 alert(person1 instanceof Object) //true
 alert(person1 instanceof Person) //error Person is not defined
 ```
+
+
+<!-- more -->
+
 ##### 构造函数模式
 
 构造函数模式相比工厂模式的优点就在于，构造函数模式可以将他的实例标示为特定类型

@@ -9,14 +9,15 @@ modifiedOn: 2016-10-13 00:00:00
 
 ## 简介
 
-在[PHP设计模式(二)：抽象类和接口][2]以及[PHP设计模式(三)：封装][3]中，我们已经见过继承，也就是extends关键字。  
+在[PHP设计模式(二)：抽象类和接口](daef90fc.html)以及[PHP设计模式(三)：封装](d60eb45.html)中，我们已经见过继承，也就是extends关键字。  
 和C/C++，Java，Python等语言一样，PHP也支持继承，而且和其他语言没有什么区别。
+
+<!--more-->
 
 ## 继承/Inheritance
 
 还是用动物、鲸鱼和鲤鱼来举例：
-
-    
+```php
     
     <?php
     abstract class Animal {
@@ -55,18 +56,17 @@ modifiedOn: 2016-10-13 00:00:00
     $carp = new Carp();
     $carp->eat("moss");
     ?>
-
+```
 运行一下：
-
-    
+```shell
     
     $ php Inheritance.php
     Whale is chewing fish.
     Whale is digesting fish.
     Carp is chewing moss.
     Carp is digesting moss.
-
-注意$this在Animal类、Whale类、Carp类中的用法。  
+```
+注意***$this***在Animal类、Whale类、Carp类中的用法。  
 上面的代码看似常见，实则暗含玄机。对于一个好的程序设计，需要：
 
   1. 类和类之间应该是低耦合的。
