@@ -179,7 +179,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/828c261b.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/ffd643db.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -193,7 +193,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/828c261b.html" class="post-title-link" itemprop="url">学习 ui-router - 组件</a>
+            <a href="/archives/ffd643db.html" class="post-title-link" itemprop="url">设计原则和编程技巧</a>
         </h1>
 
         <div class="post-meta">
@@ -203,7 +203,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-08-07 00:00:00" itemprop="dateCreated datePublished" datetime="2016-08-07T00:00:00Z">2016-08-07</time>
+              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -211,14 +211,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/angularjs/" itemprop="url" rel="index">
-                    <span itemprop="name">angularjs</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/archives/828c261b.html" class="post-meta-item leancloud_visitors" data-flag-title="学习 ui-router - 组件" title="阅读次数">
+            <span id="/archives/ffd643db.html" class="post-meta-item leancloud_visitors" data-flag-title="设计原则和编程技巧" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -230,7 +230,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>574</span>
+              <span>817</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -249,27 +249,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>参考原文：<a href="https://github.com/angular-ui/ui-router/wiki/The-Components" target="_blank" rel="noopener">https://github.com/angular-ui/ui-router/wiki/The-Components</a></p>
+          <hr>
+<h3 id="单一职责原则">单一职责原则</h3>
+<p>就一个类而言，应该仅有一个引起它变化的原因。在JavaScript中，需要用到类的场景并不太多，单一职责原则（SRP）更多的是被运用在对象或者方法级别上。<br>
+总之，SRP原则体现为：一个对象（方法）只做一件事情。<br>
+例如：</p>
 <ul>
 <li>
-<p><strong>$state / $stateProvider</strong>：管理状态定义、当前状态和状态转换。包含触发状态转换的事件和回调函数，异步解决目标状态的任何依赖项，更新<code>$location</code>到当前状态。由于状态包含关联的 url，通过$urlRouterProvider生成一个路由规则来执行转换的状态。</p>
+<p>代理模式</p>
 </li>
 <li>
-<p><strong>ui-view</strong>指示器：渲染状态中定义的视图，是状态中定义的视图的一个占位符。</p>
+<p>迭代器模式</p>
 </li>
 <li>
-<p><strong>$urlRouter / $urlRouterProvider</strong>：管理了一套路由规则列表来处理当<code>$location</code>发生变化时如何跳转。最低级的方式是，规则可以是任意函数，来检查<code>$location</code>，并在处理完成时候返回<code>true</code>。支持正则表达式规则和通过<code>$urlMatcherFactory</code>编译的<code>UrlMatcher</code>对象的 url 占位符规则。</p>
+<p>单例模式</p>
 </li>
 <li>
-<p><strong>$urlMatcherFactory</strong>：将 url和占位符编译为<code>UrlMatcher</code>对象。除了<code>$routeProvider</code>支持的占位符语法之外，它还支持扩展语法，允许一个正则表达式指定占位符，并且能够提取命名参数和查询url的一部分。</p>
-</li>
-<li>
-<p><strong>$templateFactory</strong> - 通过<code>$http</code> / <code>$templateCache</code>来加载模板，供状态配置中使用。</p>
+<p>装饰者模式<br>
+但是，并不是所有的职责都应该一一分离的，一方面如果随着需求的变化，有两个职责是同时变化的，那就不必分离他们。比如在ajax请求的时候，创建xhr对象和发送xhr请求几乎总是在一起的，那么创建xhr对象的职责和发送xhr对象的职责就没有必要分开。</p>
 </li>
 </ul>
+<p>另一方面，职责的变化轴线仅当它们确定会发生变化时才有意义，即使两个职责已经被耦合在一起但他们没有发生改变的征兆，那么也许没有必要主动分离他们，在代码需要重构的时候再分离也不迟。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/archives/828c261b.html#more" rel="contents">
+              <a class="btn" href="/archives/ffd643db.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -293,7 +296,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/a0250973.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/47f3f95c.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -307,7 +310,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/a0250973.html" class="post-title-link" itemprop="url">学习 ui-router - 路由控制</a>
+            <a href="/archives/47f3f95c.html" class="post-title-link" itemprop="url">高阶函数</a>
         </h1>
 
         <div class="post-meta">
@@ -317,7 +320,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-08-06 00:00:00" itemprop="dateCreated datePublished" datetime="2016-08-06T00:00:00Z">2016-08-06</time>
+              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -325,14 +328,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/angularjs/" itemprop="url" rel="index">
-                    <span itemprop="name">angularjs</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/archives/a0250973.html" class="post-meta-item leancloud_visitors" data-flag-title="学习 ui-router - 路由控制" title="阅读次数">
+            <span id="/archives/47f3f95c.html" class="post-meta-item leancloud_visitors" data-flag-title="高阶函数" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -344,14 +347,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.6k</span>
+              <span>1.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -363,14 +366,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>参考原文：<a href="https://github.com/angular-ui/ui-router/wiki/URL-Routing" target="_blank" rel="noopener">https://github.com/angular-ui/ui-router/wiki/URL-Routing</a></p>
-<p>在你的应用中大多数状态都有与其相关联的 url，路由控制不是设计完成 state 之后的事后想法，而是开始开发时就应该考虑的问题。</p>
-<p>这里是如何设置一个基本url。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider</span><br><span class="line">    .state(<span class="string">'contacts'</span>, &#123;</span><br><span class="line">        url: <span class="string">"/contacts"</span>,</span><br><span class="line">        templateUrl: <span class="string">'contacts.html'</span></span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
-<p>当我们访问<code>index.html/contacts</code>时， <code>'contacts'</code>状态将被激活，同时<code>index.html</code>中的<code>ui-view</code>将被<code>'contacts.html'</code>填充。或者，通过<code>transitionTo('contacts')</code>方法将状态转变到<code>'contacts'</code>状态，同时 url 将更新为<code>index.html/contacts</code>。</p>
+          <hr>
+<p>高阶函数是至少满足下列条件之一的函数</p>
+<ul>
+<li>
+<p>函数可以作为参数被传递</p>
+</li>
+<li>
+<p>函数可以作为返回值输出<br>
+<em>（js这么好的语言中的函数当然满足 ^</em>^）_</p>
+</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/archives/a0250973.html#more" rel="contents">
+              <a class="btn" href="/archives/47f3f95c.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -394,7 +403,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/e3ced589.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/f1601c3e.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -408,7 +417,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/e3ced589.html" class="post-title-link" itemprop="url">学习 ui-router - 多个命名的视图</a>
+            <a href="/archives/f1601c3e.html" class="post-title-link" itemprop="url">单例模式</a>
         </h1>
 
         <div class="post-meta">
@@ -418,7 +427,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-08-05 00:00:00" itemprop="dateCreated datePublished" datetime="2016-08-05T00:00:00Z">2016-08-05</time>
+              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -426,14 +435,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/angularjs/" itemprop="url" rel="index">
-                    <span itemprop="name">angularjs</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/archives/e3ced589.html" class="post-meta-item leancloud_visitors" data-flag-title="学习 ui-router - 多个命名的视图" title="阅读次数">
+            <span id="/archives/f1601c3e.html" class="post-meta-item leancloud_visitors" data-flag-title="单例模式" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -445,7 +454,206 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.2k</span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<p>用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/archives/f1601c3e.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/72e3b671.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/72e3b671.html" class="post-title-link" itemprop="url">策略模式</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/72e3b671.html" class="post-meta-item leancloud_visitors" data-flag-title="策略模式" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>定义：定义一系列算法，把他们一个个封装起来，并且使他们可以相互替换。</p>
+</blockquote>
+<p>需求：绩效为S的人年终奖有4倍工资，绩效为A的人年终奖有3倍工资，绩效为B的人年终奖有2倍工资。</p>
+<p>​
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/archives/72e3b671.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/b6f5c834.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/b6f5c834.html" class="post-title-link" itemprop="url">策略模式的应用</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-12T00:00:00Z">2016-10-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/b6f5c834.html" class="post-meta-item leancloud_visitors" data-flag-title="策略模式的应用" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -464,224 +672,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>参考原文：<a href="https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views" target="_blank" rel="noopener">https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views</a></p>
-<p>可以给<code>ui-view</code>指定名称，这样一个模板中就可以有多个<code>ui-view</code>。假设您有一个应用，需要动态填充<code>graph</code>、<code>table data</code>和<code>filters</code>，像下面这样：</p>
-<p><img src="http://bubkoo.qiniudn.com/MultipleNamedViewsExample.png" alt=""></p>
-<p>当您需要使用多视图时，需要用到状态的<code>views</code>属性，<code>views</code>属性值是一个对象。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/archives/e3ced589.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/fa7f8f37.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/img/avatar.jpg">
-      <meta itemprop="name" content="曹强">
-      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白云雅阁">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/archives/fa7f8f37.html" class="post-title-link" itemprop="url">学习 ui-router - 状态嵌套和视图嵌套</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-08-04 00:00:00" itemprop="dateCreated datePublished" datetime="2016-08-04T00:00:00Z">2016-08-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/angularjs/" itemprop="url" rel="index">
-                    <span itemprop="name">angularjs</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/archives/fa7f8f37.html" class="post-meta-item leancloud_visitors" data-flag-title="学习 ui-router - 状态嵌套和视图嵌套" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>5.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>参考原文：<a href="https://github.com/angular-ui/ui-router/wiki/Nested-States-%26-Nested-Views" target="_blank" rel="noopener">https://github.com/angular-ui/ui-router/wiki/Nested-States-%26-Nested-Views</a></p>
-<h2 id="状态嵌套的方法">状态嵌套的方法</h2>
-<p>状态可以相互嵌套。有三个嵌套的方法：</p>
-<ol>
-<li>使用“点标记法”，例如：<code>.state('contacts.list', {})</code></li>
-<li>使用<code>parent</code>属性，指定一个父状态的名称字符串，例如：<code>parent: 'contacts'</code></li>
-<li>使用<code>parent</code>属性，指定一个父状态对象，例如：<code>parent: contacts</code>（contacts 是一个状态对象）</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/archives/fa7f8f37.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/54161d18.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/img/avatar.jpg">
-      <meta itemprop="name" content="曹强">
-      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白云雅阁">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/archives/54161d18.html" class="post-title-link" itemprop="url">学习 ui-router - 管理状态</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-08-03 17:30:30" itemprop="dateCreated datePublished" datetime="2016-08-03T17:30:30Z">2016-08-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/angularjs/" itemprop="url" rel="index">
-                    <span itemprop="name">angularjs</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/archives/54161d18.html" class="post-meta-item leancloud_visitors" data-flag-title="学习 ui-router - 管理状态" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>7.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>参考原文：<a href="https://github.com/angular-ui/ui-router/wiki" target="_blank" rel="noopener">https://github.com/angular-ui/ui-router/wiki</a></p>
-<p>ui-router 的工作原理非常类似于 Angular 的路由控制器，但它只关注状态。</p>
+          <hr>
+<h3 id="用策略模式实现缓动动画">用策略模式实现缓动动画</h3>
+<p>需求：让小球以各种缓动效果在页面中运动<br>
+动画开始前需要记录的：</p>
 <ul>
-<li>在应用程序的整个用户界面和导航中，一个状态对应于一个页面位置</li>
-<li>通过定义<code>controller</code>、<code>template</code>和<code>view</code>等属性，来定义指定位置的用户界面和界面行为</li>
-<li>通过嵌套的方式来解决页面中的一些重复出现的部位</li>
+<li>
+<p>小球所在原始位置</p>
+</li>
+<li>
+<p>小球移动的目标位置</p>
+</li>
+<li>
+<p>动画开始时的时间点</p>
+</li>
+<li>
+<p>小球运动的时间点<br>
+之后，用<code>setInterval</code>创建一个定时器，定时器每19秒循环一次。</p>
+</li>
 </ul>
-<h2 id="最简单的形式">最简单的形式</h2>
-<p>模板可以通过下面这种最简单的方式来指定</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- in index.html --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">ng-controller</span>=<span class="string">"MainCtrl"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">ui-view</span>&gt;</span><span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in app-states.js (or whatever you want to name it)</span></span><br><span class="line">$stateProvider.state(<span class="string">'contacts'</span>, &#123;</span><br><span class="line">  template: <span class="string">'&lt;h1&gt;My Contacts&lt;/h1&gt;'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/archives/54161d18.html#more" rel="contents">
+              <a class="btn" href="/archives/b6f5c834.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -705,7 +717,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -773,18 +785,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">120</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -802,23 +814,23 @@
         
         
           <li>
-            <a href="/archives/2fd7dbc7.html" title="Shadow DOM" target="_blank">Shadow DOM</a>
+            <a href="/archives/dce0550c.html" title="传输对象模式 ( Transfer Object Pattern )" target="_blank">传输对象模式 ( Transfer Object Pattern )</a>
           </li>
         
           <li>
-            <a href="/archives/b4a56055.html" title="可视化埋点" target="_blank">可视化埋点</a>
+            <a href="/archives/b5164f8.html" title="服务定位器模式 (Service Locator Pattern)" target="_blank">服务定位器模式 (Service Locator Pattern)</a>
           </li>
         
           <li>
-            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+            <a href="/archives/42bdf457.html" title="拦截过滤器模式 ( Intercepting Filter )" target="_blank">拦截过滤器模式 ( Intercepting Filter )</a>
           </li>
         
           <li>
-            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+            <a href="/archives/fc97e8ab.html" title="前端控制器模式(Front Controller Pattern)" target="_blank">前端控制器模式(Front Controller Pattern)</a>
           </li>
         
           <li>
-            <a href="/archives/a5431a21.html" title="从 JavaScript 数组去重谈性能优化" target="_blank">从 JavaScript 数组去重谈性能优化</a>
+            <a href="/archives/b8fcc304.html" title="数据访问对象模式 ( Data Access Object )" target="_blank">数据访问对象模式 ( Data Access Object )</a>
           </li>
         
       </ul>
@@ -1116,13 +1128,13 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">320k</span>
+    <span title="站点总字数">420k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">4:51</span>
+    <span title="站点阅读时长">6:22</span>
 </div>
 
         

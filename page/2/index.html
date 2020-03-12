@@ -179,7 +179,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/daef90fc.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/738c1ca9.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -193,7 +193,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/daef90fc.html" class="post-title-link" itemprop="url">抽象类和接口</a>
+            <a href="/archives/738c1ca9.html" class="post-title-link" itemprop="url">组合实体模式 (Composite Entity Pattern)</a>
         </h1>
 
         <div class="post-meta">
@@ -203,7 +203,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-10-13 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-13T00:00:00Z">2016-10-13</time>
+              <time title="创建时间：2020-03-12 19:15:01" itemprop="dateCreated datePublished" datetime="2020-03-12T19:15:01Z">2020-03-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -211,14 +211,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/archives/daef90fc.html" class="post-meta-item leancloud_visitors" data-flag-title="抽象类和接口" title="阅读次数">
+            <span id="/archives/738c1ca9.html" class="post-meta-item leancloud_visitors" data-flag-title="组合实体模式 (Composite Entity Pattern)" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -249,12 +249,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="简介">简介</h2>
-<p>对于编程来说，对事物的抽象是一个老生常谈的话题，抽象问题更利于面向对象编程以及程序设计模式。<br>
-和C/C++，Java，Python等语言一样，PHP也支持面向对象，但是又有略微区别，如PHP支持在接口中定义常量，但是不支持抽象变量。</p>
+          <h1>组合实体模式 (Composite Entity Pattern)</h1>
+<p>组合实体模式（Composite Entity Pattern）用在 EJB 持久化机制中</p>
+<p>一个组合实体是一个 EJB 实体 bean，代表了对象的图解</p>
+<p>当更新一个组合实体时，内部依赖对象 beans 会自动更新，因为它们是由 EJB 实体 bean 管理的</p>
+<p>以下是组合实体 bean 的参与者:</p>
+<ul>
+<li><strong>组合实体（Composite Entity）</strong> - 它是主要的实体 bean。它可以是粗粒的，或者可以包含一个粗粒度对象，用于持续生命周期</li>
+<li><strong>粗粒度对象（Coarse-Grained Object）</strong> - 该对象包含依赖对象。它有自己的生命周期，也能管理依赖对象的生命周期</li>
+<li><strong>依赖对象（Dependent Object）</strong> - 依赖对象是一个持续生命周期依赖于粗粒度对象的对象</li>
+<li><strong>策略（Strategies）</strong> - 策略表示如何实现组合实体</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/archives/daef90fc.html#more" rel="contents">
+              <a class="btn" href="/archives/738c1ca9.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -278,7 +286,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/fb867561.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/bda8520e.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -292,7 +300,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/fb867561.html" class="post-title-link" itemprop="url">基础编程模式</a>
+            <a href="/archives/bda8520e.html" class="post-title-link" itemprop="url">业务代表模式(Business Delegate Pattern)</a>
         </h1>
 
         <div class="post-meta">
@@ -302,7 +310,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-10-13 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-13T00:00:00Z">2016-10-13</time>
+              <time title="创建时间：2020-03-12 19:15:00" itemprop="dateCreated datePublished" datetime="2020-03-12T19:15:00Z">2020-03-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -310,14 +318,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/archives/fb867561.html" class="post-meta-item leancloud_visitors" data-flag-title="基础编程模式" title="阅读次数">
+            <span id="/archives/bda8520e.html" class="post-meta-item leancloud_visitors" data-flag-title="业务代表模式(Business Delegate Pattern)" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -329,107 +337,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="简介">简介</h2>
-<p>俗话说，“PHP是世界上最好的语言”，因为PHP什么都能干。但是在PHP编程中，你是否会遇到这样的困惑：明明是相同的需求，但是之前写的代码却并不能重用，稍微修改不满足需求，大改又会让页面变样。<br>
-是的，由于PHP什么都能干，但是高度灵活性降低了代码的结构性。虽然可以利用三方框架来解决问题，但问题的根本在于缺乏设计模式。<br>
-本系列文章将由浅入深的介绍各种设计模式。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/archives/fb867561.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/f5c535ea.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/img/avatar.jpg">
-      <meta itemprop="name" content="曹强">
-      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白云雅阁">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/archives/f5c535ea.html" class="post-title-link" itemprop="url">适配器模式</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-10-13 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-13T00:00:00Z">2016-10-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/archives/f5c535ea.html" class="post-meta-item leancloud_visitors" data-flag-title="适配器模式" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
+              <span>2.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -448,37 +356,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="简介">简介</h2>
-<p>在<a href="ce7fb64a.html">PHP设计模式(七)：设计模式分类</a>中我们提到过结构设计模式(Structural<br>
-patterns)，结构设计模式专注于设计对象(Object)和实例(Instance)的构建、组合过程。<br>
-结构设计模式包括下面七种设计模式：</p>
-<ol>
-<li>
-<p>适配器(Adapter)</p>
-</li>
-<li>
-<p>桥接(Bridge)</p>
-</li>
-<li>
-<p>合成(Composite)</p>
-</li>
-<li>
-<p>装饰(Decorator)</p>
-</li>
-<li>
-<p>外部(Facade)</p>
-</li>
-<li>
-<p>轻量(Flyweight)</p>
-</li>
-<li>
-<p>代理(Proxy)</p>
-</li>
-</ol>
-<p>请无视拗口的中文翻译。结构设计模式着重于低耦合、高复用、高可维护性、高拓展性的设计原则。</p>
+          <h1>业务代表模式(Business Delegate Pattern)</h1>
+<p>业务代表模式（Business Delegate Pattern）用于对表示层和业务层解耦</p>
+<p>业务代表模式用来减少通信或对表示层代码中的业务层代码的远程查询功能</p>
+<p>在业务层中我们有以下实体:</p>
+<ul>
+<li><strong>客户端（Client）</strong> - 表示层代码可以是 JSP、servlet 或 UI java 代码</li>
+<li><strong>业务代表（Business Delegate）</strong> - 一个为客户端实体提供的入口类，它提供了对业务服务方法的访问</li>
+<li><strong>查询服务（LookUp Service）</strong> - 查找服务对象负责获取相关的业务实现，并提供业务对象对业务代表对象的访问</li>
+<li><strong>业务服务（Business Service）</strong> - 业务服务接口。实现了该业务服务的实体类，提供了实际的业务实现逻辑</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/archives/f5c535ea.html#more" rel="contents">
+              <a class="btn" href="/archives/bda8520e.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -502,7 +392,7 @@ patterns)，结构设计模式专注于设计对象(Object)和实例(Instance)�
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/d60eb45.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/eea1fee.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -516,7 +406,7 @@ patterns)，结构设计模式专注于设计对象(Object)和实例(Instance)�
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/d60eb45.html" class="post-title-link" itemprop="url">封装</a>
+            <a href="/archives/eea1fee.html" class="post-title-link" itemprop="url">MVC 模式</a>
         </h1>
 
         <div class="post-meta">
@@ -526,7 +416,7 @@ patterns)，结构设计模式专注于设计对象(Object)和实例(Instance)�
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-10-13 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-13T00:00:00Z">2016-10-13</time>
+              <time title="创建时间：2020-03-12 19:14:58" itemprop="dateCreated datePublished" datetime="2020-03-12T19:14:58Z">2020-03-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -534,14 +424,14 @@ patterns)，结构设计模式专注于设计对象(Object)和实例(Instance)�
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/archives/d60eb45.html" class="post-meta-item leancloud_visitors" data-flag-title="封装" title="阅读次数">
+            <span id="/archives/eea1fee.html" class="post-meta-item leancloud_visitors" data-flag-title="MVC 模式" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -553,7 +443,111 @@ patterns)，结构设计模式专注于设计对象(Object)和实例(Instance)�
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.8k</span>
+              <span>2.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1>MVC 模式</h1>
+<p>MVC 模式代表 Model-View-Controller（模型-视图-控制器） 模式</p>
+<p>MVC 模式用于应用程序的分层开发</p>
+<ul>
+<li><strong>Model（模型）</strong> - 模型代表一个存取数据的对象或 JAVA POJO 它也可以带有逻辑，在数据变化时更新控制器</li>
+<li><strong>View（视图）</strong> - 视图代表模型包含的数据的可视化</li>
+<li><strong>Controller（控制器）</strong> - 控制器作用于模型和视图上。它控制数据流向模型对象，并在数据变化时更新视图。它使视图与模型分离开</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/archives/eea1fee.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/89a81540.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/avatar.jpg">
+      <meta itemprop="name" content="曹强">
+      <meta itemprop="description" content="caoqiang's blog | java |前端 | PHP |nodeJs | python">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白云雅阁">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/archives/89a81540.html" class="post-title-link" itemprop="url">访问者模式 ( Visitor Pattern )</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-12 19:14:57" itemprop="dateCreated datePublished" datetime="2020-03-12T19:14:57Z">2020-03-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/archives/89a81540.html" class="post-meta-item leancloud_visitors" data-flag-title="访问者模式 ( Visitor Pattern )" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -572,12 +566,13 @@ patterns)，结构设计模式专注于设计对象(Object)和实例(Instance)�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="简介">简介</h2>
-<p>面向对象编程中，一切都是对象，对一个对象的封装，也成了面向对象编程中必不可少的部分。<br>
-和C/C++，Java，Python等语言一样，PHP也支持封装。</p>
+          <h1>访问者模式 ( Visitor Pattern )</h1>
+<p>访问者模式（Visitor Pattern）使用了一个访问者类，它改变了元素类的执行算法，通过这种方式，元素的执行算法可以随着访问者改变而改变</p>
+<p>访问者模式中，元素对象已接受访问者对象，这样访问者对象就可以处理元素对象上的操作</p>
+<p>访问者模式属于行为型模式</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/archives/d60eb45.html#more" rel="contents">
+              <a class="btn" href="/archives/89a81540.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -601,7 +596,7 @@ patterns)，结构设计模式专注于设计对象(Object)和实例(Instance)�
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/11d8b32d.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/4a7ecee3.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -615,7 +610,7 @@ patterns)，结构设计模式专注于设计对象(Object)和实例(Instance)�
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/11d8b32d.html" class="post-title-link" itemprop="url">继承</a>
+            <a href="/archives/4a7ecee3.html" class="post-title-link" itemprop="url">模板模式 ( Template Pattern )</a>
         </h1>
 
         <div class="post-meta">
@@ -625,7 +620,7 @@ patterns)，结构设计模式专注于设计对象(Object)和实例(Instance)�
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-10-13 00:00:00" itemprop="dateCreated datePublished" datetime="2016-10-13T00:00:00Z">2016-10-13</time>
+              <time title="创建时间：2020-03-12 19:14:55" itemprop="dateCreated datePublished" datetime="2020-03-12T19:14:55Z">2020-03-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -633,14 +628,14 @@ patterns)，结构设计模式专注于设计对象(Object)和实例(Instance)�
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/archives/11d8b32d.html" class="post-meta-item leancloud_visitors" data-flag-title="继承" title="阅读次数">
+            <span id="/archives/4a7ecee3.html" class="post-meta-item leancloud_visitors" data-flag-title="模板模式 ( Template Pattern )" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -652,14 +647,14 @@ patterns)，结构设计模式专注于设计对象(Object)和实例(Instance)�
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
+              <span>2.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -671,12 +666,12 @@ patterns)，结构设计模式专注于设计对象(Object)和实例(Instance)�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="简介">简介</h2>
-<p>在<a href="daef90fc.html">PHP设计模式(二)：抽象类和接口</a>以及<a href="d60eb45.html">PHP设计模式(三)：封装</a>中，我们已经见过继承，也就是extends关键字。<br>
-和C/C++，Java，Python等语言一样，PHP也支持继承，而且和其他语言没有什么区别。</p>
+          <h1>模板模式 ( Template Pattern )</h1>
+<p>模板模式（Template Pattern）中，一个抽象类公开定义了执行它的方法的方式/模板。它的子类可以按需要重写方法实现，但调用将以抽象类中定义的方式进行</p>
+<p>模板模式属于行为型模式</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/archives/11d8b32d.html#more" rel="contents">
+              <a class="btn" href="/archives/4a7ecee3.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -700,7 +695,7 @@ patterns)，结构设计模式专注于设计对象(Object)和实例(Instance)�
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -768,18 +763,18 @@ patterns)，结构设计模式专注于设计对象(Object)和实例(Instance)�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">120</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -797,23 +792,23 @@ patterns)，结构设计模式专注于设计对象(Object)和实例(Instance)�
         
         
           <li>
-            <a href="/archives/2fd7dbc7.html" title="Shadow DOM" target="_blank">Shadow DOM</a>
+            <a href="/archives/dce0550c.html" title="传输对象模式 ( Transfer Object Pattern )" target="_blank">传输对象模式 ( Transfer Object Pattern )</a>
           </li>
         
           <li>
-            <a href="/archives/b4a56055.html" title="可视化埋点" target="_blank">可视化埋点</a>
+            <a href="/archives/b5164f8.html" title="服务定位器模式 (Service Locator Pattern)" target="_blank">服务定位器模式 (Service Locator Pattern)</a>
           </li>
         
           <li>
-            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+            <a href="/archives/42bdf457.html" title="拦截过滤器模式 ( Intercepting Filter )" target="_blank">拦截过滤器模式 ( Intercepting Filter )</a>
           </li>
         
           <li>
-            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+            <a href="/archives/fc97e8ab.html" title="前端控制器模式(Front Controller Pattern)" target="_blank">前端控制器模式(Front Controller Pattern)</a>
           </li>
         
           <li>
-            <a href="/archives/a5431a21.html" title="从 JavaScript 数组去重谈性能优化" target="_blank">从 JavaScript 数组去重谈性能优化</a>
+            <a href="/archives/b8fcc304.html" title="数据访问对象模式 ( Data Access Object )" target="_blank">数据访问对象模式 ( Data Access Object )</a>
           </li>
         
       </ul>
@@ -1111,13 +1106,13 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">320k</span>
+    <span title="站点总字数">420k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">4:51</span>
+    <span title="站点阅读时长">6:22</span>
 </div>
 
         

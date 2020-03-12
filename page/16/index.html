@@ -179,7 +179,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/9c7a7c8f.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/6472d63b.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -193,7 +193,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/9c7a7c8f.html" class="post-title-link" itemprop="url">《JavaScript高级程序设计》阅读笔记：面向对象之创建对象</a>
+            <a href="/archives/6472d63b.html" class="post-title-link" itemprop="url">D3.js 入门教程系列</a>
         </h1>
 
         <div class="post-meta">
@@ -203,7 +203,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-07-30 00:00:00" itemprop="dateCreated datePublished" datetime="2016-07-30T00:00:00Z">2016-07-30</time>
+              <time title="创建时间：2016-09-24 00:00:00" itemprop="dateCreated datePublished" datetime="2016-09-24T00:00:00Z">2016-09-24</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -211,14 +211,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">《JavaScript高级程序设计》阅读笔记</span>
+                  <a href="/categories/d3/" itemprop="url" rel="index">
+                    <span itemprop="name">d3</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/archives/9c7a7c8f.html" class="post-meta-item leancloud_visitors" data-flag-title="《JavaScript高级程序设计》阅读笔记：面向对象之创建对象" title="阅读次数">
+            <span id="/archives/6472d63b.html" class="post-meta-item leancloud_visitors" data-flag-title="D3.js 入门教程系列" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -230,14 +230,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.7k</span>
+              <span>49k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>44 分钟</span>
             </span>
 
         </div>
@@ -249,15 +249,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <hr>
-<h3 id="创建对象">创建对象</h3>
-<h5 id="工厂模式">工厂模式</h5>
-<p>工厂模式优点：有了封装的概念，解决了创建多个相似对象的问题</p>
-<p>缺点：没有解决对象识别问题,所有对象都仅是Object的实例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function createPerson(name,age,job)</span><br><span class="line">&#123;</span><br><span class="line">    var o&#x3D;new Object();</span><br><span class="line">    o.name&#x3D;name;</span><br><span class="line">    o.age&#x3D;age;</span><br><span class="line">    o.job&#x3D;job;</span><br><span class="line">    o.sayName&#x3D;function()&#123;</span><br><span class="line">        alert(this.name);</span><br><span class="line">    &#125;;</span><br><span class="line">    return o;</span><br><span class="line">&#125;</span><br><span class="line">var person1&#x3D;createPerson(&quot;Jack&quot;,29,&quot;Engineer&quot;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;检测对象类型</span><br><span class="line">alert(person1 instanceof Object) &#x2F;&#x2F;true</span><br><span class="line">alert(person1 instanceof Person) &#x2F;&#x2F;error Person is not defined</span><br></pre></td></tr></table></figure>
+          <h2 id="初识D3">初识D3</h2>
+<p>D3是指数据驱动文档（Data-Driven Documents），根据D3的官方定义：</p>
+<blockquote>
+<p>D3.js是一个JavaScript库，它可以通过数据来操作文档。D3可以通过使用HTML、SVG和CSS把数据鲜活形象地展现出来。D3严格遵循Web标准，因而可以让你的程序轻松兼容现代主流浏览器并避免对特定框架的依赖。同时，它提供了强大的可视化组件，可以让使用者以数据驱动的方式去操作DOM。----D3维基（2013年8月）</p>
+</blockquote>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/archives/9c7a7c8f.html#more" rel="contents">
+              <a class="btn" href="/archives/6472d63b.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -281,7 +280,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/4bbe7293.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/12aa7932.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -295,7 +294,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/4bbe7293.html" class="post-title-link" itemprop="url">《JavaScript高级程序设计》阅读笔记：函数表达式、闭包、私有变量</a>
+            <a href="/archives/12aa7932.html" class="post-title-link" itemprop="url">Javascript异步编程的4种方法</a>
         </h1>
 
         <div class="post-meta">
@@ -305,7 +304,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-07-29 00:00:00" itemprop="dateCreated datePublished" datetime="2016-07-29T00:00:00Z">2016-07-29</time>
+              <time title="创建时间：2016-09-19 12:05:38" itemprop="dateCreated datePublished" datetime="2016-09-19T12:05:38Z">2016-09-19</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -313,14 +312,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">《JavaScript高级程序设计》阅读笔记</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/archives/4bbe7293.html" class="post-meta-item leancloud_visitors" data-flag-title="《JavaScript高级程序设计》阅读笔记：函数表达式、闭包、私有变量" title="阅读次数">
+            <span id="/archives/12aa7932.html" class="post-meta-item leancloud_visitors" data-flag-title="Javascript异步编程的4种方法" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -351,11 +350,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <hr>
-<h4 id="定义函数有两种方式：函数声明和函数表达式。它们之间一个重要的区别是函数提升。">定义函数有两种方式：函数声明和函数表达式。它们之间一个重要的区别是函数提升。</h4>
+          <p>你可能知道，Javascript语言的执行环境是&quot;单线程&quot;（single thread）。</p>
+<p>所谓&quot;单线程&quot;，就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务，以此类推。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/archives/4bbe7293.html#more" rel="contents">
+              <a class="btn" href="/archives/12aa7932.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -379,7 +378,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/b9ea40f8.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/48608651.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -393,7 +392,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/b9ea40f8.html" class="post-title-link" itemprop="url">Grunt：任务自动管理工具</a>
+            <a href="/archives/48608651.html" class="post-title-link" itemprop="url">使用sendMail发送邮件</a>
         </h1>
 
         <div class="post-meta">
@@ -403,7 +402,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-03-21 00:00:00" itemprop="dateCreated datePublished" datetime="2016-03-21T00:00:00Z">2016-03-21</time>
+              <time title="创建时间：2016-09-19 00:00:00" itemprop="dateCreated datePublished" datetime="2016-09-19T00:00:00Z">2016-09-19</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -411,14 +410,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%87%AA%E5%8A%A8%E7%AE%A1%E7%90%86-grunt/" itemprop="url" rel="index">
-                    <span itemprop="name">自动管理,grunt</span>
+                  <a href="/categories/kindle/" itemprop="url" rel="index">
+                    <span itemprop="name">kindle</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/archives/b9ea40f8.html" class="post-meta-item leancloud_visitors" data-flag-title="Grunt：任务自动管理工具" title="阅读次数">
+            <span id="/archives/48608651.html" class="post-meta-item leancloud_visitors" data-flag-title="使用sendMail发送邮件" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -430,14 +429,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>9.6k</span>
+              <span>702</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -450,11 +449,10 @@
 
       
           <hr>
-<p>在Javascript的开发过程中，经常会遇到一些重复性的任务，比如合并文件、压缩代码、检查语法错误、将Sass代码转成CSS代码等等。通常，我们需要使用不同的工具，来完成不同的任务，既重复劳动又非常耗时。Grunt就是为了解决这个问题而发明的工具，可以帮助我们自动管理和运行各种任务。</p>
-<p>简单说，Grunt是一个自动任务运行器，会按照预先设定的顺序自动运行一系列的任务。这可以简化工作流程，减轻重复性工作带来的负担。</p>
+<p>由于前不久买了个kindle，所以就一直琢磨怎么把它用好，发现亚马逊提供了一个推送服务，可以把书籍推送到绑定的kindle上，所以就在网上搜罗了一些kindle推送的网站，像<a href="http://www.kindlepush.com/main" target="_blank" rel="noopener">kindle推</a>、<a href="http://www.kancloud.cn/" target="_blank" rel="noopener">看云</a>等都是很好的平台，有的时候也想把本地书籍推送到kindle上阅读，方法当然也有很多，比如直接连接到电脑、通过邮箱发送邮件等，这些都是很好的办法，下面我就将介绍一种使用sendMail发送邮件的方法</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/archives/b9ea40f8.html#more" rel="contents">
+              <a class="btn" href="/archives/48608651.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -478,7 +476,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/5b6e6c1a.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/822a6e74.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -492,7 +490,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/5b6e6c1a.html" class="post-title-link" itemprop="url">NPM安装及优化步骤--详细版</a>
+            <a href="/archives/822a6e74.html" class="post-title-link" itemprop="url">12种不宜使用的Javascript语法</a>
         </h1>
 
         <div class="post-meta">
@@ -502,7 +500,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2015-12-15 19:12:59" itemprop="dateCreated datePublished" datetime="2015-12-15T19:12:59Z">2015-12-15</time>
+              <time title="创建时间：2016-09-19 00:00:00" itemprop="dateCreated datePublished" datetime="2016-09-19T00:00:00Z">2016-09-19</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -510,14 +508,14 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%8E%AF%E5%A2%83-npm/" itemprop="url" rel="index">
-                    <span itemprop="name">环境,npm</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
             </span>
 
           
-            <span id="/archives/5b6e6c1a.html" class="post-meta-item leancloud_visitors" data-flag-title="NPM安装及优化步骤--详细版" title="阅读次数">
+            <span id="/archives/822a6e74.html" class="post-meta-item leancloud_visitors" data-flag-title="12种不宜使用的Javascript语法" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -529,7 +527,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.4k</span>
+              <span>2.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -549,28 +547,15 @@
 
       
           <hr>
-<h1>npm的常用命令</h1>
-<pre><code>npm install xxx 安装模块  
-npm install xxx@1.1.1   安装1.1.1版本的xxx  
-npm install xxx -g 将模块安装到全局环境中。  
-npm ls 查看安装的模块及依赖  
-npm ls -g 查看全局安装的模块及依赖  
-npm uninstall xxx  (-g) 卸载模块  
-npm cache clean 清理缓存  
-npm help xxx  查看帮助  
-npm view moudleName dependencies  查看包的依赖关系  
-npm view moduleNames  查看node模块的package.json文件夹  
-npm view moduleName labelName  查看package.json文件夹下某个标签的内容  
-npm view moduleName repository.url  查看包的源文件地址  
-npm view moduleName engines   查看包所依赖的Node的版本  
-npm help folders   查看npm使用的所有文件夹  
-npm rebuild moduleName    用于更改包内容后进行重建  
-npm outdated   检查包是否已经过时，此命令会列出所有已经过时的包，可以及时进行包的更新  
-npm update moduleName   更新node模块  
-</code></pre>
+<h3 id="">==</h3>
+<p>Javascript有两组相等运算符，一组是==和!=，另一组是===和!==。前者只比较值的相等，后者除了值以外，还比较类型是否相同。</p>
+<p>请尽量不要使用前一组，永远只使用===和!==。因为==默认会进行类型转换，规则十分难记。如果你不相信的话，请回答下面五个判断式的值是true还是false<br>
+：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="literal">false</span> == <span class="string">'false'</span></span><br><span class="line"></span><br><span class="line">　　<span class="literal">false</span> == <span class="literal">undefined</span></span><br><span class="line"></span><br><span class="line">　　<span class="literal">false</span> == <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">　　<span class="literal">null</span> == <span class="literal">undefined</span></span><br><span class="line"></span><br><span class="line">　　<span class="number">0</span> == <span class="string">''</span></span><br></pre></td></tr></table></figure>
+<p>前三个是false，后两个是true。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/archives/5b6e6c1a.html#more" rel="contents">
+              <a class="btn" href="/archives/822a6e74.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -594,7 +579,7 @@ npm update moduleName   更新node模块
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/4d2fd6c9.html">
+    <link itemprop="mainEntityOfPage" href="http://ronghuaxueleng.github.io/archives/b4e77896.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/img/avatar.jpg">
@@ -608,7 +593,7 @@ npm update moduleName   更新node模块
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/archives/4d2fd6c9.html" class="post-title-link" itemprop="url">快速搭建 Node.js 开发环境</a>
+            <a href="/archives/b4e77896.html" class="post-title-link" itemprop="url">Javascript定义类（class）的三种方法</a>
         </h1>
 
         <div class="post-meta">
@@ -618,22 +603,11 @@ npm update moduleName   更新node模块
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2015-12-08 19:12:59" itemprop="dateCreated datePublished" datetime="2015-12-08T19:12:59Z">2015-12-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%8E%AF%E5%A2%83-nodejs/" itemprop="url" rel="index">
-                    <span itemprop="name">环境,nodejs</span>
-                  </a>
-                </span>
+              <time title="创建时间：2016-09-19 00:00:00" itemprop="dateCreated datePublished" datetime="2016-09-19T00:00:00Z">2016-09-19</time>
             </span>
 
           
-            <span id="/archives/4d2fd6c9.html" class="post-meta-item leancloud_visitors" data-flag-title="快速搭建 Node.js 开发环境" title="阅读次数">
+            <span id="/archives/b4e77896.html" class="post-meta-item leancloud_visitors" data-flag-title="Javascript定义类（class）的三种方法" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -645,7 +619,7 @@ npm update moduleName   更新node模块
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3k</span>
+              <span>3.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -664,13 +638,16 @@ npm update moduleName   更新node模块
     <div class="post-body" itemprop="articleBody">
 
       
-          <hr>
-<p>如果你想长期做 node 开发, 或者想快速更新 node 版本, 或者想快速切换 node 版本,<br>
-那么在非 Windows(如 osx, linux) 环境下, 请使用 nvm 来安装你的 node 开发环境, 保持系统的干净.<br>
-如果你使用 Windows 做开发, 那么你可以使用 nvmw 来替代 nvm</p>
+          <p>将近20年前，<a href="http://www.ruanyifeng.com/blog/2011/06/birth_of_javascript.html" target="_blank" rel="noopener">Javascript诞生</a>的时候，只是一种简单的网页脚本语言。如果你忘了填写用户名，它就跳出一个警告。</p>
+<p><img src="/img/javascript/bg2012070901.png" alt=""></p>
+<p>如今，它变得几乎无所不能，从前端到<a href="http://nodejs.org/" target="_blank" rel="noopener">后端</a>，有着各种<a href="http://www.netmagazine.com/features/10-things-you-didnt-know-javascript-could-do" target="_blank" rel="noopener">匪夷所思的用途</a>。程序员用它完成越来越庞大的项目。</p>
+<p>Javascript代码的复杂度也直线上升。单个网页包含10000行Javascript代码，早就司空见惯。2010年，一个工程师<a href="http://googlesystem.blogspot.tw/2010/06/gmail-to-use-more-html5-features.html" target="_blank" rel="noopener">透露</a>，Gmail的代码长度是443000行！</p>
+<p><img src="/img/javascript/bg2012070902.png" alt=""></p>
+<p>编写和维护如此复杂的代码，必须使用<a href="http://en.wikipedia.org/wiki/Modular_design" target="_blank" rel="noopener">模块化策略</a>。目前，业界的主流做法是采用&quot;面向对象编程&quot;。因此，Javascript如何实现面向对象编程，就成了一个热门课题。</p>
+<p>麻烦的是，Javascipt语法不支持&quot;类&quot;（class），导致传统的面向对象编程方法无法直接使用。程序员们做了很多探索，研究如何用Javascript模拟&quot;类&quot;。本文总结了Javascript定义&quot;类&quot;的三种方法，讨论了每种方法的特点，着重介绍了我眼中的最佳方法。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/archives/4d2fd6c9.html#more" rel="contents">
+              <a class="btn" href="/archives/b4e77896.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -694,7 +671,7 @@ npm update moduleName   更新node模块
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -762,18 +739,18 @@ npm update moduleName   更新node模块
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">120</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -791,23 +768,23 @@ npm update moduleName   更新node模块
         
         
           <li>
-            <a href="/archives/2fd7dbc7.html" title="Shadow DOM" target="_blank">Shadow DOM</a>
+            <a href="/archives/dce0550c.html" title="传输对象模式 ( Transfer Object Pattern )" target="_blank">传输对象模式 ( Transfer Object Pattern )</a>
           </li>
         
           <li>
-            <a href="/archives/b4a56055.html" title="可视化埋点" target="_blank">可视化埋点</a>
+            <a href="/archives/b5164f8.html" title="服务定位器模式 (Service Locator Pattern)" target="_blank">服务定位器模式 (Service Locator Pattern)</a>
           </li>
         
           <li>
-            <a href="/archives/a26c9c63.html" title="44个 Javascript 变态题解析 (下)" target="_blank">44个 Javascript 变态题解析 (下)</a>
+            <a href="/archives/42bdf457.html" title="拦截过滤器模式 ( Intercepting Filter )" target="_blank">拦截过滤器模式 ( Intercepting Filter )</a>
           </li>
         
           <li>
-            <a href="/archives/bb77ad22.html" title="44个 Javascript 变态题解析 (上)" target="_blank">44个 Javascript 变态题解析 (上)</a>
+            <a href="/archives/fc97e8ab.html" title="前端控制器模式(Front Controller Pattern)" target="_blank">前端控制器模式(Front Controller Pattern)</a>
           </li>
         
           <li>
-            <a href="/archives/a5431a21.html" title="从 JavaScript 数组去重谈性能优化" target="_blank">从 JavaScript 数组去重谈性能优化</a>
+            <a href="/archives/b8fcc304.html" title="数据访问对象模式 ( Data Access Object )" target="_blank">数据访问对象模式 ( Data Access Object )</a>
           </li>
         
       </ul>
@@ -1105,13 +1082,13 @@ if(canvas.getContext){
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">320k</span>
+    <span title="站点总字数">420k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">4:51</span>
+    <span title="站点阅读时长">6:22</span>
 </div>
 
         
