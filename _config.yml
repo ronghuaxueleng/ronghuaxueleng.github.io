@@ -12,7 +12,7 @@ description: caoqiang's blog | java |前端 | PHP |nodeJs | python
 # 网站的关键字
 keywords: java 前端 php nodejs python javascript css html
 # 博主姓名
-author: 曹强
+author: ronghuaxueleng
 email: caoqianghappy@126.com
 # 语言：zh-CN 是简体中文
 language: zh-CN
@@ -97,10 +97,12 @@ post_asset_folder: true
 relative_link: false
 future: true
 highlight:
-  enable: true
+  enable: false
   line_number: true
   auto_detect: false
   tab_replace:
+prismjs:
+  enable: false
 
 # Category & Tag
 default_category: uncategorized
@@ -146,7 +148,7 @@ pagination_dir: page
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
 ##theme: yilia
-theme: next-7.7.2
+theme: ZenMind
 
 moon_menu:
   back2top:
