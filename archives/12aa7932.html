@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>Javascript异步编程的4种方法 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="你可能知道，Javascript语言的执行环境是”单线程”（single thread）。 所谓”单线程”，就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务，以此类推。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript异步编程的4种方法">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/12aa7932.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="你可能知道，Javascript语言的执行环境是”单线程”（single thread）。 所谓”单线程”，就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务，以此类推。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ronghuaxueleng.github.io/img/javascript/bg2012122101.jpg">
+<meta property="article:published_time" content="2016-09-19T12:05:38.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.272Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ronghuaxueleng.github.io/img/javascript/bg2012122101.jpg">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/12aa7932.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            Javascript异步编程的4种方法
+        </div>
+        <div class="post-meta">
+            2016-09-19 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <p>你可能知道，Javascript语言的执行环境是”单线程”（single thread）。</p>
+<p>所谓”单线程”，就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务，以此类推。</p>
+<span id="more"></span>
+<p><img src="/img/javascript/bg2012122101.jpg"></p>
+<p>这种模式的好处是实现起来比较简单，执行环境相对单纯；坏处是只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。常见的浏览器无响应（假死），往往就是因为某一段Javascript代码长时间运行（比如死循环），导致整个页面卡在这个地方，其他任务无法执行。</p>
+<p>为了解决这个问题，Javascript语言将任务的执行模式分成两种：同步（Synchronous）和异步（Asynchronous）。</p>
+<ul>
+<li><strong>“同步模式”就是上一段的模式，后一个任务等待前一个任务结束，然后再执行，程序的执行顺序与任务的排列顺序是一致的、同步的；</strong></li>
+<li><strong>“异步模式”则完全不同，每一个任务有一个或多个回调函数（callback），前一个任务结束后，不是执行后一个任务，而是执行回调函数，后一个任务则是不等前一个任务结束就执行，所以程序的执行顺序与任务的排列顺序是不一致的、异步的。</strong></li>
+</ul>
+<p>“异步模式”非常重要。在浏览器端，耗时很长的操作都应该异步执行，避免浏览器失去响应，最好的例子就是Ajax操作。在服务器端，”异步模式”甚至是唯一的模式，因为执行环境是单线程的，如果允许同步执行所有http请求，服务器性能会急剧下降，很快就会失去响应。</p>
+<p>本文总结了”异步模式”编程的4种方法，理解它们可以让你写出结构更合理、性能更出色、维护更方便的Javascript程序。</p>
+<h3 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a><strong>回调函数</strong></h3><p>这是异步编程最基本的方法。</p>
+<p>假定有两个函数f1和f2，后者等待前者的执行结果。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">f1</span>();</span><br><span class="line"><span class="title function_">f2</span>();</span><br></pre></td></tr></table></figure>
+<p>如果f1是一个很耗时的任务，可以考虑改写f1，把f2写成f1的回调函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">f1</span>(<span class="params">callback</span>)&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// f1的任务代码</span></span><br><span class="line">    <span class="title function_">callback</span>();</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行代码就变成下面这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">f1</span>(f2);</span><br></pre></td></tr></table></figure>
+<p>采用这种方式，我们把同步操作变成了异步操作，f1不会堵塞程序运行，相当于先执行程序的主要逻辑，将耗时的操作推迟执行。</p>
+<blockquote>
+<p>回调函数的优点是简单、容易理解和部署，缺点是不利于代码的阅读和维护，各个部分之间高度<a href="http://en.wikipedia.org/wiki/Coupling_(computer_programming)">耦合</a>（Coupling），流程会很混乱，而且每个任务只能指定一个回调函数。*</p>
+</blockquote>
+<h3 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a><strong>事件监听</strong></h3><p>另一种思路是采用<em>事件驱动模式</em>。任务的执行不取决于代码的顺序，而取决于某个事件是否发生。</p>
+<p>还是以f1和f2为例。首先，为f1绑定一个事件（这里采用的jQuery的<a href="http://api.jquery.com/on/">写法</a>）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f1.<span class="title function_">on</span>(<span class="string">&#x27;done&#x27;</span>, f2);</span><br></pre></td></tr></table></figure>
+<p>上面这行代码的意思是，<em>当f1发生done事件，就执行f2</em>。然后，对f1进行改写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">f1</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// f1的任务代码</span></span><br><span class="line">    f1.<span class="title function_">trigger</span>(<span class="string">&#x27;done&#x27;</span>);</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>f1.trigger(‘done’)表示，执行完成后，立即触发done事件，从而开始执行f2</em>。</p>
+<p>这种方法的优点是比较容易理解，<em>可以绑定多个事件，每个事件可以指定多个回调函数</em>，而且可以<a href="http://en.wikipedia.org/wiki/Decoupling">“去耦合”</a>（Decoupling），有利于实现<a href="http://www.ruanyifeng.com/blog/2012/10/javascript_module.html">模块化</a>。缺点是整个程序都要变成事件驱动型，运行流程会变得很不清晰。</p>
+<h3 id="发布-订阅"><a href="#发布-订阅" class="headerlink" title="发布&#x2F;订阅"></a><strong>发布&#x2F;订阅</strong></h3><p>上一节的”事件”，完全可以理解成”信号”。</p>
+<p>我们假定，存在一个”信号中心”，某个任务执行完成，就向信号中心”发布”（publish）一个信号，其他任务可以向信号中心”订阅”（subscribe）这个信号，从而知道什么时候自己可以开始执行。这就叫做<a href="http://en.wikipedia.org/wiki/Publish-subscribe_pattern">“发布&#x2F;订阅模式”</a>（publish-subscribe pattern），又称<a href="http://en.wikipedia.org/wiki/Observer_pattern">“观察者模式”</a>（observer pattern）。</p>
+<p>这个模式有多种<a href="http://msdn.microsoft.com/en-us/magazine/hh201955.aspx">实现</a>，下面采用的是Ben Alman的<a href="https://gist.github.com/661855">Tiny Pub&#x2F;Sub</a>，这是jQuery的一个插件。</p>
+<p>首先，f2向”信号中心”jQuery订阅”done”信号。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jQuery.<span class="title function_">subscribe</span>(<span class="string">&quot;done&quot;</span>, f2);</span><br></pre></td></tr></table></figure>
+<p>然后，f1进行如下改写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">f1</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// f1的任务代码</span></span><br><span class="line">    jQuery.<span class="title function_">publish</span>(<span class="string">&quot;done&quot;</span>);</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>jQuery.publish(“done”)的意思是，f1执行完成后，向”信号中心”jQuery发布”done”信号，从而引发f2的执行。</em></p>
+<p>此外，f2完成执行后，也可以取消订阅（unsubscribe）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jQuery.<span class="title function_">unsubscribe</span>(<span class="string">&quot;done&quot;</span>, f2);</span><br></pre></td></tr></table></figure>
+<p>这种方法的性质与”事件监听”类似，但是明显优于后者。因为<em>我们可以通过查看”消息中心”，了解存在多少信号、每个信号有多少订阅者，从而监控程序的运行</em>。</p>
+<h3 id="Promises对象"><a href="#Promises对象" class="headerlink" title="Promises对象"></a><strong>Promises对象</strong></h3><p>Promises对象是CommonJS工作组提出的一种规范，目的是为异步编程提供<a href="http://wiki.commonjs.org/wiki/Promises/A">统一接口</a>。</p>
+<p>简单说，它的思想是，<em>每一个异步任务返回一个Promise对象，该对象有一个then方法，允许指定回调函数</em>。比如，f1的回调函数f2,可以写成：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">f1</span>().<span class="title function_">then</span>(f2);</span><br></pre></td></tr></table></figure>
+<p>f1要进行如下改写（这里使用的是jQuery的<a href="http://www.ruanyifeng.com/blog/2011/08/a_detailed_explanation_of_jquery_deferred_object.html">实现</a>）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">f1</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> dfd = $.<span class="title class_">Deferred</span>();</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// f1的任务代码</span></span><br><span class="line">    dfd.<span class="title function_">resolve</span>();</span><br><span class="line">  &#125;, <span class="number">500</span>);</span><br><span class="line">  <span class="keyword">return</span> dfd.<span class="property">promise</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样写的优点在于，回调函数变成了链式写法，程序的流程可以看得很清楚，而且有一整套的<a href="http://api.jquery.com/category/deferred-object/">配套方法</a>，可以实现许多强大的功能。</p>
+<p>比如，指定多个回调函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">f1</span>().<span class="title function_">then</span>(f2).<span class="title function_">then</span>(f3);</span><br></pre></td></tr></table></figure>
+<p>再比如，指定发生错误时的回调函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">f1</span>().<span class="title function_">then</span>(f2).<span class="title function_">fail</span>(f3);</span><br></pre></td></tr></table></figure>
+<p>而且，它还有一个前面三种方法都没有的好处：如果一个任务已经完成，再添加回调函数，该回调函数会立即执行。所以，你不用担心是否错过了某个事件或信号。这种方法的缺<br>点就是编写和理解，都相对比较难。</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a><strong>参考链接</strong></h3><p>　　* <a href="http://sporto.github.com/blog/2012/12/09/callbacks-listeners-promises/">Asynchronous JS: Callbacks, Listeners, Control Flow Libs and Promises</a></p>
+<p>（完）</p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

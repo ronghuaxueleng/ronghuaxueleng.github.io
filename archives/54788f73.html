@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>工厂模式 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="简介在PHP设计模式(七)：设计模式分类 中我们提到过创建设计模式(Creationpatterns)，创建设计模式专注于设计对象(Object)和实例(Instance)的创建过程。创建设计模式包括下面五种设计模式：  抽象工厂设计模式(Abstract Factory)  生成器模式(Builder)  工厂设计模式(Factory Method)  原型设计模式(Prototype Meth">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工厂模式">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/54788f73.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="简介在PHP设计模式(七)：设计模式分类 中我们提到过创建设计模式(Creationpatterns)，创建设计模式专注于设计对象(Object)和实例(Instance)的创建过程。创建设计模式包括下面五种设计模式：  抽象工厂设计模式(Abstract Factory)  生成器模式(Builder)  工厂设计模式(Factory Method)  原型设计模式(Prototype Meth">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-13T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.388Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="php">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/54788f73.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            工厂模式
+        </div>
+        <div class="post-meta">
+            2016-10-13 ｜ 
+            
+                <a href="/categories/php/"># php</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/php/">php</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在<a href="ce7fb64a.html">PHP设计模式(七)：设计模式分类</a></p>
+<p>中我们提到过创建设计模式(Creation<br>patterns)，创建设计模式专注于设计对象(Object)和实例(Instance)的创建过程。<br>创建设计模式包括下面五种设计模式：</p>
+<ol>
+<li><p>抽象工厂设计模式(Abstract Factory)</p>
+</li>
+<li><p>生成器模式(Builder)</p>
+</li>
+<li><p>工厂设计模式(Factory Method)</p>
+</li>
+<li><p>原型设计模式(Prototype Method)</p>
+</li>
+<li><p>单例设计模式(Singleton)</p>
+</li>
+</ol>
+<p>当程序逐渐扩展的时候，需要更多的新对象，新对象的创建不应该依赖于创建者，换句话说，新对象的创建过程，不应该依赖调用创建函数的对象。为了减少冗余，增加拓展性，工厂模式就是一种创建新对象时使用的设计模式。</p>
+<span id="more"></span>
+
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>工厂模式，也是五种设计模式中唯一的类的设计模式(Class patterns)，即在类中就能实现的设计模式。<br>听起来挺抽象？对比原型设计模式，这是一种对象设计模式(Object patterns)，通过对象的__clone()方法来实现的设计模式。<br>在工厂模式中，新创建的对象&#x2F;产品并不依赖于生产它的对象&#x2F;工厂，新对象和调用者之间是低耦合状态。通常调用者和工厂交互，由工厂来生成新对象，新对象只和工厂有关。</p>
+<h2 id="何时使用工厂模式？"><a href="#何时使用工厂模式？" class="headerlink" title="何时使用工厂模式？"></a>何时使用工厂模式？</h2><p>简单来说，当需求对类的个数不明确的时候，可以使用工厂模式，如：<br>你需要创建一个在线博物馆，但你并不确切的知道究竟有多少文物，你不可能无限的增加新的文物类，同时对于损毁的文物，你不可能无限的去清理这些类。<br>反过来说，如果你确切的知道类的总量，那么你就没有必要使用工程模式，直接通过继承的方式就能实现好的设计。</p>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>还是使用我们惯用的鲸鱼和鲤鱼的例子，现在我们想实现一个海洋馆，目前我们并不确定究竟有多少海洋生物。<br>先是一个抽象的工厂类：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Factory</span> </span>&#123;</span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params"></span>)</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">factoryStart</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">create</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后是两个工厂：鲸鱼工厂和鲤鱼工厂</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WhaleFactory</span> <span class="keyword">extends</span> <span class="title">Factory</span> </span>&#123;</span><br><span class="line">  <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$whale</span> = <span class="keyword">new</span> <span class="title class_">Whale</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$whale</span>-&gt;<span class="title function_ invoke__">create</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CarpFactory</span> <span class="keyword">extends</span> <span class="title">Factory</span> </span>&#123;</span><br><span class="line">  <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$carp</span> = <span class="keyword">new</span> <span class="title class_">Carp</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$carp</span>-&gt;<span class="title function_ invoke__">create</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后是抽象的动物接口：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params"></span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后是具体的动物类：鲸鱼类和鲤鱼类</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Whale</span> <span class="keyword">implements</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="variable">$name</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;name = <span class="string">&quot;Whale&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;name . <span class="string">&quot; is created.\n&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Carp</span> <span class="keyword">implements</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="variable">$name</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;name = <span class="string">&quot;Carp&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;name . <span class="string">&quot; is created.\n&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>下面给出使用工厂创建鲸鱼和鲤鱼的代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$whaleFactory</span> = <span class="keyword">new</span> <span class="title class_">WhaleFactory</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$whaleFactory</span>-&gt;<span class="title function_ invoke__">factoryStart</span>();</span><br><span class="line"><span class="variable">$carpFactory</span> = <span class="keyword">new</span> <span class="title class_">CarpFactory</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$carpFactory</span>-&gt;<span class="title function_ invoke__">factoryStart</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>运行一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Whale is created.</span><br><span class="line">Carp is created.</span><br></pre></td></tr></table></figure>
+<p>到这里你是不是觉得，其实直接生成两个类就行了，何必搞这么复杂？别着急，好戏在后面。</p>
+<h2 id="修改类的方法"><a href="#修改类的方法" class="headerlink" title="修改类的方法"></a>修改类的方法</h2><p>由于Interface的限制，修改类的方法被限定在了create()方法中，因此可以避免偷懒的程序员新增加的不合理函数。<br>简单修改一下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Whale</span> <span class="keyword">implements</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="variable">$name</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;name = <span class="string">&quot;Whale&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;name . <span class="string">&quot; is created. Whale eats fish.\n&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Carp</span> <span class="keyword">implements</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="variable">$name</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;name = <span class="string">&quot;Carp&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;name . <span class="string">&quot; is created. Carp eats moss.\n&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>由于对象是由工厂造出来的，外部不可能直接调用或者修改类的实现，类的修改被限定在了类的对外接口上。这样的架构易于扩展。</p>
+<h2 id="一个工厂"><a href="#一个工厂" class="headerlink" title="一个工厂"></a>一个工厂</h2><p>工厂模式的灵活，在于可以只拥有一个工厂，却能生产多个类&#x2F;产品。<br>修改我们的抽象工厂，给create()方法增加animal接口：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Factory</span> </span>&#123;</span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">Animal <span class="variable">$animal</span></span>)</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">factoryStart</span>(<span class="params"><span class="variable">$animal</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">create</span>(<span class="variable">$animal</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后合并之前的鲸鱼工厂和鲤鱼工厂：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnimalFactory</span> <span class="keyword">extends</span> <span class="title">Factory</span> </span>&#123;</span><br><span class="line">  <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">Animal <span class="variable">$animal</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$animal</span>-&gt;<span class="title function_ invoke__">create</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>修改使用工厂创建鲸鱼和鲤鱼的代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$animalFactory</span> = <span class="keyword">new</span> <span class="title class_">AnimalFactory</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$animalFactory</span>-&gt;<span class="title function_ invoke__">factoryStart</span>(<span class="keyword">new</span> <span class="title class_">Whale</span>());</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$animalFactory</span>-&gt;<span class="title function_ invoke__">factoryStart</span>(<span class="keyword">new</span> <span class="title class_">Carp</span>());</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>运行一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Whale is created. Whale eats fish.</span><br><span class="line">Carp is created. Carp eats moss.</span><br></pre></td></tr></table></figure>
+<p>鲸鱼类和鲤鱼类源源不断的从一个工厂中被创建出来了。通过这种设计模式，类的创建过程统一通过一个接口来实现，接口外部并不需要关心类是如何被创建出来的，而接口内部实现也得到了很好的拓展性。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文介绍了工厂设计模式，使用这种设计模式，可以让你通过一个或多个工厂的接口，创建无数新类，调用任意类的方法。由于接口严格定义了新类&#x2F;产品的形态，因此在维护和<br>拓展的时候，可以省去不少力气。</p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/php/"> / php</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

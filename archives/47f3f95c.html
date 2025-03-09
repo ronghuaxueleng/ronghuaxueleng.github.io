@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>高阶函数 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="高阶函数是至少满足下列条件之一的函数  函数可以作为参数被传递  函数可以作为返回值输出  （js这么好的语言中的函数当然满足 ^_^）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高阶函数">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/47f3f95c.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="高阶函数是至少满足下列条件之一的函数  函数可以作为参数被传递  函数可以作为返回值输出  （js这么好的语言中的函数当然满足 ^_^）">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-12T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.190Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/47f3f95c.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            高阶函数
+        </div>
+        <div class="post-meta">
+            2016-10-12 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <hr>
+<p>高阶函数是至少满足下列条件之一的函数</p>
+<ul>
+<li><p>函数可以作为参数被传递</p>
+</li>
+<li><p>函数可以作为返回值输出<br>  <em>（js这么好的语言中的函数当然满足 ^_^）</em></p>
+</li>
+</ul>
+  <span id="more"></span>
+
+<h3 id="函数作为参数传递"><a href="#函数作为参数传递" class="headerlink" title="函数作为参数传递"></a>函数作为参数传递</h3><p>把函数当作参数传递，可以抽离出一部分容易变化的业务逻辑，把这部分业务逻辑放在函数中，可以分离业务代码中变与不变的部分。</p>
+<ul>
+<li>回调函数，ajax异步，callback<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title function_">getUserInfo</span>() = <span class="keyword">function</span>(<span class="params">userId, callback</span>) &#123;</span><br><span class="line">    $.<span class="title function_">ajax</span>(<span class="string">&#x27;http://xxx.com/getUserInfo?&#x27;</span> + userId, <span class="keyword">function</span>(<span class="params">data</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_">typeof</span>(<span class="params">callback === <span class="string">&#x27;function&#x27;</span></span>) &#123;</span><br><span class="line">            <span class="title function_">callback</span>(data);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">getUserInfo</span>(<span class="number">13157</span>, <span class="keyword">function</span>(<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(data.<span class="property">user</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="高阶函数实现AOP"><a href="#高阶函数实现AOP" class="headerlink" title="高阶函数实现AOP"></a>高阶函数实现AOP</h3><p><strong>AOP（面向切面编程），把一些跟核心业务逻辑模块无关的功能抽离出来（通常包括日志统计，安全控制，异常处理等）</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">before</span> = <span class="keyword">function</span>(<span class="params">beforefn</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> __self = <span class="variable language_">this</span>; <span class="comment">//保存原函数的引用</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>) &#123; <span class="comment">//返回包含原函数和新函数的“代理”函数</span></span><br><span class="line">        beforefn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>); <span class="comment">//执行新函数，修正this</span></span><br><span class="line">        <span class="keyword">return</span> __self.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>); <span class="comment">//执行原函数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Function</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">after</span>= <span class="keyword">function</span>(<span class="params">afterfn</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> __self = <span class="variable language_">this</span>; </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>) &#123; </span><br><span class="line">        <span class="keyword">var</span> ret = __self.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>);</span><br><span class="line">        afterfn.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>); </span><br><span class="line">        <span class="keyword">return</span> ret ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> func = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">func = func.<span class="title function_">before</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>);</span><br><span class="line">&#125;).<span class="title function_">after</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="title function_">func</span>();</span><br></pre></td></tr></table></figure>
+<p>以上代码我们把打印1和打印3的函数通过AOP的方式动态植入func函数，于是执行时候顺利返回1,2,3</p>
+<h3 id="函数节流"><a href="#函数节流" class="headerlink" title="函数节流"></a>函数节流</h3><p>js函数大多是用户触发，大多不会遇到跟性能相关的问题，但是少数情况触发不被用户控制的。<br>例如：</p>
+<ul>
+<li><p>window.onresize事件</p>
+</li>
+<li><p>mousemove事件</p>
+</li>
+<li><p>上传进度</p>
+</li>
+</ul>
+<p>以上函数触发频率太高，比如我们对onresize事件绑定了打印事件，当拖动窗口时，可能会一秒打印十次，这太累了，因此要采取一点措施（聪明的机智的你一定想到了setTimeout）</p>
+<p>主要实现原理：当即将被执行的函数用setTimeout延迟一段时间执行，如果这次延迟执行还没完成，则忽略接下来调用该函数的请求。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> throttle = <span class="keyword">function</span>(<span class="params">fn, interval</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> __self = fn, <span class="comment">//保存需要被延迟的函数引用</span></span><br><span class="line">    timer, <span class="comment">//计时器</span></span><br><span class="line">    firstTime = <span class="literal">true</span>; <span class="comment">//是否第一次调用</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> args = <span class="variable language_">arguments</span>,</span><br><span class="line">        __me = <span class="variable language_">this</span>;</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">if</span> (firstTime) &#123; <span class="comment">//如果第一次调用不需要延迟</span></span><br><span class="line">            __self.<span class="title function_">apply</span>(_me, args);</span><br><span class="line">            <span class="keyword">return</span> firstTime = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (timer) &#123; <span class="comment">//如果定时器还在，说明前一次延迟执行还没完成</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        timer = <span class="built_in">setTimeout</span>( <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">            <span class="built_in">clearTimeout</span>(timer);</span><br><span class="line">            timer = <span class="literal">null</span>;</span><br><span class="line">            __self.<span class="title function_">apply</span>(__me, args);</span><br><span class="line">        &#125;, interval || <span class="number">500</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">onresize</span> = <span class="title function_">throttle</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>);</span><br><span class="line">&#125;, <span class="number">500</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

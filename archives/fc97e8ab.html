@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>前端控制器模式(Front Controller Pattern) - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="前端控制器模式(Front Controller Pattern)前端控制器模式（Front Controller Pattern）是用来提供一个集中的请求处理机制，所有的请求都将由一个单一的处理程序处理 该处理程序可以做认证&#x2F;授权&#x2F;记录日志，或者跟踪请求，然后把请求传给相应的处理程序 前端控制器模式涉及以下实体  前端控制器（Front Controller） - 处理应用程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端控制器模式(Front Controller Pattern)">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/fc97e8ab.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="前端控制器模式(Front Controller Pattern)前端控制器模式（Front Controller Pattern）是用来提供一个集中的请求处理机制，所有的请求都将由一个单一的处理程序处理 该处理程序可以做认证&#x2F;授权&#x2F;记录日志，或者跟踪请求，然后把请求传给相应的处理程序 前端控制器模式涉及以下实体  前端控制器（Front Controller） - 处理应用程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ronghuaxueleng.github.io/image/frontcontroller_pattern_1.jpg">
+<meta property="article:published_time" content="2020-03-12T19:15:03.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.315Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="java, 设计模式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ronghuaxueleng.github.io/image/frontcontroller_pattern_1.jpg">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/fc97e8ab.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            前端控制器模式(Front Controller Pattern)
+        </div>
+        <div class="post-meta">
+            2020-03-12 ｜ 
+            
+                <a href="/categories/java/"># java</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/java/">java</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h1 id="前端控制器模式-Front-Controller-Pattern"><a href="#前端控制器模式-Front-Controller-Pattern" class="headerlink" title="前端控制器模式(Front Controller Pattern)"></a>前端控制器模式(Front Controller Pattern)</h1><p>前端控制器模式（Front Controller Pattern）是用来提供一个集中的请求处理机制，所有的请求都将由一个单一的处理程序处理</p>
+<p>该处理程序可以做认证&#x2F;授权&#x2F;记录日志，或者跟踪请求，然后把请求传给相应的处理程序</p>
+<p>前端控制器模式涉及以下实体</p>
+<ul>
+<li><strong>前端控制器（Front Controller）</strong> - 处理应用程序所有类型请求的单个处理程序，应用程序可以是基于 web 的应用程序，也可以是基于桌面的应用程序。</li>
+<li><strong>调度器（Dispatcher）</strong> - 前端控制器可能使用一个调度器对象来调度请求到相应的具体处理程序。</li>
+<li><strong>视图（View）</strong> - 视图是为请求而创建的对象。</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p><img src="/../../image/frontcontroller_pattern_1.jpg" alt="前端控制器模式"></p>
+<ol>
+<li>定义类 <em>FrontController</em> 、 <em>Dispatcher</em> 分别当作前端控制器和调度器</li>
+<li>定义类 <em>HomeView</em> 和 <em>StudentView</em> 表示作为前端控制器接收到的请求而创建的视图</li>
+<li>定义类 <em>FrontControllerPatternDemo</em> 使用 <em>FrontController</em> 演示前端控制器设计模式</li>
+</ol>
+<h2 id="范例"><a href="#范例" class="headerlink" title="范例"></a>范例</h2><h4 id="1-创建视图"><a href="#1-创建视图" class="headerlink" title="1. 创建视图"></a>1. 创建视图</h4><p><em>HomeView.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HomeView</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Displaying Home Page&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>StudentView.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StudentView</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Displaying Student Page&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-创建调度器-Dispatcher"><a href="#2-创建调度器-Dispatcher" class="headerlink" title="2. 创建调度器 Dispatcher"></a>2. 创建调度器 Dispatcher</h4><p><em>Dispatcher.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Dispatcher</span> &#123;</span><br><span class="line">   <span class="keyword">private</span> StudentView studentView;</span><br><span class="line">   <span class="keyword">private</span> HomeView homeView;</span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">Dispatcher</span><span class="params">()</span>&#123;</span><br><span class="line">      studentView = <span class="keyword">new</span> <span class="title class_">StudentView</span>();</span><br><span class="line">      homeView = <span class="keyword">new</span> <span class="title class_">HomeView</span>();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">dispatch</span><span class="params">(String request)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(request.equalsIgnoreCase(<span class="string">&quot;STUDENT&quot;</span>))&#123;</span><br><span class="line">         studentView.show();</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">         homeView.show();</span><br><span class="line">      &#125; </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-创建前端控制器-FrontController"><a href="#3-创建前端控制器-FrontController" class="headerlink" title="3. 创建前端控制器 FrontController"></a>3. 创建前端控制器 FrontController</h4><p><em>Context.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FrontController</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> Dispatcher dispatcher;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">FrontController</span><span class="params">()</span>&#123;</span><br><span class="line">      dispatcher = <span class="keyword">new</span> <span class="title class_">Dispatcher</span>();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">isAuthenticUser</span><span class="params">()</span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;User is authenticated successfully.&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">trackRequest</span><span class="params">(String request)</span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Page requested: &quot;</span> + request);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">dispatchRequest</span><span class="params">(String request)</span>&#123;</span><br><span class="line">      <span class="comment">//记录每一个请求</span></span><br><span class="line">      trackRequest(request);</span><br><span class="line">      <span class="comment">//对用户进行身份验证</span></span><br><span class="line">      <span class="keyword">if</span>(isAuthenticUser())&#123;</span><br><span class="line">         dispatcher.dispatch(request);</span><br><span class="line">      &#125; </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-使用-FrontController-来演示前端控制器设计模式"><a href="#4-使用-FrontController-来演示前端控制器设计模式" class="headerlink" title="4. 使用 FrontController 来演示前端控制器设计模式"></a>4. 使用 <em>FrontController</em> 来演示前端控制器设计模式</h4><p><em>FrontControllerPatternDemo.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FrontControllerPatternDemo</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">      <span class="type">FrontController</span> <span class="variable">frontController</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FrontController</span>();</span><br><span class="line">      frontController.dispatchRequest(<span class="string">&quot;HOME&quot;</span>);</span><br><span class="line">      frontController.dispatchRequest(<span class="string">&quot;STUDENT&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译运行以上 Java 范例，输出结果如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">javac -d . src/main/cn/twle/gof/FrontControllerPatternDemo.java</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">java  cn.twle.gof.FrontControllerPatternDemo</span></span><br><span class="line">Page requested: HOME</span><br><span class="line">User is authenticated successfully.</span><br><span class="line">Displaying Home Page</span><br><span class="line">Page requested: STUDENT</span><br><span class="line">User is authenticated successfully.</span><br><span class="line">Displaying Student Page</span><br></pre></td></tr></table></figure>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/java-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> / java, 设计模式</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>解释器模式 ( Interpreter Pattern ) - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="解释器模式 ( Interpreter Pattern )解释器模式（Interpreter Pattern）实现了一个表达式接口，该接口解释一个特定的上下文 这种模式被用在 SQL 解析、符号处理引擎等 解释器模式提供了评估语言的语法或表达式的方式，它属于行为型模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解释器模式 ( Interpreter Pattern )">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/7c4a914d.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="解释器模式 ( Interpreter Pattern )解释器模式（Interpreter Pattern）实现了一个表达式接口，该接口解释一个特定的上下文 这种模式被用在 SQL 解析、符号处理引擎等 解释器模式提供了评估语言的语法或表达式的方式，它属于行为型模式">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ronghuaxueleng.github.io/image/interpreter_pattern_1.jpg">
+<meta property="article:published_time" content="2020-03-10T19:14:43.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.352Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="java, 设计模式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ronghuaxueleng.github.io/image/interpreter_pattern_1.jpg">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/7c4a914d.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            解释器模式 ( Interpreter Pattern )
+        </div>
+        <div class="post-meta">
+            2020-03-10 ｜ 
+            
+                <a href="/categories/java/"># java</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/java/">java</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h1 id="解释器模式-Interpreter-Pattern"><a href="#解释器模式-Interpreter-Pattern" class="headerlink" title="解释器模式 ( Interpreter Pattern )"></a>解释器模式 ( Interpreter Pattern )</h1><p>解释器模式（Interpreter Pattern）实现了一个表达式接口，该接口解释一个特定的上下文</p>
+<p>这种模式被用在 SQL 解析、符号处理引擎等</p>
+<p>解释器模式提供了评估语言的语法或表达式的方式，它属于行为型模式</p>
+<span id="more"></span>
+
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ol>
+<li><p><strong>意图：</strong></p>
+<p>给定一个语言，定义它的文法表示，并定义一个解释器，这个解释器使用该标识来解释语言中的句子</p>
+</li>
+<li><p><strong>主要解决：</strong></p>
+<p>对于一些固定文法构建一个解释句子的解释器</p>
+</li>
+<li><p><strong>何时使用：</strong></p>
+<p>如果一种特定类型的问题发生的频率足够高，那么可能就值得将该问题的各个实例表述为一个简单语言中的句子。这样就可以构建一个解释器，该解释器通过解释这些句子来解决该问题</p>
+</li>
+<li><p><strong>如何解决：</strong></p>
+<p>构件语法树，定义终结符与非终结符</p>
+</li>
+<li><p><strong>关键代码：</strong></p>
+<p>构件环境类，包含解释器之外的一些全局信息，一般是 HashMap</p>
+</li>
+<li><p><strong>应用实例：</strong></p>
+<p>编译器、运算表达式计算</p>
+</li>
+<li><p><strong>优点：</strong></p>
+<ol>
+<li>可扩展性比较好，灵活</li>
+<li>增加了新的解释表达式的方式</li>
+<li>易于实现简单文法</li>
+</ol>
+</li>
+<li><p><strong>缺点：</strong></p>
+<ol>
+<li>可利用场景比较少</li>
+<li>对于复杂的文法比较难维护</li>
+<li>解释器模式会引起类膨胀</li>
+<li>解释器模式采用递归调用方法</li>
+</ol>
+</li>
+<li><p><strong>使用场景：</strong></p>
+<ol>
+<li>可以将一个需要解释执行的语言中的句子表示为一个抽象语法树</li>
+<li>一些重复出现的问题可以用一种简单的语言来进行表达</li>
+<li>一个简单语法需要解释的场景</li>
+</ol>
+</li>
+<li><p><strong>注意事项：</strong></p>
+<p>可利用场景比较少，JAVA 中如果碰到可以用 expression4J 代替</p>
+</li>
+</ol>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p><img src="/../../image/interpreter_pattern_1.jpg" alt="解释器模式"></p>
+<ol>
+<li>定义一个接口 <em>Expression</em> 和实现了 <em>Expression</em> 接口的实体类</li>
+<li>定义作为上下文中主要解释器的 <em>TerminalExpression</em> 类，其他的类 <em>OrExpression</em> 、 <em>AndExpression</em> 用于创建组合式表达式</li>
+<li>定义类 <em>InterpreterPatternDemo</em> 使用 <em>Expression</em> 类创建规则和演示表达式的解析</li>
+</ol>
+<h2 id="范例"><a href="#范例" class="headerlink" title="范例"></a>范例</h2><h4 id="1-创建一个表达式接口"><a href="#1-创建一个表达式接口" class="headerlink" title="1. 创建一个表达式接口"></a>1. 创建一个表达式接口</h4><p><em>Expression.java</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Expression</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">interpret</span><span class="params">(String context)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-创建实现了上述接口的实体类"><a href="#2-创建实现了上述接口的实体类" class="headerlink" title="2. 创建实现了上述接口的实体类"></a>2. 创建实现了上述接口的实体类</h4><p><em>TerminalExpression.java</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TerminalExpression</span> <span class="keyword">implements</span> <span class="title class_">Expression</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> String data;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">TerminalExpression</span><span class="params">(String data)</span>&#123;</span><br><span class="line">      <span class="built_in">this</span>.data = data; </span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">interpret</span><span class="params">(String context)</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>(context.contains(data))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>OrExpression.java</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrExpression</span> <span class="keyword">implements</span> <span class="title class_">Expression</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="type">Expression</span> <span class="variable">expr1</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">   <span class="keyword">private</span> <span class="type">Expression</span> <span class="variable">expr2</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">OrExpression</span><span class="params">(Expression expr1, Expression expr2)</span> &#123; </span><br><span class="line">      <span class="built_in">this</span>.expr1 = expr1;</span><br><span class="line">      <span class="built_in">this</span>.expr2 = expr2;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">interpret</span><span class="params">(String context)</span> &#123;       </span><br><span class="line">      <span class="keyword">return</span> expr1.interpret(context) || expr2.interpret(context);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>AndExpression.java</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AndExpression</span> <span class="keyword">implements</span> <span class="title class_">Expression</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="type">Expression</span> <span class="variable">expr1</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">   <span class="keyword">private</span> <span class="type">Expression</span> <span class="variable">expr2</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">AndExpression</span><span class="params">(Expression expr1, Expression expr2)</span> &#123; </span><br><span class="line">      <span class="built_in">this</span>.expr1 = expr1;</span><br><span class="line">      <span class="built_in">this</span>.expr2 = expr2;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">interpret</span><span class="params">(String context)</span> &#123;       </span><br><span class="line">      <span class="keyword">return</span> expr1.interpret(context) &amp;&amp; expr2.interpret(context);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-InterpreterPatternDemo-使用-Expression-类来创建规则，并解析它们"><a href="#3-InterpreterPatternDemo-使用-Expression-类来创建规则，并解析它们" class="headerlink" title="3. InterpreterPatternDemo 使用 Expression 类来创建规则，并解析它们"></a>3. <em>InterpreterPatternDemo</em> 使用 <em>Expression</em> 类来创建规则，并解析它们</h4><p><em>InterpreterPatternDemo.java</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">InterpreterPatternDemo</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//规则：Robert 和 John 是男性</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> Expression <span class="title function_">getMaleExpression</span><span class="params">()</span>&#123;</span><br><span class="line">      <span class="type">Expression</span> <span class="variable">robert</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TerminalExpression</span>(<span class="string">&quot;Robert&quot;</span>);</span><br><span class="line">      <span class="type">Expression</span> <span class="variable">john</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TerminalExpression</span>(<span class="string">&quot;John&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">OrExpression</span>(robert, john);        </span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//规则：Julie 是一个已婚的女性</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> Expression <span class="title function_">getMarriedWomanExpression</span><span class="params">()</span>&#123;</span><br><span class="line">      <span class="type">Expression</span> <span class="variable">julie</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TerminalExpression</span>(<span class="string">&quot;Julie&quot;</span>);</span><br><span class="line">      <span class="type">Expression</span> <span class="variable">married</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TerminalExpression</span>(<span class="string">&quot;Married&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">AndExpression</span>(julie, married);     </span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">      <span class="type">Expression</span> <span class="variable">isMale</span> <span class="operator">=</span> getMaleExpression();</span><br><span class="line">      <span class="type">Expression</span> <span class="variable">isMarriedWoman</span> <span class="operator">=</span> getMarriedWomanExpression();</span><br><span class="line"></span><br><span class="line">      System.out.println(<span class="string">&quot;John is male? &quot;</span> + isMale.interpret(<span class="string">&quot;John&quot;</span>));</span><br><span class="line">      System.out.println(<span class="string">&quot;Julie is a married women? &quot;</span> </span><br><span class="line">      + isMarriedWoman.interpret(<span class="string">&quot;Married Julie&quot;</span>));</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译运行以上 Java 范例，输出结果如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">javac -d . src/main/cn/twle/gof/InterpreterPatternDemo.java</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">java  cn.twle.gof.InterpreterPatternDemo</span></span><br><span class="line">John is male? true</span><br><span class="line">Julie is a married women? true</span><br></pre></td></tr></table></figure>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/java-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> / java, 设计模式</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

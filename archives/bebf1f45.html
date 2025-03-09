@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>空对象模式 ( Null Object Pattern ) - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="空对象模式 ( Null Object Pattern )在空对象模式（Null Object Pattern）中，一个空对象取代 NULL 对象实例的检查 Null 对象不是检查空值，而是反应一个不做任何动作的关系，这样的 Null 对象也可以在数据不可用的时候提供默认的行为。 在空对象模式中，我们创建一个指定各种要执行的操作的抽象类和扩展该类的实体类，还创建一个未对该类做任何实现的空对象类，该">
+<meta property="og:type" content="article">
+<meta property="og:title" content="空对象模式 ( Null Object Pattern )">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/bebf1f45.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="空对象模式 ( Null Object Pattern )在空对象模式（Null Object Pattern）中，一个空对象取代 NULL 对象实例的检查 Null 对象不是检查空值，而是反应一个不做任何动作的关系，这样的 Null 对象也可以在数据不可用的时候提供默认的行为。 在空对象模式中，我们创建一个指定各种要执行的操作的抽象类和扩展该类的实体类，还创建一个未对该类做任何实现的空对象类，该">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ronghuaxueleng.github.io/image/null_pattern_1.jpg">
+<meta property="article:published_time" content="2020-03-12T19:14:53.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.341Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="java, 设计模式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ronghuaxueleng.github.io/image/null_pattern_1.jpg">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/bebf1f45.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            空对象模式 ( Null Object Pattern )
+        </div>
+        <div class="post-meta">
+            2020-03-12 ｜ 
+            
+                <a href="/categories/java/"># java</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/java/">java</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h1 id="空对象模式-Null-Object-Pattern"><a href="#空对象模式-Null-Object-Pattern" class="headerlink" title="空对象模式 ( Null Object Pattern )"></a>空对象模式 ( Null Object Pattern )</h1><p>在空对象模式（Null Object Pattern）中，一个空对象取代 NULL 对象实例的检查</p>
+<p>Null 对象不是检查空值，而是反应一个不做任何动作的关系，这样的 Null 对象也可以在数据不可用的时候提供默认的行为。</p>
+<p>在空对象模式中，我们创建一个指定各种要执行的操作的抽象类和扩展该类的实体类，还创建一个未对该类做任何实现的空对象类，该空对象类将无缝地使用在需要检查空值的地方</p>
+<span id="more"></span>
+
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>我们将创建一个定义操作（在这里，是客户的名称）的 <em>AbstractCustomer</em> 抽象类，和扩展了 <em>AbstractCustomer</em> 类的实体类</p>
+<p>工厂类 <em>CustomerFactory</em> 基于客户传递的名字来返回 <em>RealCustomer</em> 或 <em>NullCustomer</em> 对象</p>
+<p><em>NullPatternDemo</em> ，我们的演示类使用 <em>CustomerFactory</em> 来演示空对象模式的用法</p>
+<p><img src="/../../image/null_pattern_1.jpg" alt="空对象模式的 UML 图"></p>
+<h2 id="范例"><a href="#范例" class="headerlink" title="范例"></a>范例</h2><h4 id="1-创建一个抽象类-AbstractCustomer"><a href="#1-创建一个抽象类-AbstractCustomer" class="headerlink" title="1. 创建一个抽象类 AbstractCustomer"></a>1. 创建一个抽象类 AbstractCustomer</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">AbstractCustomer</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">protected</span> String name;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="type">boolean</span> <span class="title function_">isNil</span><span class="params">()</span>;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title function_">getName</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-创建扩展了上述类的实体类"><a href="#2-创建扩展了上述类的实体类" class="headerlink" title="2. 创建扩展了上述类的实体类"></a>2. 创建扩展了上述类的实体类</h4><h4 id="RealCustomer"><a href="#RealCustomer" class="headerlink" title="RealCustomer"></a>RealCustomer</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">RealCustomer</span> <span class="keyword">extends</span> <span class="title class_">AbstractCustomer</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">RealCustomer</span><span class="params">(String name)</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.name = name;     </span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> name;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isNil</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="NullCustomer"><a href="#NullCustomer" class="headerlink" title="NullCustomer"></a>NullCustomer</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">NullCustomer</span> <span class="keyword">extends</span> <span class="title class_">AbstractCustomer</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;Not Available in Customer Database&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isNil</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-创建-CustomerFactory-类"><a href="#3-创建-CustomerFactory-类" class="headerlink" title="3. 创建 CustomerFactory 类"></a>3. 创建 <em>CustomerFactory</em> 类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CustomerFactory</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] names = &#123;<span class="string">&quot;Rob&quot;</span>, <span class="string">&quot;Joe&quot;</span>, <span class="string">&quot;Julie&quot;</span>&#125;;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> AbstractCustomer <span class="title function_">getCustomer</span><span class="params">(String name)</span>&#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; names.length; i++) &#123;</span><br><span class="line">         <span class="keyword">if</span> (names[i].equalsIgnoreCase(name))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RealCustomer</span>(name);</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">NullCustomer</span>();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-使用-CustomerFactory-，基于客户传递的名字，来获取-RealCustomer-或-NullCustomer-对象"><a href="#4-使用-CustomerFactory-，基于客户传递的名字，来获取-RealCustomer-或-NullCustomer-对象" class="headerlink" title="4. 使用 CustomerFactory ，基于客户传递的名字，来获取 RealCustomer 或 NullCustomer 对象"></a>4. 使用 <em>CustomerFactory</em> ，基于客户传递的名字，来获取 <em>RealCustomer</em> 或 <em>NullCustomer</em> 对象</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">NullPatternDemo</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">      <span class="type">AbstractCustomer</span> <span class="variable">customer1</span> <span class="operator">=</span> CustomerFactory.getCustomer(<span class="string">&quot;Rob&quot;</span>);</span><br><span class="line">      <span class="type">AbstractCustomer</span> <span class="variable">customer2</span> <span class="operator">=</span> CustomerFactory.getCustomer(<span class="string">&quot;Bob&quot;</span>);</span><br><span class="line">      <span class="type">AbstractCustomer</span> <span class="variable">customer3</span> <span class="operator">=</span> CustomerFactory.getCustomer(<span class="string">&quot;Julie&quot;</span>);</span><br><span class="line">      <span class="type">AbstractCustomer</span> <span class="variable">customer4</span> <span class="operator">=</span> CustomerFactory.getCustomer(<span class="string">&quot;Laura&quot;</span>);</span><br><span class="line"></span><br><span class="line">      System.out.println(<span class="string">&quot;Customers&quot;</span>);</span><br><span class="line">      System.out.println(customer1.getName());</span><br><span class="line">      System.out.println(customer2.getName());</span><br><span class="line">      System.out.println(customer3.getName());</span><br><span class="line">      System.out.println(customer4.getName());</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译运行以上 Java 范例，输出结果如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">javac -d . src/main/cn/twle/gof/NullPatternDemo.java</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">java  cn.twle.gof.NullPatternDemo</span></span><br><span class="line">Customers</span><br><span class="line">Rob</span><br><span class="line">Not Available in Customer Database</span><br><span class="line">Julie</span><br><span class="line">Not Available in Customer Database</span><br></pre></td></tr></table></figure>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/java-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> / java, 设计模式</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

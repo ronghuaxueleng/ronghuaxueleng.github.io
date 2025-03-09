@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>抽象类和接口 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="简介对于编程来说，对事物的抽象是一个老生常谈的话题，抽象问题更利于面向对象编程以及程序设计模式。和C&#x2F;C++，Java，Python等语言一样，PHP也支持面向对象，但是又有略微区别，如PHP支持在接口中定义常量，但是不支持抽象变量。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="抽象类和接口">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/daef90fc.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="简介对于编程来说，对事物的抽象是一个老生常谈的话题，抽象问题更利于面向对象编程以及程序设计模式。和C&#x2F;C++，Java，Python等语言一样，PHP也支持面向对象，但是又有略微区别，如PHP支持在接口中定义常量，但是不支持抽象变量。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-13T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.377Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="php">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/daef90fc.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            抽象类和接口
+        </div>
+        <div class="post-meta">
+            2016-10-13 ｜ 
+            
+                <a href="/categories/php/"># php</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/php/">php</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>对于编程来说，对事物的抽象是一个老生常谈的话题，抽象问题更利于面向对象编程以及程序设计模式。<br>和C&#x2F;C++，Java，Python等语言一样，PHP也支持面向对象，但是又有略微区别，如PHP支持在接口中定义常量，但是不支持抽象变量。</p>
+<span id="more"></span>
+
+<h2 id="抽象-Abstraction"><a href="#抽象-Abstraction" class="headerlink" title="抽象&#x2F;Abstraction"></a>抽象&#x2F;Abstraction</h2><blockquote>
+<p>对事物的抽象是指，区别两个不同事物之间的本质特征，这两个事物应该在某个视角上有明确的区分界限。</p>
+</blockquote>
+<p>如，鲸鱼和鲤鱼，这两个事物在动物的视角上，有明确的区分界限，属于不同的动物；但是在水生动物的视角上，他们属于同一种动物的抽象。<br>合理的对问题进行抽象，构造模型，将更容易通过编程来解决问题。<br>记住：抽象是编程解决问题的基础，越复杂的问题，越需要一开始就对问题进行抽象，而不是直接写代码。</p>
+<h2 id="抽象类-Abstract-Class"><a href="#抽象类-Abstract-Class" class="headerlink" title="抽象类&#x2F;Abstract Class"></a>抽象类&#x2F;Abstract Class</h2><p>抽象类是一个编程概念，PHP中叫Abstract Classes。在设计模式中，抽象类不能够被实例化&#x2F;初始化，但是可以依靠具体类的继承来实现。<br>有点抽象，对吧？用代码来解释：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="variable">$name</span>;</span><br><span class="line">  <span class="keyword">abstract</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"><span class="variable">$food</span></span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>定义了动物这个抽象类，动物的属性是名字name，然后有一个方法是吃食物eat food。<br>为什么动物是抽象类？因为动物这个物种并不是一个存在于自然界的东西，它是人类脑海里抽象出的东西。存在自然界的是鲸鱼和鲤鱼这样的确定性动物。<br>比如鲸鱼的概念，应该是属于动物，继承Animal类，我们定义鲸鱼这个类以及吃东西的方法：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Whale</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;name = <span class="string">&quot;Whale&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"><span class="variable">$food</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable language_">$this</span>-&gt;name . <span class="string">&quot; eat &quot;</span> . <span class="variable">$food</span> . <span class="string">&quot;.\n&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>现在我们可以初始鲸鱼类，并且调用吃的方法了：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="variable">$whale</span> = <span class="keyword">new</span> <span class="title class_">Whale</span>();</span><br><span class="line">  <span class="variable">$whale</span>-&gt;<span class="title function_ invoke__">eat</span>(<span class="string">&quot;fish&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>运行一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">php Whale.php</span></span><br><span class="line">Whale eat fish.</span><br></pre></td></tr></table></figure>
+<h2 id="接口-Interface"><a href="#接口-Interface" class="headerlink" title="接口&#x2F;Interface"></a>接口&#x2F;Interface</h2><p>PHP也支持面向过程编程概念中的接口，下面同样用鲸鱼的例子来讲述：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IAction</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"><span class="variable">$food</span></span>)</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">swim</span>(<span class="params"></span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>同样定义一个鲸鱼类，来实现上述接口：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class Whale implements IAction &#123;</span><br><span class="line">  public function eat($food) &#123;</span><br><span class="line">    echo &quot;Whale eat &quot; . $food . &quot;\n.&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  public swim() &#123;</span><br><span class="line">    echo &quot;Whale is swimming.\n&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>现在我们可以初始鲸鱼类，并且调用吃的方法了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">  $whale = new Whale();</span><br><span class="line">  $whale-&gt;eat(&quot;fish&quot;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>运行一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">php Whale.php</span></span><br><span class="line">Whale eat fish.</span><br></pre></td></tr></table></figure>
+<h2 id="抽象类vs接口"><a href="#抽象类vs接口" class="headerlink" title="抽象类vs接口"></a>抽象类vs接口</h2><p>上面的抽象类和接口的例子，看上去是不是类似？事实上，对于PHP编程来说，抽象类可以实现的功能，接口也可以实现。<br>抽象类的接口的区别，不在于编程实现，而在于程序设计模式的不同。<br>一般来讲，抽象用于不同的事物，而接口用于事物的行为。<br>如：水生生物是鲸鱼的抽象概念，但是水生生物并不是鲸鱼的行为，吃东西才是鲸鱼的行为。<br>对于大型项目来说，对象都是由基本的抽象类继承实现，而这些类的方法通常都由接口来定义。<br>此外，对于事物属性的更改，建议使用接口，而不是直接赋值或者别的方式，如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IAction</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"></span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Whale</span> <span class="keyword">implements</span> <span class="title">IAction</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Whale eat fish.\n&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Carp</span> <span class="keyword">implements</span> <span class="title">IAction</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Carp eat moss.\n&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Observer</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$whale</span> = <span class="keyword">new</span> <span class="title class_">Whale</span>();</span><br><span class="line">    <span class="variable">$carp</span> = <span class="keyword">new</span> <span class="title class_">Carp</span>();</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">observeEat</span>(<span class="variable">$whale</span>);</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">observeEat</span>(<span class="variable">$carp</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">observeEat</span>(<span class="params">IAction <span class="variable">$animal</span></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$animal</span>-&gt;<span class="title function_ invoke__">eat</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$observer</span> = <span class="keyword">new</span> <span class="title function_ invoke__">observer</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>运行一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">php Observer.php</span></span><br><span class="line">Whale eat fish.</span><br><span class="line">Carp eat moss.</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>好的设计模式是严格对问题进行抽象，虽然抽象类和接口对于编程实现来说是类似的，但是对于程序设计模式是不同的。</p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/php/"> / php</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

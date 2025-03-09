@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>学习 ui-router - 组件 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="参考原文：https:&#x2F;&#x2F;github.com&#x2F;angular-ui&#x2F;ui-router&#x2F;wiki&#x2F;The-Components  $state &#x2F; $stateProvider：管理状态定义、当前状态和状态转换。包含触发状态转换的事件和回调函数，异步解决目标状态的任何依赖项，更新$location到当前状态。由于状态包含关联的 url，通过$urlRouterProvider生成一个路">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习 ui-router - 组件">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/828c261b.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="参考原文：https:&#x2F;&#x2F;github.com&#x2F;angular-ui&#x2F;ui-router&#x2F;wiki&#x2F;The-Components  $state &#x2F; $stateProvider：管理状态定义、当前状态和状态转换。包含触发状态转换的事件和回调函数，异步解决目标状态的任何依赖项，更新$location到当前状态。由于状态包含关联的 url，通过$urlRouterProvider生成一个路">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-08-07T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.229Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="angularjs">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/828c261b.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            学习 ui-router - 组件
+        </div>
+        <div class="post-meta">
+            2016-08-07 ｜ 
+            
+                <a href="/categories/angularjs/"># angularjs</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/angularjs/">angularjs</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <p>参考原文：<a href="https://github.com/angular-ui/ui-router/wiki/The-Components">https://github.com/angular-ui/ui-router/wiki/The-Components</a></p>
+<ul>
+<li><p><strong>$state &#x2F; $stateProvider</strong>：管理状态定义、当前状态和状态转换。包含触发状态转换的事件和回调函数，异步解决目标状态的任何依赖项，更新<code>$location</code>到当前状态。由于状态包含关联的 url，通过$urlRouterProvider生成一个路由规则来执行转换的状态。</p>
+</li>
+<li><p><strong>ui-view</strong>指示器：渲染状态中定义的视图，是状态中定义的视图的一个占位符。</p>
+</li>
+<li><p><strong>$urlRouter &#x2F; $urlRouterProvider</strong>：管理了一套路由规则列表来处理当<code>$location</code>发生变化时如何跳转。最低级的方式是，规则可以是任意函数，来检查<code>$location</code>，并在处理完成时候返回<code>true</code>。支持正则表达式规则和通过<code>$urlMatcherFactory</code>编译的<code>UrlMatcher</code>对象的 url 占位符规则。</p>
+</li>
+<li><p><strong>$urlMatcherFactory</strong>：将 url和占位符编译为<code>UrlMatcher</code>对象。除了<code>$routeProvider</code>支持的占位符语法之外，它还支持扩展语法，允许一个正则表达式指定占位符，并且能够提取命名参数和查询url的一部分。</p>
+</li>
+<li><p><strong>$templateFactory</strong> - 通过<code>$http</code> &#x2F; <code>$templateCache</code>来加载模板，供状态配置中使用。</p>
+<span id="more"></span></li>
+</ul>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/angularjs/"> / angularjs</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

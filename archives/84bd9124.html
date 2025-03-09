@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>发布订阅模式 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。在JavaScript开发中，我们一般用事件模型来替代传统的发布—订阅模式。   发布—订阅模式可以广泛应用于异步编程中，这是一种替代传递回调函数的方案。比如，我们可以订阅ajax 请求的error、succ 等事件。 或者如果想在动画的每一帧完成之后做一些事情，那我们">
+<meta property="og:type" content="article">
+<meta property="og:title" content="发布订阅模式">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/84bd9124.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。在JavaScript开发中，我们一般用事件模型来替代传统的发布—订阅模式。   发布—订阅模式可以广泛应用于异步编程中，这是一种替代传递回调函数的方案。比如，我们可以订阅ajax 请求的error、succ 等事件。 或者如果想在动画的每一帧完成之后做一些事情，那我们">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-12T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.167Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/84bd9124.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            发布订阅模式
+        </div>
+        <div class="post-meta">
+            2016-10-12 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <hr>
+<blockquote>
+<p>发布—订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。在JavaScript开发中，我们一般用事件模型来替代传统的发布—订阅模式。</p>
+</blockquote>
+<ul>
+<li>发布—订阅模式可以广泛应用于异步编程中，这是一种替代传递回调函数的方案。比如，我们可以订阅ajax 请求的error、succ 等事件。 或者如果想在动画的每一帧完成之后做一些事情，那我们可以订阅一个事件，然后在动画的每一帧完成之后发布这个事件。在异步编程中使用发布—订阅模式，我们就无需过多关注对象在异步运行期间的内部状态，而只需要订阅感兴趣的事件发生点。</li>
+<li>发布—订阅模式可以取代对象之间硬编码的通知机制，一个对象不用再显式地调用另外一个对象的某个接口。发布—订阅模式让两个对象松耦合地联系在一起，虽然不太清楚彼此的细节，但这不影响它们之间相互通信。当有新的订阅者出现时，发布者的代码不需要任何修改；同样发布者需要改变时，也不会影响到之前的订阅者。只要之前约定的事件名没有变化，就可以自由地改变它们。</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="DOM-事件"><a href="#DOM-事件" class="headerlink" title="DOM 事件"></a>DOM 事件</h3><p>实际上，只要我们曾经在DOM节点上面绑定过事件函数，那我们就曾经使用过发布—订阅模式，例如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">addEventListener</span>( <span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="number">2</span>);</span><br><span class="line">&#125;, <span class="literal">false</span> );</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">click</span>(); <span class="comment">// 模拟用户点击</span></span><br></pre></td></tr></table></figure>
+<p>在这里需要监控用户点击<code>document.body</code>的动作，但是我们没办法预知用户将在什么时候点击。所以我们订阅<code>document.body</code>上的<code>click</code>事件，当<code>body</code> 节点被点击时，<code>body</code>节点便会向订阅者发布这个消息。当然我们还可以随意增加或者删除订阅者，增加任何订阅者都不会影响发布者代码的编写。</p>
+<h3 id="自定义事件"><a href="#自定义事件" class="headerlink" title="自定义事件"></a>自定义事件</h3><p>除了DOM 事件，我们还会经常实现一些自定义的事件，这种依靠自定义事件完成的发布—订阅模式可以用于任何JavaScript 代码中。<br>步骤：</p>
+<ul>
+<li><p>指定好谁充当发布者（例如售楼处）</p>
+</li>
+<li><p>然后给发布者添加一个缓存列表，用于存放回调函数以便通知订阅者（售楼处的花名册）</p>
+</li>
+<li><p>最后发布消息的时候，发布者会遍历整个缓存列表，依次触发里面存放的订阅者回调函数（遍历花名册挨个发短信通知有空房）<br>另外，我们还可以往回调函数里填入一些参数，订阅者可以接收这些参数。这是很有必要的，比如售楼处可以在发给订阅者的短信里加上房子的单价、面积、容积率等信息，订阅者接收到这些信息之后可以进行各自的处理。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> salesOffices = &#123;&#125;; <span class="comment">// 定义售楼处</span></span><br><span class="line">salesOffices.<span class="property">clientList</span> = &#123;&#125;; <span class="comment">// 缓存列表，存放订阅者的回调函数</span></span><br><span class="line">salesOffices.<span class="property">listen</span> = <span class="keyword">function</span>(<span class="params"> key, fn </span>)&#123;</span><br><span class="line">    <span class="keyword">if</span> ( !<span class="variable language_">this</span>.<span class="property">clientList</span>[ key ] )&#123; <span class="comment">// 如果还没有订阅过此类消息，给该类消息创建一个缓存列表</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">clientList</span>[ key ] = [];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">clientList</span>[ key ].<span class="title function_">push</span>( fn ); <span class="comment">// 订阅的消息添加进消息缓存列表</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">salesOffices.<span class="property">trigger</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123; <span class="comment">// 发布消息</span></span><br><span class="line">    <span class="keyword">var</span> key = <span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">shift</span>.<span class="title function_">call</span>( <span class="variable language_">arguments</span> ), <span class="comment">// 取出消息类型（shift从数组中删除第一个元素并返回该元素）</span></span><br><span class="line">    fns = <span class="variable language_">this</span>.<span class="property">clientList</span>[ key ]; <span class="comment">// 取出该消息对应的回调函数集合</span></span><br><span class="line">    <span class="keyword">if</span> ( !fns || fns.<span class="property">length</span> === <span class="number">0</span> )&#123; <span class="comment">// 如果没有订阅该消息，则返回</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">var</span> i = <span class="number">0</span>, fn; fn = fns[ i++ ]; )&#123;</span><br><span class="line">        fn.<span class="title function_">apply</span>( <span class="variable language_">this</span>, <span class="variable language_">arguments</span> ); <span class="comment">// (2) // arguments 是发布消息时附送的参数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">salesOffices.<span class="title function_">listen</span>( <span class="string">&#x27;squareMeter88&#x27;</span>, <span class="keyword">function</span>(<span class="params"> price </span>)&#123; <span class="comment">// 小明订阅88 平方米房子的消息</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="string">&#x27;价格= &#x27;</span> + price ); <span class="comment">// 输出： 2000000</span></span><br><span class="line">&#125;);</span><br><span class="line">salesOffices.<span class="title function_">listen</span>( <span class="string">&#x27;squareMeter110&#x27;</span>, <span class="keyword">function</span>(<span class="params"> price </span>)&#123; <span class="comment">// 小红订阅110 平方米房子的消息</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="string">&#x27;价格= &#x27;</span> + price ); <span class="comment">// 输出： 3000000</span></span><br><span class="line">&#125;);</span><br><span class="line">salesOffices.<span class="title function_">trigger</span>( <span class="string">&#x27;squareMeter88&#x27;</span>, <span class="number">2000000</span> ); <span class="comment">// 发布88 平方米房子的价格</span></span><br><span class="line">salesOffices.<span class="title function_">trigger</span>( <span class="string">&#x27;squareMeter110&#x27;</span>, <span class="number">3000000</span> ); <span class="comment">// 发布110 平方米房子的价格</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

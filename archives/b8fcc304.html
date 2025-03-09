@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>数据访问对象模式 ( Data Access Object ) - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="数据访问对象模式 ( Data Access Object )数据访问对象模式（Data Access Object Pattern）或 DAO 模式用于把低级的数据访问 API 或操作从高级的业务服务中分离出来 数据访问模式涉及到的参与者有：  数据访问对象接口（Data Access Object Interface） - 该接口定义了在一个模型对象上要执行的标准操作 数据访问对象实体类（Da">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据访问对象模式 ( Data Access Object )">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/b8fcc304.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="数据访问对象模式 ( Data Access Object )数据访问对象模式（Data Access Object Pattern）或 DAO 模式用于把低级的数据访问 API 或操作从高级的业务服务中分离出来 数据访问模式涉及到的参与者有：  数据访问对象接口（Data Access Object Interface） - 该接口定义了在一个模型对象上要执行的标准操作 数据访问对象实体类（Da">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ronghuaxueleng.github.io/image/dao_pattern_1.jpg">
+<meta property="article:published_time" content="2020-03-12T19:15:03.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.333Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="java, 设计模式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ronghuaxueleng.github.io/image/dao_pattern_1.jpg">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/b8fcc304.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            数据访问对象模式 ( Data Access Object )
+        </div>
+        <div class="post-meta">
+            2020-03-12 ｜ 
+            
+                <a href="/categories/java/"># java</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/java/">java</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h1 id="数据访问对象模式-Data-Access-Object"><a href="#数据访问对象模式-Data-Access-Object" class="headerlink" title="数据访问对象模式 ( Data Access Object )"></a>数据访问对象模式 ( Data Access Object )</h1><p>数据访问对象模式（Data Access Object Pattern）或 DAO 模式用于把低级的数据访问 API 或操作从高级的业务服务中分离出来</p>
+<p>数据访问模式涉及到的参与者有：</p>
+<ul>
+<li><strong>数据访问对象接口（Data Access Object Interface）</strong> - 该接口定义了在一个模型对象上要执行的标准操作</li>
+<li><strong>数据访问对象实体类（Data Access Object concrete class）</strong> - 该类实现了上述的接口。该类负责从数据源获取数据，数据源可以是数据库，也可以是 xml，或者是其他的存储机制</li>
+<li><strong>模型对象&#x2F;数值对象（Model Object&#x2F;Value Object）</strong> - 该对象是简单的 POJO，包含了 get&#x2F;set 方法来存储通过使用 DAO 类检索到的数据</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p><img src="/../../image/dao_pattern_1.jpg" alt="数据访问对象模式"></p>
+<ol>
+<li>创建一个作为模型对象或数值对象的 <em>Student</em> 对象</li>
+<li>定义 <em>StudentDao</em> 作为数据访问对象接口</li>
+<li>定义 <em>StudentDaoImpl</em> 实现了数据访问对象接口的实体类</li>
+<li>定义 <em>DaoPatternDemo</em> 使用 <em>StudentDao</em> 来演示数据访问对象模式的用法</li>
+</ol>
+<h2 id="范例"><a href="#范例" class="headerlink" title="范例"></a>范例</h2><h4 id="1-创建数值对象"><a href="#1-创建数值对象" class="headerlink" title="1. 创建数值对象"></a>1. 创建数值对象</h4><p><em>Student.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">   <span class="keyword">private</span> String name;</span><br><span class="line">   <span class="keyword">private</span> <span class="type">int</span> rollNo;</span><br><span class="line"></span><br><span class="line">   Student(String name, <span class="type">int</span> rollNo)&#123;</span><br><span class="line">      <span class="built_in">this</span>.name = name;</span><br><span class="line">      <span class="built_in">this</span>.rollNo = rollNo;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> name;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.name = name;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getRollNo</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> rollNo;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setRollNo</span><span class="params">(<span class="type">int</span> rollNo)</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.rollNo = rollNo;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-创建数据访问对象接口"><a href="#2-创建数据访问对象接口" class="headerlink" title="2. 创建数据访问对象接口"></a>2. 创建数据访问对象接口</h4><p><em>StudentDao.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">StudentDao</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> List&lt;Student&gt; <span class="title function_">getAllStudents</span><span class="params">()</span>;</span><br><span class="line">   <span class="keyword">public</span> Student <span class="title function_">getStudent</span><span class="params">(<span class="type">int</span> rollNo)</span>;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">updateStudent</span><span class="params">(Student student)</span>;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteStudent</span><span class="params">(Student student)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-创建实现了上述接口的实体类"><a href="#3-创建实现了上述接口的实体类" class="headerlink" title="3. 创建实现了上述接口的实体类"></a>3. 创建实现了上述接口的实体类</h4><p><em>StudentDaoImpl.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StudentDaoImpl</span> <span class="keyword">implements</span> <span class="title class_">StudentDao</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//列表是当作一个数据库</span></span><br><span class="line">   List&lt;Student&gt; students;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">StudentDaoImpl</span><span class="params">()</span>&#123;</span><br><span class="line">      students = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Student&gt;();</span><br><span class="line">      <span class="type">Student</span> <span class="variable">student1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;Robert&quot;</span>,<span class="number">0</span>);</span><br><span class="line">      <span class="type">Student</span> <span class="variable">student2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;John&quot;</span>,<span class="number">1</span>);</span><br><span class="line">      students.add(student1);</span><br><span class="line">      students.add(student2);       </span><br><span class="line">   &#125;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">deleteStudent</span><span class="params">(Student student)</span> &#123;</span><br><span class="line">      students.remove(student.getRollNo());</span><br><span class="line">      System.out.println(<span class="string">&quot;Student: Roll No &quot;</span> + student.getRollNo() </span><br><span class="line">         +<span class="string">&quot;, deleted from database&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//从数据库中检索学生名单</span></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> List&lt;Student&gt; <span class="title function_">getAllStudents</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> students;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> Student <span class="title function_">getStudent</span><span class="params">(<span class="type">int</span> rollNo)</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> students.get(rollNo);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">updateStudent</span><span class="params">(Student student)</span> &#123;</span><br><span class="line">      students.get(student.getRollNo()).setName(student.getName());</span><br><span class="line">      System.out.println(<span class="string">&quot;Student: Roll No &quot;</span> + student.getRollNo() </span><br><span class="line">         +<span class="string">&quot;, updated in the database&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-使用-StudentDao-来演示数据访问对象模式的用法"><a href="#4-使用-StudentDao-来演示数据访问对象模式的用法" class="headerlink" title="4. 使用 StudentDao 来演示数据访问对象模式的用法"></a>4. 使用 <em>StudentDao</em> 来演示数据访问对象模式的用法</h4><p><em>CompositeEntityPatternDemo.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DaoPatternDemo</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">      <span class="type">StudentDao</span> <span class="variable">studentDao</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StudentDaoImpl</span>();</span><br><span class="line">    </span><br><span class="line">      <span class="comment">//输出所有的学生</span></span><br><span class="line">      <span class="keyword">for</span> (Student student : studentDao.getAllStudents()) &#123;</span><br><span class="line">         System.out.println(<span class="string">&quot;Student: [RollNo : &quot;</span></span><br><span class="line">           +student.getRollNo()+<span class="string">&quot;, Name : &quot;</span>+student.getName()+<span class="string">&quot; ]&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//更新学生</span></span><br><span class="line">      <span class="type">Student</span> <span class="variable">student</span> <span class="operator">=</span>studentDao.getAllStudents().get(<span class="number">0</span>);</span><br><span class="line">      student.setName(<span class="string">&quot;Michael&quot;</span>);</span><br><span class="line">      studentDao.updateStudent(student);</span><br><span class="line"></span><br><span class="line">      <span class="comment">//获取学生</span></span><br><span class="line">      studentDao.getStudent(<span class="number">0</span>);</span><br><span class="line">      System.out.println(<span class="string">&quot;Student: [RollNo : &quot;</span></span><br><span class="line">         +student.getRollNo()+<span class="string">&quot;, Name : &quot;</span>+student.getName()+<span class="string">&quot; ]&quot;</span>);      </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译运行以上范例，输出结果如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">javac -d . src/main/cn/twle/gof/DaoPatternDemo.java</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">java  cn.twle.gof.DaoPatternDemo</span></span><br><span class="line">Student: [RollNo : 0, Name : Robert ]</span><br><span class="line">Student: [RollNo : 1, Name : John ]</span><br><span class="line">Student: Roll No 0, updated in the database</span><br><span class="line">Student: [RollNo : 0, Name : Michael ]</span><br></pre></td></tr></table></figure>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/java-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> / java, 设计模式</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

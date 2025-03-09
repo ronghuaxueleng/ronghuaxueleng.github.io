@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>中介者模式 ( Mediator Pattern ) - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="中介者模式 ( Mediator Pattern )中介者模式（Mediator Pattern）提供了一个中介类，该类通常处理不同类之间的通信，并支持松耦合，使代码易于维护 中介者模式是用来降低多个对象和类之间的通信复杂性 中介者模式属于行为型模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中介者模式 ( Mediator Pattern )">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/549c4199.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="中介者模式 ( Mediator Pattern )中介者模式（Mediator Pattern）提供了一个中介类，该类通常处理不同类之间的通信，并支持松耦合，使代码易于维护 中介者模式是用来降低多个对象和类之间的通信复杂性 中介者模式属于行为型模式">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ronghuaxueleng.github.io/image/mediator_pattern_1.jpg">
+<meta property="article:published_time" content="2020-03-12T19:14:46.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.308Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="java, 设计模式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ronghuaxueleng.github.io/image/mediator_pattern_1.jpg">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/549c4199.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            中介者模式 ( Mediator Pattern )
+        </div>
+        <div class="post-meta">
+            2020-03-12 ｜ 
+            
+                <a href="/categories/java/"># java</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/java/">java</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h1 id="中介者模式-Mediator-Pattern"><a href="#中介者模式-Mediator-Pattern" class="headerlink" title="中介者模式 ( Mediator Pattern )"></a>中介者模式 ( Mediator Pattern )</h1><p>中介者模式（Mediator Pattern）提供了一个中介类，该类通常处理不同类之间的通信，并支持松耦合，使代码易于维护</p>
+<p>中介者模式是用来降低多个对象和类之间的通信复杂性</p>
+<p>中介者模式属于行为型模式</p>
+<span id="more"></span>
+
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ol>
+<li><p><strong>意图：</strong></p>
+<p>用一个中介对象来封装一系列的对象交互，中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互</p>
+</li>
+<li><p><strong>主要解决：</strong></p>
+<p>对象与对象之间存在大量的关联关系，这样势必会导致系统的结构变得很复杂，同时若一个对象发生改变，我们也需要跟踪与之相关联的对象，同时做出相应的处理</p>
+</li>
+<li><p><strong>何时使用：</strong></p>
+<p>多个类相互耦合，形成了网状结构</p>
+</li>
+<li><p><strong>如何解决：</strong></p>
+<p>将上述网状结构分离为星型结构</p>
+</li>
+<li><p><strong>关键代码：</strong></p>
+<p>对象 Colleague 之间的通信封装到一个类中单独处理</p>
+</li>
+<li><p><strong>应用实例：</strong></p>
+<ol>
+<li>中国加入 WTO 之前是各个国家相互贸易，结构复杂，现在是各个国家通过 WTO 来互相贸易</li>
+<li>机场调度系统</li>
+<li>MVC 框架，其中C（控制器）就是 M（模型）和 V（视图）的中介者</li>
+</ol>
+</li>
+<li><p><strong>优点：</strong></p>
+<ol>
+<li>降低了类的复杂度，将一对多转化成了一对一</li>
+<li>各个类之间的解耦</li>
+<li>符合迪米特原则</li>
+</ol>
+</li>
+<li><p><strong>缺点：</strong></p>
+<p>中介者会庞大，变得复杂难以维护</p>
+</li>
+<li><p><strong>使用场景：</strong></p>
+<ol>
+<li>系统中对象之间存在比较复杂的引用关系，导致它们之间的依赖关系结构混乱而且难以复用该对象</li>
+<li>想通过一个中间类来封装多个类中的行为，而又不想生成太多的子类</li>
+</ol>
+</li>
+<li><p><strong>注意事项：</strong></p>
+<p>不应当在职责混乱的时候使用</p>
+</li>
+</ol>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p><img src="/../../image/mediator_pattern_1.jpg" alt="中介者模式"></p>
+<p>我们通过聊天室实例来演示中介者模式：多个用户可以向聊天室发送消息，聊天室向所有的用户显示消息</p>
+<ol>
+<li>定义中介类 <em>ChatRoom</em></li>
+<li>定义用户类 <em>User</em>，<em>User</em> 对象使用 <em>ChatRoom</em> 方法来分享他们的消息</li>
+<li>定义 <em>MediatorPatternDemo</em> 类使用 <em>User</em> 对象来显示他们之间的通信</li>
+</ol>
+<h2 id="范例"><a href="#范例" class="headerlink" title="范例"></a>范例</h2><h4 id="1-创建中介类"><a href="#1-创建中介类" class="headerlink" title="1. 创建中介类"></a>1. 创建中介类</h4><p><em>ChatRoom.java</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ChatRoom</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">showMessage</span><span class="params">(User user, String message)</span>&#123;</span><br><span class="line">      System.out.println(<span class="keyword">new</span> <span class="title class_">Date</span>().toString()</span><br><span class="line">         + <span class="string">&quot; [&quot;</span> + user.getName() +<span class="string">&quot;] : &quot;</span> + message);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-创建-user-类"><a href="#2-创建-user-类" class="headerlink" title="2. 创建 user 类"></a>2. 创建 user 类</h4><p><em>User.java</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">   <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> name;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.name = name;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">User</span><span class="params">(String name)</span>&#123;</span><br><span class="line">      <span class="built_in">this</span>.name  = name;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sendMessage</span><span class="params">(String message)</span>&#123;</span><br><span class="line">      ChatRoom.showMessage(<span class="built_in">this</span>,message);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-使用-User-对象来显示他们之间的通信"><a href="#3-使用-User-对象来显示他们之间的通信" class="headerlink" title="3. 使用 User 对象来显示他们之间的通信"></a>3. 使用 <em>User</em> 对象来显示他们之间的通信</h4><p><em>MediatorPatternDemo.java</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MediatorPatternDemo</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">      <span class="type">User</span> <span class="variable">robert</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;Robert&quot;</span>);</span><br><span class="line">      <span class="type">User</span> <span class="variable">john</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;John&quot;</span>);</span><br><span class="line"></span><br><span class="line">      robert.sendMessage(<span class="string">&quot;Hi! John!&quot;</span>);</span><br><span class="line">      john.sendMessage(<span class="string">&quot;Hello! Robert!&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译运行以上 Java 范例，输出结果如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">javac -d . src/main/cn/twle/gof/MediatorPatternDemo.java</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">java  cn.twle.gof.MediatorPatternDemo</span></span><br><span class="line">Thu Jan 31 16:05:46 IST 2013 [Robert] : Hi! John!</span><br><span class="line">Thu Jan 31 16:05:46 IST 2013 [John] : Hello! Robert!</span><br></pre></td></tr></table></figure>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/java-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> / java, 设计模式</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>享元模式 ( Flyweight Pattern ) - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="享元模式 ( Flyweight Pattern )享元模式（Flyweight Pattern）主要用于减少创建对象的数量，以减少内存占用和提高性能 享元模式尝试重用现有的同类对象，如果未找到匹配的对象，则创建新对象 这种类型的设计模式属于结构型模式，它提供了减少对象数量从而改善应用所需的对象结构的方式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="享元模式 ( Flyweight Pattern )">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/314a2643.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="享元模式 ( Flyweight Pattern )享元模式（Flyweight Pattern）主要用于减少创建对象的数量，以减少内存占用和提高性能 享元模式尝试重用现有的同类对象，如果未找到匹配的对象，则创建新对象 这种类型的设计模式属于结构型模式，它提供了减少对象数量从而改善应用所需的对象结构的方式">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ronghuaxueleng.github.io/image/flyweight_pattern_1.jpg">
+<meta property="article:published_time" content="2020-03-10T19:14:36.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.310Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="java, 设计模式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ronghuaxueleng.github.io/image/flyweight_pattern_1.jpg">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/314a2643.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            享元模式 ( Flyweight Pattern )
+        </div>
+        <div class="post-meta">
+            2020-03-10 ｜ 
+            
+                <a href="/categories/java/"># java</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/java/">java</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h1 id="享元模式-Flyweight-Pattern"><a href="#享元模式-Flyweight-Pattern" class="headerlink" title="享元模式 ( Flyweight Pattern )"></a>享元模式 ( Flyweight Pattern )</h1><p>享元模式（Flyweight Pattern）主要用于减少创建对象的数量，以减少内存占用和提高性能</p>
+<p>享元模式尝试重用现有的同类对象，如果未找到匹配的对象，则创建新对象</p>
+<p>这种类型的设计模式属于结构型模式，它提供了减少对象数量从而改善应用所需的对象结构的方式</p>
+<span id="more"></span>
+
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ol>
+<li><p><strong>意图：</strong></p>
+<p>运用共享技术有效地支持大量细粒度的对象</p>
+</li>
+<li><p><strong>主要解决：</strong></p>
+<p>在有大量对象时，有可能会造成内存溢出，我们把其中共同的部分抽象出来，如果有相同的业务请求，直接返回在内存中已有的对象，避免重新创建</p>
+</li>
+<li><p><strong>何时使用：</strong></p>
+<ol>
+<li>系统中有大量对象</li>
+<li>这些对象消耗大量内存</li>
+<li>这些对象的状态大部分可以外部化</li>
+<li>这些对象可以按照内蕴状态分为很多组，当把外蕴对象从对象中剔除出来时，每一组对象都可以用一个对象来代替</li>
+<li>系统不依赖于这些对象身份，这些对象是不可分辨的</li>
+</ol>
+</li>
+<li><p><strong>如何解决：</strong></p>
+<p>用唯一标识码判断，如果在内存中有，则返回这个唯一标识码所标识的对象</p>
+</li>
+<li><p><strong>关键代码：</strong></p>
+<p>用 HashMap 存储这些对象</p>
+</li>
+<li><p><strong>应用实例：</strong></p>
+<ol>
+<li>JAVA 中的 String，如果有则返回，如果没有则创建一个字符串保存在字符串缓存池里面</li>
+<li>数据库的数据池</li>
+</ol>
+</li>
+<li><p><strong>优点：</strong></p>
+<p>大大减少对象的创建，降低系统的内存，使效率提高</p>
+</li>
+<li><p><strong>缺点：</strong></p>
+<p>提高了系统的复杂度，需要分离出外部状态和内部状态，而且外部状态具有固有化的性质，不应该随着内部状态的变化而变化，否则会造成系统的混乱</p>
+</li>
+<li><p><strong>使用场景：</strong></p>
+<ol>
+<li>系统有大量相似对象</li>
+<li>需要缓冲池的场景</li>
+</ol>
+</li>
+<li><p><strong>注意事项：</strong></p>
+<ol>
+<li>注意划分外部状态和内部状态，否则可能会引起线程安全问题</li>
+<li>这些类必须有一个工厂对象加以控制</li>
+</ol>
+</li>
+</ol>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p><img src="/../../image/flyweight_pattern_1.jpg" alt="享元模式"></p>
+<ol>
+<li><p>定义一个 <em>Shape</em> 接口和实现了 <em>Shape</em> 接口的实体类 <em>Circle</em></p>
+</li>
+<li><p>定义工厂类 <em>ShapeFactory</em></p>
+<p><em>ShapeFactory</em> 有一个 <em>Circle</em> 的 <em>HashMap</em> ，其中键名为 <em>Circle</em> 对象的颜色</p>
+<p>无论何时接收到请求，都会创建一个特定颜色的圆</p>
+<p><em>ShapeFactory</em> 检查它的 <em>HashMap</em> 中的 circle 对象，如果找到 <em>Circle</em> 对象，则返回该对象，否则将创建一个存储在 hashmap 中以备后续使用的新对象，并把该对象返回到客户端</p>
+</li>
+<li><p>定义类 <em>FlyWeightPatternDemo</em> 使用 <em>ShapeFactory</em> 来获取 <em>Shape</em> 对象</p>
+<p>它将向 <em>ShapeFactory</em> 传递信息（ <em>red &#x2F; green &#x2F; blue&#x2F; black &#x2F; white</em> ），以便获取它所需对象的颜色</p>
+</li>
+</ol>
+<h2 id="范例"><a href="#范例" class="headerlink" title="范例"></a>范例</h2><p>我们将通过创建 5 个对象来画出 20 个分布于不同位置的圆来演示这种模式</p>
+<p>由于只有 5 种可用的颜色，所以 color 属性被用来检查现有的 <em>Circle</em> 对象</p>
+<h4 id="1-定义一个接口"><a href="#1-定义一个接口" class="headerlink" title="1. 定义一个接口"></a>1. 定义一个接口</h4><p><em>Shape.java</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Shape</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">void</span> <span class="title function_">draw</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-创建实现接口的实体类"><a href="#2-创建实现接口的实体类" class="headerlink" title="2. 创建实现接口的实体类"></a>2. 创建实现接口的实体类</h4><p><em>Circle.java</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Circle</span> <span class="keyword">implements</span> <span class="title class_">Shape</span> &#123;</span><br><span class="line">   <span class="keyword">private</span> String color;</span><br><span class="line">   <span class="keyword">private</span> <span class="type">int</span> x;</span><br><span class="line">   <span class="keyword">private</span> <span class="type">int</span> y;</span><br><span class="line">   <span class="keyword">private</span> <span class="type">int</span> radius;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">Circle</span><span class="params">(String color)</span>&#123;</span><br><span class="line">      <span class="built_in">this</span>.color = color;       </span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setX</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.x = x;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setY</span><span class="params">(<span class="type">int</span> y)</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.y = y;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setRadius</span><span class="params">(<span class="type">int</span> radius)</span> &#123;</span><br><span class="line">      <span class="built_in">this</span>.radius = radius;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">draw</span><span class="params">()</span> &#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Circle: Draw() [Color : &quot;</span> + color </span><br><span class="line">         +<span class="string">&quot;, x : &quot;</span> + x +<span class="string">&quot;, y :&quot;</span> + y +<span class="string">&quot;, radius :&quot;</span> + radius);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-创建一个工厂，生成基于给定信息的实体类的对象"><a href="#3-创建一个工厂，生成基于给定信息的实体类的对象" class="headerlink" title="3. 创建一个工厂，生成基于给定信息的实体类的对象"></a>3. 创建一个工厂，生成基于给定信息的实体类的对象</h4><p><em>ShapeFactory.java</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ShapeFactory</span> &#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> HashMap&lt;String, Shape&gt; circleMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>();</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> Shape <span class="title function_">getCircle</span><span class="params">(String color)</span> &#123;</span><br><span class="line">      <span class="type">Circle</span> <span class="variable">circle</span> <span class="operator">=</span> (Circle)circleMap.get(color);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span>(circle == <span class="literal">null</span>) &#123;</span><br><span class="line">         circle = <span class="keyword">new</span> <span class="title class_">Circle</span>(color);</span><br><span class="line">         circleMap.put(color, circle);</span><br><span class="line">         System.out.println(<span class="string">&quot;Creating circle of color : &quot;</span> + color);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> circle;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-使用该工厂，通过传递颜色信息来获取实体类的对象"><a href="#4-使用该工厂，通过传递颜色信息来获取实体类的对象" class="headerlink" title="4. 使用该工厂，通过传递颜色信息来获取实体类的对象"></a>4. 使用该工厂，通过传递颜色信息来获取实体类的对象</h4><p><em>FlyweightPatternDemo.java</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FlyweightPatternDemo</span> &#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String colors[] = </span><br><span class="line">      &#123; <span class="string">&quot;Red&quot;</span>, <span class="string">&quot;Green&quot;</span>, <span class="string">&quot;Blue&quot;</span>, <span class="string">&quot;White&quot;</span>, <span class="string">&quot;Black&quot;</span> &#125;;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i &lt; <span class="number">20</span>; ++i) &#123;</span><br><span class="line">         <span class="type">Circle</span> <span class="variable">circle</span> <span class="operator">=</span> </span><br><span class="line">            (Circle)ShapeFactory.getCircle(getRandomColor());</span><br><span class="line">         circle.setX(getRandomX());</span><br><span class="line">         circle.setY(getRandomY());</span><br><span class="line">         circle.setRadius(<span class="number">100</span>);</span><br><span class="line">         circle.draw();</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> String <span class="title function_">getRandomColor</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> colors[(<span class="type">int</span>)(Math.random()*colors.length)];</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">getRandomX</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> (<span class="type">int</span>)(Math.random()*<span class="number">100</span> );</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">getRandomY</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> (<span class="type">int</span>)(Math.random()*<span class="number">100</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译运行以上 Java 范例，输出结果如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">javac -d . src/main/cn/twle/gof/FlyweightPatternDemo.java</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">java  cn.twle.gof.FlyweightPatternDemo</span></span><br><span class="line">Creating circle of color : Black</span><br><span class="line">Circle: Draw() [Color : Black, x : 36, y :71, radius :100</span><br><span class="line">Creating circle of color : Green</span><br><span class="line">Circle: Draw() [Color : Green, x : 27, y :27, radius :100</span><br><span class="line">Creating circle of color : White</span><br><span class="line">Circle: Draw() [Color : White, x : 64, y :10, radius :100</span><br><span class="line">Creating circle of color : Red</span><br><span class="line">Circle: Draw() [Color : Red, x : 15, y :44, radius :100</span><br><span class="line">Circle: Draw() [Color : Green, x : 19, y :10, radius :100</span><br><span class="line">Circle: Draw() [Color : Green, x : 94, y :32, radius :100</span><br><span class="line">Circle: Draw() [Color : White, x : 69, y :98, radius :100</span><br><span class="line">Creating circle of color : Blue</span><br><span class="line">Circle: Draw() [Color : Blue, x : 13, y :4, radius :100</span><br><span class="line">Circle: Draw() [Color : Green, x : 21, y :21, radius :100</span><br><span class="line">Circle: Draw() [Color : Blue, x : 55, y :86, radius :100</span><br><span class="line">Circle: Draw() [Color : White, x : 90, y :70, radius :100</span><br><span class="line">Circle: Draw() [Color : Green, x : 78, y :3, radius :100</span><br><span class="line">Circle: Draw() [Color : Green, x : 64, y :89, radius :100</span><br><span class="line">Circle: Draw() [Color : Blue, x : 3, y :91, radius :100</span><br><span class="line">Circle: Draw() [Color : Blue, x : 62, y :82, radius :100</span><br><span class="line">Circle: Draw() [Color : Green, x : 97, y :61, radius :100</span><br><span class="line">Circle: Draw() [Color : Green, x : 86, y :12, radius :100</span><br><span class="line">Circle: Draw() [Color : Green, x : 38, y :93, radius :100</span><br><span class="line">Circle: Draw() [Color : Red, x : 76, y :82, radius :100</span><br><span class="line">Circle: Draw() [Color : Blue, x : 95, y :82, radius :100</span><br></pre></td></tr></table></figure>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/java-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> / java, 设计模式</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

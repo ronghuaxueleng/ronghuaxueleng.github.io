@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>迭代器模式 ( Iterator Pattern ) - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="迭代器模式 ( Iterator Pattern )迭代器模式（Iterator Pattern）用于顺序访问集合对象的元素，不需要知道集合对象的底层表示 迭代器模式是 Java 和 .Net 编程环境中非常常用的设计模式 迭代器模式属于行为型模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="迭代器模式 ( Iterator Pattern )">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/42c310e1.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="迭代器模式 ( Iterator Pattern )迭代器模式（Iterator Pattern）用于顺序访问集合对象的元素，不需要知道集合对象的底层表示 迭代器模式是 Java 和 .Net 编程环境中非常常用的设计模式 迭代器模式属于行为型模式">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ronghuaxueleng.github.io/image/iterator_pattern_1.jpg">
+<meta property="article:published_time" content="2020-03-12T19:14:45.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.366Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="java, 设计模式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ronghuaxueleng.github.io/image/iterator_pattern_1.jpg">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/42c310e1.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            迭代器模式 ( Iterator Pattern )
+        </div>
+        <div class="post-meta">
+            2020-03-12 ｜ 
+            
+                <a href="/categories/java/"># java</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/java/">java</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h1 id="迭代器模式-Iterator-Pattern"><a href="#迭代器模式-Iterator-Pattern" class="headerlink" title="迭代器模式 ( Iterator Pattern )"></a>迭代器模式 ( Iterator Pattern )</h1><p>迭代器模式（Iterator Pattern）用于顺序访问集合对象的元素，不需要知道集合对象的底层表示</p>
+<p>迭代器模式是 Java 和 .Net 编程环境中非常常用的设计模式</p>
+<p>迭代器模式属于行为型模式</p>
+<span id="more"></span>
+
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ol>
+<li><p><strong>意图：</strong></p>
+<p>提供一种方法顺序访问一个聚合对象中各个元素, 而又无须暴露该对象的内部表示</p>
+</li>
+<li><p><strong>主要解决：</strong></p>
+<p>不同的方式来遍历整个整合对象</p>
+</li>
+<li><p><strong>何时使用：</strong></p>
+<p>遍历一个聚合对象</p>
+</li>
+<li><p><strong>如何解决：</strong></p>
+<p>把在元素之间游走的责任交给迭代器，而不是聚合对象</p>
+</li>
+<li><p><strong>关键代码：</strong></p>
+<p>定义接口：hasNext, next</p>
+</li>
+<li><p><strong>应用实例：</strong></p>
+<p>JAVA 中的 iterator</p>
+</li>
+<li><p><strong>优点：</strong></p>
+<ol>
+<li>它支持以不同的方式遍历一个聚合对象</li>
+<li>迭代器简化了聚合类</li>
+<li>在同一个聚合上可以有多个遍历</li>
+<li>在迭代器模式中，增加新的聚合类和迭代器类都很方便，无须修改原有代码</li>
+</ol>
+</li>
+<li><p><strong>缺点：</strong></p>
+<p>由于迭代器模式将存储数据和遍历数据的职责分离，增加新的聚合类需要对应增加新的迭代器类，类的个数成对增加，这在一定程度上增加了系统的复杂性</p>
+</li>
+<li><p><strong>使用场景：</strong></p>
+<ol>
+<li>访问一个聚合对象的内容而无须暴露它的内部表示</li>
+<li>需要为聚合对象提供多种遍历方式</li>
+<li>为遍历不同的聚合结构提供一个统一的接口</li>
+</ol>
+</li>
+<li><p><strong>注意事项：</strong></p>
+<p>迭代器模式就是分离了集合对象的遍历行为，抽象出一个迭代器类来负责，这样既可以做到不暴露集合的内部结构，又可让外部代码透明地访问集合内部的数据</p>
+</li>
+</ol>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p><img src="/../../image/iterator_pattern_1.jpg" alt="迭代器模式"></p>
+<ol>
+<li>定义一个叙述导航方法的 <em>Iterator</em> 接口和一个返回迭代器的 <em>Container</em> 接口</li>
+<li>实现了 <em>Container</em> 接口的实体类将负责实现 <em>Iterator</em> 接口</li>
+<li><em>IteratorPatternDemo</em> 使用实体类 <em>NamesRepository</em> 来打印 <em>NamesRepository</em> 中存储为集合的 <em>Names</em></li>
+</ol>
+<h2 id="范例"><a href="#范例" class="headerlink" title="范例"></a>范例</h2><h4 id="1-创建接口"><a href="#1-创建接口" class="headerlink" title="1. 创建接口"></a>1. 创建接口</h4><p><em>Iterator.java</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Iterator</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">hasNext</span><span class="params">()</span>;</span><br><span class="line">   <span class="keyword">public</span> Object <span class="title function_">next</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>Container.java</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Container</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> Iterator <span class="title function_">getIterator</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-创建实现了-Container-接口的实体类"><a href="#2-创建实现了-Container-接口的实体类" class="headerlink" title="2. 创建实现了 Container 接口的实体类"></a>2. 创建实现了 <em>Container</em> 接口的实体类</h4><p>该类有实现了 <em>Iterator</em> 接口的内部类 <em>NameIterator</em></p>
+<p><em>NameRepository.java</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">NameRepository</span> <span class="keyword">implements</span> <span class="title class_">Container</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> String names[] = &#123;<span class="string">&quot;Robert&quot;</span> , <span class="string">&quot;John&quot;</span> ,<span class="string">&quot;Julie&quot;</span> , <span class="string">&quot;Lora&quot;</span>&#125;;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> Iterator <span class="title function_">getIterator</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">NameIterator</span>();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">NameIterator</span> <span class="keyword">implements</span> <span class="title class_">Iterator</span> &#123;</span><br><span class="line"></span><br><span class="line">      <span class="type">int</span> index;</span><br><span class="line"></span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">hasNext</span><span class="params">()</span> &#123;</span><br><span class="line">         <span class="keyword">if</span>(index &lt; names.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="keyword">public</span> Object <span class="title function_">next</span><span class="params">()</span> &#123;</span><br><span class="line">         <span class="keyword">if</span>(<span class="built_in">this</span>.hasNext())&#123;</span><br><span class="line">            <span class="keyword">return</span> names[index++];</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">      &#125;     </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-使用-NameRepository-来获取迭代器，并打印名字"><a href="#3-使用-NameRepository-来获取迭代器，并打印名字" class="headerlink" title="3. 使用 NameRepository 来获取迭代器，并打印名字"></a>3. 使用 <em>NameRepository</em> 来获取迭代器，并打印名字</h4><p><em>IteratorPatternDemo.java</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">IteratorPatternDemo</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">      <span class="type">NameRepository</span> <span class="variable">namesRepository</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">NameRepository</span>();</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span>(<span class="type">Iterator</span> <span class="variable">iter</span> <span class="operator">=</span> namesRepository.getIterator(); iter.hasNext();)&#123;</span><br><span class="line">         <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> (String)iter.next();</span><br><span class="line">         System.out.println(<span class="string">&quot;Name : &quot;</span> + name);</span><br><span class="line">      &#125;     </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译运行以上 Java 范例，输出结果如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ javac -d . src/main/cn/twle/gof/IteratorPatternDemo.java</span><br><span class="line">$ java  cn.twle.gof.IteratorPatternDemo</span><br><span class="line">Name : Robert</span><br><span class="line">Name : John</span><br><span class="line">Name : Julie</span><br><span class="line">Name : Lora</span><br></pre></td></tr></table></figure>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/java-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> / java, 设计模式</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

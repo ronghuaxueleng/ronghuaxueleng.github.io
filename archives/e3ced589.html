@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>学习 ui-router - 多个命名的视图 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="参考原文：https:&#x2F;&#x2F;github.com&#x2F;angular-ui&#x2F;ui-router&#x2F;wiki&#x2F;Multiple-Named-Views 可以给ui-view指定名称，这样一个模板中就可以有多个ui-view。假设您有一个应用，需要动态填充graph、table data和filters，像下面这样：  当您需要使用多视图时，需要用到状态的views属性，views属性值是一个对象。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习 ui-router - 多个命名的视图">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/e3ced589.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="参考原文：https:&#x2F;&#x2F;github.com&#x2F;angular-ui&#x2F;ui-router&#x2F;wiki&#x2F;Multiple-Named-Views 可以给ui-view指定名称，这样一个模板中就可以有多个ui-view。假设您有一个应用，需要动态填充graph、table data和filters，像下面这样：  当您需要使用多视图时，需要用到状态的views属性，views属性值是一个对象。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://bubkoo.qiniudn.com/MultipleNamedViewsExample.png">
+<meta property="article:published_time" content="2016-08-05T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.223Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="angularjs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://bubkoo.qiniudn.com/MultipleNamedViewsExample.png">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/e3ced589.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            学习 ui-router - 多个命名的视图
+        </div>
+        <div class="post-meta">
+            2016-08-05 ｜ 
+            
+                <a href="/categories/angularjs/"># angularjs</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/angularjs/">angularjs</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <p>参考原文：<a href="https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views">https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views</a></p>
+<p>可以给<code>ui-view</code>指定名称，这样一个模板中就可以有多个<code>ui-view</code>。假设您有一个应用，需要动态填充<code>graph</code>、<code>table data</code>和<code>filters</code>，像下面这样：</p>
+<p><img src="http://bubkoo.qiniudn.com/MultipleNamedViewsExample.png"></p>
+<p>当您需要使用多视图时，需要用到状态的<code>views</code>属性，<code>views</code>属性值是一个对象。</p>
+<span id="more"></span>
+
+<h2 id="设置views属性将覆盖覆盖的template属性"><a href="#设置views属性将覆盖覆盖的template属性" class="headerlink" title="设置views属性将覆盖覆盖的template属性"></a>设置<code>views</code>属性将覆盖覆盖的<code>template</code>属性</h2><p>如果在状态中定义了<code>views</code>属性，那么状态中的<code>templateUrl</code>、<code>template</code> 和 <code>templateProvider</code>属性将被忽略。</p>
+<h3 id="示例-名称匹配"><a href="#示例-名称匹配" class="headerlink" title="示例 - 名称匹配"></a>示例 - 名称匹配</h3><p><code>views</code>的属性<code>key</code>应该对应的<code>ui-view</code>的名称、像下面这样：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- index.html --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">ui-view</span>=<span class="string">&quot;filters&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">ui-view</span>=<span class="string">&quot;tabledata&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">ui-view</span>=<span class="string">&quot;graph&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider</span><br><span class="line">  .<span class="title function_">state</span>(<span class="string">&#x27;report&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">views</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;filters&#x27;</span>: &#123; ... templates and/or controllers ... &#125;,</span><br><span class="line">      <span class="string">&#x27;tabledata&#x27;</span>: &#123;&#125;,</span><br><span class="line">      <span class="string">&#x27;graph&#x27;</span>: &#123;&#125;,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>然后<code>views</code>中的每一个 view 都可以设置自身的模板属性（<code>template</code>，<code>templateUrl</code>，<code>templateProvider</code>） 和控制器属性（<code>controller</code>，<code>controllerProvider</code>）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider</span><br><span class="line">  .<span class="title function_">state</span>(<span class="string">&#x27;report&#x27;</span>,&#123;</span><br><span class="line">    <span class="attr">views</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;filters&#x27;</span>: &#123;</span><br><span class="line">        <span class="attr">templateUrl</span>: <span class="string">&#x27;report-filters.html&#x27;</span>,</span><br><span class="line">        <span class="attr">controller</span>: <span class="keyword">function</span>(<span class="params">$scope</span>)&#123; ... controller stuff just <span class="keyword">for</span> filters view ... &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">&#x27;tabledata&#x27;</span>: &#123;</span><br><span class="line">        <span class="attr">templateUrl</span>: <span class="string">&#x27;report-table.html&#x27;</span>,</span><br><span class="line">        <span class="attr">controller</span>: <span class="keyword">function</span>(<span class="params">$scope</span>)&#123; ... controller stuff just <span class="keyword">for</span> tabledata view ... &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">&#x27;graph&#x27;</span>: &#123;</span><br><span class="line">        <span class="attr">templateUrl</span>: <span class="string">&#x27;report-graph.html&#x27;</span>,</span><br><span class="line">        <span class="attr">controller</span>: <span class="keyword">function</span>(<span class="params">$scope</span>)&#123; ... controller stuff just <span class="keyword">for</span> graph view ... &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="视图名称-相对命名与绝对命名"><a href="#视图名称-相对命名与绝对命名" class="headerlink" title="视图名称 - 相对命名与绝对命名"></a>视图名称 - 相对命名与绝对命名</h2><p>在定义<code>views</code>属性时，如果视图名称中包含<code>@</code>，那么视图名称就是绝对命名的方式，否则就是相对命名的方式。相对命名的意思是相对于父模板中的<code>ui-view</code>，而绝对命名则指定了相对于哪个状态的模板。</p>
+<p>在 ui-router 内部，<code>views</code>属性中的每个视图都被按照<code>viewname@statename</code>的方式分配为绝对名称，<code>viewname</code>是目标模板中的<code>ui-view</code>对应的名称，<code>statename</code>是状态的名称，状态名称对应于一个目标模板。<code>@</code>前面部分为空表示未命名的<code>ui-view</code>，<code>@</code>后面为空则表示相对于根模板，通常是 index.html。</p>
+<p>例如，上面的例子可以写成如下方式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.<span class="title function_">state</span>(<span class="string">&#x27;report&#x27;</span>,&#123;</span><br><span class="line">  <span class="attr">views</span>: &#123;</span><br><span class="line">    <span class="string">&#x27;filters@&#x27;</span>: &#123; &#125;,</span><br><span class="line">    <span class="string">&#x27;tabledata@&#x27;</span>: &#123; &#125;,</span><br><span class="line">    <span class="string">&#x27;graph@&#x27;</span>: &#123; &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>注意，这样的写法，视图的名称指定为绝对的名字，而不是相对的名字。这样 ‘filters’，’tabledata’和’graph’三个视图将加载到根视图的模板中(由于没有父状态，则根模板就是index.html)。</p>
+<p>绝对命名的方式可以让我们完成一些强大的功能，让我们假设我们有几个模板设置（这里仅仅作为实例演示，有些不现实的地方），像下面这样：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- index.html (root unnamed template) --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">ng-app</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ui-view</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span> <span class="comment">&lt;!-- contacts.html plugs in here --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ui-view</span>=<span class="string">&quot;status&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- contacts.html --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>My Contacts<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ui-view</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ui-view</span>=<span class="string">&quot;detail&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- contacts.detail.html --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Contacts Details<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ui-view</span>=<span class="string">&quot;info&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>让我们来看看在<code>contacts.detail</code>状态中，相对命名和绝对命名的各种使用方式，请注意，一旦使用了<code>@</code>则表示绝对命名的方式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">$stateProvider</span><br><span class="line">  .<span class="title function_">state</span>(<span class="string">&#x27;contacts&#x27;</span>, &#123;</span><br><span class="line">    <span class="comment">// 根状态，对应的父模板则是index.html</span></span><br><span class="line">    <span class="comment">// 所以 contacts.html 将被加载到 index.html 中未命名的 ui-view 中</span></span><br><span class="line">    <span class="attr">templateUrl</span>: <span class="string">&#x27;contacts.html&#x27;</span>   </span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">state</span>(<span class="string">&#x27;contacts.detail&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">views</span>: &#123;</span><br><span class="line">        <span class="comment">// 嵌套状态，对应的父模板是 contacts.html</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 相对命名</span></span><br><span class="line">        <span class="comment">// contacts.html 中 &lt;div ui-view=&#x27;detail&#x27;/&gt; 将对应下面</span></span><br><span class="line">        <span class="string">&quot;detail&quot;</span> : &#123; &#125;,   </span><br><span class="line">         </span><br><span class="line">        <span class="comment">// 相对命名</span></span><br><span class="line">        <span class="comment">// 对应 contacts.html 中的未命名 ui-view &lt;div ui-view/&gt;</span></span><br><span class="line">        <span class="string">&quot;&quot;</span> : &#123; &#125;, </span><br><span class="line"></span><br><span class="line">        <span class="comment">// 绝对命名</span></span><br><span class="line">        <span class="comment">// 对应 contacts.detail.html 中 &lt;div ui-view=&#x27;info&#x27;/&gt;</span></span><br><span class="line">        <span class="string">&quot;info@contacts.detail&quot;</span> : &#123; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 绝对命名</span></span><br><span class="line">        <span class="comment">// 对应 contacts.html 中 &lt;div ui-view=&#x27;detail&#x27;/&gt;</span></span><br><span class="line">        <span class="string">&quot;detail@contacts&quot;</span> : &#123; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 绝对命名</span></span><br><span class="line">        <span class="comment">// 对应 contacts.html 中的未命名 ui-view &lt;div ui-view/&gt;</span></span><br><span class="line">        <span class="string">&quot;@contacts&quot;</span> : &#123; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 绝对命名</span></span><br><span class="line">        <span class="comment">// 对应 index.html 中 &lt;div ui-view=&#x27;status&#x27;/&gt; </span></span><br><span class="line">        <span class="string">&quot;status@&quot;</span> : &#123; &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 绝对命名</span></span><br><span class="line">        <span class="comment">// 对应 index.html 中 &lt;div ui-view/&gt;</span></span><br><span class="line">        <span class="string">&quot;@&quot;</span> : &#123; &#125; </span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>你将发现，不仅仅可以在同一状态设置多个视图，而且祖先状态可以由开发者自由控制:)。</p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/angularjs/"> / angularjs</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

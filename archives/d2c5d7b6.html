@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>设计模式 - 简介 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="设计模式 - 简介设计模式（Design pattern）是重构解决方案  这点很重要，尤其是现在 B&#x2F;S 一统天下的局面，过早考虑设计模式，得不偿失  设计模式（Design pattern）代表了最佳的实践，通常被面向对象的软件开发人员所采用  很多教程都说设计模式是被有经验的人使用，其实只要定义了一个类，或多或少都在使用它们，而不是有没有经验 只是有经验的人知道自己在使用设计模式，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式 - 简介">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/d2c5d7b6.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="设计模式 - 简介设计模式（Design pattern）是重构解决方案  这点很重要，尤其是现在 B&#x2F;S 一统天下的局面，过早考虑设计模式，得不偿失  设计模式（Design pattern）代表了最佳的实践，通常被面向对象的软件开发人员所采用  很多教程都说设计模式是被有经验的人使用，其实只要定义了一个类，或多或少都在使用它们，而不是有没有经验 只是有经验的人知道自己在使用设计模式，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-10T17:26:52.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.357Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="java,设计模式">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/d2c5d7b6.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            设计模式 - 简介
+        </div>
+        <div class="post-meta">
+            2020-03-10 ｜ 
+            
+                <a href="/categories/java/"># java</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/java/">java</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h1 id="设计模式-简介"><a href="#设计模式-简介" class="headerlink" title="设计模式 - 简介"></a>设计模式 - 简介</h1><p>设计模式（Design pattern）是重构解决方案</p>
+<blockquote>
+<p>这点很重要，尤其是现在 B&#x2F;S 一统天下的局面，过早考虑设计模式，得不偿失</p>
+</blockquote>
+<p>设计模式（Design pattern）代表了最佳的实践，通常被面向对象的软件开发人员所采用</p>
+<blockquote>
+<p>很多教程都说设计模式是被有经验的人使用，其实只要定义了一个类，或多或少都在使用它们，而不是有没有经验 只是有经验的人知道自己在使用设计模式，而且知道怎么做的更好</p>
+</blockquote>
+<p>设计模式是软件开发人员在软件开发过程中面临复杂度问题的一般问题的解决方案</p>
+<p>这些解决方案是众多软件开发人员经过相当长的一段时间的试验和错误总结出来的</p>
+<blockquote>
+<p>设计模式是复杂度解决方案，不是小程序的解决方案(就一两个类文件，用设计模式那是增加复杂度)</p>
+</blockquote>
+<p>设计模式是一套被反复使用的、多数人知晓的、经过分类编目的、代码设计经验的总结</p>
+<p>使用设计模式是为了重用代码、让代码更容易被他人理解、保证代码可靠性</p>
+<p>毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样</p>
+<p>项目中合理地运用设计模式可以完美地解决很多问题，每种模式在现实中都有相应的原理来与之对应，每种模式都描述了一个在我们周围不断重复发生的问题，以及该问题的核心解决方案，这也是设计模式能被广泛应用的原因</p>
+<span id="more"></span>
+
+<h2 id="什么是-GOF（Gang-of-Four）？"><a href="#什么是-GOF（Gang-of-Four）？" class="headerlink" title="什么是 GOF（Gang of Four）？"></a>什么是 GOF（Gang of Four）？</h2><p>1994 年，Erich Gamma、Richard Helm、Ralph Johnson 和 John Vlissides 四人合著出版了一本名为 <strong>Design Patterns - Elements of Reusable Object-Oriented Software（中文译名：设计模式 - 可复用的面向对象软件元素）</strong> 的书</p>
+<blockquote>
+<p>书名真的是误导人啊… 为啥不添加上重构两字</p>
+</blockquote>
+<p>该书首次提到了软件开发中设计模式的概念</p>
+<p>四位作者合称 <strong>GOF（四人帮，全拼 Gang of Four）</strong></p>
+<p>他们所提出的设计模式主要是基于以下的面向对象设计原则</p>
+<ol>
+<li>面向接口编程而不是对实现编程</li>
+<li>优先使用对象组合而不是继承</li>
+</ol>
+<h2 id="设计模式的使用"><a href="#设计模式的使用" class="headerlink" title="设计模式的使用"></a>设计模式的使用</h2><p>设计模式在软件开发中的两个主要用途</p>
+<ol>
+<li><p><strong>开发人员的共同平台</strong></p>
+<p>设计模式提供了一个标准的术语系统，且具体到特定的情景</p>
+<p>例如，单例设计模式意味着使用单个对象，这样所有熟悉单例设计模式的开发人员都能使用单个对象，并且可以通过这种方式告诉对方，程序使用的是单例模式</p>
+</li>
+<li><p><strong>最佳的实践</strong></p>
+<p>设计模式已经经历了很长一段时间的发展，它们提供了软件开发过程中面临的一般问题的最佳解决方案</p>
+<p>学习这些模式有助于经验不足的开发人员通过一种简单快捷的方式来学习软件设计</p>
+</li>
+</ol>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/java-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> / java,设计模式</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

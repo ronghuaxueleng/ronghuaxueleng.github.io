@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>代码重构 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="一些重构的建议：  提炼函数  * 避免出现超大函数  * 独立出来的函数有助于代码复用  * 独立出来的函数更容易被覆写  * 独立出来的函数如果拥有一个良好的命名，  * 它本身就起到了注释的作用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码重构">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/513e5894.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="一些重构的建议：  提炼函数  * 避免出现超大函数  * 独立出来的函数有助于代码复用  * 独立出来的函数更容易被覆写  * 独立出来的函数如果拥有一个良好的命名，  * 它本身就起到了注释的作用。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-12T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.187Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/513e5894.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            代码重构
+        </div>
+        <div class="post-meta">
+            2016-10-12 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <hr>
+<p>一些重构的建议：</p>
+<ol>
+<li>提炼函数</li>
+</ol>
+<pre><code>* 避免出现超大函数
+
+* 独立出来的函数有助于代码复用
+
+* 独立出来的函数更容易被覆写
+
+* 独立出来的函数如果拥有一个良好的命名，
+
+* 它本身就起到了注释的作用。
+</code></pre>
+<span id="more"></span>
+
+<p>比如在一个负责取得用户信息的函数里面，我们还需要打印跟用户信息有关的log，那么打印log的语句就可以被封装在一个独立的函数里：</p>
+<p>​<br>    var getUserInfo &#x3D; function() {<br>        ajax(‘<a href="http://xxx.com/userInfo">http://xxx.com/userInfo</a>‘, function(data) {<br>            console.log(‘userId: ‘ + data.userId);<br>            console.log(‘userName: ‘ + data.userName);<br>            console.log(‘nickName: ‘ + data.nickName);<br>        });<br>    };</p>
+<p>可以改成：</p>
+<p>​<br>    var getUserInfo &#x3D; function() {<br>        ajax(‘<a href="http://xxx.com/userInfo">http://xxx.com/userInfo</a>‘, function(data) {<br>            printDetails(data);<br>        });<br>    };<br>    var printDetails &#x3D; function(data) {<br>        console.log(‘userId: ‘ + data.userId);<br>        console.log(‘userName: ‘ + data.userName);<br>        console.log(‘nickName: ‘ + data.nickName);<br>    }</p>
+<ol>
+<li>合并重复的条件片段<br>如果一个函数内有一些条件分支语句，而这些条件分支语句内部散步了一些重复的代码，那么就有必要进行合并去重工作。</li>
+</ol>
+<p>​<br>    &#x2F;&#x2F;页面跳转<br>    var paging &#x3D; function(currPage) {<br>        if (currPage &lt;&#x3D; 0) {<br>            currPage &#x3D; 0;<br>            jump(currPage); &#x2F;&#x2F;跳转<br>        } else if (currPage &gt;&#x3D; totalPage) {<br>            currPage &#x3D; totalPage;<br>            jump(currPage); &#x2F;&#x2F;跳转<br>        } else {<br>            jump(currPage); &#x2F;&#x2F;跳转<br>        }<br>    }</p>
+<p>改成</p>
+<p>​<br>    &#x2F;&#x2F;页面跳转<br>    var paging &#x3D; function(currPage) {<br>        if (currPage &lt;&#x3D; 0) {<br>            currPage &#x3D; 0;<br>        } else if (currPage &gt;&#x3D; totalPage) {<br>            currPage &#x3D; totalPage;<br>        }<br>        jump(currPage); &#x2F;&#x2F;跳转<br>    }</p>
+<ol>
+<li>把条件分支语句提炼成函数<br>在程序设计中，复杂的条件分支语句是导致程序难以阅读和理解的重要原因，而且容易导致一个庞大的函数，所以通常我们要进行一定的提炼。</li>
+</ol>
+<p>​<br>    &#x2F;&#x2F;计算商品价格，如果处于夏季，全部商品八折出售<br>    var getPrice &#x3D; function(price) {<br>        var date &#x3D; new Date();<br>        if (date.getMonth() &gt;&#x3D; 6 &amp;&amp; date.getMonth &lt;&#x3D; 9) { &#x2F;&#x2F;夏季<br>            return price * 0.8;<br>        }<br>        return price;<br>    }</p>
+<p>改成</p>
+<p>​<br>    &#x2F;&#x2F;计算商品价格，如果处于夏季，全部商品八折出售<br>    var getPrice &#x3D; function(price) {</p>
+<pre><code>    if (isSummer()) &#123; //夏季
+        return price * 0.8;
+    &#125;
+    return price;
+&#125;
+var isSummer = function() &#123;
+    var date = new Date();
+    return date.getMonth() &gt;= 6 &amp;&amp; date.getMonth &lt;= 9;
+&#125;
+</code></pre>
+<ol>
+<li>合理使用循环</li>
+</ol>
+<pre><code>var createXHR = function() &#123;
+    var xhr;
+    try&#123;
+        xhr = new ActiveXObject(&#39;MSXML2.XMLHttp.6.0&#39;);
+    &#125; catch(e) &#123;
+        try &#123;
+            xhr = new ActiveXObject(&#39;MSXML2.XMLHttp.3.0&#39;);
+        &#125; catch(e) &#123;
+            xhr = new ActiveXObject(&#39;MSXML2.XMLHttp&#39;);
+        &#125;
+    &#125;
+    return xhr;
+&#125;;
+var xhr = createXHR();
+</code></pre>
+<p>改成：</p>
+<p>​<br>    var createXHR &#x3D; function() {<br>        var versions &#x3D; [‘MSXML2.XMLHttp.6.0’, ‘MSXML2.XMLHttp.3.0’, ‘MSXML2.XMLHttp’];<br>        for (var i &#x3D; 0, version; version &#x3D; versions[i++]; ) {<br>            try {<br>                return new ActiveObject(version);<br>            } catch(e) {</p>
+<pre><code>        &#125;
+    &#125;
+&#125;;
+var xhr = createXHR();
+</code></pre>
+<ol>
+<li>提前让函数退出代替嵌套条件分支</li>
+</ol>
+<pre><code>var del = function(obj) &#123;
+    var ret;
+    if (!obj.isReadOnly) &#123; //不为只读的时候才可以删除
+        if (obj.isFolder) &#123; //如果是文件夹
+            ret = deleteFolder(obj);
+        &#125; else if (obj.isFile) &#123; //如果是文件
+            ret = deleteFile(obj);
+        &#125;
+    &#125;
+    return ret;
+&#125;
+</code></pre>
+<p>改成：</p>
+<p>​<br>    var del &#x3D; function(obj) {<br>        if (obj.isReadOnly) {<br>            return;<br>        }<br>        if (obj.isFolder) { &#x2F;&#x2F;如果是文件夹<br>            return deleteFolder(obj);<br>        }<br>        if (obj.isFile) { &#x2F;&#x2F;如果是文件<br>            return deleteFile(obj);<br>        }<br>    }</p>
+<ol>
+<li>传递对象参数代替过长的参数列表<br>有时候一个函数可能接收多个参数，而参数的数量越多函数就越难理解和使用。这时我们可以把参数放入一个对象内，然后把对象传入。</li>
+</ol>
+<p>​<br>    var setUserInfo &#x3D; function(id, name, address, sex, mobile, qq) {<br>        console.log(‘id&#x3D;’ + id);<br>        console.log(‘name&#x3D;’ + name);<br>        console.log(‘address&#x3D;’ + address);<br>        console.log(‘sex&#x3D;’ + sex);<br>        console.log(‘mobile&#x3D;’ + mobile);<br>        console.log(‘qq&#x3D;’ + qq);<br>    }<br>    setUserInfo(1234, cyseria, guangzhou, female, 188***, 52***);</p>
+<p>改成：</p>
+<p>​<br>    var setUserInfo &#x3D; function(obj) {<br>        console.log(‘id&#x3D;’ + obj.id);<br>        console.log(‘name&#x3D;’ + obj.name);<br>        console.log(‘address&#x3D;’ + obj.address);<br>        console.log(‘sex&#x3D;’ + obj.sex);<br>        console.log(‘mobile&#x3D;’ + obj.mobile);<br>        console.log(‘qq&#x3D;’ + obj.qq);<br>    }<br>    setUserInfo({<br>        id: 1234,<br>        name: cyseria,<br>        address: guangzhou,<br>        sex: female,<br>        mobile: 188***,<br>        qq: 52***<br>    });</p>
+<ol>
+<li><p>尽量减少参数数量<br>尽量减少一些没必要的不会使用或者可以求出的参数。这里不做过多阐述。</p>
+</li>
+<li><p>少用三目运算<br>有时候我们用三目运算会觉得它性能高，代码量少。但是在实际开发中，即使把一段代码循环一百万次，使用三目运算和<code>if,else</code>的时间开销依旧在同个级别中。同样，相比损失的代码可读性和可维护性，他能节省的代码量可以忽略不计。</p>
+</li>
+</ol>
+<p>至于例子，看看下面那个你就知道了：</p>
+<p>​<br>    if (!aup || bup) {<br>        return a &#x3D;&#x3D;&#x3D; doc ? -1 :<br>            b &#x3D;&#x3D;&#x3D; doc ? 1 :<br>            aup ? -1 :<br>            bup : -1 :<br>            sortInput ? (indexOf.call(sortInput, a) - indexOf.call(sortInput, b)) :<br>            0;<br>    }</p>
+<p>当然，如果只是简单的一句，用一下也没什么所谓。</p>
+<ol>
+<li>合理使用链式调用<br>使用jq的对链式调用一定不陌生，在自己编写函数的时候也可以使用这点，返回自身。但是他也有一个坏处，调试的时候不方便。所以如果链条的结构稳定后期不易修改，那么使用他无可厚非，但是如果该链经常发生变化那么还是用普通的调用吧。</li>
+</ol>
+<p>​<br>    var User &#x3D; {<br>        id: null,<br>        name: null,<br>        setId: function(id) {<br>            this.id &#x3D; id;<br>            return this;<br>        },<br>        setName: function(name) {<br>            this.name&#x3D; name;<br>            return this;<br>        }<br>    };<br>    console.log(User.setId(1234).setName(‘cyseria’));</p>
+<ol>
+<li>分解大型类</li>
+</ol>
+<pre><code>var Spirit = function(name) &#123;
+    this.name = name;
+&#125;;
+Spirit.prototype.attack = function(type) &#123;
+    if (type === &#39;waveBoxing&#39;) &#123;
+        console.log(this.name + &#39;:使用波动拳&#39;);
+    &#125; else if (type === &#39;whirlKick&#39;) &#123;
+        console.log(this.name + &#39;:使用旋风腿&#39;);
+    &#125;
+&#125;;
+var Spirit = new Spirit(&#39;AAA&#39;);
+Spirit .attack(&#39;waveBoxing&#39;);
+Spirit .attack(&#39;whirlKick&#39;);
+</code></pre>
+<p>改成：</p>
+<p>​<br>    var Attack &#x3D; function(spirit) {<br>        this.spirit &#x3D; spirit;<br>    };<br>    Attack.prototype.start &#x3D; function(type) {<br>        return this.list[type].call(this);<br>    }<br>    Attack.prototype.list&#x3D; function(type) {<br>        waveBoxing: function() {<br>            console.log(this.spirit.name + ‘:使用波动拳’);<br>        },<br>        whirlKick: function() {<br>            console.log(this.spirit.name + ‘:使用旋风腿’);<br>        }<br>    };<br>    var Spirit &#x3D; function(name) {<br>        this.name &#x3D; name;<br>        this.attackObj &#x3D; new Attack(this);<br>    };<br>    Spirit.prototype.attack &#x3D; function(type) {<br>        this.attackObj.start(type);<br>    };</p>
+<pre><code>var Spirit = new Spirit(&#39;AAA&#39;);
+Spirit .attack(&#39;waveBoxing&#39;);
+Spirit .attack(&#39;whirlKick&#39;);
+</code></pre>
+<ol>
+<li>用return退出多重循环<br>假设在函数体内有一个两重循环语句，我们需要在内层循环中判断当达到某个临界条件时退出外层循环。</li>
+</ol>
+<p>​<br>    var print &#x3D; function(i) {<br>        console.log(i);<br>    };<br>    var func &#x3D; function() {<br>        for (var i &#x3D; 0; i &lt; 10; i++) {<br>            for (var j &#x3D; 0; j &lt; 10; j++) {<br>                if (i * j &gt; 30) {<br>                    return print(i);<br>                }<br>            }<br>        }<br>    };<br>    func();</p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

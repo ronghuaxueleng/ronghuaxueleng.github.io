@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>业务代表模式(Business Delegate Pattern) - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="业务代表模式(Business Delegate Pattern)业务代表模式（Business Delegate Pattern）用于对表示层和业务层解耦 业务代表模式用来减少通信或对表示层代码中的业务层代码的远程查询功能 在业务层中我们有以下实体:  客户端（Client） - 表示层代码可以是 JSP、servlet 或 UI java 代码 业务代表（Business Delegate）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="业务代表模式(Business Delegate Pattern)">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/bda8520e.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="业务代表模式(Business Delegate Pattern)业务代表模式（Business Delegate Pattern）用于对表示层和业务层解耦 业务代表模式用来减少通信或对表示层代码中的业务层代码的远程查询功能 在业务层中我们有以下实体:  客户端（Client） - 表示层代码可以是 JSP、servlet 或 UI java 代码 业务代表（Business Delegate）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ronghuaxueleng.github.io/image/business_delegate_pattern_1.jpg">
+<meta property="article:published_time" content="2020-03-12T19:15:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.306Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="java, 设计模式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ronghuaxueleng.github.io/image/business_delegate_pattern_1.jpg">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/bda8520e.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            业务代表模式(Business Delegate Pattern)
+        </div>
+        <div class="post-meta">
+            2020-03-12 ｜ 
+            
+                <a href="/categories/java/"># java</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/java/">java</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h1 id="业务代表模式-Business-Delegate-Pattern"><a href="#业务代表模式-Business-Delegate-Pattern" class="headerlink" title="业务代表模式(Business Delegate Pattern)"></a>业务代表模式(Business Delegate Pattern)</h1><p>业务代表模式（Business Delegate Pattern）用于对表示层和业务层解耦</p>
+<p>业务代表模式用来减少通信或对表示层代码中的业务层代码的远程查询功能</p>
+<p>在业务层中我们有以下实体:</p>
+<ul>
+<li><strong>客户端（Client）</strong> - 表示层代码可以是 JSP、servlet 或 UI java 代码</li>
+<li><strong>业务代表（Business Delegate）</strong> - 一个为客户端实体提供的入口类，它提供了对业务服务方法的访问</li>
+<li><strong>查询服务（LookUp Service）</strong> - 查找服务对象负责获取相关的业务实现，并提供业务对象对业务代表对象的访问</li>
+<li><strong>业务服务（Business Service）</strong> - 业务服务接口。实现了该业务服务的实体类，提供了实际的业务实现逻辑</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p><img src="/../../image/business_delegate_pattern_1.jpg" alt="业务代表模式"></p>
+<ol>
+<li>创建 <em>Client</em> 、 <em>BusinessDelegate</em> 、 <em>BusinessService</em> 、 <em>LookUpService</em> 、 <em>JMSService</em> 和 <em>EJBService</em> 来表示业务代表模式中的各种实体</li>
+<li>定义类 <em>BusinessDelegatePatternDemo</em> 使用 <em>BusinessDelegate</em> 和 <em>Client</em> 来演示业务代表模式的用法</li>
+</ol>
+<h2 id="范例"><a href="#范例" class="headerlink" title="范例"></a>范例</h2><h4 id="1-创建-BusinessService-接口"><a href="#1-创建-BusinessService-接口" class="headerlink" title="1. 创建 BusinessService 接口"></a>1. 创建 BusinessService 接口</h4><p><em>BusinessService.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">BusinessService</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doProcessing</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-创建实体服务类"><a href="#2-创建实体服务类" class="headerlink" title="2. 创建实体服务类"></a>2. 创建实体服务类</h4><p><em>EJBService.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EJBService</span> <span class="keyword">implements</span> <span class="title class_">BusinessService</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doProcessing</span><span class="params">()</span> &#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Processing task by invoking EJB Service&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>JMSService.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JMSService</span> <span class="keyword">implements</span> <span class="title class_">BusinessService</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doProcessing</span><span class="params">()</span> &#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Processing task by invoking JMS Service&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-创建业务查询服务"><a href="#3-创建业务查询服务" class="headerlink" title="3. 创建业务查询服务"></a>3. 创建业务查询服务</h4><p><em>BusinessLookUp.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BusinessLookUp</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> BusinessService <span class="title function_">getBusinessService</span><span class="params">(String serviceType)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(serviceType.equalsIgnoreCase(<span class="string">&quot;EJB&quot;</span>))&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">EJBService</span>();</span><br><span class="line">      &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">JMSService</span>();</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-创建业务代表"><a href="#4-创建业务代表" class="headerlink" title="4. 创建业务代表"></a>4. 创建业务代表</h4><p><em>BusinessDelegate.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BusinessDelegate</span> &#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="type">BusinessLookUp</span> <span class="variable">lookupService</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BusinessLookUp</span>();</span><br><span class="line">   <span class="keyword">private</span> BusinessService businessService;</span><br><span class="line">   <span class="keyword">private</span> String serviceType;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setServiceType</span><span class="params">(String serviceType)</span>&#123;</span><br><span class="line">      <span class="built_in">this</span>.serviceType = serviceType;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doTask</span><span class="params">()</span>&#123;</span><br><span class="line">      businessService = lookupService.getBusinessService(serviceType);</span><br><span class="line">      businessService.doProcessing();       </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-创建客户端"><a href="#5-创建客户端" class="headerlink" title="5. 创建客户端"></a>5. 创建客户端</h4><p><em>Client.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Client</span> &#123;</span><br><span class="line"></span><br><span class="line">   BusinessDelegate businessService;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">Client</span><span class="params">(BusinessDelegate businessService)</span>&#123;</span><br><span class="line">      <span class="built_in">this</span>.businessService  = businessService;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doTask</span><span class="params">()</span>&#123;        </span><br><span class="line">      businessService.doTask();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-使用-BusinessDelegate-和-Client-类来演示业务代表模式"><a href="#6-使用-BusinessDelegate-和-Client-类来演示业务代表模式" class="headerlink" title="6. 使用 BusinessDelegate 和 Client 类来演示业务代表模式"></a>6. 使用 BusinessDelegate 和 Client 类来演示业务代表模式</h4><p><em>BusinessDelegatePatternDemo.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BusinessDelegatePatternDemo</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">      <span class="type">BusinessDelegate</span> <span class="variable">businessDelegate</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BusinessDelegate</span>();</span><br><span class="line">      businessDelegate.setServiceType(<span class="string">&quot;EJB&quot;</span>);</span><br><span class="line"></span><br><span class="line">      <span class="type">Client</span> <span class="variable">client</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Client</span>(businessDelegate);</span><br><span class="line">      client.doTask();</span><br><span class="line"></span><br><span class="line">      businessDelegate.setServiceType(<span class="string">&quot;JMS&quot;</span>);</span><br><span class="line">      client.doTask();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译运行以上 Java 范例，输出结果如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">javac -d . src/main/cn/twle/gof/BusinessDelegatePatternDemo.java</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">java  cn.twle.gof.BusinessDelegatePatternDemo</span></span><br><span class="line">Processing task by invoking EJB Service</span><br><span class="line">Processing task by invoking JMS Service</span><br></pre></td></tr></table></figure>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/java-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> / java, 设计模式</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

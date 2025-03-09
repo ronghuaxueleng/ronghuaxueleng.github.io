@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>代理模式 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="代理模式是为一个对象提供一个代用品或占位符，以便控制对他的访问。代理模式的关键是，当客户不方便直接访问一个对象或者不满足需要的时候，提供一个对象来控制这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理后再把请求转交给本体对象。  不使用代理：客户 → 本体使用代理：客户 → 代理 → 本体">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代理模式">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/7b510e10.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="代理模式是为一个对象提供一个代用品或占位符，以便控制对他的访问。代理模式的关键是，当客户不方便直接访问一个对象或者不满足需要的时候，提供一个对象来控制这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理后再把请求转交给本体对象。  不使用代理：客户 → 本体使用代理：客户 → 代理 → 本体">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-12T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.197Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/7b510e10.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            代理模式
+        </div>
+        <div class="post-meta">
+            2016-10-12 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <blockquote>
+<p>代理模式是为一个对象提供一个代用品或占位符，以便控制对他的访问。代理模式的关键是，当客户不方便直接访问一个对象或者不满足需要的时候，提供一个对象来控制这个对象的访问，客户实际上访问的是替身对象。替身对象对请求做出一些处理后再把请求转交给本体对象。</p>
+</blockquote>
+<p>不使用代理：客户 → 本体<br>使用代理：客户 → 代理 → 本体</p>
+<span id="more"></span>
+
+<p>先来一个带点趣味性的例子，小明要给女神A送花，然后他不好意思，打算让B代送</p>
+<p>​<br>    var Flower &#x3D; function(){};<br>    var xiaoming &#x3D; {<br>        sendFlower: function( traget ) {<br>          var flower &#x3D; new Flower();<br>          target.receveFlower( flower );<br>        }<br>    };</p>
+<pre><code>var A = &#123;
+    receiveFlower: function( flower ) &#123;
+      console.log(&#39;收到花&#39; + flower);
+  &#125;
+&#125;;
+
+xiaoming.sendFlower(A);
+
+//引入代理B
+var B = &#123;
+    receiverFlower: function( flower ) &#123;
+      A.receiveFlower( flower );
+  &#125;
+&#125;;
+</code></pre>
+<p>此时，我们就简单的完成了一个代理模式</p>
+<p>接着，我们在原需求上做点改动，假设女神心情好的时候成功率会增大，小明跟女神不熟不知道她心情，而B跟女神比较熟可以去监听她心情的变化恰当时机送花，这样就不会造成不必要浪费了，于是代码如下：</p>
+<p>​<br>    &#x2F;&#x2F;代理B<br>    var B &#x3D; {<br>        receiverFlower: function( flower ) {<br>          A.listenGoodMood(function() { &#x2F;&#x2F;监听A的好心情<br>            A.receiveFlower( flower );<br>        })；<br>      }<br>    };</p>
+<pre><code>//女神A也要提供一个可被监听的方法（当然我们只是假设，毕竟女人我们是摸不透的）
+var A = &#123;
+    receiveFlower: function( flower ) &#123;
+      console.log(&#39;收到花&#39; + flower);
+  &#125;,
+  listenGoodMood: function( fn ) &#123;
+      setTimeout(function() &#123; //假设A的心情十秒之后会变好
+        fn();
+    &#125;, 10000);
+  &#125;
+&#125;;
+</code></pre>
+<p>再假设买花是一个代价昂贵的操作（说不定会被别人误会什么的，而且花放太久也会谢），所以我们当需要的时候再去做这事才比较划算，就是在A心情好的时候再去new一个花出来。</p>
+<p>​<br>    &#x2F;&#x2F;引入代理B<br>    var B &#x3D; {<br>        receiverFlower: function( flower ) {<br>          A.listenGoodMood(function() { &#x2F;&#x2F;监听A的好心情<br>            var Flower &#x3D; function(){};<br>          A.receiveFlower( flower );<br>        })；<br>      }<br>    };</p>
+<p>此外，代理B可以帮助A做一些过滤请求，比如把一些年纪太大的，没有宝马的送花者都过滤掉，这种请求就可以直接在代理B中被拒绝掉，这种代理方式叫<strong>保护代理</strong></p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

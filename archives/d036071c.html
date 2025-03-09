@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>中介者模式 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="中介者模式的作用就是解除对象与对象之间的紧耦合关系。增加一个中介者对象后，所有的相关对象都可以通过中介者对象来通信，而不是相互引用，所以当一个对象发生改变时，只需要通知中介者对象即可。中介者模式使网状的多对多关系变成了相对简单的一对多关系。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中介者模式">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/d036071c.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="中介者模式的作用就是解除对象与对象之间的紧耦合关系。增加一个中介者对象后，所有的相关对象都可以通过中介者对象来通信，而不是相互引用，所以当一个对象发生改变时，只需要通知中介者对象即可。中介者模式使网状的多对多关系变成了相对简单的一对多关系。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-12T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.177Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/d036071c.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            中介者模式
+        </div>
+        <div class="post-meta">
+            2016-10-12 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <hr>
+<blockquote>
+<p>中介者模式的作用就是解除对象与对象之间的紧耦合关系。增加一个中介者对象后，所有的相关对象都可以通过中介者对象来通信，而不是相互引用，所以当一个对象发生改变时，只需要通知中介者对象即可。中介者模式使网状的多对多关系变成了相对简单的一对多关系。</p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="中介者模式的例子–购买商品"><a href="#中介者模式的例子–购买商品" class="headerlink" title="中介者模式的例子–购买商品"></a>中介者模式的例子–购买商品</h3><p>假如我们正在编写一个手机购买的页面，在购买流程中，可以选择手机的颜色以及输入购买数量，同时页面中有两个展示区域，分别向用户展示选择好的颜色和数量。<br>show the code：</p>
+<p>​<br>    var colorSelect &#x3D; document.getElemmentById(‘colorSelect’),<br>        numberInput&#x3D; document.getElemmentById(‘numberInput’),<br>        colorInfo&#x3D; document.getElemmentById(‘colorInfo’),<br>        numberInfo &#x3D; document.getElemmentById(‘numberInfo ‘),<br>        nextBtn &#x3D; document.getElemmentById(‘nextBtn ‘);</p>
+<pre><code>var goods = &#123; //手机库存
+    &quot;red&quot;: 3,
+    &quot;blue&quot;: 6
+&#125;;
+//选择颜色时候
+colorSelect.onchange = function() &#123;
+    var color = this.value, //颜色
+        number = numberInput.value, //数量
+        stock = goods[color]; //该颜色手机对应的当前库存
+    colorInfo.innerHTML = color;
+    if (!color) &#123;
+        nextBtn.disabled = true;
+        nextBtn.innerHTML = &#39;请选择手机颜色&#39;;
+        return;
+    &#125;
+    if (((number - 0) | 0) !== number - 0) &#123; //用户输入的购买数量是否为正整数
+        nextBtn.disabled = true;
+        nextBtn.innerHTML = &#39;请输入正确的购买数量&#39;;
+        return;
+    &#125;
+    if (number &gt; stock) &#123; //库存是否充足
+        nextBtn.disabled = true;
+        nextBtn.innerHTML = &#39;库存不足&#39;;
+        return;
+    &#125;
+    nextBtn.disable = false;
+    nextBtn.innerHTML = &#39;放入购物车&#39;;
+&#125;
+
+//选择数量的时候
+numberInput.oninput = function() &#123;
+    var color = this.value, //颜色
+        number = numberInput.value, //数量
+        stock = goods[color]; //该颜色手机对应的当前库存
+    numberInfo.innerHTML = number;
+    if (!color) &#123;
+        nextBtn.disabled = true;
+        nextBtn.innerHTML = &#39;请选择手机颜色&#39;;
+        return;
+    &#125;
+    if (((number - 0) | 0) !== number - 0) &#123; //用户输入的购买数量是否为正整数
+        nextBtn.disabled = true;
+        nextBtn.innerHTML = &#39;请输入正确的购买数量&#39;;
+        return;
+    &#125;
+    if (number &gt; stock) &#123; //库存是否充足
+        nextBtn.disabled = true;
+        nextBtn.innerHTML = &#39;库存不足&#39;;
+        return;
+    &#125;
+    nextBtn.disable = false;
+    nextBtn.innerHTML = &#39;放入购物车&#39;;
+&#125;
+</code></pre>
+<p>以上代码看起来能运行了，但是加入我们对json数据对象做了一些修改，例如：</p>
+<p>​<br>    var goods &#x3D; {<br>        “red|32G”: 3,<br>        “red|16G”: 3,<br>        “blue|32G”: 3,<br>        “blue|16G”: 3<br>    }</p>
+<p>那样子我们要对<code>numberInput</code>和<code>colorSelect</code>进行改写，而且添加的内容大同小异但是很繁复，每个对象都是耦合在一起的，如果其中一个任何做了改变，另外的都要进行改变，这样很麻烦</p>
+<h3 id="引入中介者"><a href="#引入中介者" class="headerlink" title="引入中介者"></a>引入中介者</h3><p>​<br>    var mediator &#x3D; (function() {<br>        var colorSelect &#x3D; document.getElemmentById(‘colorSelect’),<br>            numberInput&#x3D; document.getElemmentById(‘numberInput’),<br>            colorInfo&#x3D; document.getElemmentById(‘colorInfo’),<br>            numberInfo &#x3D; document.getElemmentById(‘numberInfo ‘),<br>            nextBtn &#x3D; document.getElemmentById(‘nextBtn ‘);<br>        return {<br>            changed: function(obj) {<br>                var color &#x3D; colorSelect.value, &#x2F;&#x2F;颜色<br>                    memory &#x3D; memorySelect.value, &#x2F;&#x2F;内存<br>                    number &#x3D; numberInput.value, &#x2F;&#x2F;数量<br>                    stock &#x3D; goods[color + ‘|’ + memory]; &#x2F;&#x2F;颜色和内存对应的手机库存数量<br>                if (obj &#x3D;&#x3D;&#x3D; colorSelect) { &#x2F;&#x2F;如果改变的是选择颜色下拉框<br>                    colorInfo.innerHTML &#x3D; color;<br>                } else if (obj &#x3D;&#x3D;&#x3D; memorySelect) {<br>                    memoryInfo.innerHTML &#x3D; memory ;<br>                } else if (obj &#x3D;&#x3D;&#x3D; numberInput) {<br>                    numberInfo.innerHTML &#x3D; number;<br>                }</p>
+<pre><code>            if (!color) &#123;
+                nextBtn.disabled = true;
+                nextBtn.innerHTML = &#39;请选择手机颜色&#39;;
+                return;
+            &#125;
+            if (!memory) &#123;
+                nextBtn.disabled = true;
+                nextBtn.innerHTML = &#39;请选择内存大小&#39;;
+                return;
+            &#125;
+            if (((number - 0) | 0) !== number - 0) &#123; //用户输入的购买数量是否为正整数
+                nextBtn.disabled = true;
+                nextBtn.innerHTML = &#39;请输入正确的购买数量&#39;;
+                return;
+            &#125;
+            nextBtn.disable = false;
+            nextBtn.innerHTML = &#39;放入购物车&#39;;
+        &#125;
+    &#125;    
+&#125;)();
+//事件函数
+colorSelect.onchange = function() &#123;
+    mediator.changed(this);
+&#125;;
+memorySelect.onchange = function() &#123;
+    mediator.changed(this);
+&#125;;
+numberInput.oninput = function() &#123;
+    mediator.changed(this);
+&#125;;
+</code></pre>
+<p>这样，假如某天我们又要新增什么需求，就只要能够稍稍改动mediator对象即可。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>最后来个总结：<br>中介者模式使各个对象之间得以解耦，以中介者和对象之间的一对多关系取代了对象之间的网状多对多关系，各个对象只需关注自身功能的实现。但是这样也存在一个缺点，系统中会新增一个中介者对象，因为对象交互的复杂性，转移成了中介者对象的复杂性，使得中介者对象通常是巨大的。中介者对象自身往往就是一个难以维护的对象。</p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

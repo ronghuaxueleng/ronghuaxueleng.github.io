@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>44个 Javascript 变态题解析 (上) - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="原题来自: javascript-puzzlers 读者可以先去做一下感受感受. 当初笔者的成绩是 21&#x2F;44… 当初笔者做这套题的时候不仅怀疑智商, 连人生都开始怀疑了…. 不过, 对于基础知识的理解是深入编程的前提. 让我们一起来看看这些变态题到底变态不变态吧!">
+<meta property="og:type" content="article">
+<meta property="og:title" content="44个 Javascript 变态题解析 (上)">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/bb77ad22.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="原题来自: javascript-puzzlers 读者可以先去做一下感受感受. 当初笔者的成绩是 21&#x2F;44… 当初笔者做这套题的时候不仅怀疑智商, 连人生都开始怀疑了…. 不过, 对于基础知识的理解是深入编程的前提. 让我们一起来看看这些变态题到底变态不变态吧!">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-13T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.265Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/bb77ad22.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            44个 Javascript 变态题解析 (上)
+        </div>
+        <div class="post-meta">
+            2016-10-13 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <p>原题来自: <a href="http://javascript-puzzlers.herokuapp.com/">javascript-puzzlers</a></p>
+<p>读者可以先去做一下感受感受. 当初笔者的成绩是 21&#x2F;44…</p>
+<p>当初笔者做这套题的时候不仅怀疑智商, 连人生都开始怀疑了….</p>
+<p>不过, 对于基础知识的理解是深入编程的前提. 让我们一起来看看这些变态题到底变态不变态吧!</p>
+<span id="more"></span>
+
+<h2 id="第1题"><a href="#第1题" class="headerlink" title="第1题"></a>第1题</h2><p>​<br>​    [“1”, “2”, “3”].map(parseInt)</p>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map">Array&#x2F;map</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/parseInt">Number&#x2F;parseInt</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt">Global_Objects&#x2F;parseInt</a></li>
+<li><a href="http://www.w3school.com.cn/jsref/jsref_parseInt.asp">JavaScript parseInt</a></li>
+</ul>
+<p>首先, map接受两个参数, 一个回调函数 callback, 一个回调函数的this值</p>
+<p>其中回调函数接受三个参数 currentValue, index, arrary;</p>
+<p>而题目中, map只传入了回调函数–parseInt.</p>
+<p>其次, parseInt 只接受两个两个参数 string, radix(基数).</p>
+<blockquote>
+<p>在没有指定基数，或者基数为 0 的情况下，JavaScript 作如下处理：</p>
+</blockquote>
+<blockquote>
+</blockquote>
+<blockquote>
+<ul>
+<li>如果字符串 string 以”0x”或者”0X”开头, 则基数是16 (16进制).</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>如果字符串 string 以”0”开头, 基数是8（八进制）或者10（十进制），那么具体是哪个基数由实现环境决- 定。ECMAScript 5<br>规定使用10，但是并不是所有的浏览器都遵循这个规定。因此，永远都要明确给出radix参数的值。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>如果字符串 string 以其它任何值开头，则基数是10 (十进制)。</li>
+</ul>
+</blockquote>
+<p>所以本题即问</p>
+<p>​<br>​    parseInt(‘1’, 0);<br>​    parseInt(‘2’, 1);<br>​    parseInt(‘3’, 2);</p>
+<p>首先后两者参数不合法.</p>
+<p>所以答案是 <code>[1, NaN, NaN]</code></p>
+<h2 id="第2题"><a href="#第2题" class="headerlink" title="第2题"></a>第2题</h2><p>​<br>​    [typeof null, null instanceof Object]</p>
+<p>两个知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof">Operators&#x2F;typeof</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof">Operators&#x2F;instanceof</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof">Operators&#x2F;instanceof(中)</a></li>
+</ul>
+<p>typeof 返回一个表示类型的字符串.</p>
+<p>instanceof 运算符用来检测 constructor.prototype 是否存在于参数 object 的原型链上.</p>
+<p>这个题可以直接看链接… 因为 <code>typeof null === &#39;object&#39;</code> 自语言之初就是这样….</p>
+<p>typeof 的结果请看下表:</p>
+<p>​<br>​    type         result<br>​    Undefined   “undefined”<br>​    Null        “object”<br>​    Boolean     “boolean”<br>​    Number      “number”<br>​    String      “string”<br>​    Symbol      “symbol”<br>​    Host object Implementation-dependent<br>​    Function    “function”<br>​    Object      “object”</p>
+<p>所以答案 <code>[object, false]</code></p>
+<h2 id="第3题"><a href="#第3题" class="headerlink" title="第3题"></a>第3题</h2><p>​<br>​    [ [3,2,1].reduce(Math.pow), [].reduce(Math.pow) ]</p>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce">Array&#x2F;Reduce</a></li>
+</ul>
+<p><code>arr.reduce(callback[, initialValue])</code></p>
+<p>reduce接受两个参数, 一个回调, 一个初始值.</p>
+<p>回调函数接受四个参数 <code>previousValue, currentValue, currentIndex, array</code></p>
+<p>需要注意的是 <code>If the array is empty and no initialValue was provided, TypeError would be thrown.</code></p>
+<p>所以第二个表达式会报异常. 第一个表达式等价于 <code>Math.pow(3, 2) =&gt; 9; Math.pow(9, 1) =&gt;9</code></p>
+<p>答案 <code>an error</code></p>
+<h2 id="第4题"><a href="#第4题" class="headerlink" title="第4题"></a>第4题</h2><p>​<br>​    var val &#x3D; ‘smtg’;<br>​    console.log(‘Value is ‘ + (val &#x3D;&#x3D;&#x3D; ‘smtg’) ? ‘Something’ : ‘Nothing’);</p>
+<p>两个知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence">Operators&#x2F;Operator_Precedence</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator">Operators&#x2F;Conditional_Operator</a></li>
+</ul>
+<p>简而言之 <code>+</code> 的优先级 大于 <code>?</code></p>
+<p>所以原题等价于 <code>&#39;Value is true&#39; ? &#39;Somthing&#39; : &#39;Nonthing&#39;</code> 而不是 <code>&#39;Value is&#39; + (true ? &#39;Something&#39; : &#39;Nonthing&#39;)</code></p>
+<p>答案 <code>&#39;Something&#39;</code></p>
+<h2 id="第5题"><a href="#第5题" class="headerlink" title="第5题"></a>第5题</h2><p>​<br>​    var name &#x3D; ‘World!’;<br>​    (function () {<br>​        if (typeof name &#x3D;&#x3D;&#x3D; ‘undefined’) {<br>​            var name &#x3D; ‘Jack’;<br>​            console.log(‘Goodbye ‘ + name);<br>​        } else {<br>​            console.log(‘Hello ‘ + name);<br>​        }<br>​    })();</p>
+<p>这个相对简单, 一个知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Hoisting">Hoisting</a></li>
+</ul>
+<p>在 JavaScript中， functions 和 variables 会被提升。变量提升是JavaScript将声明移至作用域 scope<br>(全局域或者当前函数作用域) 顶部的行为。</p>
+<p>这个题目相当于</p>
+<p>​<br>​    var name &#x3D; ‘World!’;<br>​    (function () {<br>​        var name;<br>​        if (typeof name &#x3D;&#x3D;&#x3D; ‘undefined’) {<br>​            name &#x3D; ‘Jack’;<br>​            console.log(‘Goodbye ‘ + name);<br>​        } else {<br>​            console.log(‘Hello ‘ + name);<br>​        }<br>​    })();</p>
+<p>所以答案是 <code>&#39;Goodbye Jack&#39;</code></p>
+<h2 id="第6题"><a href="#第6题" class="headerlink" title="第6题"></a>第6题</h2><p>​<br>​    var END &#x3D; Math.pow(2, 53);<br>​    var START &#x3D; END - 100;<br>​    var count &#x3D; 0;<br>​    for (var i &#x3D; START; i &lt;&#x3D; END; i++) {<br>​        count++;<br>​    }<br>​    console.log(count);</p>
+<p>一个知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity">Infinity</a><br><del>在 JS 里, Math.pow(2, 53) &#x3D;&#x3D; 9007199254740992 是可以表示的最大值. 最大值加一还是最大值.<br>所以循环不会停.</del></li>
+</ul>
+<p>补充: <a href="https://github.com/jelly7723">@jelly7723</a></p>
+<blockquote>
+<p>js中可以表示的最大整数不是2的53次方，而是1.7976931348623157e+308。<br>2的53次方不是js能表示的最大整数而应该是能正确计算且不失精度的最大整数，可以参见js权威指南。<br>9007199254740992 +1还是 9007199254740992 ，这就是因为精度问题，如果 9007199254740992 +11或者<br>9007199254740992 +111的话，值是会发生改变的，只是这时候计算的结果不是正确的值，就是因为精度丢失的问题。</p>
+</blockquote>
+<h2 id="第7题"><a href="#第7题" class="headerlink" title="第7题"></a>第7题</h2><p>​<br>​    var ary &#x3D; [0,1,2];<br>​    ary<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence">10</a> &#x3D; 10;<br>​    ary.filter(function(x) { return x &#x3D;&#x3D;&#x3D; undefined;});</p>
+<p>答案是 <code>[]</code></p>
+<p>看一篇文章理解稀疏数组</p>
+<ul>
+<li><a href="http://www.cnblogs.com/ziyunfei/archive/2012/09/16/2687165.html">译 JavaScript中的稀疏数组与密集数组</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">Array&#x2F;filter</a></li>
+</ul>
+<p>我们来看一下 Array.prototype.filter 的 polyfill:</p>
+<p>​<br>​    if (!Array.prototype.filter) {<br>​      Array.prototype.filter &#x3D; function(fun&#x2F;<em>, thisArg</em>&#x2F;) {<br>​        ‘use strict’;<br>​<br>        if (this &#x3D;&#x3D;&#x3D; void 0 || this &#x3D;&#x3D;&#x3D; null) {<br>          throw new TypeError();<br>        }</p>
+<pre><code>    var t = Object(this);
+    var len = t.length &gt;&gt;&gt; 0;
+    if (typeof fun !== &#39;function&#39;) &#123;
+      throw new TypeError();
+    &#125;
+
+    var res = [];
+    var thisArg = arguments.length &gt;= 2 ? arguments[1] : void 0;
+    for (var i = 0; i &lt; len; i++) &#123;
+      if (i in t) &#123; // 注意这里!!!
+        var val = t[i];
+        if (fun.call(thisArg, val, i, t)) &#123;
+          res.push(val);
+        &#125;
+      &#125;
+    &#125;
+
+    return res;
+  &#125;;
+&#125;
+</code></pre>
+<p>我们看到在迭代这个数组的时候, 首先检查了这个索引值是不是数组的一个属性, 那么我们测试一下.</p>
+<p>​<br>​    0 in ary; &#x3D;&gt; true<br>​    3 in ary; &#x3D;&gt; false<br>​    10 in ary; &#x3D;&gt; true</p>
+<p>也就是说 从 3 - 9 都是没有初始化的’坑’!, 这些索引并不存在与数组中. 在 array 的函数调用的时候是会跳过这些’坑’的.</p>
+<h2 id="第8题"><a href="#第8题" class="headerlink" title="第8题"></a>第8题</h2><p>​<br>​    var two   &#x3D; 0.2<br>​    var one   &#x3D; 0.1<br>​    var eight &#x3D; 0.8<br>​    var six   &#x3D; 0.6<br>​    [two - one &#x3D;&#x3D; one, eight - six &#x3D;&#x3D; two]</p>
+<ul>
+<li><a href="http://ourjs.com/detail/54695381bc3f9b154e000046">JavaScript的设计缺陷?浮点运算：0.1 + 0.2 !&#x3D; 0.3</a></li>
+</ul>
+<p>IEEE 754标准中的浮点数并不能精确地表达小数</p>
+<p>那什么时候精准, 什么时候不经准呢? 笔者也不知道…</p>
+<p>答案 <code>[true, false]</code></p>
+<h2 id="第9题"><a href="#第9题" class="headerlink" title="第9题"></a>第9题</h2><p>​<br>​    function showCase(value) {<br>​        switch(value) {<br>​        case ‘A’:<br>​            console.log(‘Case A’);<br>​            break;<br>​        case ‘B’:<br>​            console.log(‘Case B’);<br>​            break;<br>​        case undefined:<br>​            console.log(‘undefined’);<br>​            break;<br>​        default:<br>​            console.log(‘Do not know!’);<br>​        }<br>​    }<br>​    showCase(new String(‘A’));</p>
+<p>两个知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch">Statements&#x2F;switch</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></li>
+</ul>
+<p>switch 是严格比较, String 实例和 字符串不一样.</p>
+<p>​<br>​    var s_prim &#x3D; ‘foo’;<br>​    var s_obj &#x3D; new String(s_prim);<br>​<br>    console.log(typeof s_prim); &#x2F;&#x2F; “string”<br>    console.log(typeof s_obj);  &#x2F;&#x2F; “object”<br>    console.log(s_prim &#x3D;&#x3D;&#x3D; s_obj); &#x2F;&#x2F; false</p>
+<p>​    </p>
+<p>答案是 <code>&#39;Do not know!&#39;</code></p>
+<h2 id="第10题"><a href="#第10题" class="headerlink" title="第10题"></a>第10题</h2><p>​<br>​    function showCase2(value) {<br>​        switch(value) {<br>​        case ‘A’:<br>​            console.log(‘Case A’);<br>​            break;<br>​        case ‘B’:<br>​            console.log(‘Case B’);<br>​            break;<br>​        case undefined:<br>​            console.log(‘undefined’);<br>​            break;<br>​        default:<br>​            console.log(‘Do not know!’);<br>​        }<br>​    }<br>​    showCase2(String(‘A’));</p>
+<p>解释:<br><code>String(x) does not create an object but does return a string, i.e. typeof String(1) === &quot;string&quot;</code></p>
+<p>还是刚才的知识点, 只不过 String 不仅是个构造函数 直接调用返回一个字符串哦.</p>
+<p>答案 <code>&#39;Case A&#39;</code></p>
+<h2 id="第11题"><a href="#第11题" class="headerlink" title="第11题"></a>第11题</h2><p>​<br>​    function isOdd(num) {<br>​        return num % 2 &#x3D;&#x3D; 1;<br>​    }<br>​    function isEven(num) {<br>​        return num % 2 &#x3D;&#x3D; 0;<br>​    }<br>​    function isSane(num) {<br>​        return isEven(num) || isOdd(num);<br>​    }<br>​    var values &#x3D; [7, 4, ‘13’, -9, Infinity];<br>​    values.map(isSane);</p>
+<p>一个知识点</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Remainder">Arithmetic_Operators#Remainder</a></li>
+</ul>
+<p>此题等价于</p>
+<p>​<br>​    7 % 2 &#x3D;&gt; 1<br>​    4 % 2 &#x3D;&gt; 0<br>​    ‘13’ % 2 &#x3D;&gt; 1<br>​    -9 % % 2 &#x3D;&gt; -1<br>​    Infinity % 2 &#x3D;&gt; NaN</p>
+<p>需要注意的是 余数的正负号随第一个操作数.</p>
+<p>答案 <code>[true, true, true, false, false]</code></p>
+<h2 id="第12题"><a href="#第12题" class="headerlink" title="第12题"></a>第12题</h2><p>​<br>​    parseInt(3, 8)<br>​    parseInt(3, 2)<br>​    parseInt(3, 0)</p>
+<p>第一个题讲过了, 答案 <code>3, NaN, 3</code></p>
+<h2 id="第13题"><a href="#第13题" class="headerlink" title="第13题"></a>第13题</h2><p>​<br>​    Array.isArray( Array.prototype )</p>
+<p>一个知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/prototype">Array&#x2F;prototype</a></li>
+</ul>
+<p>一个鲜为人知的实事: <code>Array.prototype =&gt; []</code>;</p>
+<p>答案: <code>true</code></p>
+<h2 id="第14题"><a href="#第14题" class="headerlink" title="第14题"></a>第14题</h2><p>​<br>​    var a &#x3D; [0];<br>​    if ([0]) {<br>​      console.log(a &#x3D;&#x3D; true);<br>​    } else {<br>​      console.log(“wut”);<br>​    }</p>
+<ul>
+<li><a href="https://dorey.github.io/JavaScript-Equality-Table/">JavaScript-Equality-Table</a></li>
+<li><em>更新</em><a href="https://zhuanlan.zhihu.com/p/21650547">通过一张简单的图，让你彻底地、永久地搞懂JS的&#x3D;&#x3D;运算</a> 非常不错的一篇文章!</li>
+</ul>
+<p>解析:</p>
+<ul>
+<li><code>Boolean([0]) === true</code></li>
+<li>[0] &#x3D;&#x3D; true <ul>
+<li>true 转换为数字 &#x3D;&gt; 1</li>
+<li>[0] 转化为数字失败, 转化为字符串 ‘0’, 转化成数字 &#x3D;&gt; 0</li>
+<li>0 !&#x3D;&#x3D; 1</li>
+</ul>
+</li>
+</ul>
+<p>答案: <code>false</code></p>
+<h2 id="第15题"><a href="#第15题" class="headerlink" title="第15题"></a>第15题</h2><p>​<br>​    []&#x3D;&#x3D;[]</p>
+<p>​    </p>
+<p>[] 是Object, 两个 Object 不相等</p>
+<p>答案是 <code>false</code></p>
+<h2 id="第16题"><a href="#第16题" class="headerlink" title="第16题"></a>第16题</h2><p>​<br>​    ‘5’ + 3<br>​    ‘5’ - 3</p>
+<p>两个知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Addition">Arithmetic_Operators#Addition</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Arithmetic_Operators#Subtraction">Arithmetic_Operators#Subtraction</a></li>
+</ul>
+<p><code>+</code> 用来表示两个数的和或者字符串拼接, <code>-</code>表示两数之差.</p>
+<p>请看例子, 体会区别:</p>
+<p>​<br>​    &gt; ‘5’ + 3<br>​    ‘53’<br>​    &gt; 5 + ‘3’<br>​    ‘53’<br>​    &gt; 5 - ‘3’<br>​    2<br>​    &gt; ‘5’ - 3<br>​    2<br>​    &gt; ‘5’ - ‘3’<br>​    2</p>
+<p>也就是说 <code>-</code> 会尽可能的将两个操作数变成数字, 而 <code>+</code> 如果两边不都是数字, 那么就是字符串拼接.</p>
+<p>答案是 <code>&#39;53&#39;, 2</code></p>
+<h2 id="第17题"><a href="#第17题" class="headerlink" title="第17题"></a>第17题</h2><p>​<br>​    1 + - + + + - + 1</p>
+<p>​    </p>
+<p>这里应该是(倒着看)</p>
+<p>​<br>​    1 + (a)  &#x3D;&gt; 2<br>​    a &#x3D; - (b) &#x3D;&gt; 1<br>​    b &#x3D; + (c) &#x3D;&gt; -1<br>​    c &#x3D; + (d) &#x3D;&gt; -1<br>​    d &#x3D; + (e) &#x3D;&gt; -1<br>​    e &#x3D; + (f) &#x3D;&gt; -1<br>​    f &#x3D; - (g) &#x3D;&gt; -1<br>​    g &#x3D; + 1   &#x3D;&gt; 1</p>
+<p>所以答案 <code>2</code></p>
+<h2 id="第18题"><a href="#第18题" class="headerlink" title="第18题"></a>第18题</h2><p>​<br>​    var ary &#x3D; Array(3);<br>​    ary[0]&#x3D;2<br>​    ary.map(function(elem) { return ‘1’; });</p>
+<p>稀疏数组. 同第7题.</p>
+<p>题目中的数组其实是一个长度为3, 但是没有内容的数组, array 上的操作会跳过这些未初始化的’坑’.</p>
+<p>所以答案是 <code>[&quot;1&quot;, undefined × 2]</code></p>
+<p>这里贴上 Array.prototype.map 的 polyfill.</p>
+<p>​<br>​    Array.prototype.map &#x3D; function(callback, thisArg) {<br>​<br>            var T, A, k;</p>
+<pre><code>        if (this == null) &#123;
+            throw new TypeError(&#39; this is null or not defined&#39;);
+        &#125;
+
+        var O = Object(this);
+        var len = O.length &gt;&gt;&gt; 0;
+        if (typeof callback !== &#39;function&#39;) &#123;
+            throw new TypeError(callback + &#39; is not a function&#39;);
+        &#125;
+        if (arguments.length &gt; 1) &#123;
+            T = thisArg;
+        &#125;
+        A = new Array(len);
+        k = 0;
+        while (k &lt; len) &#123;
+            var kValue, mappedValue;
+            if (k in O) &#123;
+                kValue = O[k];
+                mappedValue = callback.call(T, kValue, k, O);
+                A[k] = mappedValue;
+            &#125;
+            k++;
+        &#125;
+        return A;
+    &#125;;
+</code></pre>
+<h2 id="第19题"><a href="#第19题" class="headerlink" title="第19题"></a>第19题</h2><p>​<br>​    function sidEffecting(ary) {<br>​      ary[0] &#x3D; ary<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map">2</a>;<br>​    }<br>​    function bar(a,b,c) {<br>​      c &#x3D; 10<br>​      sidEffecting(arguments);<br>​      return a + b + c;<br>​    }<br>​    bar(1,1,1)</p>
+<p>​    </p>
+<p>这是一个大坑, 尤其是涉及到 ES6语法的时候</p>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments">Functions&#x2F;arguments</a></li>
+</ul>
+<p>首先 <code>The arguments object is an Array-like object corresponding to the arguments passed to a function.</code></p>
+<p>也就是说 <code>arguments</code> 是一个 <code>object</code>, c 就是 arguments<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map">2</a>, 所以对于 c 的修改就是对 arguments<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map">2</a><br>的修改.</p>
+<p>所以答案是 <code>21</code>.</p>
+<p>然而!!!!!!</p>
+<p>当函数参数涉及到 <code>any rest parameters, any default parameters or any destructured parameters</code> 的时候, 这个 arguments 就不在是一个 <code>mapped arguments object</code> 了…..</p>
+<p>请看:</p>
+<p>​<br>​    function sidEffecting(ary) {<br>​      ary[0] &#x3D; ary<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map">2</a>;<br>​    }<br>​    function bar(a,b,c&#x3D;3) {<br>​      c &#x3D; 10<br>​      sidEffecting(arguments);<br>​      return a + b + c;<br>​    }<br>​    bar(1,1,1)</p>
+<p>答案是 <code>12</code> !!!!</p>
+<p>请读者细细体会!!</p>
+<h2 id="第20题"><a href="#第20题" class="headerlink" title="第20题"></a>第20题</h2><p>​<br>​    var a &#x3D; 111111111111111110000,<br>​        b &#x3D; 1111;<br>​    a + b;</p>
+<p>​    </p>
+<p>答案还是 <code>111111111111111110000</code>. 解释是 <code>Lack of precision for numbers in JavaScript affects both small and big numbers.</code> 但是笔者不是很明白……………. 请读者赐教!</p>
+<h2 id="第21题"><a href="#第21题" class="headerlink" title="第21题"></a>第21题</h2><p>​<br>​    var x &#x3D; [].reverse;<br>​    x();</p>
+<p>这个题有意思!</p>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse">Array&#x2F;reverse</a></li>
+</ul>
+<p><code>The reverse method transposes the elements of the calling array object in place, mutating the array, and returning a reference to the array.</code></p>
+<p>也就是说 最后会返回这个调用者(this), 可是 x 执行的时候是上下文是全局. 那么最后返回的是 <code>window</code>.</p>
+<p>补充:</p>
+<blockquote>
+<p><a href="https://github.com/stellar91">@stellar91</a> 这个笔者实践了一下 发现 firefox 是 window, chrome 报错 <code>VM190:2 Uncaught TypeError: Array.prototype.reverse called on null or undefined(…)</code> 可能是实现不同, 在<br>chrome 中应该是对调用者做了检查.</p>
+</blockquote>
+<p>答案是 <code>window</code></p>
+<h2 id="第22题"><a href="#第22题" class="headerlink" title="第22题"></a>第22题</h2><p>​<br>​    Number.MIN_VALUE &gt; 0</p>
+<p><code>true</code></p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1><p>今天先到这里, 下次我们来看后22个题!</p>
+<p><a href="a26c9c63.html">44个 Javascript 变态题解析 (下)</a></p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

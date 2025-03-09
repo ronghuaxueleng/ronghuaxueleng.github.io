@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>从 JavaScript 数组去重谈性能优化 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="缘由JavaScript 数组去重经常出现在前端招聘的笔试题里，比如：  有数组 var arr &#x3D; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, &#39;c&#39;, 1, &#39;&#39;, 1, 0]，请用 JavaScript实现去重函数 unqiue，使得 unique(arr) 返回 [&#39;a&#39;,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从 JavaScript 数组去重谈性能优化">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/a5431a21.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="缘由JavaScript 数组去重经常出现在前端招聘的笔试题里，比如：  有数组 var arr &#x3D; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, &#39;c&#39;, 1, &#39;&#39;, 1, 0]，请用 JavaScript实现去重函数 unqiue，使得 unique(arr) 返回 [&#39;a&#39;,">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-13T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.281Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/a5431a21.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            从 JavaScript 数组去重谈性能优化
+        </div>
+        <div class="post-meta">
+            2016-10-13 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h2><p>JavaScript 数组去重经常出现在前端招聘的笔试题里，比如：</p>
+<blockquote>
+<p>有数组 <code>var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, &#39;c&#39;, 1, &#39;&#39;, 1, 0]</code>，请用 JavaScript<br>实现去重函数 <code>unqiue</code>，使得 <code>unique(arr)</code> 返回 <code>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, 1, &#39;&#39;]</code></p>
+</blockquote>
+<p>作为笔试题，考点有二：</p>
+<ol>
+<li><p><strong>正确</strong>。别小看这个考点，考虑到 JavaScript 经常要在浏览器上运行，在千姿百态的各种浏览器环境下要保障一个函数的正确性可不是一件简单的事，不信你继续读完这篇博客。</p>
+</li>
+<li><p><strong>性能</strong>。虽然大部分情况下 JavaScript 语言本身（狭义范畴，不包含 DOM 等延拓）不会导致性能问题，但很不幸这是一道考题，因此面试官们还是会把性能作为一个考点。</p>
+</li>
+</ol>
+<p>在继续往下阅读之前，建议先实现一个自己认为最好的版本。</p>
+<span id="more"></span>
+
+<h2 id="直觉方案"><a href="#直觉方案" class="headerlink" title="直觉方案"></a>直觉方案</h2><p>对于数组去重，只要写过程序的，立刻就能得到第一个解法：</p>
+<p>​<br>    function unique(arr) {<br>      var ret &#x3D; []</p>
+<pre><code>  for (var i = 0; i &lt; arr.length; i++) &#123;
+    var item = arr[i]
+    if (ret.indexOf(item) === -1) &#123;
+      ret.push(item)
+    &#125;
+  &#125;
+
+  return ret
+&#125;
+</code></pre>
+<p>直觉往往很靠谱，在现代浏览器下，上面这个函数很正确，性能也不错。但前端最大的悲哀也是挑战之处在于，要支持各种运行环境。在 IE6-8 下，数组的<br><code>indexOf</code> 方法还不存在。直觉方案要稍微改造一下：</p>
+<p>​<br>    var indexOf &#x3D; [].indexOf ?<br>        function(arr, item) {<br>          return arr.indexOf(item)<br>        } :<br>        function indexOf(arr, item) {<br>          for (var i &#x3D; 0; i &lt; arr.length; i++) {<br>            if (arr[i] &#x3D;&#x3D;&#x3D; item) {<br>              return i<br>            }<br>          }<br>          return -1<br>        }</p>
+<pre><code>function unique(arr) &#123;
+  var ret = []
+
+  for (var i = 0; i &lt; arr.length; i++) &#123;
+    var item = arr[i]
+    if (indexOf(ret, item) === -1) &#123;
+      ret.push(item)
+    &#125;
+  &#125;
+
+  return ret
+&#125;
+</code></pre>
+<p>写到这一步，正确性已没问题，但性能上，两重循环会让面试官们看了不爽。</p>
+<h2 id="优化方案"><a href="#优化方案" class="headerlink" title="优化方案"></a>优化方案</h2><p>一谈到优化，往往就是八仙过海、百花齐放。但八仙往往不接地气，百花则很容易招来臭虫。数组去重的各种优化方案在此不一一讨论，下面只说最常用效果也很不错的一种。</p>
+<p>​<br>    function unique(arr) {<br>      var ret &#x3D; []<br>      var hash &#x3D; {}</p>
+<pre><code>  for (var i = 0; i &lt; arr.length; i++) &#123;
+    var item = arr[i]
+    var key = typeof(item) + item
+    if (hash[key] !== 1) &#123;
+      ret.push(item)
+      hash[key] = 1
+    &#125;
+  &#125;
+
+  return ret
+&#125;
+</code></pre>
+<p>核心是构建了一个 <code>hash</code> 对象来替代 <code>indexOf</code>. 注意在 JavaScript 里，对象的键值只能是字符串，因此需要 <code>var key = typeof(item) + item</code> 来区分数值 <code>1</code> 和字符串 <code>&#39;1&#39;</code> 等情况。</p>
+<p>但优化真的很容易带来坑，比如上面的实现，对下面这种输入就无法判断：</p>
+<p>​<br>    unique([ new String(1), new Number(1) ])</p>
+<p>可以继续修改代码，做到性能和正确性都很好。但往往，这带来的结果并不好。</p>
+<h2 id="真实需求"><a href="#真实需求" class="headerlink" title="真实需求"></a>真实需求</h2><p>写到这里，这篇博客才算进入正题。程序员心中都会有一些梦想，比如写出又通用性能又好的普适函数。这种梦想是让程序员变得卓越的重要内驱力，但倘若不加以控制，也很容<br>易走入迷途。</p>
+<p>回到性能优化。这年头有各种各样优化，核心系统、数据库、网络、前端等等，所有这些优化，都必须回答下面这个问题：</p>
+<ol>
+<li><p><strong>当前有什么</strong>。在什么场景下进行优化，场景下有哪些具体限制。理清限制很重要，限制往往带来自由。</p>
+</li>
+<li><p><strong>究竟要什么</strong>。优化的目的是什么。是提高稳定性，还是增大吞吐量，抑或减少用户等待时间。在回答这个问题之前，优化都是徒劳。对这个问题的准确回答，能为优化带来具体可测量的参数，这样优化才有目标。</p>
+</li>
+<li><p><strong>可以放弃什么</strong>。鱼与熊掌不可兼得。优化的本质是在具体场景下的取舍、权衡。什么都不愿意放弃的话，优化往往会举步维艰。</p>
+</li>
+</ol>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

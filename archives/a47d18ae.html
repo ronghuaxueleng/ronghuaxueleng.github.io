@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>JavaScript Constructor(构造器)模式 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="前言在经典的面相对象语言编程中，Constructor是一种在内存已分配给该对象的情况下，用于初始化新创建对象的特殊方法。在Javascript中，几乎所有东西都是对象，我们通常最感兴趣的是object构造器。 object构造器用于创建特定类型的对象——准备好对象以备使用，同时接收构造器可以使用的参数，以在第一次创建对象时，设置成员属性和方法的值。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript Constructor(构造器)模式">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/a47d18ae.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="前言在经典的面相对象语言编程中，Constructor是一种在内存已分配给该对象的情况下，用于初始化新创建对象的特殊方法。在Javascript中，几乎所有东西都是对象，我们通常最感兴趣的是object构造器。 object构造器用于创建特定类型的对象——准备好对象以备使用，同时接收构造器可以使用的参数，以在第一次创建对象时，设置成员属性和方法的值。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://img.blog.csdn.net/20151209234517042">
+<meta property="article:published_time" content="2016-09-10T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.290Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="Javascript设计模式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20151209234517042">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/a47d18ae.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            JavaScript Constructor(构造器)模式
+        </div>
+        <div class="post-meta">
+            2016-09-10 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在经典的面相对象语言编程中，Constructor是一种在内存已分配给该对象的情况下，用于初始化新创建对象的特殊方法。在Javascript中，几乎所有东西都是对象，我们通常最感兴趣的是object构造器。</p>
+<p>object构造器用于创建特定类型的对象——准备好对象以备使用，同时接收构造器可以使用的参数，以在第一次创建对象时，设置成员属性和方法的值。</p>
+<p><img src="http://img.blog.csdn.net/20151209234517042" alt="这里写图片描述"></p>
+<span id="more"></span>
+
+<h1 id="基本Constructor"><a href="#基本Constructor" class="headerlink" title="基本Constructor"></a>基本Constructor</h1><p>Javascript虽然不支持类的概念，但它确实支持与对象一起用的特殊constructor函数，通过在构造器前面加new关键字，告诉Javascript像使用构造器一样实例化一个新对象，并且对象成员由该函数定义。</p>
+<p>在构造器内，this关键字引用新创建的对象。回顾对象创建，基本的构造器看起来可能是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function Car(model,year,miles)&#123;</span><br><span class="line">	this.model=model;</span><br><span class="line">	this.year=year;</span><br><span class="line">	this.miles=miles;</span><br><span class="line">	</span><br><span class="line">	this.toString=function()&#123;</span><br><span class="line">		return this.model+&quot;has done &quot;+this.miles+&quot;miles&quot;;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var civic=new Car(&quot;Honda Civic&quot;,2009,20000);</span><br><span class="line">var mondeo=new Car(&quot;Ford Mondeo&quot;,2010,5000);</span><br><span class="line"></span><br><span class="line">console.log(civic.toString());</span><br><span class="line">console.log(mondeo.toString());</span><br></pre></td></tr></table></figure>
+<blockquote>
+</blockquote>
+<p>分析：上面是一个简单的构造器模式版本，但它有2个问题。</p>
+<ol>
+<li><p>它使得继承变得困难；</p>
+</li>
+<li><p>toString()这样的函数是为每个使用Car构造器创建的新对象而分别重新定义的，这不是最理想的构造方式，因为<strong>这种函数应该在所有Car类型实例之间共享</strong>。</p>
+</li>
+</ol>
+<h1 id="带原型的Constructor"><a href="#带原型的Constructor" class="headerlink" title="带原型的Constructor"></a>带原型的Constructor</h1><p>Javascript的prototype属性相信大家都知道，调用Javascript构造器创建一个对象后，新对象就会具有构造器原型的所有属性。通过这种方式，可以创建多个Car对象，并访问相同的原型。如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function Car(model,year,miles)&#123;</span><br><span class="line">	this.model=model;</span><br><span class="line">	this.year=year;</span><br><span class="line">	this.miles=miles;</span><br><span class="line">&#125;</span><br><span class="line">/*使用Object.prototype.newMethod而不是Object.prototype可以避免重新定义prototype对象*/</span><br><span class="line">Car.protoType.toString=function()&#123;</span><br><span class="line">	return this.model+&quot;has done &quot;+this.miles+&quot;miles&quot;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var civic=new Car(&quot;Honda Civic&quot;,2009,20000);</span><br><span class="line">var mondeo=new Car(&quot;Ford Mondeo&quot;,2010,5000);</span><br><span class="line"></span><br><span class="line">console.log(civic.toString());</span><br><span class="line">console.log(mondeo.toString());</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这样toString()的当以实例就能够在所有Car对象之间共享了^_^</p>
+</blockquote>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/Javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> / Javascript设计模式</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

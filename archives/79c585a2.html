@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>fetch和XMLHttpRequest讲解 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="写在前面fetch 同 XMLHttpRequest 非常类似，都是用来做网络请求。但是同复杂的XMLHttpRequest的API相比，fetch使用了Promise，这让它使用起来更加简洁，从而避免陷入”回调地狱”。 两者比较比如，如果我们想要实现这样一个需求：请求一个URL地址，获取响应数据并将数据转换成JSON格式。使用fetch和XMLHttpRequest实现的方式是不同的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="fetch和XMLHttpRequest讲解">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/79c585a2.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="写在前面fetch 同 XMLHttpRequest 非常类似，都是用来做网络请求。但是同复杂的XMLHttpRequest的API相比，fetch使用了Promise，这让它使用起来更加简洁，从而避免陷入”回调地狱”。 两者比较比如，如果我们想要实现这样一个需求：请求一个URL地址，获取响应数据并将数据转换成JSON格式。使用fetch和XMLHttpRequest实现的方式是不同的。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://static.open-open.com/lib/uploadImg/20160111/20160111123542_840.png">
+<meta property="article:published_time" content="2016-08-30T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.278Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://static.open-open.com/lib/uploadImg/20160111/20160111123542_840.png">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/79c585a2.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            fetch和XMLHttpRequest讲解
+        </div>
+        <div class="post-meta">
+            2016-08-30 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p><code>fetch</code> 同 <code>XMLHttpRequest</code> 非常类似，都是用来做网络请求。但是同复杂的<code>XMLHttpRequest</code>的API相比，<code>fetch</code>使用了<code>Promise</code>，这让它使用起来更加简洁，从而避免陷入”回调地狱”。</p>
+<h1 id="两者比较"><a href="#两者比较" class="headerlink" title="两者比较"></a>两者比较</h1><p>比如，如果我们想要实现这样一个需求：请求一个URL地址，获取响应数据并将数据转换成JSON格式。使用<code>fetch</code>和<code>XMLHttpRequest</code>实现的方式是不同的。</p>
+<span id="more"></span> 
+
+<h2 id="使用XMLHttpRequest实现"><a href="#使用XMLHttpRequest实现" class="headerlink" title="使用XMLHttpRequest实现"></a>使用<code>XMLHttpRequest</code>实现</h2><p>使用<code>XMLHttpRequest</code>来实现改功能需要设置两个监听函数，分别用来处理成功和失败的情况，同时还需要依次调用<code>open()</code>和<code>send()</code>方法才能实现请求。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function reqListener() &#123;</span><br><span class="line">	var data = JSON.parse(this.responseText);</span><br><span class="line">	console.log(data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function reqError(err) &#123;</span><br><span class="line">	console.log(&#x27;Fetch Error : %S&#x27;, err);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var oReq = new XMLHttpRequest();</span><br><span class="line">oReq.onload = reqListener;</span><br><span class="line">oReq.onerror = reqError;</span><br><span class="line">oReq.open(&#x27;get&#x27;, &#x27;./api/some.json&#x27;, true);</span><br><span class="line">oReq.send();</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用fetch实现"><a href="#使用fetch实现" class="headerlink" title="使用fetch实现"></a>使用<code>fetch</code>实现</h2><p>使用<code>fetch</code>来实现是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">fetch(&#x27;./api/some.json&#x27;)</span><br><span class="line">	.then(function(res) &#123;</span><br><span class="line">		if (res.status !== 200) &#123;</span><br><span class="line">			console.log(&#x27;Looks like there was a problem. Status Code: &#x27; + res.status);</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">			</span><br><span class="line">		// 处理响应中的文本信息 </span><br><span class="line">		res.json().then(function(data) &#123;</span><br><span class="line">			console.log(data);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;)</span><br><span class="line">	.catch(function(err) &#123;</span><br><span class="line">		console.log(&#x27;Fetch Error : %S&#x27;, err);</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+<p>在将响应的文本信息转换成JSON格式前，需要先确保响应的状态码为200。<br><code>fetch()</code>请求后返回的响应是一个<code>stream</code>对象，这就意味着我们在调用<code>json()</code>方法后会返回一个<code>Promise</code>，因为读取<code>stream</code>的过程是异步操作的。</p>
+<h3 id="响应中的元数据"><a href="#响应中的元数据" class="headerlink" title="响应中的元数据"></a>响应中的元数据</h3><p>在上面的例子中，我们可以查看响应对象的状态码，也知道了如何将响应转换成JSON格式的数据。但其实我们可以访问的元数据还有以下这些：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fetch(&quot;users.json&quot;).then(function(res) &#123;</span><br><span class="line">	console.log(res.headers.get(&#x27;Content-Type&#x27;));</span><br><span class="line">	console.log(res.headers.get(&#x27;Data&#x27;));</span><br><span class="line">	</span><br><span class="line">	console.log(res.status);</span><br><span class="line">	console.log(res.statusText);</span><br><span class="line">	console.log(res.type);</span><br><span class="line">	console.log(res.url);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="响应类型"><a href="#响应类型" class="headerlink" title="响应类型"></a>响应类型</h3><p>当我们发送<code>fetch</code>请求时，返回的<code>res.type</code>可能是<code>basic</code>、<code>cors</code>或<code>opaque</code>中的一种。这些类型可以告知我们资源从何而来，这样就能知道该如何处理响应对象。</p>
+<p>当我们请求的是同一域下的资源时，响应返回的类型为<code>basic</code>，此时没有任何限制，我们可以查看响应中的任何数据。</p>
+<p>如何请求的是跨域资源，那么会返回一个<code>CORS</code>类型的头部，并且响应类型为<code>cors</code>。这种类型跟上面的<code>basic</code>非常相似，只是它对响应头部的字段访问有限制，你只可以访问这些属性：</p>
+<ul>
+<li>   Cache-Control</li>
+<li>   Content-Language</li>
+<li>   Content-Type</li>
+<li>   Expires</li>
+<li>   Last-Modified</li>
+<li>   Pragma</li>
+</ul>
+<blockquote>
+<p><code>Opaque</code> 类型的响应也是访问跨域资源的时候产生的，只是响应头不是CORS类型的响应头而已。如果是这种类型的响应，那么我们就不能读取返回的数据，也不能查看请求的状态码，这就是意味着我们将无法确定请求是成功了还是失败了。目前在<code>fetch()</code>的实现中，无法请求跨域的资源。</p>
+</blockquote>
+<p>我们可以为<code>fetch</code>请求定义<code>mode</code>属性，来保证只有符合条件的请求才会被处理。可以设置的<code>mode</code>属性值如下：</p>
+<ul>
+<li><code>same-origin</code>  只有请求相同域下的资源才能成功，其他请求均被拒绝。</li>
+<li><code>cors</code>  允许请求同域或者跨域资源，但是跨域必须返回相应的跨域请求头部。</li>
+<li><code>cors-with-forced-preflight</code>  在发出实际请求前先做<code>preflight</code>检查。</li>
+<li><code>no-cors</code>  针对跨域资源做请求，但是不返回CORS的响应头，这是属于<code>opaque</code>类型的响应（window下无法使用）</li>
+</ul>
+<p>在使用<code>mode</code>时，需要将<code>fetch</code>请求的第二个参数作为配置对象，并在其中配置具体的模式，如下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fetch(&quot;http://some-site.com/cors-enabled/some.json&quot;,&#123;mode: &#x27;cors&#x27;&#125;)</span><br><span class="line">	.then(function(res)&#123;</span><br><span class="line">		return res.text();</span><br><span class="line">	&#125;)</span><br><span class="line">	.then(function(text) &#123;</span><br><span class="line">		console.log(&#x27;Request successfully&#x27;, text);</span><br><span class="line">	&#125;)</span><br><span class="line">	.catch(function(err) &#123;</span><br><span class="line">		console.log(&#x27;Request failed&#x27;, error)</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Promise-方法链"><a href="#Promise-方法链" class="headerlink" title="Promise 方法链"></a>Promise 方法链</h2><p><code>Promise</code> 的特性之一就是可以实现链式调用，<code>fetch</code>也可以使用该特性，同时，使用链式调用可以让请求的处理逻辑更加通用。</p>
+<p>如果使用接口反馈的<code>JSON</code>格式数据，那么针对每次响应，我们都需要检查响应状态并做<code>JSON</code>格式转换。其实还能简化代码，那就是把状态监测和<code>JSON</code>转换的代码放到单独的函数中去。比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function status(res) &#123;</span><br><span class="line">	if (res.status &gt;= 200 &amp;&amp; res.status &lt; 300) &#123;</span><br><span class="line">		return Promise.resolve(response)</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		return Promise.reject(new Error(res.statusText))</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function json(res) &#123;</span><br><span class="line">	return res.json()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fetch(&#x27;user.json&#x27;)</span><br><span class="line">	.then(status)</span><br><span class="line">	.then(json)</span><br><span class="line">	.then(function(data) &#123;</span><br><span class="line">		console.log(&#x27;Request succeeded with JSON response&#x27;, data);</span><br><span class="line">	&#125;)</span><br><span class="line">	.catch(function(err) &#123;</span><br><span class="line">		console.log(&#x27;Request failed&#x27;, error);</span><br><span class="line">	&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在上面的代码中，我们定义了一个<code>status</code>方法来检查<code>response.status</code> 的状态，根据结果不同返回<code>Promise.resolve()</code>  或 <code>Promise.reject()</code> ，这是<code>fetch()</code>方法链中的第一个方法调用。如果返回<code>resolve</code>状态，我们会继续调用<code>json()</code>，从而返回<code>response.json()</code>的执行结果。经过这些处理完我们已经可以获取解析后的<code>JSON</code>对象。如果解析失败，<code>Promise</code>返回<code>reject</code>状态，执行<code>catch</code>里的代码进行错误处理。</p>
+<p>这么编码更大的好处在于，你可以在所有的fetch请求中使用上面的逻辑代码，从而让代码变得更加容易阅读、维护和测试。</p>
+<h2 id="使用fetch-请求发送凭证信息"><a href="#使用fetch-请求发送凭证信息" class="headerlink" title="使用fetch 请求发送凭证信息"></a>使用<code>fetch</code> 请求发送凭证信息</h2><p>如果我们想在<code>fetch</code>请求中带一些凭证信息，比如<code>cookie</code>等，我们应该将请求中的<code>credentials</code>设置为<code>include</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fetch(url, &#123;</span><br><span class="line">	credentials: &#x27;include&#x27;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意： 服务器返回 400，500 错误码时并不会 reject，只有网络错误这些导致请求不能完成时，fetch 才会被 reject。 </p>
+</blockquote>
+<h2 id="Response相关属性及方法"><a href="#Response相关属性及方法" class="headerlink" title="Response相关属性及方法"></a><code>Response</code>相关属性及方法</h2><h3 id="bodyUsed"><a href="#bodyUsed" class="headerlink" title="bodyUsed"></a><code>bodyUsed</code></h3><ol>
+<li>标记返回值是否被使用过</li>
+<li>这样设计的目的是为了之后兼容基于流的API，让应用一次消费data，这样就允许了JavaScript处理大文件例如视频，并且可以支持实时压缩和编辑。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fetch(&#x27;/test/content.json&#x27;).then(function(res)&#123;</span><br><span class="line">    console.log(res.bodyUsed); // false</span><br><span class="line">    var data = res.json();</span><br><span class="line">    console.log(res.bodyUsed); //true</span><br><span class="line">    return data;</span><br><span class="line">&#125;).then(function(data)&#123;</span><br><span class="line">    console.log(data);</span><br><span class="line">&#125;).catch(function(error)&#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="headers"><a href="#headers" class="headerlink" title="headers"></a><code>headers</code></h3><p>返回Headers对象，该对象实现了Iterator，可通过for…of遍历</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">fetch(&#x27;/test/content.json&#x27;).then(function(res)&#123;</span><br><span class="line">    var headers = res.headers;</span><br><span class="line">    console.log(headers.get(&#x27;Content-Type&#x27;)); // application/json</span><br><span class="line">    console.log(headers.has(&#x27;Content-Type&#x27;)); // true</span><br><span class="line">    console.log(headers.getAll(&#x27;Content-Type&#x27;)); // [&quot;application/json&quot;]</span><br><span class="line">    for(let key of headers.keys())&#123;</span><br><span class="line">        console.log(key); // datelast-modified server accept-ranges etag content-length content-type</span><br><span class="line">    &#125;</span><br><span class="line">    for(let value of headers.values())&#123;</span><br><span class="line">        console.log(value);</span><br><span class="line">    &#125;</span><br><span class="line">    headers.forEach(function(value, key, arr)&#123;</span><br><span class="line">        console.log(value); // 对应values()的返回值</span><br><span class="line">        console.log(key); // 对应keys()的返回值</span><br><span class="line">    &#125;);</span><br><span class="line">    return res.json();</span><br><span class="line">&#125;).then(function(data)&#123;</span><br><span class="line">    console.log(data);</span><br><span class="line">&#125;).catch(function(error)&#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="ok"><a href="#ok" class="headerlink" title="ok"></a><code>ok</code></h3><ol>
+<li>是否正常返回</li>
+<li>代表状态码在200-299之间</li>
+</ol>
+<h3 id="status"><a href="#status" class="headerlink" title="status"></a><code>status</code></h3><p>状态码( 200表示 成功) </p>
+<h3 id="statusText"><a href="#statusText" class="headerlink" title="statusText"></a><code>statusText</code></h3><p>状态描述 (‘OK’表示 成功) </p>
+<h3 id="type"><a href="#type" class="headerlink" title="type"></a><code>type</code></h3><ul>
+<li><code>basic</code>：正常的，同域的请求，包含所有的<code>headers</code>。排除<code>Set-Cookie</code>和<code>Set-Cookie2</code>。</li>
+<li><code>cors</code>：<code>Response</code>从一个合法的跨域请求获得，一部分<code>header</code>和<code>body</code>可读。</li>
+<li><code>error</code>：网络错误。<code>Response</code>的<code>status</code>是0，<code>Headers</code>是空的并且不可写。当<code>Response</code>是从<code>Response.error()</code>中得到时，就是这种类型。</li>
+<li><code>opaque</code>： <code>Response</code>从<code>&quot;no-cors&quot;</code>请求了跨域资源。依靠<code>Server</code>端来做限制。</li>
+</ul>
+<h3 id="url"><a href="#url" class="headerlink" title="url"></a><code>url</code></h3><p>返回完整的url字符串。如：’<a href="http://xxx.com/xx?a=1">http://xxx.com/xx?a=1</a>‘ </p>
+<h3 id="arrayBuffer"><a href="#arrayBuffer" class="headerlink" title="arrayBuffer()"></a><code>arrayBuffer()</code></h3><p>返回ArrayBuffer类型的数据的Promise对象</p>
+<h3 id="blob"><a href="#blob" class="headerlink" title="blob()"></a><code>blob()</code></h3><p>返回Blob类型的数据的Promise对象 </p>
+<h3 id="clone"><a href="#clone" class="headerlink" title="clone()"></a><code>clone()</code></h3><ul>
+<li>生成一个<code>Response</code>的克隆</li>
+<li><code>body</code>只能被读取一次，但<code>clone</code>方法就可以得到<code>body</code>的一个备份</li>
+<li>克隆体仍然具有<code>bodyUsed</code>属性，如果被使用过一次，依然会失效</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">fetch(&#x27;/test/content.json&#x27;).then(function(data)&#123;</span><br><span class="line">    var d = data.clone();</span><br><span class="line">    d.text().then(function(text)&#123;</span><br><span class="line">        console.log(JSON.parse(text));</span><br><span class="line">    &#125;);</span><br><span class="line">    return data.json();</span><br><span class="line">&#125;).then(function(data)&#123;</span><br><span class="line">    console.log(data);</span><br><span class="line">&#125;).catch(function(error)&#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="json"><a href="#json" class="headerlink" title="json()"></a><code>json()</code></h3><p>返回JSON类型的数据的Promise对象</p>
+<h3 id="text"><a href="#text" class="headerlink" title="text()"></a><code>text()</code></h3><p>返回Text类型的数据的Promise对象 </p>
+<h3 id="formData"><a href="#formData" class="headerlink" title="formData()"></a><code>formData()</code></h3><p>返回FormData类型的数据的Promise对象</p>
+<h2 id="fetch基本用法"><a href="#fetch基本用法" class="headerlink" title="fetch基本用法"></a>fetch基本用法</h2><h3 id="get方式"><a href="#get方式" class="headerlink" title="get方式"></a><code>get</code>方式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fetch(&#x27;/test/content.json&#x27;).then(function(data)&#123;</span><br><span class="line">    return data.json();</span><br><span class="line">&#125;).then(function(data)&#123;</span><br><span class="line">    console.log(data);</span><br><span class="line">&#125;).catch(function(error)&#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="post方式"><a href="#post方式" class="headerlink" title="post方式"></a><code>post</code>方式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">fetch(&#x27;/test/content.json&#x27;, &#123; // url: fetch事实标准中可以通过Request相关api进行设置</span><br><span class="line">    method: &#x27;POST&#x27;,</span><br><span class="line">    mode: &#x27;same-origin&#x27;, // same-origin|no-cors（默认）|cors</span><br><span class="line">    credentials: &#x27;include&#x27;, // omit（默认，不带cookie）|same-origin(同源带cookie)|include(总是带cookie)</span><br><span class="line">    headers: &#123; // headers: fetch事实标准中可以通过Header相关api进行设置</span><br><span class="line">        &#x27;Content-Type&#x27;: &#x27;application/x-www-form-urlencoded&#x27; // default: &#x27;application/json&#x27;</span><br><span class="line">    &#125;,</span><br><span class="line">    body: &#x27;a=1&amp;b=2&#x27; // body: fetch事实标准中可以通过Body相关api进行设置</span><br><span class="line">&#125;).then(function(res)&#123; res: fetch事实标准中可以通过Response相关api进行设置</span><br><span class="line">    return res.json();</span><br><span class="line">&#125;).then(function(data)&#123;</span><br><span class="line">    console.log(data);</span><br><span class="line">&#125;).catch(function(error)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="fetch不足之处"><a href="#fetch不足之处" class="headerlink" title="fetch不足之处"></a><code>fetch</code>不足之处</h2><h3 id="无法监控读取进度和中断请求"><a href="#无法监控读取进度和中断请求" class="headerlink" title="无法监控读取进度和中断请求"></a>无法监控读取进度和中断请求</h3><p><code>Promises</code>缺少了一些重要的<code>XMLHttpRequest</code>的使用场景。例如， 使用标准的<code>ES6 Promise</code>你无法收集进入信息或中断请求。而<code>Fetch</code>的狂热开发者更是试图提供<code>Promise API</code>的扩展用于取消一个<code>Promise</code>。 这个提议有点自挖墙角的意思，因为将这将让<code>Promise</code>变得不符合标准。但这个提议或许会导致未来出现一个可取消的<code>Promise</code>标准。 但另一方面，使用<code>XMLHttpRequest</code>你可以模拟进度（监听<code>progress</code>事件），也可以取消请求（使用<code>abort()</code>方法）。 但是，如果有必要你也可以使用<code>Promise</code>来包裹它</p>
+<h3 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h3><p>目前Chrome 42+, Opera 29+, 和Firefox 39+都支持Fetch。微软也考虑在未来的版本中支持Fetch。 讽刺的是，当IE浏览器终于微响应实现了progress事件的时候，XMLHttpRequest也走到了尽头。 目前，如果你需要支持IE的话，你需要使用一个polyfill库。</p>
+<p><img src="http://static.open-open.com/lib/uploadImg/20160111/20160111123542_840.png" alt="这里写图片描述"></p>
+<p>@参考 <a href="http://www.open-open.com/lib/view/open1452486942714.html">深入浅出Fetch API</a></p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

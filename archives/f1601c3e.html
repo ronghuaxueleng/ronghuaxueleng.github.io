@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>单例模式 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单例模式">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/f1601c3e.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-12T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.192Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/f1601c3e.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            单例模式
+        </div>
+        <div class="post-meta">
+            2016-10-12 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <hr>
+<p>用一个变量来标志当前是否已经为某个类创建过对象，如果是，则在下一次获取该类的实例时，直接返回之前创建的对象。</p>
+<span id="more"></span>
+
+<h3 id="实现单例模式"><a href="#实现单例模式" class="headerlink" title="实现单例模式"></a>实现单例模式</h3><p>​<br>    &#x2F;&#x2F;1.实现单例模式<br>    var Singleton &#x3D; function (name) {<br>      this.name &#x3D; name;<br>    };<br>    Singleton.prototype.getName &#x3D; function() {<br>      alert(this.name);<br>    };<br>    Singleton.getInstance &#x3D; (function() {<br>      var instance &#x3D; null;<br>      return function(name) {<br>        if (!instance) {<br>          instance &#x3D; new Singleton(name);<br>        }<br>        return instance;<br>      }<br>    })();<br>    var a &#x3D; Singleton.getInstance(‘sven1’);<br>    var b &#x3D; Singleton.getInstance(‘sven2’);</p>
+<pre><code>console.log(a === b); //true
+</code></pre>
+<p>以上，我们通过<code>Singleton.getInstance</code>来获取<code>Singleton</code>类的唯一对象，虽然简单但是增加了这个类的“不透明性”，<code>Singleton</code>类的使用者必须知道这是一个单例类，跟以往通过<code>new xxx</code>的方法不同</p>
+<h3 id="透明的单例模式"><a href="#透明的单例模式" class="headerlink" title="透明的单例模式"></a>透明的单例模式</h3><p>有了以上的不足，我们现在就来解决</p>
+<p>​<br>    &#x2F;&#x2F;透明的单例模式<br>    var CreateDiv &#x3D; (function() {<br>      var instance;<br>      var CreateDiv &#x3D; function(html) {<br>        if (instance) {<br>          return instance;<br>        }<br>        this.html &#x3D; html;<br>        this.init();<br>        return instance &#x3D; this;<br>      };</p>
+<pre><code>  CreateDiv.prototype.init = function() &#123;
+    var div = document.createElement(&#39;div&#39;);
+    div.innerHTML = this.html;
+    document.body.appendChild(div);
+  &#125;;
+  
+  return CreateDiv;
+&#125;)();
+var aa = new CreateDiv(&#39;sven1&#39;);
+var bb = new CreateDiv(&#39;sven2&#39;);
+
+console.log(aa === bb);
+</code></pre>
+<p>以上代码，CreateDiv做了创建对象和执行初始化init方法，且保证只有一个对象。<br>但是，假如有一天我们需要利用这个类，在页面中创建千千万万个div，即要让这个类从单例类变成一个普通的可以产生多个实例的类，那我们必须改写CreateDiv构造函数，把控制创建唯一的那一段去掉…这样好像有点太麻烦了</p>
+<h3 id="用代理实现单例模式"><a href="#用代理实现单例模式" class="headerlink" title="用代理实现单例模式"></a>用代理实现单例模式</h3><p>这里就可以引入代理类的方式，思想就是将负责管理的单例逻辑移到一个代理类中，这样CreateDiv就变成一个普通的类，代码此处省略…</p>
+<h3 id="JavaScript中的单例模式"><a href="#JavaScript中的单例模式" class="headerlink" title="JavaScript中的单例模式"></a>JavaScript中的单例模式</h3><p>前面几种单例模式的实现，更多是接近传统面向对象语言中的实现，单例从“类”中创建出来。<br>然而，js作为一个没有类的语言，生搬单例模式的概念并无意义。我们只要一个对象，为什么要创建一个类呢？我们只是要一个唯一的实例就好了..因此我们可以直接用<code>var a = &#123;&#125;</code>来创建对象字面量。</p>
+<h3 id="惰性单例"><a href="#惰性单例" class="headerlink" title="惰性单例"></a>惰性单例</h3><p>惰性单例：需要的时候才创建。<br>例如，以一个登录悬浮窗为例，我们可以在页面加载的时候创建好这个div窗口，然后点击登录按钮的时候开始显示，但是这样如果用户只是随便浏览下就白白浪费了一些dom节点。<br>还有一种方法，点击的时候再创建，关闭的时候销毁。但是如果用户频繁的进行注销等操作，我们就要频繁的创建和删除div，显然这也不合理。<br>所以，这时候惰性单例模式就出马了。</p>
+<p>​<br>    var createLoginLayer &#x3D; (function() {<br>        var div;<br>        return function() {<br>            if (!div) {<br>                div &#x3D; document.createElement(‘div’);<br>                &#x2F;&#x2F;创建添加等dom操作…<br>            }<br>            return div;<br>        }<br>    })();</p>
+<pre><code>$(&quot;xxx&quot;).onclick = function() &#123;
+    var loginLayer = createLoginLayer();
+    loginLayer.show();
+&#125;
+</code></pre>
+<h3 id="通用的惰性实例"><a href="#通用的惰性实例" class="headerlink" title="通用的惰性实例"></a>通用的惰性实例</h3><p>看起来好像没什么问题，然而，他还是违反了单一的原则，创建的对象逻辑都放在createLoginLayer内部，如果我们要创建别的东西例如iframe，就要几乎将这个函数照抄一遍了，因此我们应该把不变的部分隔离出来。</p>
+<p>​<br>    var getSingle &#x3D; function(fn) {<br>        var result;<br>        return function() {<br>            return result || (result &#x3D; fn.apply(this, arguments));<br>        }<br>    };</p>
+<pre><code>var createLoginLayer = function() &#123;
+    //创建登录框
+&#125;  
+
+var createSingleLoginLayer = getSingle(createLoginLayer);
+</code></pre>
+<p>于是，目的达成。<br>当然，单例模式用途远远不止于创建对象，比如我们在渲染完页面的时候，接下来要给这个列表绑定click事件，如果是ajax动态向列表里面加载数据，实际上只需要第一次渲染的时候绑定。如果不用jq的<code>$(&quot;&quot;).one(&#39;click&#39;, function()&#123;&#125;)</code>的话，我们也可以用单例模式，做法类似。</p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

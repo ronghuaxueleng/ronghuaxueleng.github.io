@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>NPM安装及优化步骤--详细版 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="npm的常用命令npm install xxx 安装模块   npm install xxx@1.1.1   安装1.1.1版本的xxx   npm install xxx -g 将模块安装到全局环境中。   npm ls 查看安装的模块及依赖   npm ls -g 查看全局安装的模块及依赖   npm uninstall xxx  (-g) 卸载模块   npm cache clean 清理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NPM安装及优化步骤--详细版">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/5b6e6c1a.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="npm的常用命令npm install xxx 安装模块   npm install xxx@1.1.1   安装1.1.1版本的xxx   npm install xxx -g 将模块安装到全局环境中。   npm ls 查看安装的模块及依赖   npm ls -g 查看全局安装的模块及依赖   npm uninstall xxx  (-g) 卸载模块   npm cache clean 清理">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-12-15T19:12:59.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.371Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="tool,npm,安装,优化">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/5b6e6c1a.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            NPM安装及优化步骤--详细版
+        </div>
+        <div class="post-meta">
+            2015-12-15 ｜ 
+            
+                <a href="/categories/%E7%8E%AF%E5%A2%83-npm/"># 环境,npm</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/%E7%8E%AF%E5%A2%83-npm/">环境,npm</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <hr>
+<h1 id="npm的常用命令"><a href="#npm的常用命令" class="headerlink" title="npm的常用命令"></a>npm的常用命令</h1><pre><code>npm install xxx 安装模块  
+npm install xxx@1.1.1   安装1.1.1版本的xxx  
+npm install xxx -g 将模块安装到全局环境中。  
+npm ls 查看安装的模块及依赖  
+npm ls -g 查看全局安装的模块及依赖  
+npm uninstall xxx  (-g) 卸载模块  
+npm cache clean 清理缓存  
+npm help xxx  查看帮助  
+npm view moudleName dependencies  查看包的依赖关系  
+npm view moduleNames  查看node模块的package.json文件夹  
+npm view moduleName labelName  查看package.json文件夹下某个标签的内容  
+npm view moduleName repository.url  查看包的源文件地址  
+npm view moduleName engines   查看包所依赖的Node的版本  
+npm help folders   查看npm使用的所有文件夹  
+npm rebuild moduleName    用于更改包内容后进行重建  
+npm outdated   检查包是否已经过时，此命令会列出所有已经过时的包，可以及时进行包的更新  
+npm update moduleName   更新node模块  
+</code></pre>
+<span id="more"></span>
+
+<h1 id="npm获取配置有6种方式，优先级由高到低"><a href="#npm获取配置有6种方式，优先级由高到低" class="headerlink" title="npm获取配置有6种方式，优先级由高到低"></a>npm获取配置有6种方式，优先级由高到低</h1><pre><code>1、命令行参数。 --proxy http://server:port即将proxy的值设为http://server:port。
+2、环境变量。 以npm_config_为前缀的环境变量将会被认为是npm的配置属性。如设置proxy可以加入这样的环境变量npm_config_proxy=http://server:port。
+3、用户配置文件。可以通过npm config get userconfig查看文件路径。如果是mac系统的话默认路径就是$HOME/.npmrc。
+4、全局配置文件。可以通过npm config get globalconfig查看文件路径。mac系统的默认路径是/usr/local/etc/npmrc。
+5、内置配置文件。安装npm的目录下的npmrc文件。
+6、默认配置。 npm本身有默认配置参数，如果以上5条都没设置，则npm会使用默认配置参数。
+</code></pre>
+<h1 id="针对npm配置的命令行操作"><a href="#针对npm配置的命令行操作" class="headerlink" title="针对npm配置的命令行操作"></a>针对npm配置的命令行操作</h1><pre><code>npm config set &lt;key&gt; &lt;value&gt; [--global]
+npm config get &lt;key&gt;
+npm config delete &lt;key&gt;
+npm config list
+npm config edit
+npm get &lt;key&gt;
+npm set &lt;key&gt; &lt;value&gt; [--global]
+在设置配置属性时属性值默认是被存储于用户配置文件中，如果加上--global，则被存储在全局配置文件中。
+如果要查看npm的所有配置属性（包括默认配置），可以使用npm config ls -l。
+如果要查看npm的各种配置的含义，可以使用npm help config。
+</code></pre>
+<h1 id="解决npm-install安装模块失败的问题"><a href="#解决npm-install安装模块失败的问题" class="headerlink" title="解决npm install安装模块失败的问题"></a>解决npm install安装模块失败的问题</h1><h2 id="1、为npm设置代理"><a href="#1、为npm设置代理" class="headerlink" title="1、为npm设置代理"></a>1、为npm设置代理</h2><pre><code>npm config set proxy http://server:port
+npm config set https-proxy http://server:port
+</code></pre>
+<p>如果代理需要认证的话可以这样来设置。</p>
+<pre><code>npm config set proxy http://username:password@server:port
+npm config set https-proxy http://username:pawword@server:port
+</code></pre>
+<h2 id="2、国内镜像"><a href="#2、国内镜像" class="headerlink" title="2、国内镜像"></a>2、国内镜像</h2><pre><code>清华大学Node Packaged Modules镜像：
+http://npm.tuna.tsinghua.edu.cn
+淘宝：
+http://registry.npm.taobao.org
+cnpmjs:
+http://r.cnpmjs.org
+未知：
+http://registry.cnpmjs.org
+</code></pre>
+<p>方法一：通过config命令指定</p>
+<pre><code>npm config set registry http://registry.cnpmjs.org 
+npm info underscore （如果上面配置正确这个命令会有字符串response）
+</code></pre>
+<p>方法二：在命令行中指定</p>
+<pre><code>npm --registry http://registry.cnpmjs.org info underscore
+</code></pre>
+<p>方法三：在配置文件中指定，编辑安装npm的目录下的npmrc文件加入下面内容</p>
+<pre><code>registry = http://registry.cnpmjs.org
+</code></pre>
+<p>方法四：利用定制的cnpm代替npm</p>
+<pre><code>#安装该模块，然后通过该命令来安装所需模块
+npm install -g cnpm --registry=http://registry.npm.taobao.org
+# 利用cnpm来安装模块
+cnpm install [name]# 利用cnpm来同步模块
+cnpm sync connect
+</code></pre>
+<p>方法五：利用alias添加一个基于npm的新命令</p>
+<pre><code>alias cnpm=&quot;npm --registry=http://registry.npm.taobao.org \--cache=$HOME/.npm/.cache/cnpm \--disturl=http://npm.taobao.org/dist \--userconfig=$HOME/.cnpmrc&quot;#Or alias it in .bashrc or .zshrc$ echo &#39;\n#alias for cnpm\nalias cnpm=&quot;npm --registry=registry.npm.taobao.org \  --cache=$HOME/.npm/.cache/cnpm \  --disturl=http://npm.taobao.org/dist \  --userconfig=$HOME/.cnpmrc&quot;&#39; &gt;&gt; ~/.zshrc &amp;&amp; source ~/.zshrc
+</code></pre>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/tool-npm-%E5%AE%89%E8%A3%85-%E4%BC%98%E5%8C%96/"> / tool,npm,安装,优化</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

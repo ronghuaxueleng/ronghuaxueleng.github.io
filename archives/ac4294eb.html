@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>多态 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="简介在PHP设计模式(四)：继承中我们介绍了继承，利用extends来进行程序设计的方法。 在PHP设计模式(二)：抽象类和接口中我们介绍了接口，事实上也存在利用interface的程序设计方法，那就是多态。和C&#x2F;C++，Java，Python等语言一样，PHP也支持多态。多态更多是是一种面向对象程序设计的概念，让同一类对象执行同一个接口，但却实现不同的逻辑功能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多态">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/ac4294eb.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="简介在PHP设计模式(四)：继承中我们介绍了继承，利用extends来进行程序设计的方法。 在PHP设计模式(二)：抽象类和接口中我们介绍了接口，事实上也存在利用interface的程序设计方法，那就是多态。和C&#x2F;C++，Java，Python等语言一样，PHP也支持多态。多态更多是是一种面向对象程序设计的概念，让同一类对象执行同一个接口，但却实现不同的逻辑功能。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-13T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.382Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="php">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/ac4294eb.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            多态
+        </div>
+        <div class="post-meta">
+            2016-10-13 ｜ 
+            
+                <a href="/categories/php/"># php</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/php/">php</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在<a href="11d8b32d.html">PHP设计模式(四)：继承</a>中我们介绍了继承，利用extends来进行程序设计的方法。 在<a href="daef90fc.html">PHP设计模式(二)：抽象类和接口</a>中我们介绍了接口，事实上也存在利用interface的程序设计方法，那就是多态。<br>和C&#x2F;C++，Java，Python等语言一样，PHP也支持多态。多态更多是是一种面向对象程序设计的概念，让同一类对象执行同一个接口，但却实现不同的逻辑功能。</p>
+<span id="more"></span>
+
+<h2 id="多态-Polymorphism"><a href="#多态-Polymorphism" class="headerlink" title="多态&#x2F;Polymorphism"></a>多态&#x2F;Polymorphism</h2><p>还是用动物、鲸鱼和鲤鱼来举例：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="class"><span class="keyword">interface</span> <span class="title">IEat</span> </span>&#123;</span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">eatFish</span>(<span class="params"></span>)</span>;</span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">eatMoss</span>(<span class="params"></span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Whale</span> <span class="keyword">implements</span> <span class="title">IEat</span> </span>&#123;</span><br><span class="line">      <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eatFish</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;Whale eats fish.\n&quot;</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eatMoss</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;Whale doesn&#x27;t eat fish\n&quot;</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Carp</span> <span class="keyword">implements</span> <span class="title">IEat</span> </span>&#123;</span><br><span class="line">      <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eatFish</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;Carp doesn&#x27;t eat moss.\n&quot;</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eatMoss</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;Carp eats moss.\n&quot;</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="variable">$whale</span> = <span class="keyword">new</span> <span class="title class_">Whale</span>();</span><br><span class="line">	<span class="variable">$whale</span>-&gt;<span class="title function_ invoke__">eatFish</span>();</span><br><span class="line">	<span class="variable">$whale</span>-&gt;<span class="title function_ invoke__">eatMoss</span>();</span><br><span class="line">	<span class="variable">$carp</span> = <span class="keyword">new</span> <span class="title class_">Carp</span>();</span><br><span class="line">	<span class="variable">$carp</span>-&gt;<span class="title function_ invoke__">eatFish</span>();</span><br><span class="line">	<span class="variable">$carp</span>-&gt;<span class="title function_ invoke__">eatMoss</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">php Inheritance.php</span></span><br><span class="line">	Whale eats fish.</span><br><span class="line">    Whale doesn&#x27;t eat fish.</span><br><span class="line">	Carp eats moss.</span><br><span class="line">    Carp doesn&#x27;t eat moss.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>注意PHP的函数定义不包含返回值，因此完全可以给不同的接口实现返回不同类型的数据。这一点和C&#x2F;C++，Java等语言是不同的。此外，返回不同类型的数据，甚至不返回结果，对程序设计来说，会额外增加维护成本，已经和使用接口的初衷不同了（接口为了封装实现，而不同的返回值事实上是需要调用者去理解实现的）。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>合理利用多态对接口进行不同的实现，简化你的编程模型，让代码易于维护。</p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/php/"> / php</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

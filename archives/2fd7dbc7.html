@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>Shadow DOM - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="Shadow DOM 是四大网络组件标准之一，提供 CSS 作用域、DOM 封装和组合(Composition) 等优势，构建自定义元素。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shadow DOM">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/2fd7dbc7.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="Shadow DOM 是四大网络组件标准之一，提供 CSS 作用域、DOM 封装和组合(Composition) 等优势，构建自定义元素。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://7vikhl.com1.z0.glb.clouddn.com/shadow-dom.png">
+<meta property="og:image" content="http://7vikhl.com1.z0.glb.clouddn.com/FF183E44-E19D-4B24-918B-2DE5067699A4.png">
+<meta property="article:published_time" content="2017-11-09T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.393Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://7vikhl.com1.z0.glb.clouddn.com/shadow-dom.png">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/2fd7dbc7.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            Shadow DOM
+        </div>
+        <div class="post-meta">
+            2017-11-09 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <p><img src="http://7vikhl.com1.z0.glb.clouddn.com/shadow-dom.png"><br>Shadow DOM 是四大网络组件标准之一，提供 CSS 作用域、DOM 封装和组合(Composition) 等优势，构建自定义元素。</p>
+<span id="more"></span>
+
+<h2 id="什么是-Shadow-DOM"><a href="#什么是-Shadow-DOM" class="headerlink" title="什么是 Shadow DOM"></a>什么是 Shadow DOM</h2><p>浏览器在解析网页文档的时候，会将 HTML 标签转换成节点，为了保持页面的层次结构，这些节点构成一个节点树，这个结构就是 DOM（文档对象模型）。DOM 将文档作为一个结构化的节点组以及包含属性和方法的对象，是 HTML 的编程接口，我们通常会使用 JavaScript 来访问操纵 DOM。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const header = document.createElement(&#x27;header&#x27;);</span><br><span class="line">const h1 = document.createElement(&#x27;h1&#x27;);</span><br><span class="line">h1.textContent = &#x27;Hello world!&#x27;;</span><br><span class="line">header.appendChild(h1);</span><br><span class="line">document.body.appendChild(header);</span><br></pre></td></tr></table></figure>
+
+<p>这段 JavaScript 代码执行后会生成如下的 DOM 结构：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;header&gt;</span><br><span class="line">    &lt;h1&gt;Hello DOM&lt;/h1&gt;</span><br><span class="line">  &lt;/header&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<p>那什么是 Shadow DOM 呢❓<br>Shadow DOM 为 Web 组件中的 DOM 和 CSS 提供了封装。Shadow DOM 使得这些东西与主文档的 DOM 保持分离。Shadow DOM 与普通的 DOM 的区别是：<br>👉 通常创建新的 DOM 节点附加到其他 DOM 元素上，就会成为其子节点（元素）；但借助 Shadow DOM，可以创建一个  DOM 树附加到其他元素上，这个 DOM 树并非其子节点（元素），其拥有自身的作用域范围，这个 DOM 树称为：**<code>shadwo tree</code>**。被附加的元素称为 **<code>shadow host</code>**，这个 DOM 树称为 **<code>shadow root</code>**。</p>
+<blockquote>
+<p>You can think of shadow DOM as a scoped subtree inside your element.</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const header = document.createElement(&#x27;header&#x27;);</span><br><span class="line">const shadowRoot = header.attachShadow(&#123;mode: &#x27;open&#x27;&#125;);</span><br><span class="line">shadowRoot.innerHTML = &#x27;&lt;h1&gt;Hello Shadow DOM&lt;/h1&gt;&#x27;; // Could also use appendChild().</span><br><span class="line"></span><br><span class="line">// header.shadowRoot === shadowRoot</span><br><span class="line">// shadowRoot.host === header</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>为元素创建 shadow DOM，调用 <code>element.attachShadow()</code></li>
+<li>通过 <code>shadowRoot</code> 属性获取元素附加的 Shadow DOM</li>
+<li>通过 shadow root 的 <code>host</code> 属性获取其附属的元素</li>
+</ul>
+<p>❗️<strong>注意：</strong>并非所有元素都可以调用 <code>element.attachShadow()</code> 为其创建添加 Shadow DOM，因为有些元素浏览器已经为其添加了 Shadow DOM，例如 <code>&lt;textarea&gt;</code> <code>&lt;input&gt;</code>；而还有些元素为其添加 Shadow DOM 是没有意义的，例如 <code>&lt;img&gt;</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">document.createElement(&#x27;input&#x27;).attachShadow(&#123;mode: &#x27;open&#x27;&#125;);</span><br><span class="line">// Error. `&lt;input&gt;` cannot host shadow dom.</span><br></pre></td></tr></table></figure>
+
+<p>在创建自定义元素时，Shadow DOM 尤其有用。使用 Shadow DOM 来分隔元素的 HTML、CSS 和 JS，从而生成一个组件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">window.customElements.define(&#x27;x-tag&#x27;, class extends HTMLElement &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    super()</span><br><span class="line"></span><br><span class="line">    let shadowRoot = this.attachShadow(&#123;mode: &#x27;open&#x27;&#125;)</span><br><span class="line">    shadowRoot.innerHTML = `</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">    b &#123;</span><br><span class="line">      color: red;</span><br><span class="line">    &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;b&gt;Hello world&lt;/b&gt;</span><br><span class="line">    `</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>注意 Shadow DOM 中的 CSS 规则的作用域仅限于 <code>&lt;x-tag&gt;</code>。</p>
+<h2 id="组合和-slot"><a href="#组合和-slot" class="headerlink" title="组合和 slot"></a>组合和 slot</h2><p>组合是 shadow DOM 最难理解的功能之一，但可以说是最重要的功能。</p>
+<h3 id="light-DOM-和-shadow-DOM"><a href="#light-DOM-和-shadow-DOM" class="headerlink" title="light DOM 和 shadow DOM"></a>light DOM 和 shadow DOM</h3><p><strong>light DOM</strong><br>使用组件的用户编写的标记，DOM 元素的实际子元素，该子元素不在组件的 shadow DOM 之内，这就是 light DOM。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;button is=&quot;better-button&quot;&gt;</span><br><span class="line">  &lt;!-- the image and span are better-button&#x27;s light DOM --&gt;</span><br><span class="line">  &lt;img src=&quot;gear.svg&quot; slot=&quot;icon&quot;&gt;</span><br><span class="line">  &lt;span&gt;Settings&lt;/span&gt;</span><br><span class="line">&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>image</code> 和 <code>span</code> 即是 <code>button</code> 的 light DOM。</p>
+<p><strong>shadow DOM</strong><br>组件作者编写的标记，它定义组件的内部结构，作用域 CSS 等</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#shadow-root</span><br><span class="line">  &lt;style&gt;...&lt;/style&gt;</span><br><span class="line">  &lt;slot name=&quot;icon&quot;&gt;&lt;/slot&gt;</span><br><span class="line">  &lt;span id=&quot;wrapper&quot;&gt;</span><br><span class="line">    &lt;slot&gt;Button&lt;/slot&gt;</span><br><span class="line">  &lt;/span&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Flattened DOM tree</strong><br>浏览器将用户的 light DOM 分布到 shadow DOM 中，渲染成一颗 DOM 树，这个过程称为 **<code>flattening the tree</code>**，这棵树称为扁平树 **<code>Flattened DOM tree</code>**。 扁平树也是我们在 DevTools 中最终看到的树以及在页面上渲染的结果。<br><img src="http://7vikhl.com1.z0.glb.clouddn.com/FF183E44-E19D-4B24-918B-2DE5067699A4.png"></p>
+<h3 id="元素"><a href="#元素" class="headerlink" title=" 元素"></a><slot> 元素</h3><p>Shadow DOM 使用 <code>&lt;slot&gt;</code> 元素将 light DOM 树组合到 shadow DOM 中，形成一颗 DOM 树。</p>
+<p>Slot 相当于是组件内部的占位符，通过定义一个或者多个 <code>&lt;slot&gt;</code>，可以将外部的标记引入到组件 shadow DOM 中进行渲染，相当于“跨域”了 shadow DOM 的边界，这些引入到 shadow DOM 中的元素被称为分布式节点 **<code>distributed nodes</code>**。注意：slot 实际上并不移动这些分布式节点，它们在 shadow DOM 内部的其他位置进行渲染。</p>
+<p>组件可在其 shadow DOM 中定义零个或多个 slot。Slot 可以为空，或者提供回退内容(fallback content)，如果用户不提供 light DOM 内容，slot 会将对其备用内容进行渲染。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Default slot. If there&#x27;s more than one default slot, the first is used. --&gt;</span><br><span class="line">&lt;slot&gt;&lt;/slot&gt;</span><br><span class="line"></span><br><span class="line">&lt;slot&gt;Fancy button&lt;/slot&gt; &lt;!-- default slot with fallback content --&gt;</span><br></pre></td></tr></table></figure>
+
+<p>还可以创建命名 slot (named slots)，使用组件的用户通过名称找到特定的 slot。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;x-tag&gt;</span><br><span class="line">  &lt;p slot=&quot;title&quot;&gt;Custom Elements&lt;/p&gt;</span><br><span class="line">&lt;/x-tag&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#shadow-root</span><br><span class="line">  &lt;style&gt;</span><br><span class="line">  b &#123;</span><br><span class="line">    color: red;</span><br><span class="line">  &#125;</span><br><span class="line">  &lt;/style&gt;</span><br><span class="line">  &lt;b&gt;Hello world&lt;/b&gt;</span><br><span class="line">  &lt;slot name=&quot;title&quot;&gt;&lt;/slot&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="设定样式"><a href="#设定样式" class="headerlink" title="设定样式"></a>设定样式</h2><p>shadow DOM 最有用的功能是作用域 CSS：</p>
+<ul>
+<li>外部页面中的 CSS 选择器不会应用于组件内部。</li>
+<li>组件内部定义的样式也不会渗出，它们的作用域仅限于宿主元素(shadow host)</li>
+</ul>
+<h3 id="通过选择器设定样式"><a href="#通过选择器设定样式" class="headerlink" title="通过选择器设定样式"></a>通过选择器设定样式</h3><p><strong>使用 <code>:host</code> 为组件为自身设定样式</strong><br>需要注意：外部页面中为组件设定的样式比 <code>:host</code> 规则具有更高的优先级，也就是说，对于组件自身，外部样式优先，用户可以在外部设置组件自身的样式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 外部样式比 :host 优先</span><br><span class="line">x-tag &#123;</span><br><span class="line">  border: 1px solid red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#shadow-root</span><br><span class="line">  &lt;style&gt;</span><br><span class="line">  :host &#123;</span><br><span class="line">    border: 1px solid green;</span><br><span class="line">  &#125;</span><br><span class="line">  &lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用 <code>:host(&lt;selector&gt;)</code> 匹配组件自身不同状态</strong><br>通过 <code>:host(&lt;selector&gt;)</code> 匹配不同状态，对组件自身或者内部节点设定不同的样式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#shadow-root</span><br><span class="line">  &lt;style&gt;</span><br><span class="line">  :host(:hover) &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  :host(.red_bg) &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  :host(.green_bg) &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  :host(.disable) button &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  &lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用 <code>:host-context(&lt;selector&gt;)</code> 匹配任意父级</strong><br>使用 <code>:host-context(&lt;selector&gt;)</code> 主要用于根据组件所在的环境进行主题化（基于情境设定样式），例如设置白天模式，夜晚模式，我们在 <code>&lt;html&gt;</code> 或者 <code>&lt;body&gt;</code> 设定不同的 class，而组件通过 <code>:host-context(&lt;selector&gt;)</code> 就可以匹配到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;body class=&quot;darktheme&quot;&gt;</span><br><span class="line">  &lt;fancy-tabs&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;/fancy-tabs&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">#shadow-root</span><br><span class="line">  :host-context(.darktheme) &#123;</span><br><span class="line">    color: white;</span><br><span class="line">    background: black;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用 <code>::slotted(&lt;compound-selector&gt;)</code> 匹配分布到 <slot> 中的节点</strong><br>使用 <code>::slotted(&lt;compound-selector&gt;)</code> 为分布式节点设定样式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;name-badge&gt;</span><br><span class="line">  #shadow-root</span><br><span class="line">    &lt;h2&gt;Eric Bidelman&lt;/h2&gt;</span><br><span class="line">    &lt;span class=&quot;title&quot;&gt;</span><br><span class="line">      Digital Jedi, &lt;span class=&quot;company&quot;&gt;Google&lt;/span&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">&lt;/name-badge&gt;</span><br></pre></td></tr></table></figure>
+
+<p>组件的 shadow DOM 可为用户的 <code>&lt;h2&gt;</code> 和 <code>.title</code> 设定样式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">  ::slotted(h2) &#123;</span><br><span class="line">    margin: 0;</span><br><span class="line">    font-weight: 300;</span><br><span class="line">    color: red;</span><br><span class="line">  &#125;</span><br><span class="line">  ::slotted(.title) &#123;</span><br><span class="line">     color: orange;</span><br><span class="line">  &#125;</span><br><span class="line">  /* DOESN&#x27;T WORK (can only select top-level nodes).</span><br><span class="line">  ::slotted(.company),</span><br><span class="line">  ::slotted(.title .company) &#123;</span><br><span class="line">    text-transform: uppercase;</span><br><span class="line">  &#125;</span><br><span class="line">  */</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是：<br>① 使用 <code>::slotted(&lt;compound-selector&gt;)</code> 只能为分布节点的<strong>顶级节点</strong>设置样式。<br>② slot 并不会移动 light DOM，light DOM 节点分布到 shadow DOM 中后，slot 会对其 DOM 进行渲染，样式设置，但是节点实际还是留在原处。如果外部对 light DOM 设置了样式，那么外部样式将会覆盖 shadow DOM 中通过 <code>::slotted(&lt;compound-selector&gt;)</code> 设置的样式，具有较高优先级。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">  x-tag p &#123;</span><br><span class="line">    color: red; // 外部样式，具有较高优先级</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;x-tag&gt;</span><br><span class="line">  &lt;p slot=&quot;title&quot;&gt;Custom Elements&lt;/p&gt;</span><br><span class="line">&lt;/x-tag&gt;</span><br><span class="line"></span><br><span class="line">#shadow-root</span><br><span class="line">  &lt;style&gt;</span><br><span class="line">  ::slotted(p) &#123;</span><br><span class="line">    color: green;</span><br><span class="line">  &#125;</span><br><span class="line">  &lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="从外部为组件设定样式"><a href="#从外部为组件设定样式" class="headerlink" title="从外部为组件设定样式"></a>从外部为组件设定样式</h3><p>有几种方法可从外部为组件设定样式：最简单的方法是使用标记名称作为选择器</p>
+<p><strong>为组件自身设定样式</strong><br>从外部为组件自身设定样式最简单的方法，就是使用组件标签名称作为选择器，设置 CSS 样式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x-tag &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">x-tag:hover &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：<strong>外部样式总是优先于在 shadow DOM 中定义的样式。</strong>例如，如果用户在组件外部编写：<code>fancy-tabs &#123; width: 500px; &#125;</code>，它将优先于组件的规则：<code>:host &#123; width: 650px;&#125;</code>。</p>
+<p><strong>为组件内部元素设定样式</strong><br>在组件外部，我们不能直接通过选择器对组件内的元素设置样式。组件提供自定义属性 <strong>custom properties</strong>，相当于是样式占位符，外部通过对自定义属性 <strong>custom properties</strong> 来调整组件内部元素的样式。</p>
+<p>例如，<code>&lt;fancy-tabs&gt;</code> 可让用户替换背景颜色：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- main page --&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">  fancy-tabs &#123;</span><br><span class="line">    margin-bottom: 32px;</span><br><span class="line">    --fancy-tabs-bg: black;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;fancy-tabs background&gt;...&lt;/fancy-tabs&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在其 shadow DOM 内部：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">:host([background]) &#123;</span><br><span class="line">  background: var(--fancy-tabs-bg, #9E9E9E);</span><br><span class="line">  border-radius: 10px;</span><br><span class="line">  padding: 10px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在本例中，该组件将使用 <code>black</code> 作为背景值，因为用户指定了该值。 否则背景颜色将采用默认值 <code>#9E9E9E</code>。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="避免在组件中创建-closed-shadow-root"><a href="#避免在组件中创建-closed-shadow-root" class="headerlink" title="避免在组件中创建 closed shadow root"></a>避免在组件中创建 closed shadow root</h3><p>shadow DOM 的另一情况称为<strong>闭合</strong>模式。创建closed shadow DOM tree 后，在外部无法通过 JavaScript 访问组件的内部 DOM。这与 <code>&lt;video&gt;</code> 等原生元素工作方式类似，JavaScript 无法访问 <code>&lt;video&gt;</code> 的 shadow DOM，因为浏览器使用closed shadow root来实现。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const div = document.createElement(&#x27;div&#x27;);</span><br><span class="line">const shadowRoot = div.attachShadow(&#123;mode: &#x27;closed&#x27;&#125;); // close shadow tree</span><br><span class="line">// div.shadowRoot === null</span><br><span class="line">// shadowRoot.host === div</span><br></pre></td></tr></table></figure>
+
+<h3 id="关于-slot-的-API"><a href="#关于-slot-的-API" class="headerlink" title="关于 slot 的 API"></a>关于 slot 的 API</h3><p><strong><code>slotchange</code> 事件</strong></p>
+<p>当 slot 的分布式节点发生变化时，<code>slotchange</code> 事件会触发。例如，当用户从 light DOM 中添加&#x2F;移除子项时。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const slot = this.shadowRoot.querySelector(&#x27;#slot&#x27;);</span><br><span class="line">slot.addEventListener(&#x27;slotchange&#x27;, e =&gt; &#123;</span><br><span class="line">  console.log(&#x27;light dom children changed!&#x27;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>注：当组件的实例首次初始化时，<code>slotchange</code> 不触发。</p>
+<p><strong>查看 slot 中渲染的元素</strong><br>调用 <code>slot.assignedNodes()</code> 可查看 slot 正在渲染哪些元素；该方法中传入 <code>&#123;flatten: true&#125;</code> 选项将返回 slot 的备用内容fallbcak content（前提是没有分布任何节点）。</p>
+<table>
+<thead>
+<tr>
+<th>用法</th>
+<th>调用</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;button is=&quot;better-button&quot;&gt;My button&lt;/button&gt;</code></td>
+<td>slot.assignedNodes();</td>
+<td>[text]</td>
+</tr>
+<tr>
+<td><code>&lt;button is=&quot;better-button&quot;&gt;&lt;/button&gt;</code></td>
+<td>slot.assignedNodes();</td>
+<td>[]</td>
+</tr>
+<tr>
+<td><code>&lt;button is=&quot;better-button&quot;&gt;&lt;/button&gt;</code></td>
+<td>slot.assignedNodes({flatten: true});</td>
+<td>[<b>fallback content</b>]</td>
+</tr>
+</tbody></table>
+<p><strong>查看元素渲染在哪个 slot 中</strong><br><code>element.assignedSlot</code> 将告诉您元素分配到组件的哪个 slot。</p>
+<h3 id="Shadow-DOM-事件模型"><a href="#Shadow-DOM-事件模型" class="headerlink" title="Shadow DOM 事件模型"></a>Shadow DOM 事件模型</h3><p>当事件从 shadow DOM 中触发时，其目标 target 为维持 shadow DOM 的封装，不暴露 shadow DOM 中的内容元素，会进行重置 retarget，看起来事件是来自组件本身，而不是组件中 shadow DOM 中的内容元素。</p>
+<p>大部分事件都会跨过 shadow DOM 边界，向外传播：</p>
+<ul>
+<li>聚焦事件：blur、focus、focusin、focusout</li>
+<li>鼠标事件：click、dblclick、mousedown、mouseenter、mousemove，等等</li>
+<li>滚轮事件：wheel</li>
+<li>输入事件：beforeinput、input</li>
+<li>键盘事件：keydown、keyup</li>
+<li>组合事件：compositionstart、compositionupdate、compositionend</li>
+<li>拖放事件：dragstart、drag、dragend、drop，等等</li>
+</ul>
+<p>对于 <code>mode</code> 为 <code>open</code> 的 shadow DOM，事件回调中，调用 <code>event.composedPath()</code> 将返回事件向上传播经过的节点路径。</p>
+<p>对于组件内的自定义事件，不会传播出 shadow DOM，除非事件创建时指定 <code>composed: true</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// Inside &lt;fancy-tab&gt; custom element class definition:</span><br><span class="line">selectTab() &#123;</span><br><span class="line">  const tabs = this.shadowRoot.querySelector(&#x27;#tabs&#x27;);</span><br><span class="line">  tabs.dispatchEvent(new Event(&#x27;tab-select&#x27;, &#123;bubbles: true, composed: true&#125;));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果 <code>composed: false</code>（默认值），用户无法在组件外部侦听到这个自定义事件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;fancy-tabs&gt;&lt;/fancy-tabs&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  const tabs = document.querySelector(&#x27;fancy-tabs&#x27;);</span><br><span class="line">  tabs.addEventListener(&#x27;tab-select&#x27;, e =&gt; &#123;</span><br><span class="line">    // won&#x27;t fire if `tab-select` wasn&#x27;t created with `composed: true`.</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>本文主要是阅读 <strong>Shadow DOM v1: Self-Contained Web Components</strong> 后，理解整理而来。<br>英文原文：<a href="https://developers.google.com/web/fundamentals/web-components/shadowdom">Shadow DOM v1: Self-Contained Web Components</a><br>中文翻译：<a href="https://developers.google.com/web/fundamentals/web-components/best-practices?hl=zh-cn">Shadow DOM v1：独立的网络组件</a></p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

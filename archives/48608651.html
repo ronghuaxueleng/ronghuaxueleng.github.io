@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>使用sendMail发送邮件 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="由于前不久买了个kindle，所以就一直琢磨怎么把它用好，发现亚马逊提供了一个推送服务，可以把书籍推送到绑定的kindle上，所以就在网上搜罗了一些kindle推送的网站，像kindle推、看云等都是很好的平台，有的时候也想把本地书籍推送到kindle上阅读，方法当然也有很多，比如直接连接到电脑、通过邮箱发送邮件等，这些都是很好的办法，下面我就将介绍一种使用sendMail发送邮件的方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用sendMail发送邮件">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/48608651.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="由于前不久买了个kindle，所以就一直琢磨怎么把它用好，发现亚马逊提供了一个推送服务，可以把书籍推送到绑定的kindle上，所以就在网上搜罗了一些kindle推送的网站，像kindle推、看云等都是很好的平台，有的时候也想把本地书籍推送到kindle上阅读，方法当然也有很多，比如直接连接到电脑、通过邮箱发送邮件等，这些都是很好的办法，下面我就将介绍一种使用sendMail发送邮件的方法">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-09-19T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.391Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="kindle">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/48608651.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            使用sendMail发送邮件
+        </div>
+        <div class="post-meta">
+            2016-09-19 ｜ 
+            
+                <a href="/categories/kindle/"># kindle</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/kindle/">kindle</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <hr>
+<p>由于前不久买了个kindle，所以就一直琢磨怎么把它用好，发现亚马逊提供了一个推送服务，可以把书籍推送到绑定的kindle上，所以就在网上搜罗了一些kindle推送的网站，像<a href="http://www.kindlepush.com/main">kindle推</a>、<a href="http://www.kancloud.cn/">看云</a>等都是很好的平台，有的时候也想把本地书籍推送到kindle上阅读，方法当然也有很多，比如直接连接到电脑、通过邮箱发送邮件等，这些都是很好的办法，下面我就将介绍一种使用sendMail发送邮件的方法</p>
+<span id="more"></span>
+
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>到<a href="http://caspian.dotconf.net/menu/Software/SendEmail/#download">sendMail</a>官方网站去下载压缩包，解压即可使用</p>
+<h1 id="发送邮件"><a href="#发送邮件" class="headerlink" title="发送邮件"></a>发送邮件</h1><p>进入到解压后的目录，你也可以把这个目录配置到环境目录中这样更方便使用</p>
+<p>使用命令：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sendEmail -f yourselfemail@163.com -t targetemail@qq.com -s smtp.163.com -u <span class="string">&quot;我是邮件主题&quot;</span> -o message-content-type=html -o message-charset=utf8 -xu 登陆用户名@163.com -xp 123456用户密码  -m <span class="string">&quot;我是邮件内容 -a &quot;</span>附件路径<span class="string">&quot; -o message-charset=GB2312 -o message-header=GB2312</span></span><br></pre></td></tr></table></figure>
+<p> -f <a href="mailto:&#121;&#x6f;&#117;&#114;&#x73;&#101;&#x6c;&#102;&#x65;&#x6d;&#x61;&#x69;&#x6c;&#x40;&#x31;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#109;">&#121;&#x6f;&#117;&#114;&#x73;&#101;&#x6c;&#102;&#x65;&#x6d;&#x61;&#x69;&#x6c;&#x40;&#x31;&#x36;&#x33;&#x2e;&#x63;&#x6f;&#109;</a>  发件人邮箱<br>-s smtp.163.com       发件人邮箱的smtp服务器<br>-u “我是邮件主题”     邮件的标题<br>-o message-content-type&#x3D;html   邮件内容的格式,html表示它是html格式<br>-o message-charset&#x3D;utf8        邮件内容编码<br>-xu 登陆用户名@163.com          发件人邮箱的用户名<br>-xp 123456用户密码               发件人邮箱密码<br>-m “我是邮件内容”        邮件的具体内容<br>-a “附件路径”</p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/kindle/"> / kindle</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

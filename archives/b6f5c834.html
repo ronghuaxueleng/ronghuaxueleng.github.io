@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>策略模式的应用 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="用策略模式实现缓动动画需求：让小球以各种缓动效果在页面中运动动画开始前需要记录的：  小球所在原始位置  小球移动的目标位置  动画开始时的时间点  小球运动的时间点之后，用setInterval创建一个定时器，定时器每19秒循环一次。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="策略模式的应用">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/b6f5c834.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="用策略模式实现缓动动画需求：让小球以各种缓动效果在页面中运动动画开始前需要记录的：  小球所在原始位置  小球移动的目标位置  动画开始时的时间点  小球运动的时间点之后，用setInterval创建一个定时器，定时器每19秒循环一次。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-12T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.195Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/b6f5c834.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            策略模式的应用
+        </div>
+        <div class="post-meta">
+            2016-10-12 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <hr>
+<h3 id="用策略模式实现缓动动画"><a href="#用策略模式实现缓动动画" class="headerlink" title="用策略模式实现缓动动画"></a>用策略模式实现缓动动画</h3><p>需求：让小球以各种缓动效果在页面中运动<br>动画开始前需要记录的：</p>
+<ul>
+<li><p>小球所在原始位置</p>
+</li>
+<li><p>小球移动的目标位置</p>
+</li>
+<li><p>动画开始时的时间点</p>
+</li>
+<li><p>小球运动的时间点<br>之后，用<code>setInterval</code>创建一个定时器，定时器每19秒循环一次。</p>
+</li>
+</ul>
+<span id="more"></span>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//缓动算法，此算法移植于flash</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> tween = &#123;</span><br><span class="line">    <span class="comment">//t：动画已消耗的时间，b：小球原始位置，c：小球目标位置，d：动画持续时间</span></span><br><span class="line">    <span class="attr">linear</span>: <span class="keyword">function</span>(<span class="params">t, b, c, d</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> c*t/d + b;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">reseIn</span>: <span class="keyword">function</span>(<span class="params">t, b, c, d</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> c * (t /= d) * t + b;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">strongEaseIn</span>: <span class="keyword">function</span>(<span class="params">t, b, c, d</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> c * (t /= d) * t * t * t * t + b;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">strongEaseOut</span>: <span class="keyword">function</span>(<span class="params">t, b, c, d</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> c * (( t = t / d - <span class="number">1</span>) * t * t * t * t + <span class="number">1</span>) + b;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">sineaseIn</span>: <span class="keyword">function</span>(<span class="params">t, b, c, d</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> c * (t /= d) * t * t + b;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">sineaseOur</span>: <span class="keyword">function</span>(<span class="params">t, b, c, d</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> c * ((t = t / d - <span class="number">1</span>) * t * t + <span class="number">1</span> ) + b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>接着Animation类</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title class_">Animate</span> = <span class="keyword">function</span>(<span class="params"> dom </span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">dom</span> = dom;              <span class="comment">//进行运动的dom节点</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">startTime</span> = <span class="number">0</span>;         <span class="comment">//动画开始时间</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">startPos</span> = <span class="number">0</span>;           <span class="comment">//动画开始时候dom位置</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">endPos</span> = <span class="number">0</span>;            <span class="comment">//结束dom位置</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">propertyName</span> = <span class="literal">null</span>;     <span class="comment">//dom节点需要被改变的属性名</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">easing</span> = <span class="literal">null</span>;    <span class="comment">//缓动算法</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">duration</span> = <span class="literal">null</span>;   <span class="comment">//动画持续时间</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Animate.prototype.start方法负责启动这个动画<br>Animate.prototype.step代表小球运动的每一帧要做的事情</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Animate</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">start</span> = <span class="keyword">function</span>(<span class="params"> propertyName, endPos, duration, easing</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">startTime</span> = +<span class="keyword">new</span> <span class="title class_">Date</span>;  <span class="comment">//动画启动时间</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">startPos</span> = <span class="variable language_">this</span>.<span class="property">dom</span>.<span class="title function_">getBoundingClientRect</span>()[ propertyName ]; <span class="comment">//dom节点初始位置</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">endPos</span> = endPos;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">duration</span> = duration;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">easing</span> = tween[ easing ]; </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">var</span> self = <span class="variable language_">this</span>;</span><br><span class="line">    <span class="keyword">var</span> timeId = <span class="built_in">setInterval</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123; <span class="comment">//启动定时器，开始执行动画</span></span><br><span class="line">        <span class="keyword">if</span> (self.<span class="title function_">step</span>() === <span class="literal">false</span>) &#123;</span><br><span class="line">            <span class="built_in">clearInterval</span>(timeId);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="number">19</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Animate</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">step</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> t = +<span class="keyword">new</span> <span class="title class_">Date</span>;</span><br><span class="line">    <span class="keyword">if</span> (t &gt;= <span class="variable language_">this</span>.<span class="property">startTime</span> + <span class="variable language_">this</span>.<span class="property">duration</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">update</span>(<span class="variable language_">this</span>.<span class="property">endPos</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> pos = <span class="variable language_">this</span>.<span class="title function_">easing</span>(t - <span class="variable language_">this</span>.<span class="property">startTime</span>, <span class="variable language_">this</span>.<span class="property">startPos</span>, <span class="variable language_">this</span>.<span class="property">endPos</span> = <span class="variable language_">this</span>.<span class="property">startPos</span>, <span class="variable language_">this</span>.<span class="property">duration</span>);</span><br><span class="line">  </span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">update</span>(pos);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Animate</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">update</span> = <span class="keyword">function</span>(<span class="params">pos</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">dom</span>.<span class="property">style</span>[<span class="variable language_">this</span>.<span class="property">propertyName</span>] = pos + <span class="string">&#x27;px&#x27;</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>最后，调用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> div = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> animate = <span class="keyword">new</span> <span class="title class_">Animate</span>(div);</span><br><span class="line">animate.<span class="title function_">start</span>(<span class="string">&#x27;left&#x27;</span>, <span class="number">500</span>, <span class="number">1000</span>, <span class="string">&#x27;strongEaseOut&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="表单验证"><a href="#表单验证" class="headerlink" title="表单验证"></a>表单验证</h3><p>需求：</p>
+<ul>
+<li><p>用户名不能为空</p>
+</li>
+<li><p>密码长度不能少于6位</p>
+</li>
+<li><p>手机号码符合格式</p>
+</li>
+</ul>
+<p>常规，我们可能这么写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> registerForm = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;registerForm&#x27;</span>);</span><br><span class="line"></span><br><span class="line">registerForm.<span class="property">onsubmit</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (registerForm.<span class="property">userName</span>.<span class="property">value</span> === <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&quot;用户名不能为空&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (registerForm.<span class="property">password</span>.<span class="property">value</span>.<span class="property">length</span> &lt; <span class="number">6</span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&quot;密码长度不能少于6位&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="regexp">/(^1[3|5|8][0-9]&#123;9&#125;$)/</span>.<span class="title function_">test</span>(registerForm.<span class="property">phoneNumber</span>.<span class="property">value</span>)) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&quot;手机号码格式不正确&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然，这个也有函数庞大，缺乏弹性，复用性差等问题，所以，开始突出本文的重点，策略模式的应用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> strategies = &#123;</span><br><span class="line">  <span class="attr">isNonEmpty</span>: <span class="keyword">function</span>(<span class="params">value, errorMsg</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (value == <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> errorMsg;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">minLength</span>: <span class="keyword">function</span>(<span class="params">value, length, errorMsg</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (value.<span class="property">length</span> &lt; length) &#123;</span><br><span class="line">      <span class="keyword">return</span> errorMsg;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">isMobile</span>: <span class="keyword">function</span>(<span class="params">value, errorMsg</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="regexp">/(^1[3|5|8][0-9]&#123;9&#125;$)/</span>.<span class="title function_">test</span>(value)) &#123;</span><br><span class="line">      <span class="keyword">return</span> errorMsg;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">Validator</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">cache</span> = [];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Validator</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">add</span> = <span class="keyword">function</span>(<span class="params">dom, rule, errorMsg</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> ary = rule.<span class="title function_">split</span>(<span class="string">&#x27;:&#x27;</span>);</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">cache</span>.<span class="title function_">push</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> strategy = ary.<span class="title function_">shift</span>();</span><br><span class="line">    ary.<span class="title function_">unshift</span>(dom.<span class="property">value</span>);</span><br><span class="line">    ary.<span class="title function_">push</span>(errorMsg);</span><br><span class="line">    <span class="keyword">return</span> strategies[strategy].<span class="title function_">apply</span>(dom, ary);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Validator</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">start</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; validataFunc; validataFunc = <span class="variable language_">this</span>.<span class="property">cache</span>[i++]) &#123;</span><br><span class="line">    <span class="keyword">var</span> msg = <span class="title function_">validataFunc</span>();</span><br><span class="line">    <span class="keyword">if</span> (msg) &#123;</span><br><span class="line">      <span class="keyword">return</span> msg;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> registerForm = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;registerForm&#x27;</span>);</span><br><span class="line">registerForm.<span class="property">onsubmit</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> errorMsg = <span class="title function_">validataFunc</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (errorMsg) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(errorMsg);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> validataFunc = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> validator = <span class="keyword">new</span> <span class="title class_">Validator</span>();</span><br><span class="line"></span><br><span class="line">  validator.<span class="title function_">add</span>(registerForm.<span class="property">userName</span>, <span class="string">&#x27;isNonEmpty&#x27;</span>, <span class="string">&#x27;用户名不能为空&#x27;</span>);</span><br><span class="line">  validator.<span class="title function_">add</span>(registerForm.<span class="property">password</span>, <span class="string">&#x27;minLength:6&#x27;</span>, <span class="string">&#x27;密码长度不能少于6位&#x27;</span>);</span><br><span class="line">  validator.<span class="title function_">add</span>(registerForm.<span class="property">phoneNumber</span>, <span class="string">&#x27;isMobile&#x27;</span>, <span class="string">&#x27;手机号码格式不正确&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> errorMsg = validator.<span class="title function_">start</span>();</span><br><span class="line">  <span class="keyword">return</span> errorMsg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>服务定位器模式 (Service Locator Pattern) - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="服务定位器模式 (Service Locator Pattern)服务定位器模式（Service Locator Pattern）用于想使用 JNDI 查询定位各种服务的时候 考虑到为某个服务查找 JNDI 的代价很高，服务定位器模式充分利用了缓存技术 在首次请求某个服务时，服务定位器在 JNDI 中查找服务，并缓存该服务对象 当再次请求相同的服务时，服务定位器会在它的缓存中查找，这样可以在很大程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="服务定位器模式 (Service Locator Pattern)">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/b5164f8.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="服务定位器模式 (Service Locator Pattern)服务定位器模式（Service Locator Pattern）用于想使用 JNDI 查询定位各种服务的时候 考虑到为某个服务查找 JNDI 的代价很高，服务定位器模式充分利用了缓存技术 在首次请求某个服务时，服务定位器在 JNDI 中查找服务，并缓存该服务对象 当再次请求相同的服务时，服务定位器会在它的缓存中查找，这样可以在很大程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ronghuaxueleng.github.io/image/servicelocator_pattern_1.jpg">
+<meta property="article:published_time" content="2020-03-12T19:15:06.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.334Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="java, 设计模式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ronghuaxueleng.github.io/image/servicelocator_pattern_1.jpg">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/b5164f8.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            服务定位器模式 (Service Locator Pattern)
+        </div>
+        <div class="post-meta">
+            2020-03-12 ｜ 
+            
+                <a href="/categories/java/"># java</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/java/">java</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h1 id="服务定位器模式-Service-Locator-Pattern"><a href="#服务定位器模式-Service-Locator-Pattern" class="headerlink" title="服务定位器模式 (Service Locator Pattern)"></a>服务定位器模式 (Service Locator Pattern)</h1><p>服务定位器模式（Service Locator Pattern）用于想使用 JNDI 查询定位各种服务的时候</p>
+<p>考虑到为某个服务查找 JNDI 的代价很高，服务定位器模式充分利用了缓存技术</p>
+<p>在首次请求某个服务时，服务定位器在 JNDI 中查找服务，并缓存该服务对象</p>
+<p>当再次请求相同的服务时，服务定位器会在它的缓存中查找，这样可以在很大程度上提高应用程序的性能</p>
+<p>以下是这种设计模式的实体</p>
+<ul>
+<li><strong>服务（Service）</strong> - 实际处理请求的服务。对这种服务的引用可以在 JNDI 服务器中查找到</li>
+<li><strong>Context &#x2F; 初始的 Context</strong> - JNDI Context 带有对要查找的服务的引用</li>
+<li><strong>服务定位器（Service Locator）</strong> - 服务定位器是通过 JNDI 查找和缓存服务来获取服务的单点接触</li>
+<li><strong>缓存（Cache）</strong> - 缓存存储服务的引用，以便复用它们</li>
+<li><strong>客户端（Client）</strong> - Client 是通过 ServiceLocator 调用服务的对象</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>创建 <em>ServiceLocator</em> 、 <em>InitialContext</em> 、 <em>Cache</em> 、 <em>Service</em> 作为表示实体的各种对象</p>
+<p><em>Service1</em> 和 <em>Service2</em> 表示实体服务</p>
+<p><em>ServiceLocatorPatternDemo</em> ，我们的演示类在这里是作为一个客户端，将使用 <em>ServiceLocator</em> 来演示服务定位器设计模式</p>
+<p><img src="/../../image/servicelocator_pattern_1.jpg" alt="服务定位器模式"></p>
+<h2 id="范例"><a href="#范例" class="headerlink" title="范例"></a>范例</h2><h4 id="1-创建服务接口-Service"><a href="#1-创建服务接口-Service" class="headerlink" title="1. 创建服务接口 Service"></a>1. 创建服务接口 Service</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Service</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span>;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-创建实体服务"><a href="#2-创建实体服务" class="headerlink" title="2. 创建实体服务"></a>2. 创建实体服务</h4><h4 id="Service1"><a href="#Service1" class="headerlink" title="Service1"></a>Service1</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Service1</span> <span class="keyword">implements</span> <span class="title class_">Service</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">()</span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Executing Service1&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;Service1&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Service2"><a href="#Service2" class="headerlink" title="Service2"></a>Service2</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Service2</span> <span class="keyword">implements</span> <span class="title class_">Service</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">()</span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Executing Service2&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;Service2&quot;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-为-JNDI-查询创建-InitialContext"><a href="#3-为-JNDI-查询创建-InitialContext" class="headerlink" title="3. 为 JNDI 查询创建 InitialContext"></a>3. 为 JNDI 查询创建 InitialContext</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">InitialContext</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">public</span> Object <span class="title function_">lookup</span><span class="params">(String jndiName)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(jndiName.equalsIgnoreCase(<span class="string">&quot;SERVICE1&quot;</span>))&#123;</span><br><span class="line">         System.out.println(<span class="string">&quot;Looking up and creating a new Service1 object&quot;</span>);</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Service1</span>();</span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span> (jndiName.equalsIgnoreCase(<span class="string">&quot;SERVICE2&quot;</span>))&#123;</span><br><span class="line">         System.out.println(<span class="string">&quot;Looking up and creating a new Service2 object&quot;</span>);</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Service2</span>();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span>;      </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-创建缓存-Cache"><a href="#4-创建缓存-Cache" class="headerlink" title="4. 创建缓存 Cache"></a>4. 创建缓存 Cache</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Cache</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> List&lt;Service&gt; services;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">Cache</span><span class="params">()</span>&#123;</span><br><span class="line">      services = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Service&gt;();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> Service <span class="title function_">getService</span><span class="params">(String serviceName)</span>&#123;</span><br><span class="line">      <span class="keyword">for</span> (Service service : services) &#123;</span><br><span class="line">         <span class="keyword">if</span>(service.getName().equalsIgnoreCase(serviceName))&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Returning cached  &quot;</span>+serviceName+<span class="string">&quot; object&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> service;</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addService</span><span class="params">(Service newService)</span>&#123;</span><br><span class="line">      <span class="type">boolean</span> <span class="variable">exists</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">      <span class="keyword">for</span> (Service service : services) &#123;</span><br><span class="line">         <span class="keyword">if</span>(service.getName().equalsIgnoreCase(newService.getName()))&#123;</span><br><span class="line">            exists = <span class="literal">true</span>;</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span>(!exists)&#123;</span><br><span class="line">         services.add(newService);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-创建服务定位器-ServiceLocator"><a href="#5-创建服务定位器-ServiceLocator" class="headerlink" title="5. 创建服务定位器 ServiceLocator"></a>5. 创建服务定位器 ServiceLocator</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ServiceLocator</span> &#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> Cache cache;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">static</span> &#123;</span><br><span class="line">      cache = <span class="keyword">new</span> <span class="title class_">Cache</span>();      </span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> Service <span class="title function_">getService</span><span class="params">(String jndiName)</span>&#123;</span><br><span class="line"></span><br><span class="line">      <span class="type">Service</span> <span class="variable">service</span> <span class="operator">=</span> cache.getService(jndiName);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span>(service != <span class="literal">null</span>)&#123;</span><br><span class="line">         <span class="keyword">return</span> service;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="type">InitialContext</span> <span class="variable">context</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">InitialContext</span>();</span><br><span class="line">      <span class="type">Service</span> <span class="variable">service1</span> <span class="operator">=</span> (Service)context.lookup(jndiName);</span><br><span class="line">      cache.addService(service1);</span><br><span class="line">      <span class="keyword">return</span> service1;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-使用-ServiceLocator-来演示服务定位器设计模式"><a href="#6-使用-ServiceLocator-来演示服务定位器设计模式" class="headerlink" title="6. 使用 ServiceLocator 来演示服务定位器设计模式"></a>6. 使用 <em>ServiceLocator</em> 来演示服务定位器设计模式</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ServiceLocatorPatternDemo</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">      <span class="type">Service</span> <span class="variable">service</span> <span class="operator">=</span> ServiceLocator.getService(<span class="string">&quot;Service1&quot;</span>);</span><br><span class="line">      service.execute();</span><br><span class="line">      service = ServiceLocator.getService(<span class="string">&quot;Service2&quot;</span>);</span><br><span class="line">      service.execute();</span><br><span class="line">      service = ServiceLocator.getService(<span class="string">&quot;Service1&quot;</span>);</span><br><span class="line">      service.execute();</span><br><span class="line">      service = ServiceLocator.getService(<span class="string">&quot;Service2&quot;</span>);</span><br><span class="line">      service.execute();        </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译运行以上 Java 范例，输出结果如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">javac -d . src/main/cn/twle/gof/ServiceLocatorPatternDemo.java</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">java  cn.twle.gof.ServiceLocatorPatternDemo</span></span><br><span class="line">Looking up and creating a new Service1 object</span><br><span class="line">Executing Service1</span><br><span class="line">Looking up and creating a new Service2 object</span><br><span class="line">Executing Service2</span><br><span class="line">Returning cached  Service1 object</span><br><span class="line">Executing Service1</span><br><span class="line">Returning cached  Service2 object</span><br><span class="line">Executing Service2</span><br></pre></td></tr></table></figure>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/java-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> / java, 设计模式</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

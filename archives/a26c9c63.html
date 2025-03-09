@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>44个 Javascript 变态题解析 (下) - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="承接上篇 44个 Javascript 变态题解析 (上)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="44个 Javascript 变态题解析 (下)">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/a26c9c63.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="承接上篇 44个 Javascript 变态题解析 (上)">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-13T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.267Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/a26c9c63.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            44个 Javascript 变态题解析 (下)
+        </div>
+        <div class="post-meta">
+            2016-10-13 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <p>承接上篇 <a href="bb77ad22.html">44个 Javascript 变态题解析 (上)</a></p>
+<span id="more"></span>
+
+<h2 id="第23题"><a href="#第23题" class="headerlink" title="第23题"></a>第23题</h2><p>​<br>​    [1 &lt; 2 &lt; 3, 3 &lt; 2 &lt; 1]</p>
+<p>这个题也还可以.</p>
+<p>这个题会让人误以为是 <code>2 &gt; 1 &amp;&amp; 2 &lt; 3</code> 其实不是的.</p>
+<p>这个题等价于</p>
+<p>​<br>​     1 &lt; 2 &#x3D;&gt; true;<br>​     true &lt; 3 &#x3D;&gt;  1 &lt; 3 &#x3D;&gt; true;<br>​     3 &lt; 2 &#x3D;&gt; false;<br>​     false &lt; 1 &#x3D;&gt; 0 &lt; 1 &#x3D;&gt; true;</p>
+<p>答案是 <code>[true, true]</code></p>
+<h2 id="第24题"><a href="#第24题" class="headerlink" title="第24题"></a>第24题</h2><p>​<br>​    &#x2F;&#x2F; the most classic wtf<br>​    2 &#x3D;&#x3D; [[<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf">2</a>]]</p>
+<p>这个题我是猜的. 我猜的 <code>true</code>, 至于为什么…..</p>
+<p><code>both objects get converted to strings and in both cases the resulting string is &quot;2&quot;</code> 我不能信服…</p>
+<h2 id="第25题"><a href="#第25题" class="headerlink" title="第25题"></a>第25题</h2><p>​<br>​    3.toString()<br>​    3..toString()<br>​    3…toString()</p>
+<p>这个题也挺逗, 我做对了 :) 答案是 <code>error, &#39;3&#39;, error</code></p>
+<p>你如果换一个写法就更费解了</p>
+<p>​<br>​    var a &#x3D; 3;<br>​    a.toString()</p>
+<p>这个答案就是 <code>&#39;3&#39;</code>;</p>
+<p>为啥呢?</p>
+<p>因为在 js 中 <code>1.1</code>, <code>1.</code>, <code>.1</code> 都是合法的数字. 那么在解析 <code>3.toString</code> 的时候这个 <code>.</code><br>到底是属于这个数字还是函数调用呢? 只能是数字, 因为<code>3.</code>合法啊!</p>
+<h2 id="第26题"><a href="#第26题" class="headerlink" title="第26题"></a>第26题</h2><p>​<br>​    (function(){<br>​      var x &#x3D; y &#x3D; 1;<br>​    })();<br>​    console.log(y);<br>​    console.log(x);</p>
+<p>答案是 <code>1, error</code></p>
+<p>y 被赋值到全局. x 是局部变量. 所以打印 x 的时候会报 <code>ReferenceError</code></p>
+<h2 id="第27题"><a href="#第27题" class="headerlink" title="第27题"></a>第27题</h2><p>​<br>​    var a &#x3D; &#x2F;123&#x2F;,<br>​        b &#x3D; &#x2F;123&#x2F;;<br>​    a &#x3D;&#x3D; b<br>​    a &#x3D;&#x3D;&#x3D; b</p>
+<p>即使正则的字面量一致, 他们也不相等.</p>
+<p>答案 <code>false, false</code></p>
+<h2 id="第28题"><a href="#第28题" class="headerlink" title="第28题"></a>第28题</h2><p>​<br>​    var a &#x3D; [1, 2, 3],<br>​        b &#x3D; [1, 2, 3],<br>​        c &#x3D; [1, 2, 4]<br>​    a &#x3D;&#x3D;  b<br>​    a &#x3D;&#x3D;&#x3D; b<br>​    a &gt;   c<br>​    a &lt;   c</p>
+<p>字面量相等的数组也不相等.</p>
+<p>数组在比较大小的时候按照字典序比较</p>
+<p>答案 <code>false, false, false, true</code></p>
+<h2 id="第29题"><a href="#第29题" class="headerlink" title="第29题"></a>第29题</h2><p>​<br>​    var a &#x3D; {}, b &#x3D; Object.prototype;<br>​    [a.prototype &#x3D;&#x3D;&#x3D; b, Object.getPrototypeOf(a) &#x3D;&#x3D;&#x3D; b]</p>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf">Object&#x2F;getPrototypeOf</a></li>
+</ul>
+<p>只有 Function 拥有一个 prototype 的属性. 所以 <code>a.prototype</code> 为 <code>undefined</code>.</p>
+<p>而 <code>Object.getPrototypeOf(obj)</code> 返回一个具体对象的原型(该对象的内部<code>[[prototype]]</code>值)</p>
+<p>答案 <code>false, true</code></p>
+<h2 id="第30题"><a href="#第30题" class="headerlink" title="第30题"></a>第30题</h2><p>​<br>​    function f() {}<br>​    var a &#x3D; f.prototype, b &#x3D; Object.getPrototypeOf(f);<br>​    a &#x3D;&#x3D;&#x3D; b</p>
+<p>f.prototype is the object that will become the parent of any objects created<br>with new f while Object.getPrototypeOf returns the parent in the inheritance<br>hierarchy.</p>
+<p>f.prototype 是使用使用 new 创建的 f 实例的原型. 而 Object.getPrototypeOf 是 f 函数的原型.</p>
+<p>请看:</p>
+<p>​<br>​    a &#x3D;&#x3D;&#x3D; Object.getPrototypeOf(new f()) &#x2F;&#x2F; true<br>​    b &#x3D;&#x3D;&#x3D; Function.prototype &#x2F;&#x2F; true</p>
+<p>答案 <code>false</code></p>
+<h2 id="31"><a href="#31" class="headerlink" title="31"></a>31</h2><p>​<br>​    function foo() { }<br>​    var oldName &#x3D; foo.name;<br>​    foo.name &#x3D; “bar”;<br>​    [oldName, foo.name]</p>
+<p>答案 <code>[&#39;foo&#39;, &#39;foo&#39;]</code></p>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name">Function&#x2F;name</a></li>
+</ul>
+<p>因为<strong>函数的名字不可变</strong>.</p>
+<h2 id="第32题"><a href="#第32题" class="headerlink" title="第32题"></a>第32题</h2><p>​<br>​    “1 2 3”.replace(&#x2F;\d&#x2F;g, parseInt)</p>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#Specifying_a_function_as_a_parameter">String&#x2F;replace#Specifying_a_function_as_a_parameter</a></li>
+</ul>
+<p><code>str.replace(regexp|substr, newSubStr|function)</code></p>
+<p>如果replace函数传入的第二个参数是函数, 那么这个函数将接受如下参数</p>
+<ul>
+<li>match 首先是匹配的字符串</li>
+<li>p1, p2 …. 然后是正则的分组</li>
+<li>offset match 匹配的index</li>
+<li>string 整个字符串</li>
+</ul>
+<p>由于题目中的正则没有分组, 所以等价于问</p>
+<p>​<br>​    parseInt(‘1’, 0)<br>​    parseInt(‘2’, 2)<br>​    parseInt(‘3’, 4)</p>
+<p>答案: <code>1, NaN, 3</code></p>
+<h2 id="第33题"><a href="#第33题" class="headerlink" title="第33题"></a>第33题</h2><p>​<br>​    function f() {}<br>​    var parent &#x3D; Object.getPrototypeOf(f);<br>​    f.name &#x2F;&#x2F; ?<br>​    parent.name &#x2F;&#x2F; ?<br>​    typeof eval(f.name) &#x2F;&#x2F; ?<br>​    typeof eval(parent.name) &#x2F;&#x2F;  ?</p>
+<p>先说以下答案 <code>&#39;f&#39;, &#39;Empty&#39;, &#39;function&#39;, error</code> 这个答案并不重要…..</p>
+<p>这里第一小问和第三小问很简单不解释了.</p>
+<p>第二小问笔者在自己的浏览器测试的时候是 <code>&#39;&#39;</code>, 第四问是 <code>&#39;undefined&#39;</code></p>
+<p>所以应该是平台相关的. 这里明白 <code>parent === Function.prototype</code> 就好了.</p>
+<h2 id="第34题"><a href="#第34题" class="headerlink" title="第34题"></a>第34题</h2><p>​<br>​    var lowerCaseOnly &#x3D;  &#x2F;^[a-z]+$&#x2F;;<br>​    [lowerCaseOnly.test(null), lowerCaseOnly.test()]</p>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test">RegExp&#x2F;test</a></li>
+</ul>
+<p>这里 test 函数会将参数转为字符串. <code>&#39;nul&#39;</code>, <code>&#39;undefined&#39;</code> 自然都是全小写了</p>
+<p>答案: <code>true, true</code></p>
+<h2 id="第35题"><a href="#第35题" class="headerlink" title="第35题"></a>第35题</h2><p>​<br>​    [,,,].join(“, “)</p>
+<p><code>[,,,] =&gt; [undefined × 3]</code></p>
+<p>因为javascript 在定义数组的时候允许最后一个元素后跟一个<code>,</code>, 所以这是个长度为三的稀疏数组(这是长度为三, 并没有 0, 1, 2三个属性哦)</p>
+<p>答案: <code>&quot;, , &quot;</code></p>
+<h2 id="第36题"><a href="#第36题" class="headerlink" title="第36题"></a>第36题</h2><p>​<br>​    var a &#x3D; {class: “Animal”, name: ‘Fido’};<br>​    a.class</p>
+<p>这个题比较流氓.. 因为是浏览器相关, <code>class</code>是个保留字(现在是个关键字了)</p>
+<p>所以答案不重要, 重要的是自己在取属性名称的时候尽量避免保留字. 如果使用的话请加引号 <code>a[&#39;class&#39;]</code></p>
+<h2 id="第37题"><a href="#第37题" class="headerlink" title="第37题"></a>第37题</h2><p>​<br>​    var a &#x3D; new Date(“epoch”)</p>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse">Date&#x2F;parse</a></li>
+</ul>
+<p>简单来说, 如果调用 Date 的构造函数传入一个字符串的话需要符合规范, 即满足 Date.parse 的条件.</p>
+<p>另外需要注意的是 如果格式错误 构造函数返回的仍是一个Date 的实例 <code>Invalid Date</code>.</p>
+<p>答案 <code>Invalid Date</code></p>
+<h2 id="第38题"><a href="#第38题" class="headerlink" title="第38题"></a>第38题</h2><p>​<br>​    var a &#x3D; Function.length,<br>​        b &#x3D; new Function().length<br>​    a &#x3D;&#x3D;&#x3D; b</p>
+<p>我们知道一个function(Function 的实例)的 <code>length</code> 属性就是函数签名的参数个数, 所以 b.length &#x3D;&#x3D; 0.</p>
+<p>另外 Function.length 定义为1……</p>
+<p>所以不相等…….答案 <code>false</code></p>
+<h2 id="第39题"><a href="#第39题" class="headerlink" title="第39题"></a>第39题</h2><p>​<br>​    var a &#x3D; Date(0);<br>​    var b &#x3D; new Date(0);<br>​    var c &#x3D; new Date();<br>​    [a &#x3D;&#x3D;&#x3D; b, b &#x3D;&#x3D;&#x3D; c, a &#x3D;&#x3D;&#x3D; c]</p>
+<p>还是关于Date 的题, 需要注意的是</p>
+<ul>
+<li>如果不传参数等价于当前时间. </li>
+<li>如果是函数调用 返回一个字符串.</li>
+</ul>
+<p>答案 <code>false, false, false</code></p>
+<h2 id="第40题"><a href="#第40题" class="headerlink" title="第40题"></a>第40题</h2><p>​<br>​    var min &#x3D; Math.min(), max &#x3D; Math.max()<br>​    min &lt; max</p>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/min">Math&#x2F;min</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max">Math&#x2F;max</a></li>
+</ul>
+<p>有趣的是, Math.min 不传参数返回 <code>Infinity</code>, Math.max 不传参数返回 <code>-Infinity</code> 😆</p>
+<p>答案: <code>false</code></p>
+<h2 id="第41题"><a href="#第41题" class="headerlink" title="第41题"></a>第41题</h2><p>​<br>​    function captureOne(re, str) {<br>​      var match &#x3D; re.exec(str);<br>​      return match &amp;&amp; match<a href="bb77ad22.html">1</a>;<br>​    }<br>​    var numRe  &#x3D; &#x2F;num&#x3D;(\d+)&#x2F;ig,<br>​        wordRe &#x3D; &#x2F;word&#x3D;(\w+)&#x2F;i,<br>​        a1 &#x3D; captureOne(numRe,  “num&#x3D;1”),<br>​        a2 &#x3D; captureOne(wordRe, “word&#x3D;1”),<br>​        a3 &#x3D; captureOne(numRe,  “NUM&#x3D;2”),<br>​        a4 &#x3D; captureOne(wordRe,  “WORD&#x3D;2”);<br>​    [a1 &#x3D;&#x3D;&#x3D; a2, a3 &#x3D;&#x3D;&#x3D; a4]</p>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec">RegExp&#x2F;exec</a></li>
+</ul>
+<p>通俗的讲</p>
+<p>因为第一个正则有一个 g 选项 它会‘记忆’他所匹配的内容, 等匹配后他会从上次匹配的索引继续, 而第二个正则不会</p>
+<p>举个例子</p>
+<p>​<br>​    var myRe &#x3D; &#x2F;ab*&#x2F;g;<br>​    var str &#x3D; ‘abbcdefabh’;<br>​    var myArray;<br>​    while ((myArray &#x3D; myRe.exec(str)) !&#x3D;&#x3D; null) {<br>​      var msg &#x3D; ‘Found ‘ + myArray[0] + ‘. ‘;<br>​      msg +&#x3D; ‘Next match starts at ‘ + myRe.lastIndex;<br>​      console.log(msg);<br>​    }<br>​    &#x2F;&#x2F; Found abb. Next match starts at 3<br>​    &#x2F;&#x2F; Found ab. Next match starts at 9</p>
+<p>所以 a1 &#x3D; ‘1’; a2 &#x3D; ‘1’; a3 &#x3D; null; a4 &#x3D; ‘2’</p>
+<p>答案 <code>[true, false]</code></p>
+<h2 id="第42题"><a href="#第42题" class="headerlink" title="第42题"></a>第42题</h2><p>​<br>​    var a &#x3D; new Date(“2014-03-19”),<br>​        b &#x3D; new Date(2014, 03, 19);<br>​    [a.getDay() &#x3D;&#x3D;&#x3D; b.getDay(), a.getMonth() &#x3D;&#x3D;&#x3D; b.getMonth()]</p>
+<p>​    </p>
+<p>这个….</p>
+<blockquote>
+<p>JavaScript inherits 40 years old design from C: days are 1-indexed in C’s<br>struct tm, but months are 0 indexed. In addition to that, getDay returns the<br>0-indexed day of the week, to get the 1-indexed day of the month you have to<br>use getDate, which doesn’t return a Date object.</p>
+</blockquote>
+<p>​<br>​    a.getDay()<br>​    3<br>​    b.getDay()<br>​    6<br>​    a.getMonth()<br>​    2<br>​    b.getMonth()<br>​    3</p>
+<p>都是套路!</p>
+<p>答案 <code>[false, false]</code></p>
+<h2 id="第43题"><a href="#第43题" class="headerlink" title="第43题"></a>第43题</h2><p>​<br>​    if (‘<a href="http://giftwrapped.com/picture.jpg'.match('.gif')">http://giftwrapped.com/picture.jpg&#39;.match(&#39;.gif&#39;)</a>) {<br>​      ‘a gif file’<br>​    } else {<br>​      ‘not a gif file’<br>​    }</p>
+<p>知识点:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match">String&#x2F;match</a></li>
+</ul>
+<p>String.prototype.match 接受一个正则, 如果不是, 按照 <code>new RegExp(obj)</code> 转化. 所以 <code>.</code> 并不会转义<br>那么 <code>/gif</code> 就匹配了 &#x2F;.gif&#x2F;</p>
+<p>答案: <code>&#39;a gif file&#39;</code></p>
+<h2 id="第44题"><a href="#第44题" class="headerlink" title="第44题"></a>第44题</h2><p>​<br>​    function foo(a) {<br>​        var a;<br>​        return a;<br>​    }<br>​    function bar(a) {<br>​        var a &#x3D; ‘bye’;<br>​        return a;<br>​    }<br>​    [foo(‘hello’), bar(‘hello’)]</p>
+<p>在两个函数里, a作为参数其实已经声明了, 所以 <code>var a; var a = &#39;bye&#39;</code> 其实就是 <code>a; a =&#39;bye&#39;</code></p>
+<p>所以答案 <code>&#39;hello&#39;, &#39;bye&#39;</code></p>
+<p>全部结束!</p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>由于笔者水平有限, 如果解释有误, 还望指出 😄</p>
+<p>通过整理, 笔者发现绝大部分题目都是因为自己对于基础知识或者说某个 API 的参数理解偏差才做错的.</p>
+<p>笔者的重灾区在原型那一块, 所以这次被虐和整理还是很有意义呀.</p>
+<p>笔者相信 坚实的基础是深入编程的前提. 所以基础书还是要常看啊 🐹</p>
+<p>最后这些变态题现在看看还变态嘛?</p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

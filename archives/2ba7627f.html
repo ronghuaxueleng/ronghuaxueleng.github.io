@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>Javascript 设计模式类别 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="前言命名、抽象、标识是通用设计结构的主要方面，这些设计结构能被用于构造可复用的面向对象设计。设计模式确定所包含的类和实例、它们的角色、协作方式以及职责分配。 每一种设计模式都重点关注一个特定的对象设计问题或者设计要点，描述何时使用它，在另一些约束条件下是否还能使用，以及使用的效果和利弊。由于我们最终要实现设计，设计模式还是提供了示例，代码来阐明其实现。 虽然设计模式描述的是面向对象设计，但是他们都">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript 设计模式类别">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/2ba7627f.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="前言命名、抽象、标识是通用设计结构的主要方面，这些设计结构能被用于构造可复用的面向对象设计。设计模式确定所包含的类和实例、它们的角色、协作方式以及职责分配。 每一种设计模式都重点关注一个特定的对象设计问题或者设计要点，描述何时使用它，在另一些约束条件下是否还能使用，以及使用的效果和利弊。由于我们最终要实现设计，设计模式还是提供了示例，代码来阐明其实现。 虽然设计模式描述的是面向对象设计，但是他们都">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-09-10T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.301Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="Javascript设计模式">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/2ba7627f.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            Javascript 设计模式类别
+        </div>
+        <div class="post-meta">
+            2016-09-10 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>命名、抽象、标识是通用设计结构的主要方面，这些设计结构能被用于构造可复用的面向对象设计。设计模式确定所包含的类和实例、它们的角色、协作方式以及职责分配。</p>
+<p>每一种设计模式都重点关注一个特定的对象设计问题或者设计要点，描述何时使用它，在另一些约束条件下是否还能使用，以及使用的效果和利弊。由于我们最终要实现设计，设计模式还是提供了示例，代码来阐明其实现。</p>
+<p>虽然设计模式描述的是面向对象设计，但是他们都是基于实际的解决方案。这些设计方案的实现语言是主流面向对象的编程语言。</p>
+<span id="more"></span>
+
+<h1 id="设计模式的分类"><a href="#设计模式的分类" class="headerlink" title="设计模式的分类"></a>设计模式的分类</h1><h2 id="创建型设计模式"><a href="#创建型设计模式" class="headerlink" title="创建型设计模式"></a><strong>创建型设计模式</strong></h2><p>创建型设计模式专注于处理对象创建机制，以适合给定情况下的方式来创建对象，创建对象的基本方法都可能导致项目复杂性增加。而这些模式旨在通过控制创建过程来解决这类问题。</p>
+<p>常见的创建型设计模式包括：Constructor构造器模式、Factory工厂模式、Abstract抽象模式、Prototype原型模式、Singleton单例模式和Builder生成器模式。</p>
+<h2 id="结构型设计模式"><a href="#结构型设计模式" class="headerlink" title="结构型设计模式"></a><strong>结构型设计模式</strong></h2><p>结构型设计模式与对象组合有关，通常可以用于找出在不同对象之间建立关系的简单方法。这种模式有助于确保在系统某一部分发生变化时，系统的整个结构不需要同时改变。同时对于不适合因某一特定目的而改变的系统部分，这种模式也可以帮助它们完成重组。</p>
+<p>常见的结构型设计模式有：Decorator装饰者模式、Facade外观模式、Flyweight享元模式、Adapter适配器模式和Proxy代理模式。</p>
+<h2 id="行为型设计模式"><a href="#行为型设计模式" class="headerlink" title="行为型设计模式"></a><strong>行为型设计模式</strong></h2><p>行为型设计模式专注于改善或简化系统中不同对象之间的通信。</p>
+<p>行为模式包括：Iterator迭代器模式、Mediator中介者模式、Observer观察者模式、Visitor访问者模式。</p>
+<h1 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h1><p>Javascript是一种无类语言，但可以用函数来模拟类，然后使用new关键字创建新的对象，使用this来定义对象的新属性和方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function Car(model)&#123;</span><br><span class="line">	this.model=model;</span><br><span class="line">	this.color=&quot;silver&quot;;</span><br><span class="line">	this.year=&quot;2012&quot;;</span><br><span class="line">	</span><br><span class="line">	this.getInfo=function()&#123;</span><br><span class="line">		return this.model+&quot; &quot;+this.year;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="然后我们像这样我们使用上面定义的car构造函数来实例化该对象。-创建型模式-基于创建对象的概念-类-工厂方法基于接口数据或者生成几个派生类的一个实例-对象-抽象工厂创建若干类系列的一个实例，无需描述具体的的类-生成器从表示中分离对象构建；总是创建相同类型的对象-原型用于复制或者克隆完全初始化的实例-单例一个类在全局访问点只有唯一一个实例"><a href="#然后我们像这样我们使用上面定义的car构造函数来实例化该对象。-创建型模式-基于创建对象的概念-类-工厂方法基于接口数据或者生成几个派生类的一个实例-对象-抽象工厂创建若干类系列的一个实例，无需描述具体的的类-生成器从表示中分离对象构建；总是创建相同类型的对象-原型用于复制或者克隆完全初始化的实例-单例一个类在全局访问点只有唯一一个实例" class="headerlink" title="然后我们像这样我们使用上面定义的car构造函数来实例化该对象。                    创建型模式            基于创建对象的概念                            类                工厂方法基于接口数据或者生成几个派生类的一个实例                    对象                抽象工厂创建若干类系列的一个实例，无需描述具体的的类        生成器从表示中分离对象构建；总是创建相同类型的对象        原型用于复制或者克隆完全初始化的实例        单例一个类在全局访问点只有唯一一个实例"></a>然后我们像这样我们使用上面定义的car构造函数来实例化该对象。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var myCar=new Car(&quot;ford&quot;);</span><br><span class="line">myCar.year=&quot;2010&quot;;</span><br><span class="line">console.log(myCar.getInfo());</span><br></pre></td></tr></table></figure><br><table><br>        <tr><br>            <td>创建型模式</td><br>            <td>基于创建对象的概念</td><br>        </tr><br>        <tr><br>            <td colspan="2" bgcolor="#f0f0f0">类</td><br>        </tr><br>        <tr><td>工厂方法</td><td>基于接口数据或者生成几个派生类的一个实例</td></tr><br>        <tr><br>            <td colspan="2" bgcolor="#f0f0f0">对象</td><br>        </tr><br>        <tr><td>抽象工厂</td><td>创建若干类系列的一个实例，无需描述具体的的类</td></tr><br>        <tr><td>生成器</td><td>从表示中分离对象构建；总是创建相同类型的对象</td></tr><br>        <tr><td>原型</td><td>用于复制或者克隆完全初始化的实例</td></tr><br>        <tr><td>单例</td><td>一个类在全局访问点只有唯一一个实例</td></tr><br></table></h2><table>
+        <tr>
+            <td>结构型模式</td>
+            <td>基于构建对象块的想法</td>
+        </tr>
+        <tr>
+            <td colspan="2" bgcolor="#f0f0f0">类</td>
+        </tr>
+        <tr><td>适配器</td><td>匹配不同类的接口，因此可以在不兼容接口的情况下共同工作</td></tr>
+        <tr>
+            <td colspan="2" bgcolor="#f0f0f0">对象</td>
+        </tr>
+            <tr><td>适配器</td><td>匹配不同类的接口，因此可以在不兼容接口的情况下共同工作</td></tr>
+        <tr><td>桥接</td><td>将对象接口从器实现中分离，因此它们可以独立进行变化</td></tr>
+        <tr><td>组合</td><td>简单和复合对象的结构，使对象的总和不只是它们各部分的总和</td></tr>
+        <tr><td>装饰</td><td>向对象动态添加备选的处理</td></tr>
+        <tr><td>外观</td><td>隐藏整个子系统复杂性的唯一一个类</td></tr>
+        <tr><td>享元</td><td>一个用于实现包含在别处信息的高效共享的细粒度实例</td></tr>
+
+<tr><td>代理</td><td>占位符对象代表真正的对象 </td></tr>
+</table>
+----------
+<table>
+        <tr>
+            <td>行为型模式</td>
+            <td>基于对象在一起配合工作的方式</td>
+        </tr>
+        <tr>
+            <td colspan="2" bgcolor="#f0f0f0">类</td>
+        </tr>
+        <tr><td>解释器</td><td>将语言元素包含在应用程序中的方法，以匹配预期语言的语法</td></tr>
+        <tr><td>模板方法</td><td>在方法中创建算法的shell，然后将确切的步骤推到子类</td></tr>
+        <tr>
+            <td colspan="2" bgcolor="#f0f0f0">对象</td>
+        </tr>
+            <tr><td>职责链</td><td>在对象链之间传递请求的方法，以找到能够处理请求的对象</td></tr>
+        <tr><td>命令</td><td>将命令执行从其调用程序中分离的方法</td></tr>
+        <tr><td>迭代器</td><td>顺序访问一个集合中的元素，无需了解该集合内部的工作原理</td></tr>
+        <tr><td>中介者</td><td>在类之间定义简化的通信，以防止一组类显式引用彼此</td></tr>
+        <tr><td>备忘录</td><td>捕获对象的内部状态，已能够在以后恢复它</td></tr>
+        <tr><td>观察者</td><td>向多个类通知改变的方式，以确保类之间的一致性</td></tr>
+
+<tr><td>状态</td><td>状态改变时，更改对象的行为 </td></tr>
+<tr><td>策略</td><td>在一个类中封装算法，将选择与实现分离 </td></tr>
+<tr><td>访问者</td><td>向类添加一个新的操作，无需改变类</td></tr>
+</table>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/Javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> / Javascript设计模式</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

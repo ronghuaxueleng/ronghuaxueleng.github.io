@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>命令模式 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="命令模式是最简单和优雅的模式之一，命令模式中的命令指的是一个执行某些特定事情的指令。命令模式最常见的应用场景是：有时候需要向某些对象发送请求，但是不知道请求的接收者是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送者和请求接收者能够消除彼此之间的耦合关系。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="命令模式">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/78134e07.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="命令模式是最简单和优雅的模式之一，命令模式中的命令指的是一个执行某些特定事情的指令。命令模式最常见的应用场景是：有时候需要向某些对象发送请求，但是不知道请求的接收者是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送者和请求接收者能够消除彼此之间的耦合关系。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-12T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.169Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/78134e07.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            命令模式
+        </div>
+        <div class="post-meta">
+            2016-10-12 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <blockquote>
+<p>命令模式是最简单和优雅的模式之一，命令模式中的命令指的是一个执行某些特定事情的指令。命令模式最常见的应用场景是：有时候需要向某些对象发送请求，但是不知道请求的接收者是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送者和请求接收者能够消除彼此之间的耦合关系。</p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="菜单程序"><a href="#菜单程序" class="headerlink" title="菜单程序"></a>菜单程序</h3><p>假设要编写一个用户界面程序，该用户界面上至少有数十个button按钮，通过分析我们发现按下按钮之后会发生的一些事情是不变的，而具体会发生什么事情是可变的。<br>通过<code>command</code>对象的帮助，将来我们可以轻易改变这种关联。<br>废话不多说，上代码：</p>
+<p>​<br>    &#x2F;&#x2F;负责往按钮上面安装命令<br>    var setCommand &#x3D; function( button, command ) {<br>        button.onclick &#x3D; function() { &#x2F;&#x2F;执行的动作<br>            command.execute();<br>        }<br>    };</p>
+<pre><code>//一些功能函数
+var MenuBar = &#123;
+    refresh: function() &#123;
+        console.log(&#39;刷新菜单栏目&#39;);
+    &#125;
+&#125;;
+var SubMenu = &#123;
+    add: function() &#123;
+        console.log(&#39;增加子菜单&#39;);
+    &#125;,
+    del: function() &#123;
+        console.log(&#39;删除子菜单&#39;);
+    &#125;
+&#125;;
+
+//封装
+var RefreshMenuBarCommand = function( receiver ) &#123;
+    this.receiver = receiver;
+&#125;;
+RefreshMenuBarCommand.prototype.execute = function() &#123;
+    this.receiver.refresh();
+&#125;;
+var AddSubMenuCommand = function( receiver ) &#123;
+    this.receiver = receiver;
+&#125;;
+AddSubMenuCommand.prototype.execute = function() &#123;
+    this.receiver.add();
+&#125;;
+var DelSubMenuCommand = function( receiver ) &#123;
+    this.receiver = receiver;
+&#125;;
+DelSubMenuCommand.prototype.execute = function() &#123;
+    console.log(&#39;删除子菜单&#39;);
+&#125;;
+
+//将命令传入command对象中
+var refreshMenuBarCommand = new RefreshMenuBarCommand(MenuBar);
+var addSubMenuCommand = new AddSubMenuCommand (SubMenu);
+var delSubMenuCommand = new DelSubMenuCommand (SubMenu);
+
+//把command对象安装到button上
+setCommand(button1, refreshMenuBarCommand);
+setCommand(button2, addSubMenuCommand );
+setCommand(button3, delSubMenuCommand );
+</code></pre>
+<h3 id="JavaScript中的命令模式"><a href="#JavaScript中的命令模式" class="headerlink" title="JavaScript中的命令模式"></a>JavaScript中的命令模式</h3><p>以上实例代码是模拟传统面向对象语言的命令模式，然而js是一门神奇的语言，运行块不一定要封装在<code>command.execute</code>方法中，也可以封装在普通函数中。函数作为一等对象，本身就可以四处传递。</p>
+<p>​<br>    var setCommand &#x3D; function( button, func ) {<br>        button.onclick &#x3D; function() {<br>            func();<br>        }<br>    };<br>    var MenuBar &#x3D; {<br>        refresh: function() {<br>            console.log(‘刷新菜单界面’);<br>        }<br>    };<br>    var RefreshMenuBarCommand &#x3D; function( receiver ) {<br>        return function() {<br>            receiver.refresh();<br>        }<br>    };<br>    var refreshMenuBarCommand &#x3D; RefreshMenuBarCommand( MenuBar );<br>    setCommand( button1, refreshMenuBarCommand );</p>
+<p>看了上面代码之后，你可能会发现，使用闭包，代码量已经减少了很多。但是，如果想准确的表达当前正在使用命令模式，或者除了执行命令之外，将来有可能还要提供撤销命令等操作。那我们最好还是把执行函数改为调用execute方法：</p>
+<p>​<br>    var RefreshMenuBarCommand &#x3D; function( receiver ) {<br>        return {<br>            execute: function() {<br>                receiver.refresh();<br>            }<br>        }<br>    };<br>    var setCommand &#x3D; function( button, command ) {<br>        button.onclick &#x3D; function() {<br>            command.execute();<br>        }<br>    };<br>    var refreshMenuBarCommand &#x3D; RefreshMenuBarCommand( MenuBar );<br>    setCommand(button1, refreshMenuBarCommand);</p>
+<h3 id="撤销和重做"><a href="#撤销和重做" class="headerlink" title="撤销和重做"></a>撤销和重做</h3><p>很多时候，我们需要撤销一系列命令，比如在一个下围棋程序中的毁棋，我们可以把所有执行过的下棋命令都存储在一个历史列表中，然后倒序循环来依次执行这些命令的<code>undo</code>操作。<br>然而，在某些情况下无法顺利的使用<code>undo</code>，比如在一个Canvas画图的程序中，这时最好的办法是清除画布，然后把刚执行的命令全部重新执行一遍，这一点同样可以利用历史列表堆栈实现。<br>下面以一个街头霸王的游戏为例：</p>
+<p>​<br>    var Ryu &#x3D; {<br>        attack: function() {<br>            console.log(‘攻击’);<br>        },<br>        defense: function() {<br>            console.log(‘防御’);<br>        }<br>    };<br>    var makeCommand &#x3D; function( receiver, state ) {<br>        return function() {<br>            receiver<a href=""> state </a>;<br>        }<br>    };<br>    var commandStack &#x3D; []; &#x2F;&#x2F; 保存命令的堆栈<br>    document.onkeypress &#x3D; function( ev ) {<br>        var keyCode &#x3D; ev.keyCode,<br>            command &#x3D; makeCommand( Ryu, commands[ keyCode ]);<br>        if( command ) {<br>            command(); &#x2F;&#x2F;执行命令<br>            commandStack.push( command ); &#x2F;&#x2F;将刚刚执行过的命令保存进堆栈<br>        }<br>    };<br>    document.getElementById(‘reply’).onclick &#x3D; function() { &#x2F;&#x2F;点击播放录像<br>        var command;<br>        while( command &#x3D; commandStack.shift() ) { &#x2F;&#x2F;从堆栈里依次取出命令并执行<br>            command();<br>        }<br>    };</p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

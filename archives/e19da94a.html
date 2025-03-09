@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>享元模式 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="享元模式的核心是运用共享技术来有效支持大量细粒度的对象。如果系统中因为创建了大量类似的对象而导致内存占用过高，享元模式就非常有用了。在JavaScript中，浏览器特别是移动端的浏览器分配的内存不算多，如何节省内存就成了一件非常有意义的事。  初识假设有个内衣工厂，要50个男模50个女模，你可能会这么写程序： ​">
+<meta property="og:type" content="article">
+<meta property="og:title" content="享元模式">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/e19da94a.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="享元模式的核心是运用共享技术来有效支持大量细粒度的对象。如果系统中因为创建了大量类似的对象而导致内存占用过高，享元模式就非常有用了。在JavaScript中，浏览器特别是移动端的浏览器分配的内存不算多，如何节省内存就成了一件非常有意义的事。  初识假设有个内衣工厂，要50个男模50个女模，你可能会这么写程序： ​">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-12T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.174Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/e19da94a.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            享元模式
+        </div>
+        <div class="post-meta">
+            2016-10-12 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <hr>
+<blockquote>
+<p>享元模式的核心是运用共享技术来有效支持大量细粒度的对象。如果系统中因为创建了大量类似的对象而导致内存占用过高，享元模式就非常有用了。在JavaScript中，浏览器特别是移动端的浏览器分配的内存不算多，如何节省内存就成了一件非常有意义的事。</p>
+</blockquote>
+<h3 id="初识"><a href="#初识" class="headerlink" title="初识"></a>初识</h3><p>假设有个内衣工厂，要50个男模50个女模，你可能会这么写程序：</p>
+<p>​    <span id="more"></span><br>    var Model &#x3D; function(sex, underwear) {<br>        this.sex &#x3D; sex;<br>        this.underwear &#x3D; underwear;<br>    }<br>    Model.prototype.takePhoto &#x3D; function() {<br>        console.log(‘sex&#x3D;’ + this.sex + ‘ underwear&#x3D;’ + this.underwear );<br>    }<br>    for (var i &#x3D; 1; i &lt;&#x3D; 50; i++) {<br>        var maleModel &#x3D; new Model(‘male’, ‘underwear’ + i);<br>        maleModel.takePhoto();<br>    }<br>    for (var j &#x3D; 1; j &lt;&#x3D; 50; j++) {<br>        var femaleModel &#x3D; new Model(‘female’, ‘underwear’ + j);<br>        femaleModel.takePhoto();<br>    }</p>
+<p>要得到一张照片，每次都需要传入<code>sex</code>，<code>underwear</code>参数，根据现在的需求一共会产生100个对象。但是如果将来要生产10000种，那这个程序可能会因为存在太多对象提前崩溃。所以我们做一点改动</p>
+<p>​<br>    var Model &#x3D; function(sex) {<br>        this.sex &#x3D; sex;<br>    }<br>    Model.pototype.takePhoto &#x3D; function() {<br>        console.log(‘sex&#x3D;’ + this.sex + ‘ underwear&#x3D;’ + this.underwear );<br>    };</p>
+<pre><code>//分别创建一个男模特对象和女模特对象
+var maleModel = new Model(&#39;male&#39;),
+    femaleModel = new Model(&#39;female&#39;);
+//给模特依次穿上所有的男装，并进行拍照    
+for (var i = 1; i &lt;= 50; i++) &#123;
+    maleModel.underwear = &#39;underwear&#39; + i;
+    maleModel.takePhoto();
+&#125;
+for (var j = 1; j &lt;= 50; j++) &#123;
+    femaleModel.underwear = &#39;underwear&#39; + j;
+    femaleModel.takePhoto();
+&#125;
+</code></pre>
+<p>以上就是享元模式的雏形，享元模式要求将对象的属性划分为内部状态与外部状态。享元模式的目标是尽量减少共享对象的数量。关于如何划分内部状态和外部状态，可参考以下<br>：</p>
+<ul>
+<li><p>内部状态存储于内部对象</p>
+</li>
+<li><p>内部状态可以做一些对象共享</p>
+</li>
+<li><p>内部状态独立于具体的场景，通常不会改变</p>
+</li>
+<li><p>外部状态取决于具体的场景，并根据场景而变化，外部状态不能被共享</p>
+</li>
+</ul>
+<p>在上面例子中，性别是内部状态，内衣是外部状态。通常来说内部状态有多少种组合系统中便最多存在多少对象。<br>但是，以上还不是一个完整的享元模式，在这个例子中还有两个问题</p>
+<ul>
+<li><p>我们通过构造函数显示的<code>new</code>出了男女两个<code>model</code>对象，在其他系统中也许并不是一开始就需要所有的共享对象</p>
+</li>
+<li><p>给<code>model</code>对象手动设置了<code>underwear</code>外部状态，在更复杂的系统中这不是一个最好的方式因为外部状态可能相对复杂，他与共享对象的联系会变得困难。</p>
+</li>
+</ul>
+<p>我们通过第一个对象工厂来解决第一个问题，只有某种共享对象被真正需要时，他才从工厂中被创建出来。对于第二个问题，可以用一个管理器来记录对象相关的外部状态，使这些外部状态通过某个钩子和共享对象联系起来。</p>
+<h3 id="对象池"><a href="#对象池" class="headerlink" title="对象池"></a>对象池</h3><p>在java中，对象池维护一个装载空闲对象的池子，如果需要对象的时候，不是直接new，而是转从对象池里获取。如果对象池里没有空闲对象，则创建一个新的对象，当获取出的对象完成他&#x2F;它的职责之后，再进入池子等待下次获取。</p>
+<p>这里稍微介绍一下对象池工厂里实现通用对象池的方法：</p>
+<p>​<br>    var objectPoolFactory &#x3D; function(createObjFn) {<br>        var objectPool &#x3D; [];<br>        return {<br>            create: function() {<br>                var obj &#x3D; objectPool.length &#x3D;&#x3D;&#x3D; 0 ? createObjFn.apply(this, arguments) : objectPool.shift();<br>                return obj;<br>            },<br>            recover: function(obj) {<br>                objectPool.push(obj);<br>            }<br>        }<br>    };</p>
+<p>现在利用<code>objectPoolFactory</code>来创建一个装载一些<code>iframe</code>的对象池：</p>
+<p>​<br>    var iframeFactory &#x3D; objectPoolFactory( function() {<br>        var iframe &#x3D; document.createElement(‘iframe’);<br>        document.body.appendChild(iframe);<br>        iframe.onload &#x3D; function() {<br>            iframe.onload &#x3D; null; &#x2F;&#x2F;防止iframe重复加载的bug<br>            iframeFactory.recover(iframe); &#x2F;&#x2F;iframe加载完成之后回收节点<br>        }<br>        return iframe;<br>    });</p>
+<pre><code>var iframe1 = iframeFactory.create();
+iframe1.src = &#39;http://baidu.com&#39;;
+
+var iframe2 = iframeFactory.create();
+iframe2.src = &#39;http://QQ.com&#39;;
+
+setTimeout(function() &#123;
+    var iframe3 = iframeFactory.create();
+    iframe3.src = &#39;http://163.com&#39;;
+
+&#125;, 3000);
+</code></pre>
+<p>对象池是另外一种性能优化方案，他跟享元模式有一些相似之处，但没有分离内部状态和外部状态这个过程。</p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

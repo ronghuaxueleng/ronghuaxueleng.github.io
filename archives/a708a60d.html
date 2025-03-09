@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>装饰者模式 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="装饰者模式：给对象动态地增加职责。跟继承相比，装饰者是一种更轻便灵活的做法，是一种“即用即付”的方式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="装饰者模式">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/a708a60d.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="装饰者模式：给对象动态地增加职责。跟继承相比，装饰者是一种更轻便灵活的做法，是一种“即用即付”的方式。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-12T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.179Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/a708a60d.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            装饰者模式
+        </div>
+        <div class="post-meta">
+            2016-10-12 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <hr>
+<blockquote>
+<p>装饰者模式：给对象动态地增加职责。跟继承相比，装饰者是一种更轻便灵活的做法，是一种“即用即付”的方式。</p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="js的装饰者"><a href="#js的装饰者" class="headerlink" title="js的装饰者"></a>js的装饰者</h3><p>假设我们在编写一个飞机大战游戏，这个飞机可以升级，发射导弹，发射原子弹</p>
+<p>​<br>    var plane &#x3D; {<br>        fire: function() {<br>            console.log(‘发射普通子弹’);<br>        }<br>    };<br>    var missileDecorator &#x3D; function() {<br>        console.log(‘发射导弹’);<br>    };<br>    var atomDecorator &#x3D; function() {<br>        console.log(‘发射原子弹’);<br>    };<br>    var fire1 &#x3D; plane.fire;<br>    plane.fire &#x3D; function() {<br>        fire1();<br>        missileDecorator();<br>    };</p>
+<pre><code>var fire2 = plane.fire;
+plane.fire = function() &#123;
+    fire2();
+    atomDecorator();
+&#125;;
+plane.fire(); //&quot;发射普通子弹&quot;&quot;发射导弹&quot;&quot;发射原子弹&quot;
+</code></pre>
+<h3 id="用AOP装饰函数"><a href="#用AOP装饰函数" class="headerlink" title="用AOP装饰函数"></a>用AOP装饰函数</h3><p>首先给出<code>Function.prototype.before</code>方法和<code>Function.prototype.after</code>方法</p>
+<p>​<br>    Function.prototype.before &#x3D; function (beforefn) {<br>      var __self &#x3D; this; &#x2F;&#x2F;保存原函数的引用<br>      return function() {  &#x2F;&#x2F;返回包含了原函数和新函数的代理函数<br>        beforefn.apply(this, arguments); &#x2F;&#x2F;执行新函数，且保证this不被劫持，新函数接受的参数也会原封不动的传入原函数，新函数在原函数之前执行<br>        return __self.apply(this, arguments); &#x2F;&#x2F;执行原函数并返回原函数的执行结果，并保证this不被劫持<br>      };<br>    };<br>    Function.prototype.after &#x3D; function (afterfn) {<br>      var __self &#x3D; this;<br>      return function() {<br>        var ret &#x3D; __self.apply(this, arguments);<br>        afterfn.apply(this, arguments);<br>        return ret;<br>      };<br>    };</p>
+<p>需求：<br>页面中有个按钮，点击会弹出登录浮层，与此同时要进行数据上报， 这时候我们最好去分离业务代码和数据统计代码，以便维护。</p>
+<p>​<br>    var showLogin &#x3D; function() {<br>        console.log(‘打开登陆浮层’);<br>        log(this.getAttribute(‘tag’));<br>    }<br>    var log &#x3D; function(tag) {<br>        console.log(‘上报标签为:’ + tag);<br>    }<br>    document,getElementById(‘button’).onclick &#x3D; showLogin;</p>
+<p>以上，<code>showLogin</code>函数既要负责打开登录浮层，又要负责数据上报，这是两个层面的功能，却被耦合在一个函数里，我们做点分离..</p>
+<p>​<br>    var showLogin &#x3D; function() {<br>        console.log(‘打开登陆浮层’);<br>    }<br>    var log &#x3D; function(tag) {<br>        console.log(‘上报标签为:’ + tag);<br>    }</p>
+<pre><code>showLogin = showLogin.after(log); //打开登录浮层之后上报数据
+document,getElementById(&#39;button&#39;).onclick = showLogin;
+</code></pre>
+<h3 id="装饰者模式和代理模式"><a href="#装饰者模式和代理模式" class="headerlink" title="装饰者模式和代理模式"></a>装饰者模式和代理模式</h3><p>代理模式和装饰者模式两种都描述了怎样为对象提供一定程度上的间接引用，他们的实现部分都保留了对另外一个对象的引用，并且向那个对象发送请求。<br>代理模式和装饰者模式最重要的区别在于他们的意图和设计目的。代理模式的目的是当直接访问本体不方便或者不符合需求时，为这个本体提供一个替代者。代理模式强调一种关系，这种关系一开始就以确定且通常只有一层代理-本体的引用。而装饰者模式的作用是为对象的动态加入行为，一开始不能确定对象的全部行为，通常装饰者模式会形成一条长长的链。</p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

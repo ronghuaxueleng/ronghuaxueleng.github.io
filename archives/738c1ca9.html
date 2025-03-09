@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>组合实体模式 (Composite Entity Pattern) - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="组合实体模式 (Composite Entity Pattern)组合实体模式（Composite Entity Pattern）用在 EJB 持久化机制中 一个组合实体是一个 EJB 实体 bean，代表了对象的图解 当更新一个组合实体时，内部依赖对象 beans 会自动更新，因为它们是由 EJB 实体 bean 管理的 以下是组合实体 bean 的参与者:  组合实体（Composite En">
+<meta property="og:type" content="article">
+<meta property="og:title" content="组合实体模式 (Composite Entity Pattern)">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/738c1ca9.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="组合实体模式 (Composite Entity Pattern)组合实体模式（Composite Entity Pattern）用在 EJB 持久化机制中 一个组合实体是一个 EJB 实体 bean，代表了对象的图解 当更新一个组合实体时，内部依赖对象 beans 会自动更新，因为它们是由 EJB 实体 bean 管理的 以下是组合实体 bean 的参与者:  组合实体（Composite En">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ronghuaxueleng.github.io/image/compositeentity_pattern_1.jpg">
+<meta property="article:published_time" content="2020-03-12T19:15:01.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.345Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="java, 设计模式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ronghuaxueleng.github.io/image/compositeentity_pattern_1.jpg">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/738c1ca9.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            组合实体模式 (Composite Entity Pattern)
+        </div>
+        <div class="post-meta">
+            2020-03-12 ｜ 
+            
+                <a href="/categories/java/"># java</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/java/">java</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h1 id="组合实体模式-Composite-Entity-Pattern"><a href="#组合实体模式-Composite-Entity-Pattern" class="headerlink" title="组合实体模式 (Composite Entity Pattern)"></a>组合实体模式 (Composite Entity Pattern)</h1><p>组合实体模式（Composite Entity Pattern）用在 EJB 持久化机制中</p>
+<p>一个组合实体是一个 EJB 实体 bean，代表了对象的图解</p>
+<p>当更新一个组合实体时，内部依赖对象 beans 会自动更新，因为它们是由 EJB 实体 bean 管理的</p>
+<p>以下是组合实体 bean 的参与者:</p>
+<ul>
+<li><strong>组合实体（Composite Entity）</strong> - 它是主要的实体 bean。它可以是粗粒的，或者可以包含一个粗粒度对象，用于持续生命周期</li>
+<li><strong>粗粒度对象（Coarse-Grained Object）</strong> - 该对象包含依赖对象。它有自己的生命周期，也能管理依赖对象的生命周期</li>
+<li><strong>依赖对象（Dependent Object）</strong> - 依赖对象是一个持续生命周期依赖于粗粒度对象的对象</li>
+<li><strong>策略（Strategies）</strong> - 策略表示如何实现组合实体</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p><img src="/../../image/compositeentity_pattern_1.jpg" alt="组合实体模式"></p>
+<ol>
+<li>定义作为组合实体的 <em>CompositeEntity</em> 对象</li>
+<li>定义 <em>CoarseGrainedObject</em> 是一个包含依赖对象的类</li>
+<li>定义类 <em>CompositeEntityPatternDemo</em> 使用 <em>Client</em> 类来演示组合实体模式的用法</li>
+</ol>
+<h2 id="范例"><a href="#范例" class="headerlink" title="范例"></a>范例</h2><h4 id="1-创建依赖对象"><a href="#1-创建依赖对象" class="headerlink" title="1. 创建依赖对象"></a>1. 创建依赖对象</h4><p><em>DependentObject1.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DependentObject1</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> String data;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setData</span><span class="params">(String data)</span>&#123;</span><br><span class="line">      <span class="built_in">this</span>.data = data; </span><br><span class="line">   &#125; </span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">getData</span><span class="params">()</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> data;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>DependentObject2.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DependentObject2</span> &#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> String data;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setData</span><span class="params">(String data)</span>&#123;</span><br><span class="line">      <span class="built_in">this</span>.data = data; </span><br><span class="line">   &#125; </span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> String <span class="title function_">getData</span><span class="params">()</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> data;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-创建粗粒度对象"><a href="#2-创建粗粒度对象" class="headerlink" title="2. 创建粗粒度对象"></a>2. 创建粗粒度对象</h4><p><em>CoarseGrainedObject.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CoarseGrainedObject</span> &#123;</span><br><span class="line">   <span class="type">DependentObject1</span> <span class="variable">do1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DependentObject1</span>();</span><br><span class="line">   <span class="type">DependentObject2</span> <span class="variable">do2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DependentObject2</span>();</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setData</span><span class="params">(String data1, String data2)</span>&#123;</span><br><span class="line">      do1.setData(data1);</span><br><span class="line">      do2.setData(data2);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> String[] getData()&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">String</span>[] &#123;do1.getData(),do2.getData()&#125;;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-创建组合实体"><a href="#3-创建组合实体" class="headerlink" title="3. 创建组合实体"></a>3. 创建组合实体</h4><p><em>CompositeEntity.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CompositeEntity</span> &#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="type">CoarseGrainedObject</span> <span class="variable">cgo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CoarseGrainedObject</span>();</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setData</span><span class="params">(String data1, String data2)</span>&#123;</span><br><span class="line">      cgo.setData(data1, data2);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> String[] getData()&#123;</span><br><span class="line">      <span class="keyword">return</span> cgo.getData();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-创建使用组合实体的客户端类"><a href="#4-创建使用组合实体的客户端类" class="headerlink" title="4. 创建使用组合实体的客户端类"></a>4. 创建使用组合实体的客户端类</h4><p><em>Client.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Client</span> &#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="type">CompositeEntity</span> <span class="variable">compositeEntity</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CompositeEntity</span>();</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">printData</span><span class="params">()</span>&#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; compositeEntity.getData().length; i++) &#123;</span><br><span class="line">         System.out.println(<span class="string">&quot;Data: &quot;</span> + compositeEntity.getData()[i]);</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setData</span><span class="params">(String data1, String data2)</span>&#123;</span><br><span class="line">      compositeEntity.setData(data1, data2);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-使用-Client-来演示组合实体设计模式的用法"><a href="#5-使用-Client-来演示组合实体设计模式的用法" class="headerlink" title="5. 使用 Client 来演示组合实体设计模式的用法"></a>5. 使用 <em>Client</em> 来演示组合实体设计模式的用法</h4><p><em>CompositeEntityPatternDemo.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CompositeEntityPatternDemo</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">       <span class="type">Client</span> <span class="variable">client</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Client</span>();</span><br><span class="line">       client.setData(<span class="string">&quot;Test&quot;</span>, <span class="string">&quot;Data&quot;</span>);</span><br><span class="line">       client.printData();</span><br><span class="line">       client.setData(<span class="string">&quot;Second Test&quot;</span>, <span class="string">&quot;Data1&quot;</span>);</span><br><span class="line">       client.printData();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译运行以上 Java 范例，输出结果如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">javac -d . src/main/cn/twle/gof/CompositeEntityPatternDemo.java</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">java  cn.twle.gof.CompositeEntityPatternDemo</span></span><br><span class="line">Data: Test</span><br><span class="line">Data: Data</span><br><span class="line">Data: Second Test</span><br><span class="line">Data: Data1</span><br></pre></td></tr></table></figure>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/java-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> / java, 设计模式</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

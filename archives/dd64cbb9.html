@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>JavaScript Singleton（单例）模式 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="写在前面singleton模式是被熟知的原因是因为它限制了类的实例化次数只能一次。从经典意义上来说，singleton模式在该实例不存在的情况下，可以通过一个方法创建一个类来实现创建类的新实例；如果实例已经存在，它会简单返回该对象的引用。 singleton不同于静态类(或对象)，因为我们可以推迟它们的初始化，这通常是因为它们需要一些信息，而这些信息在初始化期间可能无法获得、对于没有察觉到之前的引">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript Singleton（单例）模式">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/dd64cbb9.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="写在前面singleton模式是被熟知的原因是因为它限制了类的实例化次数只能一次。从经典意义上来说，singleton模式在该实例不存在的情况下，可以通过一个方法创建一个类来实现创建类的新实例；如果实例已经存在，它会简单返回该对象的引用。 singleton不同于静态类(或对象)，因为我们可以推迟它们的初始化，这通常是因为它们需要一些信息，而这些信息在初始化期间可能无法获得、对于没有察觉到之前的引">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-09-10T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.296Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="Javascript设计模式">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/dd64cbb9.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            JavaScript Singleton（单例）模式
+        </div>
+        <div class="post-meta">
+            2016-09-10 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>singleton模式是被熟知的原因是因为它限制了类的实例化次数只能一次。从经典意义上来说，singleton模式在该实例不存在的情况下，可以通过一个方法创建一个类来实现创建类的新实例；如果实例已经存在，它会简单返回该对象的引用。</p>
+<p>singleton不同于静态类(或对象)，因为我们可以推迟它们的初始化，这通常是因为它们需要一些信息，而这些信息在初始化期间可能无法获得、对于没有察觉到之前的引用的代码，它们不会提供方便检索的方法。这是因为它既不是对象，也不是由一个singleton返回的“类”；它是一个结构。</p>
+<p>思考一下<strong>闭包变量为何实际上并不是闭包</strong>，而提供闭包的函数作用域是闭包。在Javascript中，singleton充当共享资源命名空间，从全局命名空间中隔离出代码实现，从而为函数提供单一访问点。</p>
+<span id="more"></span>
+
+<h1 id="来个例子"><a href="#来个例子" class="headerlink" title="来个例子"></a>来个例子</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">var mySingleton=(function()&#123;</span><br><span class="line">	//实例保持了Singleton的一个引用</span><br><span class="line">	var instance;</span><br><span class="line">	function init()&#123;</span><br><span class="line">		//Singleton</span><br><span class="line">		//私有方法和变量</span><br><span class="line">		function privateMethod()&#123;</span><br><span class="line">			console.log(&quot;I am private&quot;);</span><br><span class="line">		&#125;</span><br><span class="line">		var privateVariable=&quot;I am also private&quot;;</span><br><span class="line">		var privateRandomNumber=Math.random();</span><br><span class="line">		return&#123;</span><br><span class="line">			//公有方法和变量</span><br><span class="line">			publicMethod:function()&#123;</span><br><span class="line">				console.log(&quot;The public can see me!&quot;);</span><br><span class="line">			&#125;,</span><br><span class="line">			publicProperty:&quot;I am also public&quot;,</span><br><span class="line">			getRandomNumber:function()&#123;</span><br><span class="line">				return privateRandomNumber;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">	return&#123;</span><br><span class="line">		//获取singleton的实例，如果存在则返回，不存在就创建新实例</span><br><span class="line">		getInstance:function()&#123;</span><br><span class="line">			if(!instance)&#123;</span><br><span class="line">				instance=init();</span><br><span class="line">			&#125;</span><br><span class="line">			return instance;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">var myBadSingleton=(function()&#123;</span><br><span class="line">	//实例保存了singleton的一个引用</span><br><span class="line">	var instance;</span><br><span class="line">	function init()&#123;</span><br><span class="line">		//Singleton</span><br><span class="line">		var privateRandomNumber=Math.random();</span><br><span class="line">		return&#123;</span><br><span class="line">			getRandomNumber:function()&#123;</span><br><span class="line">				return privateRandomNumber;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">	return&#123;</span><br><span class="line">		//每次都创建新实例</span><br><span class="line">		getInstance:function()&#123;</span><br><span class="line">			instance=init();</span><br><span class="line">			return instance;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">var singleA=mySingleton.getInstance();</span><br><span class="line">var singleB=mySingleton.getInstance();</span><br><span class="line">console.log(singleA.getRandomNumber()===SingleB.getRandomNumber()); //true</span><br><span class="line">var badSingleA=myBadSingleton.getInstance();</span><br><span class="line">var badSingleB=myBadSingleton.getInstance();</span><br><span class="line">console.log(badSingleA.getRandomNumber()!==badSingleB.getRandomNumber()); //true</span><br></pre></td></tr></table></figure>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>好了，写了这么多代码，我们先明确一个问题——是什么使Singleton成为实例的全局访问入口（通常通过MySingleton.getInstance()）?</p>
+<blockquote>
+<p>因为我们没有（至少在静态语言中）直接调用新的MySingleton()。然而，这在Javascript中是可能的。</p>
+</blockquote>
+<h2 id="适用的场景"><a href="#适用的场景" class="headerlink" title="适用的场景"></a><strong>适用的场景</strong></h2><p>1、当类只能有一个实例而且客户可以从一个众所周知的访问点访问它时。<br>2、该唯一的实例应该是通过子类化可扩展的，并且客户应该无需更改代码就能使用一个扩展的实例时。</p>
+<h2 id="延迟执行"><a href="#延迟执行" class="headerlink" title="延迟执行"></a><strong>延迟执行</strong></h2><p>我们看下面代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mySingleton.getInstance=function()&#123;</span><br><span class="line">	if(this._instance==null)&#123;</span><br><span class="line">		if(isFoo())&#123;</span><br><span class="line">			this._instance=new FooSingleton();</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			this._instance=new BasicSingleton();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return this._instance;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在这里，getInstance变得有点像Factory（工厂）方法，当访问它时，我们不需要更新代码中的每个访问点。FooSingleton（上面）将是一个BasicSingleton的子类，并将实现相同的接口。</p>
+<p><strong>那么问题来了，为什么要延迟执行Singleton呢？</strong></p>
+<p>在C++中，Singleton负责隔绝动态初始化顺序的不可预知性，将控制权归还给程序员。</p>
+<p>值得注意的是类的静态实例（对象）和Singleton之间的区别：当Singleton可以作为一个静态的实例实现时，它也可以延迟构建，直到需要使用静态实例时，无需使用资源或内存。</p>
+<p>如果我们有一个可以直接被初始化的静态对象，需要确保执行代码的顺序总是相同的（例如：在初始化期间objCar需要objWheel的情况），当我们有大量的源文件时，它并不能伸缩。</p>
+<p>Singleton和静态对象都是有用的，但是我们不应当以同样的方式过度使用它们，也不应该过度地使用其他模式。</p>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a><strong>最佳实践</strong></h2><p>在实践中，当在系统中确实需要一个对象来协调其他对象时，Singleton模式是很有用的，在这里，大家可以看到在这个上下文中模式的使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">var SingletonTester=(function()&#123;</span><br><span class="line"></span><br><span class="line">	//options:包含Singleton所需配置信息的对象</span><br><span class="line">	//@eg: var options=&#123;name:&quot;test&quot;,pointX:5&#125;;</span><br><span class="line">	function Singleton(options)&#123;</span><br><span class="line">		//如果未提供options则设置为空对象</span><br><span class="line">		options=options || &#123;&#125;;</span><br><span class="line">		//未Singleton设置一些属性</span><br><span class="line">		this.name=&quot;SingletonTester&quot;;</span><br><span class="line">		this.pointX=options.pointX||6;</span><br><span class="line">		this.pointY=options.pointY||10;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//实例持有者</span><br><span class="line">	var instance;</span><br><span class="line">	//静态变量和方法的模拟</span><br><span class="line">	var _static=&#123;</span><br><span class="line">		name:&quot;SingletonTester&quot;,</span><br><span class="line">		//获取实例的方法，返回Singleton对象的Singleton实例</span><br><span class="line">		getInstance:function(options)&#123;</span><br><span class="line">			if(instance===undefined)&#123;</span><br><span class="line">				instance=new Singleton(options);</span><br><span class="line">			&#125;</span><br><span class="line">			return instance;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	return _static;</span><br><span class="line">&#125;)(); </span><br><span class="line"></span><br><span class="line">var singletonTest=SingletonTester.getInstance(&#123;</span><br><span class="line">	pointX:5</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//记录pointX的输出以便验证</span><br><span class="line">//输出：5</span><br><span class="line">console.log(singletonTest.pointX);</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Singleton很有使用价值，通常当发现在Javascript中需要它的时候，则表示我们可能需要重新评估我们的设计。Singleton的存在往往表面系统中的模块要么是系统紧密耦合，要么是其逻辑国语分散在代码库的多个部分。<strong>由于一系列的问题：从隐藏的依赖到创建多个实例的难度、底层依赖的难度等等，Singleton的测试会更加困难。</strong></p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/Javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> / Javascript设计模式</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

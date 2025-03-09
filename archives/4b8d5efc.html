@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>AngularJS中scope基于原型链的继承 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="相信大家写过AngularJS的都会发现，很多人在处理表单的数据绑定时，都习惯性的把ng-model绑定在$scope的一个对象属性上，而不是直接绑定在scope上。比如说使用&lt;input name&#x3D;&quot;name&quot; ng-model&#x3D;&quot;data.name&quot; &#x2F;&gt;而不是&lt;input name&#x3D;&quot;name&quot; ng-model&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AngularJS中scope基于原型链的继承">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/4b8d5efc.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="相信大家写过AngularJS的都会发现，很多人在处理表单的数据绑定时，都习惯性的把ng-model绑定在$scope的一个对象属性上，而不是直接绑定在scope上。比如说使用&lt;input name&#x3D;&quot;name&quot; ng-model&#x3D;&quot;data.name&quot; &#x2F;&gt;而不是&lt;input name&#x3D;&quot;name&quot; ng-model&#x3D;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-08-21T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.218Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="AngularJS, scope, dirctive, ng-repeat, Javascript继承">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/4b8d5efc.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            AngularJS中scope基于原型链的继承
+        </div>
+        <div class="post-meta">
+            2016-08-21 ｜ 
+            
+                <a href="/categories/angularjs/"># angularjs</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/angularjs/">angularjs</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <p>相信大家写过AngularJS的都会发现，很多人在处理表单的数据绑定时，都习惯性的把ng-model绑定在$scope的一个对象属性上，而不是直接绑定在scope上。比如说使用<code>&lt;input name=&quot;name&quot; ng-model=&quot;data.name&quot; /&gt;</code>而不是<code>&lt;input name=&quot;name&quot; ng-model=&quot;name&quot; /&gt;</code>。这是为什么呢？这样在controller里面岂不是写起来更复杂吗？每次访问的时候都要多“点”一下，为什么不直接绑在$scope上呢？其实这样写自然是有它的好处的，而且这种写法也是推荐的最佳实践，尤其是在处理嵌套scope的情形下，这样写是很有必要的。为了弄清楚这么写的原因，我们需要深入的研究一下AngularJS里scope的继承。</p>
+<span id="more"></span>
+
+<h3 id="基于原型链的继承"><a href="#基于原型链的继承" class="headerlink" title="基于原型链的继承"></a>基于原型链的继承</h3><p>AngularJS的官方文档里有这么一句话来描述scope：<code>A &quot;child scope&quot; (prototypically) inherits properties from its parent scope.</code> 子scope从其父scope那里继承属性，而括号里的词是重点，这种继承是基于原型链的。直接来看一个最简单的例子。</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="AXkKWr" data-default-tab="html,result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/AXkKWr/">AXkKWr</a> by 曹强 (<a href="http://codepen.io/ronghuaxueleng">@ronghuaxueleng</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>这段简单的代码里，<code>ChildCtrl</code>并没有定义<code>MyName</code>，但由于在DOM结构上它和<code>ParentCtrl</code>是父子关系，所以它继承了其父scope上定义的属性。这个其实不难理解，我们知道，在Javascript的世界里，继承都是通过原型链来实现的。最常见的例子就是<code>toString()</code>方法，试试运行<code>var a = &#123;&quot;test1&quot;: 1, &quot;test2&quot;: 2&#125;; a.toString()</code>。你自定义一个对象时，都可以调用到这个方法，因为这个方法是定义在object对象上的，自定义的对象都继承它。</p>
+<p>在这个例子里，我们是直接将model绑定在scope上的，似乎目前为止也没什么问题啊。下面让我们做一些小实验：</p>
+<ul>
+<li>尝试在Parent Name的input框中修改，发现Child Name的input框跟着同步改变，说明父scope中model的变化同步到了子scope中，没有问题。</li>
+<li>尝试在Child Name的input框中修改，发现Parent Name对应的input框并没有随着发生改变，说明子scope中model的变化并没有同步回父scope中。</li>
+<li>再次尝试在Parent Name的input框中修改，发现此时Child Name的input框也不更新了，说明这个时候，父scope中的model变化已经没法同步到子scope中去了。</li>
+</ul>
+<p>看起来父scope和子scope之间的联系已经断了，此时两个input框的值已经无法再同步了。这个例子是现实情况中非常常见的场景，model定义在父scope上，而表单的DOM区域有自己的controller，这就势必会产生一个新的子scope。按照我们的实验，一旦用户修改了表单数据，父scope拿到的model已经不正确了，并且此时如果父scope的controller更新model，表单里的model也不对了，这显然与我们的设计初衷是相违背的。</p>
+<p>我们可以从分析实验2入手，因为实验2之前父子scope是可以同步，实验2之后父子scope已经完全独立，就像是父scope和子scope操作的是不同的model一样。那究竟是不是这么回事呢？我们尝试修改代码，在<code>ChildCtrl</code>的函数中添加一行<code>$scope.myName = &#39;Child Name&#39;;</code>。这时，我们修改两个input框，发现无法同步。这个也很好理解，还拿<code>toString()</code>来举例，如果自定义的对象里重写了<code>toString()</code>方法，那么这个子对象上的方法就覆盖了继承过来的方法。同样的，这里子scope的<code>myName</code>属性覆盖了从父scope继承过来的<code>myName</code>属性。</p>
+<blockquote>
+<p>在父scope属性被隐藏的情况下如果要访问其属性，可以使用子scope上的<code>$parent</code>属性来显式的访问。</p>
+</blockquote>
+<h3 id="关于继承属性的读和写"><a href="#关于继承属性的读和写" class="headerlink" title="关于继承属性的读和写"></a>关于继承属性的读和写</h3><p>实验2造成的结果其实就是在子scope上重新定义了<code>myName</code>属性。是什么触发了这个操作呢？我们修改子Child Name的input框值，根据AngularJS的双向绑定，触发了子scope上<code>myName</code>属性的写操作，写操作发现子scope上没有自己定义这个属性（可以通过<code>hasOwnProperty()</code>函数来确定）时，触发子scope去定义一个<code>myName</code>属性。正是由于子scope现在有了自己的<code>myName</code>属性，父scope继承过来的<code>myName</code>被隐藏(shadow)，导致了两者的更改互不影响。所以可以总结在基于原型链的继承中，子类属性的读和写有这么几个特点：</p>
+<ul>
+<li>读子类的属性时，子类有这个属性（<code>hasOwnProperty</code>）的时候则读子类自己的，子类没有的时候读父类的，不管子类有没有这个属性，在子类上都不会有新属性被创建。</li>
+<li>写子类的属性时，如果子类有这个属性（<code>hasOwnProperty</code>）则写子类的，子类没有的话就会在子类上新建一个同名的新属性，而父类继承过来的属性被隐藏。</li>
+</ul>
+<p>那怎么解决这个问题呢？我们按照最佳实践，将model绑定在scope的data属性上试试。看下面这个例子。</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="QERNyy" data-default-tab="html,result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/QERNyy/">QERNyy</a> by 曹强 (<a href="http://codepen.io/ronghuaxueleng">@ronghuaxueleng</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>我们同样做上面3个实验，发现这次不管怎么修改，父scope和子scope上的model都是可以同步的。这又是为什么呢？难道写属性的时候没有在子scope上创建新属性吗？确实如此！可以发现，这里继承的属性是<code>data</code>，它是一个对象，而前面的例子中继承的是<code>myName</code>，是一个字符串。在这两种情况下，当我们尝试修改Child Namd的input为“abc”时，让我们看看分别有什么不同：</p>
+<ul>
+<li>例子1中，由于双向绑定，其实是执行<code>子scope.myName = &quot;abc&quot;</code>，先检查子scope上有没有<code>myName</code>属性<strong>可供写</strong>，发现没有，则新建属性，导致父scope的属性被隐藏。</li>
+<li>例子2中，执行<code>子scope.data.myName = &quot;abc&quot;</code>，这个时候，先检查子scope上有没有<code>data</code>属性<strong>可供读</strong>，发现没有，则读父scope上的，读到以后，然后修改其上面的<code>myName</code>属性。</li>
+</ul>
+<p>区别就在于写<code>data.myName</code>的时候会尝试先去读<code>data</code>属性，正是由于这个特性，所以在处理表单的数据绑定时才推荐使用点运算符，即把model绑定在scope的某个对象属性上。</p>
+<blockquote>
+<p>可能有人会对这个有异议，考虑这个例子：<code>var a = &#123;&#125;; a.data.myName = &quot;abc&quot;;</code>，显然执行这句代码会报错，错误是<code>TypeError: Cannot set property &#39;myName&#39; of undefined</code>，说明解释器先尝试去读<code>a.data</code>，发现是undefined，然后再去写其<code>myName</code>属性，才报了这么一个错！</p>
+</blockquote>
+<h3 id="其他会产生子scope的标签"><a href="#其他会产生子scope的标签" class="headerlink" title="其他会产生子scope的标签"></a>其他会产生子scope的标签</h3><p>除了<code>ng-controller</code>会产生子scope外，AngularJS里的还有很多其他标签也同样会产生子scope：</p>
+<ul>
+<li><code>ng-repeat</code></li>
+<li><code>ng-include</code></li>
+<li><code>ng-switch</code></li>
+</ul>
+<p>所以在这些场景下也需要考虑原型链继承存在的问题。这里值得一说的是<code>ng-repeat</code>标签，对于每一轮循环它都会产生一个<strong>新的</strong>子scope基于原型链继承父scope，而且在这个新的子scope里，会定义一个新属性，属性名为循环变量，值为此轮循环的值，类似下面的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">子scope = 父scope.$new();</span><br><span class="line">子scope[循环变量] = 此轮循环的值;</span><br></pre></td></tr></table></figure>
+<p>这个特性在很多场景下很有用。比如说，同一个页面上有2个<code>ng-include</code>标签，使用同样的模板，模板里有一个变量<code>name</code>，针对两个不同的<code>ng-include</code>我想让<code>name</code>变量有不同的值，但是我又不想重新写两个controller，这个时候可以使用<code>ng-repeat</code>。</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="qNGkbY" data-default-tab="html,result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/qNGkbY/">qNGkbY</a> by 曹强 (<a href="http://codepen.io/ronghuaxueleng">@ronghuaxueleng</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>这里使用<code>ng-repeat</code>可以轻松的将不同的变量传入同一个模板中。</p>
+<h3 id="directive中的scope"><a href="#directive中的scope" class="headerlink" title="directive中的scope"></a>directive中的scope</h3><p>directive比较复杂，所以单独拿出来研究，它有一个<code>scope</code>参数，根据参数的不同就有不同的行为。</p>
+<ul>
+<li>默认情况下，即构造directive的时候不传scope参数，等同于传入<code>scope: false</code>，这种情况不会产生新的scope，也就不存在继承的问题，directive的scope和原来是同一个。</li>
+<li>构造directive时传入<code>scope: true</code>，这种情况会产生新的子scope并继承父scope，情况类似于前面介绍的，所以这时就需要注意原型链继承带来的问题。</li>
+<li>构造directive时传入<code>scope: &#123;...&#125;</code>，这种情况会产生新的scope，但这个scope是独立的scope，不继承于任何scope，也就不存在原型链继承的问题。这种情况通常用于你想构造一个通用的directive的，不与父scope产生任何联系。<blockquote>
+<p>注意尽管这种情况下scope是独立的，但它依然有<code>$parent</code>属性来指向其父scope。另外，倘若你想访问父scope的属性的话，可以使用<code>=</code>，<code>@</code>，<code>&amp;</code>等符号，来指定是双向绑定或单项绑定还是基于表达式的绑定。</p>
+</blockquote>
+</li>
+<li>构造directive时传入<code>transclude: true</code>，这种情况下会产生子scope并继承父scope，它的独特之处时如果有独立的scope，则两者为兄弟，也就是说，两者的<code>$parent</code>是一样的，独立scope的<code>$$nextSibling</code>指向这个子scope。</li>
+</ul>
+<blockquote>
+<p>参考：<a href="http://stackoverflow.com/questions/14049480/what-are-the-nuances-of-scope-prototypal-prototypical-inheritance-in-angularjs">What are the nuances of scope prototypal &#x2F; prototypical inheritance in AngularJS?</a></p>
+</blockquote>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/AngularJS-scope-dirctive-ng-repeat-Javascript%E7%BB%A7%E6%89%BF/"> / AngularJS, scope, dirctive, ng-repeat, Javascript继承</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

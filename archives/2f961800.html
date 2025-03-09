@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>如何判断Javascript对象是否存在 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="Javascript语言的设计不够严谨，很多地方一不小心就会出错。 举例来说，请考虑以下情况。 现在，我们要判断一个全局对象myObj是否存在，如果不存在，就对它进行声明。用自然语言描述的算法如下： 123if (myObj不存在)&#123;  声明myObj;&#125; 你可能会觉得，写出这段代码很容易。但是实际上，它涉及的语法问题，远比我们想象的复杂。Juriy Zaytsev指出，判断一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何判断Javascript对象是否存在">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/2f961800.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="Javascript语言的设计不够严谨，很多地方一不小心就会出错。 举例来说，请考虑以下情况。 现在，我们要判断一个全局对象myObj是否存在，如果不存在，就对它进行声明。用自然语言描述的算法如下： 123if (myObj不存在)&#123;  声明myObj;&#125; 你可能会觉得，写出这段代码很容易。但是实际上，它涉及的语法问题，远比我们想象的复杂。Juriy Zaytsev指出，判断一">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-09-19T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.283Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/2f961800.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            如何判断Javascript对象是否存在
+        </div>
+        <div class="post-meta">
+            2016-09-19 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <p>Javascript语言的设计不够严谨，很多地方一不小心就会出错。</p>
+<p>举例来说，请考虑以下情况。</p>
+<p>现在，我们要判断一个<strong>全局对象</strong>myObj是否存在，如果不存在，就对它进行声明。用自然语言描述的算法如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (myObj不存在)&#123;</span><br><span class="line">  声明myObj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>你可能会觉得，写出这段代码很容易。但是实际上，它涉及的语法问题，远比我们想象的复杂。<a href="http://perfectionkills.com/unnecessarily-comprehensive-look-into-a">Juriy Zaytsev</a>指出，判断一个Javascript对象是否存在，有超过50种写法。只有对Javascript语言的实现细节非常清楚，才可能分得清它们的区别。</p>
+<span id="more"></span>
+
+<h3 id="第一种写法"><a href="#第一种写法" class="headerlink" title="第一种写法"></a><strong>第一种写法</strong></h3><p>根据直觉，你可能觉得可以这样写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!myObj) &#123;</span><br><span class="line">  myObj = &#123; &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是，运行这段代码，浏览器会直接抛出ReferenceError错误，导致运行中断。请问错在哪里？</p>
+<p>对了，if语句判断myObj是否为空时，这个变量还不存在，所以才会报错。改成下面这样，就能正确运行了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!myObj) &#123;</span><br><span class="line">  <span class="keyword">var</span> myObj = &#123; &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为什么加了一个var以后，就不报错了？难道这种情况下，if语句做判断时，myObj就已经存在了吗？</p>
+<p>要回答这个问题，就必须知道Javascript解释器的工作方式。Javascript语言是”先解析，后运行”，解析时就已经完成了变量声明，所以上面的代码实际<br>等同于：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myObj;</span><br><span class="line"><span class="keyword">if</span> (!myObj) &#123;</span><br><span class="line">  <span class="keyword">var</span> myObj = &#123; &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因此，if语句做判断时，myObj确实已经存在了，所以就不报错了。这就是var命令的”代码提升”（hoisting）作用。Javascript解释器，只”提<br>升”var命令定义的变量，对不使用var命令、直接赋值的变量不起作用，这就是为什么不加var会报错的原因。</p>
+<h3 id="第二种写法"><a href="#第二种写法" class="headerlink" title="第二种写法"></a><strong>第二种写法</strong></h3><p>除了var命令，还可以有另一种改写，也能得到正确的结果：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="variable language_">window</span>.<span class="property">myObj</span>) &#123;</span><br><span class="line">  myObj = &#123; &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>window是javascript的顶层对象，所有的全局变量都是它的属性。所以，判断myobj是否为空，等同于判断window对象是否有myobj属性，这样<br>就可以避免因为myObj没有定义而出现ReferenceError错误。不过，从代码的规范性考虑，最好还是对第二行加上var：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="variable language_">window</span>.<span class="property">myObj</span>) &#123;</span><br><span class="line"> <span class="keyword">var</span> myObj = &#123; &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者写成这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="variable language_">window</span>.<span class="property">myObj</span>) &#123;</span><br><span class="line">  <span class="variable language_">window</span>.<span class="property">myObj</span> = &#123; &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="第三种写法"><a href="#第三种写法" class="headerlink" title="第三种写法"></a><strong>第三种写法</strong></h3><p>上面这种写法的缺点在于，在某些运行环境中（比如V8、Rhino），window未必是顶层对象。所以，考虑改写成：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!**<span class="variable language_">this</span>.<span class="property">myObj</span>**) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">myObj</span>** = &#123; &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在全局变量的层面中，this关键字总是指向顶层变量，所以就可以独立于不同的运行环境。</p>
+<h3 id="第四种写法"><a href="#第四种写法" class="headerlink" title="第四种写法"></a><strong>第四种写法</strong></h3><p>但是，上面这样写可读性较差，而且this的指向是可变的，容易出错，所以进一步改写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="variable language_">global</span> = <span class="variable language_">this</span>;</span><br><span class="line"><span class="keyword">if</span> (!<span class="variable language_">global</span>.<span class="property">myObj</span>) &#123;</span><br><span class="line">  <span class="variable language_">global</span>.<span class="property">myObj</span> = &#123; &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用自定义变量global表示顶层对象，就清楚多了。</p>
+<h3 id="第五种写法"><a href="#第五种写法" class="headerlink" title="第五种写法"></a><strong>第五种写法</strong></h3><p>还可以使用typeof运算符，判断myObj是否有定义。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (**<span class="keyword">typeof</span> myObj == <span class="string">&quot;undefined&quot;</span>**) &#123;</span><br><span class="line">  <span class="keyword">var</span> myObj = &#123; &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是目前使用最广泛的判断javascript对象是否存在的方法。</p>
+<h3 id="第六种写法"><a href="#第六种写法" class="headerlink" title="第六种写法"></a><strong>第六种写法</strong></h3><p>由于在已定义、但未赋值的情况下，myObj的值直接等于undefined，所以上面的写法可以简化：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (**myObj == <span class="literal">undefined</span>**) &#123;</span><br><span class="line">  <span class="keyword">var</span> myObj = &#123; &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里有两个地方需要注意，首先第二行的var关键字不能少，否则会出现ReferenceError错误，其次undefined不能加单引号或双引号，因为这里比较<br>的是undefined这种数据类型，而不是”undefined”这个字符串。</p>
+<h3 id="第七种写法"><a href="#第七种写法" class="headerlink" title="第七种写法"></a><strong>第七种写法</strong></h3><p>上面的写法在”精确比较”（&#x3D;&#x3D;&#x3D;）的情况下，依然成立：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (**myObj === <span class="literal">undefined</span>**) &#123;</span><br><span class="line">  <span class="keyword">var</span> myObj = &#123; &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="第八种写法"><a href="#第八种写法" class="headerlink" title="第八种写法"></a><strong>第八种写法</strong></h3><p>根据javascript的语言设计，undefined &#x3D;&#x3D; null，所以比较myObj是否等于null，也能得到正确结果：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (**myObj == <span class="literal">null</span>**) &#123;</span><br><span class="line">  <span class="keyword">var</span> myObj = &#123; &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不过，虽然运行结果正确，但是从语义上看，这种判断方法是错的，应该避免。因为null指的是已经赋值为null的空对象，即这个对象实际上是有值的，而undefined指的是不存在或没有赋值的对象。因此，这里只能使用”比较运算符”（&#x3D;&#x3D;），如果这里使用”精确比较运算符”（&#x3D;&#x3D;&#x3D;），就会出错。</p>
+<h3 id="第九种写法"><a href="#第九种写法" class="headerlink" title="第九种写法"></a><strong>第九种写法</strong></h3><p>还可以使用in运算符，判断myObj是否为顶层对象的一个属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!(<span class="string">&#x27;myObj&#x27;</span> <span class="keyword">in</span> <span class="variable language_">window</span>)) &#123;</span><br><span class="line">  <span class="variable language_">window</span>.<span class="property">myObj</span> = &#123; &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="第十种写法"><a href="#第十种写法" class="headerlink" title="第十种写法"></a><strong>第十种写法</strong></h3><p>最后，使用hasOwnProperty方法，判断myObj是否为顶层对象的一个属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="title function_">hasOwnProperty</span>(<span class="string">&#x27;myObj&#x27;</span>)) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">myObj</span> = &#123; &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><p>1. 如果只判断对象是否存在，推荐使用第五种写法。</p>
+<p>2. 如果除了对象是否存在，还要判断对象是否有null值，推荐使用第一种写法。</p>
+<p>3. 除非特殊情况，所有变量都应该使用var命令声明。</p>
+<p>4. 为了跨平台，建议避免使用window表示顶层对象。</p>
+<p>5. 在Javascript语言中，null和undefined容易产生混淆。在可能同时涉及两者的情况下，建议使用”精确比较”运算符（&#x3D;&#x3D;&#x3D;）。</p>
+<p>（完）  </p>
+<p>-rather-insignificant-issue-of-global-objects-creation&#x2F;</p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>用$scope还是用controller as - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="AngularJS中在处理controller时提供了两种语法。  第一种是，在DOM中使用ng-controller&#x3D;&quot;TestController&quot;，这样在定义controller时需要将model绑定到$scope上。 另一种是，在DOM中使用ng-controller&#x3D;&quot;TestController as test&quot;，这样其实是将model直接绑定到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用$scope还是用controller as">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/fbf791f5.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="AngularJS中在处理controller时提供了两种语法。  第一种是，在DOM中使用ng-controller&#x3D;&quot;TestController&quot;，这样在定义controller时需要将model绑定到$scope上。 另一种是，在DOM中使用ng-controller&#x3D;&quot;TestController as test&quot;，这样其实是将model直接绑定到">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://7jptbo.com1.z0.glb.clouddn.com/images/controller-as-vs-scope-1.png">
+<meta property="article:published_time" content="2016-08-22T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.232Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="angularJS, scope, controller">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://7jptbo.com1.z0.glb.clouddn.com/images/controller-as-vs-scope-1.png">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/fbf791f5.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            用$scope还是用controller as
+        </div>
+        <div class="post-meta">
+            2016-08-22 ｜ 
+            
+                <a href="/categories/angularjs/"># angularjs</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/angularjs/">angularjs</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <p>AngularJS中在处理controller时提供了两种语法。</p>
+<ul>
+<li>第一种是，在DOM中使用<code>ng-controller=&quot;TestController&quot;</code>，这样在定义controller时需要将model绑定到$scope上。</li>
+<li>另一种是，在DOM中使用<code>ng-controller=&quot;TestController as test&quot;</code>，这样其实是将model直接绑定到controller的实例上。</li>
+</ul>
+<p>在AngularJS的官方Get Started以及各种文档中，多推荐第一种方式，导致很多人可能都不知道原来还有第二种方式，我也是最近看一篇文章时才注意到这个。那么这两种方式各有什么优劣势呢？在现实的开发中到底更推荐哪种方式呢？今天就来探究一下！</p>
+<span id="more"></span>
+
+<h3 id="controller-as方式"><a href="#controller-as方式" class="headerlink" title="controller as方式"></a>controller as方式</h3><p>$scope方式就不详细说了，大家应该最常用这种吧，看下面这段简单的代码。</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="NAVxLk" data-default-tab="result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/NAVxLk/">NAVxLk</a> by 曹强 (<a href="http://codepen.io/ronghuaxueleng">@ronghuaxueleng</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>对应版本的controller as方式如下：</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="vKwLQa" data-default-tab="result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/vKwLQa/">vKwLQa</a> by 曹强 (<a href="http://codepen.io/ronghuaxueleng">@ronghuaxueleng</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>在controller as方式中，可以给controller起别名，上面的例子中别名是<code>ctrl</code>。对比这两个例子，可以明显的看到controller as有两个不同的地方：</p>
+<ul>
+<li>在HTML中，所有的绑定都需要写别名，即需要使用点运算符<code>ctrl.</code></li>
+<li>在JS中，controller的定义可以抛开<code>$scope</code>了，也就是说controller可以不依赖<code>$scope</code>了。</li>
+</ul>
+<p>下面就从这两个区别出发去谈谈controller as的好处。</p>
+<h3 id="所有model都需要绑定在ctrl上"><a href="#所有model都需要绑定在ctrl上" class="headerlink" title="所有model都需要绑定在ctrl上"></a>所有model都需要绑定在<code>ctrl</code>上</h3><p>首先有必要澄清下，这个别名是怎么实现的呢？使用AngularJS在Chrome上的调试插件<a href="https://chrome.google.com/webstore/detail/angularjs-batarang/ighdmehidhipcmcojjgiloacoafjmpfk">AngularJS Batarang</a>可以很清楚的看出来。安装好插件后打开<a href="http://s.codepen.io/pinkyjie/debug/YPYWGO">上面的例子</a>，右击页面“审查元素”打开Chrome的DevTools，在Elements标签里选中<code>&lt;div ng-controller=&quot;scopeController as ctrl&quot; class=&quot;ng-scope&quot;&gt;</code>这一行，然后点击右边的$scope标签（就是和Styles，Computed在一行的，看不到的话点击右边的小箭头），结果就是这个DOM元素所对应的<code>$scope</code>，如下图：</p>
+<img src="http://7jptbo.com1.z0.glb.clouddn.com/images/controller-as-vs-scope-1.png" class="center-img" title="图1">
+
+<p>原来别名<code>ctrl</code>就是定义在<code>$scope</code>上的一个对象，这就是controller的一个实例，所有在JS中定义controller时绑定到<code>this</code>上的model其实都是绑定到<code>$scope.ctrl</code>上的，看到这里你想到了什么？是不是和上篇文章<a href="2016/08/21/angularJs/AngularJS%E4%B8%ADscope%E5%9F%BA%E4%BA%8E%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%9A%84%E7%BB%A7%E6%89%BF/">AngularJS中scope基于原型链的继承</a>里的<code>$scope.data</code>有异曲同工之妙。所以，使用controller as的一大好处就是原型链继承给scope带来的问题都不复存在了，即有效避免了在嵌套scope的情况下子scope的属性隐藏掉父scope属性的情况。</p>
+<blockquote>
+<p>可以发现，无论定义controller时有没有直接依赖<code>$scope</code>，DOM中的scope是始终存在的。即使使用controller as，双向绑定还是通过<code>$scope</code>的watch以及digest来实现的。</p>
+</blockquote>
+<p>另外，使用别名还有一个显而易见的好处：指代清晰。在嵌套scope时，子scope如果想使用父scope的属性，只需简单的使用父scope的别名引用父scope即可。比如下面这个例子，我们将<a href="/2016/08/21/angularJs/AngularJS%E4%B8%ADscope%E5%9F%BA%E4%BA%8E%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%9A%84%E7%BB%A7%E6%89%BF/">上篇文章</a>的例子用controller as重写。</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="BzZjvE" data-default-tab="html,result" data-user="ronghuaxueleng" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/ronghuaxueleng/pen/BzZjvE/">BzZjvE</a> by 曹强 (<a href="http://codepen.io/ronghuaxueleng">@ronghuaxueleng</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+<p>这里我想让子scope里直接指向父scope的属性，只需在DOM绑定model时写上<code>parent.myName</code>即可，简单明了，看代码的一下就懂了，也不用费劲去推到底这里指向的是哪个属性了。如果你的嵌套多达四五层，那这种写法的优势就一下子体现出来了。</p>
+<h3 id="controller的定义不依赖-scope"><a href="#controller的定义不依赖-scope" class="headerlink" title="controller的定义不依赖$scope"></a>controller的定义不依赖<code>$scope</code></h3><p>定义controller时不用显式的依赖<code>$scope</code>，这有什么好处呢？仔细看定义，这不就是一个普通的函数定义嘛，对！这就是好处！例子中的<code>ScopeController</code>就是所谓的POJO（Plain Old Javascript Object，Java里偷来的概念），这样的Object与框架无关，里面只有逻辑。所以即便有一天你的项目不再使用AngularJS了，依然可以很方便的重用和移植这些逻辑。另外，从测试的角度看，这样的Object也是单元测试友好的。单元测试强调的就是孤立其他依赖元素，而POJO恰恰满足这个条件，可以单纯的去测试这个函数的输入输出，而不用费劲的去模拟一个假的<code>$scope</code>。</p>
+<p>另外，还有一个比较牵强的好处：防止滥用<code>$scope</code>的<code>$watch</code>，<code>$on</code>，<code>$broadcast</code>方法。可能刚刚就有人想问了，不依赖<code>$scope</code>我怎么watch一个model，怎样广播和响应事件。答案是没法弄，这些事还真是只有<code>$scope</code>能干。但很多时候在controller里watch一个model是很多余的，这样做会明显的降低性能。所以，当你本来就依赖<code>$scope</code>的时候，你会习惯性的调用这些方法来实现自己的逻辑。但当使用controller as的时候，由于没有直接依赖<code>$scope</code>，使用watch前你会稍加斟酌，没准就思考到了别的实现方式了呢。</p>
+<h3 id="定义route时也能用controller-as"><a href="#定义route时也能用controller-as" class="headerlink" title="定义route时也能用controller as"></a>定义route时也能用controller as</h3><p>除了在DOM中显式的指明<code>ng-controller</code>，还有一种情况是controller的绑定是route里定义好的，那这时能使用controller as吗？答案是肯定的，route提供了一个<code>controllerAs</code>参数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$routeProvider</span><br><span class="line">  .<span class="title function_">when</span>(<span class="string">&#x27;/&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">templateUrl</span>: <span class="string">&#x27;partial/home.html&#x27;</span>,</span><br><span class="line">    <span class="attr">controller</span>: <span class="string">&#x27;HomeCtrl&#x27;</span>,</span><br><span class="line">    <span class="attr">controllerAs</span>: <span class="string">&#x27;home&#x27;</span></span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<p>这样在模板里就可以直接使用别名<code>home</code>啦。</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>总结下来，个人觉得还是偏向于使用controller as的，当然有一点要澄清，使用contoller as并没有什么性能上的提升，仅仅是一种好的习惯罢了。</p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/angularJS-scope-controller/"> / angularJS, scope, controller</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

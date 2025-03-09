@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>《JavaScript高级程序设计》阅读笔记（二）：ECMAScript中的原始类型 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="原始类型1ECMAScript有5种原始类型(primitive type)，即Undefined、Null、Boolean、Number和String。ECMAScript提供了typeof来判断值的类型。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《JavaScript高级程序设计》阅读笔记（二）：ECMAScript中的原始类型">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/bcee9cbd.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="原始类型1ECMAScript有5种原始类型(primitive type)，即Undefined、Null、Boolean、Number和String。ECMAScript提供了typeof来判断值的类型。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-08-02T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.208Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/bcee9cbd.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            《JavaScript高级程序设计》阅读笔记（二）：ECMAScript中的原始类型
+        </div>
+        <div class="post-meta">
+            2016-08-02 ｜ 
+            
+                <a href="/categories/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"># 《JavaScript高级程序设计》阅读笔记</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E3%80%8B%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">《JavaScript高级程序设计》阅读笔记</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <hr>
+<h4 id="原始类型"><a href="#原始类型" class="headerlink" title="原始类型"></a>原始类型</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ECMAScript有5种原始类型(primitive type)，即Undefined、Null、Boolean、Number和String。ECMAScript提供了typeof来判断值的类型。</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h5 id="typeof运算符"><a href="#typeof运算符" class="headerlink" title="typeof运算符"></a>typeof运算符</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var sTemp=&quot;test string&quot;;</span><br><span class="line">alert(typeof sTemp);//outpus &quot;string&quot;</span><br><span class="line">alert(typeof 95);//outpus &quot;number&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typeof运算符返回值只有5种，分别为：如果变量是Undefined型返回&quot;undefined&quot;，如果变量是Boolean型返回&quot;boolean&quot;，如果变量是Number型返回&quot;number&quot;，如果变量是String型返回&quot;string&quot;，如果变量是一种引用类型或Null类型返回&quot;object&quot;。</span><br></pre></td></tr></table></figure>
+<h5 id="Undefined类型"><a href="#Undefined类型" class="headerlink" title="Undefined类型"></a>Undefined类型</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Undefined类型只有一个值，即undefined。当声明的变量未初始化和函数无明确的返回值时该变量的默认值和函数的返回值都是undefined。需要注意的是值undefined并不同于未定义的值，但typeof不区分这两种值。参考下面的代码：</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var oTemp;</span><br><span class="line">alert(typeof oTemp); //outpus &quot;undefined&quot;</span><br><span class="line">alert(typeof otemp2); //outpus &quot;undefined&quot;</span><br><span class="line">alert(oTemp==undefined); //outpus &quot;true&quot;</span><br><span class="line">alert(oTemp2==undefined); //causes error</span><br><span class="line">function testFunc()&#123;</span><br><span class="line">&#125;</span><br><span class="line">alert(testFunc() == undefined); //outpus &quot;true&quot;</span><br></pre></td></tr></table></figure>
+
+<h5 id="Null类型"><a href="#Null类型" class="headerlink" title="Null类型"></a>Null类型</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Null也是只有一个值的类型，它只有一个专用值null。值undefined实际不是从值null派生来的，因此ECMAScript把它们定义为相等。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(null == undefined); //outpus &quot;true&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">尽管这两个值相等，但它们的含义不同。undefined是声明了变量但未对其初始化时的值，null则用于表示尚未存在的对象。</span><br></pre></td></tr></table></figure>
+<h5 id="Boolean类型"><a href="#Boolean类型" class="headerlink" title="Boolean类型"></a>Boolean类型</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Boolean有两个值true和false</span><br></pre></td></tr></table></figure>
+
+<h5 id="Number类型"><a href="#Number类型" class="headerlink" title="Number类型"></a>Number类型</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Number可以表示32位整数，还可以表示64位浮点数，不同进制间的表示：</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var iNum=55;// 10进制</span><br><span class="line">var iNum=070;// 8进制var iNum=oxAB;//16进制</span><br><span class="line">var fNum=3.125e7;//科学计数法表示浮点数</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">几个特殊值也被定义为Number类型，前两个是Number.MAX_VALUE和Number.MIN_VALUE，它们定义了Number值集合的外边界。所有ECMAScript数都必须在这两个值之间，不过计算生成的数值结果可以不落在这两个数之间。</span><br><span class="line"></span><br><span class="line">当计算生成的数大于Number.MAX_VALUE时，它将被赋予值Number.POSITIVE_INFINITY，意味着不再有数字值。同样，生成的数值小于Number.MIN_VALUE的计算也会被赋予值Number.NEGATIVE_INFINITY，也意味着不再有数字值。如果计算返回的结果是无穷大，那么生成的结果不能再用于其他计算。</span><br><span class="line"></span><br><span class="line">事实上，有专门的值表示无穷大，即Infinity。Number.POSITIVE_INFINITY的值为Infinity，Number.NEGATIVE_INFINITY的值为-Infinity。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>可以对任何数调用isFinit()方法来判断是不是无穷大。例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">var iResult = iNum*some_really_large_number;</span><br><span class="line">if(isFinit(iResult))&#123; </span><br><span class="line">    alert(&quot;Number is finite&quot;);</span><br><span class="line">&#125;else&#123; </span><br><span class="line">    alert(&quot;Number is infinite&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>还有一个特殊值是NaN，表示非数(Not a Number)。NaN一般为类型转换失败时的值，NaN不能用于算术计算，NaN的另一个奇特之处在于它与自身并不相等，因此推荐使用isNaN()，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">alert(NaN == NaN); //outpus &quot;false&quot;</span><br><span class="line">alert(isNaN(&quot;blue&quot;)); //outpus &quot;true&quot;</span><br><span class="line">alert(isNaN(&quot;123&quot;)); //outpus &quot;false&quot;</span><br><span class="line">alert(isNaN(123)); //outpus &quot;false&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">String是唯一没有固定大小的原始类型。ECMAScript的字符字面量：</span><br><span class="line"></span><br><span class="line">字面量　　　　　　　　含义</span><br><span class="line">\n　　　　　　　　     换行</span><br><span class="line">\t　　　　　　　　     制表符</span><br><span class="line">\b　　　　　　　　　  空格</span><br><span class="line">\r　　　　　　　　　　回车</span><br><span class="line">\f　　　　　　　　　　换页符</span><br><span class="line">\\　　　　　　　　　　反斜杠</span><br><span class="line">\&#x27;　　　　　　　　　　单引号</span><br><span class="line">\&quot;　　　　　　　　　　双引号</span><br><span class="line">\0nnn　　　　　　　  八进制代码nnn表示的字符</span><br><span class="line">\xnn　　　　　　　　 16进制代码nn表示的字符</span><br><span class="line">\unnnn　　　　　　   16进制的代码nnnn表不的Unicode字符</span><br></pre></td></tr></table></figure>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

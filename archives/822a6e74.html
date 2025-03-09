@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>12种不宜使用的Javascript语法 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="&#x3D;&#x3D;Javascript有两组相等运算符，一组是&#x3D;&#x3D;和!&#x3D;，另一组是&#x3D;&#x3D;&#x3D;和!&#x3D;&#x3D;。前者只比较值的相等，后者除了值以外，还比较类型是否相同。 请尽量不要使用前一组，永远只使用&#x3D;&#x3D;&#x3D;和!&#x3D;&#x3D;。因为&#x3D;&#x3D;默认会进行类型转换，规则十分难">
+<meta property="og:type" content="article">
+<meta property="og:title" content="12种不宜使用的Javascript语法">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/822a6e74.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="&#x3D;&#x3D;Javascript有两组相等运算符，一组是&#x3D;&#x3D;和!&#x3D;，另一组是&#x3D;&#x3D;&#x3D;和!&#x3D;&#x3D;。前者只比较值的相等，后者除了值以外，还比较类型是否相同。 请尽量不要使用前一组，永远只使用&#x3D;&#x3D;&#x3D;和!&#x3D;&#x3D;。因为&#x3D;&#x3D;默认会进行类型转换，规则十分难">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-09-19T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.263Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/822a6e74.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            12种不宜使用的Javascript语法
+        </div>
+        <div class="post-meta">
+            2016-09-19 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <hr>
+<h3 id=""><a href="#" class="headerlink" title="&#x3D;&#x3D;"></a>&#x3D;&#x3D;</h3><p>Javascript有两组相等运算符，一组是&#x3D;&#x3D;和!&#x3D;，另一组是&#x3D;&#x3D;&#x3D;和!&#x3D;&#x3D;。前者只比较值的相等，后者除了值以外，还比较类型是否相同。</p>
+<p>请尽量不要使用前一组，永远只使用&#x3D;&#x3D;&#x3D;和!&#x3D;&#x3D;。因为&#x3D;&#x3D;默认会进行类型转换，规则十分难记。如果你不相信的话，请回答下面五个判断式的值是true还是false<br>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="literal">false</span> == <span class="string">&#x27;false&#x27;</span></span><br><span class="line"></span><br><span class="line">　　<span class="literal">false</span> == <span class="literal">undefined</span></span><br><span class="line"></span><br><span class="line">　　<span class="literal">false</span> == <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">　　<span class="literal">null</span> == <span class="literal">undefined</span></span><br><span class="line"></span><br><span class="line">　　<span class="number">0</span> == <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>前三个是false，后两个是true。</p>
+<span id="more"></span>
+
+<h3 id="with"><a href="#with" class="headerlink" title="with"></a>with</h3><p>with的本意是减少键盘输入。比如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　obj.a = obj.b;</span><br><span class="line"></span><br><span class="line">　　obj.c = obj.d;</span><br></pre></td></tr></table></figure>
+<p>可以简写成</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="title function_">with</span>(<span class="params">obj</span>) &#123;  </span><br><span class="line">　　　　a = b;  </span><br><span class="line">　　　　c = d;  </span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
+<p>但是，在实际运行时，解释器会首先判断obj.b和obj.d是否存在，如果不存在的话，再判断全局变量b和d是否存在。这样就导致了低效率，而且可能会导致意外，因<br>此最好不要使用with语句。</p>
+<h3 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h3><p>eval用来直接执行一个字符串。这条语句也是不应该使用的，因为它有性能和安全性的问题，并且使得代码更难阅读。</p>
+<p>eval能够做到的事情，不用它也能做到。比如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="built_in">eval</span>(<span class="string">&quot;myValue = myObject.&quot;</span> + myKey + <span class="string">&quot;;&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>可以直接写成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　myValue = myObject[myKey];</span><br></pre></td></tr></table></figure>
+<p>至于ajax操作返回的json字符串，可以使用官方网站提供的解析器<a href="http://www.json.org/json_parse.js">json_parse.js</a>运行。</p>
+<h3 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h3><p>这条命令的作用是返回到循环的头部，但是循环本来就会返回到头部。所以通过适当的构造，完全可以避免使用这条命令，使得效率得到改善。</p>
+<h3 id="switch-贯穿"><a href="#switch-贯穿" class="headerlink" title="switch 贯穿"></a>switch 贯穿</h3><p>switch结构中的case语句，默认是顺序执行，除非遇到break，return和throw。有的程序员喜欢利用这个特点，比如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">　　switch(n) &#123;  </span><br><span class="line">　　　　case 1:  </span><br><span class="line">　　　　case 2:  </span><br><span class="line">　　　　　　break;  </span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
+<p>这样写容易出错，而且难以发现。因此建议避免switch贯穿，凡是有case的地方，一律加上break。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">　　switch(n) &#123;  </span><br><span class="line">　　　　case 1:  </span><br><span class="line">　　　　　　break;  </span><br><span class="line">　　　　case 2:  </span><br><span class="line">　　　　　　break;  </span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="单行的块结构"><a href="#单行的块结构" class="headerlink" title="单行的块结构"></a>单行的块结构</h3><p>if、while、do和for，都是块结构语句，但是也可以接受单行命令。比如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　if (ok) t = true;</span><br></pre></td></tr></table></figure>
+<p>甚至写成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">　　if (ok)  </span><br><span class="line">　　　　t = true;</span><br></pre></td></tr></table></figure>
+<p>这样不利于阅读代码，而且将来添加语句时非常容易出错。建议不管是否只有一行命令，都一律加上大括号。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　if (ok)&#123;  </span><br><span class="line">　　　　t = true;  </span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="和–"><a href="#和–" class="headerlink" title="++和–"></a>++和–</h3><p>递增运算符++和递减运算符–，直接来自C语言，表面上可以让代码变得很紧凑，但是实际上会让代码看上去更复杂和更晦涩。因此为了代码的整洁性和易读性，不用为好。</p>
+<h3 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h3><p>Javascript完全套用了Java的位运算符，包括按位与&amp;、按位或|、按位异或^、按位非~、左移&gt;和用0补足的右移&gt;&gt;&gt;<br>。</p>
+<p>这套运算符针对的是整数，所以对Javascript完全无用，因为Javascript内部，所有数字都保存为双精度浮点数。如果使用它们的话，Javascrip<br>t不得不将运算数先转为整数，然后再进行运算，这样就降低了速度。而且”按位与运算符”&amp;同”逻辑与运算符”&amp;&amp;，很容易混淆。</p>
+<h3 id="function语句"><a href="#function语句" class="headerlink" title="function语句"></a>function语句</h3><p>在Javascript中定义一个函数，有两种写法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　function foo() &#123; &#125;</span><br></pre></td></tr></table></figure>
+<p>和</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　var foo = function () &#123; &#125;</span><br></pre></td></tr></table></figure>
+<p>两种写法完全等价。但是在解析的时候，前一种写法会被解析器自动提升到代码的头部，因此违背了函数应该先定义后使用的要求，所以建议定义函数时，全部采用后一种写法。</p>
+<h3 id="基本数据类型的包装对象"><a href="#基本数据类型的包装对象" class="headerlink" title="基本数据类型的包装对象"></a>基本数据类型的包装对象</h3><p>Javascript的基本数据类型包括字符串、数字、布尔值，它们都有对应的包装对象String、Number和Boolean。所以，有人会这样定义相关值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">　　new String(&quot;Hello World&quot;);</span><br><span class="line"></span><br><span class="line">　　new Number(2000);</span><br><span class="line"></span><br><span class="line">　　new Boolean(false);</span><br></pre></td></tr></table></figure>
+<p>这样写完全没有必要，而且非常费解，因此建议不要使用。</p>
+<p>另外，new Object和new Array也不建议使用，可以用{}和[]代替。</p>
+<h3 id="new语句"><a href="#new语句" class="headerlink" title="new语句"></a>new语句</h3><p>Javascript是世界上第一个被大量使用的支持Lambda函数的语言，本质上属于与Lisp同类的函数式编程语言。但是当前世界，90%以上的程序员都是使用<br>面向对象编程。为了靠近主流，Javascript做出了妥协，采纳了类的概念，允许根据类生成对象。</p>
+<p>类是这样定义的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">　　var Cat = function (name) &#123;  </span><br><span class="line">　　　　this.name = name;  </span><br><span class="line">　　　　this.saying = &#x27;meow&#x27; ;  </span><br><span class="line">　　&#125;</span><br></pre></td></tr></table></figure>
+<p>然后，再生成一个对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　var myCat = new Cat(&#x27;mimi&#x27;);</span><br></pre></td></tr></table></figure>
+<p>这种利用函数生成类、利用new生成对象的语法，其实非常奇怪，一点都不符合直觉。而且，使用的时候，很容易忘记加上new，就会变成执行函数，然后莫名其妙多出几个<br>全局变量。所以，建议不要这样创建对象，而采用一种变通方法。</p>
+<p>Douglas Crockford给出了一个函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">　　Object.beget = function (o) &#123;  </span><br><span class="line">　　　　var F = function (o) &#123;&#125;;  </span><br><span class="line">　　　　F.prototype = o ;  </span><br><span class="line">　　　　return new F;  </span><br><span class="line">　　&#125;;</span><br></pre></td></tr></table></figure>
+<p>创建对象时就利用这个函数，对原型对象进行操作：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">　　var Cat = &#123;  </span><br><span class="line">　　　　name:&#x27;&#x27;,  </span><br><span class="line">　　　　saying:&#x27;meow&#x27;  </span><br><span class="line">　　&#125;;</span><br><span class="line"></span><br><span class="line">　　var myCat = Object.beget(Cat);</span><br></pre></td></tr></table></figure>
+<p>对象生成后，可以自行对相关属性进行赋值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　myCat.name = &#x27;mimi&#x27;;</span><br></pre></td></tr></table></figure>
+<h3 id="void"><a href="#void" class="headerlink" title="void"></a>void</h3><p>在大多数语言中，void都是一种类型，表示没有值。但是在Javascript中，void是一个运算符，接受一个运算数，并返回undefined。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">　　void 0; // undefined</span><br></pre></td></tr></table></figure>
+<p>这个命令没什么用，而且很令人困惑，建议避免使用。</p>
+<p>（完）</p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

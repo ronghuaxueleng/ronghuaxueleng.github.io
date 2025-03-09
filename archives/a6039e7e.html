@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>深入理解 JavaScript 中的 delete 操作符 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="delete 操作符用于删除对象的属性。 似乎很多同学（包括我）对 delete 操作符都是似是而非，为什么有的属性可以被删除，有的却不能被删除？为什么能够删除对象的属性却不能删除变量或函数？在 eval 和 严格模式下，delete 操作符又有哪些特性？等等。。 本文将从基本概念到 ECMPScript 内部原理来学习 delete 操作符。 语法表达式 12delete object.prop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解 JavaScript 中的 delete 操作符">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/a6039e7e.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="delete 操作符用于删除对象的属性。 似乎很多同学（包括我）对 delete 操作符都是似是而非，为什么有的属性可以被删除，有的却不能被删除？为什么能够删除对象的属性却不能删除变量或函数？在 eval 和 严格模式下，delete 操作符又有哪些特性？等等。。 本文将从基本概念到 ECMPScript 内部原理来学习 delete 操作符。 语法表达式 12delete object.prop">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://bubkoo.qiniudn.com/delete-operator.jpg">
+<meta property="article:published_time" content="2016-08-22T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.285Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://bubkoo.qiniudn.com/delete-operator.jpg">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/a6039e7e.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            深入理解 JavaScript 中的 delete 操作符
+        </div>
+        <div class="post-meta">
+            2016-08-22 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <p>delete 操作符用于删除对象的属性。</p>
+<p>似乎很多同学（包括我）对 delete 操作符都是似是而非，为什么有的属性可以被删除，有的却不能被删除？为什么能够删除对象的属性却不能删除变量或函数？在 eval 和 <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Strict_mode">严格模式</a>下，delete 操作符又有哪些特性？等等。。</p>
+<p>本文将从基本概念到 ECMPScript 内部原理来学习 delete 操作符。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p><strong>表达式</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> object.<span class="property">property</span>    <span class="comment">// 点操作符方式，常用方式</span></span><br><span class="line"><span class="keyword">delete</span> object[<span class="string">&#x27;property&#x27;</span>] <span class="comment">// 字符串属性名方式</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>参数</strong></p>
+<ul>
+<li>object - 对象名称，或者返回一个对象的表达式</li>
+<li>property - 将要删除的属性</li>
+</ul>
+<p><strong>返回值</strong></p>
+<p>delete 操作符返回 true 或 false。当被 delete 的对象的属性存在并且拥有 DontDelete (对象属性的一个内部属性，拥有该内部属性表明该属性不能被删除) 时返回 false（在<a href="https://developer.mozilla.org/en-US/docs/JavaScript/Strict_mode">严格模式</a>下将抛出异常），否则返回 true。需要注意的是，对象属性不存在时也返回 true，<em>所以返回值并非完全等同于删除成功与否</em>。</p>
+<p><img src="http://bubkoo.qiniudn.com/delete-operator.jpg"></p>
+<span id="more"></span>
+
+<h2 id="delete-删除了什么"><a href="#delete-删除了什么" class="headerlink" title="delete 删除了什么"></a>delete 删除了什么</h2><p>delete 操作符用来删除对象的属性，这里所说的属性实际上是属性本身，而不是属性指向的对象（对于引用类型来说）。所以，对于引用类型的值，delete 删除了对象属性的本身，不会删除属性指向的对象。 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;&#125;;</span><br><span class="line">o.<span class="property">x</span> = <span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line"><span class="keyword">delete</span> o.<span class="property">x</span>;     <span class="comment">// 上一行new的Object对象依然存在</span></span><br><span class="line">o.<span class="property">x</span>;            <span class="comment">// undefined，o的名为x的属性被删除了</span></span><br></pre></td></tr></table></figure>
+
+<p>在实际的 JavaScrip t中，<code>delete o.x</code> 之后，Object 对象会由于失去了引用而被垃圾回收， 所以 <code>delete o.x</code> 也就“相当于”删除了 <code>o.x</code> 所指向的对象，但这个动作并不是 ECMAScript 标准，也就是说，即使某个实现完全不删除 Object 对象，也不算是违反 ECMAScript 标准。</p>
+<p>下面代码说明了 delete 只删除属性本身，而不会删除属性所指的对象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> a = &#123; <span class="attr">x</span>: <span class="number">10</span> &#125;;</span><br><span class="line">o.<span class="property">a</span> = a;</span><br><span class="line"><span class="keyword">delete</span> o.<span class="property">a</span>;    <span class="comment">// o.a属性被删除</span></span><br><span class="line">o.<span class="property">a</span>;           <span class="comment">// undefined</span></span><br><span class="line">a.<span class="property">x</span>;           <span class="comment">// 10, 因为&#123; x: 10 &#125; 对象依然被 a 引用，所以不会被回收</span></span><br></pre></td></tr></table></figure>
+
+<p>虽然是一个小小的 delete 操作符，其行为却异常复杂。</p>
+<p>为什么我们能删除一个对象的属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="keyword">delete</span> x.<span class="property">a</span>; <span class="comment">// true</span></span><br><span class="line">x.<span class="property">a</span>; <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+<p>但却不能删除一个变量：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">delete</span> x; <span class="comment">// false;</span></span><br><span class="line">x; <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>也不能删除一个函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">x</span>(<span class="params"></span>) &#123; &#125;;</span><br><span class="line"><span class="keyword">delete</span> x; <span class="comment">// false;</span></span><br><span class="line"><span class="keyword">typeof</span> x; <span class="comment">// &quot;function&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>要知道其中的原委，我们需要先了解一些基本概念。</p>
+<h2 id="代码类型"><a href="#代码类型" class="headerlink" title="代码类型"></a>代码类型</h2><p>在 ECMAScript 中，有 3 种不同类型的可执行代码：</p>
+<ol>
+<li>全局代码 (Global code) - 当一段源代码被看成程序 (Program) 时，它将会在全局作用域内执行，并且被认为是全局代码。在浏览器环境中，脚本元素的内容通常被解释为程序，因此被作为全局代码来执行。</li>
+<li>函数代码 (Function code) - 在一段函数中直接执行的代码就被认为是一段函数代码，在浏览器环境下，节点的事件属性（如 <code>&lt;a onclick=&quot;...&quot;</code>）通常都作为函数代码来解析和执行。</li>
+<li>Eval代码 (Eval code) - 被内置函数 <code>eval</code> 执行的代码文本被解释成 Eval 代码</li>
+</ol>
+<h2 id="执行上下文-Execution-context"><a href="#执行上下文-Execution-context" class="headerlink" title="执行上下文 (Execution context)"></a>执行上下文 (Execution context)</h2><p>代码的执行都是在特定的执行上下文中进行的，对于以上三种代码类型都有一个执行上下文与其对应。比如，当一个函数被执行时，程序控制就进入了函数代码执行上下文；当一段全局代码被执行时，程序控制就进入了全局代码执行上下文，等等。</p>
+<p>执行上下文在逻辑上是一个栈（stack）。首先可能有一段全局代码，它拥有属于自己的执行上下文；在这段代码中可能调用一个函数，这个函数同样拥有属于自己的执行上下文；这个函数可能调用另一个函数，等等。即使当函数递归调用自己时，在每一步调用中仍然进入了不同的执行上下文。</p>
+<p>执行上下文与作用域链和闭包等概念息息相关，欲深入了解执行上下文可以查阅作用域链和闭包的相关资料。</p>
+<h2 id="活动对象-Activation-object-变量对象-Variable-Object"><a href="#活动对象-Activation-object-变量对象-Variable-Object" class="headerlink" title="活动对象 (Activation object) &#x2F; 变量对象 (Variable Object)"></a>活动对象 (Activation object) &#x2F; 变量对象 (Variable Object)</h2><p>每个执行上下文都有一个与之相关联的**变量对象 (Variable object)**，在某个执行上下文中申明的变量和函数将被当着属性 (properties) 附加到这个变量对象上面。</p>
+<p>当在全局代码的执行上下文时，全局对象 (Global object) 成为当前执行上下文的变量对象，在浏览器中就是 window 对象。因此，声明的全局函数和变量就成为全局对象的属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* this 指代全局对象 */</span></span><br><span class="line"><span class="keyword">var</span> <span class="variable constant_">GLOBAL_OBJECT</span> = <span class="variable language_">this</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="number">1</span>;</span><br><span class="line"><span class="variable constant_">GLOBAL_OBJECT</span>.<span class="property">foo</span>; <span class="comment">// 1</span></span><br><span class="line">foo === <span class="variable constant_">GLOBAL_OBJECT</span>.<span class="property">foo</span>; <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">bar</span>(<span class="params"></span>)&#123;&#125;</span><br><span class="line"><span class="keyword">typeof</span> <span class="variable constant_">GLOBAL_OBJECT</span>.<span class="property">bar</span>; <span class="comment">// &quot;function&quot;</span></span><br><span class="line"><span class="variable constant_">GLOBAL_OBJECT</span>.<span class="property">bar</span> === bar; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>局部变量（那些在函数代码中定义的变量）是怎么样的呢？当在函数代码的执行上下文时，<strong>活动对象 (Activation object)</strong> 成为当前执行上下文中的变量对象，在函数代码中申明的变量和函数成为活动对象的属性，并且函数的参数（形参名为属性名）和 Arguments 对象（arguments 为属性名）也将成为活动对象的属性。</p>
+<p>注意，活动对象只是一个内部描述机制，在程序代码中不能直接访问。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params">foo</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> bar = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">baz</span>(<span class="params"></span>) &#123;&#125;;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        抽象的过程</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        &#x27;arguments&#x27; 对象成为所在函数的活化对象的属性：</span></span><br><span class="line"><span class="comment">        ACTIVATION_OBJECT.arguments = arguments;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        ...参数 &#x27;foo&#x27; 也是一样：</span></span><br><span class="line"><span class="comment">        ACTIVATION_OBJECT.foo; // 1</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        ...变量 &#x27;bar&#x27; 也是一样：</span></span><br><span class="line"><span class="comment">        ACTIVATION_OBJECT.bar; // 2</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">        ...函数 &#x27;baz&#x27; 也是一样：</span></span><br><span class="line"><span class="comment">        typeof ACTIVATION_OBJECT.baz; // &quot;function&quot;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">&#125;)(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<p>在 eval 代码中申明的变量会根据 eval 所在的执行上下文来确定变量将成为哪个变量对象的属性。例如：</p>
+<p>在全局环境中执行 eval，那么变量将成为全局对象的属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="variable constant_">GLOBAL_OBJECT</span> = <span class="variable language_">this</span>;</span><br><span class="line"><span class="built_in">eval</span>(<span class="string">&#x27;var foo = 1&#x27;</span>);</span><br><span class="line"><span class="variable constant_">GLOBAL_OBJECT</span>.<span class="property">foo</span>; <span class="comment">// 1;</span></span><br></pre></td></tr></table></figure>
+
+<p>在函数作用域中执行 eval，变量将成为活动对象的属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="variable constant_">GLOBAL_OBJECT</span> = <span class="variable language_">this</span>;</span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="built_in">eval</span>(<span class="string">&#x27;var bar = 2;&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    抽象过程</span></span><br><span class="line"><span class="comment">    ACTIVATION_OBJECT.bar; // 1</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 全局环境下不能访问 bar</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">bar</span> <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="属性的内部属性"><a href="#属性的内部属性" class="headerlink" title="属性的内部属性"></a>属性的内部属性</h2><p>我们马上就接近本文主题了，从上面我们知道声明的变量成了变量对象（全局对象或活动对象）的属性，同时每个属性都可以拥有一个或多个内部属性：<code>ReadOnly</code>、<code>DontEnum</code>、<code>DontDelete</code> 和 <code>Internal</code>。这里我们关注的是 <code>DontDelete</code> 这个内部属性，拥有这个内部属性的变量表明该变量不能使用 delete 操作符删除。</p>
+<p><strong>当被声明的变量和函数成为变量对象的属性时，这些属性在创建时就带上了 DontDelete 这个内部属性</strong>。然而，<strong>任何显式&#x2F;隐式赋值的属性不生成 DontDelete</strong>。这就是为什么我们能够删除一些属性，但有的却不能删除。</p>
+<p>上面的分析可能不好理解，直接看下面的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="variable constant_">GLOBAL_OBJECT</span> = <span class="variable language_">this</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* &#x27;foo&#x27; 是全局对象的一个属性，</span></span><br><span class="line"><span class="comment">    它通过变量声明而生成，因此拥有内部属性 DontDelete</span></span><br><span class="line"><span class="comment">    这就是为什么它不能被删除</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">var</span> foo = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">delete</span> foo; <span class="comment">// false</span></span><br><span class="line"><span class="keyword">typeof</span> foo; <span class="comment">// &quot;number&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* &#x27;bar&#x27; 是全局对象的一个属性，</span></span><br><span class="line"><span class="comment">    它通过变量声明而生成，因此拥有 DontDelete</span></span><br><span class="line"><span class="comment">    这就是为什么它同样不能被删除</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">bar</span>(<span class="params"></span>) &#123;&#125;;</span><br><span class="line"><span class="keyword">delete</span> bar; <span class="comment">// false</span></span><br><span class="line"><span class="keyword">typeof</span> bar; <span class="comment">// &quot;function&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* &#x27;baz&#x27; 也是全局对象的一个属性，</span></span><br><span class="line"><span class="comment">    然而，它通过属性赋值而生成，因此没有DontDelete</span></span><br><span class="line"><span class="comment">    这就是为什么它可以被删除</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="variable constant_">GLOBAL_OBJECT</span>.<span class="property">baz</span> = <span class="string">&quot;baz&quot;</span>;</span><br><span class="line"><span class="keyword">delete</span> <span class="variable constant_">GLOBAL_OBJECT</span>.<span class="property">baz</span>; <span class="comment">// true</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="variable constant_">GLOBAL_OBJECT</span>.<span class="property">baz</span>; <span class="comment">// &quot;undefined&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="内置对象和DontDelete"><a href="#内置对象和DontDelete" class="headerlink" title="内置对象和DontDelete"></a>内置对象和DontDelete</h2><p>所以，某些属性不能被删除的**根本原因在于：这些属性拥有内部属性 <code>DontDelete</code>**，该内部属性控制着该属性是否可以被删除。注意：内置对象的一些属性拥有内部属性 <code>DontDelete</code>，因此不能被删除； 特殊的 arguments 变量（活化对象的属性）拥有 <code>DontDelete</code>； 任何函数实例的 length (返回形参长度)属性也拥有 <code>DontDelete</code>： </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//不能删除&#x27;arguments&#x27;，因为有DontDelete</span></span><br><span class="line">    <span class="keyword">delete</span> <span class="variable language_">arguments</span>; <span class="comment">// false;</span></span><br><span class="line">    <span class="keyword">typeof</span> <span class="variable language_">arguments</span>; <span class="comment">// &quot;object&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//也不能删除函数的&#x27;length&#x27;,因为有DontDelete</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">f</span>(<span class="params"></span>) &#123;&#125;;</span><br><span class="line">    <span class="keyword">delete</span> f.<span class="property">length</span>; <span class="comment">// false;</span></span><br><span class="line">    <span class="keyword">typeof</span> f.<span class="property">length</span>; <span class="comment">// &quot;number&quot;</span></span><br><span class="line">&#125;) ();</span><br></pre></td></tr></table></figure>
+
+<p>与函数 arguments 相关联的属性也拥有 DontDelete，同样不能被删除：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params">foo, bar</span>) &#123;</span><br><span class="line">    <span class="keyword">delete</span> foo; <span class="comment">// false</span></span><br><span class="line">    foo; <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> bar; <span class="comment">// false</span></span><br><span class="line">    bar; <span class="comment">// &quot;bah&quot;</span></span><br><span class="line">&#125;) (<span class="number">1</span>, <span class="string">&quot;bah&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="未声明的变量赋值"><a href="#未声明的变量赋值" class="headerlink" title="未声明的变量赋值"></a>未声明的变量赋值</h2><p>我们知道，直接给未声明的变量赋值会成为全局对象的属性，除非这一属性在作用域链内的其他地方被找到。而我们之前提到过，属性赋值和变量声明的区别：后者生成 <code>DontDelete</code> 而前者不生成，这也就是为什么未声明的变量赋值可以被删除。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="variable constant_">GLOBAL_OBJECT</span> = <span class="variable language_">this</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 通过变量声明生成全局对象的属性，拥有 DontDelete */</span></span><br><span class="line"><span class="keyword">var</span> foo = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 通过未声明的变量赋值生成全局对象的属性，没有 DontDelete */</span></span><br><span class="line">bar = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> foo; <span class="comment">// false</span></span><br><span class="line"><span class="keyword">delete</span> bar; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：内部属性是在属性生成时确定的，之后的赋值过程不会改变已有的属性的内部属性。理解这点非常重要。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* &#x27;foo&#x27;创建的同时生成 DontDelete */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 之后的赋值过程不改变已有属性的内部属性，DontDelete仍然存在 */</span></span><br><span class="line">foo = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">delete</span> foo; <span class="comment">// false;</span></span><br><span class="line"><span class="keyword">typeof</span> foo; <span class="comment">// &quot;number&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 但赋值一个不存在的属性时，创建了一个没有内部属性的属性，因此没有 DontDelete */</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">bar</span> = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">delete</span> bar; <span class="comment">// true;</span></span><br><span class="line"><span class="keyword">typeof</span> bar; <span class="comment">// &quot;undefined&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="原型中声明的属性和对象自带的属性"><a href="#原型中声明的属性和对象自带的属性" class="headerlink" title="原型中声明的属性和对象自带的属性"></a>原型中声明的属性和对象自带的属性</h2><p>原型 prototype 中声明的属性和对象自带的属性(其实这些属性也是在原型 prototype 中的)可以认为是带有 DontDelete 特性的，无法被删除。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//原型中声明的属性无法被删除</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">C</span>(<span class="params"></span>) &#123; <span class="variable language_">this</span>.<span class="property">x</span> = <span class="number">42</span>; &#125;</span><br><span class="line">C.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">x</span> = <span class="number">12</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> o = <span class="keyword">new</span> <span class="title function_">C</span>();</span><br><span class="line">o.<span class="property">x</span>;     <span class="comment">// 42, 构造函数中定义的o.x</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> o.<span class="property">x</span>;</span><br><span class="line">o.<span class="property">x</span>;     <span class="comment">// 12,  prototype中定义的o.x，即使再次执行delete o.x也不会被删除</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//对象自带的属性无法被删除</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> re = <span class="regexp">/abc/i</span>;</span><br><span class="line"><span class="keyword">delete</span> re.<span class="property">ignoreCase</span>;</span><br><span class="line">re.<span class="property">ignoreCase</span>; <span class="comment">// true, ignoreCase无法删除</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Eval-和-Firebug-控制台"><a href="#Eval-和-Firebug-控制台" class="headerlink" title="Eval 和 Firebug 控制台"></a>Eval 和 Firebug 控制台</h2><p><strong>在 console 中的所有文本都会被当做 eval 代码来解析和执行，而不是全局或函数代码。</strong>我之前说过，eval 在处理变量声明时有一个特殊的行为：<strong>在 eval 中声明的变量事实上没有 DontDelete 属性</strong>。所以，下面声明的所有变量最后都没有 DontDelete 这个内部属性，所以它们都能被删除。所以要小心普通的全局代码和 Firebug 控制台中代码的区别。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span>(<span class="string">&#x27;var foo = 1;&#x27;</span>);</span><br><span class="line">foo; <span class="comment">// 1</span></span><br><span class="line"><span class="keyword">delete</span> foo; <span class="comment">// true</span></span><br><span class="line"><span class="keyword">typeof</span> foo; <span class="comment">// &quot;undefined&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>在函数代码中也是一样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="built_in">eval</span>(<span class="string">&#x27;var foo = 1;&#x27;</span>);</span><br><span class="line">    foo; <span class="comment">// 1</span></span><br><span class="line">    <span class="keyword">delete</span> foo; <span class="comment">// true</span></span><br><span class="line">    <span class="keyword">typeof</span> foo; <span class="comment">// &quot;undefined&quot;</span></span><br><span class="line">&#125;) ();</span><br></pre></td></tr></table></figure>
+
+<p>但是这也有一点<strong>例外</strong>，在 eval 代码中的函数内部通过 <code>var</code> 定义的变量具有 DontDelete，不能被删除。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span>(<span class="string">&quot;(function() &#123; var x = 42; delete x; return x; &#125;)();&quot;</span>);</span><br><span class="line"><span class="comment">// 返回 42</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="浏览器兼容性"><a href="#浏览器兼容性" class="headerlink" title="浏览器兼容性"></a>浏览器兼容性</h2><p>了解事物的工作原理是重要的，但实际的实现情况更重要。浏览器在创建和删除变量&#x2F;属性时都遵守这些标准吗？ 对于大部分来说，是的。</p>
+<p>这里有一个<a href="http://kangax.github.com/jstests/delete_compliance_test/">简单的测试集</a>来检查全局代码、函数代码和 Eval 代码的遵守情况。 测试单元同时检测了 delete 操作的返回值和属性是否像预期那样被删除。delete 的返回值并不像它的实际结果那样重要，delete 操作返回 true 或 false 并不重要， 重要的是拥有&#x2F;没有 DontDelete 的属性是否被删除。</p>
+<p>现代浏览器总的来说还是遵守删除规则的，以下浏览器全部通过测试： Opera 7.54+，Firefox 1.0+，Safari 3.1.2+，Chrome 4+。</p>
+<p>Safari 2.x 和 3.0.4 在删除函数 arguments 时存在问题，似乎这些属性在创建时不带 DontDelete，因此可以被删除。Safari 2.x 还有其他问题——删除无引用时（例如 delete 1）抛出错误（译者按：IE 同样有）；函数声明生成了可删除的属性（奇怪的是变量声明则正常）；eval 中的变量声明变成不可删除（而 eval 中的函数声明则正常）。</p>
+<p>与 Safari 类似，Konqueror（3.5，而非4.3）在 delete 无引用和删除 arguments 是也存在同样问题。</p>
+<p><strong>Gecko DontDelete bug</strong><br>Gecko 1.8.x 浏览器—— Firefox 2.x, Camino 1.x, Seamonkey 1.x, etc. ——存在一个有趣的 bug：显式赋值值给一个属性能移除它的 DontDelete，即使该属性通过变量或函数声明而生成。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123; &#125;;</span><br><span class="line"><span class="keyword">delete</span> foo; <span class="comment">// false;</span></span><br><span class="line"><span class="keyword">typeof</span> foo; <span class="comment">// &quot;function&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">foo</span> = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">delete</span> foo; <span class="comment">// true</span></span><br><span class="line"><span class="keyword">typeof</span> foo; <span class="comment">// &quot;undefined&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>令人惊讶的是，IE5.5-8 也通过了绝大部分测试，除了删除非引用抛出错误（e.g. delete 1，就像旧的 Safari）。 但是，虽然不能马上发现，事实上 IE 存在更严重的 bug，这些 bug 是关于全局对象。</p>
+<h2 id="IE-bugs"><a href="#IE-bugs" class="headerlink" title="IE bugs"></a>IE bugs</h2><p>在 IE 中（至少在 IE6-8 中），下面的表达式抛出异常（在全局代码中）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">x</span> = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">delete</span> x; <span class="comment">// TypeError: Object doesn&#x27;t support this action</span></span><br></pre></td></tr></table></figure>
+
+<p>下面则是另一个：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x =<span class="number">1</span>;</span><br><span class="line"><span class="keyword">delete</span> <span class="variable language_">this</span>.<span class="property">x</span>; <span class="comment">// TypeError: Cannot delete &#x27;this.x&#x27;</span></span><br><span class="line"><span class="comment">// 译者按：在IE8下抛出此异常，在IE6,7下抛出的是和上面一样的异常</span></span><br></pre></td></tr></table></figure>
+
+<p>这似乎说明，在 IE 中在<strong>全局代码中的变量声明并没有生成全局对象的同名属性</strong>。 通过赋值创建的属性（this.x &#x3D; 1）然后通过 delete x 删除时抛出异常； 通过变量声明（var x &#x3D; 1）创建的属性然后通过 delete this.x 删除时抛出另一个（译者按：在 IE6,7 下错误信息与上面的相同）。</p>
+<p>但不只是这样，事实上通过显式赋值创建的属性<strong>在删除时总是抛出异常</strong>。 这不只是一个错误，而是创建的属性看上去拥有了 DontDelete 内部属性，而按规则应该是没有的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">x</span> = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">delete</span> <span class="variable language_">this</span>.<span class="property">x</span>; <span class="comment">// TypeError: Object doesn&#x27;t support this action</span></span><br><span class="line"><span class="keyword">delete</span> x; <span class="comment">// TypeError: Object doesn&#x27;t support this action</span></span><br></pre></td></tr></table></figure>
+
+<p>另一方面，未声明的变量赋值（那些同样生成全局对象的属性）又确实在IE下能够正常删除：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">delete</span> x; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>但如果你试图通过 this 关键字来进行删除（delete this.x），那么上面的异常又将抛出：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">delete</span> <span class="variable language_">this</span>.<span class="property">x</span>; <span class="comment">//TypeError: Cannot delete &#x27;this.x&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果归纳一下，我们将发现在全局代码中 <code>delete this.x</code> 永远不会成功。当通过显式赋值来生成属性（this.x &#x3D; 1）时抛出一个异常； 当通过声明&#x2F;非声明变量的方式（var x &#x3D; 1 or x &#x3D; 1）生成属性时抛出另一个异常。而另一方面，delete x 只有在显示赋值生成属性(this.x &#x3D; 1)时才抛出异常。</p>
+<h2 id="宿主对象-Host-Object"><a href="#宿主对象-Host-Object" class="headerlink" title="宿主对象(Host Object)"></a>宿主对象(Host Object)</h2><p>小小总结一下 delete 操作符：</p>
+<ol>
+<li>如果操作数不是引用类型，则返回 <code>true</code></li>
+<li>如果对象没有同名的<strong>直接属性</strong>，返回 <code>true</code> （对象可以是活动对象或全局对象）</li>
+<li>如果属性存在但是有 DontDelete 特性, 返回 <code>false</code></li>
+<li>其它情况，删除属性并且返回 <code>true</code></li>
+</ol>
+<p>然而，<strong>对于宿主对象（host object）的 delete 操作的行为却可能是不可预料的</strong>。</p>
+<p>我们已经看到了在IE中的一些问题：当删除某些对象（那些实现为了宿主对象）属性时抛出异常。 一些版本的 firefox 当试图删除 window.location 时抛出异常（译者按：IE 同样抛出）。 同样，在一些宿主对象中你也不能相信 delete 的返回值， 例如下面发生在 firefox 中的(译者按：chrome 中同样结果；IE 中抛出异常；opera 和 safari 允许删除，并且删除后无法调用，姑且算’正常‘，尽管，从下面的讨论来看似乎却是不正常的，它们事实上删除了不能删除的属性，而前面的浏览器没有)：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* &#x27;alert&#x27;是’window‘的一个直接属性（如果我们能够相信&#x27;hasOwnProperty&#x27;） */</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">hasOwnProperty</span>(<span class="string">&#x27;alert&#x27;</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> <span class="variable language_">window</span>.<span class="property">alert</span>; <span class="comment">// true</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="variable language_">window</span>.<span class="property">alert</span>; <span class="comment">// &quot;function&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>delete window.alert</code> 返回 <code>true</code>，尽管这个属性没有任何条件可能产生这个结果（按照上面的算法）：它解析为一个引用，因此不能在第一步返回 <code>true</code>；它是 window 对象的直接属性，因此不能在第二步返回 true；唯一能返回 true 的是当算法达到最后一步同时确实删除这个属性，而事实上它并没有被删除。（译者按：不，在 opera 和 safari 中确实被删除了…）。</p>
+<p>所以这个故事告诉我们永远不要相信宿主对象。</p>
+<h2 id="ES5-严格模式"><a href="#ES5-严格模式" class="headerlink" title="ES5 严格模式"></a>ES5 严格模式</h2><p>在 ES5 严格模式下，当删除操作指向一个变量&#x2F;函数参数&#x2F;函数声明的直接引用时抛出 SyntaxError。 此外，如果属性拥有内部属性 [[Configurable]] &#x3D;&#x3D; false，将抛出 TypeError：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params">foo</span>) &#123;</span><br><span class="line">    <span class="string">&quot;use strict&quot;</span>; <span class="comment">//在函数中开启严格模式</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> bar;</span><br><span class="line">    <span class="keyword">function</span> baz;</span><br><span class="line">    <span class="keyword">delete</span> foo; <span class="comment">// SyntaxError，当删除函数参数时</span></span><br><span class="line">    <span class="keyword">delete</span> bar; <span class="comment">// SyntaxError，当删除变量时</span></span><br><span class="line">    <span class="keyword">delete</span> baz; <span class="comment">// SyntaxError，当删除由函数声明创建的变量时</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* function实例的length拥有[[Configurable]] : false */</span></span><br><span class="line">    <span class="title function_">delete</span> (<span class="keyword">function</span>(<span class="params"></span>) &#123;&#125;).<span class="property">length</span>; <span class="comment">// TypeError</span></span><br><span class="line">&#125;) ();</span><br></pre></td></tr></table></figure>
+
+<p>而且，在严格模式下，删除未声明的变量（换句话说，未解析的引用），同样抛出 SyntaxError；同时，在严格模式下未声明的赋值也将抛出异常 ReferenceError：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br><span class="line"><span class="keyword">delete</span> i_dont_exist; <span class="comment">// SyntaxError</span></span><br><span class="line"></span><br><span class="line">i_dont_exist_either = <span class="number">1</span>; <span class="comment">// ReferenceError</span></span><br></pre></td></tr></table></figure>
+
+<p>看了之前给出的变量、函数声明和参数的例子，相信现在你也理解了，所有这些限制都是有其意义的。严格模式采取了更积极的和描述性的措施，而不只是忽略这些问题。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>下面是对于 JavaScript 中 delete 操作是如何工作的简短的总结：</p>
+<ul>
+<li>变量和函数声明都是活化对象(Activation Object) 或全局对象(Global Object)的属性</li>
+<li>属性拥有内部属性，其中 DontDelete 这个内部属性负责确定一个属性是否能够被删除</li>
+<li>在<strong>全局或者函数代码</strong>中的变量和函数声明总是创建<strong>带有 DontDelete 特性</strong>的属性</li>
+<li><strong>函数参数</strong>总是活动对象的属性, 并且<strong>带有 DontDelete</strong></li>
+<li>在 <strong>Eval 代码</strong>中声明的变量和函数总是创建<strong>不带 DontDelete 特性</strong> 的属性</li>
+<li><strong>新的未声明的属性</strong>在生成时带空的内部属性，因此也<strong>不带 DontDelete 特性</strong></li>
+<li>永远不要相信<strong>宿主对象</strong>对 delete 操作做出的反应</li>
+</ul>
+<p>如果你想要对这里所描述的东西更加熟悉的话，请参阅 <a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf">ECMA-262 3rd edition specification</a>。</p>
+<h2 id="参考资源"><a href="#参考资源" class="headerlink" title="参考资源"></a>参考资源</h2><ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete?redirectlocale=en-US&redirectslug=JavaScript/Reference/Operators/delete#section_5">MDN &gt; Web technology for developers &gt; JavaScript &gt; JavaScript reference &gt; Operators &gt; delete</a></li>
+<li><a href="http://perfectionkills.com/understanding-delete/">Perfection Kills: Understanding delete</a></li>
+<li><a href="http://www.ituring.com.cn/article/7620">理解delete</a></li>
+<li><a href="http://blog.charlee.li/javascript-variables-and-delete-operator/">Javascript的变量与delete操作符</a></li>
+<li><a href="http://www.css88.com/archives/5137">Javascript中的delete操作符</a></li>
+</ul>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

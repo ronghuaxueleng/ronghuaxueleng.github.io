@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>模版方法 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="模版方法是一种只需要使用继承就可以实现的非常简单的模式。他由两部分组成，第一部分是抽象父类，第二部分是具体实现子类。通常在抽象父类中封装了子类的算法框架，包括实现一些共用方法以及封装子类所有方法的执行顺序。子类通过继承这个抽象类，也继承了整个算法结构，并且可以选择重写父类的方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模版方法">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/6440915e.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="模版方法是一种只需要使用继承就可以实现的非常简单的模式。他由两部分组成，第一部分是抽象父类，第二部分是具体实现子类。通常在抽象父类中封装了子类的算法框架，包括实现一些共用方法以及封装子类所有方法的执行顺序。子类通过继承这个抽象类，也继承了整个算法结构，并且可以选择重写父类的方法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-12T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.172Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/6440915e.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            模版方法
+        </div>
+        <div class="post-meta">
+            2016-10-12 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <hr>
+<blockquote>
+<p>模版方法是一种只需要使用继承就可以实现的非常简单的模式。他由两部分组成，第一部分是抽象父类，第二部分是具体实现子类。通常在抽象父类中封装了子类的算法框架，包括实现一些共用方法以及封装子类所有方法的执行顺序。子类通过继承这个抽象类，也继承了整个算法结构，并且可以选择重写父类的方法。</p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="Coffee-or-Tea"><a href="#Coffee-or-Tea" class="headerlink" title="Coffee or Tea"></a>Coffee or Tea</h3><p>假设我们现在要泡一杯咖啡步骤如下：</p>
+<ul>
+<li>把水煮沸</li>
+<li>用沸水冲泡咖啡</li>
+<li>把咖啡倒进杯子</li>
+<li>加糖和牛奶</li>
+</ul>
+<p>泡茶的步骤：</p>
+<ul>
+<li>把水煮沸</li>
+<li>用沸水浸泡茶叶</li>
+<li>把茶水倒进杯子</li>
+<li>加柠檬</li>
+</ul>
+<p>经过比较，我们可以发现泡茶和泡咖啡有以下共同点：</p>
+<ul>
+<li><p>原料不同。一个是茶一个是咖啡，但是我们都可以把它们抽象为“饮料”</p>
+</li>
+<li><p>泡的方式不同。咖啡是冲泡，茶叶是浸泡，我们都可以抽象成“泡”。</p>
+</li>
+<li><p>加入的调料不同。一个是糖和牛奶，一个是柠檬，我们把它们抽象成“调料”。</p>
+</li>
+</ul>
+<p>所以经过抽象后，无论是泡咖啡还是泡茶我们都是要进行下列步骤：</p>
+<ul>
+<li><p>把水煮沸</p>
+</li>
+<li><p>用沸水冲泡咖啡</p>
+</li>
+<li><p>把饮料倒进杯子</p>
+</li>
+<li><p>加调料<br>现在用代码来表示这个抽象过程</p>
+<p>var Beverage &#x3D; function()  {};<br>Beverage.prototype.boilWater &#x3D; function() {<br>console.log(‘把水煮沸’);<br>};<br>Beverage.prototype.brew &#x3D; function(){}; &#x2F;&#x2F;空方法，应该由子类重写<br>Beverage.prototype.pourInCup &#x3D; function(){}; &#x2F;&#x2F;空方法，应该由子类重写<br>Beverage.prototype.addCondiments &#x3D; function(){}; &#x2F;&#x2F;空方法，应该由子类重写</p>
+<p>Beverage.prototype.init&#x3D; function(){<br>this.boilWater();<br>this.brew();<br>this.pourInCup();<br>this.addCondiments();<br>};</p>
+</li>
+</ul>
+<p>接着就是创建Coffee子类和Tea子类</p>
+<p>​<br>    var Coffee &#x3D; function() {};<br>    Coffee.prototype &#x3D; new Beverage();<br>    Coffee.prototype.brew &#x3D; function() {<br>        console.log(‘用沸水冲泡咖啡’);<br>    };<br>    Coffee.prototype.pourInCup &#x3D; function() {<br>        console.log(‘把咖啡倒进杯子’);<br>    };<br>    Coffee.prototype.addCondiments &#x3D; function() {<br>        console.log(‘加糖加牛奶’);<br>    };<br>    var Coffee &#x3D; new Coffee();<br>    Coffee.init();</p>
+<p>Tea类也是类似方法创建，这里不做过多叙述。<br>在这个案例中，<code>Beverage.prototype.init</code>就是模版方法，它引导子类以何种顺序去执行哪些方法。</p>
+<h3 id="钩子方法"><a href="#钩子方法" class="headerlink" title="钩子方法"></a>钩子方法</h3><p>以上模版在正常状况是可以起到很好的作用的，但是，假如有某个客人不喜欢加糖的咖啡，有什么办法可以让子类不受这个约束呢？<br>这时候我们再对代码做一点改动：</p>
+<p>​<br>    var Beverage &#x3D; function()  {};<br>    Beverage.prototype.boilWater &#x3D; function() {<br>        console.log(‘把水煮沸’);<br>    };<br>    Beverage.prototype.brew &#x3D; function(){<br>        throw new Error(‘子类必须重写brew方法’);<br>    };<br>    Beverage.prototype.pourInCup &#x3D; function(){<br>        throw new Error(‘子类必须重写pourInCup 方法’);<br>    };<br>    Beverage.prototype.addCondiments &#x3D; function(){<br>        throw new Error(‘子类必须重写addCondiments 方法’);<br>    };<br>    Beverage.prototype.customerWantsCondiments &#x3D; function() {<br>        return true; &#x2F;&#x2F;默认需要调料<br>    };<br>    Beverage.prototype.init&#x3D; function(){<br>        this.boilWater();<br>        this.brew();<br>        this.pourInCup();<br>        if (this.customerWantsCondiments()) { &#x2F;&#x2F;如果返回true，则需要调料<br>            this.addCondiments();<br>        }</p>
+<pre><code>&#125;; 
+
+var CoffeeWithHook = function() &#123;&#125;;
+CoffeeWithHook.prototype = new Beverage();
+CoffeeWithHook.prototype.brew = function() &#123;
+    console.log(&#39;用沸水冲泡咖啡&#39;);
+&#125;;
+CoffeeWithHook.prototype.pourInCup = function() &#123;
+    console.log(&#39;把咖啡倒进杯子&#39;);
+&#125;;
+CoffeeWithHook.prototype.addCondiments = function() &#123;
+    console.log(&#39;加糖加牛奶&#39;);
+&#125;;
+CoffeeWithHook.prototype.customerWantsCondiments = funtion() &#123;
+    return window.confirm(&#39;请问需要调料吗？&#39;);
+&#125;
+var coffeeWithHook = new CoffeeWithHook();
+coffeeWithHook.init();
+</code></pre>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/javascript/"> / javascript</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

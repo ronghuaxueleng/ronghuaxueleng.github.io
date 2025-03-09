@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>可视化埋点 - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="埋点 所谓“埋点”，是数据采集领域（尤其是用户行为数据采集领域）的术语，指的是针对特定用户行为或事件进行捕获、处理和发送的相关技术及其实施过程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="可视化埋点">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/b4a56055.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="埋点 所谓“埋点”，是数据采集领域（尤其是用户行为数据采集领域）的术语，指的是针对特定用户行为或事件进行捕获、处理和发送的相关技术及其实施过程">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-10-25T14:18:52.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.394Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="埋点,可视化,Mixpanel">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/b4a56055.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            可视化埋点
+        </div>
+        <div class="post-meta">
+            2017-10-25 ｜ 
+            
+                <a href="/categories/javascript/"># javascript</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/javascript/">javascript</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h3 id="埋点"><a href="#埋点" class="headerlink" title="埋点"></a>埋点</h3><blockquote>
+<p>所谓“埋点”，是数据采集领域（尤其是用户行为数据采集领域）的术语，指的是针对特定用户行为或事件进行捕获、处理和发送的相关技术及其实施过程</p>
+</blockquote>
+<span id="more"></span>
+
+<p><em><strong>埋点的技术实质</strong></em>，是先监听软件应用运行过程中的事件，当需要关注的事件发生时进行判断和捕获，然后获取必要的上下文信息，最后将信息整理后发送至服务器端。所监听的事件，通常由操作系统、浏览器、APP框架等平台提供，也可以在基础事件之上进行触发条件的自定义（如点击某一个特定按钮）。一般情况下，埋点可以通过监测分析工具提供的SDK来进行编程实现。<br><em><strong>埋点的业务意义显而易见</strong></em>，即帮助定义和获取分析人员真正需要的业务数据及其附带信息。在不同场景下，业务人员关注的信息和角度可能不同。典型的应用场景有面向数字营销领域的分析，以及面向产品运营领域的分析。前者注重来源渠道和广告效果，后者更在意产品本身流程和体验的优化。两者各有侧重，也可以有一些交叉。所以，对于不同的项目和分析目的，应当设计不同的埋点方案。</p>
+<p>近年来，<em>埋点的方法论上也出现了一些业界新趋势</em>，主要分为一下三种：</p>
+<ul>
+<li><em><strong>代码埋点</strong></em> 在需要埋点的节点直接调用接口上传数据，代表方友盟。</li>
+<li><em><strong>可视化埋点</strong></em> 通过可视化工具配置采集节点，在前端自动解析配置并上报埋点数据，代表方案是已经开源的<a href="https://github.com/mixpanel">Mixpanel</a>。</li>
+<li><em><strong>无埋点</strong></em> 并不是没有埋点，而是在前端采集所有数据并上报，然后在后端通过计算过滤出有用的数据，代表是国内的GrowingIO。</li>
+</ul>
+<p>三种埋点的对比：</p>
+<table>
+<thead>
+<tr>
+<th>埋点方式</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>代码埋点</td>
+<td>技术实现难度低，数据实时性好</td>
+<td>开发效率低，难于维护，数据准确性依赖于埋点的正确性，APP端依赖于发版，不具备热更新能力；web端热更新能力差。</td>
+</tr>
+<tr>
+<td>可视化埋点</td>
+<td>开发效率高，易于维护</td>
+<td>技术实现较为复杂，目前好的可视化埋点产品都是收费的</td>
+</tr>
+<tr>
+<td>无埋点</td>
+<td>易于维护，数据全面</td>
+<td>牺牲部分实时性，技术实现较为复杂</td>
+</tr>
+</tbody></table>
+<p>Mixpanel主要流程如下：</p>
+<ol>
+<li>设置要埋点的网址-&gt;生成token</li>
+<li>在宿主页面插入代码</li>
+<li>在mixpanel页面点击进入宿主页面(<font color="red">下面这种方式在单页面应用中可能存在问题</font>)<br>a：在宿主URL添加上一段查询hash代码<br>b：获取hash代码解析出state并保存到sessionStorage<br>c：删除宿主URL后的hash代码<br>d：初始化<br>e：判断是否是在编辑状态下</li>
+</ol>
+<p>下面是实现的简单流程图：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">start=&gt;start: 加载JS</span><br><span class="line">cond=&gt;condition: 判断sessionStorage是否存在指定key</span><br><span class="line">estep1=&gt;operation: 加载editor.js</span><br><span class="line">estep2=&gt;operation: 显示添加埋点的导航栏</span><br><span class="line">estep3=&gt;operation: 点击添加按钮开始埋点</span><br><span class="line">estep4=&gt;operation: 点击要埋点的元素</span><br><span class="line">estep5=&gt;operation: 弹出配置对话框进行配置</span><br><span class="line">estep6=&gt;operation: 点击保存配置完毕</span><br><span class="line">estep7=&gt;operation: 点击退出按钮退出编辑</span><br><span class="line">nstep1=&gt;operation: 从服务器获取埋点数据</span><br><span class="line">nstep2=&gt;operation: 在页面找到对应的元素并绑定事件</span><br><span class="line">start-&gt;cond</span><br><span class="line">cond(yes)-&gt;estep1-&gt;estep2-&gt;estep3-&gt;estep4-&gt;estep5-&gt;estep6-&gt;estep7-&gt;estep3</span><br><span class="line">cond(no)-&gt;nstep1-&gt;nstep2</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>参考文档：<br><a href="http://help.zhugeio.com/hc/kb/article/1068533/">诸葛IO的JS可视化埋点-使用指南</a><br><a href="http://help.zhugeio.com/hc/kb/article/1060006/">诸葛IO的JS全埋点接入文档</a><br><a href="https://docs.zhugeio.com/quickstart/">诸葛IO文档</a></p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/%E5%9F%8B%E7%82%B9-%E5%8F%AF%E8%A7%86%E5%8C%96-Mixpanel/"> / 埋点,可视化,Mixpanel</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

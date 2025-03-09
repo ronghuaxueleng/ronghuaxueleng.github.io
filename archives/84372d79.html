@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>MVC - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="简介简介on算机发展迅速，编程技术也日益分化。桌面应用编程，也逐渐出现了用户图形界面和程序逻辑分离的程序设计。到了90年代，web的出现更是让这种程序设计模式得以延续。这种设计模式便是MVC(Model-View-Control)，除了MVC，还有MVC的变种，如MVVM(Model-View-View-Model)等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MVC">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/84372d79.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="简介简介on算机发展迅速，编程技术也日益分化。桌面应用编程，也逐渐出现了用户图形界面和程序逻辑分离的程序设计。到了90年代，web的出现更是让这种程序设计模式得以延续。这种设计模式便是MVC(Model-View-Control)，除了MVC，还有MVC的变种，如MVVM(Model-View-View-Model)等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-13T00:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.384Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="php">
+<meta name="twitter:card" content="summary">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/84372d79.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            MVC
+        </div>
+        <div class="post-meta">
+            2016-10-13 ｜ 
+            
+                <a href="/categories/php/"># php</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/php/">php</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>简介on算机发展迅速，编程技术也日益分化。桌面应用编程，也逐渐出现了用户图形界面和程序逻辑分离的程序设计。到了90年代，web的出现更是让这种程序设计模式得以延续。<br>这种设计模式便是<a href="https://en.wikipedia.org/wiki/Model-view-controller">MVC(Model-View-Control)</a>，除了MVC，还有MVC的变种，如<a href="https://en.wikipedia.org/wiki/Model-view-viewmodel:">MVVM(Model-View-View-Model)</a>等。</p>
+<span id="more"></span>
+
+<h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>回到80年代的桌面应用编程，当时面向对象的编程设计模式（见<a href="fb867561.html">PHP设计模式(一)：基础编程模式</a>）兴起，程序员将桌面应用分割成两个大的对象：领域对象(domain objects)和可视对象(presentation objects)。领域对象是对现实事物的抽象模型，可视对象是对用户界面部分的抽象模型。 后来人们发现，只有领域对象和可视对象是不够的，特别是在复杂的业务中。根据<a href="d60eb45.html">PHP设计模式(三)：封装</a>中介绍的设计原则，在面向对象程序设计中，类和类之间的访问、交互和更新应该是通过Accessors和Mutators。<br>那么如果操作领域对象呢？人们引入了控制器(controller)的对象，通过控制器来操作领域模型。<br>到此，MVC模型逐渐稳定下来，用户通过可视对象操作控制器对象，控制器对象再去操作领域对象。</p>
+<h2 id="MVC中的设计模式"><a href="#MVC中的设计模式" class="headerlink" title="MVC中的设计模式"></a>MVC中的设计模式</h2><p>上面介绍的MVC属于抽象度比较高的设计模式，在实际编程中，需要遵守下面的设计模式。</p>
+<h3 id="基于接口去编程"><a href="#基于接口去编程" class="headerlink" title="基于接口去编程"></a>基于接口去编程</h3><p>基于接口去编程的好处就是分离设计和实现，这一点我们在<a href="daef90fc.html">PHP设计模式(二)：抽象类和接口</a>已经介绍过了，下面我们举一个实际的例子来说明这个设计的好处。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="keyword">protected</span> <span class="variable">$name</span>;</span><br><span class="line">  <span class="keyword">abstract</span> <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">eatFish</span>(<span class="params"></span>)</span>;</span><br><span class="line">  <span class="keyword">abstract</span> <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">eatMoss</span>(<span class="params"></span>)</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">eatFish</span>()) &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="variable language_">$this</span>-&gt;name . <span class="string">&quot; can eat fish.\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">eatMoss</span>()) &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="variable language_">$this</span>-&gt;name . <span class="string">&quot; can eat moss.\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我们创建一个鲸鱼类：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include_once</span>(<span class="string">&#x27;Animal.php&#x27;</span>);</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Whale</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;name = <span class="string">&quot;Whale&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eatFish</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">TRUE</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eatMoss</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">FALSE</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$whale</span> = <span class="keyword">new</span> <span class="title class_">Whale</span>();</span><br><span class="line"><span class="variable">$whale</span>-&gt;<span class="title function_ invoke__">eat</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>运行一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">php Whale.php</span></span><br><span class="line">Whale eats fish.</span><br></pre></td></tr></table></figure>
+<p>看上去没什么问题，对吧？我们创建一个鲤鱼类：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include_once</span>(<span class="string">&#x27;Animal.php&#x27;</span>);</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Carp</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;name = <span class="string">&quot;Carp&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eatMoss</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">TRUE</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$carp</span> = <span class="keyword">new</span> <span class="title class_">Carp</span>();</span><br><span class="line"><span class="variable">$carp</span>-&gt;<span class="title function_ invoke__">eat</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>运行一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">php Carp.php</span></span><br><span class="line">PHP Fatal error: Class Carp contains 1 abstract method and must therefore be</span><br><span class="line">declared abstract or implement the remaining method (Animal::eatFish) in</span><br><span class="line">Carp.php on line 9</span><br></pre></td></tr></table></figure>
+<p>报错了，对吧？因为我们实现Carp.php的时候故意没有去实现eatFish接口，基于接口的编程设计模式可以在开发期就发现这种逻辑错误。</p>
+<h3 id="使用组件而不是继承"><a href="#使用组件而不是继承" class="headerlink" title="使用组件而不是继承"></a>使用组件而不是继承</h3><p>将一个对象拆成更小的对象，这些小的对象成为组件(composition)。尽量使用组件而不是继承的设计模式的意义在于，多种继承之下，子类可能会拥有大量毫无意义的未实现方法。而通过组件的方式，子类可以选择需要的组件。<br>下面给出一个例子：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="keyword">protected</span> <span class="variable">$name</span>;</span><br><span class="line">  <span class="keyword">abstract</span> <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">eatFish</span>(<span class="params"></span>)</span>;</span><br><span class="line">  <span class="keyword">abstract</span> <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">eatMoss</span>(<span class="params"></span>)</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">eatFish</span>()) &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="variable language_">$this</span>-&gt;name . <span class="string">&quot; can eat fish.\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">eatMoss</span>()) &#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="variable language_">$this</span>-&gt;name . <span class="string">&quot; can eat moss.\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Whale</span> <span class="keyword">extends</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">  <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;name = <span class="string">&quot;Whale&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">eatFish</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">TRUE</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">eatMoss</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">FALSE</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BullWhale</span> <span class="keyword">extends</span> <span class="title">Whale</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;name = <span class="string">&quot;Bull Whale&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getGender</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Male&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这里的BullWhale其实非常冗余，实际的业务模型可能并不需要这么复杂，这就是多重继承的恶果。<br>而组件则不同，通过将行为拆分成不同的部分，又最终子类决定使用哪些组件。<br>下面给出一个例子：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Action</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="variable">$name</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$name</span></span>) </span>&#123;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;name = <span class="variable">$name</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eat</span>(<span class="params"><span class="variable">$food</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable language_">$this</span>-&gt;name . <span class="string">&quot; eat &quot;</span>. <span class="variable">$food</span> . <span class="string">&quot;.\n&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Gender</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="variable">$gender</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$gender</span></span>) </span>&#123;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;gender= <span class="variable">$gender</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getGender</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;gender;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BullWhale</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="variable">$action</span>;</span><br><span class="line">  <span class="keyword">private</span> <span class="variable">$gender</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;action = <span class="keyword">new</span> <span class="title class_">Action</span>(<span class="string">&quot;Bull Whale&quot;</span>);</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;gender = <span class="keyword">new</span> <span class="title class_">Gender</span>(<span class="string">&quot;Male&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eatFood</span>(<span class="params"><span class="variable">$food</span></span>) </span>&#123;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;action-&gt;<span class="title function_ invoke__">eat</span>(<span class="variable">$food</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getGender</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;gender-&gt;<span class="title function_ invoke__">getGender</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$bullWhale</span> = <span class="keyword">new</span> <span class="title class_">BullWhale</span>();</span><br><span class="line"><span class="variable">$bullWhale</span>-&gt;<span class="title function_ invoke__">eatFood</span>(<span class="string">&quot;fish&quot;</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$bullWhale</span>-&gt;<span class="title function_ invoke__">getGender</span>() . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>运行一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">php BullWhale.php</span></span><br><span class="line">Bill Whale eat fish.</span><br><span class="line">Male</span><br></pre></td></tr></table></figure>
+<p>BullWhale由Action和Gender组件构成，不同的类可以选择不同的组件组合，这样就不会造成类冗余了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>实际编程中，更多的往往是混合架构，如既包含继承，又包含组件的编程设计模式。不过，掌握基本的编程架构设计是一切的基础。</p>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/php/"> / php</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>

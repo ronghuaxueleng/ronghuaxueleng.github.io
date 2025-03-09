@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <meta name="robots" content="index, follow">
+  <!-- title -->
+  
+    
+  <title>拦截过滤器模式 ( Intercepting Filter ) - 白云雅阁</title>
+    
+  
+  
+  <!-- open graph -->
+  <meta name="description" content="拦截过滤器模式 ( Intercepting Filter )拦截过滤器模式（Intercepting Filter Pattern）用于对应用程序的请求或响应做一些预处理&#x2F;后处理 定义过滤器，并在把请求传给实际目标应用程序之前应用在请求上 过滤器可以做认证&#x2F;授权&#x2F;记录日志，或者跟踪请求，然后把请求传给相应的处理程序 拦截过滤器模式涉及以下实体：  过滤器（Filte">
+<meta property="og:type" content="article">
+<meta property="og:title" content="拦截过滤器模式 ( Intercepting Filter )">
+<meta property="og:url" content="http://ronghuaxueleng.github.io/archives/42bdf457.html">
+<meta property="og:site_name" content="白云雅阁">
+<meta property="og:description" content="拦截过滤器模式 ( Intercepting Filter )拦截过滤器模式（Intercepting Filter Pattern）用于对应用程序的请求或响应做一些预处理&#x2F;后处理 定义过滤器，并在把请求传给实际目标应用程序之前应用在请求上 过滤器可以做认证&#x2F;授权&#x2F;记录日志，或者跟踪请求，然后把请求传给相应的处理程序 拦截过滤器模式涉及以下实体：  过滤器（Filte">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ronghuaxueleng.github.io/image/interceptingfilter_pattern_1.jpg">
+<meta property="article:published_time" content="2020-03-12T19:15:04.000Z">
+<meta property="article:modified_time" content="2025-03-09T08:43:48.331Z">
+<meta property="article:author" content="ronghuaxueleng">
+<meta property="article:tag" content="java, 设计模式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ronghuaxueleng.github.io/image/interceptingfilter_pattern_1.jpg">
+  <!-- canonical -->
+  
+  <link rel="canonical" href="http://ronghuaxueleng.github.io/archives/42bdf457.html">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+  <!-- CSS -->
+  
+<link rel="stylesheet" href="/css/reset.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/markdown.css">
+
+  
+<link rel="stylesheet" href="/css/fonts.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+    <body>
+        <div class="paper">
+            <div class="paper-main">
+                
+                    <div class="post-header">
+    <a class="logo" href="/">白云雅阁</a>
+    <!-- <div class="logo"><a href="/" title="Len"><img src="/img/logo.svg" alt="Len" aria-label="logo" height="20"></a></div> -->
+        <ul class="nav">
+            
+            <li><a href="/">Home</a></li>
+            
+            <li><a href="/archives">Archives</a></li>
+            
+        </ul>
+
+
+    </a>
+</div>
+
+                
+                <div class="post-main">
+    
+        <div class="post-main-title">
+            拦截过滤器模式 ( Intercepting Filter )
+        </div>
+        <div class="post-meta">
+            2020-03-12 ｜ 
+            
+                <a href="/categories/java/"># java</a>
+            
+        </div>
+        <!-- 圆角分类 -->
+        <!-- <div class="tags"> -->
+            <!--  -->
+                <!-- <a href="/categories/java/">java</a> -->
+            <!--  -->
+        <!-- </div> -->
+        <div class="post-md">
+            <h1 id="拦截过滤器模式-Intercepting-Filter"><a href="#拦截过滤器模式-Intercepting-Filter" class="headerlink" title="拦截过滤器模式 ( Intercepting Filter )"></a>拦截过滤器模式 ( Intercepting Filter )</h1><p>拦截过滤器模式（Intercepting Filter Pattern）用于对应用程序的请求或响应做一些预处理&#x2F;后处理</p>
+<p>定义过滤器，并在把请求传给实际目标应用程序之前应用在请求上</p>
+<p>过滤器可以做认证&#x2F;授权&#x2F;记录日志，或者跟踪请求，然后把请求传给相应的处理程序</p>
+<p>拦截过滤器模式涉及以下实体：</p>
+<ul>
+<li><strong>过滤器（Filter）</strong> - 过滤器在请求处理程序执行请求之前或之后，执行某些任务。</li>
+<li><strong>过滤器链（Filter Chain）</strong> - 过滤器链带有多个过滤器，并在 Target 上按照定义的顺序执行这些过滤器。</li>
+<li><strong>Target</strong> - Target 对象是请求处理程序。</li>
+<li><strong>过滤管理器（Filter Manager）</strong> - 过滤管理器管理过滤器和过滤器链。</li>
+<li><strong>客户端（Client）</strong> - Client 是向 Target 对象发送请求的对象。</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p><img src="/../../image/interceptingfilter_pattern_1.jpg" alt="拦截过滤器模式"></p>
+<ol>
+<li>定义类 <em>FilterChain</em> 、 <em>FilterManager</em> 、 <em>Target</em> 、 <em>Client</em> 作为表示实体的各种对象</li>
+<li>定义类 <em>AuthenticationFilter</em> 和 <em>DebugFilter</em> 表示实体过滤器</li>
+<li>定义类 <em>InterceptingFilterDemo</em> 使用 <em>Client</em> 来演示拦截过滤器设计模式</li>
+</ol>
+<h2 id="范例"><a href="#范例" class="headerlink" title="范例"></a>范例</h2><h4 id="1-创建过滤器接口-Filter"><a href="#1-创建过滤器接口-Filter" class="headerlink" title="1. 创建过滤器接口 Filter"></a>1. 创建过滤器接口 Filter</h4><p><em>Filter.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Filter</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">(String request)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-创建实体过滤器"><a href="#2-创建实体过滤器" class="headerlink" title="2. 创建实体过滤器"></a>2. 创建实体过滤器</h4><p><em>AuthenticationFilter.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AuthenticationFilter</span> <span class="keyword">implements</span> <span class="title class_">Filter</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">(String request)</span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Authenticating request: &quot;</span> + request);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>DebugFilter.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DebugFilter</span> <span class="keyword">implements</span> <span class="title class_">Filter</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">(String request)</span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;request log: &quot;</span> + request);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-创建-Target"><a href="#3-创建-Target" class="headerlink" title="3. 创建 Target"></a>3. 创建 Target</h4><p><em>Target.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Target</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">(String request)</span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;Executing request: &quot;</span> + request);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-创建过滤器链"><a href="#4-创建过滤器链" class="headerlink" title="4. 创建过滤器链"></a>4. 创建过滤器链</h4><p><em>FilterChain.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FilterChain</span> &#123;</span><br><span class="line">   <span class="keyword">private</span> List&lt;Filter&gt; filters = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Filter&gt;();</span><br><span class="line">   <span class="keyword">private</span> Target target;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addFilter</span><span class="params">(Filter filter)</span>&#123;</span><br><span class="line">      filters.add(filter);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">execute</span><span class="params">(String request)</span>&#123;</span><br><span class="line">      <span class="keyword">for</span> (Filter filter : filters) &#123;</span><br><span class="line">         filter.execute(request);</span><br><span class="line">      &#125;</span><br><span class="line">      target.execute(request);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setTarget</span><span class="params">(Target target)</span>&#123;</span><br><span class="line">      <span class="built_in">this</span>.target = target;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-创建过滤管理器"><a href="#5-创建过滤管理器" class="headerlink" title="5. 创建过滤管理器"></a>5. 创建过滤管理器</h4><p><em>FilterManager.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FilterManager</span> &#123;</span><br><span class="line">   FilterChain filterChain;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">FilterManager</span><span class="params">(Target target)</span>&#123;</span><br><span class="line">      filterChain = <span class="keyword">new</span> <span class="title class_">FilterChain</span>();</span><br><span class="line">      filterChain.setTarget(target);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setFilter</span><span class="params">(Filter filter)</span>&#123;</span><br><span class="line">      filterChain.addFilter(filter);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">filterRequest</span><span class="params">(String request)</span>&#123;</span><br><span class="line">      filterChain.execute(request);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-创建客户端-Client"><a href="#6-创建客户端-Client" class="headerlink" title="6. 创建客户端 Client"></a>6. 创建客户端 Client</h4><p><em>Client.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Client</span> &#123;</span><br><span class="line">   FilterManager filterManager;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setFilterManager</span><span class="params">(FilterManager filterManager)</span>&#123;</span><br><span class="line">      <span class="built_in">this</span>.filterManager = filterManager;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sendRequest</span><span class="params">(String request)</span>&#123;</span><br><span class="line">      filterManager.filterRequest(request);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-使用-Client-来演示拦截过滤器设计模式"><a href="#7-使用-Client-来演示拦截过滤器设计模式" class="headerlink" title="7. 使用 Client 来演示拦截过滤器设计模式"></a>7. 使用 <em>Client</em> 来演示拦截过滤器设计模式</h4><p><em>FrontControllerPatternDemo.java</em>    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">InterceptingFilterDemo</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">      <span class="type">FilterManager</span> <span class="variable">filterManager</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FilterManager</span>(<span class="keyword">new</span> <span class="title class_">Target</span>());</span><br><span class="line">      filterManager.setFilter(<span class="keyword">new</span> <span class="title class_">AuthenticationFilter</span>());</span><br><span class="line">      filterManager.setFilter(<span class="keyword">new</span> <span class="title class_">DebugFilter</span>());</span><br><span class="line"></span><br><span class="line">      <span class="type">Client</span> <span class="variable">client</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Client</span>();</span><br><span class="line">      client.setFilterManager(filterManager);</span><br><span class="line">      client.sendRequest(<span class="string">&quot;HOME&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译运行以上 Java 范例，输出结果如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">javac -d . src/main/cn/twle/gof/InterceptingFilterDemo.java</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">java  cn.twle.gof.InterceptingFilterDemo</span></span><br><span class="line">Authenticating request: HOME</span><br><span class="line">request log: HOME</span><br><span class="line">Executing request: HOME</span><br></pre></td></tr></table></figure>
+
+        </div>
+    
+<!-- tags -->
+
+    <div class="post-meta">
+        标签：
+        
+            <a href="/tags/java-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"> / java, 设计模式</a>
+        
+    </div>
+
+</div>
+                <div class="footer">
+    <span>Copyright © <script>document.write(new Date().getFullYear())</script> 白云雅阁</span>
+    <span>Powered by <a href="https://hexo.io">Hexo</a> with <a href="https:///imzl.com/zenmind">ZenMind</a></span>
+    <span>备案号<a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2024093046号-1</a></span>
+</div>
+
+<link rel="stylesheet" href="/css/a11y-dark.min.css">
+
+
+<script src="/js/highlight.min.js"></script>
+
+
+<script src="/js/highlightjs-line-numbers.js"></script>
+
+<script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+</script>
+
+            </div>
+        </div>
+    </body>
+</html>
